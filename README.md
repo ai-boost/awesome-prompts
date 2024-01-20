@@ -51,7 +51,7 @@ Opening GPT editing one by one is quite cumbersome, so I only released the GPT p
 Please let me know if you need any further assistance!
 
 # FAQ
-**Q**: You can't "open-source" someone else's work.
+**Q**: You can't "open-source" someone else's work.  
 **A**: Sure, I just open-source my work, I've chosen to open-source these GPTs as a way to contribute positively to the community. My intention is to set a precedent for sharing and learning together by making these prompts available to everyone.
 
 This initiative is born out of a belief in collaborative growth and the value of open-source ethics in the AI field. I hope that by sharing these prompts, we can all benefit from a diverse range of insights and ideas.
