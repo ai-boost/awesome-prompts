@@ -19,6 +19,10 @@ After much contemplation, I'm excited to announce that I'm open-sourcing the pro
 
 Let's collaborate, innovate, and elevate the world of GPTs together! 
 
+[UPDATE] Rank 2nd now 🎉🎉🎉 (2024.01.20)
+<img width="796" alt="image" src="https://github.com/ai-boost/awesome-gpts-prompts/assets/70333750/1da0d06a-cbfb-490e-a699-6ae3262c4c6b">
+
+
 ---
 
 | Name | Rank | Category | Num | Desc | Link | Prompt |
