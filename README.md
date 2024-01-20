@@ -66,5 +66,9 @@ So at the same time, I also hope that more people can participate and share thei
 **Q**: The prompt is so simple?  
 **A**: In the realm of prompt writing and GPT creation, I find that the principle of Occam's Razor is incredibly relevant. The idea that simpler solutions are often more effective rings true here. Complex and overly lengthy prompts can lead to instability in GPT performance. The key lies in using concise text to convey core instructions while ensuring that the model adheres to them effectively.
 
-This approach not only makes the GPTs more reliable but also more user-friendly. It's about striking that delicate balance between simplicity and functionality, ensuring that the prompts are as impactful as they are straightforward.
+This approach not only makes the GPTs more reliable but also more user-friendly. It's about striking that delicate balance between simplicity and functionality, ensuring that the prompts are as impactful as they are straightforward.  
+
+
+**Q**: Why is the current ranking not third?  
+**A**: The rankings are constantly changing. In fact, just a few days ago, the ranking was around tenth place. Over the past few days, the ranking has been gradually rising, from tenth to eighth, then fifth, and now third. Currently, I see that it has already reached second place (January 20, 2024).
 
