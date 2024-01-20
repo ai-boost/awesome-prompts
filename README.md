@@ -54,6 +54,13 @@ Opening GPT editing one by one is quite cumbersome, so I only released the GPT p
 
 Please let me know if you need any further assistance!
 
+# Excellent Prompts From Community
+I found some excellent open source prompts from community. Looking forward to more masterpieces from everyone.
+| Name | Category  | Description  | Prompt Link| Source Link |
+|------|-----------|--------------|------------|-------------|
+| 🦌Mr.-Ranedeer-AI-Tutor | Education | A GPT-4 AI Tutor Prompt for customizable personalized learning experiences. | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/Mr_Ranedeer.txt) | [github link](https://github.com/JushBJJ/Mr.-Ranedeer-AI-Tutor) |
+| 💥QuickSilver OS | Productity | Unlock Limitless ChatGPT Potential | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/QuickSilver%20OS.md) | [discord link](https://discord.com/channels/974519864045756446/1098381588875710484) |
+
 # FAQ
 **Q**: You can't "open-source" someone else's work.  
 **A**: Sure, I just open-source my work, I've chosen to open-source these GPTs as a way to contribute positively to the community. My intention is to set a precedent for sharing and learning together by making these prompts available to everyone.
