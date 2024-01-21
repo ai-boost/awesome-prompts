@@ -60,6 +60,8 @@ I found some excellent open source prompts from community. Looking forward to mo
 |------|-----------|--------------|------------|-------------|
 | 🦌Mr.-Ranedeer-AI-Tutor | Education | A GPT-4 AI Tutor Prompt for customizable personalized learning experiences. | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/Mr_Ranedeer.txt) | [github link](https://github.com/JushBJJ/Mr.-Ranedeer-AI-Tutor) |
 | 💥QuickSilver OS | Productity | Unlock Limitless ChatGPT Potential | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/QuickSilver%20OS.md) | [discord link](https://discord.com/channels/974519864045756446/1098381588875710484) |
+| 🧑‍🎨Meta MJ | Productity | Midjourney Image Prompt Creator | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/Meta%20MJ.md) | [discord link](https://discord.com/channels/974519864045756446/1097061522347401309) |
+| SuperPrompt | Productity | Create anything you can imagine with this structured Q&A | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/SuperPrompt.md) | [discord link](https://discord.com/channels/974519864045756446/1096142422725115995) |
 
 # FAQ
 **Q**: You can't "open-source" someone else's work.  
