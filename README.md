@@ -9,6 +9,7 @@
 
 🌈 **Join us** in shaping the future of AI with every prompt you share! 🌐
 
+Your stars🌟 and recommendations 🫶 are what make this community vibrant!
 ---
 
 Author's Note:
