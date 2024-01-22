@@ -63,6 +63,7 @@ I found some excellent open source prompts from community. Looking forward to mo
 | 🧑‍🎨Meta MJ | Productity | Midjourney Image Prompt Creator | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/Meta%20MJ.md) | [discord link](https://discord.com/channels/974519864045756446/1097061522347401309) |
 | 🚀SuperPrompt | Productity | Create anything you can imagine with this structured Q&A | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/SuperPrompt.md) | [discord link](https://discord.com/channels/974519864045756446/1096142422725115995) |
 | 🧛‍♀️Vampire The Masquerade | D&D |Vampire The Masquerade Lore Expert | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/Vampire%20The%20Masquerade%20Lore%20Expert.md) | [discord link](https://discord.com/channels/974519864045756446/1109844321718521936/1110377747529863298) |
+| 📓Prompt Creater | Writer | Auto Prompt Creater | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/Prompt%20Creater.md) | - |
 
 # FAQ
 **Q**: You can't "open-source" someone else's work.  
