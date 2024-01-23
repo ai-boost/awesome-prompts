@@ -1,5 +1,8 @@
 <div align="center">
   <h2 align="center">Awesome-GPTs-Prompts🪶</h2>
+  <p align="center">
+    <img width="650" src="https://raw.githubusercontent.com/ai-boost/awesome-gpts-prompts/main/assets/banner.png">
+  </p>
   <p>
       <a href="https://github.com/ai-boost/awesome-gpts-prompts">English</a> | <a href="https://github.com/ai-boost/awesome-gpts-prompts/blob/main/README_zh.md">简体中文</a>
   </p>
