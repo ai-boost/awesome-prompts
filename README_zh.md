@@ -1,3 +1,21 @@
+<div align="center">
+  <h2 align="center">Awesome-GPTs-Prompts🪶</h2>
+  <p>
+      <a href="https://github.com/ai-boost/awesome-gpts-prompts">English</a> | <a href="https://github.com/ai-boost/awesome-gpts-prompts/blob/main/README_zh.md">简体中文</a>
+  </p>
+  <p align="center">
+    <p align="center"> This repository contains a curated list of awesome prompts on OpenAI GPT store.</p>
+  </p>
+  <h4 align="center">
+    <a href="https://awesome.re">
+      <img src="https://awesome.re/badge.svg" alt="Awesome" />
+    </a>
+    <a href="http://makeapullrequest.com">
+      <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="http://makeapullrequest.com" />
+    </a>
+  </h4>
+</div>
+
 # 🚀 欢迎来到 Awesome-GPTs-Prompts！🌟
 
 👋 发现顶尖GPT的秘密提示（来自官方GPT商店）！分享并探索著名GPT的最迷人提示。🤩
