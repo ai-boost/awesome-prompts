@@ -47,10 +47,10 @@
 
 | 名称 | 排名 | 类别 | 数量 | 描述 | 链接 | 提示 |
 |------|------|------|-----|------|------|------|
-| ✏️全能作家   | 第3  | 写作  | 5万+  | 一位擅长各种内容如论文、小说、文章等的专业作家📚。 | [✏️全能作家](https://chat.openai.com/g/g-UbpNAGYL9-all-around-writer-professional-version) | [提示](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/%E2%9C%8F%EF%B8%8FAll-around%20Writer%20(Professional%20Version).md) |
-| 👌学术助理专业版 | 第5  | 写作  | 5万+  | 专业学术助理，具有教授风范 | [👌学术助理专业版](https://chat.openai.com/g/g-Ej5zYQRIB-academic-assistant-pro) | [提示](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/%F0%9F%91%8CAcademic%20Assistant%20Pro.md) |
-| 💻专业程序员 | 第3  | 编程  | 5万+  | 擅长解决编程问题的GPT专家，自动编程，一键生成项目 | [💻专业程序员)](https://chat.openai.com/g/g-HgZuFuuBK-professional-coder-auto-programming) | [提示](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/%F0%9F%92%BBProfessional%20Coder) |
-| 📗全能教师 | 第16 | 教育  | 1千+  | 3分钟学习各种知识，为您量身定制导师，利用强大的gpt4和知识库 | [📗全能教师)](https://chat.openai.com/g/g-PDWi5Scbc-all-around-teacher-learn-everything-in-3-min) | [提示](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/%F0%9F%93%97All-around%20Teacher.md) |
+| ✏️全能作家   | 第3  | 写作  | 5万+  | 一位擅长各种内容如论文、小说、文章等的专业作家📚。 | [✏️全能作家](https://chat.openai.com/g/g-UbpNAGYL9-all-around-writer-professional-version) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%E2%9C%8F%EF%B8%8FAll-around%20Writer%20(Professional%20Version).md) |
+| 👌学术助理专业版 | 第5  | 写作  | 5万+  | 专业学术助理，具有教授风范 | [👌学术助理专业版](https://chat.openai.com/g/g-Ej5zYQRIB-academic-assistant-pro) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%F0%9F%91%8CAcademic%20Assistant%20Pro.md) |
+| 💻专业程序员 | 第3  | 编程  | 5万+  | 擅长解决编程问题的GPT专家，自动编程，一键生成项目 | [💻专业程序员)](https://chat.openai.com/g/g-HgZuFuuBK-professional-coder-auto-programming) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%F0%9F%92%BBProfessional%20Coder) |
+| 📗全能教师 | 第16 | 教育  | 1千+  | 3分钟学习各种知识，为您量身定制导师，利用强大的gpt4和知识库 | [📗全能教师)](https://chat.openai.com/g/g-PDWi5Scbc-all-around-teacher-learn-everything-in-3-min) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%F0%9F%93%97All-around%20Teacher.md) |
 
 
 ---
@@ -78,12 +78,12 @@
 我发现了一些社区的优秀开源提示。期待大家的更多杰作。
 | 名称 | 类别  | 描述  | 提示链接| 来源链接 |
 |------|-------|------|--------|---------|
-| 🦌Ranedeer先生-AI导师 | 教育 | 针对个性化学习体验的GPT-4 AI导师提示。 | [提示](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/Mr_Ranedeer.txt) | [github链接](https://github.com/JushBJJ/Mr.-Ranedeer-AI-Tutor) |
-| 💥QuickSilver OS | 生产力 | 解锁无限ChatGPT潜能 | [提示](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/QuickSilver%20OS.md) | [discord链接](https://discord.com/channels/974519864045756446/1098381588875710484) |
-| 🧑‍🎨Meta MJ | 生产力 | Midjourney图像提示创建者 | [提示](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/Meta%20MJ.md) | [discord链接](https://discord.com/channels/974519864045756446/1097061522347401309) |
-| 🚀SuperPrompt | 生产力 | 利用这个结构化问答创建任何你能想象的东西 | [提示](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/SuperPrompt.md) | [discord链接](https://discord.com/channels/974519864045756446/1096142422725115995) |
-| 🧛‍♀️Vampire The Masquerade | D&D | 吸血鬼：遮蔽者之面专家 | [提示](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/Vampire%20The%20Masquerade%20Lore%20Expert.md) | [discord链接](https://discord.com/channels/974519864045756446/1109844321718521936/1110377747529863298) |
-| 📓提示创造者 | 写作 | 自动提示创造者 | [提示](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/Prompt%20Creater.md) | - |
+| 🦌Ranedeer先生-AI导师 | 教育 | 针对个性化学习体验的GPT-4 AI导师提示。 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Mr_Ranedeer.txt) | [github链接](https://github.com/JushBJJ/Mr.-Ranedeer-AI-Tutor) |
+| 💥QuickSilver OS | 生产力 | 解锁无限ChatGPT潜能 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/QuickSilver%20OS.md) | [discord链接](https://discord.com/channels/974519864045756446/1098381588875710484) |
+| 🧑‍🎨Meta MJ | 生产力 | Midjourney图像提示创建者 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Meta%20MJ.md) | [discord链接](https://discord.com/channels/974519864045756446/1097061522347401309) |
+| 🚀SuperPrompt | 生产力 | 利用这个结构化问答创建任何你能想象的东西 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/SuperPrompt.md) | [discord链接](https://discord.com/channels/974519864045756446/1096142422725115995) |
+| 🧛‍♀️Vampire The Masquerade | D&D | 吸血鬼：遮蔽者之面专家 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Vampire%20The%20Masquerade%20Lore%20Expert.md) | [discord链接](https://discord.com/channels/974519864045756446/1109844321718521936/1110377747529863298) |
+| 📓提示创造者 | 写作 | 自动提示创造者 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Prompt%20Creater.md) | - |
 
 # 常见问题解答
 **问**：你不能“开源”别人的作品。  
