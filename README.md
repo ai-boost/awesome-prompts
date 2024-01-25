@@ -88,8 +88,8 @@ I found some excellent open source prompts from community. Looking forward to mo
 | 📓Prompt Creater | Writer | Auto Prompt Creater | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Prompt%20Creater.md) | - |
 
 # FAQ
-**Q**: You can't "open-source" someone else's work.  
-**A**: Sure, I just open-source my work, I've chosen to open-source these GPTs as a way to contribute positively to the community. My intention is to set a precedent for sharing and learning together by making these prompts available to everyone.
+**Q**: Why open source?
+**A**: I've chosen to open-source these GPTs as a way to contribute positively to the community. My intention is to set a precedent for sharing and learning together by making these prompts available to everyone.
 
 This initiative is born out of a belief in collaborative growth and the value of open-source ethics in the AI field. I hope that by sharing these prompts, we can all benefit from a diverse range of insights and ideas.
 
