@@ -74,7 +74,7 @@
 
 如果您需要进一步的帮助，请告诉我！
 
-# 社区精彩提示
+# 优质提示词（来自社区共享）
 我发现了一些社区的优秀开源提示。期待大家的更多杰作。
 | 名称 | 类别  | 描述  | 提示链接| 来源链接 |
 |------|-------|------|--------|---------|
@@ -83,7 +83,9 @@
 | 🧑‍🎨Meta MJ | 生产力 | Midjourney图像提示创建者 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Meta%20MJ.md) | [discord链接](https://discord.com/channels/974519864045756446/1097061522347401309) |
 | 🚀SuperPrompt | 生产力 | 利用这个结构化问答创建任何你能想象的东西 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/SuperPrompt.md) | [discord链接](https://discord.com/channels/974519864045756446/1096142422725115995) |
 | 🧛‍♀️Vampire The Masquerade | D&D | 吸血鬼：遮蔽者之面专家 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Vampire%20The%20Masquerade%20Lore%20Expert.md) | [discord链接](https://discord.com/channels/974519864045756446/1109844321718521936/1110377747529863298) |
-| 📓提示创造者 | 写作 | 自动提示创造者 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Prompt%20Creater.md) | - |
+| 📓Prompt Creater | 写作 | 自动提示创造者 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Prompt%20Creater.md) | - |
+| 🌀Luna | 生产力 | 她是创意工作流程优化的交响曲，创新与同情心的和谐融合。 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/luna_prompt.txt) | [Discord](https://discord.com/channels/974519864045756446/1171489858737414186) |
+| ⚛Meta Prompting | 生产力 | Meta-Prompting：用任务无关的支架增强语言模型 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/meta_prompt.txt) | [论文](https://arxiv.org/pdf/2401.12954.pdf) |
 
 # 常见问题解答
 1. **问**：为什么选择开源？  
