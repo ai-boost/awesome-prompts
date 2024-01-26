@@ -88,8 +88,7 @@ I found some excellent open source prompts from community. Looking forward to mo
 | 📓Prompt Creater | Writer | Auto Prompt Creater | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Prompt%20Creater.md) | [discord](https://discord.com/channels/974519864045756446/1073262042175258635) |
 | 🌀Luna | Productity | She is a symphony of creative workflow optimization, a harmonious blend of innovation and empathy. | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/luna_prompt.txt) | [discord](https://discord.com/channels/974519864045756446/1171489858737414186) |
 | ⚛Meta Prompting | Productity | Meta-Prompting: Enhancing Language Models with Task-Agnostic Scaffolding | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/meta_prompt.txt) | [paper](https://arxiv.org/pdf/2401.12954.pdf) |
-
-
+| 🖋Academic Essay | Writer | a Literature Professor | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Literature_Professor.md) | [discord](https://discord.com/channels/974519864045756446/1077923477425762415) |
 
 
 # FAQ
