@@ -86,6 +86,7 @@
 | 📓Prompt Creater | 写作 | 自动提示创造者 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Prompt%20Creater.md) | - |
 | 🌀Luna | 生产力 | 她是创意工作流程优化的交响曲，创新与同情心的和谐融合。 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/luna_prompt.txt) | [Discord](https://discord.com/channels/974519864045756446/1171489858737414186) |
 | ⚛Meta Prompting | 生产力 | Meta-Prompting：用任务无关的支架增强语言模型 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/meta_prompt.txt) | [论文](https://arxiv.org/pdf/2401.12954.pdf) |
+| 🖋学术论文 | 写作 | 文学教授 | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Literature_Professor.md) | [Discord](https://discord.com/channels/974519864045756446/1077923477425762415) |
 
 # 常见问题解答
 1. **问**：为什么选择开源？  
