@@ -49,7 +49,7 @@
 |------|------|------|-----|------|------|------|
 | ✏️全能作家   | 第3  | 写作  | 5万+  | 一位擅长各种内容如论文、小说、文章等的专业作家📚。 | [✏️全能作家](https://chat.openai.com/g/g-UbpNAGYL9-all-around-writer-professional-version) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%E2%9C%8F%EF%B8%8FAll-around%20Writer%20(Professional%20Version).md) |
 | 👌学术助理专业版 | 第5  | 写作  | 5万+  | 专业学术助理，具有教授风范 | [👌学术助理专业版](https://chat.openai.com/g/g-Ej5zYQRIB-academic-assistant-pro) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%F0%9F%91%8CAcademic%20Assistant%20Pro.md) |
-| 💻专业程序员 | 第3  | 编程  | 5万+  | 擅长解决编程问题的GPT专家，自动编程，一键生成项目 | [💻专业程序员)](https://chat.openai.com/g/g-HgZuFuuBK-professional-coder-auto-programming) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%F0%9F%92%BBProfessional%20Coder) |
+| 💻专业程序员 | 第3  | 编程  | 5万+  | 擅长解决编程问题的GPT专家，自动编程，一键生成项目 | [💻专业程序员)](https://chat.openai.com/g/g-HgZuFuuBK-professional-coder-auto-programming) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%F0%9F%92%BBProfessional%20Coder.md) |
 | 📗全能教师 | 第16 | 教育  | 1千+  | 3分钟学习各种知识，为您量身定制导师，利用强大的gpt4和知识库 | [📗全能教师)](https://chat.openai.com/g/g-PDWi5Scbc-all-around-teacher-learn-everything-in-3-min) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%F0%9F%93%97All-around%20Teacher.md) |
 
 
