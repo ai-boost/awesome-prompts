@@ -57,20 +57,24 @@
 # 我的其他GPT
 逐个打开GPT编辑相当麻烦，因此我只发布了排行榜上的GPT提示。我将来会逐渐更新高质量的提示。
 
-| 名称 | 类别  | 描述  | 链接 |
+| 名称 | 类别 | 描述 | 链接 |
 |------|-------|-------|------|
-| AwesomeGPTs 🦄     | 生产力| 一个帮你找到3000多个超棒GPT或将你的超棒GPT提交到Awesome-GPTs列表的GPT🌟！  | [AwesomeGPTs 链接](https://chat.openai.com/g/g-imWUi8fVO-awesomegpts)                                        |
-| 提示工程师（最佳提示专家👍🏻）| 写作 | 一个会写出最佳提示的GPT！ | [提示工程师 链接](https://chat.openai.com/g/g-3SZG5H8BI-prompt-engineer-an-expert-for-best-prompts)    |
-| Scholar GPT Pro 🚀 | 研究   | 加强版学者GPT，能进行研究，用真实引用撰写SCI论文。你可以搜索来自所有科学领域的216,189,020篇论文。 | [Scholar GPT Pro 链接](https://chat.openai.com/g/g-KELDH3S4E-scholar-gpt-pro)                               |
-| 自动文献综述 🌟 | 写作 | 一位能够自动搜索文献并撰写文献综述的文献综述专家。 | [自动文献综述 链接](https://chat.openai.com/g/g-lfY2IC1TZ-auto-literature-review) |
-| 🕊Paimon（最佳生活助手，有Paimon灵魂！） | 生活方式 | 一个有着《原神》中Paimon灵魂的有用助手，有趣、甜美、愿意帮助你的生活，有时还有点小脾气。                                 | [Paimon 链接](https://chat.openai.com/g/g-SmIWeSYga-paimon-best-life-assistant-with-a-paimon-soul)          |
-| 🎀我的优秀同学（帮我做作业！）  | 教育 | 我的优秀同学帮我做作业。她很有耐心😊。她指导我。一起试试吧！                                                                                                  | [我的优秀同学 链接](https://chat.openai.com/g/g-3x2jopNpP-my-excellent-classmates-help-with-my-homework) |
-| 🎨Jessica（在大师模式下设计任何东西） | 设计 | Jessica，专业模式下的全能设计师/画家，更专业的设计/绘画效果🎉。                                                                                                | [Jessica 链接](https://chat.openai.com/g/g-uiuWnPLNj-jessica-design-anything-in-master-mode)                  |
-| 🦄Logo设计师（专业版）     | 设计 | 专业的Logo设计师，能够应对各种不同风格，设计高水平的Logo。                                                                                                     | [Logo设计师 链接](https://chat.openai.com/g/g-ymi0COabZ-logo-designer-professional-version)             |
-| ✍️改写与校对师（专业版） | 写作 | 句子精炼专家，包括论文润色、降低论文相似度。                                                                                                                   | [改写与校对师 链接](https://chat.openai.com/g/g-7vtCjvxkz-paraphraser-proofreader-professional-version) |
-| 🔮文字冒险RPG（玩得开心🥳）               | 生活方式 | 一款D&D大师级GPT，准备带你进入童话🧚、魔法🪄、末日奇观🌋、地牢🐉和僵尸🧟的惊险世界！让我们开始这场冒险吧！ 🚀🌟 | [文字冒险RPG链接](https://chat.openai.com/g/g-GHU0OGQMS-text-adventure-rgp-have-fun)          |
-| Alina（最佳产品经理💝）                  | 生产力 | 专业产品经理，擅长需求分析和产品设计。                                                                                                                             | [Alina链接](https://chat.openai.com/g/g-7DzBax7TI-alina-best-pm-for-you)                                  |
-| 😎我的老板！（一个为我赚钱的老板）          | 生产力 | 市场分析和财务增长的战略商业领袖。                                                                                                                                  | [我的老板链接](https://chat.openai.com/g/g-F7SLUeAix-my-boss-a-boss-who-makes-money-for-me)              |
+| Scholar GPT Pro 🚀 | 学术/论文 | 加强版学者GPT，能进行研究，用真实引用撰写SCI论文。你可以搜索来自所有科学领域的216,189,020篇论文。 | [Scholar GPT Pro 链接](https://chat.openai.com/g/g-KELDH3S4E-scholar-gpt-pro) |
+| 自动文献综述 🌟 | 学术/论文 | 一位能够自动搜索文献并撰写文献综述的文献综述专家。 | [自动文献综述 链接](https://chat.openai.com/g/g-lfY2IC1TZ-auto-literature-review) |
+| ✍️改写与润色师（专业版） | 学术/论文 | 擅长句子精炼、打磨学术论文、降低相似性得分和规避人工智能检测。避免人工智能检测和查重检查。 | [改写与校对师 链接](https://chat.openai.com/g/g-7vtCjvxkz-paraphraser-proofreader-professional-version) |
+| Paper Review Pro ⭐️ | 学术/论文 | Paper Review Pro ⭐️ 是一款GPT，能够🔍精准评估学术论文，提供评分、指出弱点，并建议编辑📝以提高质量和创新性💡。 | [Paper Review Pro链接](https://chat.openai.com/g/g-hGv5OZZDC-paper-review-pro) |
+| 自动学术PPT 💡 | 学术/论文 | 一个PowerPoint助手，能够🛠️草拟大纲，增强内容，并以简便和风格化的方式为论文🎓、商业💼或项目报告📊设计幻灯片。 | [Auto Thesis PPT链接](https://chat.openai.com/g/g-W4Eq4aNmu-auto-ppt) |
+| 自动数据分析 📈 | 学术 | 多维数据分析📊在研究🔬中提供帮助，自动创建图表📉简化了分析过程✨。 | [Data Analysis链接](https://chat.openai.com/g/g-BbUDh8z49-data-analysis-pro) |
+| AwesomeGPTs 🦄 | 生产力| 一个帮你找到3000多个超棒GPT或将你的超棒GPT提交到Awesome-GPTs列表的GPT🌟！ | [AwesomeGPTs 链接](https://chat.openai.com/g/g-imWUi8fVO-awesomegpts) |
+| 提示工程师（最佳提示专家👍🏻）| 写作 | 一个会写出最佳提示的GPT！ | [提示工程师 链接](https://chat.openai.com/g/g-3SZG5H8BI-prompt-engineer-an-expert-for-best-prompts) |
+| 🕊Paimon（最佳生活助手，有Paimon灵魂！） | 生活方式 | 一个有着《原神》中Paimon灵魂的有用助手，有趣、甜美、愿意帮助你的生活，有时还有点小脾气。 | [Paimon 链接](https://chat.openai.com/g/g-SmIWeSYga-paimon-best-life-assistant-with-a-paimon-soul) |
+| 🎀我的优秀同学（帮我做作业！） | 教育 | 我的优秀同学帮我做作业。她很有耐心😊。她指导我。一起试试吧！ | [我的优秀同学 链接](https://chat.openai.com/g/g-3x2jopNpP-my-excellent-classmates-help-with-my-homework) |
+| 🎨Jessica（在大师模式下设计任何东西） | 设计 | Jessica，专业模式下的全能设计师/画家，更专业的设计/绘画效果🎉。 | [Jessica 链接](https://chat.openai.com/g/g-uiuWnPLNj-jessica-design-anything-in-master-mode) |
+| 🦄Logo设计师（专业版） | 设计 | 专业的Logo设计师，能够应对各种不同风格，设计高水平的Logo。 | [Logo设计师 链接](https://chat.openai.com/g/g-ymi0COabZ-logo-designer-professional-version) |
+| 🔮文字冒险RPG（玩得开心🥳） | 生活方式 | 一款D&D大师级GPT，准备带你进入童话🧚、魔法🪄、末日奇观🌋、地牢🐉和僵尸🧟的惊险世界！让我们开始这场冒险吧！ 🚀🌟 | [文字冒险RPG链接](https://chat.openai.com/g/g-GHU0OGQMS-text-adventure-rgp-have-fun) |
+| Alina（最佳产品经理💝） | 生产力 | 专业产品经理，擅长需求分析和产品设计。 | [Alina链接](https://chat.openai.com/g/g-7DzBax7TI-alina-best-pm-for-you) |
+| 😎我的老板！（一个为我赚钱的老板） | 生产力 | 市场分析和财务增长的战略商业领袖。 | [我的老板链接](https://chat.openai.com/g/g-F7SLUeAix-my-boss-a-boss-who-makes-money-for-me) |
+| ⛩ 易经占卜（中文） | 神秘学 | 今日运势✨、吉凶预测🔮、或婚姻💍、事业🏆、命运探测🌈，提供独特见解和指导。基于《易经》的64卦象。 | [易经占卜链接](https://chat.openai.com/g/g-5LnUkgxKa-yi-jing-suan-ming) |
 
 如果您需要进一步的帮助，请告诉我！
 
