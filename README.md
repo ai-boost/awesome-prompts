@@ -30,7 +30,7 @@
 
 🌈 **Join us** in shaping the future of AI with every prompt you share! 🌐
 
-Your stars🌟 and recommendations 🫶 are what make this community vibrant!
+Your stars🌟 and recommendations 💞 are what make this community vibrant!
 ---
 
 Author's Note:
@@ -62,18 +62,22 @@ Opening GPT editing one by one is quite cumbersome, so I only released the GPT p
 
 | Name | Category  | Description  | Link |
 |------|-----------|--------------|------|
-| AwesomeGPTs 🦄     | Productity| A GPT that helps you find 3000+ awesome GPTs or submit your awesome GPTs to the Awesome-GPTs list🌟!  | [AwesomeGPTs Link](https://chat.openai.com/g/g-imWUi8fVO-awesomegpts)                                        |
+| Auto Literature Review 🌟 | Academic | A literature review expert that can search papers and write literature review automaticlly.  | [Auto Literature Review Link](https://chat.openai.com/g/g-lfY2IC1TZ-auto-literature-review)    |
+| Scholar GPT Pro 🚀 | Academic   | An enhanced scholar GPT version that can do research, write SCI papers with real references. You can search 216,189,020 papers from all fields of science.  | [Scholar GPT Pro Link](https://chat.openai.com/g/g-KELDH3S4E-scholar-gpt-pro)                               |
+| ✍️Paraphraser & Humanizer | Academic | Expert in sentence refinement, polishing academic papers, reducing similarity scores, and evading AI detection. Avoiding AI detection and plagiarism checks.  | [Paraphraser & Proofreader Link](https://chat.openai.com/g/g-7vtCjvxkz-paraphraser-proofreader-professional-version) |
+| Paper Review Pro ⭐️ | Academic | Paper Review Pro ⭐️ is a GPT that 🔍 evaluates academic papers with precision, offering scores, pinpointing weaknesses, and suggesting edits 📝 to enhance quality and innovation 💡.  | [Paper Review Pro Link](https://chat.openai.com/g/g-hGv5OZZDC-paper-review-pro)    |
+| Auto Thesis PPT 💡 | Academic | A PowerPoint assistant that 🛠️ drafts outlines, boosts content, and styles slides for thesis 🎓, business 💼, or project reports 📊 with ease and flair ✨. | [Auto Thesis PPT Link](https://chat.openai.com/g/g-W4Eq4aNmu-auto-ppt) |
+| Data Analysis Pro 📈 | Academic | Multidimensional data analysis 📊 aids in research 🔬, with automated chart creation 📉 simplifying the analytical process ✨. | [Data Analysis Link](https://chat.openai.com/g/g-BbUDh8z49-data-analysis-pro) |
+| AwesomeGPTs 🦄     | Productity| A GPT that helps you find 3000+ awesome GPTs or submit your awesome GPTs to the Awesome-GPTs list🌟!  | [AwesomeGPTs Link](https://chat.openai.com/g/g-imWUi8fVO-awesomegpts)   |
 | Prompt Engineer (An expert for best prompts👍🏻)| Writing | A GPT that writes best prompts!  | [Prompt Engineer Link](https://chat.openai.com/g/g-3SZG5H8BI-prompt-engineer-an-expert-for-best-prompts)    |
-| Auto Literature Review 🌟 | Writing | A literature review expert that can search papers and write literature review automaticlly.  | [Auto Literature Review Link](https://chat.openai.com/g/g-lfY2IC1TZ-auto-literature-review)    |
-| Scholar GPT Pro 🚀 | Research   | An enhanced scholar GPT version that can do research, write SCI papers with real references. You can search 216,189,020 papers from all fields of science.                                              | [Scholar GPT Pro Link](https://chat.openai.com/g/g-KELDH3S4E-scholar-gpt-pro)                               |
 | 🕊Paimon (Best life assistant with a Paimon soul!) | Lifestyle | A helpful assistant with the soul of Paimon in Genshin Impact, interesting, sweet, more than willing to help you with your life, and sometimes a little grumpy.                                  | [Paimon Link](https://chat.openai.com/g/g-SmIWeSYga-paimon-best-life-assistant-with-a-paimon-soul)          |
-| 🎨Jessica (Design anything in Master mode) | Design | Jessica, universal designer/painter in professional mode, more professional design/paint effect🎉.                                                                                                    | [Jessica Link](https://chat.openai.com/g/g-uiuWnPLNj-jessica-design-anything-in-master-mode)                  |
-| 🦄Logo Designer (Professional Version)     | Design | A professional logo designer can design a high-level logo to deal with a variety of different styles.                                                                                                 | [Logo Designer Link](https://chat.openai.com/g/g-ymi0COabZ-logo-designer-professional-version)             |
-| ✍️Paraphraser & Humanizer | Writing | Expert in sentence refinement, polishing academic papers, reducing similarity scores, and evading AI detection. Avoiding AI detection and plagiarism checks.  | [Paraphraser & Proofreader Link](https://chat.openai.com/g/g-7vtCjvxkz-paraphraser-proofreader-professional-version) |
+| 🎨Jessica (Design anything in Master mode) | Design | Jessica, universal designer/painter in professional mode, more professional design/paint effect🎉.  | [Jessica Link](https://chat.openai.com/g/g-uiuWnPLNj-jessica-design-anything-in-master-mode)   |
+| 🦄Logo Designer (Professional Version)     | Design | A professional logo designer can design a high-level logo to deal with a variety of different styles.   | [Logo Designer Link](https://chat.openai.com/g/g-ymi0COabZ-logo-designer-professional-version)             |
 | 🔮Text Adventure RGP (Have Fun🥳)          | Lifestyle | A D&D master GPT, ready to whisk you away into the realms of fairy tales🧚, enchanting magic🪄, apocalyptic wonders🌋, dungeon🐉, and zombie🧟 thrills! Let's get this adventure started! 🚀🌟 | [Text Adventure RGP Link](https://chat.openai.com/g/g-GHU0OGQMS-text-adventure-rgp-have-fun)          |
-| Alina (Best PM for you 💝)                | Productity | Expert Product Manager, adept in requirement analysis and product design.                                                                                                                             | [Alina Link](https://chat.openai.com/g/g-7DzBax7TI-alina-best-pm-for-you)                                  |
-| 😎 My Boss! (a boss who makes money for me) | Productity | Strategic business leader for market analysis and financial growth.                                                                                                                                    | [My Boss Link](https://chat.openai.com/g/g-F7SLUeAix-my-boss-a-boss-who-makes-money-for-me)              |
-| 🎀My excellent classmates (Help with my homework!)  | Education | My excellent classmates helped me with my homework. She's patient😊. She guides me. Let's try!                                                                                                         | [My Excellent Classmates Link](https://chat.openai.com/g/g-3x2jopNpP-my-excellent-classmates-help-with-my-homework) |
+| Alina (Best PM for you 💝)                | Productity | Expert Product Manager, adept in requirement analysis and product design.  | [Alina Link](https://chat.openai.com/g/g-7DzBax7TI-alina-best-pm-for-you)   |
+| 😎 My Boss! (a boss who makes money for me) | Productity | Strategic business leader for market analysis and financial growth.  | [My Boss Link](https://chat.openai.com/g/g-F7SLUeAix-my-boss-a-boss-who-makes-money-for-me)  |
+| 🎀 My excellent classmates (Help with my homework!)  | Education | My excellent classmates helped me with my homework. She's patient😊. She guides me. Let's try!  | [My Excellent Classmates Link](https://chat.openai.com/g/g-3x2jopNpP-my-excellent-classmates-help-with-my-homework) |
+| ⛩ I Ching divination (Chinese) | Occultism | Today's fortune ✨， Auspicious and inauspicious predictions 🔮， Or marriage 💍、 career 🏆、 Destiny detection 🌈， Provide unique insights and guidance. Based on the 64 hexagrams of the Book of Changes.  | [I Ching divination Link](https://chat.openai.com/g/g-5LnUkgxKa-yi-jing-suan-ming)  |
 
 
 Please let me know if you need any further assistance!
