@@ -41,12 +41,17 @@ After much contemplation, I'm excited to announce that I'm open-sourcing the pro
 
 Let's collaborate, innovate, and elevate the world of GPTs together! 
 
-[UPDATE] Rank 2nd now 🎉🎉🎉 (2024.01.20)
-<img width="796" alt="image" src="https://github.com/ai-boost/awesome-gpts-prompts/assets/70333750/1da0d06a-cbfb-490e-a699-6ae3262c4c6b">
+---
 
+## Table of Contents
+- [📚 Open Prompts](#open-gpts-prompts)
+- [🌟 GPTs](#other-gpts)
+- [🌎 Prompts From Community](#excellent-prompts-from-community)
+- [❓ FAQ](#faq)
 
 ---
 
+# Open GPTs Prompts
 | Name | Rank | Category | Num | Desc | Link | Prompt |
 |------|------|----------|-----|------|------| ------ |
 | ✏️All-around Writer   | 3rd  | Writing  | 100k+  | A professional writer📚 specializing in various types of content like essays, novels, articles, etc. | [✏️All-around Writer](https://chat.openai.com/g/g-UbpNAGYL9-all-around-writer-professional-version) | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%E2%9C%8F%EF%B8%8FAll-around%20Writer%20(Professional%20Version).md) |
@@ -57,7 +62,7 @@ Let's collaborate, innovate, and elevate the world of GPTs together!
 
 ---
 
-# My other GPTs
+# Other GPTs
 Opening GPT editing one by one is quite cumbersome, so I only released the GPT prompts on the leaderboard. I will gradually update high-quality prompts in the future.
 
 | Name | Category  | Description  | Link |
