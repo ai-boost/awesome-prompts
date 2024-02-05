@@ -39,10 +39,6 @@
 
 让我们一起协作、创新，提升GPT的世界！
 
-[更新] 现在排名第2了 🎉🎉🎉（2024.01.20）
-<img width="796" alt="image" src="https://github.com/ai-boost/awesome-gpts-prompts/assets/70333750/1da0d06a-cbfb-490e-a699-6ae3262c4c6b">
-
-
 ---
 
 | 名称 | 排名 | 类别 | 数量 | 描述 | 链接 | 提示 |
@@ -64,6 +60,7 @@
 | ✍️改写与润色师（专业版） | 学术/论文 | 擅长句子精炼、打磨学术论文、降低相似性得分和规避人工智能检测。避免人工智能检测和查重检查。 | [改写与校对师 链接](https://chat.openai.com/g/g-7vtCjvxkz-paraphraser-proofreader-professional-version) |
 | Paper Review Pro ⭐️ | 学术/论文 | Paper Review Pro ⭐️ 是一款GPT，能够🔍精准评估学术论文，提供评分、指出弱点，并建议编辑📝以提高质量和创新性💡。 | [Paper Review Pro链接](https://chat.openai.com/g/g-hGv5OZZDC-paper-review-pro) |
 | 自动学术PPT 💡 | 学术/论文 | 一个PowerPoint助手，能够🛠️草拟大纲，增强内容，并以简便和风格化的方式为论文🎓、商业💼或项目报告📊设计幻灯片。 | [Auto Thesis PPT链接](https://chat.openai.com/g/g-W4Eq4aNmu-auto-ppt) |
+| 🌈 论文解读专家 | 学术 | 轻松自动结构化和解读学术论文🌟 - 只需上传 PDF 或粘贴论文 URL！📄🔍 | [论文解读专家链接](https://chat.openai.com/g/g-faWqzDEcE-paper-interpreter-pro) |
 | 自动数据分析 📈 | 学术 | 多维数据分析📊在研究🔬中提供帮助，自动创建图表📉简化了分析过程✨。 | [Data Analysis链接](https://chat.openai.com/g/g-BbUDh8z49-data-analysis-pro) |
 | AwesomeGPTs 🦄 | 生产力| 一个帮你找到3000多个超棒GPT或将你的超棒GPT提交到Awesome-GPTs列表的GPT🌟！ | [AwesomeGPTs 链接](https://chat.openai.com/g/g-imWUi8fVO-awesomegpts) |
 | 提示工程师（最佳提示专家👍🏻）| 写作 | 一个会写出最佳提示的GPT！ | [提示工程师 链接](https://chat.openai.com/g/g-3SZG5H8BI-prompt-engineer-an-expert-for-best-prompts) |
