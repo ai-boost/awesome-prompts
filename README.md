@@ -51,6 +51,8 @@ Let's collaborate, innovate, and elevate the world of GPTs together!
 - [👊 Prompt Attack and Prompt Protect](#prompt-attack-and-prompt-protect)
 - [🔬 Advanced Prompt Engineering Papers](#advanced-prompt-engineering)
 - [📚 Related resources about Prompt Engineering](#related-resources-about-prompt-engineering)
+- [🦄️ Awesome GPTs by Community](#awesome-gpts-by-community)
+- [🖥 Open-sourced Static Website](#open-sourced-static-website)
 - [❓ FAQ](#faq)
 
 ---
@@ -161,8 +163,6 @@ Here is a paper table about advanced prompt engineering:
 People are writing great tools and papers for improving outputs from GPT. Here are some cool ones we've seen:
 
 ## Prompting libraries & tools (in alphabetical order)
-
-- [Arthur Shield](https://www.arthur.ai/get-started): A paid product for detecting toxicity, hallucination, prompt injection, etc.
 - [Chainlit](https://docs.chainlit.io/overview): A Python library for making chatbot interfaces.
 - [Embedchain](https://github.com/embedchain/embedchain): A Python library for managing and syncing unstructured data with LLMs.
 - [FLAML (A Fast Library for Automated Machine Learning & Tuning)](https://microsoft.github.io/FLAML/docs/Getting-Started/): A Python library for automating selection of models, hyperparameters, and other tunable choices.
@@ -220,6 +220,15 @@ People are writing great tools and papers for improving outputs from GPT. Here a
 - [Improving Factuality and Reasoning in Language Models through Multiagent Debate (2023)](https://arxiv.org/abs/2305.14325): Generating debates between a few ChatGPT agents over a few rounds improves scores on various benchmarks. Math word problem scores rise from 77% to 85%.
 
 From: https://cookbook.openai.com/articles/related_resources
+
+# Awesome GPTs by Community
+If you have an Awesome GPT or you want more Awesome GPTs, see another project: [Awesome GPTs](https://github.com/ai-boost/Awesome-GPTs).  
+You can find a curated list of awesome gpts or submit your GPT in this project.
+
+# Open-sourced Static Website
+We have a website for display awesome gpts: https://awesomegpts.vip and host by github pages.
+We open-sourced the website here: https://github.com/ai-boost/ai-boost.github.io
+If you want to host your own website, you can see this project.😊
 
 # FAQ
 1. **Q**: Why open source?  
