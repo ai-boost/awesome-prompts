@@ -47,6 +47,7 @@ Let's collaborate, innovate, and elevate the world of GPTs together!
 - [📚 Open Prompts](#open-gpts-prompts)
 - [🌟 GPTs](#other-gpts)
 - [🌎 Prompts From Community](#excellent-prompts-from-community)
+- [🔬 Advanced Prompt Engineering Papers](#advanced-prompt-engineering)
 - [❓ FAQ](#faq)
 
 ---
@@ -103,6 +104,27 @@ I found some excellent open source prompts from community. Looking forward to mo
 | ⚛Meta Prompting | Productivity | Meta-Prompting: Enhancing Language Models with Task-Agnostic Scaffolding | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/meta_prompt.txt) | [paper](https://arxiv.org/pdf/2401.12954.pdf) |
 | 🖋Academic Essay | Writer | a Literature Professor | [prompt](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/Literature_Professor.md) | [discord](https://discord.com/channels/974519864045756446/1077923477425762415) |
 
+# Advanced Prompt Engineering
+See COT, TOT, GOT, SOT, AOT, COT-SC papers' pdf here: [PAPER PDF LINK](https://github.com/ai-boost/awesome-gpts-prompts/tree/main/papers)
+
+Here is a paper table about advanced prompt engineering:
+| Title | Summary | Paper Link |
+| - | - | - |
+| Skeleton-of-Thought: Large Language Models Can Do Parallel Decoding | Introduces the concept of Skeleton-of-Thought (SoT), a method that allows for parallel decoding in large language models by first generating a skeleton of the answer and then expanding each point in parallel, significantly reducing decoding latency. | https://ar5iv.labs.arxiv.org/html/2307.15337 |
+| Graph of Thoughts: Solving Elaborate Problems with Large Language Models | Introduces GoT, a framework that models the LLM reasoning process as a directed graph to enhance problem-solving beyond traditional CoT and ToT paradigms. | https://ar5iv.labs.arxiv.org/html/2308.09687 |
+| Beyond Chain-of-Thought, Effective Graph-of-Thought Reasoning in Large Language Models | Proposes a GoT reasoning approach that uses a graph attention network to encode thought graphs, aiming to improve LLMs' complex reasoning tasks. | https://ar5iv.labs.arxiv.org/html/2305.16582 |
+| Algorithm of Thoughts: Enhancing Exploration of Ideas in Large Language Models | Discusses AoT, focusing on overcoming CoT's limitations by integrating search process examples inspired by search algorithms to enhance exploration and problem-solving. | https://ar5iv.labs.arxiv.org/html/2308.10379 |
+| Aggregated Contextual Transformations for High-Resolution Image Inpainting | Introduces AOT-GAN, a GAN-based model utilizing aggregated contextual transformations (AOT blocks) for improved high-resolution image inpainting. | https://ar5iv.labs.arxiv.org/html/2104.01431 |
+| Automatic Prompt Augmentation and Selection with Chain-of-Thought from Labeled Data | Explores automatic selection of CoT exemplars to optimize model performance across different tasks. | https://ar5iv.labs.arxiv.org/html/2302.12822 |
+| Automatic Chain of Thought Prompting in Large Language Models | Investigates automatic CoT prompting, comparing zero-shot, manual, and random query generation strategies for reasoning tasks. | https://ar5iv.labs.arxiv.org/html/2210.03493 |
+| Towards Revealing the Mystery behind Chain of Thought: A Theoretical Perspective | Offers a theoretical analysis on the capabilities of transformers in directly producing answers for complex reasoning tasks. | https://ar5iv.labs.arxiv.org/html/2305.15408 |
+| Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions | Introduces a method that combines CoT reasoning with document retrieval to improve performance on multi-step questions. | https://ar5iv.labs.arxiv.org/html/2212.10509 |
+| Tab-CoT: Zero-shot Tabular Chain of Thought | Proposes a tabular format for CoT prompting that facilitates more structured reasoning in zero-shot settings. | https://ar5iv.labs.arxiv.org/html/2305.17812 |
+| Faithful Chain-of-Thought Reasoning | Describes a framework to ensure the faithfulness of the CoT reasoning process for various complex tasks. | https://ar5iv.labs.arxiv.org/html/2301.13379 |
+| Towards Understanding Chain-of-Thought Prompting: An Empirical Study of What Matters | Conducts an empirical study to understand the impact of various factors on the effectiveness of CoT prompting. | https://ar5iv.labs.arxiv.org/html/2212.10001 |
+| Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models | Evaluates a new prompting strategy that combines planning with CoT reasoning to enhance zero-shot performance. | https://ar5iv.labs.arxiv.org/html/2305.04091 |
+| Meta-CoT: Generalizable Chain-of-Thought Prompting in Mixed-task Scenarios with Large Language Models | Introduces Meta-CoT, a method for generalizing CoT prompting across different types of reasoning tasks. | https://ar5iv.labs.arxiv.org/html/2310.06692 |
+| Large Language Models are Zero-Shot Reasoners | Discusses the inherent zero-shot reasoning capabilities of large language models, highlighting the role of CoT prompting. | https://ar5iv.labs.arxiv.org/html/2205.11916 |
 
 # FAQ
 1. **Q**: Why open source?  
