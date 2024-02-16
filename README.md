@@ -33,16 +33,6 @@
 Your stars🌟 and recommendations 💞 are what make this community vibrant!
 ---
 
-Author's Note:
-
-As a GPTs creator with several top-ranking GPTs in the GPT Store (**2 GPTs rank 3rd**🎉 in different categories and **1 GPT rank 5th✨ and another rank 16th😊** as of January 19, 2024), I've decided to take a step forward for the betterment of our community. 🌟
-
-After much contemplation, I'm excited to announce that I'm open-sourcing the prompts behind my successful GPTs! 🚀 This move is all about giving back, fostering innovation, and inspiring fellow creators. By sharing these secrets, I hope to spark new ideas and contribute to the thriving world of AI. 🤖💡
-
-Let's collaborate, innovate, and elevate the world of GPTs together! 
-
----
-
 ## Table of Contents
 - [📚 Open Prompts](#open-gpts-prompts)
 - [🌟 GPTs](#other-gpts)
