@@ -30,11 +30,7 @@
 
 🌈 **Join us** in shaping the future of AI with every prompt you share! 🌐
 
-<div>
-  <p align="center">
-    <img width="650" src="https://raw.githubusercontent.com/ai-boost/awesome-prompts/main/assets/star-history-2024321.png">
-  </p>
-</div>
+![star history img](https://raw.githubusercontent.com/ai-boost/awesome-prompts/main/assets/star-history-2024321.png)
 Thank you! Your stars🌟 and recommendations are what make this community vibrant!
 ---
 
