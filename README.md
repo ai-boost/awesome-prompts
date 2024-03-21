@@ -32,7 +32,7 @@
 
 <div>
   <p align="center">
-    <img width="650" src="https://github.com/ai-boost/awesome-prompts/blob/main/assets/star-history-2024321.png">
+    <img width="650" src="https://raw.githubusercontent.com/ai-boost/awesome-prompts/main/assets/star-history-2024321.png">
   </p>
 </div>
 Thank you! Your stars🌟 and recommendations are what make this community vibrant!
