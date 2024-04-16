@@ -16,6 +16,19 @@
   </h4>
 </div>
 
+# 看看这个吧
+最近看到中国的智谱清言也拥有了同样的GPTs能力（画图、python代码执行器、检索能力），有些地方甚至做得更好，而且**完全免费**😆（是的，免费AI画图、免费对话，到目前为止，找不到任何收费的地方）！
+我进行了一些尝试，真的很不错：
+
+| 名称                | 类型       | 介绍                         | 链接 |
+| ----------------- | ---------- | --------------------------- | --- |
+| 📊 PPT            | 生产力工具 | 自动PPT生成器                | [链接](https://chatglm.cn/main/gdetail/661117505ef4480dc402c688) |
+| 📝 WORD           | 生产力工具 | 自动doc生成器                | [链接](https://chatglm.cn/main/gdetail/661110adcd821e1860177fc1) |
+| 📈 EXCEL          | 生产力工具 | 自动表格生成器                | [链接](https://chatglm.cn/main/gdetail/6610eff42bf1baf10ba32782) |
+| 🌐 中英互译       | 生产力工具 | 自动中英互译器                | [链接](https://chatglm.cn/main/gdetail/660b9bcff07db4e5a82307da) |
+| 🐍 Python         | 生产力工具 | Python助手，自动代码生成、代码执行 | [链接](https://chatglm.cn/main/gdetail/661005fd6f6852ac6b05480d) |
+
+
 # 🚀 欢迎来到 Awesome-GPTs-Prompts！🌟
 
 👋 发现顶尖GPT的秘密提示（来自官方GPT商店）！分享并探索著名GPT的最迷人提示。🤩
@@ -43,9 +56,9 @@
 
 | 名称 | 排名 | 类别 | 数量 | 描述 | 链接 | 提示 |
 |------|------|------|-----|------|------|------|
-| ✏️全能作家   | 第3  | 写作  | 10万+  | 一位擅长各种内容如论文、小说、文章等的专业作家📚。 | [✏️全能作家](https://chat.openai.com/g/g-UbpNAGYL9-all-around-writer-professional-version) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%E2%9C%8F%EF%B8%8FAll-around%20Writer%20(Professional%20Version).md) |
-| 👌学术助理专业版 | 第4  | 写作  | 10万+  | 专业学术助理，具有教授风范 | [👌学术助理专业版](https://chat.openai.com/g/g-Ej5zYQRIB-academic-assistant-pro) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%F0%9F%91%8CAcademic%20Assistant%20Pro.md) |
-| 💻专业程序员 | 第3  | 编程  | 10万+  | 擅长解决编程问题的GPT专家，自动编程，一键生成项目 | [💻专业程序员](https://chat.openai.com/g/g-HgZuFuuBK-professional-coder-auto-programming) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%F0%9F%92%BBProfessional%20Coder.md) |
+| ✏️全能作家   | 第3  | 写作  | 10万+  | 一位擅长各种内容如论文、小说、文章等的专业作家📚。 | [✏️全能作家](https://chat.openai.com/g/g-lYRsydDcd-all-around-writer-professional-version) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%E2%9C%8F%EF%B8%8FAll-around%20Writer%20(Professional%20Version).md) |
+| 👌学术助理专业版 | 第4  | 写作  | 10万+  | 专业学术助理，具有教授风范 | [👌学术助理专业版](https://chat.openai.com/g/g-WVa5rmpxk-academic-assistant-pro) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%F0%9F%91%8CAcademic%20Assistant%20Pro.md) |
+| 💻专业程序员 | 第3  | 编程  | 10万+  | 擅长解决编程问题的GPT专家，自动编程，一键生成项目 | [💻专业程序员](https://chat.openai.com/g/g-TfCFUV33C-professional-coder-auto-programming) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%F0%9F%92%BBProfessional%20Coder.md) |
 | 📗全能教师 | 第16 | 教育  | 5千+  | 3分钟学习各种知识，为您量身定制导师，利用强大的gpt4和知识库 | [📗全能教师](https://chat.openai.com/g/g-PDWi5Scbc-all-around-teacher-learn-everything-in-3-min) | [提示词](https://github.com/ai-boost/awesome-gpts-prompts/blob/main/prompts/%F0%9F%93%97All-around%20Teacher.md) |
 
 ---
@@ -55,9 +68,9 @@
 
 | 名称 | 类别 | 描述 | 链接 |
 |------|-------|-------|------|
-| Scholar GPT Pro 🚀 | 学术/论文 | 加强版学者GPT，能进行研究，用真实引用撰写SCI论文。你可以搜索来自所有科学领域的216,189,020篇论文。 | [Scholar GPT Pro 链接](https://chat.openai.com/g/g-KELDH3S4E-scholar-gpt-pro) |
+| Scholar GPT Pro 🚀 | 学术/论文 | 加强版学者GPT，能进行研究，用真实引用撰写SCI论文。你可以搜索来自所有科学领域的216,189,020篇论文。 | [Scholar GPT Pro 链接](https://chat.openai.com/g/g-Zhdh0y9eI-scholar-pro) |
 | 自动文献综述 🌟 | 学术/论文 | 一位能够自动搜索文献并撰写文献综述的文献综述专家。 | [自动文献综述 链接](https://chat.openai.com/g/g-lfY2IC1TZ-auto-literature-review) |
-| ✍️改写与润色师（专业版） | 学术/论文 | 擅长句子精炼、打磨学术论文、降低相似性得分和规避人工智能检测。避免人工智能检测和查重检查。 | [改写与校对师 链接](https://chat.openai.com/g/g-7vtCjvxkz-paraphraser-proofreader-professional-version) |
+| ✍️改写与润色师（专业版） | 学术/论文 | 擅长句子精炼、打磨学术论文、降低相似性得分和规避人工智能检测。避免人工智能检测和查重检查。 | [改写与校对师 链接](https://chat.openai.com/g/g-fY4SpgYd6-paraphrase-humanizer) |
 | Paper Review Pro ⭐️ | 学术/论文 | Paper Review Pro ⭐️ 是一款GPT，能够🔍精准评估学术论文，提供评分、指出弱点，并建议编辑📝以提高质量和创新性💡。 | [Paper Review Pro链接](https://chat.openai.com/g/g-hGv5OZZDC-paper-review-pro) |
 | 自动学术PPT 💡 | 学术/论文 | 一个PowerPoint助手，能够🛠️草拟大纲，增强内容，并以简便和风格化的方式为论文🎓、商业💼或项目报告📊设计幻灯片。 | [Auto Thesis PPT链接](https://chat.openai.com/g/g-W4Eq4aNmu-auto-ppt) |
 | 🌈 论文解读专家 | 学术 | 轻松自动结构化和解读学术论文🌟 - 只需上传 PDF 或粘贴论文 URL！📄🔍 | [论文解读专家链接](https://chat.openai.com/g/g-faWqzDEcE-paper-interpreter-pro) |
