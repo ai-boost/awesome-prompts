@@ -224,7 +224,7 @@ If you have an Awesome GPT or you want more Awesome GPTs, see another project: [
 You can find a curated list of awesome gpts or submit your GPT in this project: https://github.com/ai-boost/Awesome-GPTs  
 
 # Open-sourced Static Website
-We have a website for display awesome gpts: https://awesomegpts.vip and host by github pages.  
+We have a website for display awesome gpts: https://awesomegpt.vip and host by github pages.  
 We open-sourced the website here: https://github.com/ai-boost/ai-boost.github.io  
 If you want to host your own website, you can see this project.😊  
 
