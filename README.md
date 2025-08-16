@@ -194,6 +194,7 @@ People are writing great tools and papers for improving outputs from GPT. Here a
 - [Embedchain](https://github.com/embedchain/embedchain): A Python library for managing and syncing unstructured data with LLMs.
 - [FLAML (A Fast Library for Automated Machine Learning & Tuning)](https://microsoft.github.io/FLAML/docs/Getting-Started/): A Python library for automating selection of models, hyperparameters, and other tunable choices.
 - [GenAIScript](https://microsoft.github.io/genaiscript/): JavaScript-ish scripts to create execute prompts, extract structured data, integrated in Visual Studio Code.
+- [God Tier Prompts](https://www.godtierprompts.com/): A community-driven leaderboard where the best prompts rise to the top.
 - [Guardrails.ai](https://shreyar.github.io/guardrails/): A Python library for validating outputs and retrying failures. Still in alpha, so expect sharp edges and bugs.
 - [Guidance](https://github.com/microsoft/guidance): A handy looking Python library from Microsoft that uses Handlebars templating to interleave generation, prompting, and logical control.
 - [Haystack](https://github.com/deepset-ai/haystack): Open-source LLM orchestration framework to build customizable, production-ready LLM applications in Python.
