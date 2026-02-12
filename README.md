@@ -212,6 +212,7 @@ People are writing great tools and papers for improving outputs from GPT. Here a
 - [Scale Spellbook](https://scale.com/spellbook): A paid product for building, comparing, and shipping language model apps.
 - [Semantic Kernel](https://github.com/microsoft/semantic-kernel): A Python/C#/Java library from Microsoft that supports prompt templating, function chaining, vectorized memory, and intelligent planning.
 - [TensorZero](https://www.tensorzero.com/): An open-source framework for building production-grade LLM applications. It unifies an LLM gateway, observability, optimization, evaluations, and experimentation.
+- [Taskade](https://taskade.com/prompts): 700+ AI prompt templates for project management, marketing, engineering, design, and more. Build custom AI agents with configurable prompt systems and multi-model support.
 - [Weights & Biases](https://wandb.ai/site/solutions/llmops): A paid product for tracking model training and prompt engineering experiments.
 - [YiVal](https://github.com/YiVal/YiVal): An open-source GenAI-Ops tool for tuning and evaluating prompts, retrieval configurations, and model parameters using customizable datasets, evaluation methods, and evolution strategies.
 
