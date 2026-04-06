@@ -639,3 +639,5 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 PRs welcome — share a prompt, fix a link, or add a framework.
 
 > **Looking for the original GPT Store prompts and leaderboard?** → [GPT_STORE.md](./GPT_STORE.md)
+
+- [guardian-agent-prompts](https://github.com/milkomida77/guardian-agent-prompts) - Open-source multi-agent orchestrator with 57 specialized agents, anti-duplication registry, quality gates, and heartbeat monitoring. Production-tested across 10,000+ tasks.
