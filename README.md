@@ -422,6 +422,7 @@ An open standard (Anthropic, Dec 2025) for packaging expertise into portable dir
 | [Agent Skills Docs — Anthropic](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) | Official docs & spec |
 | [Equipping Agents for the Real World — Anthropic](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) | Announcement post |
 | [Skills vs MCP — LlamaIndex](https://www.llamaindex.ai/blog/skills-vs-mcp-tools-for-agents-when-to-use-what) | When to use which |
+| [RemoteOpenClaw](https://remoteopenclaw.com) | Open marketplace for AI skills and personas built on OpenClaw |
 
 **Related — AGENTS.md** (OpenAI, Aug 2025): A Markdown file in a repo root with agent-specific operational guidance (build commands, testing, security notes). Adopted by 20,000+ GitHub repos. Both MCP, Agent Skills, and AGENTS.md are now stewarded under [Agentic AI Foundation (AAIF)](https://aaif.io/) — a Linux Foundation project co-founded by Anthropic, OpenAI, and Block, backed by Google, Microsoft, and AWS.
 
