@@ -681,3 +681,4 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 PRs welcome — share a prompt, fix a link, or add a framework.
 
 > **Looking for the original GPT Store prompts and leaderboard?** → [GPT_STORE.md](./GPT_STORE.md)
+- [Gitstar](https://dev.gitstar.ai?utm_medium=github_readme&utm_source=awesome_list&utm_campaign=ai-boost_awesome-prompts) - Follow developers on GitHub and see what repos they star. Like a social feed for repo discovery.
