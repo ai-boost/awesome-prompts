@@ -450,6 +450,7 @@ Open protocol (Google, Apr 2025 → Linux Foundation, Mar 2026) for cross-framew
 
 - GitHub: [a2aproject/A2A](https://github.com/a2aproject/A2A)
 - Docs: [google.github.io/adk-docs/a2a/](https://google.github.io/adk-docs/a2a/)
+- [CCHub](https://github.com/Moresl/cchub) - A desktop control panel for the Claude Code / Codex / Gemini CLI ecosystem. Manage MCP servers, config profiles, agent skills, CLAUDE.md, hooks, and workflow templates from a single Tauri app (Windows / macOS / Linux).
 
 **MCP vs A2A in one line:** MCP = agent ↔ tool. A2A = agent ↔ agent.
 
