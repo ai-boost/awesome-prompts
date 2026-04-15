@@ -701,6 +701,8 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 
 ---
 
+- [STCO Prompt Builder](https://github.com/lukefryer1234/stco-prompt-builder) - Type-safe prompt engineering framework (System, Task, Context, Output). Helps structure LLM prompts deterministically to reduce hallucinations. Available on [NPM](https://www.npmjs.com/package/@lukefryer4/stco-prompt-builder).
+
 ## Tools & Libraries
 
 | Tool | Purpose |
