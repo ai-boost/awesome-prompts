@@ -843,6 +843,9 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 | [ML-GSAI/Diffusion-LLM-Papers](https://github.com/ML-GSAI/Diffusion-LLM-Papers) | Curated papers on diffusion language models — LLaDA, Dream, MMaDA, consistency sampling, fast inference; 169 stars, actively maintained (2026) ![](https://img.shields.io/github/stars/ML-GSAI/Diffusion-LLM-Papers?style=flat-square) |
 | [Anthropic Prompt Library](https://docs.anthropic.com/en/prompt-library/library) | Official production-ready prompts from Anthropic |
 | [NirDiamant/Prompt_Engineering](https://github.com/NirDiamant/Prompt_Engineering) | 22 Jupyter Notebook tutorials from basics to advanced — CoT, few-shot, templates, multi-language ![](https://img.shields.io/github/stars/NirDiamant/Prompt_Engineering?style=flat-square) |
+| [Rubricon](https://github.com/karthyick/evaluation-first-attention) | Specification-first generation: produces evaluation rubrics *before* generation, then conditions output on them via failure-weighted reattention. Pluggable evaluators (LLM judge, regex, function, ensemble) and backends (LiteLLM, vLLM). Paired with a research paper on Evaluation-First Attention |
+| [distill-json](https://github.com/karthyick/DISTILL) | Lossless JSON compression for LLM prompts — 60-85% token reduction on bulk repeated records (logs, events, API arrays) via schema extraction and dictionary encoding. Drop-in for `json.dumps()` |
+| [semantic-llm-cache](https://github.com/karthyick/prompt-cache) | Decorator-based semantic caching for LLM API calls — wrap any callable with `@semantic_cache` to skip 20-40% of calls when prompts are semantically similar |
 
 ---
 
