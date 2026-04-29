@@ -389,6 +389,7 @@ Beyond basic evals — trace, debug, and monitor LLM systems in production.
 |---------|-------|-------------|
 | [**DeepEval**](https://github.com/confident-ai/deepeval) | ![](https://img.shields.io/github/stars/confident-ai/deepeval?style=flat-square) | Unit testing for LLMs — G-Eval, hallucination, RAG faithfulness, agentic task metrics. |
 | [**Langfuse**](https://github.com/langfuse/langfuse) | ![](https://img.shields.io/github/stars/langfuse/langfuse?style=flat-square) | Open-source LLM engineering platform — tracing, evals, prompt management, A/B experiments. |
+| [**WFGY 16 Problem Map**](https://github.com/onestardao/WFGY/blob/main/ProblemMap/README.md) | ![](https://img.shields.io/github/stars/onestardao/WFGY?style=flat-square) | Troubleshooting atlas for recurring RAG and prompt-heavy system failures — maps symptoms to likely pipeline locations and concrete fixes. |
 
 ### Low-Code & Workflow Platforms
 
