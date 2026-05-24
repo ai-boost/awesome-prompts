@@ -317,6 +317,7 @@ All prompts are open — click, copy, use directly.
 
 | Name | Description | Prompt |
 |------|-------------|--------|
+| [APort Agent Guardrails](https://aport.io) | Pre-action authorization guardrails for AI agents and MCP/tool-use workflows. | Runtime authorization guardrails |
 | 🛡 Content Moderator | CoT-based content moderation — policy-driven ALLOW/BLOCK classification with thinking trace and structured verdict (2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/content_moderator.txt) |
 | 🧱 Prompt Injection Guardian | Security-first browsing/file agent prompt — treats external content as untrusted, enforces source tracing, confirmation gates, least privilege; derived from OpenAI's 2026 prompt injection guidance | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/prompt_injection_guardian.txt) |
 | 🧪 Computer Use Safety Tester | Red-team prompt for browser/desktop agents — indirect injection, data exfiltration, domain confusion, unsafe confirmation skipping, long-horizon degradation; derived from OpenAI's 2026 safety guidance | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/computer_use_safety_tester.txt) |
