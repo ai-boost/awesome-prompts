@@ -953,6 +953,7 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 
 | Tool | Purpose |
 |------|---------|
+| [SLIM Format](https://slimformat.org) | Token-efficient `.slm` file format for AI prompts and agent configs — replaces Markdown, saves ~43% LLM-facing tokens. Claude Code plugin (Anthropic-verified), VS Code extension (Microsoft-verified), Antigravity CLI plugin. |
 | [LangChain](https://github.com/langchain-ai/langchain) | LLM orchestration and chaining |
 | [LlamaIndex](https://github.com/run-llama/llama_index) | Data ingestion and RAG pipelines |
 | [LiteLLM](https://github.com/BerriAI/litellm) | Unified API for 100+ LLM providers |
