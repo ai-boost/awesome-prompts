@@ -654,6 +654,7 @@ Open protocol (Anthropic, Nov 2024) for connecting LLMs to tools and data. Now a
 
 - Spec: [modelcontextprotocol.io](https://modelcontextprotocol.io/specification/2025-11-25)
 - Official servers: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
+- [TWZRD Agent Intel MCP](https://intel.twzrd.xyz): On-chain agent trust scoring — `score_agent`, `preflight_check`, `get_trust_receipt`. HTTP 402 micro-payment gated. Config: `{"mcpServers": {"twzrd-agent-intel": {"url": "https://intel.twzrd.xyz/mcp"}}}`
 
 ### A2A — Agent-to-Agent Protocol
 
