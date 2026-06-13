@@ -994,6 +994,7 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 | [LM Evaluation Harness](https://github.com/EleutherAI/lm-evaluation-harness) | EleutherAI's unified LLM evaluation framework |
 | [Weights & Biases](https://wandb.ai/site/solutions/llmops) | Experiment tracking and LLMOps |
 | [Promptingguide.ai](https://www.promptingguide.ai/) | Comprehensive prompt engineering reference (DAIR-AI) |
+| [DecisionMap](https://github.com/markoblogo/decision-map) | AI-assisted decision protocol and prompt toolkit for business, product, and market strategy maps |
 | [awesome-ai-agents-2026](https://github.com/caramaschiHG/awesome-ai-agents-2026) | Most comprehensive list of 2026 AI agents, frameworks & tools — 300+ resources, 20+ categories, updated monthly ![](https://img.shields.io/github/stars/caramaschiHG/awesome-ai-agents-2026?style=flat-square) |
 | [Awesome-Agent-Papers](https://github.com/luo-junyu/Awesome-Agent-Papers) | Curated papers on LLM agents: methodology, applications, challenges — covers STRIDE, planning, tool use, memory, multi-agent (2026) ![](https://img.shields.io/github/stars/luo-junyu/Awesome-Agent-Papers?style=flat-square) |
 | [Awesome-Agentic-Reasoning](https://github.com/weitianxin/Awesome-Agentic-Reasoning) | Papers and resources on agentic reasoning from foundational to multi-agent coordination — 3-layer framework (2026) ![](https://img.shields.io/github/stars/weitianxin/Awesome-Agentic-Reasoning?style=flat-square) |
