@@ -692,6 +692,7 @@ An open standard (Anthropic, Dec 2025) for packaging expertise into portable dir
 | [anthropics/skills](https://github.com/anthropics/skills) | Official collection + spec (`/spec/agent-skills-spec.md`) ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square) |
 | [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | 1000+ community skills, works across all major platforms |
 | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Vercel's official skills |
+| [nowork-studio/NotFair](https://github.com/nowork-studio/NotFair) | Marketing skills — [SEO/GEO](https://github.com/nowork-studio/NotFair/tree/main/seo), [Google Ads](https://github.com/nowork-studio/NotFair/tree/main/google-ads), [Meta Ads](https://github.com/nowork-studio/NotFair/tree/main/meta-ads); connects to live data via Google Ads MCP, Meta Ads MCP, Google Search Console MCP, and Google Analytics (GA4) MCP ![](https://img.shields.io/github/stars/nowork-studio/NotFair?style=flat-square) |
 | [Agent Skills Docs — Anthropic](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) | Official docs & spec |
 | [Equipping Agents for the Real World — Anthropic](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) | Announcement post |
 | [Skills vs MCP — LlamaIndex](https://www.llamaindex.ai/blog/skills-vs-mcp-tools-for-agents-when-to-use-what) | When to use which |
