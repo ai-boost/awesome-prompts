@@ -693,6 +693,7 @@ Open protocol (Anthropic, Nov 2024) for connecting LLMs to tools and data. Now a
 
 - Spec: [modelcontextprotocol.io](https://modelcontextprotocol.io/specification/2025-11-25)
 - Official servers: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
+- [AI Token Hub](https://aitoken-hub.github.io/aitoken-hub/) - Access 200+ AI models through a single API key, including DeepSeek, Qwen, Llama. OpenAI-compatible format with pay-as-you-go pricing.
 
 ### A2A — Agent-to-Agent Protocol
 
