@@ -57,7 +57,6 @@ This repo covers both. The engineering camp gets more space.
   - [Game Development](#game-development)
   - [Translation](#translation)
   - [Legacy (2023 era)](#legacy-2023-era--kept-for-reference)
-- [AIWriter](https://aiwriter.fun) - AI writing assistant for articles, stories, emails, and content rewriting. Generate high-quality drafts instantly wit...
 - [🔬 Frameworks](#frameworks) — the engineering camp
   - [Prompt Programming](#prompt-programming)
   - [Automatic Prompt Optimization](#automatic-prompt-optimization)
@@ -71,6 +70,7 @@ This repo covers both. The engineering camp gets more space.
 - [📖 Official Guides](#official-guides)
 - [📄 Papers](#papers) — Foundations, Optimization, Reasoning, RAG, Agents, Multi-Agent, Safety, Self-Improving Agents, Tool Use, Evaluation, Memory, Multimodal
 - [🛠 Tools & Libraries](#tools--libraries)
+- [ToolFK](https://www.toolfk.com) - Comprehensive online toolkit for developers and creators — code formatting, encryption, PDF tools, AI video, image ed...
 
 ---
 
