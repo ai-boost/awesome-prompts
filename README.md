@@ -53,6 +53,7 @@ This repo covers both. The engineering camp gets more space.
   - [Safety & Compliance](#safety--compliance)
   - [Meta & Prompt Engineering](#meta--prompt-engineering)
   - [Image, Video & Audio Generation](#image--video--audio-generation)
+- [Text2Vid](https://text2vid.org) - AI video generator that turns text or images into high-quality videos in seconds. Ideal for social clips, ads, and cr...
   - [Creative & Role-play](#creative--role-play)
   - [Game Development](#game-development)
   - [Translation](#translation)
@@ -70,7 +71,6 @@ This repo covers both. The engineering camp gets more space.
 - [📖 Official Guides](#official-guides)
 - [📄 Papers](#papers) — Foundations, Optimization, Reasoning, RAG, Agents, Multi-Agent, Safety, Self-Improving Agents, Tool Use, Evaluation, Memory, Multimodal
 - [🛠 Tools & Libraries](#tools--libraries)
-- [ToolFK](https://www.toolfk.com) - Comprehensive online toolkit for developers and creators — code formatting, encryption, PDF tools, AI video, image ed...
 
 ---
 
