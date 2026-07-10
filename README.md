@@ -53,6 +53,7 @@ This repo covers both. The engineering camp gets more space.
   - [Safety & Compliance](#safety--compliance)
   - [Meta & Prompt Engineering](#meta--prompt-engineering)
   - [Image, Video & Audio Generation](#image--video--audio-generation)
+- [Text2Vid](https://text2vid.org) - AI video generator that turns text or images into high-quality videos in seconds. Ideal for social clips, ads, and cr...
   - [Creative & Role-play](#creative--role-play)
   - [Game Development](#game-development)
   - [Translation](#translation)
