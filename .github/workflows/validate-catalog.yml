@@ -1,0 +1,18 @@
+name: Validate Prompt Catalog
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate README prompt catalog
+        run: python3 scripts/validate_readme_catalog.py
