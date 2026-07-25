@@ -681,6 +681,12 @@ Context engineering is the practice of designing *what* goes into an LLM's conte
 - [davidkimai/Context-Engineering](https://github.com/davidkimai/Context-Engineering) ![](https://img.shields.io/github/stars/davidkimai/Context-Engineering?style=flat-square) — first-principles handbook on context design, orchestration, and optimization
 - [Meirtz/Awesome-Context-Engineering](https://github.com/Meirtz/Awesome-Context-Engineering) — curated papers, frameworks, and implementation guides
 
+### Prompts
+
+| Name | Description | Prompt |
+|------|-------------|--------|
+| 🗜 Context Compression Architect | Design content-type-aware context compression for AI agents — JSON SmartCrusher, AST code compressor, prose/RAG summarization, reversible CCR retrieval, KV-cache alignment, cross-agent memory, output-token reduction, and quality-gated measurement; based on headroomlabs-ai/headroom (Apache-2.0, 62k+ stars, Jan 2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/context_compression_architect.txt) |
+
 ---
 
 ## Agent Ecosystem
