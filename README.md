@@ -492,6 +492,8 @@ All prompts are open — click, copy, use directly.
 
 ### Image, Video & Audio Generation
 
+For the latest GPT Image 2 workflow, see [GPT Image 2 official site](https://gptimage2.asia/).
+
 | Name | Description | Prompt |
 |------|-------------|--------|
 | 🖼 Flux Image Gen | Full guide + template for Flux prompting — camera/lens/lighting/style system (2025) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/flux_image_gen.txt) |
