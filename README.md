@@ -594,6 +594,7 @@ Probe LLM systems for vulnerabilities before attackers do.
 | [**The Promptware Kill Chain**](https://arxiv.org/abs/2601.09625) | — | Bruce Schneier (Harvard/Lawfare): reframes prompt injection as a 7-stage malware kill chain; 21/36 documented attacks already traverse 4+ stages. Featured at Black Hat 2026. | [PDF](https://arxiv.org/pdf/2601.09625) |
 | [**Microsoft Agent Governance Toolkit**](https://github.com/microsoft/agent-governance-toolkit) | ![](https://img.shields.io/github/stars/microsoft/agent-governance-toolkit?style=flat-square) | 7 packages (Python/Rust/TS/Go/.NET) — policy enforcement (<0.1ms), zero-trust agent identity (Ed25519 + SPIFFE), sandboxed execution; covers all OWASP Agentic Top 10; adapters for LangChain/CrewAI/ADK/OpenAI Agents SDK (Apr 2026) |
 | [**agent-drift**](https://github.com/jhammant/agent-drift) | ![](https://img.shields.io/github/stars/jhammant/agent-drift?style=flat-square) | Stress-test agents for goal drift and system-prompt violations across 6 value dimensions — multi-turn escalation, LLM-as-judge, interactive HTML reports; inspired by ICLR 2026 workshop paper (Apr 2026) |
+| [**T3MP3ST**](https://github.com/elder-plinius/T3MP3ST) | ![](https://img.shields.io/github/stars/elder-plinius/T3MP3ST?style=flat-square) | Autonomous red-teaming meta-harness for AI coding agents — recon → exploit → report against authorized targets, multi-agent offensive-security workflows, offline-model support; by elder-plinius (AGPL-3.0, 5.3k+ stars, July 2026) |
 
 ### Eval & Observability
 
