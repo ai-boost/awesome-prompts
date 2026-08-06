@@ -1,0 +1,30 @@
+name: Verify agents are in sync
+
+on:
+  push:
+    paths:
+      - "prompts/**"
+      - ".github/agents/**"
+      - "scripts/build_agents.py"
+  pull_request:
+    paths:
+      - "prompts/**"
+      - ".github/agents/**"
+      - "scripts/build_agents.py"
+
+jobs:
+  verify-agents:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Rebuild agents
+        run: python scripts/build_agents.py
+      - name: Check for drift
+        run: |
+          git diff --exit-code -- .github/agents || {
+            echo "::error::.github/agents is out of sync with prompts/. Run: python scripts/build_agents.py"
+            exit 1
+          }
