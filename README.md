@@ -77,7 +77,7 @@ This repo covers both. The engineering camp gets more space.
 
 All prompts are open — click, copy, use directly.
 
-> **🤖 Use as agents:** Every prompt is also packaged as a [GitHub Copilot custom agent](https://docs.github.com/en/copilot) in [`.github/agents/`](.github/agents) — one agent per prompt, with full tool access. Clone the repo (or copy the agent files into your own project's `.github/agents/`) and invoke them from Copilot CLI, e.g. ask Copilot to use the `brand-strategist` or `professional-coder` agent.
+> **🤖 Use as agents:** Every prompt is also packaged as a [GitHub Copilot custom agent](https://docs.github.com/en/copilot) in [`.github/agents/`](.github/agents) — one agent per prompt, with full tool access. Clone the repo (or copy the agent files into your own project's `.github/agents/`) and invoke them from Copilot CLI, e.g. ask Copilot to use the `brand-strategist` or `professional-coder` agent. Agents are generated from `prompts/` — after adding or editing a prompt, rebuild with `python scripts/build_agents.py`.
 
 ### Coding & Development
 
