@@ -1088,6 +1088,7 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 |------|---------|
 | [LangChain](https://github.com/langchain-ai/langchain) | LLM orchestration and chaining |
 | [LlamaIndex](https://github.com/run-llama/llama_index) | Data ingestion and RAG pipelines |
+| [**anydoc**](https://github.com/firecrawl/anydoc) | Convert Word, PowerPoint, Excel, OpenDocument, RTF, EPUB, CSV, and PDF to clean Markdown — Rust core with Node.js/Python bindings; agent/RAG document ingestion (Aug 2026) ![](https://img.shields.io/github/stars/firecrawl/anydoc?style=flat-square) |
 | [LiteLLM](https://github.com/BerriAI/litellm) | Unified API for 100+ LLM providers |
 | [Ollama](https://github.com/ollama/ollama) | Run LLMs locally — desktop app, multimodal, structured outputs ![](https://img.shields.io/github/stars/ollama/ollama?style=flat-square) |
 | [Semantic Kernel](https://github.com/microsoft/semantic-kernel) | Microsoft's LLM SDK — now merging with AutoGen into [Microsoft Agent Framework](https://github.com/microsoft/agent-framework) (2026) |
