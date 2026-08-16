@@ -698,6 +698,7 @@ Context engineering is the practice of designing *what* goes into an LLM's conte
 - [Context Engineering Guide — Prompt Engineering Guide](https://www.promptingguide.ai/guides/context-engineering-guide)
 - [davidkimai/Context-Engineering](https://github.com/davidkimai/Context-Engineering) ![](https://img.shields.io/github/stars/davidkimai/Context-Engineering?style=flat-square) — first-principles handbook on context design, orchestration, and optimization
 - [Meirtz/Awesome-Context-Engineering](https://github.com/Meirtz/Awesome-Context-Engineering) — curated papers, frameworks, and implementation guides
+- [**NanoNets/Graft**](https://github.com/NanoNets/Graft) ![](https://img.shields.io/github/stars/NanoNets/Graft?style=flat-square) — Open-source codebase context layer for coding agents — builds a persistent, queryable code graph and pulls matching nodes into each prompt; 46% fewer tool calls, 42% token savings, 60% faster on a 162-run benchmark, 66% SWE-bench Verified (vs 54% cold); supports Claude Code, Cursor, Codex, Gemini via MCP/CLI (MIT, July 2026)
 
 ### Prompts
 
