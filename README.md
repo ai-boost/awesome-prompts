@@ -71,6 +71,8 @@ This repo covers both. The engineering camp gets more space.
 - [📄 Papers](#papers) — Foundations, Optimization, Reasoning, RAG, Agents, Multi-Agent, Safety, Self-Improving Agents, Tool Use, Evaluation, Memory, Multimodal
 - [🛠 Tools & Libraries](#tools--libraries)
 
+- [ContinueWith](https://continuewith.ai) - Let visitors continue any website page inside ChatGPT, Claude, Gemini, Grok, Perplexity, Mistral, and other AI assistants in one click.
+
 ---
 
 ## Prompts
