@@ -1125,6 +1125,7 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 | [Anthropic Prompt Library](https://docs.anthropic.com/en/prompt-library/library) | Official production-ready prompts from Anthropic |
 | [NirDiamant/Prompt_Engineering](https://github.com/NirDiamant/Prompt_Engineering) | 22 Jupyter Notebook tutorials from basics to advanced — CoT, few-shot, templates, multi-language ![](https://img.shields.io/github/stars/NirDiamant/Prompt_Engineering?style=flat-square) |
 | [automotive-skills-suite](https://github.com/jherrodthomas/automotive-skills-suite) | 152 installable Claude skills for automotive engineering — ISO 26262, ISO/SAE 21434, ISO 21448 SOTIF, AIAG-VDA, ASPICE, AUTOSAR; builder + reviewer pairs with xlsx deliverables ![](https://img.shields.io/github/stars/jherrodthomas/automotive-skills-suite?style=flat-square) |
+| [IntelCue Competitive Intelligence Prompt Builder](https://www.intelcue.ai/tools/competitive-intelligence-prompt-builder) | Free 5-step wizard for building competitive intelligence prompts for ChatGPT, Claude, or Gemini |
 
 ---
 
