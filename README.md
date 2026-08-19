@@ -781,6 +781,7 @@ An open standard (Anthropic, Dec 2025) for packaging expertise into portable dir
 |----------|-------|
 | [anthropics/skills](https://github.com/anthropics/skills) | Official collection + spec (`/spec/agent-skills-spec.md`) ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square) |
 | [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | 1000+ community skills, works across all major platforms |
+| [OpenRuna](https://www.openruna.com/best/ai-skills-packs) | Graph directory of SKILL.md packs, agents, and prompts with MCP search API |
 | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Vercel's official skills |
 | [Agent Skills Docs — Anthropic](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) | Official docs & spec |
 | [Equipping Agents for the Real World — Anthropic](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) | Announcement post |
