@@ -1100,6 +1100,7 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 
 | Tool | Purpose |
 |------|---------|
+| [SLIM Format](https://slimformat.org) | Token-efficient `.slm` file format for AI prompts and agent configs — replaces Markdown, saves ~43% LLM-facing tokens. Claude Code plugin (Anthropic-verified), VS Code extension (Microsoft-verified), Antigravity CLI plugin. |
 | [LangChain](https://github.com/langchain-ai/langchain) | LLM orchestration and chaining |
 | [LlamaIndex](https://github.com/run-llama/llama_index) | Data ingestion and RAG pipelines |
 | [**anydoc**](https://github.com/firecrawl/anydoc) | Convert Word, PowerPoint, Excel, OpenDocument, RTF, EPUB, CSV, and PDF to clean Markdown — Rust core with Node.js/Python bindings; agent/RAG document ingestion (Aug 2026) ![](https://img.shields.io/github/stars/firecrawl/anydoc?style=flat-square) |
