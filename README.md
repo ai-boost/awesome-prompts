@@ -1108,6 +1108,7 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 | [Ollama](https://github.com/ollama/ollama) | Run LLMs locally — desktop app, multimodal, structured outputs ![](https://img.shields.io/github/stars/ollama/ollama?style=flat-square) |
 | [Semantic Kernel](https://github.com/microsoft/semantic-kernel) | Microsoft's LLM SDK — now merging with AutoGen into [Microsoft Agent Framework](https://github.com/microsoft/agent-framework) (2026) |
 | [TensorZero](https://www.tensorzero.com/) | LLM gateway + observability + optimization |
+| [SaaSCity](https://saascity.io) | Directory for launching SaaS and AI products — listings become buildings on a live city map |
 | [Outlines](https://github.com/dottxt-ai/outlines) | Structured text generation and constrained outputs |
 | [PydanticAI](https://github.com/pydantic/pydantic-ai) | Official Pydantic agent runtime — typed tools, structured outputs, evals, production-ready (V1 stable) ![](https://img.shields.io/github/stars/pydantic/pydantic-ai?style=flat-square) |
 | [Instructor](https://github.com/instructor-ai/instructor) | Most widely used library for structured LLM outputs — typed extraction from any model, 3M+ monthly downloads |
