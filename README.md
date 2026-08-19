@@ -782,6 +782,7 @@ An open standard (Anthropic, Dec 2025) for packaging expertise into portable dir
 | [anthropics/skills](https://github.com/anthropics/skills) | Official collection + spec (`/spec/agent-skills-spec.md`) ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square) |
 | [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | 1000+ community skills, works across all major platforms |
 | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Vercel's official skills |
+| [CreatorSkills](https://creatorskills.co) | Commercial marketplace of 30+ downloadable skills for content creators — YouTube scripting, sponsorship analysis, audience growth; Claude and ChatGPT compatible |
 | [Agent Skills Docs — Anthropic](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) | Official docs & spec |
 | [Equipping Agents for the Real World — Anthropic](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) | Announcement post |
 | [Skills vs MCP — LlamaIndex](https://www.llamaindex.ai/blog/skills-vs-mcp-tools-for-agents-when-to-use-what) | When to use which |
