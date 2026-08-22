@@ -814,6 +814,7 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 | [Building a C Compiler with Parallel Claudes — Anthropic](https://www.anthropic.com/engineering/building-c-compiler) (Feb 2026) | How Anthropic used parallel Claude sub-agents to build a C compiler — generator/evaluator harness patterns |
 | [QoderAI/better-harness](https://github.com/QoderAI/better-harness) ![](https://img.shields.io/github/stars/QoderAI/better-harness?style=flat-square) | Open-source loop/harness improvement skill — turns project and session evidence into prioritized improvements and verifiable next steps for Claude Code, Codex, Cursor, and other coding agents (July 2026) |
 | [**harness-engineering**](https://github.com/lopopolo/harness-engineering) ![](https://img.shields.io/github/stars/lopopolo/harness-engineering?style=flat-square) | Ryan Lopopolo's anthology, field guide, and agent context bundle for harness engineering — shaping context and tools so agents can recover intent, operate systems, respect authority, prove outcomes, and leave the next run better equipped (CC-BY-4.0, July 2026) |
+| [**ECC**](https://github.com/affaan-m/ECC) ![](https://img.shields.io/github/stars/affaan-m/ECC?style=flat-square) | The agent harness performance optimization system — skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond (MIT, 242k+ stars, Jan 2026) |
 
 ---
 
