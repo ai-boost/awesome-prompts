@@ -606,6 +606,7 @@ Make prompt quality measurable. Regression tests, benchmarks, and CI/CD for LLM 
 | [**promptfoo**](https://github.com/promptfoo/promptfoo) | ![](https://img.shields.io/github/stars/promptfoo/promptfoo?style=flat-square) | Test-driven prompt engineering: regression tests, red teaming, model comparison, CI/CD integration. [Acquired by OpenAI (Mar 2026)](https://openai.com/index/openai-to-acquire-promptfoo/) — remains open source. |
 | [**OpenAI Evals**](https://github.com/openai/evals) | ![](https://img.shields.io/github/stars/openai/evals?style=flat-square) | Open eval framework and benchmark registry — standardizes LLM performance measurement. |
 | [**Terminal-Bench**](https://github.com/laude-institute/terminal-bench) | — | Real-terminal agent benchmark (Stanford/Laude) — compile code, train models, set up servers in Docker-sandboxed environments; the de facto benchmark for agentic coding (2026). |
+| [**Prompt Evaluator**](https://prompt-evaluator-eight.vercel.app) | — | Web-based prompt and workflow QA tool — compare prompts across models, benchmark quality, catch regressions before deployment. Free tier with Pro upgrade. |
 
 ### Red Team & Security
 
