@@ -1136,6 +1136,7 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 | [Outlines](https://github.com/dottxt-ai/outlines) | Structured text generation and constrained outputs |
 | [PydanticAI](https://github.com/pydantic/pydantic-ai) | Official Pydantic agent runtime — typed tools, structured outputs, evals, production-ready (V1 stable) ![](https://img.shields.io/github/stars/pydantic/pydantic-ai?style=flat-square) |
 | [Instructor](https://github.com/instructor-ai/instructor) | Most widely used library for structured LLM outputs — typed extraction from any model, 3M+ monthly downloads |
+| [**qwen-audio-agent**](https://github.com/QwenAudio/qwen-audio-agent) | Realtime voice runtime for AI agents — keeps agents talking, working, and present while they think or use tools (no dead air during tool calls); pluggable STT/TTS and realtime providers, embeddable gateway, TUI/desktop apps, Agent Skills support, ACP-compatible; works with Claude Code, Codex, OpenCode and other backends (Apache-2.0, 2.4k+ stars, July 2026) ![](https://img.shields.io/github/stars/QwenAudio/qwen-audio-agent?style=flat-square) |
 | [LM Evaluation Harness](https://github.com/EleutherAI/lm-evaluation-harness) | EleutherAI's unified LLM evaluation framework |
 | [Weights & Biases](https://wandb.ai/site/solutions/llmops) | Experiment tracking and LLMOps |
 | [Promptingguide.ai](https://www.promptingguide.ai/) | Comprehensive prompt engineering reference (DAIR-AI) |
