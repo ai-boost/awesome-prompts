@@ -596,6 +596,7 @@ Make tool calling reliable — guardrails, validation, and structured constraint
 | Project | Stars | What it does |
 |---------|-------|-------------|
 | [**forge**](https://github.com/antoinezambelli/forge) | ![](https://img.shields.io/github/stars/antoinezambelli/forge?style=flat-square) | Reliability layer for self-hosted LLM tool-calling — guardrails (rescue parsing, retry nudges, response validation), optional workflow constraints (`required_steps`, `prerequisites`, `terminal_tool`), and built-in eval suite. MIT, 2.2k+ stars, Feb 2026 |
+| [**reverify**](https://github.com/2akouwu/reverify) | ![](https://img.shields.io/github/stars/2akouwu/reverify?style=flat-square) | Hallucination gate for agents — the model proposes claims, deterministic tools check each against ground truth and return VERIFIED/REFUTED with evidence; only what survives counts as fact. Ships as MCP server + CLI, with `reverify rollover` for lossless context handoff across resets. Caught every hallucination on a 71-file binary reverse-engineering benchmark (0 wrong claims accepted). MIT, 978 stars, Aug 2026 |
 
 ### Eval & Testing
 
