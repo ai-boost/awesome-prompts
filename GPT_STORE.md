@@ -42,6 +42,12 @@
 | 😎 My Boss! | Productivity | Strategic business leader for market analysis and financial growth | [Link](https://chatgpt.com/g/g-F7SLUeAix-my-boss-a-boss-who-makes-money-for-me) |
 | 🎀 My Excellent Classmates | Education | Patient homework helper and study guide | [Link](https://chatgpt.com/g/g-3x2jopNpP-my-excellent-classmates-help-with-my-homework) |
 | ⛩ I Ching Divination | Occultism | Fortune telling based on the 64 hexagrams of the Book of Changes (Chinese) | [Link](https://chatgpt.com/g/g-5LnUkgxKa-yi-jing-suan-ming) |
+| 🏢 CLAWVR Strategy Generator | Business | Custom AI Operating System for any small business — master prompt + workflow superprompts based on a 6-question intake | [Link](https://chatgpt.com/g/g-6a0c95e1f47081918770136430cfd3bb) |
+| 🏠 AI Strategy for Real Estate | Business | AI workflows for independent realtors: listing copy, comparable-home reports, buyer follow-up, neighborhood research | [Link](https://chatgpt.com/g/g-6a0cf0967f7c819185c829aa0b93caaf) |
+| 🧾 AI Strategy for CPAs | Business | AI workflows for CPA + accounting firms: client onboarding, tax-prep checklists, advisory drafting, deadline reminders | [Link](https://chatgpt.com/g/g-6a0cf1ef4dc08191b57abc585029fd20) |
+| ⚖️ AI Strategy for Lawyers | Business | AI workflows for solo and small law firms: client intake, demand letters, retainer drafts, case-summary briefs | [Link](https://chatgpt.com/g/g-6a0cf2d1760c8191a5f243ccf47c66bf) |
+| 🦷 AI Strategy for Dental Practices | Business | AI workflows for dental offices: new-patient inquiry response, no-show reduction, review collection, treatment-plan letters | [Link](https://chatgpt.com/g/g-6a0cff4b6b3c8191b6efae65a72ee7ff) |
+| 🔧 AI Strategy for HVAC | Business | AI workflows for HVAC contractors: estimate follow-up, seasonal maintenance reminders, technician scheduling, review collection | [Link](https://chatgpt.com/g/g-6a0d00ce68908191841691ae2ef598b5) |
 
 ---
 
