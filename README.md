@@ -1121,6 +1121,9 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 | Paper | Key Contribution |
 |-------|-----------------|
 | [Building Enterprise Realtime Voice Agents from Scratch (2026)](https://arxiv.org/abs/2603.05413) | Salesforce AI Research: complete tutorial for production voice agents — cascaded streaming pipeline (STT→LLM→TTS), ~750ms TTFA, function calling, full open-source codebase with 9 chapters | [PDF](https://arxiv.org/pdf/2603.05413) |
+| [VoiceMem: Streaming Dual-Brain Memory for Real-Time Interaction (Aug 2026)](https://arxiv.org/abs/2608.26005) | Tsinghua: long-term memory for realtime voice agents — "left brain" stores compressed facts (Mem0-level accuracy at ~300 tokens/query), "right brain" tracks emotional attribution across nodes; fully streaming architecture with speculative prefetch keeps added latency near zero; open model family + ChatMem-400K dataset | [PDF](https://arxiv.org/pdf/2608.26005) |
+
+**Project:** [xzf-thu/VoiceMem](https://github.com/xzf-thu/VoiceMem) ![](https://img.shields.io/github/stars/xzf-thu/VoiceMem?style=flat-square) — open-source implementation of the dual-brain streaming memory above — pluggable memory engine, pluggable TTS layer, fully decoupled components (Apache-2.0, 1.7k+ stars, actively maintained 2026)
 
 **Curated reading list:** [The 2025 AI Engineering Reading List — Latent Space](https://www.latent.space/p/2025-papers)
 
