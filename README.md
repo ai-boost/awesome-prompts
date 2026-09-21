@@ -52,7 +52,7 @@ This repo covers both. The engineering camp gets more space.
   - [Productivity & Tasks](#productivity--tasks)
   - [Safety & Compliance](#safety--compliance)
   - [Meta & Prompt Engineering](#meta--prompt-engineering)
-  - [Image, Video & Audio Generation](#image--video--audio-generation)
+  - [Image, Video & Audio Generation](#image-video--audio-generation)
   - [Creative & Role-play](#creative--role-play)
   - [Game Development](#game-development)
   - [Translation](#translation)
