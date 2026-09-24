@@ -588,6 +588,7 @@ Instead of hand-tuning prompts, these frameworks optimize them automatically usi
 |---------|-------|-------------|
 | [**TextGrad**](https://github.com/zou-group/textgrad) | ![](https://img.shields.io/github/stars/zou-group/textgrad?style=flat-square) | Treats LLM feedback as "textual gradients" and backpropagates them to optimize prompts. Published in Nature. |
 | [**GEPA**](https://github.com/gepa-ai/gepa) | ![](https://img.shields.io/github/stars/gepa-ai/gepa?style=flat-square) | Reflective Text Evolution — optimizes prompts, code, and agent configs. Claims +6–20 pts over GRPO on 6 tasks with fewer rollouts. |
+| [**Hermes Agent Self-Evolution**](https://github.com/NousResearch/hermes-agent-self-evolution) | ![](https://img.shields.io/github/stars/NousResearch/hermes-agent-self-evolution?style=flat-square) | Evolutionary self-improvement for Hermes Agent — DSPy + GEPA (Genetic-Pareto Prompt Evolution) automatically evolves skills, tool descriptions, system prompts, and code via reflective search over execution traces (understands *why* things fail, not just that they failed); constraint gates (tests, size limits, benchmarks) before a best-variant PR; no GPU training required, ~$2–10 per optimization run (Nous Research, MIT, 5.4k+ stars, Mar 2026) |
 
 ### Tool Use & Reliability
 
