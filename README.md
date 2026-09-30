@@ -68,7 +68,7 @@ This repo covers both. The engineering camp gets more space.
 - [🕵️ System Prompt Leaks](#system-prompt-leaks) — learn from production
 - [🧠 Prompt Engineering](#prompt-engineering) — techniques & defense
 - [🔭 Context Engineering](#context-engineering)
-- [🤖 Agent Ecosystem](#agent-ecosystem) — MCP, Skills, Harness
+- [🤖 Agent Ecosystem](#agent-ecosystem) — MCP, A2A, Payments, Skills, Harness
 - [📖 Official Guides](#official-guides)
 - [📄 Papers](#papers) — Foundations, Optimization, Reasoning, RAG, Agents, Multi-Agent, Safety, Self-Improving Agents, Tool Use, Evaluation, Memory, Multimodal
 - [🛠 Tools & Libraries](#tools--libraries)
@@ -802,6 +802,15 @@ Open protocol (Google, Apr 2025 → Linux Foundation, Mar 2026) for cross-framew
 - Docs: [google.github.io/adk-docs/a2a/](https://google.github.io/adk-docs/a2a/)
 
 **MCP vs A2A in one line:** MCP = agent ↔ tool. A2A = agent ↔ agent.
+
+### Agentic Payments
+
+The missing layer of the agent stack: protocols that let agents *pay* for tools, data, and services. The 2026 landscape split into complementary layers — **x402** (Coinbase, Apr 2025 → Linux Foundation, Apr 2026) is the HTTP-native settlement rail (a 402-status-code payment challenge settles in stablecoins, no API keys or accounts), while **AP2** (Google, Sept 2025 → FIDO Alliance, Apr 2026) provides cryptographically signed *mandates* — proof a human authorized the spend. Other entries: ACP (OpenAI + Stripe, live in ChatGPT Instant Checkout) and MPP (Stripe + Tempo, Mar 2026). By mid-2026 x402 had passed 165M transactions / $43.5M settled, with AWS Bedrock AgentCore, Cloudflare, Stripe, Visa, and Mastercard in the ecosystem.
+
+- GitHub: [x402-foundation/x402](https://github.com/x402-foundation/x402) — reference implementation + SDKs (TypeScript/Python/Go); Apache-2.0 ![](https://img.shields.io/github/stars/x402-foundation/x402?style=flat-square)
+- Curated ecosystem map: [bitrefill/awesome-agentic-payments](https://github.com/bitrefill/awesome-agentic-payments) — protocols, specs, SDKs, and tools for the agentic commerce stack (2026)
+
+**In one line:** MCP = agent ↔ tool. A2A = agent ↔ agent. x402/AP2 = agent ↔ merchant.
 
 ### Agent Skills
 
