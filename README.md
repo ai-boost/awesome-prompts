@@ -579,6 +579,7 @@ Write LM systems as code, not strings. These frameworks treat prompts as compile
 |---------|-------|-------------|
 | [**DSPy**](https://github.com/stanfordnlp/dspy) | ![](https://img.shields.io/github/stars/stanfordnlp/dspy?style=flat-square) | Write LM pipelines declaratively, then *compile* — DSPy auto-optimizes prompts and few-shot demonstrations. The strongest engineering-first approach. |
 | [**Guidance**](https://github.com/guidance-ai/guidance) | ![](https://img.shields.io/github/stars/guidance-ai/guidance?style=flat-square) | Interleave generation with constraints, regex/CFG, and control flow. Precision output control that goes beyond what prompts alone can achieve. |
+| [**NOOA**](https://github.com/NVIDIA-NeMo/labs-OO-Agents) | ![](https://img.shields.io/github/stars/NVIDIA-NeMo/labs-OO-Agents?style=flat-square) | NVIDIA Object-Oriented Agents — the prompt *is* the code: an agent is one plain Python class where fields are typed state, methods are capabilities, docstrings are prompts, and type annotations are enforced contracts; `...` bodies are completed by an LLM loop while real bodies stay deterministic Python, mixed freely in the same class; code-as-action REPL with access to `self`, model-agnostic via LiteLLM; 82.2% SWE-bench Verified at ~half the tokens of comparable harnesses ([paper](https://arxiv.org/abs/2607.20709), Apache-2.0, July 2026, actively maintained) |
 
 ### Automatic Prompt Optimization
 
