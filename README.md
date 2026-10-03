@@ -861,6 +861,14 @@ The infrastructure layer that wraps an LLM: tool access, lifecycle management, p
 | [**ECC**](https://github.com/affaan-m/ECC) ![](https://img.shields.io/github/stars/affaan-m/ECC?style=flat-square) | The agent harness performance optimization system — skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond (MIT, 242k+ stars, Jan 2026) |
 | [**SoL-Pi**](https://github.com/NVlabs/SoL-Pi) ![](https://img.shields.io/github/stars/NVlabs/SoL-Pi?style=flat-square) | NVIDIA's efficiency extension for the Pi coding agent — four opt-in harness mechanisms distilled from scaled auto-research loops ([arXiv 2609.20519](https://arxiv.org/abs/2609.20519)): Action Fusion (run follow-up validation in the same tool call), ObservationPack (stable handles with exact paged recall for repeated large outputs), evidence-preserving reducer (long logs → compact receipts where every quotation is verifiable against the archive), and online context compaction gated by economics/window pressure; no patches to Pi, evidence always preserved (TypeScript, MIT, 2.9k+ stars, Sept 2026, actively maintained) |
 
+### Sandboxed Execution
+
+Agents that write and run code need an isolation layer — untrusted model output must never execute on the host. Sandboxed execution is the harness component that makes autonomous loops survivable (see Anthropic's containment post above for the production rationale).
+
+| Project | Stars | What it does |
+|---------|-------|-------------|
+| [**E2B**](https://github.com/e2b-dev/E2B) | ![](https://img.shields.io/github/stars/e2b-dev/E2B?style=flat-square) | Open-source sandboxed code execution for AI agents — Firecracker microVMs with dedicated kernels per sandbox (~150 ms cold start), fork/snapshot primitives (pause/resume with full memory state), Python/JS SDKs + MCP server, self-hostable via Terraform on AWS/GCP; used by Perplexity, Hugging Face, Manus, and Groq (Apache-2.0, 14k+ stars, actively maintained 2026) |
+
 ---
 
 ## Official Guides
