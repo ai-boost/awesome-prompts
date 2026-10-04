@@ -868,6 +868,7 @@ Agents that write and run code need an isolation layer — untrusted model outpu
 | Project | Stars | What it does |
 |---------|-------|-------------|
 | [**E2B**](https://github.com/e2b-dev/E2B) | ![](https://img.shields.io/github/stars/e2b-dev/E2B?style=flat-square) | Open-source sandboxed code execution for AI agents — Firecracker microVMs with dedicated kernels per sandbox (~150 ms cold start), fork/snapshot primitives (pause/resume with full memory state), Python/JS SDKs + MCP server, self-hostable via Terraform on AWS/GCP; used by Perplexity, Hugging Face, Manus, and Groq (Apache-2.0, 14k+ stars, actively maintained 2026) |
+| [**microsandbox**](https://github.com/superradcompany/microsandbox) | ![](https://img.shields.io/github/stars/superradcompany/microsandbox?style=flat-square) | Local-first, programmable microVM runtime for untrusted agent workloads — libkrun microVMs with sub-100 ms boots, OCI-compatible images, fork/snapshot live sandboxes, detached long-lived sessions, fine-grained outbound network allowlists, and "unexploitable" secrets that never enter the VM; ships an MCP server + Agent Skills so agents create their own sandboxes; Rust/Python/TS/Go SDKs, runs on Linux (KVM), macOS (Apple Silicon), and Windows (WHP); YC-backed (Apache-2.0, 8.6k+ stars, actively maintained 2026) |
 
 ---
 
