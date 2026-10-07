@@ -794,6 +794,7 @@ Open protocol (Anthropic, Nov 2024) for connecting LLMs to tools and data. Now a
 
 - Spec: [modelcontextprotocol.io](https://modelcontextprotocol.io/specification/2025-11-25)
 - Official servers: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
+- Registry: [modelcontextprotocol/registry](https://github.com/modelcontextprotocol/registry) ![](https://img.shields.io/github/stars/modelcontextprotocol/registry?style=flat-square) — the official discovery layer (powers registry.modelcontextprotocol.io): ~10,000 server records by mid-2026, reverse-DNS-verified namespaces (`io.github.user/server`), REST API for programmatic in-agent tool discovery, and self-hostable for private enterprise catalogs (Go, MIT, preview Sept 2025 → matured through 2026, actively maintained)
 
 ### A2A — Agent-to-Agent Protocol
 
