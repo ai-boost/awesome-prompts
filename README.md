@@ -825,6 +825,7 @@ An open standard (Anthropic, Dec 2025) for packaging expertise into portable dir
 | Resource | Notes |
 |----------|-------|
 | [anthropics/skills](https://github.com/anthropics/skills) | Official collection + spec (`/spec/agent-skills-spec.md`) ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square) |
+| [**obra/superpowers**](https://github.com/obra/superpowers) | Jesse Vincent's complete software-development methodology for coding agents, built on composable auto-triggering Agent Skills — spec elicitation, chunked design sign-off, implementation planning, true red/green TDD, and subagent-driven development; agents can work autonomously for hours without deviating from the approved plan; works with Claude Code, Codex, Cursor, Gemini CLI, OpenCode, Pi, and 10+ harnesses (MIT, 296k+ stars, actively maintained Oct 2026) ![](https://img.shields.io/github/stars/obra/superpowers?style=flat-square) |
 | [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | 1000+ community skills, works across all major platforms |
 | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Vercel's official skills |
 | [Agent Skills Docs — Anthropic](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) | Official docs & spec |
