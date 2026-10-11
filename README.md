@@ -1169,6 +1169,7 @@ Agents that write and run code need an isolation layer — untrusted model outpu
 
 | Tool | Purpose |
 |------|---------|
+| [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) | Free web search (Fast mode) and page fetching for MCP clients. Connect to `https://search.parallel.ai/mcp` without an account or API key; anonymous use has lower rate limits |
 | [LangChain](https://github.com/langchain-ai/langchain) | LLM orchestration and chaining |
 | [LlamaIndex](https://github.com/run-llama/llama_index) | Data ingestion and RAG pipelines |
 | [**anydoc**](https://github.com/firecrawl/anydoc) | Convert Word, PowerPoint, Excel, OpenDocument, RTF, EPUB, CSV, and PDF to clean Markdown — Rust core with Node.js/Python bindings; agent/RAG document ingestion (Aug 2026) ![](https://img.shields.io/github/stars/firecrawl/anydoc?style=flat-square) |
