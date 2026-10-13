@@ -68,7 +68,7 @@ This repo covers both. The engineering camp gets more space.
 - [🕵️ System Prompt Leaks](#system-prompt-leaks) — learn from production
 - [🧠 Prompt Engineering](#prompt-engineering) — techniques & defense
 - [🔭 Context Engineering](#context-engineering)
-- [🤖 Agent Ecosystem](#agent-ecosystem) — MCP, A2A, Payments, Skills, Harness
+- [🤖 Agent Ecosystem](#agent-ecosystem) — MCP, A2A, Payments, Skills, Harness, Memory, Sandbox
 - [📖 Official Guides](#official-guides)
 - [📄 Papers](#papers) — Foundations, Optimization, Reasoning, RAG, Agents, Multi-Agent, Safety, Self-Improving Agents, Tool Use, Evaluation, Memory, Multimodal
 - [🛠 Tools & Libraries](#tools--libraries)
@@ -875,6 +875,14 @@ Agents that write and run code need an isolation layer — untrusted model outpu
 | [**E2B**](https://github.com/e2b-dev/E2B) | ![](https://img.shields.io/github/stars/e2b-dev/E2B?style=flat-square) | Open-source sandboxed code execution for AI agents — Firecracker microVMs with dedicated kernels per sandbox (~150 ms cold start), fork/snapshot primitives (pause/resume with full memory state), Python/JS SDKs + MCP server, self-hostable via Terraform on AWS/GCP; used by Perplexity, Hugging Face, Manus, and Groq (Apache-2.0, 14k+ stars, actively maintained 2026) |
 | [**microsandbox**](https://github.com/superradcompany/microsandbox) | ![](https://img.shields.io/github/stars/superradcompany/microsandbox?style=flat-square) | Local-first, programmable microVM runtime for untrusted agent workloads — libkrun microVMs with sub-100 ms boots, OCI-compatible images, fork/snapshot live sandboxes, detached long-lived sessions, fine-grained outbound network allowlists, and "unexploitable" secrets that never enter the VM; ships an MCP server + Agent Skills so agents create their own sandboxes; Rust/Python/TS/Go SDKs, runs on Linux (KVM), macOS (Apple Silicon), and Windows (WHP); YC-backed (Apache-2.0, 8.6k+ stars, actively maintained 2026) |
 | [**OpenShell**](https://github.com/NVIDIA/OpenShell) | ![](https://img.shields.io/github/stars/NVIDIA/OpenShell?style=flat-square) | NVIDIA's security-first runtime for autonomous agents — kernel-level sandboxed execution with policy-based governance over file access, syscalls, and every network connection; credential proxying (agents never see real secrets — injected only at approved endpoints), and formal verification of policy changes before they are applied; Rust core with Python/TypeScript/Go/Rust SDKs, Linux/macOS/Windows-WSL2 (Apache-2.0, 15k+ stars, actively maintained Oct 2026) |
+
+### Agent Memory
+
+Production agents need memory that survives sessions — facts, preferences, and evolving relationships. The 2026 landscape splits into **flat fact stores** (vector + keyword retrieval of extracted facts; the most-deployed is Mem0, mem0ai/mem0, ~66k stars — but note its graph-memory and Dream features moved to the hosted platform in Sept 2026) and **temporal knowledge graphs** that track *when* every fact was true and handle contradictions by invalidation rather than overwrite. For the engineering camp, the graph approach is where the long-term value is.
+
+| Project | Stars | What it does |
+|---------|-------|-------------|
+| [**Graphiti**](https://github.com/getzep/graphiti) | ![](https://img.shields.io/github/stars/getzep/graphiti?style=flat-square) | Zep's bi-temporal knowledge-graph memory for AI agents — every fact carries *valid time* (when it was true in the world) and *transaction time* (when the system learned it), enabling point-in-time queries ("what did the agent know as of T?"); incremental episode ingestion (messages/JSON/docs) with LLM-extracted entities and relationships, no batch recomputation; contradiction handling by edge invalidation (`t_invalid`) that preserves full provenance; hybrid retrieval (semantic + BM25 + graph traversal); Neo4j / FalkorDB / Amazon Neptune backends, MCP server for MCP-native deployments, ~110 releases; powers Zep's commercial platform and scales to sub-200 ms p95 retrieval (Python, Apache-2.0, ~31k stars, actively maintained Oct 2026) |
 
 ---
 
