@@ -818,6 +818,14 @@ The missing layer of the agent stack: protocols that let agents *pay* for tools,
 
 **In one line:** MCP = agent ↔ tool. A2A = agent ↔ agent. x402/AP2 = agent ↔ merchant.
 
+### Agent Identity
+
+If agents can act and pay across organizations, every counterparty first needs to answer: *who is this agent, and who vouches for it?* 2026 turned that into its own standards layer — SPIFFE/SPIRE (CNCF) for in-cluster workload attestation, an [IETF Agent Identity Protocol draft](https://datatracker.ietf.org/doc/draft-aip-agent-identity-protocol/) (Mar 2026) defining an agent-identity layer that proxies can verify independently of OAuth/OIDC, an [IETF OAuth-WG draft bridging SPIFFE credentials into OAuth client authentication](https://github.com/oauth-wg/oauth-spiffe-client-authentication) (closes the vocab gap between the SPIFFE and OAuth worlds), and Microsoft's Agent Governance Toolkit (above) shipping zero-trust agent identity (Ed25519 + SPIFFE) as code.
+
+- GitHub: [agntcy/identity](https://github.com/agntcy/identity) — AGNTCY Identity (the identity workstream of Cisco-donated [AGNTCY](https://www.linuxfoundation.org/press/linux-foundation-welcomes-the-agntcy-project-to-standardize-open-multi-agent-system-infrastructure-and-break-down-ai-agent-silos), a Linux Foundation project backed by 75+ companies) — onboard, create, and verify identities for agents, MCP servers, and multi-agent systems on **W3C DIDs + Verifiable Credentials 2.0**; each agent gets a resolvable ID and *Agent Badges* (signed VCs binding the agent to its OASF schema definition or A2A Agent Card — capabilities are attested, not claimed), multiple badges enable task-scoped least privilege, bring-your-own-identity via Identity Providers (Okta) or A2A cards, Vault-backed signing keys, identity node + CLI tooling; 44 of 48 AGNTCY repos pushed in 2026 (Go, Apache-2.0, actively maintained) ![](https://img.shields.io/github/stars/agntcy/identity?style=flat-square)
+
+**In one line:** MCP = agent ↔ tool. A2A = agent ↔ agent. x402/AP2 = agent ↔ merchant. Agent identity = *proof of which agent*.
+
 ### Agent Skills
 
 An open standard (Anthropic, Dec 2025) for packaging expertise into portable directories. Each skill is a folder with a `SKILL.md` entry point — YAML frontmatter (`name`, `description`) + freeform Markdown instructions + optional `scripts/`. Agents load skills on demand; no context bloat.
