@@ -68,7 +68,7 @@ This repo covers both. The engineering camp gets more space.
 - [🕵️ System Prompt Leaks](#system-prompt-leaks) — learn from production
 - [🧠 Prompt Engineering](#prompt-engineering) — techniques & defense
 - [🔭 Context Engineering](#context-engineering)
-- [🤖 Agent Ecosystem](#agent-ecosystem) — MCP, A2A, Payments, Skills, Harness, Memory, Sandbox
+- [🤖 Agent Ecosystem](#agent-ecosystem) — MCP, A2A, Payments, Identity, Skills, Harness, Sandbox, RL Training, Memory
 - [📖 Official Guides](#official-guides)
 - [📄 Papers](#papers) — Foundations, Optimization, Reasoning, RAG, Agents, Multi-Agent, Safety, Self-Improving Agents, Tool Use, Evaluation, Memory, Multimodal
 - [🛠 Tools & Libraries](#tools--libraries)
@@ -886,6 +886,14 @@ Agents that write and run code need an isolation layer — untrusted model outpu
 | [**E2B**](https://github.com/e2b-dev/E2B) | ![](https://img.shields.io/github/stars/e2b-dev/E2B?style=flat-square) | Open-source sandboxed code execution for AI agents — Firecracker microVMs with dedicated kernels per sandbox (~150 ms cold start), fork/snapshot primitives (pause/resume with full memory state), Python/JS SDKs + MCP server, self-hostable via Terraform on AWS/GCP; used by Perplexity, Hugging Face, Manus, and Groq (Apache-2.0, 14k+ stars, actively maintained 2026) |
 | [**microsandbox**](https://github.com/superradcompany/microsandbox) | ![](https://img.shields.io/github/stars/superradcompany/microsandbox?style=flat-square) | Local-first, programmable microVM runtime for untrusted agent workloads — libkrun microVMs with sub-100 ms boots, OCI-compatible images, fork/snapshot live sandboxes, detached long-lived sessions, fine-grained outbound network allowlists, and "unexploitable" secrets that never enter the VM; ships an MCP server + Agent Skills so agents create their own sandboxes; Rust/Python/TS/Go SDKs, runs on Linux (KVM), macOS (Apple Silicon), and Windows (WHP); YC-backed (Apache-2.0, 8.6k+ stars, actively maintained 2026) |
 | [**OpenShell**](https://github.com/NVIDIA/OpenShell) | ![](https://img.shields.io/github/stars/NVIDIA/OpenShell?style=flat-square) | NVIDIA's security-first runtime for autonomous agents — kernel-level sandboxed execution with policy-based governance over file access, syscalls, and every network connection; credential proxying (agents never see real secrets — injected only at approved endpoints), and formal verification of policy changes before they are applied; Rust core with Python/TypeScript/Go/Rust SDKs, Linux/macOS/Windows-WSL2 (Apache-2.0, 15k+ stars, actively maintained Oct 2026) |
+
+### Agent Training (RL Post-Training)
+
+A harness makes an agent *work*; RL post-training makes it *capable*. The 2026 recipe — on-policy RL with verifiable rewards over multi-turn, tool-using trajectories (SWE-bench, τ²-bench, BrowseComp) — runs on a small set of open training frameworks. Runtime entries above (Reef, SoL-Pi) name-drop veRL/AReaL as their training complement; this is that missing layer.
+
+| Project | Stars | What it does |
+|---------|-------|-------------|
+| [**verl**](https://github.com/volcengine/verl) | ![](https://img.shields.io/github/stars/volcengine/verl?style=flat-square) | The most widely adopted open-source RL post-training framework for LLMs (ByteDance Seed; HybridFlow architecture, [EuroSys 2025](https://arxiv.org/abs/2409.19256)) — a flexible single-controller/dataflow abstraction that hybrid-orchestrates rollout generation (vLLM/SGLang) and training (FSDP/Megatron) in one program; PPO / GRPO / GSPO / DAPO / DrGRPO / REINFORCE++ / PRIME and more, with first-class multi-turn tool-calling and agentic RL (async rollout-server separation), plus the **verl-agent** extension (GiGPO) for long-horizon agent training and community stacks like OpenManus-RL (Apache-2.0, 23.9k+ stars, actively maintained 2026) |
 
 ### Agent Memory
 
