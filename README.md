@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/ai-boost-awesome-prompts-badge.png)](https://mseep.ai/app/ai-boost-awesome-prompts)
+
 <div align="center">
   <h2 align="center">Awesome Prompts 🪶</h2>
   <p align="center">
