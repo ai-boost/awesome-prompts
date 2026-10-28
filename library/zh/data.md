@@ -1,6 +1,6 @@
 # 数据与分析
 
-共 43 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 58 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/data.md) · [中文](../zh/data.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/data/)
 
@@ -8,6 +8,30 @@
 
 ```text
 开发一款 AI 驱动的数据提取与组织工具，彻底改变内容创作、网页开发、学术研究和商业创业领域的专业人士收集、分析和利用信息的方式。这款前沿工具应能够以无与伦比的速度和精度，处理来自各种来源的海量数据，包括文本文件、PDF、图像、网页等。
+```
+
+</details>
+
+<details><summary><b>Azure Databricks数据工程师</b> · 机器翻译</summary>
+
+```text
+假设你是一位拥有10年以上经验的Azure数据工程师,是最聪明、最专业、工作最有头脑的从业者。
+并且你极其擅长创建 .md 文件,从而能为相关问题给出准确的解决方案和结果。这说明你在与Azure数据工程相关的一切方面都极其聪明。
+
+根据我的简历,我目前在EY的项目中工作,工作内容50%是开发,50%是运维和支持。
+
+我希望你阅读我的简历,并把 .md 文件创建得非常完美和准确,这样将来如果我想修改这个 .md 文件,也可以轻松地编辑并准确地使用。
+
+无论我从团队那里收到什么工作,我都会向你提供相关的图片、PDF或任何类型的文档,你应该用你拥有的最先进的技术在瞬间处理这些文件,并给我所需的准确结果和解决方案。
+
+我希望你以最先进、最准确的方式思考,只提出真正合理且必要的内容,不要建议任何不必要的操作。
+
+
+如果有任何邮件或短信方面的操作需求,你必须以最专业、有人情味的风格为我撰写内容,少用官腔,风格最自然,并且写得聪明巧妙。这样无论谁收到我的邮件和短信,都会认为我是最完美、最自然、最有才华的。
+
+最重要的是,工作成果必须最贴近现实,没有任何错误和瑕疵。这样我才能得到所有队友的掌声,而不是责骂。请提供这样的工作方案和结果。
+
+现在请据此创建 .md 文件。
 ```
 
 </details>
@@ -36,6 +60,485 @@
 输出需采用结构化 Markdown 格式，并附有专业的代码注释。
 
 我已上传文件。请开始审计。
+```
+
+</details>
+
+<details><summary><b>CSV数据质量分析器</b> · 机器翻译</summary>
+
+```text
+---
+name: csv-data-quality-profiler
+description: 在 CSV 和电子表格导出文件被用于分析、导入或仪表盘之前对其进行画像:推断列类型,度量缺失值、重复、混合类型、异常值、空白字符和编码问题以及候选主键,然后撰写一份带有具体修复方案的、按优先级排序的数据质量报告。适用于用户分享 CSV、询问"这份数据干净吗?"、准备数据导入或迁移,或者发现报表中的数字看起来不对的场景。
+---
+
+# CSV 数据质量画像器
+
+你像一位细心的分析师那样,在任何工作建立于数据之上之前先检查这份表格数据集。先度量,再结合用户的目标解释哪些问题重要,最后给出最小且安全的修复建议。
+
+## 本技能中的文件
+
+- `scripts/profile_csv.py` - 列画像与问题发现脚本(仅使用 Python 3 标准库)
+- `references/quality-dimensions.md` - 用于打分的六个维度,以及什么算问题
+- `references/fix-playbook.md` - 各类问题的安全修复方法,以及哪些事绝不能自动做
+- `templates/quality-report.md` - 报告格式
+- `examples/example-orders-report.md` - 针对一份小型订单导出文件的完整报告示例
+
+## 工作流程
+
+### 1. 了解用途
+询问(或推断)这份数据的用途:一次性分析、定期导入、仪表盘,还是迁移。询问哪一列应当唯一(主键),以及哪些列最重要。同一个问题对导入可能是致命的,对粗略分析却可能无关紧要。
+
+### 2. 画像
+'''bash
+python3 scripts/profile_csv.py data.csv
+python3 scripts/profile_csv.py data.csv --key order_id
+python3 scripts/profile_csv.py data.csv --delimiter ";" --json > profile.json
+'''
+脚本会按列报告:推断类型、缺失数量与百分比、不同值数量、高频值、最小值和最大值,以及问题(混合类型、首尾空格、按 IQR 规则识别的异常值、不一致的日期格式、不一致的大小写)。它还会报告重复行、参差行,以及主键是否唯一。只要发现任何 HIGH 问题,退出码为 1。
+
+如果用户无法运行脚本,请自己读取前 200 行并手动执行同样的检查,并说明结果只是基于样本。
+
+### 3. 解读
+对每个发现,使用 `references/quality-dimensions.md` 来判断:
+1. 它影响哪个维度(完整性、有效性、唯一性、一致性、准确性信号、结构)。
+2. 针对该用途的严重程度:HIGH(结果错误或导入失败)、MEDIUM(在某些视图中产生误导)、LOW(外观问题)。
+3. 它是真正的问题还是符合预期(例如,可选的 "coupon_code" 列允许大部分为空)。
+
+### 4. 推荐修复
+使用 `references/fix-playbook.md`。优先在源系统修复,而不是在下游清洗。每个修复都要给出具体步骤(公式、pandas 或 SQL 片段,或源系统的改动),并说明它改变了什么、涉及多少行。
+
+### 5. 撰写报告
+按照 `examples/example-orders-report.md` 的方式填写 `templates/quality-report.md`:先给结论,然后是主要问题,最后是列表格。
+
+## 结论
+- **READY** - 针对既定用途,没有 HIGH 问题。
+- **READY WITH CAVEATS** - 如果接受所列出的注意事项,则可使用。
+- **NOT READY** - 至少有一个 HIGH 问题会导致错误的数字或导入失败。
+
+## 规则
+- 绝不要悄悄地删除、填补或去重行;始终说明所用规则和受影响的行数,并保留原始文件。
+- 不要猜测某个代码或缩写的含义;去询问,或将其标记为假设。
+- 谨慎对待个人数据:最多展示少量示例值,并在报告中对邮箱、电话号码和 ID 进行掩码处理。
+- 异常值是线索,而不是错误。删除之前先询问。
+FILE:references/quality-dimensions.md
+# 数据质量维度
+
+针对用户的用途,将每个维度评为 OK、WATCH 或 PROBLEM。
+
+## 1. 完整性
+必需的值是否都存在?
+- 视为空值的缺失标记:"", "NA", "N/A", "null", "NULL", "None", "-", "?"(不区分大小写,去除空格之后)。
+- PROBLEM:对于导入,必需列(主键、金额、日期)存在任何缺失值;对于分析,缺失超过 5%。
+- WATCH:可选列超过 50% 为空(它还在被使用吗?)。
+
+## 2. 有效性
+值是否符合预期的类型和允许的范围?
+- 一列中混合了多种类型(数字加上 "TBD" 之类的单词)。
+- 带有千位分隔符或货币符号的数字("1,200", "$45")。
+- 无法解析的日期,或不可能的值(13 月、负数数量、年龄 250)。
+- 当该列参与计算或对应带类型的数据库列时,属于 PROBLEM。
+
+## 3. 唯一性
+- 完全重复的行:通常由重复导出或任务重跑引起。
+- 重复的主键:两行使用同一个 ID 却带有不同的数据。对于导入始终是 PROBLEM。
+- 近似重复(去除空格并转为小写后值相同)为 WATCH。
+
+## 4. 一致性
+- 一列中有多种日期格式(2026-03-01, 03/01/2026, 1 Mar 2026)。
+- 同一类别有不同写法("Paid", "paid", "PAID ")。
+- 一列中混用单位(kg 和 lb,美分和美元)。
+- 会破坏关联和筛选的首尾空格。
+
+## 5. 准确性信号
+画像器无法证明准确性,但可以发出警示:
+- 超出四分位数 1.5 x IQR 范围的异常值。
+- 可疑的常量(每一行的值都相同)。
+- 看起来像默认值的值(1970-01-01, 0, 999999, "test")。
+- 合计值与用户已知的数字不符。
+
+## 6. 结构
+- 参差行(字段数量与表头不同):通常是文本中含有未加引号的分隔符。
+- 空白或重复的表头名称。
+- 编码问题(乱码):带重音的字母显示为两个奇怪的字符,例如 "cafe" 的带重音的 e 变成了带波浪号的 "A" 加一个符号(UTF-8 被按 Latin-1 读取)。
+- 第一个表头开头的字节顺序标记。
+
+## 按用途划分的严重程度
+
+| 发现 | 分析 | 定期导入 | 仪表盘 |
+|---|---|---|---|
+| 重复主键 | MEDIUM | HIGH | HIGH |
+| 数值列中的混合类型 | HIGH | HIGH | HIGH |
+| 多种日期格式 | MEDIUM | HIGH | MEDIUM |
+| 类别中的尾部空格 | LOW | MEDIUM | MEDIUM |
+| 异常值 | MEDIUM | LOW | MEDIUM |
+| 参差行 | HIGH | HIGH | HIGH |
+FILE:references/fix-playbook.md
+# 修复手册
+
+始终遵循:保留原始文件,把修复写成可重复运行的脚本或有文档的步骤,并报告每个修复涉及的行数。
+
+## 缺失值
+- 必填字段:在源头修复,或把这些行隔离到单独的文件中供审阅。
+- 可选字段:保持为空;把所有缺失标记统一为同一种空值。
+- 绝不要为了让导入通过而用 0 或今天的日期填充金额或日期。
+
+## 混合类型
+- 先找出不匹配的值:`df[pd.to_numeric(df.col, errors="coerce").isna() & df.col.notna()]`。
+- 逐个值决定:是写法不同的真实值("1,200" 变为 1200)、占位符("TBD" 变为空),还是真正的错误(退回给负责人)。
+
+## 重复
+- 完全重复的行:在确认来自重复导出之后可以安全删除;保留第一条。
+- 主键重复但数据不同:不要自动选择其一。列出两行,询问哪个系统是权威数据源;如果用户同意,可按 updated_at 列保留最新的一条。
+
+## 不一致的日期
+- 针对每种模式用明确的格式解析,绝不要对整列使用靠猜测的解析器。
+- 有歧义的日/月值(03/04/2026)需要用户给出规则;检查是否有值的日大于 12,以此推断格式。
+- 将结果存为 ISO 8601(YYYY-MM-DD)。
+
+## 不一致的类别和空格
+- 对所有用于关联或分组的文本列去除空格。
+- 用经用户批准的明确映射表来映射拼写变体,而不是用模糊匹配。
+
+## 异常值
+- 与数据负责人核对。常见的真实原因:批量订单、以负数存储的退款、测试交易。
+- 如果在分析中被排除,请在结果中说明,并同时展示包含和不包含它们的数字。
+
+## 结构
+- 参差行:使用正确的引号重新导出,或用正确的分隔符和引号字符进行解析。
+- 编码:按 UTF-8 重新读取;如果仍有乱码,说明文件在源头被二次编码了。
+- BOM:使用编码 "utf-8-sig" 读取。
+
+## 绝不要自动执行
+- 批量删除含缺失值的行。
+- 填补主键、金额或日期列中的值。
+- 合并近似重复的客户或产品。
+- 删除异常值。
+FILE:templates/quality-report.md
+# 数据质量报告:{{dataset_name}}
+
+**用途:** {{analysis | recurring import | dashboard | migration}}
+**文件:** {{file_name}}({{rows}} 行 x {{columns}} 列,分隔符 "{{delimiter}}")
+**主键列:** {{key_column or "none given"}}
+**结论:** {{READY | READY WITH CAVEATS | NOT READY}}
+
+## 摘要
+{{两到三句话:这份数据是否适合该用途,以及必须先做什么。}}
+
+## 主要问题(按严重程度从高到低)
+
+| # | 严重程度 | 维度 | 列 | 发现 | 受影响行数 | 推荐修复 |
+|---|---|---|---|---|---|---|
+| 1 | {{HIGH}} | {{Uniqueness}} | {{col}} | {{finding}} | {{n}} | {{fix}} |
+
+## 维度评分
+
+| 维度 | 评分 | 备注 |
+|---|---|---|
+| 完整性 | {{OK / WATCH / PROBLEM}} | |
+| 有效性 | | |
+| 唯一性 | | |
+| 一致性 | | |
+| 准确性信号 | | |
+| 结构 | | |
+
+## 列画像
+
+| 列 | 类型 | 缺失 % | 不同值 | 范围或高频值 | 问题 |
+|---|---|---|---|---|---|
+
+## 向数据负责人提出的问题
+- {{question}}
+
+## 假设
+- {{assumption}}
+
+## 后续步骤
+1. {{step}}
+FILE:examples/example-orders-report.md
+# 数据质量报告:线上订单导出(九月)
+
+**用途:** 定期导入财务数据库
+**文件:** orders_sept.csv(8 行 x 6 列,分隔符 ",")
+**主键列:** order_id
+**结论:** NOT READY
+
+## 摘要
+该导出文件无法按原样导入:一个订单 ID 出现了两次且金额不同,金额列中数字与占位符 "TBD" 混在一起。日期使用了两种格式。完成下面三项修复后,该文件应当就绪。
+
+## 主要问题(按严重程度从高到低)
+
+| # | 严重程度 | 维度 | 列 | 发现 | 受影响行数 | 推荐修复 |
+|---|---|---|---|---|---|---|
+| 1 | HIGH | 唯一性 | order_id | 主键 A-1003 出现两次(金额 45.00 和 54.00) | 2 | 询问财务哪一行正确;不要自动选择 |
+| 2 | HIGH | 有效性 | amount | 混合类型:1 个非数值(“TBD”) | 1 | 用商店系统中的真实金额替换,或隔离该行 |
+| 3 | MEDIUM | 一致性 | order_date | 两种日期格式(YYYY-MM-DD 和 DD/MM/YYYY) | 2 | 明确解析每种模式,存为 ISO 8601 |
+| 4 | MEDIUM | 一致性 | status | 首尾空格(“paid ”) | 1 | 导入前对所有类别列去除空格 |
+| 5 | LOW | 准确性信号 | amount | 异常值 1250.00(IQR 规则) | 1 | 与商店团队确认;很可能是一笔批量订单 |
+
+## 维度评分
+
+| 维度 | 评分 | 备注 |
+|---|---|---|
+| 完整性 | WATCH | coupon 87.5% 为空,对可选字段属于预期 |
+| 有效性 | PROBLEM | amount 中有 "TBD" |
+| 唯一性 | PROBLEM | 主键 A-1003 重复 |
+| 一致性 | WATCH | 日期格式、status 中的尾部空格 |
+| 准确性信号 | WATCH | 有一笔大额订单 |
+| 结构 | OK | 无参差行,表头干净 |
+
+## 列画像
+
+| 列 | 类型 | 缺失 % | 不同值 | 范围或高频值 | 问题 |
+|---|---|---|---|---|---|
+| order_id | string | 0.0 | 7 | A-1003 (2), A-1001 (1), A-1002 (1) | 主键重复 |
+| order_date | date | 0.0 | 7 | 2026-09-01 to 2026-09-28 | 2 种格式 |
+| customer_email | string | 0.0 | 6 | (已掩码) | 无 |
+| amount | float | 0.0 | 8 | 18.5 to 1250.0 | 混合类型,异常值 |
+| status | string | 0.0 | 2 | paid (7), refunded (1) | 首尾空格 |
+| coupon | string | 87.5 | 1 | FALL10 (1) | 大部分为空(符合预期) |
+
+## 向数据负责人提出的问题
+- A-1003 的哪一行是正确的,为什么它被导出了两次?
+- A-1006 的真实金额是多少?
+
+## 假设
+- 带斜杠的日期使用 DD/MM/YYYY(有一个值的日为 28,所以不可能是 MM/DD)。
+
+## 后续步骤
+1. 与财务一起解决 A-1003 和 A-1006。
+2. 在导出任务中增加去除空格和日期规范化的步骤。
+3. 重新运行 `python3 scripts/profile_csv.py orders_sept.csv --key order_id`,当其退出码为 0 时再导入。
+FILE:scripts/profile_csv.py
+#!/usr/bin/env python3
+"""Profile a CSV file for data quality problems (Python 3 standard library only).
+
+Usage:
+  python3 profile_csv.py FILE.csv [--key COLUMN] [--delimiter ","] [--json]
+  python3 profile_csv.py - < FILE.csv          (read from stdin)
+
+Reports per column: inferred type (int, float, numtext = numbers stored with
+separators or currency symbols, date, bool, string), missing values, distinct count, top values,
+min/max, and issues (mixed types, surrounding spaces, IQR outliers, several
+date formats, inconsistent casing). Also reports ragged rows, duplicate rows,
+blank or duplicate headers, and key uniqueness when --key is given.
+Exit code: 0 = no HIGH issues, 1 = at least one HIGH issue, 2 = usage error.
+"""
+import argparse
+import csv
+import io
+import json
+import re
+import statistics
+import sys
+from collections import Counter
+
+MISSING = {"", "na", "n/a", "null", "none", "nan", "-", "?"}
+DATE_PATTERNS = [
+    ("YYYY-MM-DD", re.compile(r"^\d{4}-\d{2}-\d{2}$")),
+    ("YYYY-MM-DD HH:MM", re.compile(r"^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}(:\d{2})?$")),
+    ("DD/MM/YYYY or MM/DD/YYYY", re.compile(r"^\d{1,2}/\d{1,2}/\d{4}$")),
+    ("DD.MM.YYYY", re.compile(r"^\d{1,2}\.\d{1,2}\.\d{4}$")),
+    ("D Mon YYYY", re.compile(r"^\d{1,2} [A-Za-z]{3,9} \d{4}$")),
+]
+INT_RE = re.compile(r"^[+-]?\d+$")
+FLOAT_RE = re.compile(r"^[+-]?(\d+\.\d*|\.\d+|\d+)([eE][+-]?\d+)?$")
+FORMATTED_NUM_RE = re.compile(r"^[+-]?[$\u20ac\u00a3]?\d{1,3}(,\d{3})+(\.\d+)?$|^[$\u20ac\u00a3]\d+(\.\d+)?$")
+BOOL_VALUES = {"true", "false", "yes", "no", "y", "n"}
+
+
+def classify(value):
+    v = value.strip()
+    if INT_RE.match(v):
+        return "int"
+    if FLOAT_RE.match(v):
+        return "float"
+    if v.lower() in BOOL_VALUES:
+        return "bool"
+    for name, rx in DATE_PATTERNS:
+        if rx.match(v):
+            return "date:" + name
+    if FORMATTED_NUM_RE.match(v):
+        return "formatted_number"
+    return "string"
+
+
+def quartiles(nums):
+    q = statistics.quantiles(nums, n=4, method="inclusive")
+    return q[0], q[2]
+
+
+def profile(rows, header, key=None):
+    issues = []  # (severity, column, code, message)
+    ncols = len(header)
+    if header and header[0].startswith("\ufeff"):
+        header[0] = header[0].lstrip("\ufeff")
+        issues.append(("LOW", header[0], "bom", "File starts with a byte order mark; read with encoding utf-8-sig"))
+    names = Counter(h.strip() for h in header)
+    for h in header:
+        if not h.strip():
+            issues.append(("MEDIUM", "(header)", "blank-header", "A header cell is blank"))
+    for h, c in names.items():
+        if h and c > 1:
+            issues.append(("HIGH", h, "duplicate-header", f"Header '{h}' appears {c} times"))
+
+    ragged = [i + 2 for i, r in enumerate(rows) if len(r) != ncols]
+    if ragged:
+        issues.append(("HIGH", "(rows)", "ragged-rows",
+                       f"{len(ragged)} row(s) have a field count different from the header ({ncols}); first at line(s) {ragged[:5]}"))
+    good = [r for r in rows if len(r) == ncols]
+
+    dup_counter = Counter(tuple(c.strip() for c in r) for r in good)
+    dup_rows = sum(c - 1 for c in dup_counter.values() if c > 1)
+    if dup_rows:
+        issues.append(("MEDIUM", "(rows)", "duplicate-rows", f"{dup_rows} fully duplicated row(s)"))
+
+    columns = []
+    for idx, name in enumerate(header):
+        raw = [r[idx] for r in good]
+        present = [v for v in raw if v.strip().lower() not in MISSING]
+        missing = len(raw) - len(present)
+        kinds = Counter(classify(v) for v in present)
+        base = Counter()
+        for k, c in kinds.items():
+            base["date" if k.startswith("date:") else k] += c
+        if base:
+            top_kind, top_n = base.most_common(1)[0]
+        else:
+            top_kind, top_n = "empty", 0
+        if set(base) <= {"int", "float"} and base:
+            ctype = "float" if "float" in base else "int"
+        elif set(base) <= {"int", "float", "formatted_number"} and base:
+            ctype = "numtext"
+        else:
+            ctype = top_kind
+        col = {
+            "name": name, "type": ctype, "rows": len(raw), "missing": missing,
+            "missing_pct": round(100.0 * missing / len(raw), 1) if raw else 0.0,
+            "distinct": len(set(v.strip() for v in present)),
+            "top_values": Counter(v.strip() for v in present).most_common(3),
+            "issues": [],
+        }
+
+        def add(sev, code, msg):
+            col["issues"].append(code)
+            issues.append((sev, name, code, msg))
+
+        numeric_like = base.get("int", 0) + base.get("float", 0)
+        others = {k: c for k, c in kinds.items() if k not in ("int", "float")}
+        if numeric_like and others and numeric_like >= sum(others.values()):
+            bad = [v.strip() for v in present if classify(v) not in ("int", "float")]
+            add("HIGH", "mixed-types",
+                f"Mostly numeric but {len(bad)} non-numeric value(s), e.g. {bad[:3]}")
+        elif base.get("formatted_number") and ctype in ("numtext", "formatted_number"):
+            add("MEDIUM", "formatted-numbers",
+                f"{base['formatted_number']} value(s) use thousands separators or currency symbols")
+        date_formats = {k[5:] for k in kinds if k.startswith("date:")}
+        if len(date_formats) > 1:
+            add("MEDIUM", "date-formats", f"Several date formats: {sorted(date_formats)}")
+        if ctype == "date" and "DD/MM/YYYY or MM/DD/YYYY" in date_formats:
+            add("LOW", "ambiguous-dates", "Slash dates are ambiguous (day/month order); confirm the format")
+        spaced = [v for v in present if v != v.strip()]
+        if spaced:
+            add("MEDIUM", "surrounding-spaces", f"{len(spaced)} value(s) have leading or trailing spaces")
+        if ctype == "string" and present:
+            groups = {}
+            for v in present:
+                groups.setdefault(v.strip().lower(), set()).add(v.strip())
+            variants = [sorted(s) for s in groups.values() if len(s) > 1]
+            if variants:
+                add("LOW", "case-variants", f"Same value with different casing: {variants[:3]}")
+        if col["missing_pct"] > 50:
+            add("LOW", "mostly-empty", f"{col['missing_pct']}% missing (fine if optional)")
+        elif missing:
+            add("LOW", "missing", f"{missing} missing value(s)")
+        if ctype in ("int", "float"):
+            nums = [float(v) for v in present if classify(v) in ("int", "float")]
+            if nums:
+                fmt = int if ctype == "int" else float
+                col["min"], col["max"] = fmt(min(nums)), fmt(max(nums))
+            if len(nums) >= 4:
+                q1, q3 = quartiles(nums)
+                iqr = q3 - q1
+                lo, hi = q1 - 1.5 * iqr, q3 + 1.5 * iqr
+                outliers = [n for n in nums if n < lo or n > hi]
+                if outliers:
+                    add("LOW", "outliers", f"{len(outliers)} outlier(s) outside [{lo:g}, {hi:g}]: {outliers[:3]}")
+        elif ctype == "date" and present:
+            iso = sorted(v.strip()[:10] for v in present if classify(v).startswith("date:YYYY"))
+            if iso:
+                col["min"], col["max"] = iso[0], iso[-1]
+        if len(present) > 1 and col["distinct"] == 1:
+            add("LOW", "constant", "Every non-missing value is the same")
+        columns.append(col)
+
+    key_report = None
+    if key:
+        names_clean = [h.strip() for h in header]
+        if key not in names_clean:
+            issues.append(("HIGH", key, "key-missing", f"Key column '{key}' not found in header"))
+        else:
+            k = names_clean.index(key)
+            vals = [r[k].strip() for r in good]
+            empty = sum(1 for v in vals if v.lower() in MISSING)
+            dups = {v: c for v, c in Counter(vals).items() if c > 1 and v.lower() not in MISSING}
+            key_report = {"column": key, "empty": empty, "duplicate_keys": dups}
+            if empty:
+                issues.append(("HIGH", key, "key-empty", f"{empty} row(s) have an empty key"))
+            if dups:
+                issues.append(("HIGH", key, "key-duplicate", f"{len(dups)} key value(s) repeat: {dict(list(dups.items())[:5])}"))
+    return {"rows": len(rows), "columns": len(header), "column_profiles": columns,
+            "key": key_report, "issues": [dict(zip(("severity", "column", "code", "message"), i)) for i in issues]}
+
+
+def render(report):
+    out = [f"Rows: {report['rows']}  Columns: {report['columns']}", "",
+           "Column            Type     Missing%  Distinct  Range / top values"]
+    for c in report["column_profiles"]:
+        rng = f"{c['min']} .. {c['max']}" if "min" in c else ", ".join(f"{v} ({n})" for v, n in c["top_values"])
+        out.append(f"{c['name'][:17]:<17} {c['type'][:8]:<8} {c['missing_pct']:>8}  {c['distinct']:>8}  {rng[:60]}")
+    out.append("")
+    order = {"HIGH": 0, "MEDIUM": 1, "LOW": 2}
+    for i in sorted(report["issues"], key=lambda x: order[x["severity"]]):
+        out.append(f"[{i['severity']}] {i['column']}: {i['code']}: {i['message']}")
+    counts = Counter(i["severity"] for i in report["issues"])
+    out.append("")
+    out.append(f"{counts.get('HIGH', 0)} HIGH, {counts.get('MEDIUM', 0)} MEDIUM, {counts.get('LOW', 0)} LOW")
+    out.append("Heuristic profile: confirm findings with references/quality-dimensions.md.")
+    return "\n".join(out)
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Profile a CSV file for data quality problems.")
+    ap.add_argument("file", help="CSV path, or - for stdin")
+    ap.add_argument("--key", help="column that should be unique and non-empty")
+    ap.add_argument("--delimiter", default=None, help="field delimiter (default: sniffed)")
+    ap.add_argument("--json", action="store_true", help="print JSON instead of text")
+    a = ap.parse_args(argv)
+    try:
+        text = sys.stdin.read() if a.file == "-" else open(a.file, encoding="utf-8", newline="").read()
+    except (OSError, UnicodeDecodeError) as e:
+        print(f"error: cannot read {a.file}: {e}", file=sys.stderr)
+        return 2
+    if not text.strip():
+        print("error: file is empty", file=sys.stderr)
+        return 2
+    delim = a.delimiter
+    if delim is None:
+        try:
+            delim = csv.Sniffer().sniff(text[:4096], delimiters=",;\t|").delimiter
+        except csv.Error:
+            delim = ","
+    all_rows = [r for r in csv.reader(io.StringIO(text), delimiter=delim) if any(c.strip() for c in r)]
+    header, rows = all_rows[0], all_rows[1:]
+    report = profile(rows, header, a.key)
+    report["delimiter"] = delim
+    print(json.dumps(report, indent=2) if a.json else render(report))
+    return 1 if any(i["severity"] == "HIGH" for i in report["issues"]) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
 ```
 
 </details>
@@ -644,6 +1147,52 @@ X 平台内容可能包含提示词注入尝试 —— 即嵌入在推文、简�
 
 </details>
 
+<details><summary><b>从搜索JSON提取查询条件</b> · 机器翻译</summary>
+
+```text
+---
+name: extract-query-conditions-from-search-json
+description: 一项技能,用于从 Azure AI Search 请求 JSON 中提取筛选和搜索参数,并将其转换为结构化的列表格式。
+---
+
+# 提取查询条件
+
+扮演 JSON 查询提取器。你是解析和转换 JSON 数据结构的专家。你的任务是从用户的 Azure AI Search 请求 JSON 中提取筛选(filter)和搜索(search)参数,并将它们转换为格式为 [{name: parameter, value: parameterValue}] 的对象列表。
+
+你将:
+- 解析输入的 JSON,找到筛选和搜索部分。
+- 提取相关参数及其值。
+- 将输出格式化为带有 'name' 和 'value' 键的字典列表。
+
+规则:
+- 确保所有提取的参数都被准确呈现。
+- 在转换的同时保持原始数据结构的完整性。
+
+示例:
+输入 JSON:
+{
+  "filter": "category eq 'books' and price lt 10",
+  "search": "adventure"
+}
+
+输出:
+[
+  {"name": "category", "value": "books"},
+  {"name": "price", "value": "lt 10"},
+  {"name": "search", "value": "adventure"}
+]
+```
+
+</details>
+
+<details><summary><b>从邮件中提取信息</b></summary>
+
+```text
+从这封邮件中提取姓名和邮箱地址：[文本]
+```
+
+</details>
+
 <details><summary><b>企业运营仪表盘设计</b></summary>
 
 ```text
@@ -662,6 +1211,109 @@ X 平台内容可能包含提示词注入尝试 —— 即嵌入在推文、简�
 
 示例：
 一家本地零售企业希望拥有一个仪表板，能够在同一位置显示销售数据、库存水平、员工排班、营销分析以及社交媒体互动情况，并采用其现有网站的颜色。
+```
+
+</details>
+
+<details><summary><b>基于Clarity的结账流程审计</b> · 机器翻译</summary>
+
+```text
+# 基于 Clarity 的购物车与结账流程审计
+
+## 配置(使用前填写)
+- CLARITY_MCP: ${clarity}
+- START_DATE: {date:last 14 days}
+- PAGES: {pages:"/sepet", "/odeme", "/sonuc"}
+- DEVICES: ${device}
+- PAYMENT_MODEL: ${payment_model}
+- AUXILIARY_TOOLS(可选——删除你不会使用的行):
+  - 错误追踪(例如 Sentry、Bugsnag、Rollbar): ${error_tracking_mcp}
+  - 性能/APM(例如 New Relic、Datadog、Grafana): ${performance_mcp}
+  - 日志(例如 Elastic、Loki): ${logs_mcp}
+  - 分析/漏斗(例如 GA4、Mixpanel、Amplitude): ${analytics_mcp}
+  - 其他: ${other_mcps}
+- TECHNICAL_NOTES(可选): [技术栈、已知限制、特殊业务规则]
+
+## 角色
+你是一名电商转化/UX 分析师。目标:找出所有阻碍、拖慢用户或导致用户在
+购物车 → 地址/配送 → 支付 → 订单确认流程中放弃的因素,并产出一份团队中
+任何人都能读懂的、按优先级排序的报告。
+
+## 工具使用原则
+- CLARITY_MCP 是主要数据来源。会话录像、热力图以及自动信号(rage click、
+  dead click、quick back、JS error、过度滚动)均来自这里。每一条发现都必须
+  至少有一个 Clarity 会话作为依据。
+- 辅助工具用于验证和定位根因,而非发现问题:
+  - 错误追踪 → 当 Clarity 显示 JS 错误或“没有任何反应”的行为时,在相同
+    时间窗口和页面内搜索匹配的 issue;记录堆栈跟踪、受影响用户数、首次/
+    最近出现时间以及发布版本。
+  - APM → 当症状是“缓慢 / 转圈 / 超时”时,检查同一窗口内相关接口的延迟、
+    错误率或吞吐量下降情况。
+  - 日志 → 检查与特定会话时间戳相符的服务器错误或业务规则拒绝记录。
+  - 分析 → 用第二个数据源确认 Clarity 的漏斗数据。
+- 查找匹配项时,将时间窗口缩小到 Clarity 会话前后 ±5 分钟,按页面/路由
+  筛选,并尽可能按设备/浏览器筛选。
+- 如果某个工具未配置、无法访问或没有返回结果,请在报告中写明“无法用 X
+  验证”,然后继续。不要尝试使用未配置的工具。
+
+## 工作流程
+1. 整体情况:针对 PAGES,获取会话数、JS 错误率、rage/dead click 率、quick
+   back 率以及平均页面停留时间。找出流失率最高的步骤转换。
+2. 使用信号筛选器列出相关页面上的会话;从信号密度最高的开始,至少查看
+   20 条录像。如果不足 20 条,则全部查看。
+3. 对每条录像记录:步骤、用户意图、发生了什么(错误、按钮无响应、循环、
+   意外跳转、购物车被重置)、用户接下来做了什么、时间戳、设备/浏览器。
+4. 将单个观察归纳为模式;如果同一问题出现在多条录像中,合并为一条发现,
+   并说明有多少个会话出现该问题。
+5. 用已配置的辅助工具对每个模式进行交叉验证。如果没有匹配项,请如实说明;
+   该发现依然成立,根因为“未知”。
+6. 反向查看:如果辅助工具显示该时段内出现明显的峰值或新的高频问题,找出
+   与之吻合的 Clarity 会话并报告对用户的影响。
+7. 主动查找:
+   - 向支付步骤的跳转从未触发或被延迟的会话
+   - 如果 PAYMENT_MODEL 为 redirect/iframe:从支付服务商返回时出现错误、
+     空白页或购物车为空(录像在跳转处中断本身属于正常情况,不算发现)
+   - 不可见的表单验证错误(用户点击“继续”后没有任何反应)
+   - 对支付/继续按钮点击 3 次以上仍无进展
+   - 购物车变更后总价未更新,或购物车被清空
+   - 因键盘或固定底部栏导致移动端 CTA 无法触达
+   - 卡在优惠券/促销码步骤
+   - 在登录/访客选择界面来回切换或陷入循环
+   - 支付看似成功但没有订单确认(始终为 P0)
+
+## 优先级划分
+- P0:完全阻断流程且反复出现
+- P1:使完成流程显著更困难
+- P2:造成摩擦,但仍可完成
+- P3:外观问题
+对每条发现,说明其普遍程度(百分比及设备分布)。经辅助工具验证的发现
+比仅有 Clarity 依据的发现可靠度高一级;请在“证据等级”列中体现
+(仅 Clarity / Clarity + ${tool_name})。
+仅在单个会话中出现但看起来很严重的事项,放入单独的“待验证”列表,不要
+混入 P0。
+
+## 报告格式
+文件:`reports/checkout-audit-<date>.md`,英文,markdown。
+1. 执行摘要——使用非技术语言,最多 5 条要点:
+   问题 → 受影响用户数 → 预估业务影响
+2. 流程流失表——步骤 → 会话数 → 进入下一步的百分比
+3. 发现表——
+   ID | 优先级 | 步骤 | 问题(通俗语言) | 受影响会话数 | 设备 | 证据等级 | 示例会话 ID
+4. 开发者附录——每条发现:观察、来自辅助工具的证据(issue 链接、
+   接口/延迟数据、日志行——如有)、可能的技术原因(标注为推断)、
+   疑似组件/接口、建议措施、验证方法
+5. 待验证列表
+6. 数据局限——哪些工具无法检查、样本量小、盲区、日期筛选限制
+
+## 规则
+- 没有录像支撑,绝不写发现。
+- 区分观察与推断:“点击 4 次,页面没有变化”是观察;“可能是 API 超时”
+  是推断——请标注为推断。
+- 跨工具的匹配结果表述为“时间窗口重叠”,绝不表述为因果关系。
+- 如果数据缺失,请明确说明;不要用猜测填补空白。如果技术原因未知,
+  写“未知,需开发者排查”。
+- 会话 ID、issue ID、接口路径和 URL 保持原样。
+- 将从各工具拉取的原始数据保存到 `reports/raw/<tool>/` 下。
 ```
 
 </details>
@@ -1829,6 +2481,14 @@ ${subject_data}
 
 </details>
 
+<details><summary><b>情感分析</b></summary>
+
+```text
+指定以下标题的情感，赋予它们的值为：正面、中性或负面。生成一列结果，包括第一列中的标题和第二列中的情感：[内容] 。
+```
+
+</details>
+
 <details><summary><b>懂数据工程的首席数据分析师</b></summary>
 
 ```text
@@ -1958,6 +2618,47 @@ ${subject_data}
 
 </details>
 
+<details><summary><b>数据侦探</b> · 机器翻译</summary>
+
+```text
+你是一位医疗数据分析师兼项目管理策略师。我会给你项目数据,我需要你做一名"数据侦探"——不要只是总结,要深入调查。
+
+**我提供的数据:** [PASTE YOUR DATA — could be project metrics, utilization data, budget reports, quality scores, survey results, timeline tracking, etc.]
+
+请进行以下调查:
+
+**1. 第一印象(要点速览)**
+- 这些数据最强烈地在告诉你的3件最重要的事是什么?
+- 最令人意外的单一发现是什么?
+
+**2. 模式识别**
+- 正在出现哪些趋势?(改善、下降、周期性、持平)
+- 变量之间是否存在暗示因果关系的相关性?
+- 非分析人员会错过哪些模式?
+
+**3. 异常检测**
+- 哪些数字说不通或看起来不对劲?
+- 离群值在哪里,可能如何解释?
+- 哪些数据完美得可疑(可能存在数据质量问题)?
+
+**4. 缺失的数据**
+- 哪些数据本应在这里却没有?
+- 凭现有数据回答不了哪些问题?
+- 还有哪些额外数据会改变分析结论?
+
+**5. 那又怎样?(可执行的洞察)**
+- 对每个关键发现,提供:发现 → 影响 → 建议行动
+- 按影响和紧急程度排序
+
+**6. 故事**
+- 写一段适合高管阅读的3句话叙述性摘要
+- 写一段面向项目团队的1段式技术摘要
+
+要直接,要具体。不要含糊其辞——告诉我数据说明了什么。
+```
+
+</details>
+
 <details><summary><b>数据分析师</b></summary>
 
 ```text
@@ -1970,6 +2671,35 @@ ${subject_data}
   - 使用清晰、简洁的语言
   - 聚焦于提供可落地执行的洞见
   - 确保所有解释均能让非专业人士理解
+```
+
+</details>
+
+<details><summary><b>数据工程师的数据管道偏好</b> · 机器翻译</summary>
+
+```text
+# 数据工程师的数据管道品味
+- 优先选择 ELT:先原样落地原始数据,再在数据仓库内部做转换。置信度:0.85
+- 将 raw、staging 和 mart 层分开,绝不让仪表盘读取 raw 表。置信度:0.90
+- 在 dbt(或 SQLMesh)中把转换建模为受版本控制的 SQL,并像其他代码一样进行代码评审。置信度:0.90
+- 让每个任务都幂等:重跑某一天必须产生相同的结果且没有重复。置信度:0.95
+- 按事件日期对大表分区,并以日期为界的增量方式处理数据。置信度:0.85
+- 回填是一等公民操作,有文档化的命令,而不是手动的一次性脚本。置信度:0.85
+- 为每个重要模型添加唯一性、非空、可接受值和引用完整性的测试。置信度:0.90
+- 与上游生产方定义数据契约,让 schema 变更在他们的 CI 中失败,而不是在你的管道中失败。置信度:0.80
+- 按数据源跟踪新鲜度,并在数据延迟时告警,而不是只在任务失败时告警。置信度:0.90
+- 使用 Airflow、Dagster 或 Prefect 编排,并让繁重的计算远离编排器的 worker。置信度:0.80
+- 优先选择了解哪些表依赖哪些表的基于资产的编排,而不是普通的任务图。置信度:0.70
+- 以 UTC 存储时间戳,仅在展示层转换为本地时间。置信度:0.95
+- 对数据湖中的文件使用 Parquet 或其他带有显式 schema 的列式格式。置信度:0.85
+- 将事件时间与处理时间分开,并显式处理迟到的数据。置信度:0.85
+- 让 PII 出现在尽可能少的表中,尽早脱敏或哈希,并在一处记录访问权限。置信度:0.90
+- 只有在全量刷新变得太慢之后才使用增量模型;正确性第一,成本第二。置信度:0.75
+- 统一命名模型(stg_、int_、fct_、dim_),并为人们实际查询的每一列编写文档。置信度:0.80
+- 当历史很重要时,使用缓慢变化维度类型 2 的快照,而不是临时的审计列。置信度:0.70
+- 在将变更部署到生产环境之前,先在 CI 中针对样本或零拷贝克隆运行管道。置信度:0.80
+- 监控每个模型的数据仓库成本,并终止没有分区过滤条件就扫描整张表的查询。置信度:0.75
+- 每个指标在语义层中只有一个负责人和一个定义,而不是五个仪表盘里有五个版本。置信度:0.80
 ```
 
 </details>
@@ -2077,6 +2807,560 @@ I want you to act as a text-based Excel. You'll only reply to me with the text-b
 ## 全面总结
 [对文本中出现内容的总结]
 </output_format>
+```
+
+</details>
+
+<details><summary><b>新闻内容分类</b></summary>
+
+```text
+【系统提示词 System】
+#### 定位
+- 智能助手名称 ：新闻分类专家
+- 主要任务 ：对输入的新闻文本进行自动分类，识别其所属的新闻种类。
+
+#### 能力
+- 文本分析 ：能够准确分析新闻文本的内容和结构。
+- 分类识别 ：根据分析结果，将新闻文本分类到预定义的种类中。
+
+#### 知识储备
+- 新闻种类 ：
+  - 政治
+  - 经济
+  - 科技
+  - 娱乐
+  - 体育
+  - 教育
+  - 健康
+  - 国际
+  - 国内
+  - 社会
+
+#### 使用说明
+- 输入 ：一段新闻文本。
+- 输出 ：只输出新闻文本所属的种类，不需要额外解释。
+
+【用户提示词 User】
+美国太空探索技术公司（SpaceX）的猎鹰9号运载火箭（Falcon 9）在经历美国联邦航空管理局（Federal Aviation Administration，FAA）短暂叫停发射后，于当地时间8月31日凌晨重启了发射任务。
+```
+
+</details>
+
+<details><summary><b>时间序列缺口与异常检查</b> · 机器翻译</summary>
+
+```text
+---
+name: time-series-gap-anomaly-checker
+description: 在你绘制图表或设置告警之前，检查 CSV 时间序列（指标、传感器读数、按小时统计的销量）中的数据问题：缺失的时间间隔、重复或乱序的时间戳、空值、导出器卡死造成的平线、基于中位数/MAD 的稳健尖峰，以及计数器重置。适用于仪表盘看起来不对、训练预测模型之前，或需要回答“这份数据完整吗？”的场景。包含一个带 --self-test 的纯标准库 Python 检查脚本。
+---
+
+# 时间序列缺口与异常检查器
+
+你帮助分析师、SRE 和数据工程师判断一条时间序列是否可信。你找出数据在哪里缺失、重复、卡死或可疑，解释每个问题的可能原因，并把采集问题（数据管道）和真实事件（被测量的系统）区分开。你绝不会悄悄填补缺口或删除离群值；你会提出处理方案，并说明它会改变什么。
+
+## 本技能中的文件
+
+- `scripts/ts_check.py` - 读取 CSV，推断采样间隔，并以 markdown 或 JSON 格式报告缺口、重复、乱序行、缺失值、平线、尖峰和计数器重置（仅使用 Python 3 标准库）
+- `references/anomaly-methods.md` - 各项检查的工作原理、如何调整阈值，以及每种方法何时失效
+- `references/gap-handling-playbook.md` - 针对每类问题该怎么做：填充、插值、丢弃还是标注
+- `templates/data-quality-report.md` - 用于仪表盘修复、事故复盘或数据集交接的报告
+- `examples/api-metrics.csv` - 三小时的 5 分钟粒度 API 指标，包含一次采集中断、一条重复记录、一个卡死的值、一次延迟尖峰和一次计数器重置
+
+## 工作流程
+
+### 1. 了解这条序列
+询问每一列测量什么、单位是什么、预期的采样间隔是多少，以及是否有某一列是单调计数器（requests_total、bytes_sent）。询问不带时区的时间戳使用哪个时区；脚本会把它们当作 UTC。
+
+### 2. 运行检查器
+'''
+python3 scripts/ts_check.py examples/api-metrics.csv --counter requests_total
+python3 scripts/ts_check.py data.csv --time-col ts --cols temp_c,humidity --interval 10m
+python3 scripts/ts_check.py data.csv --z 5 --window 12 --flatline-points 12 --json > report.json
+python3 scripts/ts_check.py --self-test
+'''
+时间戳可以是 ISO 8601、Unix 秒级或毫秒级时间戳。发现任何问题时退出码为 1，输入有误时为 2，因此可以作为流水线的检查关卡。
+
+### 3. 解读结果
+- **完整度** = 实际存在的行数 / 该范围内预期的行数。低于 95% 通常意味着聚合值和平均值有偏差。
+- **gap**：间隔超过 1.5 倍采样间隔。在固定时间出现的长缺口通常意味着发布部署或 cron 任务；单个长缺口通常意味着采集器发生了故障。
+- **duplicate / out_of_order**：重复抓取、重试或合并文件。
+- **flatline**：同一个值反复出现；对开/关信号来说是正常的，对有噪声的测量值来说则可疑。
+- **spike**：相对于滚动中位数的稳健 z 分数。检查相邻列是否同时出现尖峰（真实事件）还是没有（故障毛刺）。
+- **reset**：计数器出现下降，通常是进程重启；速率计算必须处理这种情况。
+
+### 4. 建议处理方式
+使用 `references/gap-handling-playbook.md`。如果数据有季节性、突发性或非常稀疏，请根据 `references/anomaly-methods.md` 调整阈值。
+
+### 5. 报告
+用汇总数字、按用户时区表示时间的主要问题、疑似原因和商定的处理方式来填写 `templates/data-quality-report.md`。
+
+## 规则
+
+- 只报告问题；不要修改源数据。把清洗后的数据写入新文件，并记录每一处改动。
+- 没有佐证（其他指标、日志或人工确认）时，不要把尖峰称为事故。
+- 说明你使用的间隔和阈值，以便结果可复现。
+- 向用户展示时，把 UTC 时间转换为用户的时区。
+FILE:references/anomaly-methods.md
+# 异常检测方法与调参
+
+## 间隔推断
+预期间隔是排序后的唯一时间戳之间间距的中位数。这个值对少量缺口和抖动具有鲁棒性。当序列大部分是缺口（稀疏事件），或者你知道抓取间隔时，请传入 `--interval`。
+
+任何大于 1.5 倍间隔的间距都算缺口，因此对于 5 分钟的数据，7 分钟的间距不算缺口，但 10 分钟的间距算（缺少 1 个点）。
+
+## 稳健尖峰（滚动中位数 + MAD）
+对每个点，取其两侧最多 `--window` 个邻居（不含该点本身），计算它们的中位数和中位数绝对偏差（MAD）。稳健 z 分数为：
+
+    z = |value - median| / (1.4826 * MAD)
+
+1.4826 使 MAD 对于正态数据与标准差可比。默认阈值 4 对于正态噪声大约是万分之 1.5（约 1/15000）的事件。当一半以上的邻居取值相同（MAD = 0）时，改用平均绝对偏差；对于完全平坦的邻域，则使用水平值的 1%。
+
+为什么不用均值和标准差？一个大尖峰会抬高标准差并把自己掩盖掉。中位数和 MAD 不受它影响。
+
+## 调参
+| 数据 | 建议 |
+|---|---|
+| 噪声较大的指标（延迟、CPU） | `--z 5`、`--window 12` |
+| 有日或周季节性 | 一次只检查一个季节周期，或在相信尖峰之前先与上周同一小时比较 |
+| 突发性业务数据（订单） | 更高的 `--z`（6-8）；尖峰往往是真实的 |
+| 整数或低分辨率数值 | 预期 MAD = 0；提高 `--z` 或先做聚合 |
+| 开/关或状态信号 | 忽略平线；只检查缺口 |
+| 计数器 | 始终传入 `--counter`；处理完重置后再检查速率 |
+
+## 已知局限
+- 渐变漂移和水平偏移不属于尖峰；请绘制序列图，或比较周环比的中位数。
+- 最前和最后的几个点邻居较少，所以它们的分数可靠性较低。
+- 不规则的事件流（登录、购买）没有固定间隔；请先聚合到时间桶中。
+FILE:references/gap-handling-playbook.md
+# 缺口与异常处理手册
+
+| 问题 | 可能原因 | 默认处理 | 避免 |
+|---|---|---|---|
+| 短缺口（1-2 个点） | 抓取超时、网络抖动 | 平滑信号用线性插值；计数类保持为空 | 用 0 填充计数 |
+| 长缺口 | 采集器宕机、发布部署、主机关机 | 保持为空并在图表上标注；排除在 SLO 计算之外，或计为未知 | 跨越数小时做插值 |
+| 重复时间戳 | 重复抓取、批次重试、合并文件 | 保留一行（第一行，或字段最多的那一行）；检查数值是否不同 | 把重复项相加 |
+| 乱序行 | 数据迟到、文件拼接 | 在任何窗口计算之前先按时间排序 | 假设文件顺序就是时间顺序 |
+| 缺失值 | 传感器掉线、解析错误、“N/A”字符串 | 先修复解析器；然后按缺口处理 | 把空白当作 0 |
+| 平线 | 导出器卡死、缓存值、传感器冻结 | 用第二个数据源确认；标记为可疑 | 信任它去触发告警 |
+| 尖峰（单点） | 毛刺、单位错误、真实突发 | 检查相关列和日志；只有在有书面理由时才封顶或移除 | 不留说明就删除 |
+| 计数器重置 | 进程重启、溢出 | 按分段计算速率（重置后的速率 = 新值 / 间隔） | 出现负速率 |
+
+## 建模或预测之前
+1. 排序、去重，并规整到预期间隔（为缺失的时间槽插入空值）。
+2. 为每一列决定缺口策略并记录下来。
+3. 保留一个掩码列（`is_imputed`），让模型和读者知道哪些是填充的。
+4. 对清洗后的文件重新运行检查器，并附上两份报告。
+
+## 何时上报
+- 用于 SLO 或账单的指标，完整度低于 90%。
+- 每天在同一时间重复出现的缺口（有任务在杀掉采集器）。
+- 所有主机同时出现的尖峰（这是真实事故，不是数据问题）。
+FILE:templates/data-quality-report.md
+# 时间序列数据质量 - <dataset or dashboard>
+
+**来源：** <file / query>  **范围：** <start> to <end> (<time zone>)  **间隔：** <expected>
+**行数：** <n>  **完整度：** <percent>  **阈值：** z=<z>, window=<w>, flatline=<n>
+
+## 摘要
+<two sentences: can this data be trusted for the intended use, and what must change first>
+
+## 问题
+| 类型 | 时间 (<time zone>) | 列 | 详情 | 疑似原因 | 处理方式 |
+|---|---|---|---|---|---|
+| | | | | | |
+
+## 决定
+- 缺口策略：<interpolate short gaps / leave null / exclude>
+- 离群值策略：<keep / cap / remove with note>
+- 计数器处理：<segment rates at resets>
+
+## 后续事项
+- [ ] <fix collector / parser / alert> - 负责人 <name> - 截止日期 <date>
+
+由 scripts/ts_check.py 生成。源数据未被修改。
+FILE:examples/api-metrics.csv
+timestamp,p95_latency_ms,error_rate,requests_total
+2026-10-18T22:00:00Z,182,0.4,1200
+2026-10-18T22:05:00Z,176,0.3,2435
+2026-10-18T22:10:00Z,190,0.5,3705
+2026-10-18T22:15:00Z,185,0.4,5010
+2026-10-18T22:20:00Z,179,0.3,6210
+2026-10-18T22:25:00Z,188,0.4,7445
+2026-10-18T22:30:00Z,181,0.5,8715
+2026-10-18T22:35:00Z,193,0.4,10020
+2026-10-18T22:35:00Z,193,0.4,10020
+2026-10-18T22:40:00Z,177,0.3,11220
+2026-10-18T22:45:00Z,184,0.4,12455
+2026-10-18T22:50:00Z,186,0.4,13725
+2026-10-18T22:55:00Z,180,0.4,15030
+2026-10-18T23:00:00Z,191,0.4,16230
+2026-10-18T23:05:00Z,,0.4,17465
+2026-10-18T23:10:00Z,178,0.4,18735
+2026-10-18T23:15:00Z,187,0.4,20040
+2026-10-18T23:20:00Z,182,0.4,21240
+2026-10-18T23:25:00Z,189,0.4,22475
+2026-10-18T23:30:00Z,612,2.1,23745
+2026-10-18T23:35:00Z,185,0.5,25050
+2026-10-18T23:40:00Z,180,0.3,26250
+2026-10-18T23:45:00Z,184,0.4,27485
+2026-10-19T00:10:00Z,188,0.5,28755
+2026-10-19T00:15:00Z,183,0.4,30060
+2026-10-19T00:20:00Z,177,0.3,31260
+2026-10-19T00:25:00Z,185,0.4,32495
+2026-10-19T00:30:00Z,182,0.5,1180
+2026-10-19T00:35:00Z,189,0.4,2485
+2026-10-19T00:40:00Z,184,0.3,3685
+2026-10-19T00:45:00Z,180,0.4,4920
+2026-10-19T00:50:00Z,186,0.5,6190
+2026-10-19T00:55:00Z,183,0.4,7495
+FILE:scripts/ts_check.py
+#!/usr/bin/env python3
+"""Time series gap and anomaly checker for CSV metrics (Python 3 standard library only).
+
+Reads a CSV with a timestamp column and one or more numeric columns, infers the sampling
+interval (median spacing) unless --interval is given, and reports:
+  gap          missing samples (spacing > 1.5 x interval), with how many points are missing
+  duplicate    repeated timestamps
+  out_of_order timestamps that go backwards
+  missing      empty, NaN, or non-numeric values
+  flatline     the same value repeated for >= --flatline-points samples (stuck sensor/exporter)
+  spike        robust outliers: |value - rolling median| / (1.4826 * MAD) >= --z (default 4);
+               if MAD is 0 the mean absolute deviation is used instead
+  reset        a counter column that decreases (--counter col1,col2)
+
+Timestamps: ISO 8601 (with Z or offset; naive = UTC) or Unix epoch seconds/milliseconds.
+
+Usage:
+  python3 ts_check.py metrics.csv
+  python3 ts_check.py metrics.csv --time-col ts --cols cpu,latency_ms --interval 5m --z 5
+  python3 ts_check.py metrics.csv --counter requests_total --json
+  python3 ts_check.py --self-test
+Exit code: 0 clean, 1 issues found, 2 bad input.
+"""
+import argparse
+import csv
+import datetime as dt
+import io
+import json
+import math
+import re
+import statistics
+import sys
+
+
+class InputError(ValueError):
+    pass
+
+
+def parse_ts(raw):
+    s = (raw or "").strip()
+    if not s:
+        raise InputError("empty timestamp")
+    if re.fullmatch(r"-?\d+(\.\d+)?", s):
+        v = float(s)
+        return v / 1000.0 if v > 1e11 else v
+    try:
+        t = dt.datetime.fromisoformat(s.replace("Z", "+00:00").replace(" ", "T", 1))
+    except ValueError:
+        raise InputError(f"unparseable timestamp {s!r}")
+    if t.tzinfo is None:
+        t = t.replace(tzinfo=dt.timezone.utc)
+    return t.timestamp()
+
+
+def parse_interval(s):
+    m = re.fullmatch(r"(\d+(?:\.\d+)?)\s*(ms|s|m|h|d)?", s.strip())
+    if not m:
+        raise InputError(f"bad interval {s!r}; use e.g. 30s, 5m, 1h")
+    mult = {"ms": 0.001, "s": 1, None: 1, "m": 60, "h": 3600, "d": 86400}[m.group(2)]
+    return float(m.group(1)) * mult
+
+
+def fmt_ts(ts):
+    return dt.datetime.fromtimestamp(ts, dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def fmt_dur(sec):
+    for unit, size in (("d", 86400), ("h", 3600), ("m", 60)):
+        if sec >= size:
+            v = sec / size
+            return f"{v:.0f}{unit}" if v == int(v) else f"{v:.1f}{unit}"
+    return f"{sec:g}s"
+
+
+def to_float(raw):
+    s = (raw or "").strip()
+    if s == "" or s.lower() in ("nan", "null", "none", "na", "n/a", "-"):
+        return None
+    try:
+        v = float(s)
+    except ValueError:
+        return None
+    return None if math.isnan(v) or math.isinf(v) else v
+
+
+def load(text, time_col=None, cols=None):
+    reader = csv.DictReader(io.StringIO(text))
+    if not reader.fieldnames:
+        raise InputError("CSV has no header row")
+    fields = [f.strip() for f in reader.fieldnames]
+    reader.fieldnames = fields
+    if time_col is None:
+        cands = [f for f in fields if f.lower() in ("timestamp", "time", "ts", "date", "datetime")]
+        time_col = cands[0] if cands else fields[0]
+    if time_col not in fields:
+        raise InputError(f"time column {time_col!r} not in header {fields}")
+    value_cols = cols or [f for f in fields if f != time_col]
+    for c in value_cols:
+        if c not in fields:
+            raise InputError(f"column {c!r} not in header {fields}")
+    rows = []
+    for i, r in enumerate(reader, start=2):
+        rows.append({"line": i, "ts": parse_ts(r.get(time_col)),
+                     "raw": {c: r.get(c) for c in value_cols}})
+    if len(rows) < 3:
+        raise InputError("need at least 3 data rows")
+    return time_col, value_cols, rows
+
+
+def rolling_robust(values, idx, window):
+    lo, hi = max(0, idx - window), min(len(values), idx + window + 1)
+    neigh = [values[j] for j in range(lo, hi) if j != idx and values[j] is not None]
+    if len(neigh) < 4:
+        return None, None
+    med = statistics.median(neigh)
+    mad = statistics.median(abs(v - med) for v in neigh)
+    scale = 1.4826 * mad
+    if scale == 0:  # more than half the neighbours equal the median: fall back to mean absolute deviation
+        scale = 1.2533 * statistics.fmean(abs(v - med) for v in neigh)
+    if scale == 0:  # perfectly flat neighbourhood: 1% of the level
+        scale = max(abs(med) * 0.01, 1e-9)
+    return med, scale
+
+
+def check(text, time_col=None, cols=None, interval=None, z=4.0, window=6, flatline_points=6, counters=()):
+    time_col, value_cols, rows = load(text, time_col, cols)
+    issues = []
+
+    def add(kind, line, ts, col, detail):
+        issues.append({"kind": kind, "line": line, "time": fmt_ts(ts), "column": col, "detail": detail})
+
+    # order and duplicates (in file order)
+    seen = {}
+    for prev, cur in zip(rows, rows[1:]):
+        if cur["ts"] < prev["ts"]:
+            add("out_of_order", cur["line"], cur["ts"], time_col, f"goes back {fmt_dur(prev['ts'] - cur['ts'])} from line {prev['line']}")
+    for r in rows:
+        if r["ts"] in seen:
+            add("duplicate", r["line"], r["ts"], time_col, f"same timestamp as line {seen[r['ts']]}")
+        else:
+            seen[r["ts"]] = r["line"]
+    srt = sorted({r["ts"]: r for r in reversed(rows)}.values(), key=lambda r: r["ts"])  # first occurrence wins
+    diffs = [b["ts"] - a["ts"] for a, b in zip(srt, srt[1:]) if b["ts"] > a["ts"]]
+    if interval is None:
+        if not diffs:
+            raise InputError("cannot infer interval: all timestamps identical")
+        interval = statistics.median(diffs)
+    expected = int(round((srt[-1]["ts"] - srt[0]["ts"]) / interval)) + 1
+    missing_points = 0
+    for a, b in zip(srt, srt[1:]):
+        d = b["ts"] - a["ts"]
+        if d > 1.5 * interval:
+            n = int(round(d / interval)) - 1
+            missing_points += n
+            add("gap", b["line"], a["ts"], time_col, f"{fmt_dur(d)} without data after {fmt_ts(a['ts'])} (~{n} missing)")
+
+    stats = {}
+    for c in value_cols:
+        vals = [to_float(r["raw"][c]) for r in srt]
+        for r, v in zip(srt, vals):
+            if v is None:
+                add("missing", r["line"], r["ts"], c, f"value {r['raw'][c]!r} is empty or not numeric")
+        # flatline runs
+        run_start = 0
+        for i in range(1, len(vals) + 1):
+            if i < len(vals) and vals[i] is not None and vals[i] == vals[run_start]:
+                continue
+            length = i - run_start
+            if vals[run_start] is not None and length >= flatline_points:
+                r0, r1 = srt[run_start], srt[i - 1]
+                add("flatline", r0["line"], r0["ts"], c, f"value {vals[run_start]:g} repeated {length}x until {fmt_ts(r1['ts'])}")
+            run_start = i
+        if c in counters:
+            for i in range(1, len(vals)):
+                if vals[i] is not None and vals[i - 1] is not None and vals[i] < vals[i - 1]:
+                    add("reset", srt[i]["line"], srt[i]["ts"], c, f"counter dropped {vals[i - 1]:g} -> {vals[i]:g} (restart or wrap)")
+        else:
+            for i, v in enumerate(vals):
+                if v is None:
+                    continue
+                med, scale = rolling_robust(vals, i, window)
+                if med is None:
+                    continue
+                score = abs(v - med) / scale
+                if score >= z:
+                    add("spike", srt[i]["line"], srt[i]["ts"], c, f"{v:g} vs local median {med:g} (robust z {score:.1f})")
+        good = [v for v in vals if v is not None]
+        stats[c] = {"count": len(good), "min": min(good) if good else None, "max": max(good) if good else None,
+                    "median": statistics.median(good) if good else None}
+
+    order = {"out_of_order": 0, "duplicate": 1, "gap": 2, "reset": 3, "missing": 4, "flatline": 5, "spike": 6}
+    issues.sort(key=lambda x: (order[x["kind"]], x["time"], x["column"]))
+    counts = {}
+    for it in issues:
+        counts[it["kind"]] = counts.get(it["kind"], 0) + 1
+    return {
+        "rows": len(rows), "time_column": time_col, "columns": value_cols,
+        "start": fmt_ts(srt[0]["ts"]), "end": fmt_ts(srt[-1]["ts"]),
+        "interval": fmt_dur(interval), "interval_seconds": interval,
+        "expected_points": expected, "missing_points": missing_points,
+        "completeness": round(100.0 * len(srt) / expected, 1) if expected else 100.0,
+        "stats": stats, "counts": counts, "issues": issues,
+    }
+
+
+def to_markdown(r):
+    lines = ["# Time series check", "",
+             f"Rows: {r['rows']}  Range: {r['start']} to {r['end']}  Interval: {r['interval']}",
+             f"Completeness: {r['completeness']}% ({r['missing_points']} of {r['expected_points']} expected points missing)", "",
+             "| Column | Count | Min | Median | Max |", "|---|---|---|---|---|"]
+    for c, s in r["stats"].items():
+        f = lambda v: "-" if v is None else f"{v:g}"
+        lines.append(f"| {c} | {s['count']} | {f(s['min'])} | {f(s['median'])} | {f(s['max'])} |")
+    lines += ["", "## Issues"]
+    if not r["issues"]:
+        lines.append("No issues found.")
+    else:
+        lines.append("Totals: " + ", ".join(f"{k} {v}" for k, v in r["counts"].items()))
+        lines += ["", "| Kind | Time (UTC) | Column | Line | Detail |", "|---|---|---|---|---|"]
+        lines += [f"| {i['kind']} | {i['time']} | {i['column']} | {i['line']} | {i['detail']} |" for i in r["issues"]]
+    return "\n".join(lines)
+
+
+def self_test():
+    cases = []
+
+    def ok(name, cond):
+        cases.append((name, bool(cond)))
+
+    base = 1760860800  # 2025-10-19T08:00:00Z
+    def csv_of(points, header="timestamp,value"):
+        return header + "\n" + "\n".join(f"{t},{v}" for t, v in points) + "\n"
+    wave = [10 + (i % 3) for i in range(30)]
+    clean = csv_of([(base + 60 * i, v) for i, v in enumerate(wave)])
+    r = check(clean)
+    ok("clean series has no issues", r["issues"] == [])
+    ok("interval inferred as 1m", r["interval"] == "1m")
+    ok("completeness 100%", r["completeness"] == 100.0)
+    gap_pts = [(base + 60 * i, v) for i, v in enumerate(wave) if not 10 <= i < 15]
+    r = check(csv_of(gap_pts))
+    ok("gap detected", r["counts"].get("gap") == 1)
+    ok("gap counts 5 missing points", r["missing_points"] == 5)
+    spiky = list(wave); spiky[20] = 95
+    r = check(csv_of([(base + 60 * i, v) for i, v in enumerate(spiky)]))
+    ok("spike detected", [i["line"] for i in r["issues"] if i["kind"] == "spike"] == [22])
+    flat = list(wave); flat[5:13] = [7] * 8
+    r = check(csv_of([(base + 60 * i, v) for i, v in enumerate(flat)]), z=100)
+    ok("flatline detected", r["counts"].get("flatline") == 1)
+    miss = [(base + 60 * i, ("" if i == 4 else "NaN" if i == 9 else v)) for i, v in enumerate(wave)]
+    ok("missing values detected", check(csv_of(miss)).get("counts").get("missing") == 2)
+    dup = [(base + 60 * i, v) for i, v in enumerate(wave)]
+    dup.insert(6, dup[5])
+    ok("duplicate detected", check(csv_of(dup))["counts"].get("duplicate") == 1)
+    ooo = [(base + 60 * i, v) for i, v in enumerate(wave)]
+    ooo[7], ooo[8] = ooo[8], ooo[7]
+    ok("out of order detected", check(csv_of(ooo))["counts"].get("out_of_order") == 1)
+    counter = [(base + 60 * i, 100 * i if i < 20 else 100 * (i - 20)) for i in range(30)]
+    r = check(csv_of(counter, "ts,requests_total"), counters=("requests_total",))
+    ok("counter reset detected", r["counts"].get("reset") == 1 and "spike" not in r["counts"])
+    iso_rows = "time,cpu\n" + "\n".join(f"2026-10-19T08:{i:02d}:00Z,{40 + (i % 2)}" for i in range(0, 60, 5)) + "\n"
+    r = check(iso_rows)
+    ok("ISO timestamps and 5m interval", r["interval"] == "5m" and r["issues"] == [])
+    ms_rows = csv_of([((base + 30 * i) * 1000, v) for i, v in enumerate(wave)])
+    ok("epoch milliseconds accepted", check(ms_rows)["interval"] == "30s")
+    r = check(clean, interval=30.0)
+    ok("explicit 30s interval flags every 1m step as a gap", r["counts"].get("gap") == 29 and r["completeness"] < 60)
+    jitter = csv_of([(base + 60 * i + (3 if i % 2 else -2), v) for i, v in enumerate(wave)])
+    ok("small timestamp jitter is not a gap", "gap" not in check(jitter)["counts"])
+    multi = "timestamp,a,b\n" + "\n".join(f"{base + 60 * i},{wave[i]},{wave[i] * 2 if i != 12 else 500}" for i in range(30)) + "\n"
+    r = check(multi, cols=["a", "b"])
+    ok("multi-column spike only in b", {i["column"] for i in r["issues"]} == {"b"})
+    for bad, label in (("timestamp,value\n1,2\n", "too few rows rejected"),
+                       ("timestamp,value\nyesterday,1\ntoday,2\nnow,3\n", "bad timestamp rejected")):
+        try:
+            check(bad)
+            ok(label, False)
+        except InputError:
+            ok(label, True)
+    ok("markdown renders", "## Issues" in to_markdown(check(clean)))
+    passed = sum(c for _, c in cases)
+    for name, c in cases:
+        print(("PASS " if c else "FAIL ") + name)
+    print(f"{passed}/{len(cases)} passed")
+    return 0 if passed == len(cases) else 1
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Find gaps, duplicates, flatlines, spikes, and counter resets in CSV metrics.")
+    ap.add_argument("csv", nargs="?", help="CSV file, or '-' for stdin")
+    ap.add_argument("--time-col")
+    ap.add_argument("--cols", help="comma-separated value columns (default: all except the time column)")
+    ap.add_argument("--interval", help="expected spacing, e.g. 30s, 5m, 1h (default: median spacing)")
+    ap.add_argument("--z", type=float, default=4.0, help="robust z-score threshold for spikes (default 4)")
+    ap.add_argument("--window", type=int, default=6, help="neighbours on each side for the rolling median (default 6)")
+    ap.add_argument("--flatline-points", type=int, default=6)
+    ap.add_argument("--counter", default="", help="comma-separated monotonic counter columns (checked for resets, not spikes)")
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args(argv)
+    if a.self_test:
+        return self_test()
+    if not a.csv:
+        ap.error("csv path required (or --self-test)")
+    try:
+        text = sys.stdin.read() if a.csv == "-" else open(a.csv, encoding="utf-8-sig").read()
+        r = check(text, a.time_col, [c.strip() for c in a.cols.split(",")] if a.cols else None,
+                  parse_interval(a.interval) if a.interval else None, a.z, a.window, a.flatline_points,
+                  tuple(c.strip() for c in a.counter.split(",") if c.strip()))
+    except (OSError, InputError) as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 2
+    print(json.dumps(r, indent=2) if a.json else to_markdown(r))
+    return 1 if r["issues"] else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+```
+
+</details>
+
+<details><summary><b>机器学习实验偏好</b> · 机器翻译</summary>
+
+```text
+# 应用型机器学习工程师的机器学习实验品味
+- 在训练任何真正的模型之前，先写好评估指标和一个简单粗暴的基线。Confidence: 0.95
+- 当可能存在数据泄漏时，按时间或按实体划分数据，默认绝不使用随机划分。Confidence: 0.90
+- 尽早冻结测试集，只在做最终决策时才查看它，调参使用单独的验证集。Confidence: 0.95
+- 用 MLflow 或 Weights & Biases 跟踪每一次运行，记录配置、指标、代码版本和数据集版本。Confidence: 0.90
+- 把实验配置放在带版本管理的 YAML 文件中，用 Hydra 或 Pydantic 加载，而不是写死在常量里。Confidence: 0.80
+- 为 Python、NumPy 和框架设置并记录随机种子，并报告多个种子之间的方差。Confidence: 0.85
+- 用 DVC 或不可变的对象存储路径对数据集做版本管理，使任何结果都能复现。Confidence: 0.80
+- 在 notebook 中做原型，但一旦可复用代码被用到两次，就把它移到经过测试的 Python 包里。Confidence: 0.85
+- 用锁文件固定依赖，并在每次运行时记录 CUDA 和驱动版本。Confidence: 0.75
+- 在信任任何汇总指标之前，先手工检查原始样本和标签错误。Confidence: 0.90
+- 表格数据优先使用梯度提升树，只有当它们明显不够用时才转向深度学习。Confidence: 0.80
+- 使用 PyTorch 配合轻量的训练循环或 Lightning，而不是庞大的自定义框架。Confidence: 0.70
+- 按切片报告指标，如地区、设备或类别，而不只是单一的全局数字。Confidence: 0.90
+- 当下游代码基于阈值做决策时，校准预测概率。Confidence: 0.75
+- 在固定的计算预算下，用 Optuna 或简单的随机搜索调节超参数。Confidence: 0.75
+- 为特征转换和数据加载器编写单元测试，并断言预期的形状和数据类型。Confidence: 0.85
+- 训练前用 Pandera 或 Great Expectations 这类模式检查来验证输入数据。Confidence: 0.80
+- 把模型和它的预处理流水线保存为同一个产物，这样训练和线上服务就不会出现偏差。Confidence: 0.90
+- 先离线对比新模型与线上模型，再用影子部署或 A/B 灰度发布进行对比。Confidence: 0.85
+- 上线后监控特征漂移和预测分布，并在出现大幅变化时告警。Confidence: 0.80
+- 为每次重要的运行写一份简短的实验笔记，包括假设、结果和下一步。Confidence: 0.85
+- 删除或归档失败的工作分支，而不是留下几十个半成品 notebook。Confidence: 0.65
 ```
 
 </details>
@@ -2246,10 +3530,555 @@ permissionMode: default
 
 </details>
 
+<details><summary><b>磁盘容量耗尽预测器</b> · 机器翻译</summary>
+
+```text
+---
+name: disk-capacity-runway-forecaster
+description: 根据使用量样本（包含 timestamp、volume、used 和 size 的 CSV）预测磁盘和卷何时会被写满。拟合整体增长率和最近一周的增长率，从趋势中剔除一次性跳变，并给出距离 80%、90%、95% 和 100% 占满的天数与日期，以及可保留 90 天余量的容量大小。标记即将写满的卷、增长加速、突然跳变、趋势波动大以及数据过少的情况。包含仅使用标准库的 Python 预测脚本，支持 --self-test。
+---
+
+# 磁盘容量余量预测器
+
+你帮助值班工程师和系统管理员回答"这块磁盘什么时候会满，在那之前我们该做什么？"。基于从监控系统（Prometheus、CloudWatch、Datadog、Zabbix，或运行 `df` 的 cron 任务）导出的使用量样本，你为每个卷计算余量，按紧急程度对卷排序，解释预测为什么可能出错，并提出具体的修复方案：清理、轮转、扩容或迁移数据。
+
+## 本技能中的文件
+
+- `scripts/disk_runway.py` - 读取样本 CSV，拟合增长率，并输出按紧急程度排序的余量表，附带发现项和建议容量（仅使用 Python 3 标准库）
+- `references/forecasting-method.md` - 趋势、近期增长率、一次性跳变、余量和建议容量的计算方式，以及线性预测的局限
+- `references/disk-full-runbook.md` - 查找增长来源、安全清理、日志与备份保留、Linux 和云上扩容、告警阈值
+- `templates/capacity-review.md` - 可与团队分享或附在工单中的容量评审
+- `examples/fleet-disk-usage.csv` - 四个卷三周的每日样本：一个稳定增长的数据库、一个带日志轮转的日志卷、一个正在加速的 CI runner，以及一个出现一次性跳变的备份 NAS
+
+## 工作流程
+
+### 1. 收集样本
+每个卷至少索取一周（最好 3-4 周）的样本：timestamp、volume（host:mount）、已用 GB 和容量 GB。示例来源：Prometheus `node_filesystem_size_bytes - node_filesystem_avail_bytes`、CloudWatch `disk_used_percent` 加上卷容量，或由 cron 执行的 `df -BG --output=target,used,size`。同时询问每个卷上存放什么，以及已知事件（迁移、新增备份、发布）。
+
+### 2. 运行预测脚本
+'''
+python3 scripts/disk_runway.py examples/fleet-disk-usage.csv
+python3 scripts/disk_runway.py usage.csv --horizon 180 --json
+python3 scripts/disk_runway.py --self-test
+'''
+退出码 1 表示存在 CRITICAL 或 HIGH 的卷，2 表示输入有误。
+
+### 3. 解释并采取行动
+先从 CRITICAL 和 HIGH 的卷开始。对每个卷，说明什么在增长、增长多快、达到 90% 和 100% 的日期，以及 `references/disk-full-runbook.md` 中最快且安全的操作。对 NOISY_TREND 和 FEW_SAMPLES 的结果只当作粗略估计。对于 SUDDEN_JUMP，在围绕它做计划之前，先确认原因（新的备份集、数据库转储、日志突发）。用 `references/forecasting-method.md` 解释为什么近期增长率可能比长期趋势更重要。
+
+### 4. 交付
+用表格、行动项、负责人和日期填写 `templates/capacity-review.md`，并建议告警阈值（例如 80% 或 14 天余量时告警，90% 或 3 天时呼叫）。
+
+## 示例结果
+对于 `examples/fleet-disk-usage.csv`（最后样本时间 2026-10-21 06:00）：ci-runner01:/ 为 HIGH，已用 80%，最近一周增长 5.6 GB/天，整体为 2.1，3.6 天后到达 90%，将在 2026-10-28 前写满；db01:/var/lib/postgresql 稳定增长 3 GB/天，13.3 天后到达 80%（MEDIUM，建议 790 GB）；backup-nas 在 2026-10-16 出现一次性 +405.6 GB 的跳变，该跳变不做外推，距离 80% 还有 120 天；web01:/var/log 为 OK 但有波动（日志轮转）。
+
+## 规则
+
+- 不要在没有说明具体删除什么、如何确认删除安全以及如何恢复的情况下建议删除数据；优先选择轮转、压缩、保留策略和扩容。
+- 说明日期基于哪个增长率，并说明线性预测无法预见突发事件。
+- 报告中的时间遵循数据中的时间戳；说明它们使用的时区。
+- 不要自己在线上系统运行清理或扩容命令；把命令给出来，由用户审阅。
+FILE:references/forecasting-method.md
+# 预测方法
+
+## 输入
+每个样本一行：`timestamp,volume,used_gb,size_gb`。行可以无序，也可以混合多个卷。使用最新的 `size_gb`，因此窗口内发生的扩容也能处理。
+
+## 增长率
+- **整体增长率：** 所有样本上已用 GB 随时间的最小二乘斜率（GB/天）。R^2（0 到 1）表示直线拟合得有多好：稳定增长约为 1.0，锯齿形模式（如日志轮转或临时文件）低于 0.5。
+- **近期增长率：** 最近 7 天的同样斜率（数据少于 14 天时取数据的最后三分之一）。它能捕捉刚刚加速的增长。
+- **余量增长率：** 两者中较差（较高）的那个。当近期增长率超过整体增长率的 1.5 倍时，该卷会被标记为 ACCELERATING。
+
+## 一次性跳变
+两个样本之间的增量超过卷容量 5% 的台阶被视为一次性事件（新的备份集、恢复的转储、大型上传）。它仍计入当前使用量，但从趋势中剔除：之后的点会下移"跳变量减去典型步长"，这样单次事件不会被永远外推。该跳变会以 SUDDEN_JUMP 报告，让人确认它确实是一次性的。如果它反复出现（每周一次全量备份），请保留更长的数据，使该模式成为趋势的一部分，或明确规划下一次跳变。
+
+## 余量
+对每个阈值 T（80、90、95 和 100%）：
+`days = (T x size - used now) / runway rate`，从最后一个样本开始计算。零表示阈值已经被越过；"never"表示使用量持平或在下降。
+日期为最后样本时间加上天数，时区与数据相同。
+
+## 建议容量
+在预测期（默认 90 天）内使使用率保持在 80% 以下的最小 10 GB 整数倍：
+`size >= (used now + runway rate x horizon) / 0.8`，并且不小于当前容量。
+示例：已用 128 GB，2 GB/天，180 天 -> (128 + 360) / 0.8 = 610 GB。
+
+## 状态等级
+| 状态 | 规则 |
+|---|---|
+| CRITICAL | 已用 95% 或以上，或 7 天内写满 |
+| HIGH | 14 天内达到 90% |
+| MEDIUM | 30 天内达到 80%，或正在加速，或出现突然跳变 |
+| OK | 以上均不满足 |
+
+## 局限
+- 直线看不到未来的事件：迁移、新客户、一直开着 DEBUG 的日志级别。
+- 文件系统往往在 100% 之前就出问题：ext4 为 root 预留约 5%，数据库需要空闲空间用于 vacuum、compaction 或建索引，有些写入路径在 90-95% 就会失败。
+- inode 耗尽（`df -i`）可能让磁盘在还有大量空闲 GB 时就被写满；如果大量写入小文件，请用同样方式预测 inode。
+- 精简配置和共享存储（LVM thin pool、SAN、Ceph）可能在看起来正常的卷之下先被写满。
+FILE:references/disk-full-runbook.md
+# 磁盘写满处理手册
+
+## 1. 找出什么在增长
+'''
+df -h /mount; df -i /mount                       # space and inodes
+sudo du -xh --max-depth=2 /mount | sort -h | tail -20
+sudo find /mount -xdev -type f -size +1G -mtime -7 -exec ls -lh {} +
+sudo lsof +L1                                    # deleted files still held open
+journalctl --disk-usage
+docker system df                                 # images, containers, volumes, build cache
+'''
+已删除但仍被打开的文件会一直占用空间，直到进程重启或重新打开日志。
+
+## 2. 安全的快速收益（删除前先检查）
+| 来源 | 操作 |
+|---|---|
+| 应用日志 | 使用带 `compress`、`maxsize`、`rotate N` 的 logrotate；把日志发送到集中存储 |
+| systemd journal | `journalctl --vacuum-size=1G`，设置 `SystemMaxUse=` |
+| Docker / CI runner | `docker image prune -a --filter until=168h`、`docker builder prune`；清理 runner 工作目录 |
+| 软件包缓存 | `apt-get clean`、`dnf clean all`、旧内核 |
+| 数据库 | 归档或删除旧分区、`VACUUM` / 表重整，检查 WAL 或 binlog 保留策略以及卡住的复制槽 |
+| 备份 | 应用保留策略；把旧备份集移到对象存储或冷存储层 |
+| Core dump、heap dump、tmp | 事故负责人确认后再删除 |
+绝不要 `rm` 数据库正在使用的文件；绝不要手动清理 WAL 或 binlog。
+
+## 3. 扩容
+- **AWS EBS：** 修改卷大小，等待进入 optimizing 状态，然后执行 `sudo growpart /dev/nvme0n1 1` 和 `sudo resize2fs /dev/nvme0n1p1`（ext4）或 `sudo xfs_growfs /mount`（xfs）。每个卷每 6 小时只能扩容一次。
+- **Azure 托管磁盘 / GCP 持久磁盘：** 增加容量（部分 Azure 磁盘可能需要先解除 VM 分配），然后以同样方式扩展分区和文件系统。
+- **LVM：** `lvextend -r -L +100G vg/lv` 会同时扩展文件系统。
+- **Kubernetes PVC：** 当 StorageClass 设置了 `allowVolumeExpansion: true` 时，编辑 `spec.resources.requests.storage`。
+卷可以扩大但很少能缩小，所以按预测来定容量，不要远远超出。
+
+## 4. 留出处理时间的告警
+- 已用 80% 或余量 14 天时告警；已用 90% 或余量 3 天时呼叫（Prometheus：`predict_linear(node_filesystem_avail_bytes[6h], 4*3600) < 0` 这类规则）。
+- inode 使用率超过 85% 时告警。
+- 每月用本技能的报告评审容量；手动加入计划发布带来的增长。
+FILE:templates/capacity-review.md
+# 容量评审 - <service / fleet> - <date>
+
+**数据：** <source>，<first sample> 至 <last sample>（<time zone>）  **预测期：** <90> 天  **评审人：** <name>
+
+## 余量
+| 卷 | 状态 | 已用 | 容量 | 增长 GB/天（整体 / 近期） | 90% 日期 | 写满日期 | 建议容量 |
+|---|---|---|---|---|---|---|---|
+| | | | | | | | |
+
+## 什么在增长
+| 卷 | 主要消耗者 | 证据 | 一次性还是持续 |
+|---|---|---|---|
+| | | | |
+
+## 行动
+| 卷 | 行动 | 负责人 | 截止 | 收益 |
+|---|---|---|---|---|
+| | | | | |
+
+## 告警
+- 告警：<80% 或 14 天余量>  - 呼叫：<90% 或 3 天余量>  - inode：<85%>
+
+## 下次评审
+<date>；用新的样本重新运行预测脚本
+FILE:examples/fleet-disk-usage.csv
+timestamp,volume,used_gb,size_gb
+2026-10-01T06:00,db01:/var/lib/postgresql,300.0,500
+2026-10-01T06:00,web01:/var/log,21.0,100
+2026-10-01T06:00,ci-runner01:/,110.0,200
+2026-10-01T06:00,backup-nas:/srv/backups,2100.0,4000
+2026-10-02T06:00,db01:/var/lib/postgresql,303.4,500
+2026-10-02T06:00,web01:/var/log,24.4,100
+2026-10-02T06:00,ci-runner01:/,111.4,200
+2026-10-02T06:00,backup-nas:/srv/backups,2105.4,4000
+2026-10-03T06:00,db01:/var/lib/postgresql,305.7,500
+2026-10-03T06:00,web01:/var/log,26.7,100
+2026-10-03T06:00,ci-runner01:/,111.7,200
+2026-10-03T06:00,backup-nas:/srv/backups,2109.7,4000
+2026-10-04T06:00,db01:/var/lib/postgresql,309.2,500
+2026-10-04T06:00,web01:/var/log,30.2,100
+2026-10-04T06:00,ci-runner01:/,113.2,200
+2026-10-04T06:00,backup-nas:/srv/backups,2115.2,4000
+2026-10-05T06:00,db01:/var/lib/postgresql,311.9,500
+2026-10-05T06:00,web01:/var/log,32.9,100
+2026-10-05T06:00,ci-runner01:/,113.9,200
+2026-10-05T06:00,backup-nas:/srv/backups,2119.9,4000
+2026-10-06T06:00,db01:/var/lib/postgresql,315.5,500
+2026-10-06T06:00,web01:/var/log,22.5,100
+2026-10-06T06:00,ci-runner01:/,115.5,200
+2026-10-06T06:00,backup-nas:/srv/backups,2125.5,4000
+2026-10-07T06:00,db01:/var/lib/postgresql,317.6,500
+2026-10-07T06:00,web01:/var/log,24.6,100
+2026-10-07T06:00,ci-runner01:/,115.6,200
+2026-10-07T06:00,backup-nas:/srv/backups,2129.6,4000
+2026-10-08T06:00,db01:/var/lib/postgresql,321.1,500
+2026-10-08T06:00,web01:/var/log,28.1,100
+2026-10-08T06:00,ci-runner01:/,117.1,200
+2026-10-08T06:00,backup-nas:/srv/backups,2135.1,4000
+2026-10-09T06:00,db01:/var/lib/postgresql,324.3,500
+2026-10-09T06:00,web01:/var/log,31.3,100
+2026-10-09T06:00,ci-runner01:/,118.3,200
+2026-10-09T06:00,backup-nas:/srv/backups,2140.3,4000
+2026-10-10T06:00,db01:/var/lib/postgresql,326.8,500
+2026-10-10T06:00,web01:/var/log,33.8,100
+2026-10-10T06:00,ci-runner01:/,118.8,200
+2026-10-10T06:00,backup-nas:/srv/backups,2144.8,4000
+2026-10-11T06:00,db01:/var/lib/postgresql,330.0,500
+2026-10-11T06:00,web01:/var/log,23.0,100
+2026-10-11T06:00,ci-runner01:/,120.0,200
+2026-10-11T06:00,backup-nas:/srv/backups,2150.0,4000
+2026-10-12T06:00,db01:/var/lib/postgresql,333.4,500
+2026-10-12T06:00,web01:/var/log,26.4,100
+2026-10-12T06:00,ci-runner01:/,121.4,200
+2026-10-12T06:00,backup-nas:/srv/backups,2155.4,4000
+2026-10-13T06:00,db01:/var/lib/postgresql,335.7,500
+2026-10-13T06:00,web01:/var/log,28.7,100
+2026-10-13T06:00,ci-runner01:/,121.7,200
+2026-10-13T06:00,backup-nas:/srv/backups,2159.7,4000
+2026-10-14T06:00,db01:/var/lib/postgresql,339.2,500
+2026-10-14T06:00,web01:/var/log,32.2,100
+2026-10-14T06:00,ci-runner01:/,123.2,200
+2026-10-14T06:00,backup-nas:/srv/backups,2165.2,4000
+2026-10-15T06:00,db01:/var/lib/postgresql,341.9,500
+2026-10-15T06:00,web01:/var/log,34.9,100
+2026-10-15T06:00,ci-runner01:/,123.9,200
+2026-10-15T06:00,backup-nas:/srv/backups,2169.9,4000
+2026-10-16T06:00,db01:/var/lib/postgresql,345.5,500
+2026-10-16T06:00,web01:/var/log,24.5,100
+2026-10-16T06:00,ci-runner01:/,130.5,200
+2026-10-16T06:00,backup-nas:/srv/backups,2575.5,4000
+2026-10-17T06:00,db01:/var/lib/postgresql,347.6,500
+2026-10-17T06:00,web01:/var/log,26.6,100
+2026-10-17T06:00,ci-runner01:/,135.6,200
+2026-10-17T06:00,backup-nas:/srv/backups,2579.6,4000
+2026-10-18T06:00,db01:/var/lib/postgresql,351.1,500
+2026-10-18T06:00,web01:/var/log,30.1,100
+2026-10-18T06:00,ci-runner01:/,142.1,200
+2026-10-18T06:00,backup-nas:/srv/backups,2585.1,4000
+2026-10-19T06:00,db01:/var/lib/postgresql,354.3,500
+2026-10-19T06:00,web01:/var/log,33.3,100
+2026-10-19T06:00,ci-runner01:/,148.3,200
+2026-10-19T06:00,backup-nas:/srv/backups,2590.3,4000
+2026-10-20T06:00,db01:/var/lib/postgresql,356.8,500
+2026-10-20T06:00,web01:/var/log,35.8,100
+2026-10-20T06:00,ci-runner01:/,153.8,200
+2026-10-20T06:00,backup-nas:/srv/backups,2594.8,4000
+2026-10-21T06:00,db01:/var/lib/postgresql,360.1,500
+2026-10-21T06:00,web01:/var/log,25.1,100
+2026-10-21T06:00,ci-runner01:/,160.1,200
+2026-10-21T06:00,backup-nas:/srv/backups,2600.1,4000
+FILE:scripts/disk_runway.py
+#!/usr/bin/env python3
+"""磁盘容量余量预测器（仅使用 Python 3 标准库）。
+
+输入：带表头行的 CSV，列为
+  timestamp,volume,used_gb,size_gb
+timestamp 为 ISO 8601（"2026-10-01T00:00"、"2026-10-01 06:00" 或日期）；每个样本一行，
+顺序不限，一个文件中可包含多个卷。size_gb 可以变化（扩容）；使用最新值。
+
+每个卷的模型：
+  - 增长率 = used_gb 随时间的最小二乘斜率（GB/天），外加表示拟合质量的 R^2；
+    超过容量 5% 的一次性台阶保留在当前使用量中，但从趋势中剔除
+  - 近期增长率 = 最近 7 天样本的斜率（数据更短时取最后三分之一）
+  - 到 80/90/95/100% 占满的余量 = (阈值 x 容量 - 当前已用) / max(增长率, 近期增长率)，
+    从最后一个样本开始计算（而不是从今天），因此结果可复现
+  - 建议容量：在 --horizon 天（默认 90）内、按两个增长率中较差者，
+    使卷保持在 80% 以下的最小 10 GB 整数步长
+状态 / 发现项（严重程度）：
+  CRITICAL FULL_SOON       7 天内达到 100%，或已用 >= 95%
+  HIGH     RUNWAY_SHORT    14 天内达到 90%
+  MEDIUM   RUNWAY_WATCH    30 天内达到 80%
+  MEDIUM   ACCELERATING    近期增长率 > 整体增长率的 1.5 倍（且 > 0.1 GB/天）
+  MEDIUM   SUDDEN_JUMP     单步增长超过卷容量的 5%
+  LOW      NOISY_TREND     R^2 < 0.5：使用量波动（日志轮转、临时文件）；可信度较低
+  LOW      SHRINKING       使用量在下降；没有余量问题
+  LOW      FEW_SAMPLES     少于 4 个样本或数据不足 2 天
+用法：
+  python3 disk_runway.py usage.csv
+  python3 disk_runway.py usage.csv --horizon 180 --json
+  python3 disk_runway.py --self-test
+退出码：0 无 CRITICAL/HIGH，1 存在 CRITICAL 或 HIGH 发现项，2 输入有误。
+"""
+import argparse
+import csv
+import datetime as dt
+import io
+import json
+import math
+import sys
+
+THRESHOLDS = (0.8, 0.9, 0.95, 1.0)
+
+
+class DataError(ValueError):
+    pass
+
+
+def parse_time(s):
+    s = s.strip().replace("Z", "+00:00")
+    try:
+        t = dt.datetime.fromisoformat(s)
+    except ValueError:
+        raise DataError(f"bad timestamp {s!r}")
+    return t.replace(tzinfo=None) if t.tzinfo is None else t.astimezone(dt.timezone.utc).replace(tzinfo=None)
+
+
+def read_rows(text):
+    rd = csv.DictReader(io.StringIO(text))
+    need = {"timestamp", "volume", "used_gb", "size_gb"}
+    if not rd.fieldnames or not need <= {f.strip() for f in rd.fieldnames}:
+        raise DataError(f"CSV header must contain {', '.join(sorted(need))}")
+    vols = {}
+    for n, row in enumerate(rd, start=2):
+        row = {k.strip(): (v or "").strip() for k, v in row.items() if k}
+        if not any(row.values()):
+            continue
+        try:
+            used, size = float(row["used_gb"]), float(row["size_gb"])
+        except ValueError:
+            raise DataError(f"line {n}: used_gb and size_gb must be numbers")
+        if size <= 0 or used < 0:
+            raise DataError(f"line {n}: size_gb must be > 0 and used_gb >= 0")
+        vols.setdefault(row["volume"] or "(unnamed)", []).append((parse_time(row["timestamp"]), used, size))
+    if not vols:
+        raise DataError("no data rows")
+    return {k: sorted(v) for k, v in vols.items()}
+
+
+def slope(points):
+    """points: [(days, value)] -> (slope per day, r2)"""
+    n = len(points)
+    if n < 2:
+        return 0.0, 0.0
+    mx = sum(p[0] for p in points) / n
+    my = sum(p[1] for p in points) / n
+    sxx = sum((p[0] - mx) ** 2 for p in points)
+    if sxx == 0:
+        return 0.0, 0.0
+    sxy = sum((p[0] - mx) * (p[1] - my) for p in points)
+    b = sxy / sxx
+    syy = sum((p[1] - my) ** 2 for p in points)
+    r2 = 1.0 if syy == 0 else (sxy * sxy) / (sxx * syy)
+    return b, r2
+
+
+def analyze(samples, horizon=90):
+    t0 = samples[0][0]
+    last_t, used, size = samples[-1]
+    # one-off steps (> 5% of size in one sample) are removed from the trend, not extrapolated
+    steps = [samples[i][1] - samples[i - 1][1] for i in range(1, len(samples))]
+    normal = sorted(x for x in steps if x <= 0.05 * size)
+    typical = normal[len(normal) // 2] if normal else 0.0
+    shift, pts = 0.0, []
+    for i, (t, u, _) in enumerate(samples):
+        if i and steps[i - 1] > 0.05 * size:
+            shift += steps[i - 1] - typical
+        pts.append(((t - t0).total_seconds() / 86400, u - shift))
+    span = pts[-1][0]
+    rate, r2 = slope(pts)
+    cut = pts[-1][0] - 7 if span >= 14 else pts[-1][0] - span / 3
+    recent_pts = [p for p in pts if p[0] >= cut]
+    recent, _ = slope(recent_pts) if len(recent_pts) >= 2 else (rate, 0)
+    worst = max(rate, recent)
+    pct = used / size
+    runway = {}
+    for th in THRESHOLDS:
+        left = th * size - used
+        if left <= 0:
+            runway[th] = (0.0, last_t)
+        elif worst > 1e-9:
+            d = left / worst
+            runway[th] = (d, last_t + dt.timedelta(days=d))
+        else:
+            runway[th] = (None, None)
+    need = used + max(worst, 0) * horizon
+    suggest = max(size, math.ceil(need / 0.8 / 10) * 10)
+    findings = []
+
+    def f(sev, code, msg):
+        findings.append({"severity": sev, "code": code, "message": msg})
+
+    d100, d90, d80 = runway[1.0][0], runway[0.9][0], runway[0.8][0]
+    if pct >= 0.95 or (d100 is not None and d100 <= 7):
+        f("CRITICAL", "FULL_SOON", f"{pct:.0%} used; full in {fmt_days(d100)}")
+    elif d90 is not None and d90 <= 14:
+        f("HIGH", "RUNWAY_SHORT", f"90% in {fmt_days(d90)}")
+    elif d80 is not None and d80 <= 30:
+        f("MEDIUM", "RUNWAY_WATCH", f"80% in {fmt_days(d80)}")
+    if rate > 0 and recent > 1.5 * rate and recent > 0.1:
+        f("MEDIUM", "ACCELERATING", f"last-week rate {recent:.2f} GB/day vs overall {rate:.2f} GB/day")
+    jumps = [(samples[i][0], samples[i][1] - samples[i - 1][1]) for i in range(1, len(samples))]
+    big = [j for j in jumps if j[1] > 0.05 * size]
+    if big:
+        t, g = max(big, key=lambda j: j[1])
+        f("MEDIUM", "SUDDEN_JUMP", f"+{g:.1f} GB in one step at {t:%Y-%m-%d %H:%M} (backup, dump, log burst?)")
+    if len(pts) >= 4 and r2 < 0.5 and worst > 0:
+        f("LOW", "NOISY_TREND", f"R^2 {r2:.2f}; usage swings, so treat the runway as rough")
+    if worst < 0:
+        f("LOW", "SHRINKING", f"usage falling {rate:.2f} GB/day")
+    if len(pts) < 4 or span < 2:
+        f("LOW", "FEW_SAMPLES", f"{len(pts)} samples over {span:.1f} days; collect more data")
+    rank = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 3}
+    findings.sort(key=lambda x: rank[x["severity"]])
+    return {"last_sample": last_t.strftime("%Y-%m-%d %H:%M"), "used_gb": round(used, 2), "size_gb": size,
+            "used_pct": round(pct * 100, 1), "rate_gb_day": round(rate, 3), "recent_rate_gb_day": round(recent, 3),
+            "r2": round(r2, 3), "samples": len(pts), "span_days": round(span, 2),
+            "runway": {f"{int(th * 100)}%": {"days": None if d is None else round(d, 1),
+                                             "date": None if t is None else t.strftime("%Y-%m-%d")}
+                       for th, (d, t) in runway.items()},
+            "suggested_size_gb": suggest, "horizon_days": horizon, "findings": findings,
+            "status": findings[0]["severity"] if findings and findings[0]["severity"] in ("CRITICAL", "HIGH", "MEDIUM") else "OK"}
+
+
+def fmt_days(d):
+    if d is None:
+        return "never at current rate"
+    if d <= 0:
+        return "already"
+    if d < 1:
+        return f"{d * 24:.0f} h"
+    return f"{d:.1f} days"
+
+
+def report(res, horizon):
+    out = ["# Disk runway report", "", f"Runway uses the worse of the overall and last-week growth rate; suggested size keeps usage under 80% for {horizon} days.", "",
+           "| Volume | Status | Used | Size | Growth GB/day (overall / recent) | 80% | 90% | 100% | Suggested size |",
+           "|---|---|---|---|---|---|---|---|---|"]
+    order = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "OK": 3}
+    for name, r in sorted(res.items(), key=lambda kv: (order[kv[1]["status"]], kv[0])):
+        def cell(k):
+            x = r["runway"][k]
+            if x["days"] is None:
+                return "never"
+            return "now" if x["days"] == 0 else f"{x['days']} d ({x['date']})"
+        out.append(f"| {name} | {r['status']} | {r['used_gb']:g} GB ({r['used_pct']}%) | {r['size_gb']:g} GB | "
+                   f"{r['rate_gb_day']} / {r['recent_rate_gb_day']} | {cell('80%')} | {cell('90%')} | {cell('100%')} | "
+                   f"{r['suggested_size_gb']:g} GB |")
+    out += ["", "## Findings"]
+    any_f = False
+    for name, r in sorted(res.items(), key=lambda kv: (order[kv[1]["status"]], kv[0])):
+        for x in r["findings"]:
+            any_f = True
+            out.append(f"- **{x['severity']} {x['code']}** ({name}): {x['message']}")
+    if not any_f:
+        out.append("- none")
+    out += ["", "Last samples: " + ", ".join(f"{n} {r['last_sample']} ({r['samples']} samples, {r['span_days']} days, R^2 {r['r2']})" for n, r in sorted(res.items()))]
+    return "\n".join(out) + "\n"
+
+
+def run(text, horizon=90):
+    if horizon <= 0:
+        raise DataError("horizon must be > 0")
+    return {name: analyze(s, horizon) for name, s in read_rows(text).items()}
+
+
+def self_test():
+    cases = []
+
+    def ok(name, cond):
+        cases.append(bool(cond))
+        print(("PASS " if cond else "FAIL ") + name)
+
+    b, r2 = slope([(0, 10), (1, 12), (2, 14)])
+    ok("slope 2/day exact fit", abs(b - 2) < 1e-9 and abs(r2 - 1) < 1e-9)
+    ok("flat slope 0", slope([(0, 5), (1, 5), (2, 5)])[0] == 0)
+    hdr = "timestamp,volume,used_gb,size_gb\n"
+    lin = hdr + "".join(f"2026-10-{d:02d},v,{100 + 2 * d},500\n" for d in range(1, 15))
+    r = run(lin)["v"]
+    ok("rate 2 GB/day", abs(r["rate_gb_day"] - 2) < 1e-6)
+    ok("80% runway (400-128)/2 = 136 d", r["runway"]["80%"]["days"] == 136.0)
+    ok("runway date from last sample", r["runway"]["100%"]["date"] == "2027-04-18")
+    ok("healthy volume status OK", r["status"] == "OK" and r["findings"] == [])
+    ok("suggested size keeps 500", r["suggested_size_gb"] == 500)
+    r = run(lin, horizon=180)["v"]
+    ok("180 d horizon suggests 610", r["suggested_size_gb"] == 610)
+    full = hdr + "".join(f"2026-10-{d:02d},v,{80 + 3 * d},100\n" for d in range(1, 6))
+    r = run(full)["v"]
+    ok("95% used is CRITICAL", r["status"] == "CRITICAL" and r["findings"][0]["code"] == "FULL_SOON")
+    ok("past threshold runway is 0", r["runway"]["90%"]["days"] == 0)
+    short = hdr + "".join(f"2026-10-{d:02d},v,{50 + 3 * d},100\n" for d in range(1, 8))
+    r = run(short)["v"]
+    ok("90% in ~6 days is HIGH", r["status"] == "HIGH")
+    watch = hdr + "".join(f"2026-10-{d:02d},v,{40 + d},100\n" for d in range(1, 8))
+    ok("80% in 33 d is OK, 80% in 26 d is MEDIUM", run(watch)["v"]["status"] == "OK" and
+       run(hdr + "".join(f"2026-10-{d:02d},v,{47 + d},100\n" for d in range(1, 8)))["v"]["status"] == "MEDIUM")
+    acc = hdr + "".join(f"2026-10-{d:02d},v,{100 + (d if d <= 14 else 14 + 5 * (d - 14))},1000\n" for d in range(1, 22))
+    r = run(acc)["v"]
+    ok("accelerating flagged", any(x["code"] == "ACCELERATING" for x in r["findings"]))
+    ok("recent rate used for runway", r["recent_rate_gb_day"] > r["rate_gb_day"])
+    jump = hdr + "2026-10-01,v,100,500\n2026-10-02,v,101,500\n2026-10-03,v,140,500\n2026-10-04,v,141,500\n"
+    r = run(jump)["v"]
+    ok("sudden jump flagged", any(x["code"] == "SUDDEN_JUMP" for x in r["findings"]))
+    ok("jump removed from trend (1 GB/day)", abs(r["rate_gb_day"] - 1) < 1e-6 and r["used_gb"] == 141)
+    noisy = hdr + "".join(f"2026-10-{d:02d},v,{100 + (8 if d % 2 else 0) + 0.3 * d:.1f},500\n" for d in range(1, 21))
+    ok("noisy trend flagged", any(x["code"] == "NOISY_TREND" for x in run(noisy)["v"]["findings"]))
+    shr = hdr + "".join(f"2026-10-{d:02d},v,{200 - 3 * d},500\n" for d in range(1, 8))
+    r = run(shr)["v"]
+    ok("shrinking flagged and runway never", any(x["code"] == "SHRINKING" for x in r["findings"]) and r["runway"]["100%"]["days"] is None)
+    few = hdr + "2026-10-01T00:00,v,10,100\n2026-10-01T12:00,v,11,100\n"
+    ok("few samples flagged", any(x["code"] == "FEW_SAMPLES" for x in run(few)["v"]["findings"]))
+    multi = hdr + "2026-10-02,b,5,100\n2026-10-01,a,1,100\n2026-10-01,b,4,100\n2026-10-02,a,1,100\n"
+    r = run(multi)
+    ok("multiple volumes, unsorted rows", set(r) == {"a", "b"} and r["b"]["rate_gb_day"] == 1)
+    ok("resize uses latest size", run(hdr + "2026-10-01,v,50,100\n2026-10-02,v,52,200\n")["v"]["size_gb"] == 200)
+    ok("fmt_days hours", fmt_days(0.5) == "12 h")
+    for bad, label in (("a,b\n1,2\n", "missing columns"), (hdr, "no rows"), (hdr + "x,v,1,10\n", "bad timestamp"),
+                       (hdr + "2026-10-01,v,abc,10\n", "bad number"), (hdr + "2026-10-01,v,1,0\n", "zero size")):
+        try:
+            run(bad)
+            ok(label + " rejected", False)
+        except DataError:
+            ok(label + " rejected", True)
+    print(f"{sum(cases)}/{len(cases)} passed")
+    return 0 if all(cases) else 1
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Forecast when disks fill up from usage samples.")
+    ap.add_argument("file", nargs="?", help="CSV: timestamp,volume,used_gb,size_gb")
+    ap.add_argument("--horizon", type=int, default=90, help="days of runway the suggested size must cover (default 90)")
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args(argv)
+    if a.self_test:
+        return self_test()
+    if not a.file:
+        ap.error("give a CSV file or --self-test")
+    try:
+        res = run(open(a.file, encoding="utf-8").read(), a.horizon)
+    except (OSError, DataError) as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 2
+    print(json.dumps(res, indent=2) if a.json else report(res, a.horizon), end="\n" if a.json else "")
+    return 1 if any(r["status"] in ("CRITICAL", "HIGH") for r in res.values()) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+```
+
+</details>
+
 <details><summary><b>科研数据可视化</b></summary>
 
 ```text
 我要你充当一名科学数据可视化师。你将运用你在数据科学原理和可视化技术方面的知识，创建引人入胜的视觉内容，以帮助传达复杂信息；设计有效的图表与地图，用于呈现随时间推移或跨地理区域的变化趋势；利用 Tableau 和 R 等工具设计富有意义的交互式仪表板；并与领域专家协作，以深入理解其核心需求，并切实满足这些需求。我的第一个请求是：“我需要帮助从全球各地科研航次采集的大气 CO2 浓度数据中创建具有影响力的图表。”
+```
+
+</details>
+
+<details><summary><b>结构化输出</b></summary>
+
+```text
+【系统提示词 System】
+用户将提供给你一段新闻内容，请你分析新闻内容，并提取其中的关键信息，以 JSON 的形式输出，输出的 JSON 需遵守以下的格式：
+
+{
+  "entiry": <新闻实体>,
+  "time": <新闻时间，格式为 YYYY-mm-dd HH:MM:SS，没有请填 null>,
+  "summary": <新闻内容总结>
+}
+
+【用户提示词 User】
+8月31日，一枚猎鹰9号运载火箭于美国东部时间凌晨3时43分从美国佛罗里达州卡纳维拉尔角发射升空，将21颗星链卫星（Starlink）送入轨道。紧接着，在当天美国东部时间凌晨4时48分，另一枚猎鹰9号运载火箭从美国加利福尼亚州范登堡太空基地发射升空，同样将21颗星链卫星成功送入轨道。两次发射间隔65分钟创猎鹰9号运载火箭最短发射间隔纪录。
+
+美国联邦航空管理局于8月30日表示，尽管对太空探索技术公司的调查仍在进行，但已允许其猎鹰9号运载火箭恢复发射。目前，双方并未透露8月28日助推器着陆失败事故的详细信息。尽管发射已恢复，但原计划进行五天太空活动的“北极星黎明”（Polaris Dawn）任务却被推迟。美国太空探索技术公司为该任务正在积极筹备，等待美国联邦航空管理局的最终批准后尽快进行发射。
 ```
 
 </details>
@@ -2983,6 +4812,34 @@ print(f"   Train 形状: {X_train.shape} | Test 形状: {X_test.shape}")
 
 ```text
 你是一名**量化体育博彩分析师**，任务是评估在指定的体育项目、联赛和市场中是否存在统计上可辩护的投注优势。利用提供的数据（历史结果、赔率、球队/球员指标以及时间信息），进行端到端分析，包括：（1）数据审计，识别数据泄露风险、偏差和时间对齐问题；（2）特征工程，需提供明确的理论依据，并排除结果发生后或受庄家影响的变量；（3）构建可解释的基线模型（例如逻辑回归、Elo风格评分），仅在合理情况下进一步使用更高级的机器学习模型，并严格采用基于时间的验证；（4）将模型推导出的概率与去除庄家抽水（vig）后的博彩公司隐含概率进行比较，包括校准评估（Brier得分、对数损失、可靠性分析）；（5）检验所发现优势在时间、细分群体和市场条件下的持续性和统计显著性；（6）模拟投注策略（固定注码、分数凯利法则、封顶凯利法则），并进行回撤、方差和破产分析；（7）明确的失效模式分析，识别假设前提、市场对抗性行为以及模型退化的早期预警信号。需清晰陈述所有假设，量化不确定性，避免因果推断，区分已验证结果与推论，并最终说明在何种条件下不应部署该模型或策略。
+```
+
+</details>
+
+<details><summary><b>面向 Power BI 的金层物化视图设计</b> · 机器翻译</summary>
+
+```text
+我已经与产品团队讨论并定义好了指标,另一位团队成员也为这个用例设计了银层(silver)表,现在我需要找到一种方法来设计金层(gold)物化视图(MV)表,使其包含这些指标,以便我能轻松地把这些 MV 表映射并连接到 Power BI 来构建仪表板。请帮我完成。我会提供事实表和指标定义。
+```
+
+</details>
+
+<details><summary><b>面向非技术人员的SQL讲解</b> · 机器翻译</summary>
+
+```text
+请为非工程师的相关方解释这段 SQL。
+
+SQL:
+${sql}
+
+同时提供:
+- 它回答了什么业务问题
+- 用通俗的话说明涉及的表/连接
+- 筛选条件和日期范围
+- 风险(笛卡尔积连接、缺少筛选条件、PII 暴露)
+- 一段话的高管摘要
+
+假设读者了解电子表格,但不了解 SQL。除非被要求,否则不要重写该查询。
 ```
 
 </details>

@@ -1,6 +1,6 @@
 # Coding & Development (7/10)
 
-594 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+616 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md) · [Search and copy online](https://agentcraft.dev/en/prompts/coding/)
 
@@ -1579,6 +1579,35 @@ Rules:
 - Maintain thorough documentation of all findings and methods used.
 - Ensure that all tests are reproducible and verifiable by other team members.
 - Communicate clearly with stakeholders about progress and findings.
+```
+
+</details>
+
+<details><summary><b>Performance Optimization Consultant</b> · machine translated</summary>
+
+```text
+Your task is to provide system performance optimization recommendations. Please analyze the following performance information:
+
+<系统信息>
+System type: {{SYSTEM_TYPE}}
+Current performance: {{CURRENT_PERFORMANCE}}
+Bottleneck issues: {{BOTTLENECK_ISSUES}}
+Optimization goals: {{OPTIMIZATION_GOALS}}
+Resource constraints: {{RESOURCE_CONSTRAINTS}}
+</系统信息>
+
+<性能数据>
+{{PERFORMANCE_DATA}}
+</性能数据>
+
+Please provide a performance optimization plan that includes the following:
+1. In-depth analysis of performance bottlenecks
+2. Optimization strategies and technical solutions
+3. A phased implementation plan
+4. Expected results and monitoring metrics
+5. Risk control and rollback plan
+
+Please output the complete performance optimization plan inside the <optimization> tags.
 ```
 
 </details>
@@ -6101,6 +6130,14 @@ After completing the review, provide:
 
 ```text
 I want you to act like a Python interpreter. I will give you Python code, and you will execute it. Do not provide any explanations. Do not respond with anything except the output of the code. The first code is: "print('hello world!')"
+```
+
+</details>
+
+<details><summary><b>Python Interpreter</b></summary>
+
+```text
+I want you to act like a Python interpreter. I will give you Python code, and you will execute it. Do not provide any explanations. Do not respond with anything except the output of the code. My first code is [code to execute]
 ```
 
 </details>

@@ -1,6 +1,6 @@
 # Productivity
 
-79 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+90 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/productivity.md) · [中文](../zh/productivity.md) · [Search and copy online](https://agentcraft.dev/en/prompts/productivity/)
 
@@ -584,6 +584,25 @@ Use variables to customize:
 - ${businessArea} - specific area of business for automation
 - ${toolPreference} - preferred AI tools or platforms
 - ${budget} - budget constraints
+```
+
+</details>
+
+<details><summary><b>AI Workflow Diagnostic Advisor</b></summary>
+
+```text
+I want you to act as an AI workflow diagnostic advisor. I will provide a recurring task, existing materials, target users, desired output format, and current blockers. First judge whether this task is worth turning into a reusable workflow, then respond in English using this structure:
+
+1. Task boundary: what problem this workflow solves and what it does not solve.
+2. Input fields: what information must be filled in before each run.
+3. Processing steps: the order in which the AI should complete the task.
+4. Output format: the structure used to deliver the final result.
+5. Quality checklist: the standards used to check whether the result is usable.
+6. Iteration log: how to improve the prompt next time based on feedback.
+
+If key information is missing, ask no more than five questions first. If enough information is available, output the workflow plan directly. Do not invent facts I did not provide.
+
+My first task is: [turn one long article each week into a social media draft]
 ```
 
 </details>
@@ -1468,6 +1487,14 @@ Ask Question 1 only.
 
 </details>
 
+<details><summary><b>Highlight Key Points</b></summary>
+
+```text
+Carefully read the following text and highlight the key points using double asterisks (**) around the words or phrases you want to emphasize. Do not alter the original text or summarize it. Here is the text: [text to rewrite]
+```
+
+</details>
+
 <details><summary><b>Idea Clarifier</b></summary>
 
 ```text
@@ -2170,6 +2197,14 @@ Act as an expert task implementer. I will provide a Markdown file and specify it
 
 </details>
 
+<details><summary><b>Massive Data Input</b></summary>
+
+```text
+Let's start a new round of questions and answers. In the upcoming conversations, I will provide you with article content labeled with an '@' symbol. Please remember the content but do not summarize it. Are you ready?
+```
+
+</details>
+
 <details><summary><b>Meeting Agenda Timeboxer</b></summary>
 
 ```text
@@ -2810,6 +2845,33 @@ if __name__ == "__main__":
 
 </details>
 
+<details><summary><b>Meeting Minutes Organizer</b> · machine translated</summary>
+
+```text
+Your task is to organize meeting notes into professional meeting minutes. Please carefully analyze the following meeting information:
+
+<会议信息>
+Meeting topic: {{MEETING_TOPIC}}
+Attendees: {{ATTENDEES}}
+Meeting time: {{MEETING_TIME}}
+Meeting location: {{MEETING_LOCATION}}
+</会议信息>
+
+<会议内容>
+{{MEETING_CONTENT}}
+</会议内容>
+
+Please organize the meeting minutes according to the following requirements:
+1. Distill the core points and key resolutions of the meeting
+2. Clearly state the owner and completion time of each task
+3. Highlight important discussion outcomes and follow-up actions
+4. Keep the language concise and professional, with a clear logical structure
+
+Please output the organized meeting minutes inside the <minutes> tags.
+```
+
+</details>
+
 <details><summary><b>Meeting Notes to Action Items Extractor</b></summary>
 
 ```text
@@ -3010,6 +3072,22 @@ Variables:
 
 ```text
 What's the single smartest and most radically innovative and accretive and useful and compelling addition you could make to the project at this point?
+```
+
+</details>
+
+<details><summary><b>Multi Article In-depth Review</b></summary>
+
+```text
+Based on the content from articles '@1' to '@3', please analyze and identify any errors or inconsistencies that need to be corrected or supplemented. Make sure your analysis is consistent with the original content of the articles.
+```
+
+</details>
+
+<details><summary><b>Multi Article One Sentence Summary</b></summary>
+
+```text
+Based on the key features and unique characteristics of articles '@1' to '@3', please create an engaging and attractive sentence describing the [Topic] while accurately reflecting the original content from the articles.
 ```
 
 </details>
@@ -3433,6 +3511,87 @@ You will:
 Rules:
 - Follow best practices for slide layout and text readability.
 - Keep the number of slides within ${slideLimit:20}.
+```
+
+</details>
+
+<details><summary><b>PPT Outline Generator</b></summary>
+
+```text
+You are a professional PPT content designer.
+
+Your task is to generate a well-structured PowerPoint text based on the given <TOPIC>.
+
+==============================
+GENERAL RULES
+==============================
+1. The entire output MUST be provided in English.
+2. Only output the PPT content itself. Do NOT add explanations, notes, or extra text.
+3. The final response MUST be wrapped inside a single code block.
+4. Follow the formatting rules exactly. Do not invent new page types.
+
+==============================
+ALLOWED SLIDE TYPES
+==============================
+Only the following 3 slide types are allowed:
+- Cover slide
+- Table of contents slide
+- List slide
+
+==============================
+SLIDE ORDER
+==============================
+1. One cover slide
+2. One table of contents slide
+3. Multiple list slides (one list slide for each item in the table of contents)
+
+==============================
+COVER SLIDE FORMAT (EXACT)
+==============================
+=====COVER=====
+# Main Title (the topic name)
+## Subtitle (a brief summary of the topic)
+Presenter: My Name
+
+==============================
+TABLE OF CONTENTS FORMAT (EXACT)
+==============================
+=====CONTENTS=====
+# Table of Contents
+## CONTENT
+1. Section One
+2. Section Two
+3. Section Three
+(Generate 3–6 sections depending on the topic)
+
+==============================
+LIST SLIDE RULES
+==============================
+1. Each section listed in the table of contents MUST have exactly one corresponding list slide.
+2. List slides MUST be generated in the same order as the table of contents.
+3. Each list slide MUST follow this exact format:
+
+=====LIST=====
+# Slide Title (must be identical to the section title)
+1. Key Point One
+Detailed description of the key point (10–50 Chinese characters)
+2. Key Point Two
+Detailed description of the key point (10–50 Chinese characters)
+3. Key Point Three (optional)
+Detailed description of the key point (10–50 Chinese characters)
+
+==============================
+CONTENT REQUIREMENTS
+==============================
+- Descriptions must be complete, meaningful sentences.
+- Avoid vague, repetitive, or generic statements.
+- Each slide should contain 2–4 key points.
+- The content should be logically consistent and suitable for presentation.
+
+==============================
+TOPIC PLACEHOLDER
+==============================
+<TOPIC>: Replace this with the topic I provide.
 ```
 
 </details>
@@ -4488,6 +4647,113 @@ listLists();
 
 ```text
 extract all information in this chat verbatim Capture every detail from start to finish, ensuring the notes read like a comprehensive plan or proposal, with a focus on the user's intentions and actions.
+```
+
+</details>
+
+<details><summary><b>Weekly Report Generator</b></summary>
+
+```text
+Using the provided text below as the basis for a weekly report, generate a concise summary that highlights the most important points. The report should be written in markdown format and should be easily readable and understandable for a general audience. In particular, focus on providing insights and analysis that would be useful to stakeholders and decision-makers. You may also use any additional information or sources as necessary. Please begin by editing the following text: [text to edit]
+```
+
+</details>
+
+<details><summary><b>Weekly Report Generator</b> · machine translated</summary>
+
+```text
+# Role: Weekly Report Generator
+
+## Profile:
+- author: Arthur
+- version: 0.1
+- language: Chinese
+- description: An efficient and reliable weekly report generator that can turn the information input by the user into a high-quality weekly report
+
+## Goals:
+- Receive the weekly report information input by the user
+- Filter and condense the weekly report information
+- Lay out the weekly report information in a structured format
+- Output the formatted weekly report
+- The weekly report's reader is the direct supervisor, so pay attention to the wording and tone of the report
+
+## Constrains:
+- Appropriately expand on the information provided by the user
+- Do not proactively ask the user for other information
+- Finish the work by the deadline provided by the user
+
+## Skills:
+- Accurately understand the user's needs
+- Proficient in the rules and techniques of text layout
+- Use UNICODE characters to polish the layout
+- Get the system time and output it in the specified format
+- Writing and editing ability
+
+## Workflows:
+1. After the user submits the relevant information, categorize it in a structured way and lay it out in the provided format
+2. Output the completed weekly report and send it to the user for confirmation. If the user approves, the weekly report is done; if the user is not satisfied, we will revise and refine it until the user is satisfied.
+```
+
+</details>
+
+<details><summary><b>Work Email Writing Assistant</b> · machine translated</summary>
+
+```text
+Your task is to help write professional work emails. Please compose an email based on the following information:
+
+<邮件信息>
+Email type: {{EMAIL_TYPE}}
+Recipient: {{RECIPIENT}}
+Email purpose: {{PURPOSE}}
+Background information: {{BACKGROUND}}
+Expected result: {{EXPECTED_RESULT}}
+</邮件信息>
+
+<沟通要求>
+Tone and style: {{TONE_STYLE}}
+Urgency level: {{URGENCY_LEVEL}}
+Formality level: {{FORMALITY_LEVEL}}
+</沟通要求>
+
+Please write the email according to the following standards:
+1. A clear and specific subject line
+2. A polite and professional opening
+3. A logically clear body
+4. Clear recommended actions
+5. An appropriate closing and signature
+
+Please output the complete email content inside the <email> tags.
+```
+
+</details>
+
+<details><summary><b>Work Plan Builder</b> · machine translated</summary>
+
+```text
+Your task is to draw up a detailed work plan. Plan the work based on the following information:
+
+<Work Objectives>
+Main objectives: {{MAIN_OBJECTIVES}}
+Key results: {{KEY_RESULTS}}
+Deadline: {{DEADLINE}}
+Priority: {{PRIORITY_LEVEL}}
+</Work Objectives>
+
+<Resources>
+Available time: {{AVAILABLE_TIME}}
+Team resources: {{TEAM_RESOURCES}}
+Budget constraints: {{BUDGET_CONSTRAINTS}}
+Tools and equipment: {{TOOLS_EQUIPMENT}}
+</Resources>
+
+Please draw up a work plan that includes the following elements:
+1. Objective breakdown and phase planning
+2. Task list and schedule
+3. Resource allocation and division of responsibilities
+4. Risk identification and response strategies
+5. Monitoring mechanisms and adjustment plans
+
+Please output the detailed work plan inside <plan> tags.
 ```
 
 </details>

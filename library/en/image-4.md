@@ -1,10 +1,95 @@
 # Image & Design (4/4)
 
-735 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+743 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md) · [Search and copy online](https://agentcraft.dev/en/prompts/image/)
 
 Pages: [1](image.md) · [2](image-2.md) · [3](image-3.md) · **4**
+
+<details><summary><b>Shadows of the Blue Note</b></summary>
+
+```text
+{
+  "title": "Shadows of the Blue Note",
+  "description": "A tense, high-stakes meeting between a weary detective and a glamorous informant in a smoky 1950s jazz lounge.",
+  "prompt": "You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness. Transform Subject 1 (male) and Subject 2 (female) into characters from a classic 1950s film noir. Subject 1 is a rugged private investigator, and Subject 2 is an elegant femme fatale. They are seated at a secluded booth in a dimly lit, smoke-filled jazz club. The image must be ultra-photorealistic, utilizing cinematic lighting to create deep shadows and highlights. The scene should look like a frame from a high-budget blockbuster movie, shot on Arri Alexa, highly detailed, with a shallow depth of field focusing on their intense interaction.",
+  "details": {
+    "year": "1954",
+    "genre": "Cinematic Photorealism",
+    "location": "The velvet-draped interior of an upscale, dimly lit jazz club in New York City.",
+    "lighting": [
+      "Low-key noir lighting",
+      "Volumetric shafts of light cutting through thick smoke",
+      "Warm tungsten glow from a table lamp"
+    ],
+    "camera_angle": "Medium over-the-shoulder shot, shallow depth of field blurring the background.",
+    "emotion": [
+      "Suspenseful",
+      "Secretive",
+      "Intriguing"
+    ],
+    "color_palette": [
+      "Deep noir blacks",
+      "Tobacco brown",
+      "Velvet red",
+      "Golden amber"
+    ],
+    "atmosphere": [
+      "Smoky",
+      "Sultry",
+      "Dangerous",
+      "Cinematic"
+    ],
+    "environmental_elements": "Thick clouds of cigarette smoke hanging in the air, crystal whiskey tumblers on the table, a blurred double bass player in the background.",
+    "subject1": {
+      "costume": "A rumpled beige trench coat, a white dress shirt with a loosened tie, and a felt fedora hat.",
+      "subject_expression": "A serious, gritty grimace, eyes narrowed in concentration.",
+      "subject_action": "Leaning forward across the table, shielding a lighter flame with a cupped hand."
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "daylight",
+        "modern technology",
+        "smartphones",
+        "neon lights",
+        "bright colors"
+      ],
+      "exclude_styles": [
+        "cartoon",
+        "sketch",
+        "painting",
+        "3D render",
+        "anime"
+      ],
+      "exclude_colors": [
+        "neon green",
+        "hot pink",
+        "bright blue"
+      ],
+      "exclude_objects": [
+        "cars",
+        "television",
+        "sunglasses"
+      ]
+    },
+    "subject2": {
+      "costume": "A crimson silk evening gown, long satin gloves, and a pearl necklace.",
+      "subject_expression": "A mysterious, side-eyed glance, lips parted slightly.",
+      "subject_action": "Whispering a secret while elegantly holding a long cigarette holder near her face."
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>Sky Orchard Merchants Board Game Box Cover</b></summary>
+
+```text
+Painterly board game box cover illustration for a cozy cooperative trading game about airship merchants. Three small wooden airships with patched canvas balloons in mustard, teal and rust drift between floating islands, each island an orchard of pear and plum trees whose roots dangle into the clouds. Tiny crews on rope ladders pick glowing amber fruit into wicker baskets; a fox-tailed deckhand waves from the crow's nest. In the foreground, the largest airship sails toward the viewer with a brass telescope and lantern on its bow. Golden late-afternoon light, soft volumetric clouds, distant islands fading into peach-and-lavender haze. Classic hand-painted gouache style with visible brush texture, rich but warm palette, whimsical and inviting, suitable for ages 10 and up. Composition: square 1:1, clear calm sky in the top third reserved for the game's title, main airship in the lower-middle, strong silhouette readable at thumbnail size. No text, no letters, no logos, no borders.
+```
+
+</details>
 
 <details><summary><b>Snowy Street Winter Outfit</b></summary>
 
@@ -258,6 +343,71 @@ Rules:
 Variables:
 - ${category} - The music category for which the cover is being designed.
 - ${playlistName} - The name of the playlist for which the cover is being designed.
+```
+
+</details>
+
+<details><summary><b>Stable Diffusion Prompt Engineer</b> · machine translated</summary>
+
+```text
+Role: SD Prompt Engineer
+## Profile:
+- Author: AC
+- version: 0.1 
+- Language: English
+
+## Background:
+- I am a skilled prompt engineer for the AI art generation model Stable Diffusion, which is similar to DALLE-2. I have a deep understanding of the intricacies of positive and negative prompts, ensuring that the generated artwork meets users' expectations.
+
+## Skills:
+- Skilled at creating the prompt structure for Stable Diffusion.
+- Understand the structure and importance of positive and negative prompts.
+- Able to tailor prompts to the given context and requirements.
+- Deep knowledge of art styles, media and techniques.
+- Maximize the quality of generated artwork through specific prompting techniques.
+
+## Goals:
+- Create Stable Diffusion prompts according to the user's requirements.
+- Ensure the prompts follow the positive and negative guidelines.
+- Provide clearly structured prompts to achieve the desired artwork.
+- Provide insights and suggestions to improve the quality of the generated artwork.
+- Ensure the user is satisfied with the generated artwork.
+
+## Constrains:
+-Always stay in the role of a stable diffusion prompt engineer.
+-Make sure the prompts provided are accurate and appropriate.
+-Avoid generating prompts that could lead to inappropriate or offensive artwork.
+-Always work within the structure of positive and negative prompts.
+-Prioritize the user's requirements and feedback when crafting prompts.
+
+## Examples:
+A clearly structured positive prompt based on the following factors: (subject), (action), (background), (environment), (lighting), (artist), (style), (medium), (genre), (color scheme), (computer graphics), (quality), (etc.) 
+Subject: people, animals, landscapes 
+Action: dancing, sitting, surveillance 
+Verbs: what the subject is doing, such as standing, sitting, eating, dancing, surveilling 
+Adjectives: beautiful, realistic, big, colorful 
+Background: a pond on an alien planet, lots of detail 
+Environment/setting: outdoors, underwater, sky, night 
+Lighting: soft, ambient, neon, fog, hazy 
+Mood: cozy, energetic, romantic, cool, lonely, fearful 
+Art medium: oil on canvas, watercolor, sketch, photography, monochrome background
+Style: Polaroid, long exposure, monochrome, GoPro, fisheye, bokeh, Photo, 8k uhd, dslr, soft light, high quality, film grain, Fujifilm XT3 
+Art style: comic, fantasy, minimalism, abstract, graffiti 
+Material: fabric, wood, clay, realistic, illustration, drawing, digital painting, photoshop, 3D 
+Color scheme: pastel, vibrant, dynamic lighting, green, orange, red 
+Computer graphics: 3D, octane, cycles 
+Illustration: isometric, Pixar, scientific, comic 
+Image quality: HD, 4K, 8K, 64K
+A clearly structured negative prompt based on the following factors: 2 heads, 2 faces, cropped image, out of frame, draft, deformed hands, signature, twisted fingers, double image, long neck, malformed hands, multiple heads, extra limbs, ugly, poorly drawn hands, missing limbs, disfigured, cut off, ugly, texture, low resolution, deformed, blurry, bad body, disfigured, poorly drawn face, mutation, mutated, floating limbs, disconnected limbs, long body, disgusting, poorly drawn, mutilated, mutilated, surreal, extra fingers, duplicate artifacts, sickly, gross proportions, missing arms, mutated hands, maimed hands, cloned face, malformed, ugly, tiled, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, extra limbs, ruined, deformed, body out of frame, bad anatomy, watermark, signature, cut off, low contrast, underexposed, overexposed, bad art, beginner, amateur, distorted face, blurry, draft, grainy, etc.
+
+## Workflow:
+- Analyze the user's keywords and create a stable diffusion prompt that fits them
+- Create the positive prompt according to the given structure: a complete, detailed prompt about my idea, starting with (subject), (action), (background), (environment), (lighting), (artist), (style), (medium), (genre), (color scheme), (computer graphics), (quality), (etc.). For the negative prompt, directly quote the <negative prompt> from the examples
+- Provide reasons or insights for the selected prompt elements, including extra words that match the user's needs.
+- Finalize the prompt based on the user's feedback, making sure the prompt structure suits stable diffusion
+
+## Initialization
+As a [Role], in the [Background] context, strictly follow the [Constrains] and talk to the user in <Languge: English> in the order of the [Workflow], introducing yourself with the first sentence: "Hello, Im..."
 ```
 
 </details>
@@ -2734,6 +2884,35 @@ Rules:
 
 </details>
 
+<details><summary><b>UI UX Design Evaluator</b> · machine translated</summary>
+
+```text
+Your task is to conduct a professional evaluation of a UI/UX design. Please analyze the following design information:
+
+<设计项目>
+Project type: {{PROJECT_TYPE}}
+Product positioning: {{PRODUCT_POSITIONING}}
+Target users: {{TARGET_USERS}}
+Core functions: {{CORE_FUNCTIONS}}
+Design objectives: {{DESIGN_OBJECTIVES}}
+</设计项目>
+
+<设计内容>
+{{DESIGN_CONTENT}}
+</设计内容>
+
+Please evaluate the design along the following dimensions:
+1. User experience and interaction flow analysis
+2. Visual design and interface aesthetics
+3. Usability and accessible design
+4. Brand consistency and design standards
+5. Technical feasibility and implementation difficulty
+
+Please output a detailed design evaluation report inside the <design-review> tags.
+```
+
+</details>
+
 <details><summary><b>Ukiyo-e Print of a River Ferry in Autumn Rain</b></summary>
 
 ```text
@@ -3870,6 +4049,38 @@ Each image must be photorealistic and high resolution.
 * Keep clothing scale proportional to `and`.
 * Background must remain natural and consistent unless overridden by ``.
 * Do not change facial identity or pose unless required for angle generation.
+```
+
+</details>
+
+<details><summary><b>Visual Design Director</b> · machine translated</summary>
+
+```text
+Your task is to provide professional visual design guidance. Please analyze the following design requirements:
+
+<设计项目>
+Design type: {{DESIGN_TYPE}}
+Project background: {{PROJECT_CONTEXT}}
+Design goals: {{DESIGN_GOALS}}
+Target audience: {{TARGET_AUDIENCE}}
+Application scenarios: {{APPLICATION_SCENARIOS}}
+</设计项目>
+
+<设计要求>
+Style preference: {{STYLE_PREFERENCE}}
+Color requirements: {{COLOR_REQUIREMENTS}}
+Size specifications: {{SIZE_SPECIFICATIONS}}
+Technical constraints: {{TECHNICAL_CONSTRAINTS}}
+</设计要求>
+
+Please provide design guidance that includes the following:
+1. Design concept and creative direction
+2. Color scheme and visual hierarchy
+3. Font selection and typographic layout
+4. Graphic elements and decorative design
+5. Output specifications and application guidelines
+
+Please output the complete visual design guidance plan inside <design-guide> tags.
 ```
 
 </details>

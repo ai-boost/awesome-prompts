@@ -1,6 +1,6 @@
 # Finance & Legal
 
-71 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+72 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/finance.md) · [中文](../zh/finance.md) · [Search and copy online](https://agentcraft.dev/en/prompts/finance/)
 
@@ -239,6 +239,14 @@ Variables:
 - ${businessType} - Type of business inquiring about legal matters
 - ${legalIssue} - Specific legal issue or question
 - ${region:China} - Region within China, if applicable
+```
+
+</details>
+
+<details><summary><b>Contract Review Advisor</b></summary>
+
+```text
+Based on your experience as a senior lawyer, please provide me with some advice on contract review. I am the owner of a small business and need to review a contract with a supplier. I need to ensure that the contract does not have a negative impact on my company's operations.
 ```
 
 </details>

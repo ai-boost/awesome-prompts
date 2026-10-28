@@ -1,6 +1,6 @@
 # Coding & Development (2/10)
 
-594 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+616 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md) · [Search and copy online](https://agentcraft.dev/en/prompts/coding/)
 
@@ -603,6 +603,14 @@ Rules:
 
 </details>
 
+<details><summary><b>Bilingual Naming Suggestions</b></summary>
+
+```text
+I am seeking suggestions for both English and Chinese names that are highly suitable for a description I provide. As a bilingual linguist, please help me generate appropriate names in both languages. The English name should be in camel case format.
+```
+
+</details>
+
 <details><summary><b>Blog and Docs Home Page Redesign</b></summary>
 
 ```text
@@ -668,6 +676,37 @@ Rules:
 - Focus on both performance and security aspects
 - Provide clear, concise feedback
 - Use variable placeholders (e.g., ${code}) to make the prompt reusable
+```
+
+</details>
+
+<details><summary><b>Bug Fixing Assistant</b> · machine translated</summary>
+
+```text
+Your task is to help quickly locate and fix code bugs. Please analyze the following issue information:
+
+<Bug Information>
+Problem description: {{BUG_DESCRIPTION}}
+Error symptoms: {{ERROR_SYMPTOMS}}
+Reproduction steps: {{REPRODUCTION_STEPS}}
+Environment information: {{ENVIRONMENT_INFO}}
+Error logs: {{ERROR_LOGS}}
+</Bug Information>
+
+<Code Context>
+Related code: {{RELATED_CODE}}
+Recent changes: {{RECENT_CHANGES}}
+Dependency versions: {{DEPENDENCY_VERSIONS}}
+</Code Context>
+
+Please provide a bug fix plan that includes the following:
+1. Root cause analysis of the problem
+2. Scope of impact and risk assessment
+3. Detailed fix steps
+4. Code modification suggestions
+5. Preventive measures and testing plan
+
+Please output the complete fix plan inside <bugfix> tags.
 ```
 
 </details>
@@ -4171,6 +4210,32 @@ Include these if detected (list actual names found):
 
 </details>
 
+<details><summary><b>Code Explainer</b></summary>
+
+```text
+I would like you to serve as a code interpreter, and elucidate the syntax and the semantics of the code line-by-line.
+```
+
+</details>
+
+<details><summary><b>Code Explanation</b> · machine translated</summary>
+
+```text
+【用户提示词 User】
+Please explain the logic of the code below and describe what function it accomplishes:
+'''
+// weight数组的大小 就是物品个数
+for(int i = 1; i < weight.size(); i++) { // 遍历物品
+    for(int j = 0; j <= bagweight; j++) { // 遍历背包容量
+        if (j < weight[i]) dp[i][j] = dp[i - 1][j];
+        else dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);
+    }
+}
+'''
+```
+
+</details>
+
 <details><summary><b>Code Formatter Agent</b></summary>
 
 ```text
@@ -4921,6 +4986,35 @@ Variables:
 
 </details>
 
+<details><summary><b>Code Review Expert</b> · machine translated</summary>
+
+```text
+Your task is to conduct a comprehensive and professional code review. Please analyze the following code information:
+
+<Code Information>
+Programming language: {{PROGRAMMING_LANGUAGE}}
+Code function: {{CODE_FUNCTION}}
+Project context: {{PROJECT_CONTEXT}}
+Performance requirements: {{PERFORMANCE_REQUIREMENTS}}
+Security level: {{SECURITY_LEVEL}}
+</Code Information>
+
+<Code Content>
+{{CODE_CONTENT}}
+</Code Content>
+
+Please review the code from the following dimensions:
+1. Logical correctness and algorithmic efficiency
+2. Readability and maintainability analysis
+3. Identification of security vulnerabilities and risk points
+4. Performance bottlenecks and optimization suggestions
+5. Coding standards and best practices
+
+Please provide a detailed code review report inside <review> tags.
+```
+
+</details>
+
 <details><summary><b>Code Review Professional</b></summary>
 
 ```text
@@ -5299,6 +5393,21 @@ Good code reviews:
 
 ---
 **RULE:** When using this prompt, you must create a file named `TODO_code-reviewer.md`. This file must contain the findings resulting from this research as checkable checkboxes that can be coded and tracked by an LLM.
+```
+
+</details>
+
+<details><summary><b>Code Rewrite and Optimization</b> · machine translated</summary>
+
+```text
+【用户提示词 User】
+The code below is very inefficient and doesn't handle edge cases. First explain the problems with this code and how to fix them, then optimize it:
+'''
+def fib(n):
+    if n <= 2:
+        return n
+    return fib(n-1) + fib(n-2)
+'''
 ```
 
 </details>

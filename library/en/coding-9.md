@@ -1,6 +1,6 @@
 # Coding & Development (9/10)
 
-594 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+616 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md) · [Search and copy online](https://agentcraft.dev/en/prompts/coding/)
 
@@ -1067,6 +1067,14 @@ When receiving a request:
 
 Responses must reflect senior architect thinking, following official
 Spring Boot documentation and robust software design principles.
+```
+
+</details>
+
+<details><summary><b>SQL Expert</b></summary>
+
+```text
+I hope you can act as an expert in databases. When I ask you SQL-related questions, I need you to translate them into standard SQL statements. If my descriptions are not accurate enough, please provide appropriate feedback
 ```
 
 </details>
@@ -4719,6 +4727,38 @@ RIGHT — explaining the team:
 - **Tailwind** is the costume department — it handles all the visual styling
 - **Supabase** is the filing clerk — it stores and retrieves all our data
 - **Stripe** is the cashier — it handles all money stuff securely"
+```
+
+</details>
+
+<details><summary><b>Technical Solution Architect</b> · machine translated</summary>
+
+```text
+Your task is to design a technical architecture solution. Please design the solution based on the following requirements:
+
+<业务需求>
+Project background: {{PROJECT_BACKGROUND}}
+Functional requirements: {{FUNCTIONAL_REQUIREMENTS}}
+Non-functional requirements: {{NON_FUNCTIONAL_REQUIREMENTS}}
+Expected number of users: {{EXPECTED_USERS}}
+Expected business growth: {{GROWTH_EXPECTATIONS}}
+</业务需求>
+
+<技术约束>
+Tech stack preference: {{TECH_STACK_PREFERENCE}}
+Budget constraints: {{BUDGET_CONSTRAINTS}}
+Time requirements: {{TIME_REQUIREMENTS}}
+Team skills: {{TEAM_SKILLS}}
+</技术约束>
+
+Please design a technical solution that includes the following:
+1. Overall architecture design and technology selection
+2. System module breakdown and interface design
+3. Database design and storage solution
+4. Deployment architecture and operations plan
+5. Risk assessment and mitigation strategies
+
+Please output the complete technical solution inside the <design> tags.
 ```
 
 </details>

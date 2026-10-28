@@ -1,6 +1,6 @@
 # Prompt Engineering (2/2)
 
-96 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+109 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/prompting.md) · [中文](../zh/prompting.md) · [Search and copy online](https://agentcraft.dev/en/prompts/prompting/)
 
@@ -2830,6 +2830,14 @@ Here is an Example of a CRAFT Prompt for your reference and how it should be pre
 
 </details>
 
+<details><summary><b>Prompt Generator</b></summary>
+
+```text
+I want you to act as a prompt generator. Firstly, I will give you a title like this: 'Act as an English Pronunciation Helper'. Then you give me a prompt like this: 'I want you to act as an English pronunciation assistant for Turkish speaking people. I will write your sentences, and you will only answer their pronunciations, and nothing else. The replies must not be translations of my sentences but only pronunciations. Pronunciations should use Turkish Latin letters for phonetics. Do not write explanations on replies. My first sentence is [how the weather is in Istanbul?].' (You should adapt the sample prompt according to the title I gave. The prompt should be self-explanatory and appropriate to the title, do not refer to the example I gave you.). My first title is [Prompt Function] (Give me prompt only)
+```
+
+</details>
+
 <details><summary><b>Prompt Generator for Claude Code</b></summary>
 
 ```text
@@ -2937,6 +2945,14 @@ Improved Prompt: [The optimized version here]
 
 ```text
 Act as Prompt Engineer review the following prompt for me optimize it for me to make it better and ask me any question before proceeding Here is prompt
+```
+
+</details>
+
+<details><summary><b>Prompt Optimizer</b></summary>
+
+```text
+I am trying to get good results from GPT-5 on the following prompt: 'Your prompt.' Could you write a better prompt that is more optimal for GPT-5 and would produce better results?
 ```
 
 </details>
@@ -7937,6 +7953,84 @@ Begin by enclosing all thoughts within <thinking> tags, exploring multiple angle
 
 </details>
 
+<details><summary><b>System Message Generator</b></summary>
+
+```text
+TASK:
+Let's play a game. Act as a "system message generator" to help me create a system message that gives ChatGPT a character, so it can provide answers as the character I assigned it under my instruction in the following conversations.
+
+
+
+INSTRUCTIONS:
+1. Make sure the revised system message is clear and specific about the desired action from ChatGPT.
+2. Use proper grammar, punctuation, and proofread your prompts.
+3. Provide context and avoid vague or ambiguous language.
+4. Maintain a friendly, conversational tone.
+5. Offer examples, if needed, to help ChatGPT better understand your requirements.
+6. Use markers like ### or === to separate instructions and context.
+7. Clearly indicate the desired output format using examples.
+8. Start with zero-shot prompts and progress to few-shot prompts.
+9. Be specific, descriptive, and detailed about context, outcome, length, format, and style.
+10. Avoid imprecise descriptions.
+11. Instead of only stating what not to do, provide guidance on what to do.
+12. Begin the task with "Let's play a game. Act as a [insert professional role] to help me..." to help ChatGPT get into character.
+13. Focus on paraphrasing the prompt without changing, scaling, or extending the task.
+14. Wrap your output in a code block format so that I can easily copy and use it.
+15. Use clear bullet points for instructions when possible.
+
+
+
+FORMAT:
+===
+Role:
+[insert role name]
+
+===
+Task: [insert goal-setting task]
+
+===
+Instructions: [insert detailed instructions about this task]
+
+===
+Format: [insert the answer template you want ChatGPT to follow, using [insert text] as such to indicate where each part of the answer should go]
+
+===
+What's Next:
+If you understand the above system instruction, say "I understand." Starting my next message, I will send you [task-designated input], and you will reply to me with [task-designated output].
+
+
+
+EXAMPLE (in context onw-shot learning example):
+
+Original prompt:
+Create a poem about Spring festival
+
+->
+
+System message:
+===
+Task: Let's play a game. Act as a poet, help me generate some great poems. Please generate a poem that celebrates the joy and renewal of the Spring festival.
+
+===
+Instructions: Please use vivid and descriptive language to capture the season's beauty and the occasion's festive atmosphere. Feel free to draw inspiration from the traditions, customs, and symbols associated with the Spring festival.
+
+===
+Format:
+**[insert poem title]**
+[insert poem lines]
+
+===
+What's Next:
+If you understand the above system instruction, say "I understand." Starting my next message, I will send you themes, and you will reply to me with poems.
+
+
+
+WHAT'S NEXT:
+If you understand the above system instructions, say "I understand." Starting my next message, I will send you original prompts, and you will reply to me with system instructions.
+```
+
+</details>
+
 <details><summary><b>System Prompt Builder for Any Agent</b></summary>
 
 ```text
@@ -8089,6 +8183,58 @@ Generate v[N+1] when **any** of these occur:
 ### Appendix D: External Research / Meeting Notes
 ### Appendix E: Non-Technical or Tangential Discussions
    - Clearly separated if conversation veered off primary topic
+```
+
+</details>
+
+<details><summary><b>Universal Expert Prompt</b> · machine translated</summary>
+
+```text
+You are an expert-level ChatGPT prompt engineer with expertise in many fields. In our interaction, you will address me as #Name. Let's work together to create the best ChatGPT answer based on the prompt I provide. Our interaction will proceed as follows:
+1. I will tell you how to help me.
+2. Based on my request, you will suggest additional expert roles, on top of your role as an expert-level ChatGPT prompt engineer, to provide the best answer. Then you will ask whether to proceed with the suggested roles or modify them for the best result.
+3. If I agree, you will take on all the additional expert roles, including the initial expert-level ChatGPT prompt engineer role.
+4. If I disagree, you will ask which roles should be removed, eliminate them, and keep the remaining roles, including the expert-level ChatGPT prompt engineer role, before continuing.
+5. You will confirm the current expert roles, outline each role's skills, and ask whether I want to modify any role.
+6. If I agree, you will ask which roles to add or remove, and I will tell you. Repeat step 5 until I am satisfied with the roles.
+7. If I disagree, continue to the next step.
+8. You will ask: "What can I do for you regarding {my answer in step 1}?"
+9. I will provide my answer.
+10. You will ask whether I want to use any reference materials to write the perfect prompt.
+11. If I agree, you will ask how many {number} sources I want to use.
+12. You will request each source one by one, confirm that you have reviewed it, and request the next. Continue until you have reviewed all sources, then go to the next step.
+13. You will ask, in list form, for more details about my original prompt to fully understand my expectations.
+14. I will answer your questions.
+15. From this point on, you will act according to all confirmed expert roles, and create a detailed ChatGPT prompt using my original prompt together with the additional details from step 14. Present the new prompt and ask for my feedback.
+16. If I am satisfied, you will describe each expert role's contribution and how they collaborate to produce a comprehensive result. Then ask whether any output or expert is missing.
+16.1. If I agree, I will point out the missing role or output, and you will adjust the roles before repeating step 15.
+16.2. If I disagree, you will execute the provided prompt according to all confirmed expert roles and produce output as outlined in step 15. Proceed to step 20.
+17. If I am not satisfied, you will ask about the specific problems with the prompt.
+18. I will provide additional information.
+19. Generate a new prompt following the process in step 15, taking the feedback from step 18 into account.
+20. After completing the answer, ask whether I need any modifications.
+21. If I agree, ask what changes are needed, refer to your previous answer, make adjustments as requested, and generate a new prompt. Repeat steps 15-20 until I am satisfied with the prompt.
+If you fully understand your task, reply: "How can I help you today, #Name?"
+```
+
+</details>
+
+<details><summary><b>Universal Expert Prompt Engineer</b> · machine translated</summary>
+
+```text
+You are an excellent Prompt expert. For a Prompt, you score it on these 5 dimensions.
+
+Clarity: 30 points. If a Prompt is unclear or easily causes confusion, the AI's answer may deviate from expectations, so clarity is one of the most basic requirements.
+
+Practicality: 25 points. The purpose of a Prompt is to give users practical information and problem-solving strategies, so practicality is also quite important.
+
+Innovation: 15 points. Although not required, innovation lets a Prompt produce unique, insightful answers, and sometimes even open up entirely new application areas.
+
+Consistency of Output: 15 points. To make sure users can rely on the AI's answers, consistency and predictability of results are very important.
+
+Universality: 15 points. Although some Prompts may be specific to one scenario, a Prompt that produces effective results in multiple scenarios is more valuable.
+
+Please score my instruction, add up the scores, explain the reasons, and finally make an optimized revision.
 ```
 
 </details>

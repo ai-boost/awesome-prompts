@@ -1,6 +1,6 @@
 # Image & Design (1/4)
 
-735 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+743 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md) · [Search and copy online](https://agentcraft.dev/en/prompts/image/)
 
@@ -1614,6 +1614,14 @@ Variables:
 
 Example:
 - "Generate an image using assets from ${projectPath} in the style of ${artStyle}."
+```
+
+</details>
+
+<details><summary><b>Article to Symbolic Images</b></summary>
+
+```text
+Assume you're an AI capable of converting textual information into concrete images. Now you've entered an information world where everything is symbolically represented. I'm about to give you an article, and your task is to convert the information in this article into symbolic images as you understand them. Can you describe the form of these symbolic images in your visual world based on the article's information?
 ```
 
 </details>

@@ -1,6 +1,6 @@
 # Image & Design (2/4)
 
-735 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+743 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md) · [Search and copy online](https://agentcraft.dev/en/prompts/image/)
 
@@ -1179,6 +1179,19 @@ Rules:
 
 ```text
 Transform the person in the photo into a classic felt and fleece puppet. Replace their shirt with a Star Trek gold command uniform, complete with a Starfleet insignia pin on the chest.
+```
+
+</details>
+
+<details><summary><b>Fetch Images With Unsplash</b> · machine translated</summary>
+
+```text
+From this moment on, when you want to send a photo, write the Markdown code without using a code block. Use the Unsplash API (http://source.unsplash.com/1600x900/?). You will act as if you are sending photos, as though you were an image engine returning photos based on my search prompts. Do not mention Unsplash.
+
+    Prompt: cat  
+    Image size: 800x450 (replace "1600x900" in the API with this)
+
+<img src="imgs/image_gpt_cat.jpg" width="60%" height="auto">
 ```
 
 </details>
@@ -3960,6 +3973,19 @@ Start from the step 2 image "White Church with a Red Roof Above a Black Sand Bea
 
 </details>
 
+<details><summary><b>Icon Designer</b></summary>
+
+```text
+Act like an icon designer and give me ideas on representing an icon of the word [KEYWORD].
+
+The idea is to add to the main website page of the app an icon that represents the idea of [KEYIDEA] because the app's main goal is to offer [Function]
+
+More information:
+-The icon should be XXXX
+```
+
+</details>
+
 <details><summary><b>Identity Locked Image Transformation</b></summary>
 
 ```text
@@ -6067,6 +6093,29 @@ I want you to act as a prompt generator for Midjourney's artificial intelligence
 
 </details>
 
+<details><summary><b>Midjourney Prompt Generator</b></summary>
+
+```text
+I am an AI enthusiast using Midjourney for AI creation. I'd like for you to generate prompts for Midjourney.
+
+Here's how you can help:
+
+When I provide a theme, beginning with a "/", I need you to understand my English description and translate it into a set of English keywords. Separate these keywords with commas. Please, do not form complete sentences, just phrases or keywords. For example, for "/cute little girl, Disney style", you might generate "cute little girl, Disney style, portrait, white hair, smile, grey background, cinematic lighting, Pixar, 3D, Unreal Engine, ultra detailed 8k."
+
+The following rules apply:
+
+Use words and phrases, not sentences
+Be specific
+Use fewer words for more impact
+Use commas for separation
+Use lowercase
+Append ":: --ar 2:1 --v 4" for "widescreen", ":: --ar 1:2 --v 4" for "portrait", and ":: --v 4" otherwise.
+For Styles, Lighting, Camera/Lens, Artists, Colors, and Materials, choose from the provided lists.
+Do you understand these instructions? If so, please respond with "Yes" and do not write anything else.
+```
+
+</details>
+
 <details><summary><b>Mindful Mandala and Zen Patterns</b></summary>
 
 ```text
@@ -6226,40 +6275,6 @@ ${macro_shot} of the hands of Komar, an 18-year-old Indonesian teenage boy, wear
 
 [00:04 - 00:06]
 ${medium_shot} Komar, an 18-year-old Indonesian man with short hair, wearing black-framed glasses with minus lenses, wearing a plain navy blue short-sleeved t-shirt with a regular fit. Sitting at a wooden workbench filled with model kit equipment. Warm atmosphere, ${dust_motes} visible in light beams, ${cinematic_color_grading}, ${soft_shadows}.
-```
-
-</details>
-
-<details><summary><b>Miniature Cross Section Diorama</b></summary>
-
-```text
-Prompt:
-${input_object}: (anything you want to be the subject)
-${input_language}: English (any language you want)
----
-System Instruction:
-Generate a hyper-realistic, scientifically accurate "Autopsy" cross-section diorama based on the ${input_object} provided above. Use the following logic to procedurally dissect the object and populate the scene:
-Semantic Analysis & Text Annotations:
-Analyze the ${input_object} and determine its ACTUAL physical, biological, or mechanical structure. Break it down into 3 logical and realistic structural layers. ALL visible text labels, UI overlays, and diagram annotations in the image MUST be written in ${input_language}:
-- Layer 1 (Outer Shell/Barrier): The outermost protective barrier, casing, or skin. Label this with its scientifically accurate or technical name (translated to ${input_language}).
-- Layer 2 (Intermediate/Functional Layer): The secondary layer, internal mechanism, functional tissue, or core substance. Label this with its scientifically accurate or technical name (translated to ${input_language}).
-- Layer 3 (Inner Core/Network): The innermost core, central structure, or internal transport network. Label this with its scientifically accurate or technical name (translated to ${input_language}).
-Container:
-- The Surface: A clean, white medical/engineering examination table with sterile blue paper lining.
-Layout & Typography:
-- The dissected layers must be arranged in a strict Anatomical/Technical Chart format (left to right progression). The external view on the far left, cross-sections in the center, magnified details on the right.
-- Text Integration: The anatomical/structural text labels (in ${input_language}) must float cleanly above or beside their respective layers, looking like professional medical or engineering diagrams.
-- The Connections: Glowing Magenta Scan Lines must connect the dissected parts. Label these lines as "Scanner" or "MRI-scan" (translated to ${input_language}).
-The Micro-Narrative:
-CRITICAL: The object is massive compared to the scientists/engineers. Treat the object like a patient or a highly complex artifact on an operating table.
-- The Researchers: Dozens of tiny 1:87 Scale (HO Scale) Researchers in white lab coats, surgical masks, and magnifying headlamps.
-- The Equipment: Include scale-appropriate tools (e.g., microscopes, tiny scalpels, laser cutters, MRI machines scanning the object).
-- The Interaction: The figures must be actively analyzing and diagnosing (e.g., taking samples, consulting holographic charts displaying text in ${input_language}).
-Visual Syntax & Material Physics:
-- Material Accuracy: Photorealistic rendering of the object's ACTUAL materials (e.g., glistening moisture for organics, metallic reflections for machines, fibrous textures for woven items) contrasting with sterile medical/lab equipment.
-- Shadows: Cast soft and even, indicating bright, surgical operating theater lighting.
-Output:
-ONE image, 1:1 Aspect Ratio, Macro Photography, "Gray's Anatomy" or Technical Blueprint Aesthetic, 8k Resolution.
 ```
 
 </details>

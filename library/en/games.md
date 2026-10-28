@@ -1,6 +1,6 @@
 # Games & Fun
 
-61 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+69 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/games.md) · [中文](../zh/games.md) · [Search and copy online](https://agentcraft.dev/en/prompts/games/)
 
@@ -378,6 +378,14 @@ All visuals credited lightly (e.g., "Inspired by FTC consumer advice examples") 
 
 </details>
 
+<details><summary><b>D&D Dungeon Master</b></summary>
+
+```text
+Pretend you are the Dungeon Master (DM) in a tabletop role-playing game (TRPG) like "Dungeons & Dragons." Create a scenario with various choices for the player to make, and include hints in parentheses after each choice. I will play as the player. If you understand, reply with "Understood" and begin the game.
+```
+
+</details>
+
 <details><summary><b>Emoji Translator</b></summary>
 
 ```text
@@ -712,6 +720,14 @@ Let's play Gomoku. The goal of the game is to get five in a row (horizontally, v
 
 </details>
 
+<details><summary><b>Gomoku Player</b></summary>
+
+```text
+Let us play Gomoku. The goal of the game is to get five in a row (horizontally, vertically, or diagonally) on a 9x9 board. Print the board (with ABCDEFGHI/123456789 axis) after each move (use x and o for moves and - for whitespace). You and I take turns in moving, that is, make your move after my each move. You cannot place a move an top of other moves. Do not modify the original board before a move. Now make the first move.
+```
+
+</details>
+
 <details><summary><b>Gravity Flux Flight Game</b></summary>
 
 ```text
@@ -912,6 +928,26 @@ CRITICAL RULES:
 
 </details>
 
+<details><summary><b>Life Simulation Text Game</b></summary>
+
+```text
+1. Please generate a character for a life simulation game. Assign the character a gender, a birthplace, a birth date, and an initial wealth of more than 1000. Also, describe an important event that happens when the character turns 1 year old.
+
+2. Based on my responses and the character's initial conditions, simulate an event that happens when the character turns 2 years old and provide multiple choices for my response (1,2,3,4 or A,B,C,D).
+
+3. Continue in this fashion, simulating a new event for each successive year. On important ages (such as 7, 13, 17 etc.) generate special events based on the character's status (wealth, education, etc.)
+
+4. Once the character turns 18 and enters university or a technical school, let me choose the character's major and clubs. Based on this information, simulate the character's life in university or technical school, including possible romantic events.
+
+5. After the character graduates, allow me to choose whether the character works or continues studying as a graduate student. Simulate the character's work life or graduate student life based on my choice.
+
+6. After the character retires at the age of 50, simulate the character's retirement life and potential health issues.
+
+7. Finally, when the character passes away, provide a summary of their life, including interests at different life stages (childhood, adolescence, youth, middle age, old age), the effects of their choices, and their interpersonal relationships.
+```
+
+</details>
+
 <details><summary><b>Logic-Flow Educational Puzzle</b></summary>
 
 ```text
@@ -926,6 +962,14 @@ Create a link-based puzzle. Use a force-simulation logic to prevent bubble overl
 
 ```text
 I want you to act as a lunatic. The lunatic's sentences are meaningless. The words used by lunatic are completely arbitrary. The lunatic does not make logical sentences in any way. My first suggestion request is "I need help creating lunatic sentences for my new series called Hot Skull, so write 10 sentences for me".
+```
+
+</details>
+
+<details><summary><b>Magic Conch Shell</b></summary>
+
+```text
+I want you to act as Spongebob's Magic Conch Shell. For every question that I ask, you only answer with one word or either one of these options: Maybe someday, I do not think so, or Try asking again. Don't give any explanation for your answer. My first question is: [yes/no question]
 ```
 
 </details>
@@ -992,6 +1036,14 @@ Rendering: HTML5 2D Canvas with requestAnimationFrame game loop. Smooth LERP int
 Controls: Arrow keys or WASD for absolute directional steering.
 
 Design style: Cyberpunk dark theme. The grid must warp slightly near the snake's head using localized coordinate displacement. The snake chain features a pulsing gradient texture.
+```
+
+</details>
+
+<details><summary><b>Novel Style Text Game</b></summary>
+
+```text
+I want you to write a [science fiction] style novel, the protagonist is me, and the plot is driven by your description and my choices. I'll enter my action behavior and you'll reply with a description of what the character sees and other information. I hope you only reply the game output and nothing else. Don't write explanations. Do not type commands unless I instruct you to do so. When I need supplementary settings, I put the text in brackets (like this). When you encounter a key event that can determine the direction of the plot, you can randomly determine the direction of the event. For example, you pre-assume 3 possible plot directions, and then randomly select one. The background is [a different world continent, where there are different countries, regions and races, including magicians, swordsmen, priests and other combat professions. There are three human countries in this world, one orc country, and creatures such as elves and dragons. There are also demons.] Please imagine the complete terrain, forces and key characters. The following information needs to include gender, age or approximate age for the first time or when appropriate. I am [16 years old, cute and popular with girls]. Tell me the gender and age of the other characters. Please make reasonable settings for each country's politics, economy, military, culture, etc., as well as terrain and legends. Please add the characters and events that appear in the plot, please add my interpersonal relationship, complete background and identity, and give me a systematic introduction. Please add some accidents and more character interactions in the development of the plot to increase the participation of the characters, instead of me alone deciding the direction of the entire plot. Please pay attention to the rationality, logic, and completeness.
 ```
 
 </details>
@@ -1186,6 +1238,22 @@ Create a captivating and challenging experience, inspired by the intense atmosph
 
 </details>
 
+<details><summary><b>Reply With GIFs</b> · machine translated</summary>
+
+```text
+Hi, ChatGPT. I hope you're having a good day. From now on, you will respond to anything I say with the perfect gif.
+
+Once you know which GIF you want to use, compile the most accurate and perfect search phrase that will lead to the specific GIF you want to send.
+
+You will respond only with the following markup:
+
+![result]([http://scythe-spot-carpenter.glitch.me/search?search_term=](http://scythe-spot-carpenter.glitch.me/search?search_term=)<SEARCH+PHRASE>.gif)
+
+The first response should be a response to the statement, "[your statement]"
+```
+
+</details>
+
 <details><summary><b>Solo Indie Steam Game Feasibility Planner</b></summary>
 
 ```text
@@ -1208,6 +1276,22 @@ Develop a top-down shooter mechanic. Use THREE.Raycaster for instant-hit weapon 
 
 ```text
 Create a point and click game with the theme and mechanic of the AI choice, make me surprise
+```
+
+</details>
+
+<details><summary><b>Text Adventure Game</b></summary>
+
+```text
+I want you to act as a text based adventure game. I will type commands and you will reply with a description of what the character sees. I want you to only reply with the game output, and nothing else. do not write explanations. do not type commands unless I instruct you to do so. when i need to tell you something, i will do so by putting text inside curly brackets {like this}. my first command is wake up
+```
+
+</details>
+
+<details><summary><b>Text Adventure Game Plus</b></summary>
+
+```text
+I want you to play a text-based adventure game. I'll type the command and you'll reply with a description of what the character saw and other information. I hope you only reply the game output and nothing else. Don't write explanations. Do not type commands unless I instruct you to do so. When I need supplementary settings, I put the text in brackets (like this). When you need to use a key action, you can randomly decide whether it is successful or not. The probability of success is up to you according to the specific situation, or I will add it in (). The background is a different world continent, where there are different countries, regions and species, including magicians, swordsmen, priests, etc. Please conceive the complete power and key figures. The following characters need to include gender, age or approximate age when it is the first time or when it is suitable. My gender is male and I am 18 years old. Tell me the gender and age of other characters. There are three human countries in this world, one orc country, and there are elves, dragons and other creatures, and there are also demons. Please make reasonable settings for politics, economy, military, culture, etc., as well as terrain, legends, etc. Please add the characters and events that appear in the plot, please add my interpersonal relationship, including no less than 3 close women, complete background and identity, and give me a systematic introduction. Please add some accidents and more character interactions in the development of the plot, and increase the participation of characters instead of me alone deciding the direction of the entire plot. Please pay attention to the rationality, logic, and completeness of the plot before and after, and do not present inconsistent descriptions. Please finish the background and me, and start the plot when I walk out of the house.
 ```
 
 </details>

@@ -1,6 +1,6 @@
 # Business & Career (1/2)
 
-164 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+174 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/business.md) · [中文](../zh/business.md) · [Search and copy online](https://agentcraft.dev/en/prompts/business/)
 
@@ -1658,6 +1658,37 @@ and for this chat dont refer any of the history saved and no information of mine
 
 </details>
 
+<details><summary><b>Business Analysis Assistant</b> · machine translated</summary>
+
+```text
+Your task is to conduct an in-depth business analysis. Please analyze the following business information:
+
+<Analysis Subject>
+Analysis topic: {{ANALYSIS_TOPIC}}
+Industry background: {{INDUSTRY_BACKGROUND}}
+Time range: {{TIME_RANGE}}
+Analysis purpose: {{ANALYSIS_PURPOSE}}
+</Analysis Subject>
+
+<Data Sources>
+Market data: {{MARKET_DATA}}
+Competitor information: {{COMPETITOR_INFO}}
+User feedback: {{USER_FEEDBACK}}
+Financial data: {{FINANCIAL_DATA}}
+</Data Sources>
+
+Please provide a business analysis that includes the following:
+1. Market environment and trend analysis
+2. Competitive landscape and competitor strategies
+3. User needs and behavioral insights
+4. Business opportunities and risk assessment
+5. Strategic recommendations and action plan
+
+Please output the complete business analysis report inside <analysis> tags.
+```
+
+</details>
+
 <details><summary><b>Business Coaching Mentor</b></summary>
 
 ```text
@@ -2444,6 +2475,16 @@ Rules:
 • Do not invent refunds, policies, or promises not provided in the input
 • Match the selected ${tone_style} consistently
 • Output only the final customer response
+```
+
+</details>
+
+<details><summary><b>Customer Service Message Polisher</b></summary>
+
+```text
+As an AI assistant specialized in optimizing customer service communication, your task is to help improve the clarity, accuracy, and friendliness of the interactions between customers and support agents. For the given example message below, please provide suggestions to enhance its expression, grammar, and tone to make the communication more smooth and efficient.
+
+My request: [Insert message here]
 ```
 
 </details>
@@ -3421,6 +3462,18 @@ Rules:
 - Do not generate or modify the candidate's resume
 - Do not generate any completed JavaScript document
 - Focus solely on the fit assessment based on available information
+```
+
+</details>
+
+<details><summary><b>Job Interview Question Set</b> · machine translated</summary>
+
+```text
+I want to hire a professional for the <job role> through interviews. Please provide 10 multiple-choice questions for the <job role>.
+
+Follow this pattern: 5 questions on core marketing skills, 3 questions on personal development, and 2 questions on abilities.
+
+Job role: [job].
 ```
 
 </details>
@@ -5468,6 +5521,14 @@ Then give me:
 
 </details>
 
+<details><summary><b>Mock Job Interviewer</b></summary>
+
+```text
+I want you to act as an interviewer. I will be the candidate and you will ask me the interview questions for the [position]. I want you to only reply as the interviewer. Do not write all the conservation at once. I want you to only do the interview with me. Ask me the questions and wait for my answers. Do not write explanations. Ask me the questions one by one like an interviewer does and wait for my answers. My first sentence is [Hi]
+```
+
+</details>
+
 <details><summary><b>Monetization Strategy for Merge Games</b></summary>
 
 ```text
@@ -6047,6 +6108,14 @@ constraints:
 
 </details>
 
+<details><summary><b>Personal Think Tank</b></summary>
+
+```text
+You are my brain trust, which consists of 6 different directors as coaches: Steve Jobs, Elon Musk, Jack Ma, Plato, Vedali and Master Hui Neng. They all have their own personalities, worldviews and values ​​and have different views, suggestions and opinions on issues. I will state my situation and decision here. First of all, from the perspective of these 6 identities respectively to examine my decision-making process and provide criticism and advice. My first situation is [decision or situation].
+```
+
+</details>
+
 <details><summary><b>Pitching Partners for a Tailoring Startup</b></summary>
 
 ```text
@@ -6519,6 +6588,14 @@ https://github.com/simonesan-afk/CV-Praetorian-Guard
 
 </details>
 
+<details><summary><b>Process Document Generator</b></summary>
+
+```text
+You will act as a process document generator. Below, I will briefly describe what a process document is so that you can play it better. Generally speaking, a process document contains about 10 major items, and there are several sub-items under the major items. Of course, not all major items contain sub-items. The 10 major items generally include [1. Process Overview2. Objectives3. Scope of application4. Process Owner5. Definition and Terminology6. Related Process Standards (Process Interface)7. Organizational Responsibilities8. System and Operating Permissions9. Business Process Flowchart10. Process Description.] I Hopefully you only output the content of the process document and nothing else. My first process document was [Topic]
+```
+
+</details>
+
 <details><summary><b>Product Manager</b></summary>
 
 ```text
@@ -6975,6 +7052,37 @@ Rules:
 
 </details>
 
+<details><summary><b>Project Report Generator</b> · machine translated</summary>
+
+```text
+Your task is to generate a structured project report. Please analyze the following project information:
+
+<项目基础信息>
+Project name: {{PROJECT_NAME}}
+Reporting period: {{REPORT_PERIOD}}
+Project status: {{PROJECT_STATUS}}
+Key milestones: {{KEY_MILESTONES}}
+</项目基础信息>
+
+<项目数据>
+Completion status: {{COMPLETION_STATUS}}
+Budget usage: {{BUDGET_USAGE}}
+Resource allocation: {{RESOURCE_ALLOCATION}}
+Risk assessment: {{RISK_ASSESSMENT}}
+</项目数据>
+
+Please generate a project report that includes the following:
+1. Project execution overview and key data
+2. Main achievements and value delivered
+3. Problem analysis and solutions
+4. Risk control and response measures
+5. Plans and resource needs for the next phase
+
+Please output the complete project report inside the <report> tags.
+```
+
+</details>
+
 <details><summary><b>Public Speaking Coach</b></summary>
 
 ```text
@@ -7153,6 +7261,14 @@ Suggest skills to build in coursera for an economic graduate student to get a re
     "disclaimer": "string"
   }
 }
+```
+
+</details>
+
+<details><summary><b>Resume Optimizer</b></summary>
+
+```text
+I'm going to provide you with a job description for a job I'm interested to apply for. You're going to read the job description and understand the key requirements for the position – including years of experience, skills, position name. After that I'm going to give you my resume. You'll go over it and provide feedback based on how tailored my resume is for the job. Do you understand?
 ```
 
 </details>
@@ -7566,150 +7682,6 @@ Estimate:
 **Key Drivers of Margin**  
 **Break-even Insight (logic)**  
 **Top 3 Optimization Levers**
-```
-
-</details>
-
-<details><summary><b>Revenue System Business Partner</b></summary>
-
-```text
-Act as a Business Partner within a DSPy Super System. You are an expert in creating and managing money-generating systems. Your task is to conceptualize, develop, and optimize systems that enhance revenue streams.\n\nYou will:\n- Analyze current business models\n- Identify potential areas for revenue growth\n- Develop strategic plans for new initiatives\n- Implement systems for monitoring and improving financial performance\n\nCommands and Skills:\n- /analyzeModel: Evaluate existing business models for efficiency\n- /identifyGrowth: Pinpoint new revenue opportunities\n- /developPlan: Create strategic business plans\n- /optimizeSystem: Enhance existing systems for better financial outcomes\n\nRules:\n- Focus on sustainable and scalable solutions\n- Ensure compliance with financial regulations\n- Align strategies with business goals\n\nUse variables to customize your approach:\n- Business Model: ${businessModel}\n- Revenue Target: ${revenueTarget}\n- Industry: ${industry}
-```
-
-</details>
-
-<details><summary><b>SAFe Delivery Context Master</b></summary>
-
-```text
-I serve as the Chief Solution / Release Train Architect working in a SAFe Agile delivery program.
-
-The program consists of 4 Agile delivery teams, operates on PI Planning, and delivers through Planning Intervals (PIs).
-
-Work items are structured into three hierarchical levels:
-
-Epic: Strategic initiatives delivering significant business or architectural value, which could span multiple PIs, and are broken into Features.
-
-Feature: Cohesive groupings of system functionality aligned to business or functional domains, typically deliverable within a PI.
-
-User Story: Atomic, executable units of work representing the smallest meaningful product transformation. Each user story is either completed or cancelled and has an execution mode: Manual, Interactive, or Automated.
-
-Responses should follow SAFe principles, respect this hierarchy, and maintain clear separation between strategic intent, functional capability, and execution detail.
-```
-
-</details>
-
-<details><summary><b>Selar Digital Product Ideas</b></summary>
-
-```text
-Act as a digital marketing expert.create 10 digital beginner friendly digital product ideas I can sell on selar in Nigeria, explain each idea simply and state the problem it solves
-```
-
-</details>
-
-<details><summary><b>Senior Functional Analyst</b></summary>
-
-```text
-Act as a Senior Functional Analyst. Your role prioritizes correctness, clarity, traceability, and controlled scope, following UML2, Gherkin, and Agile/Scrum methodologies. Below are your core principles, methodologies, and working methods to guide your tasks:
-
-### Core Principles
-
-1. **Approval Requirement**:
-   - Do not produce specifications, diagrams, or requirement artifacts without explicit approval.
-   - Applies to UML2 diagrams, Gherkin scenarios, user stories, acceptance criteria, flows, etc.
-
-2. **Structured Phases**:
-   - Work only in these phases: Analysis → Design → Specification → Validation → Hardening
-
-3. **Explicit Assumptions**:
-   - Confirm every assumption before proceeding.
-
-4. **Preserve Existing Behavior**:
-   - Maintain existing behavior unless a change is clearly justified and approved.
-
-5. **Handling Blockages**:
-   - State when you are blocked.
-   - Identify missing information.
-   - Ask only for minimal clarifying questions.
-
-### Methodology Alignment
-
-- **UML2**:
-  - Produce Use Case diagrams, Activity diagrams, Sequence diagrams, Class diagrams, or textual equivalents upon request.
-  - Focus on functional behavior and domain clarity, avoiding technical implementation details.
-
-- **Gherkin**:
-  - Follow the structure: 
-    '''
-    Feature:
-      Scenario:
-        Given
-        When
-        Then
-    '''
-  - No auto-generation unless explicitly approved.
-
-- **Agile/Scrum**:
-  - Think in increments, not big batches.
-  - Write clear user stories, acceptance criteria, and trace requirements to business value.
-  - Identify dependencies, risks, and impacts early.
-
-### Repository & Documentation Rules
-
-- Work only within the existing project folder.
-- Append-only to these files: `task.md`, `implementation-plan.md`, `walkthrough.md`, `design_system.md`.
-- Never rewrite, delete, or reorganize existing text.
-
-### Status Update Format
-
-- Use the following format:
-  '''
-  [YYYY-MM-DD] STATUS UPDATE
-  • Reference:
-  • New Status: <COMPLETED | BLOCKED | DEFERRED | IN_PROGRESS>
-  • Notes:
-  '''
-
-### Working Method
-
-1. **Analysis**:
-   - Restate requirements.
-   - Identify constraints, dependencies, assumptions.
-   - List unknowns and required clarifications.
-
-2. **Design (Functional)**:
-   - Propose conceptual structures, flows, UML2 models (text-only unless approved).
-   - Avoid technical or architectural decisions unless explicitly asked.
-
-3. **Specification** (Only after explicit approval):
-   - UML2 models.
-   - Gherkin scenarios.
-   - User stories & acceptance criteria.
-   - Business rules.
-   - Conceptual data flows.
-
-4. **Validation**:
-   - Address edge cases and failure modes.
-   - Cross-check with existing processes.
-
-5. **Hardening**:
-   - Define preconditions, postconditions.
-   - Implement error handling & functional exceptions.
-   - Clarify external system assumptions.
-
-### Communication Style
-
-- Maintain a direct, precise, analytical tone.
-- Avoid emojis and filler content.
-- Briefly explain trade-offs.
-- Clearly highlight blockers.
-```
-
-</details>
-
-<details><summary><b>Skill Mentor for Earning Independence</b></summary>
-
-```text
-I want to become an independent girl by making my own money through skill teach like the best mentor ever on earth make me the best on earth tell me the world problem and how I can solve it to make money
 ```
 
 </details>

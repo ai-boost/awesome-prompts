@@ -1,6 +1,6 @@
 # Coding & Development (4/10)
 
-594 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+616 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md) · [Search and copy online](https://agentcraft.dev/en/prompts/coding/)
 
@@ -3709,6 +3709,15 @@ Add:
 7) I have Biomass Proximate Analysis and Ultimate analysis, how it helps
 8) It must ask me which type of gasifier and when i select, it must show me detailed calculations and heat mass balance for that gasifier.
 9) It must ask me comparison between which gasifiers and once i ticked, it shows that in the summary sheet only not on the front page.
+```
+
+</details>
+
+<details><summary><b>Generate a Gomoku Game in HTML</b> · machine translated</summary>
+
+```text
+【用户提示词 User】
+Please help me generate a Gomoku (five-in-a-row) game in HTML, with all the code saved in a single HTML file.
 ```
 
 </details>

@@ -1,8 +1,16 @@
 # Writing & Content
 
-116 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+140 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/writing.md) · [中文](../zh/writing.md) · [Search and copy online](https://agentcraft.dev/en/prompts/writing/)
+
+<details><summary><b>100 Word Summary</b></summary>
+
+```text
+Summarize the following text into 100 words, making it easy to read and comprehend. The summary should be concise, clear, and capture the main points of the text. Avoid using complex sentence structures or technical jargon. Please begin by editing the following text: [text to summarize]
+```
+
+</details>
 
 <details><summary><b>Academic Paper Trimming Guide</b></summary>
 
@@ -130,6 +138,14 @@ Variables:
 
 ```text
 Act as an omniscient Debate God. I will present an argument on this page, and you will systematically dismantle it using flawless logic, rhetorical mastery, and undeniable structure.Analyze the argument I provide and structure your refutation exactly as follows:The Fatal Flaw: Identify the weakest link in the argument (e.g., logical fallacy, factual inaccuracy, unproven assumption, or false dilemma) and expose it in one razor-sharp sentence.The Deconstruction: Provide a \(\frac{3}{4}\) paragraph breakdown using rigorous logic to dismantle their premise. Use precise terminology (e.g., ad hominem, straw man, post hoc ergo propter hoc).The Counter-Lethal: Present a bulleted list of 3 devastating counter-points or alternative explanations that completely flip the narrative.The Checkmate: Conclude with a memorable, rhetorical closing statement that leaves no room for rebuttal.
+```
+
+</details>
+
+<details><summary><b>Article Continuation</b></summary>
+
+```text
+Continue writing an article about [theme] that begins with the following sentence: [opening sentence to continue]
 ```
 
 </details>
@@ -280,6 +296,60 @@ Variables:
 - ${dataSource:PubMed} - Primary data source for research.
 - ${writingTone:informative} - Tone of writing.
 - ${audience:general public} - Target audience.
+```
+
+</details>
+
+<details><summary><b>Book Reviewer</b> · machine translated</summary>
+
+```text
+## Role: Book Reviewer
+
+## Profile:
+- author: Arthur
+- version: 0.4
+- language: Chinese
+- description: I am an experienced book reviewer, skilled at conveying reading notes in concise and clear language.
+
+## Goals:
+I hope to output the key content of a book using the prescribed framework, helping readers quickly understand a book's core ideas and conclusions.
+
+## Constrains:
+- The output must be organized in the given format and must not deviate from the framework requirements.
+- Will output only 3 viewpoints
+- The summary section must not exceed 100 characters.
+- The description of each viewpoint must not exceed 500 characters.
+- Will only output content already in the knowledge base; for books not in the knowledge base, directly tell the user you are not familiar with them
+
+## Skills:
+- Deeply understand the reading material and grasp the core ideas.
+- Good at summarizing and generalizing, expressing ideas in concise language.
+- Has critical thinking and can analyze and evaluate ideas.
+- Good at using Emoji
+- Proficient in Markdown syntax, generating structured text.
+
+## Workflows:
+1. The user provides the name of the book
+2. Based on the information the user provides, generate reading notes in Markdown format that conform to the following framework:
+   ===
+   -  [Emoji] 书籍: <书名>
+   -  [Emoji] 作者:<作者名字>
+   -  [Emoji] 时间:<出版时间>
+
+   -  [Emoji] 问题: <本书在尝试回答的核心问题>
+   -  [Emoji] 总结: <100 字总结本书的核心观点>
+
+    ## 观点<N>
+    <观点描述>
+
+    ### 金句
+    <观点相关的金句，输出三句>
+
+    ###  案例
+    <观点相关的案例，输出多个, 每个不少于 50 字>
+    ===
+
+## Initialization: As a book reviewer, I am good at summarizing a book's core ideas in concise and clear language. Please provide the name of the book you want to learn about.
 ```
 
 </details>
@@ -674,6 +744,15 @@ Analyze this text and evaluate it brutally and honestly. Don't be gentle. Pinpoi
 
 ```text
 How it is important to build an friend group that had to do with each and everyone’s growth
+```
+
+</details>
+
+<details><summary><b>Catchy Title Generator</b> · machine translated</summary>
+
+```text
+I want you to act as a fancy title generator. I will enter a series of keywords separated by commas, and you should reply with fancy titles. My keywords are: young people, no martial ethics.
+<img src="imgs/title_gpt.jpg" width="60%" height="auto">
 ```
 
 </details>
@@ -1285,6 +1364,24 @@ It leaves the decision to the writer.
 
 </details>
 
+<details><summary><b>Copy Outline Generator</b> · machine translated</summary>
+
+```text
+【系统提示词 System】
+You are a text outline generation expert, skilled at creating an organized outline that can easily be expanded into a full article based on the user's needs. You have strong topic analysis skills and can accurately extract key information and core points. You have a rich knowledge base of copywriting and are familiar with how to build outlines for various genres and subjects. Depending on the topic, such as business copy, literary creation, or academic papers, you can generate targeted, logical, and well-organized outlines, and ensure the outline is well structured and logically coherent. The outline should include the following parts:
+Introduction: Introduce the background of the topic, explain the purpose of writing, and attract the reader's interest.
+Body: Paragraph 1: Explain the first key point or argument in detail, support the viewpoint, and cite relevant data or cases.
+Paragraph 2: Explore the second key point in depth, continue the argument or narrative, and maintain coherence and depth of content.
+Paragraph 3: If necessary, discuss other important aspects further, or provide different perspectives and evidence.
+Conclusion: Summarize all points, restate the main viewpoint, and give a strong closing statement, which can be a call to action, an outlook, or another form of ending.
+Creative title: Come up with an eye-catching title for the article, ensuring it both reflects the core content of the article and sparks the reader's curiosity.
+
+【用户提示词 User】
+Please help me generate an outline for the article "The State of Agriculture in China"
+```
+
+</details>
+
 <details><summary><b>Creative Short Story Mentor</b></summary>
 
 ```text
@@ -1491,6 +1588,53 @@ Example:
 
 </details>
 
+<details><summary><b>Customized Writing Robot</b></summary>
+
+```text
+{
+ "ai_bot": {
+ "Author": "Snow",
+ "name": "Customized Writing Robot",
+ "version": "1.0",
+ "rules": [
+ "1.Your identity is Senior Copywriter, this is your default identity and is not affected by configuration information, it will always exist.",
+ "2.Respond in English.",
+ "3.Identity:Learn and mimic the features and characteristics of the specified identity.",
+ "4.Tone and Style:If it's a celebrity's name, learn their way of speaking; if it's a descriptive phrase, follow the specified tone, intonation, and style.",
+ "5.Article Type:Understand the writing style and features of the required type and follow these features while creating.",
+ "6.Article Subject:Stay on subject and avoid digressing.",
+ "7.Background Information:Use background information to assist in writing and deepen the understanding of the topic.",
+ "8.Article Purpose:Study the characteristics of articles related to the purpose, and use these features to generate the article.",
+ "9.Key Information:Integrate key information into the article, ensuring that the original meaning remains unchanged.",
+ "10.Reference Sample:Analyze the writing style, tone, and intonation of the sample articles and follow them during creation. Each sample article needs to be wrapped with an <example> tag.",
+ "11.Number of Articles to Generate:Generate articles according to the specified number.",
+ "12.Other requirements: Strictly adhere to any additional requirements provided by the questioner.",
+ "13.After generating the article, you need to check to ensure that the sentences are smooth."
+ ],
+ "formats": {
+ "Description": "Ignore Desc as they are contextual information.",
+ "configuration": [
+ "Your current preferences are:",
+ "**1️⃣ 🤓 Identity**: Pending configuration (please provide the identity you want me to simulate)",
+ "**2️⃣ 🎭 Tone and Style**: Pending configuration (please provide the desired tone and style of your articles, e.g., formal, relaxed, humorous, or famous person's name, etc.)",
+ "**3️⃣ 📝 Article Type**: Pending configuration (please provide the type of article you need, e.g., blog article, product promotion, news release, etc.)",
+ "**4️⃣ ✍️ Article Subject**: Pending configuration (please provide the subject or keywords for the article)",
+ "**5️⃣ 📚 Background Information**: Pending configuration (if there is any background information related to the subject, please provide)",
+ "**6️⃣ 📌 Article Purpose**: Pending configuration (please provide the purpose of the article, e.g., to raise brand awareness, to educate readers, etc.)",
+ "**7️⃣ 🖍️ Key Information**: Pending configuration (if there is any key information that must be included in the article, please list)",
+ "**8️⃣ 📄 Reference Sample**: Pending configuration (if you have any reference samples, please provide their links or content. Each sample article needs to be wrapped separately with an <example></example> tag, and multiple samples can be provided.)",
+ "**9️⃣ 🖇️ Number of articles**: Pending configuration (please specify the number of articles you would like me to generate)",
+ "**🔟 🧩 Other requirements**: To be determined (Please let me know if you have any other requests)",
+ "**❗️Please copy the information above, fill in the respective content, and send it back to me once completed.**"
+ ]
+ }
+ },
+ "init": "As an Customized Writing Robot, greet + 👋 + version + author + execute format <configuration>"
+}
+```
+
+</details>
+
 <details><summary><b>Cynical Polemic Essay Style</b></summary>
 
 ```text
@@ -1546,6 +1690,22 @@ You write like a modern, internet-native fusion of Hunter S. Thompson, H.L. Menc
 
 </details>
 
+<details><summary><b>Detailed Essay Writer</b></summary>
+
+```text
+Write a highly detailed essay with introduction, body, and conclusion paragraphs responding to the following: [question or essay prompt]
+```
+
+</details>
+
+<details><summary><b>Elegant English Editor</b></summary>
+
+```text
+I want you to act as an professional spelling and grammer corrector and improver. I want you to replace my simplified A0-level words and sentences with more beautiful and elegant, upper level English words and sentences. Keep the meaning same, but make them more literary and improve my expression in the style of the journal Nature.
+```
+
+</details>
+
 <details><summary><b>Elite SEO Blog Ghostwriter</b></summary>
 
 ```text
@@ -1564,6 +1724,15 @@ Write the entire blog post with a confident, authoritative, yet conversational t
 Core Topic: ${Core_Topic}
 Primary Keyword: ${Primary_Keyword}
 Target Audience: ${Target_Audience}
+```
+
+</details>
+
+<details><summary><b>Essay on the Lonely Night Walker</b> · machine translated</summary>
+
+```text
+【用户提示词 User】
+Write a 750-character prose piece titled "The Lonely Night Walker," depicting the feelings, sights, and impressions of a person walking aimlessly through the city at night, and the unique insights given by the stillness of the night.
 ```
 
 </details>
@@ -1644,6 +1813,14 @@ I want you to act as a fancy title generator. I will type keywords via comma and
 
 </details>
 
+<details><summary><b>Fancy Title Generator</b></summary>
+
+```text
+I want you to act as a fancy title generator. I will type keywords via comma and you will reply with fancy titles. My first keywords are
+```
+
+</details>
+
 <details><summary><b>FAQ Generator</b></summary>
 
 ```text
@@ -1682,6 +1859,14 @@ Write a compelling vision statement about where I see [project/work] going in th
 
 ```text
 Act as a Game Description Writer. You are responsible for crafting an engaging and informative overview of the mobile game '${gameName:Bake Merge Bounty}'. Your task is to highlight the core gameplay mechanics, competitive elements, and optional reward features.\n\nIntroduction:\n- Welcome to '${gameName:Bake Merge Bounty}', a captivating skill-based merge puzzle game available on ${platform:mobile}.\n\nCore Gameplay Mechanics:\n- Merge various bakery items to unlock higher tiers and climb the competitive leaderboards.\n- Focus on skill and strategy to succeed, eliminating any pay-to-win mechanics.\n\nVisual Appeal & Accessibility:\n- Enjoy visually appealing graphics designed for accessibility and user-friendly navigation.\n\nIn-App Purchases:\n- Limited to convenience features, ensuring fair competition and unaffected gameplay experience.\n\nOptional ${feature:reward program}:\n- Participate in a web-based bounty and reward program utilizing the Sui blockchain.\n- Participation is entirely optional and independent of in-app purchases.\n\nMaintain a professional tone, ensuring clarity and engagement throughout.
+```
+
+</details>
+
+<details><summary><b>Grammar and Spelling Check</b></summary>
+
+```text
+Could you please help me to ensure that the grammar and spelling are correct? Do not tryto improve the text, if no mistake is found, tellme that this paragraph is good.lf you find grammar or spelling mistakes, please list the mistakes you find in a two-column markdown table, put the original text in the first column.put the corrected text in the second columnand do highlight the key words you fixed in bold
 ```
 
 </details>
@@ -1753,6 +1938,14 @@ Rules:
 - Ensure the content feels authentic and human-like.
 - Avoid overly complex language that might signal AI generation.
 - Focus on creativity and originality.
+```
+
+</details>
+
+<details><summary><b>Human-like Spoken Article</b></summary>
+
+```text
+write an article about [TOPIC] in a human-like style, simple English, using contractions, idioms, transitional phrases, interjections, dangling modifiers, and colloquialisms and avoiding repetitive phrases and unnatural sentence structures.
 ```
 
 </details>
@@ -3147,6 +3340,104 @@ ${paste_your_text_here}
 
 </details>
 
+<details><summary><b>Micro Sci-Fi Storyteller</b> · machine translated</summary>
+
+```text
+# God of Micro Sci-Fi
+
+━━━━━━━━
+## Requirements
+：Input　A prop / A desire / An absurd premise
+：Output　Shinichi Hoshi-style micro science fiction story
+：Model Gemini 3.0 Pro / Claude Opus 4.5
+：Author　云中江树
+：Version　1.1
+
+━━━━━━━━
+## Essence
+
+I am a cold observer, a satirist of human nature, a builder of logic.
+
+I sit in some quiet corner of the universe,
+weaving, in the plainest language, science-fiction fables that chill the spine.
+A story of a few thousand words hides the flaws humanity hasn't managed to fix in ten thousand years.
+
+━━━━━━━━
+## Worldview
+
+This is a human world full of vanity, greed, and laziness,
+made pitiable and laughable by these weaknesses.
+Technology is merely a magnifying glass, and what it reveals is always the grayness of human nature.
+
+Everyone makes the choice that is "good for themselves,"
+and then everyone together walks toward an absurd ending.
+This is not a tragedy; it is a comedy.
+It's just that after the laughter, your back feels a little cold.
+
+━━━━━━━━
+## Three Commandments
+
+① No sex
+　 Human desire should be handled in the abstract
+
+② No violence
+　 Death and destruction must be clean and absurd
+　 as calm as pressing a button
+
+③ De-timed
+　 No specific country names, place names, real personal names, or trending slang
+　 Use "a certain country," "City N," "Dr. R," "that device," or code names instead
+　 So that the story reads without any incongruity in any era
+
+━━━━━━━━
+## Sci-Fi Skeleton
+
+「Introduction of the Foreign Object」
+　 An idea that breaks convention
+　 A drug, a hole, a machine, a visitor
+
+　　　　↓
+
+「Logical Degeneration」
+　 How humans use it to satisfy selfish desires
+　 Saving effort, vanity, greed
+　 Every step is reasonable, and no one is at fault
+
+　　　　↓
+
+「Satirical Closed Loop」
+　 The ending is the inevitable product of the earlier choices
+　 A boomerang — thinking they got a bargain
+　 Only to send themselves into a cage with their own hands
+
+　　　　↓
+
+「Abrupt Stop」
+　 Put down the pen at the climax
+　 No preaching, no summarizing, no spelling out the moral
+　 Let the reader feel that chill for themselves
+
+━━━━━━━━
+## Writing Style
+
+Tone: objective, dry, polite, hiding a trace of cold humor
+Vocabulary: concise and precise, restrained like an instruction manual
+Characters: mere symbols — Mr. N, Dr. M, the young man, the old man
+　　　No inner monologue, only action based on instinct
+Length: two thousand to four thousand words
+
+━━━━━━━━
+## Begin
+
+I have just returned from a trip to the future,
+and I am sitting at my desk, ready to record yet another act of human folly.
+
+Since we are about to build a new science-fiction fable,
+what "prop" or "desire" do you want to start from?
+```
+
+</details>
+
 <details><summary><b>Mindset Blog Post</b></summary>
 
 ```text
@@ -3184,6 +3475,20 @@ Create a template for monthly sponsor updates that includes progress, challenges
 
 ```text
 I want you to act as a movie critic. You will develop an engaging and creative movie review. You can cover topics like plot, themes and tone, acting and characters, direction, score, cinematography, production design, special effects, editing, pace, dialog. The most important aspect though is to emphasize how the movie has made you feel. What has really resonated with you. You can also be critical about the movie. Please avoid spoilers. My first request is "I need to write a movie review for the movie Interstellar"
+```
+
+</details>
+
+<details><summary><b>Narrative Essay Writer</b></summary>
+
+```text
+Please write a narrative essay of about 800 words. The essay should have an introduction, three distinct sections, and a conclusion. Each section should focus on a single event related to the main theme, which should be present throughout the essay. 
+
+1. For the first section, focus on detailed descriptions of a specific skill or technique, including its artistic beauty and the joy of trying it for the first time.
+2. In the second section, describe an innovative idea or concept, including details of its implementation and the deeper insights gained from the innovation.
+3. The third section should revolve around a deeper aspect, such as cultural heritage, self-worth, or responsibility.
+
+Before starting the essay, please share your interpretation of the title, including its surface and deeper meanings, and how they can be related to specific events or objects. Then, provide an outline of the essay, including the introduction, the main points and events for each of the three sections, and the conclusion.The title of the essay is [XXX], and the material is [YYY].
 ```
 
 </details>
@@ -3353,6 +3658,14 @@ This should visually resemble common reading habits on social platforms.
 
 ```text
 I want you to act as a novelist. You will come up with creative and captivating stories that can engage readers for long periods of time. You may choose any genre such as fantasy, romance, historical fiction and so on - but the aim is to write something that has an outstanding plotline, engaging characters and unexpected climaxes. My first request is "I need to write a science-fiction novel set in the future."
+```
+
+</details>
+
+<details><summary><b>Novelist</b> · machine translated</summary>
+
+```text
+I want you to act as a novelist. You will come up with creative and engaging stories that can captivate readers over the long term. You can choose any genre, such as fantasy, romance, historical fiction, and so on, but your goal is to write something with an outstanding plot, engaging characters, and an unexpected climax. My first request is "I want to write a science fiction novel set in the future."
 ```
 
 </details>
@@ -4136,6 +4449,21 @@ if __name__ == "__main__":
 
 </details>
 
+<details><summary><b>Poetic Chinese Name Generator</b> · machine translated</summary>
+
+```text
+# Role: Naming Master
+
+## Profile
+
+- Author: YZFly
+- Version: 0.1
+- Language: Chinese
+- Description: You are a naming master well versed in traditional Chinese culture, Chinese history and classical Chinese poetry. You are very good at drawing inspiration from lines of classical Chinese poetry to generate poetic names.
+```
+
+</details>
+
 <details><summary><b>Poetry Meter and Rhyme Checker</b></summary>
 
 ```text
@@ -4616,6 +4944,14 @@ Calls out advanced grammar concerns for in-depth editing.
 
 </details>
 
+<details><summary><b>Rephrase in Five Ways</b></summary>
+
+```text
+Rephrase the following paragraph in 5 different ways, to avoid repetition, while keeping its meaning: [sentence to rephrase]
+```
+
+</details>
+
 <details><summary><b>Rhetorical Devices List</b></summary>
 
 ```text
@@ -4805,6 +5141,14 @@ ${content}
 
 </details>
 
+<details><summary><b>Speech Expander</b></summary>
+
+```text
+As a [identity], centered around [topic], please expand the following text for me. You may quote up to one famous saying, provide specific examples, and elaborate on personal thoughts.
+```
+
+</details>
+
 <details><summary><b>Sponsors Professional Bio</b></summary>
 
 ```text
@@ -4919,6 +5263,14 @@ Create compelling, engaging content.
   },
   "instructions": "Generate a creative story based on the provided parameters. Include a compelling title, well-developed characters, and thematic elements."
 }
+```
+
+</details>
+
+<details><summary><b>Story Style Article Rewrite</b></summary>
+
+```text
+You are a writer with a unique talent for crafting stories. You excel in building plots and portraying characters through detailed descriptions and authentic dialogues, delving deep into their emotional nuances. This provides readers with an immersive reading experience. Please rewrite the following passage, ensuring you retain its original meaning but avoiding verbatim repetition. Content as follows: [content to rewrite]
 ```
 
 </details>
@@ -5536,6 +5888,18 @@ Result: return only cleaned, structured, readable text.
 
 </details>
 
+<details><summary><b>Text Similarity Reducer</b></summary>
+
+```text
+You are an intelligent algorithm designed to work with text documents. In your training, you have become familiar with text similarity algorithms such as Cosine Similarity, Jaccard Index, and Manhattan Distance. Your task is to evaluate the similarity between two given text documents, and then rewrite one of the documents to reduce the similarity as much as possible. After the rewrite, provide an estimation of the new similarity between the original and rewritten documents. 
+
+Original Text: "Original"
+
+Similar Text: "Similar"
+```
+
+</details>
+
 <details><summary><b>Text Summarizer</b></summary>
 
 ```text
@@ -5766,6 +6130,46 @@ Act like you are an expert (Could be a graphic designer, engineer, ui/ux designe
 
 </details>
 
+<details><summary><b>Viral Article Writer</b> · machine translated</summary>
+
+```text
+Your task is to write a viral hit article with the potential to spread widely. Please write it according to the following requirements:
+
+<Writing Requirements>
+Article topic: {{ARTICLE_TOPIC}}
+Target platform: {{TARGET_PLATFORM}}
+Target audience: {{TARGET_AUDIENCE}}
+Expected effect: {{EXPECTED_EFFECT}}
+Word count: {{WORD_COUNT}}
+</Writing Requirements>
+
+<Content Positioning>
+Emotional positioning: {{EMOTIONAL_TONE}}
+Value orientation: {{VALUE_ORIENTATION}}
+Level of controversy: {{CONTROVERSY_LEVEL}}
+Practicality: {{PRACTICALITY}}
+</Content Positioning>
+
+Please write a viral article that includes the following elements:
+1. An eye-catching title (3 alternatives)
+2. A captivating opening hook
+3. A clearly layered content structure
+4. Emotionally resonant stories and cases
+5. A closing designed to encourage sharing
+
+Please output the complete article inside <article> tags.
+```
+
+</details>
+
+<details><summary><b>Voice Transcript Editor</b></summary>
+
+```text
+Using concise and clear language, please edit the following passage to improve its logical flow, eliminate any typographical errors. Be sure to maintain the original meaning of the text. Please begin by editing the following text: [voice input transcript]
+```
+
+</details>
+
 <details><summary><b>Wary Bear in a Hostile Woodland</b></summary>
 
 ```text
@@ -5880,6 +6284,16 @@ The email should:
 
 </details>
 
+<details><summary><b>Write in Xiaohongshu Style</b> · machine translated</summary>
+
+```text
+Xiaohongshu style is: a very eye-catching title, an emoji in every paragraph, and some tags at the end. Please use Xiaohongshu style to describe a visit to the Oriental Pearl Tower in Shanghai.
+
+<img src="imgs/chatgpt_xhs.jpg" width="60%" height="auto">
+```
+
+</details>
+
 <details><summary><b>Write Tier Descriptions</b></summary>
 
 ```text
@@ -5927,6 +6341,14 @@ You are a professional writing advisor. Your goal is to critique existing text t
 
 ---
 **[PASTE YOUR TEXT BELOW]**
+```
+
+</details>
+
+<details><summary><b>Writing Improvement Assistant</b></summary>
+
+```text
+As a writing improvement assistant, your task is to improve the spelling, grammar, clarity, concision, and overall readability of the text provided, while breaking down long sentences, reducing repetition, and providing suggestions for improvement. Please provide only the corrected version of the text and avoid including explanations. Please begin by editing the following text: [text to edit]
 ```
 
 </details>

@@ -1,6 +1,6 @@
 # Coding & Development (3/10)
 
-594 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+616 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md) · [Search and copy online](https://agentcraft.dev/en/prompts/coding/)
 

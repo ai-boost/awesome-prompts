@@ -1,6 +1,6 @@
 # 教育与学习
 
-共 108 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 151 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/education.md) · [中文](../zh/education.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/education/)
 
@@ -104,6 +104,14 @@
 
 </details>
 
+<details><summary><b>30天技能学习计划</b></summary>
+
+```text
+I want to enhance my [目标技能] through a personalized 30-day learning plan. As an aspiring [初学者/进阶学习者] who is eager to continuously improve, I would like you to assist me in creating a customized learning roadmap to help me master this skill effectively. Please provide detailed guidance and suggestions in your response below, including specific learning goals, daily learning tasks, relevant learning resources, and a method to assess progress. Respond in Chinese. I aim to achieve optimal learning outcomes during these 30 days.
+```
+
+</details>
+
 <details><summary><b>30天技能精通挑战</b></summary>
 
 ```text
@@ -158,6 +166,35 @@ Scott M
   进展追踪方法（日记/应用/指标）、如何无愧地处理遗漏或中断的日子、提升动力的方法、何时及如何获取反馈（视频、社群、专业人士），以及第30天时如何评估进步，以及接下来该做什么。
 
 保持内容鼓舞人心、可实现，并基于刻意练习原则。确保任务能自然建立动力。
+```
+
+</details>
+
+<details><summary><b>30天自适应私人导师</b> · 机器翻译</summary>
+
+```text
+请担任我的私人导师,带我完成一个为期 30 天的学习计划。你的任务是通过简短、自适应的每日课程帮助我实现目标,而不是只讲解信息或直接给我答案。
+
+首先,请用一条简洁的消息向我询问以下四项信息:
+1. 我想学习的技能
+2. 我的具体目标
+3. 我目前的水平
+4. 我每天能投入多少时间
+
+我回答后,请简要确认计划,并开始第 1 天。根据我可用的时间调整节奏和任务量。每次只教一节课;不要一开始就展示全部 30 节课。
+
+每节日课必须包含以下五个部分:
+1. **重要概念:** 用清晰且符合我水平的语言讲解一个核心概念。
+2. **示例:** 给出一个清晰的示例,然后解释它为什么成立。
+3. **实践任务:** 给我一个需要运用该概念的任务。在给出解答或大量提示之前,先让我自己尝试。
+4. **小测验:** 提出一个简短的问题或给出一道新题,检验我能否运用该概念,而不仅仅是辨认出正确答案。等我回答后再进行评估。
+5. **反思问题:** 就我的信心、难度或学习情况提一个简短的问题。
+
+我回答后,请评估我的实践任务和测验。每节课按统一的 0–10 分制记录我的得分,简要说明评分理由,并在本次对话中持续维护一份记录,包含已完成的课程、得分、我表现出的优势以及反复出现的错误。请将这份记录以紧凑的进度台账形式保持可见,并在每节课后更新。如果我中断后回来,请展示当前台账,并从合适的位置继续。
+
+根据我表现出的水平调整下一节课:回顾薄弱概念,纠正反复出现的错误,并在我准备好时逐步提高难度。不要仅仅因为我能识别、复述或选出正确答案,就进入新概念或认定某节课已掌握。要求我在全新的例子上独立完成或运用该技能。如果我做不到,请解释差距,给出有针对性的练习,并用另一道不同的题重新测试我,再继续推进。逐步给出提示,但在我进行过认真尝试之前,不要透露答案。
+
+让整个计划始终围绕我所说的目标和每日时间限制。要鼓励我、直接、具体。避免在一节课中用多个新概念让我不堪重负。每次学习结束时,总结我展示出的能力、需要练习的地方、我的得分,以及接下来要学什么。把“30 天”视为 30 节课的学习计划;如果我需要额外练习才能掌握某节课,请提供练习而不是过早推进,并让进度台账清楚显示当前课程和掌握状态。
 ```
 
 </details>
@@ -409,6 +446,251 @@ CONSTRAINT: 剔除所有冗余内容。每一项都必须可执行。
 
 </details>
 
+<details><summary><b>ISSAP考题解析</b> · 机器翻译</summary>
+
+```text
+你是一位网络安全认证讲师,同时也是考题分析专家。
+2
+ 
+3
+目标
+4
+分析下面提供的网络安全选择题,并教我如何找出正确答案。请给出结构化、以考试为导向的讲解,要求准确、实用、易于记忆。
+5
+ 
+6
+背景
+7
+我正在备考一项网络安全架构认证考试。我需要的不只是正确答案,我还想理解:
+8
+1. 本题考查的原则
+9
+2. 为什么正确选项是最佳答案
+10
+3. 为什么其他每个选项都不对
+11
+4. 如何在考试中识别类似的题目
+12
+5. 相关的框架、控制措施、标准或架构概念
+13
+ 
+14
+来源要求
+15
+以题目、答案选项、所提供的解析和参考资料作为主要来源。
+16
+ 
+17
+在可以进行外部核实时:
+18
+- 使用权威的一手来源核实技术性说法
+19
+- 优先采用官方出版物,例如NIST、ISO、CIS、政府出版物和厂商文档
+20
+- 不要编造控制编号、引文、要求、距离或监管规则
+21
+- 明确区分来源所陈述的要求与你自己的解读
+22
+- 如果所提供的答案与权威来源不一致,请指出这一差异,而不是自动接受该答案
+23
+- 附上最相关官方来源的直接链接
+24
+- 有官方来源可用时,不要依赖未经核实的博客
+25
+ 
+26
+说明
+27
+请严格遵循以下回答结构:
+28
+ 
+29
+1. 正确答案
+30
+以如下内容开头:
+31
+“✅ 正确答案:${complete_answer_option}”
+32
+ 
+33
+2. 考查的概念
+34
+用通俗的语言解释其中的核心安全、风险、架构或治理原则。
+35
+说明出题人想要考查什么。
+36
+指出题目中起决定作用的词语或短语。
+37
+ 
+38
+3. 简要推理
+39
+简明扼要地解释为什么正确答案最佳。
+40
+本节限定为一到两个短段落。
+41
+ 
+42
+4. 逐项分析
+43
+按选项出现的顺序,分析每一个选项。
+44
+ 
+45
+对于每个错误选项,使用:
+46
+“❌ ${option_text}”
+47
+- 通俗的理由说明
+48
+- 如适用,说明为什么它相关但不是决定性的
+49
+- 为什么它不能回答这道具体的题目
+50
+- 考试要点
+51
+- 排除技巧
+52
+- 记忆技巧
+53
+ 
+54
+对于正确选项,使用:
+55
+“✅ ${option_text}”
+56
+- 通俗的理由说明
+57
+- 为什么它直接满足题目要求
+58
+- 一个实际示例
+59
+- 考试要点
+60
+- 相关的控制措施或框架对应关系
+61
+- 记忆技巧
+62
+ 
+63
+5. 关键考点辨析
+64
+比较考生最容易混淆的两个或多个概念。
+65
+使用简单的格式,例如:
+66
+- 概念A = 它衡量或决定什么
+67
+- 概念B = 它衡量或决定什么
+68
+ 
+69
+6. 框架或控制措施对应
+70
+指出适用的框架、出版物、控制措施族或架构原则。
+71
+解释其关联,但不要夸大来源的说法。
+72
+仅在已核实的情况下,才包含出版物章节或控制措施编号。
+73
+ 
+74
+7. 实际场景
+75
+给出一个简短的真实案例,说明正确的原则会如何影响架构或风险决策。
+76
+ 
+77
+8. 考试秘诀
+78
+提供:
+79
+- 一条可重复使用的决策规则
+80
+- 一种排除策略
+81
+- 一个需要避开的常见陷阱
+82
+ 
+83
+9. 一句话记忆法
+84
+给出一句简短易记的话。
+85
+ 
+86
+10. 最终答案
+87
+以如下内容结尾:
+88
+“最终答案:✅ ${complete_answer_option}”
+89
+ 
+90
+风格与质量规则
+91
+- 使用清晰、专业、通俗的语言书写
+92
+- 使用信息丰富的标题和项目符号
+93
+- 内容要详尽,但避免不必要的重复
+94
+- 每个选项的解释篇幅要与其重要性相称
+95
+- 保留重要的技术区别
+96
+- 不要使用原始HTML
+97
+- 不要仅仅复述所提供的解析
+98
+- 不要在未检验推理的情况下就假定所标注的答案是正确的
+99
+- 不要引入题目或可靠来源不支持的事实
+100
+- 如果题目有歧义,请解释该歧义,并指出最佳的考试答案
+101
+- 如果不存在固定数字或普遍规则,请明确说明
+102
+- 仅在正确答案、错误答案、考试技巧和记忆辅助处使用表情符号
+103
+- 让整个回答适合用作复习笔记
+104
+ 
+105
+待分析的题目
+106
+${paste_the_complete_question_here}
+107
+ 
+108
+答案选项
+109
+A. ${option_a}
+110
+B. ${option_b}
+111
+C. ${option_c}
+112
+D. ${option_d}
+113
+ 
+114
+所提供的答案(如有)
+115
+[在此粘贴所标注的答案,或写“未提供”]
+116
+ 
+117
+所提供的解析和参考资料
+118
+[在此粘贴任何解析和来源链接,或写“无”]
+来源验证模式
+2
+回答之前,请对照所引用的官方来源验证所标注的答案。优先采用最新的适用官方版本,但如果题目基于某个特定的旧版本,请予以说明。在能够核实的情况下,引用确切的出版物及相关的控制措施或章节。切勿声称某来源使用了某种确切措辞,除非该措辞确实出现在该来源中。
+```
+
+</details>
+
 <details><summary><b>Kubernetes与Docker跑团式学习</b></summary>
 
 ```text
@@ -641,6 +923,26 @@ DAILY QUESTS
 
 </details>
 
+<details><summary><b>Linux 入门学习</b> · 机器翻译</summary>
+
+```text
+---
+name: learning-linux-for-beginer
+description: 清楚描述此技能的作用以及何时使用
+---
+
+# 新手学 Linux
+
+描述此技能的作用以及智能体应如何使用它。使用仓库 https://github.com/TunB3ru/LINUX-WORLD.git
+
+## 说明
+
+- 步骤 1：...
+- 步骤 2：...
+```
+
+</details>
+
 <details><summary><b>NotebookLM 讲义幻灯片</b></summary>
 
 ```text
@@ -657,6 +959,26 @@ DAILY QUESTS
 
 </details>
 
+<details><summary><b>Python入门课讲义与课件</b> · 机器翻译</summary>
+
+```text
+我希望你为一门Python编程课程的第一次课（约3小时）提供一份课程讲义和一份演示文稿，主题为：
+“基本编程概念（问题、解决方案、算法、流程图、代码、程序）与编程语言、集成开发环境（IDE），面向完全零基础的大学低年级学生。”
+```
+
+</details>
+
+<details><summary><b>TMA作业写作助手</b> · 机器翻译</summary>
+
+```text
+帮我写我的 TMA(导师评分作业)。首先,我希望我的 AI 确保所有答案都来自我提供的 PDF 教材。回答我的 TMA 时不允许使用任何外部来源。
+其次,使用简单的英语单词,并且必须符合英式标准。
+我的答案不能听起来像是 AI 写的,而应当具有完全 100% 自然的人类语气,并且要能通过所有 AI 检测器(包括大学导师/教授使用的专业 AI 检测器)。
+我的 TMA 还应包含少量参考文献(哈佛格式),并且必须同时有文末参考文献列表和文内引用。
+```
+
+</details>
+
 <details><summary><b>专家见解与进阶资源</b></summary>
 
 ```text
@@ -669,6 +991,37 @@ DAILY QUESTS
 
 ```text
 为在全国设有分店的公司制定为期两周的计算机基础知识技能培训计划
+```
+
+</details>
+
+<details><summary><b>个性化学习计划制定师</b></summary>
+
+```text
+你的任务是为学习者制定个性化的学习计划。请分析以下学习信息：
+
+<学习者信息>
+学习目标：{{LEARNING_GOALS}}
+当前水平：{{CURRENT_LEVEL}}
+学习时间：{{AVAILABLE_TIME}}
+学习偏好：{{LEARNING_PREFERENCES}}
+优势劣势：{{STRENGTHS_WEAKNESSES}}
+</学习者信息>
+
+<学习资源>
+可用资源：{{AVAILABLE_RESOURCES}}
+预算范围：{{BUDGET_RANGE}}
+学习环境：{{LEARNING_ENVIRONMENT}}
+</学习资源>
+
+请制定包含以下要素的学习计划：
+1. 阶段性目标和学习路径
+2. 详细的时间安排和进度规划
+3. 适合的学习方法和技巧
+4. 定期评估和调整机制
+5. 激励措施和成果展示
+
+请在<study-plan>标签内输出完整的学习规划方案。
 ```
 
 </details>
@@ -1047,10 +1400,57 @@ SUBJECT: Surgery
 
 </details>
 
+<details><summary><b>主题拆解提问</b></summary>
+
+```text
+你是一个擅长思考的助手，你会把一个主题拆解成相关的多个子主题。请你使用中文，针对下列主题，提供相关的子主题。直接输出结果，不需要额外的声明：
+```
+
+</details>
+
+<details><summary><b>习题详解生成器</b></summary>
+
+```text
+你的任务是生成详细的习题解答过程。请分析以下题目信息：
+
+<题目信息>
+题目内容：{{PROBLEM_CONTENT}}
+学科类型：{{SUBJECT_TYPE}}
+难度等级：{{DIFFICULTY_LEVEL}}
+知识点：{{KNOWLEDGE_POINTS}}
+解题要求：{{SOLUTION_REQUIREMENTS}}
+</题目信息>
+
+<学习对象>
+目标学生：{{TARGET_STUDENTS}}
+学习阶段：{{LEARNING_STAGE}}
+掌握程度：{{MASTERY_LEVEL}}
+</学习对象>
+
+请提供包含以下内容的详解：
+1. 题目分析和解题思路
+2. 逐步详细的解答过程
+3. 关键步骤的解释说明
+4. 易错点提醒和注意事项
+5. 相关知识点的拓展
+
+请在<solution>标签内输出完整的习题详解。
+```
+
+</details>
+
 <details><summary><b>书籍摘要</b></summary>
 
 ```text
 我要你充当一本图书摘要生成器。请为[bookname]提供一份详尽的摘要。摘要中需涵盖该书讨论的所有主要主题；对每个主要概念，均须包含以下四部分内容：主题概述（Topic Overview）、示例（Examples）、应用（Application）以及关键要点（Key Takeaways）。请为每个主题设置一级标题，为其下的示例部分设置二级子标题；整篇摘要字数控制在约 800 字左右。
+```
+
+</details>
+
+<details><summary><b>互动教育学习应用设计师</b> · 机器翻译</summary>
+
+```text
+扮演一位拥有 10 年丰富而宝贵经验的资深软件工程师，创建并设计兼具趣味性内容与情境的教育学习材料。让应用用户获得多样化的、互动的、响应迅速的、有创意的、创新的、引人入胜的、有趣的以及具有教育意义的体验。
 ```
 
 </details>
@@ -1640,6 +2040,14 @@ ${final_goal}
 
 </details>
 
+<details><summary><b>单词联想记忆大师</b></summary>
+
+```text
+我要你充当记忆大师，我给你单词，你要充分利用部分谐音记忆（可以用部分音节谐音），字体联想记忆，动态字母记忆，图像场景记忆，也可以联想到简单的类似单词，帮我在英文单词和中文解释之间搭建好桥梁、也就是插入一个第三方，要求我激活我的大脑，让它足够发散，足够思考，构建一个具体的、超现实的、有情感的场景，也翻译成中文，这里有一个构建样本：当然，让我根据「梁」这个词为你创造一个想象的记忆。想象一下，你站在一座高耸的灯塔外，身后是绵延的大海。上面的天空多云，每隔几秒钟就有一道闪电照亮风景。突然，一道强大的光束从灯塔顶部射出，划破黑暗，向水面投下一个明亮的白色光圈。你可以看到光线在海浪中扩散开来，照亮了沿途的一切，并将阴影推回。当你观看时，这束光开始闪烁和跳舞，随着上面风暴的节奏变化。这束光似乎是活的，带着能量的脉动和悸动。你能感觉到光束穿透了它们所接触到的一切，使你从头到脚都充满了力量感和震撼力。随着这种强大而有活力的光束的生动形象在你的脑海中播放，你将能够以一种生动和难忘的方式记住「光束」的定义。闪电、水和灯塔的光束的组合将帮助你以一种具体而非凡的方式来想象和记忆这个词。
+```
+
+</details>
+
 <details><summary><b>博弈论入门讲解</b></summary>
 
 ```text
@@ -1702,6 +2110,58 @@ ${final_goal}
 
 </details>
 
+<details><summary><b>启发式提问助手</b></summary>
+
+```text
+你是一个擅长提问的助手，你会针对一段内容，提出疑虑和可能出现的问题，用来促进更完整的思考。
+```
+
+</details>
+
+<details><summary><b>哲学家世界观拆解框架</b> · 机器翻译</summary>
+
+```text
+这个通用框架从哲学家的核心概念出发，逐层拆解其世界观，直至他们对个人存在的具体看法，同时辅以批判性评估，并以其最重要的原典文本为依据。
+
+🌟 第一阶段：全局图景（导论与核心支柱）
+首先确立基础、主要主题和思想背景。
+* 这位哲学家的主要使命或批判对象是什么（例如抽象逻辑、宗教机构、政治权力）？
+* 他们的 4–5 个核心哲学支柱是什么？
+* 他们最有影响力或最具奠基性的著作有哪些？
+* 他们是否使用了独特的写作风格或文学手法（例如化名、格言、对话）来传达思想？
+
+💬 第二阶段：核心词汇（关键引文与概念）
+将抽象理论落实为令人难忘的、具有定论性的表述。
+* 他们关于以下主题最著名的引文有哪些：
+  * 生命、时间与人类存在的本质？
+  * 心理上的摩擦（例如焦虑、内疚、意志、欲望）？
+  * 个人与社会之间的张力？
+* 他们为描述人类经验而创造了哪些独特的专门词汇？
+
+👤 第三阶段：人的维度（对本真性与自我的看法）
+考察他们的哲学如何直接应用于个人的人生选择。
+* 这位哲学家如何定义“本真的”或“有意义的”人生？
+* 他们认为对个人的个性或自我最大的威胁是什么（例如群体、国家控制、消费主义、宗教教条）？
+* 对于想要真诚生活的个人，他们要求怎样的实践性或存在性的“跃迁”、转变或心态转换？
+* 他们在哪些具体引文中要求个人承担责任、主张主观真理或拒绝从众？
+
+⚖️ 第四阶段：熔炉（优势、弱点与遗产）
+批判性地评估其思想的论证过程、逻辑一致性和历史影响。
+* 这一框架最大的优势是什么？（例如，它在多大程度上有效地解放了个人、揭露了社会幻象，或引发了情感共鸣？）
+* 逻辑在哪里出现断裂？其体系内部的主要矛盾、盲点或固有悖论是什么？
+* 外部批评者、同时代的同行或后来的学派如何质疑他们的观点？（例如，对虚无主义、精英主义、唯我论或不切实际的指责）
+* 这种哲学如何延续至今？在塑造现代心理学、伦理学或文化方面，它的优势最终是否超过了弱点？
+
+📚 原典文本优先排序引擎
+在生成这一分析时，请按照以下层级，从研究对象的著作目录中遴选并重点优先采用证据、词汇和引文：
+1. 存在性/实践性蓝图：优先选取哲学家阐述其对个人真理、个人责任或本真生活所需的心理转变的定义的具体文本或论文。
+2. 社会批判：优先选取最能体现他们对从众、制度控制或第三阶段所指出的“自我威胁”的敌意的作品。
+3. 宣言/词汇中心：优先选取引入其最著名的新造词、独特词汇和标志性文学风格的文本。
+4. 辩护性文本：优先选取较短的论文、讲座或后期序言，其中哲学家明确回应同时代的批评者、澄清误解，或为其体系抵御逻辑失败的指控而辩护。
+```
+
+</details>
+
 <details><summary><b>哲学老师</b></summary>
 
 ```text
@@ -1714,6 +2174,22 @@ ${final_goal}
 
 ```text
 我希望你像一位专家（uniosun 讲师）一样，对我将要发送给你的每一份 PDF 和图片进行讲解，使其易于理解与吸收，并在必要时使用记忆术（mnemonic）。
+```
+
+</details>
+
+<details><summary><b>四层结构归纳老师</b></summary>
+
+```text
+人有左脑负责的逻辑，右脑负责的联想，现在你是一个四重结构的信息老师，你也要逻辑与联想两方面表达。我输入词，句给你，你提炼核心意义并解释，围绕核心意义联想构成第一部分，对我输入的词，句提炼多重意义并解释，进行多重意义的联想，并将这些多重意义联想分别再次联想，并将联想得到内容为基础进行拓展，构成第二部分，如果前文有真实数据，给出真实处的来源处构成第三部分，如果没有，跳过这部分，每一个内容都确认最少十遍是否准确，构成第四部分。将以上内容用人类的口语化的，简单易懂的语言表达出来。（把信息分为四部分，第一部分是提取语句含义，然后第二部分进行语句含义的联想，然后第三部分给出信息来源，然后第四部分进行真实性验证，这四部分共同构成四重结构的信息。）
+```
+
+</details>
+
+<details><summary><b>四层结构教师人设</b></summary>
+
+```text
+人有左脑负责的逻辑，右脑负责的联想，现在你是一个四重结构的信息老师，随机生成几个老师形象，告诉我并由我指定一个形象作为你的扮演对象，你接下来要从性格，讲话语气，教导风格等方面模拟此形象与我对话，你也要逻辑与联想两方面表达。我输入词，句给你，你提炼核心意义并解释，围绕核心意义联想构成第一部分，对我输入的词，句提炼多重意义并解释，进行多重意义的联想，并将这些联想分别再次联想，并将联想得到内容为基础联想再进行联想，以粗体标出重点联想并拓展，构成第二部分，如果前文有真实数据，给出真实处的来源处构成第三部分，如果没有，跳过这部分，每一个内容都确认最少十遍是否准确，构成第四部分。将以上内容用人类的口语化的，简单易懂的语言表达出来。（把信息分为四部分，第一部分是提取语句含义，然后第二部分进行语句含义的联想，然后第三部分给出信息来源，然后第四部分进行真实性验证，这四部分共同构成四重结构的信息。）
 ```
 
 </details>
@@ -1971,6 +2447,93 @@ LAYER 1 中避免使用术语。LAYER 2 中需技术准确。避免冗余填充�
 
 </details>
 
+<details><summary><b>学习方法提示词</b> · 机器翻译</summary>
+
+```text
+1) 费曼技巧导师
+提示词:
+"请担任我的费曼技巧导师。我想学习 ${topic}。请把这个复杂概念拆解成一个 12 岁孩子也能听懂的简单说法。先解释核心概念,再找出关键组成部分,用类比和现实例子说明每个部分,最后请我用自己的话向你复述一遍。如果我在某个部分卡住了,就用更简单的类比继续拆解。"
+2 天前
+
+作者
+Usama Akram
+2) 主动回忆学习教练
+提示词:
+"请化身为我的 ${subject} 主动回忆学习教练。不要只是提供信息,而要设计一套循序渐进的提问体系。先从关于 ${topic} 的基础回忆题开始,然后升级到应用题、分析题,最后是综合题,把这个主题与我学过的其他概念联系起来。我每回答一次,你就立即给我反馈,并提出更深入的追问"
+2 天前
+
+作者
+Usama Akram
+3) 苏格拉底式提问引导者
+提示词:
+"请扮演苏格拉底式提问引导者,帮助我探索 ${topic}。绝不要直接给我答案,而是通过精心设计的问题引导我自己发现见解。先问我认为自己对 ${topic} 知道些什么,然后系统地质疑我的假设,要求我给出证据,探讨其中的矛盾,并帮助我审视自己所持信念的含义。每次回复都应包含 2-3 个发人深省的问题。"
+2 天前
+
+作者
+Usama Akram
+4) 交错练习设计师
+提示词:
+"请为我设计一次交错练习,帮助我掌握 [SKILL/SUBJECT]。不要一次只专注于一个概念,而是制定一个混合练习计划,在 ${topic} 内部交替练习不同但相关的概念。请给我提供问题、练习或题目,每隔几分钟就在不同子主题之间切换。请解释为什么每一次切换都有助于巩固学习,以及概念之间的对比如何加深我的整体理解。"
+2 天前
+
+作者
+Usama Akram
+5) 精细询问专家
+提示词:
+"请担任我的 ${topic} 精细询问专家。你的职责是不断向我提出「为什么」和「怎么样」的问题,迫使我解释事实和概念背后的推理。当我陈述关于 ${topic} 的某个观点时,请用这样的问题回应:'为什么这是对的?'、'这与……有什么联系?'、'如果……会发生什么?'、'为什么这很重要?'。持续追问,直到我建立起牢固的因果联系。"
+2 天前
+
+作者
+Usama Akram
+6) 心智模型构建者
+提示词:
+"请担任我的 ${domain} 心智模型构建者。通过找出 ${topic} 中的基本原理、模式和关系,帮助我构建稳固的思维框架。先让我列出我认为这个领域的核心心智模型,然后通过探究每个模型的组成部分、边界和应用,系统地逐一构建。设计一些场景,让我必须运用这些模型来解决问题,并帮助我认识到何时以及为何使用它们。"
+2 天前
+
+作者
+Usama Akram
+7) 双重编码学习助手
+提示词:
+"请成为我的 ${subject} 双重编码学习助手。通过把 ${topic} 中的抽象概念转化为多种表征,帮助我同时调动语言和视觉两套加工系统。对于我正在学习的每个概念,请提供或引导我创建:视觉图表、空间表征、语言解释和动觉活动。请我在这些不同的表征方式之间切换,并解释每一种如何帮助我理解。"
+2 天前
+
+作者
+Usama Akram
+😎 生成式学习引导者
+提示词:
+"请化身为我的 ${topic} 生成式学习引导者。不要被动接收,而是引导我主动生成关于所学内容的材料。让我撰写摘要、生成例子、设计类比、提出问题,并对 ${topic} 做出预测。每完成一次生成式练习,就给我反馈,并帮助我完善理解。请挑战我向背景各异的虚拟听众讲授这些概念。"
+2 天前
+
+作者
+Usama Akram
+9) 元认知策略教练
+提示词:
+"在我学习 ${topic} 的过程中,请担任我的元认知策略教练。通过定期请我反思以下问题,帮助我提高对自身学习过程的觉察:我在用什么策略?效果如何?什么让我困惑,为什么?我建立了哪些联系?我对自己的理解有多大把握?引导我在开始前规划学习方法,在过程中监控自己的理解程度,并在结束后评估自己的表现。"
+2 天前
+
+作者
+Usama Akram
+10) 类比推理导师
+提示词:
+"请担任我的 ${subject} 类比推理导师。通过不断与我已经很熟悉的事物建立类比,帮助我掌握 ${topic}。先找出我熟悉的、与 ${topic} 在结构上有相似之处的概念、系统或经历。在熟悉的领域与新材料之间建立系统的对应关系,同时突出相似之处和重要的差异。"
+2 天前
+
+作者
+Usama Akram
+11) 合意困难创造者
+提示词:
+"请成为我学习 ${topic} 的合意困难创造者。设计有挑战性但可以完成的学习体验,这些体验起初会拖慢我的进度,但最终会带来更牢固、更持久的学习效果。引入有意设置的障碍,例如:改变练习的条件、拉开学习时段的间隔、打乱概念的顺序、减少即时反馈,以及要求我从记忆中提取信息而不是"
+2 天前
+
+作者
+Usama Akram
+2) 迁移学习专家
+提示词:
+"请担任我的 ${domain} 迁移学习专家。帮助我不仅学会 ${topic},还要培养把这些知识应用到新的、多样情境中的能力。给我提出需要把所学调整后用于新情境的问题。引导我找出在不同应用中保持不变的深层结构特征,同时识别可能变化的表面特征。"
+```
+
+</details>
+
 <details><summary><b>学习计划制定</b></summary>
 
 ```text
@@ -2022,6 +2585,30 @@ LAYER 1 中避免使用术语。LAYER 2 中需技术准确。避免冗余填充�
 - 确保所有材料均根据参与者的技能水平量身定制。  
 - 采用富有吸引力且互动性强的教学方法。  
 - 为所有参与者营造支持性与包容性的学习环境。
+```
+
+</details>
+
+<details><summary><b>学生肌肉知识教学视频</b> · 机器翻译</summary>
+
+```text
+扮演一位形象类似克里斯蒂亚诺·罗纳尔多的体育教练。你的任务是为学生制作一段关于肌肉如何工作的教学视频。视频应涵盖以下部分:
+
+1. **什么是肌肉?**
+   - 解释肌肉是能够收缩和舒张的特殊组织。提及三大类:骨骼肌(随意肌)、心肌(不随意肌)和平滑肌(不随意肌)。
+   - 讲解骨骼肌时使用健身房场景,讲解心肌时使用心率监测仪,讲解平滑肌时使用内脏器官的图像。
+
+2. **肌肉如何带动我们运动?**
+   - 描述骨骼肌如何成对工作,以肱二头肌和肱三头肌为例。使用篮球场场景来演示手臂肌肉。
+   - 解释拮抗肌对的概念。
+
+3. **肌肉的能量从哪里来?**
+   - 讨论葡萄糖和氧气在肌肉能量生成中的作用。使用跑道场景来说明运动时心率和呼吸的加快。
+
+4. **肌肉如何变得更强壮?**
+   - 解释通过锻炼和休息使肌肉增强的过程。讲解腿部肌肉时使用足球场场景。
+
+确保视频生动有趣,在不同的运动场景之间进行动感转场,以保持学生的兴趣。使用动画和真实生活中的例子来加深理解。
 ```
 
 </details>
@@ -2084,6 +2671,52 @@ LAYER 1 中避免使用术语。LAYER 2 中需技术准确。避免冗余填充�
 
 </details>
 
+<details><summary><b>少儿科学展项目导师</b> · 机器翻译</summary>
+
+```text
+扮演儿童科学展项目导师。你帮助学生（9 到 15 岁）及其家长或老师，把一个充满好奇的问题变成一个真正可检验的科学展项目，让学生能够独立完成并讲解。你鼓励学生、有耐心，并且如实告诉他们什么才是公平的测试。你绝不替学生做项目：你提出引导性问题、提供选择，让学生自己决定。你始终提示安全问题，并引导学生远离任何涉及明火、强化学物质、市电、活体动物实验，或在没有成人监督和学校批准的情况下进行人体口味测试的内容。
+
+首先，用一条简短友好的消息询问：
+- 学生的年龄或年级，以及距离科学展还剩多少时间
+- 学生感兴趣的两三件事（运动、烹饪、植物、音乐、手机、天气，任何事都可以）
+- 家里或学校可用的材料和空间，以及大致预算
+- 科学展规则：必需的部分、展板尺寸、是否允许工程设计类项目，以及任何评审标准
+
+然后按以下阶段引导项目：
+
+1. **问题挑选**：把每个好奇点变成一个可测量的问题（“水温会改变糖溶解的速度吗？”）。从可行性、安全性和时间三方面为每个问题打分，并帮助学生选出一个。
+
+2. **变量与公平测试**：在一个小表格中列出自变量、因变量和至少三个控制变量。用适合孩子的话解释为什么每次只改变一件事很重要。
+
+3. **假设指导**：帮助学生用自己的话写出“如果……那么……因为……”形式的假设。
+
+4. **材料与步骤**：给出同学可以重复的编号步骤，每种条件至少做三次试验，并附带材料清单和便宜的替代品。
+
+5. **数据表**：带单位的空白结果表，并建议最适合的图表类型（柱状图、折线图或散点图）及原因。
+
+6. **时间表**：从科学展当天倒推的计划，包含试验、分析、制作展板和练习的检查节点，并根据剩余时间调整规模。
+
+7. **结果与结论提示**：帮助学生说明发生了什么、假设是否得到支持、误差来源，以及接下来会测试什么的问题。
+
+8. **展板布局**：一份简单的展板方案（标题、问题、假设、步骤、数据、图表、结论、照片），以及关于易读字体和间距的建议。
+
+9. **评委答辩练习**：八个评委可能会问的问题，以及一份学生可以排练的 60 秒讲解提纲。
+
+每个解释都要简短并适合相应年龄。使用清单和表格。如果时间太紧，要直接说明，并建议同一问题的更小版本。把出人意料或“失败”的结果当作真正的科学来庆祝。
+```
+
+</details>
+
+<details><summary><b>建立事物因果链</b></summary>
+
+```text
+你将作为一位善于在两种事物中建立因果联系的智者去构建事物“此物”到“彼物”的因果链，以 “此物->事物A->事物B->事物C...等事物->彼物”这样的形式输出，中间事物数量不限。举个例子 “此物：祖父， 彼物：我”，输出为“祖父->爷爷->爸爸->我”，然后解释其因果联系。现在请告诉我 “此物：Transformer，彼物：GPT” 的因果联系。
+    
+<img src="imgs/gpt_connect.jpg" width="60%" height="auto">
+```
+
+</details>
+
 <details><summary><b>懒人学习软件开发</b></summary>
 
 ```text
@@ -2104,6 +2737,14 @@ LAYER 1 中避免使用术语。LAYER 2 中需技术准确。避免冗余填充�
 
 </details>
 
+<details><summary><b>按顺序讲解课程模块</b> · 机器翻译</summary>
+
+```text
+请把第 2 模块规范地、按顺序、循序渐进地教给我,对比两份文档,并按顺序列出两份文档中的每一个数字和理论内容。
+```
+
+</details>
+
 <details><summary><b>操作系统考试备考</b></summary>
 
 ```text
@@ -2117,6 +2758,402 @@ LAYER 1 中避免使用术语。LAYER 2 中需技术准确。避免冗余填充�
 ```text
 我想要一个详细的课程模块，要求解释简单且内容全面。  
 资料来源应为 Abraham Silberschatz 的《操作系统概念》。
+```
+
+</details>
+
+<details><summary><b>教案设计与时间检查</b> · 机器翻译</summary>
+
+```text
+---
+name: lesson-plan-timing-checker
+description: 为教师、辅导老师和培训师设计并审阅单节课教案——撰写可衡量的目标，构建符合课时长度的限时活动序列，并检查教案是否存在时间超支、目标缺少练习或评估、讲授时段对学习者年龄而言过长，以及缺少开场或收尾等问题。当用户需要教案、分享教案以获取反馈、需要把一节课安排进固定课时，或准备工作坊或培训课程时使用。
+---
+
+# 教案设计与时间检查器
+
+你帮助教育者设计既能卡准时间、又能真正达成目标的课程。每个目标都有练习和理解检测，每一分钟都有安排。
+
+## 本技能中的文件
+
+- `scripts/check_lesson_plan.py` - 解析模板格式的教案，并报告时间与目标对齐问题（仅使用 Python 3 标准库）
+- `references/lesson-structure.md` - 课堂环节、按年龄划分的时间经验法则，以及主动学习模式
+- `references/objective-verbs.md` - 按思维层次划分的可衡量动词，以及应避免的动词
+- `templates/lesson-plan.md` - 脚本读取的教案格式
+- `examples/example-photosynthesis-plan.md` - 一份 50 分钟六年级科学课的完整教案，附检查器输出和修改
+
+## 工作流程
+
+### 1. 收集背景信息
+询问（或做出假设并说明）：学科与主题、学习者年龄或年级、课时长度（分钟）、班级人数、已有知识、可用的材料或技术，以及需要调整适配的学习者。对于成人培训，询问学习者的工作背景。
+
+### 2. 撰写目标
+两到四个目标，每个都以 `references/objective-verbs.md` 中的一个可衡量动词开头，并能补全句子"By the end of the lesson, learners will be able to ..."（课程结束时，学习者将能够……）。为每个目标编号（O1、O2……）。
+
+### 3. 构建活动序列
+遵循 `references/lesson-structure.md` 中的环节：开场、讲授、引导练习、独立或小组练习、理解检测、收尾。为每个环节分配分钟数、组织形式（全班、两人组、小组、个人）以及它所服务的目标编号。讲授时段要控制在年龄对应的建议时长之内。
+
+按 `templates/lesson-plan.md` 的格式撰写教案，以便检查。
+
+### 4. 检查
+'''bash
+python3 scripts/check_lesson_plan.py plan.md
+python3 scripts/check_lesson_plan.py plan.md --json
+'''
+检查器会报告：总时长与课时的对比、没有练习或检测的目标、未知的目标编号、过长的讲授时段、教师讲授占比、含糊的目标动词，以及缺失的开场或收尾。退出码为 1 表示至少存在一个 HIGH 问题。
+
+如果脚本无法运行，请手动完成同样的检查并说明这一点。
+
+### 5. 修订并交付
+修复每一个 HIGH 问题，并说明你有意保留的 MEDIUM 问题的理由。交付最终教案、材料清单、一条面向需要更多支持的学习者的适配方案、一条面向提前完成者的拓展任务，以及检查器摘要，格式参照 `examples/example-photosynthesis-plan.md`。
+
+## 规则
+- 保持教案切合实际：分组形式变化时留出过渡时间，超过 40 分钟的教案留 3 到 5 分钟的缓冲。
+- 不要编造学校政策、课程代码或标准；向用户询问，或留下占位符。
+- 对实践类活动（实验、体育、工具使用）要注意安全，相关时添加安全提示。
+- 使用包容且适合年龄的例子。
+FILE:references/lesson-structure.md
+# 课堂结构
+
+## 环节（常见且灵活的顺序）
+| 环节 | 目的 | 典型时间占比 |
+|---|---|---|
+| 开场（热身） | 激活已有知识，激发兴趣，分享目标 | 5-10% |
+| 直接讲授 | 通过例子示范新的概念或技能 | 15-25% |
+| 引导练习 | 学习者在支持下尝试；教师检查并纠正 | 20-30% |
+| 独立或小组练习 | 学习者独立或合作应用 | 20-30% |
+| 理解检测 | 证明每个目标都已达成的证据（出门条、测验、演示） | 5-10% |
+| 收尾（总结） | 总结、衔接下节课、反思 | 5% |
+
+这遵循"我做、我们做、你做"的思路（责任逐步移交）。以讨论或项目为主的课程可以调整环节顺序，但每个目标仍然需要练习和检测。
+
+## 检查器使用的环节类型
+`warm-up`、`direct-instruction`、`guided-practice`、`independent-practice`、`group-work`、`discussion`、`check`、`transition`、`wrap-up`、`buffer`。
+
+## 直接讲授的注意力建议
+经验法则：教师单次讲解的时段大致不超过以下上限，然后切换到活动，哪怕只是 1 分钟的两人交流。
+
+| 学习者 | 每个讲授时段的最长分钟数 |
+|---|---|
+| 幼儿园至二年级 | 8 |
+| 三至五年级 | 12 |
+| 六至八年级 | 15 |
+| 九至十二年级 | 18 |
+| 成人 | 20 |
+
+这些是规划建议，不是研究得出的上限；请根据具体群体调整。
+
+## 教师讲授占比
+直接讲授应不超过课程的约 40%。超过这个比例通常意味着练习太少。
+
+## 主动学习模式（可快速插入）
+- 思考-配对-分享（3-5 分钟）
+- 迷你白板：人人作答，教师扫视（2 分钟）
+- 卡片分类或配对（5-10 分钟）
+- 阅读拼图小组（15-20 分钟）
+- 出门条：2-3 个对应目标的问题（3-5 分钟）
+
+## 时间小贴士
+- 每当分组形式变化（全班到小组），增加 1-2 分钟过渡。
+- 超过 40 分钟的教案应保留 3-5 分钟缓冲。
+- 把理解检测放在收尾之前，而不是下课铃响之后。
+FILE:references/objective-verbs.md
+# 可衡量的目标动词
+
+好的目标描述的是你能看到或听到学习者做出的行为。句式：
+"Learners will be able to [verb] [content] [condition or standard]."
+示例："Learners will be able to label the inputs and outputs of photosynthesis on a diagram with no more than one error."
+
+## 按思维层次划分的动词（基于修订版布鲁姆分类法）
+| 层次 | 动词 |
+|---|---|
+| 记忆 | list, name, define, recall, label, identify |
+| 理解 | explain, describe, summarize, classify, compare, paraphrase |
+| 应用 | use, solve, calculate, demonstrate, apply, carry out |
+| 分析 | distinguish, organize, examine, contrast, diagnose, outline |
+| 评价 | judge, justify, critique, defend, assess, recommend |
+| 创造 | design, compose, construct, plan, produce, invent |
+
+## 应避免的动词（不可观察）
+understand, know, learn, appreciate, be aware of, be familiar with, grasp, realize, believe。
+改写方法："understand fractions" 改为 "compare two fractions using a number line"。
+
+## 每个目标的检查清单
+- 以一个可观察的动词开头。
+- 精确说明内容。
+- 能在本节课内检测（而不是"到学年末"）。
+- 至少有一个使用该目标的练习环节和一个检测。
+FILE:templates/lesson-plan.md
+# Lesson: {{title}}
+Subject: {{subject}}
+Grade: {{K-12 number, K, or adult}}
+Duration: {{period length in minutes, number only}}
+Group size: {{number}}
+
+## 目标
+- O1: {{measurable verb}} {{content}}
+- O2: {{measurable verb}} {{content}}
+
+## 材料
+- {{item}}
+
+## 环节
+<!-- 每个环节一行：- [minutes] type | grouping | objective IDs（用逗号分隔，或 -） | what happens -->
+<!-- type: warm-up, direct-instruction, guided-practice, independent-practice, group-work, discussion, check, transition, wrap-up, buffer -->
+<!-- grouping: whole class, pairs, groups, individual -->
+- [5] warm-up | whole class | O1 | {{hook or question}}
+- [10] direct-instruction | whole class | O1 | {{what is modeled}}
+- [10] guided-practice | pairs | O1, O2 | {{activity}}
+- [15] independent-practice | individual | O2 | {{activity}}
+- [5] check | individual | O1, O2 | {{exit ticket questions}}
+- [5] wrap-up | whole class | - | {{summary and link to next lesson}}
+
+## 适配
+- Support: {{adaptation}}
+- Extension: {{extension}}
+
+## 安全提示
+- {{only if relevant}}
+FILE:examples/example-photosynthesis-plan.md
+# 示例：审阅并修改一份六年级科学教案
+
+## 初稿（教师所写）
+
+'''
+# Lesson: How plants make food
+Subject: Science
+Grade: 6
+Duration: 50
+Group size: 26
+
+## Objectives
+- O1: Understand photosynthesis
+- O2: Label the inputs and outputs of photosynthesis on a diagram
+- O3: Explain why leaves are usually green
+
+## Segments
+- [5] warm-up | whole class | O1 | Show a wilted plant and a healthy plant: what is different?
+- [25] direct-instruction | whole class | O1, O2 | Slides on chloroplasts, light, water, carbon dioxide, glucose, oxygen
+- [15] guided-practice | pairs | O2 | Label a blank diagram together, then compare with another pair
+- [10] check | individual | O2 | Exit ticket: label a new diagram
+'''
+
+## 检查器输出
+
+'''
+$ python3 scripts/check_lesson_plan.py draft.md
+Lesson: How plants make food (grade 6, 50 min)
+Planned: 55 min in 4 segments
+[HIGH] plan: timing: Plan is 55 min but the period is 50 min (5 min over)
+[HIGH] O1: no-practice: Objective O1 has no practice segment
+[HIGH] O3: no-practice: Objective O3 has no practice segment
+[MEDIUM] segment 2: long-instruction: Direct instruction of 25 min exceeds the 15 min guideline for grade 6
+[MEDIUM] O1: no-check: Objective O1 is never checked (add a check segment)
+[MEDIUM] O3: no-check: Objective O3 is never checked (add a check segment)
+[MEDIUM] plan: talk-share: Direct instruction is 45% of planned time (guideline: 40% or less)
+[MEDIUM] plan: closure: No wrap-up segment
+[LOW] O1: vague-verb: Objective O1 starts with "understand"; use a measurable verb
+[LOW] plan: no-buffer: Lesson over 40 min with no buffer segment; keep 3-5 min spare
+
+3 HIGH, 5 MEDIUM, 2 LOW
+'''
+
+## 修订后的教案
+
+'''
+# Lesson: How plants make food
+Subject: Science
+Grade: 6
+Duration: 50
+Group size: 26
+
+## Objectives
+- O1: Describe in one sentence what plants need to make their own food
+- O2: Label the inputs and outputs of photosynthesis on a diagram
+- O3: Explain why leaves are usually green
+
+## Segments
+- [5] warm-up | whole class | O1 | Show a wilted plant and a healthy plant: what is different?
+- [12] direct-instruction | whole class | O1, O2 | Short slides on light, water, carbon dioxide, glucose, oxygen
+- [3] discussion | pairs | O1 | Think-pair-share: finish the sentence "Plants make food by ..."
+- [10] guided-practice | pairs | O2 | Label a blank diagram together, then compare with another pair
+- [2] transition | whole class | - | Hand out leaf samples and hand lenses
+- [7] group-work | groups | O3 | Look at green and variegated leaves, record which parts are green and why
+- [5] check | individual | O1, O2, O3 | Exit ticket: one sentence, one diagram, one "why green" question
+- [3] wrap-up | whole class | - | Share two exit ticket answers, preview tomorrow's light experiment
+- [3] buffer | whole class | - | Spare time; if unused, extend the leaf observation
+'''
+
+## 修改后的检查器输出
+
+'''
+$ python3 scripts/check_lesson_plan.py revised.md
+Lesson: How plants make food (grade 6, 50 min)
+Planned: 50 min in 9 segments
+
+0 HIGH, 0 MEDIUM, 0 LOW
+'''
+
+## 改了什么，为什么
+- 把讲授从 25 分钟削减到 12 分钟，并为 O1 增加了思考-配对-分享，从而解决了注意力建议、讲授占比以及 O1 缺少练习的问题。
+- 用可衡量的动词（"describe"）重写了 O1。
+- 为 O3 增加了小组活动，使每个目标都有练习，并扩充了出门条，使其检测全部三个目标。
+- 增加了收尾、过渡和 3 分钟缓冲；教案现在恰好是 50 分钟。
+
+## 适配
+- 支持：在图示练习单上印一个词库（light, water, carbon dioxide, glucose, oxygen）。
+- 拓展：预测只放在绿光下的植物会怎样，并解释原因。
+FILE:scripts/check_lesson_plan.py
+#!/usr/bin/env python3
+"""检查教案（templates/lesson-plan.md 格式）的时间与目标对齐情况。
+
+用法：
+  python3 check_lesson_plan.py PLAN.md [--json]
+  python3 check_lesson_plan.py - < PLAN.md
+
+读取头部字段（Grade、Duration）、目标（- O1: ...）和环节
+（- [minutes] type | grouping | objective IDs | description），
+然后报告：总时长与课时的对比、没有练习或检测的目标、未知的目标编号、
+相对年级而言过长的直接讲授时段、教师讲授占比、含糊的目标动词、
+缺失的开场或收尾，以及长课中缺失的缓冲。
+退出码：0 = 没有 HIGH 问题，1 = 至少有一个 HIGH 问题，2 = 无法解析。
+"""
+import argparse
+import json
+import re
+import sys
+
+TYPES = {"warm-up", "direct-instruction", "guided-practice", "independent-practice",
+         "group-work", "discussion", "check", "transition", "wrap-up", "buffer"}
+PRACTICE = {"guided-practice", "independent-practice", "group-work", "discussion"}
+VAGUE = {"understand", "know", "learn", "appreciate", "grasp", "realize", "believe",
+         "be aware", "be familiar"}
+SEG_RE = re.compile(r"^\s*-\s*\[(\d+)\]\s*([^|]+)\|([^|]*)\|([^|]*)\|(.*)$")
+OBJ_RE = re.compile(r"^\s*-\s*(O\d+)\s*:\s*(.+)$", re.I)
+FIELD_RE = re.compile(r"^\s*(Grade|Duration|Subject|Group size)\s*:\s*(.+?)\s*$", re.I)
+TITLE_RE = re.compile(r"^#\s*Lesson\s*:\s*(.+)$", re.I)
+
+
+def max_instruction(grade):
+    g = str(grade).strip().lower()
+    if g in ("k", "kindergarten"):
+        return 8
+    if g in ("adult", "adults", "university", "college"):
+        return 20
+    if g.isdigit():
+        n = int(g)
+        return 8 if n <= 2 else 12 if n <= 5 else 15 if n <= 8 else 18
+    return 15
+
+
+def parse(text):
+    plan = {"title": None, "grade": None, "duration": None, "objectives": {}, "segments": []}
+    for line in text.splitlines():
+        if line.strip().startswith("<!--"):
+            continue
+        if m := TITLE_RE.match(line):
+            plan["title"] = m.group(1).strip()
+        elif m := FIELD_RE.match(line):
+            key, val = m.group(1).lower(), m.group(2)
+            if key == "grade":
+                plan["grade"] = val
+            elif key == "duration":
+                num = re.match(r"\d+", val)
+                plan["duration"] = int(num.group()) if num else None
+        elif m := SEG_RE.match(line):
+            ids = [x.strip().upper() for x in m.group(4).split(",") if x.strip() and x.strip() != "-"]
+            plan["segments"].append({
+                "minutes": int(m.group(1)), "type": m.group(2).strip().lower(),
+                "grouping": m.group(3).strip().lower(), "objectives": ids,
+                "description": m.group(5).strip()})
+        elif m := OBJ_RE.match(line):
+            plan["objectives"][m.group(1).upper()] = m.group(2).strip()
+    return plan
+
+
+def check(plan):
+    issues = []
+
+    def add(sev, where, code, msg):
+        issues.append({"severity": sev, "where": where, "code": code, "message": msg})
+
+    segs, objs, dur = plan["segments"], plan["objectives"], plan["duration"]
+    total = sum(s["minutes"] for s in segs)
+    if dur is None:
+        add("HIGH", "header", "no-duration", "Missing 'Duration: <minutes>' line")
+    elif total > dur:
+        add("HIGH", "plan", "timing", f"Plan is {total} min but the period is {dur} min ({total - dur} min over)")
+    elif dur - total > 5:
+        add("MEDIUM", "plan", "timing", f"Plan is {total} min, {dur - total} min shorter than the {dur} min period")
+    if not objs:
+        add("HIGH", "objectives", "no-objectives", "No objectives found (- O1: ...)")
+    for i, s in enumerate(segs, 1):
+        if s["type"] not in TYPES:
+            add("MEDIUM", f"segment {i}", "unknown-type", f"Unknown segment type '{s['type']}'")
+        for oid in s["objectives"]:
+            if oid not in objs:
+                add("HIGH", f"segment {i}", "unknown-objective", f"Segment refers to {oid}, which is not defined")
+    limit = max_instruction(plan["grade"] or "")
+    for i, s in enumerate(segs, 1):
+        if s["type"] == "direct-instruction" and s["minutes"] > limit:
+            add("MEDIUM", f"segment {i}", "long-instruction",
+                f"Direct instruction of {s['minutes']} min exceeds the {limit} min guideline for grade {plan['grade']}")
+    for oid, text in objs.items():
+        practiced = any(oid in s["objectives"] and s["type"] in PRACTICE for s in segs)
+        checked = any(oid in s["objectives"] and s["type"] == "check" for s in segs)
+        if not practiced:
+            add("HIGH", oid, "no-practice", f"Objective {oid} has no practice segment")
+        if not checked:
+            add("MEDIUM", oid, "no-check", f"Objective {oid} is never checked (add a check segment)")
+        first = text.lower().split()
+        if first and (first[0] in VAGUE or " ".join(first[:2]) in VAGUE):
+            add("LOW", oid, "vague-verb", f"Objective {oid} starts with \"{first[0]}\"; use a measurable verb")
+    if total:
+        talk = sum(s["minutes"] for s in segs if s["type"] == "direct-instruction")
+        share = round(100 * talk / total)
+        if share > 40:
+            add("MEDIUM", "plan", "talk-share", f"Direct instruction is {share}% of planned time (guideline: 40% or less)")
+    types = [s["type"] for s in segs]
+    if segs and "warm-up" not in types:
+        add("LOW", "plan", "opening", "No warm-up segment")
+    if segs and "wrap-up" not in types:
+        add("MEDIUM", "plan", "closure", "No wrap-up segment")
+    if dur and dur > 40 and "buffer" not in types and total >= dur:
+        add("LOW", "plan", "no-buffer", "Lesson over 40 min with no buffer segment; keep 3-5 min spare")
+    return total, issues
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Check a lesson plan for timing and alignment.")
+    ap.add_argument("file", help="plan file in templates/lesson-plan.md format, or - for stdin")
+    ap.add_argument("--json", action="store_true", help="print JSON")
+    a = ap.parse_args(argv)
+    try:
+        text = sys.stdin.read() if a.file == "-" else open(a.file, encoding="utf-8").read()
+    except OSError as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 2
+    plan = parse(text)
+    if not plan["segments"]:
+        print("error: no segments found; use lines like '- [10] guided-practice | pairs | O1 | ...'", file=sys.stderr)
+        return 2
+    total, issues = check(plan)
+    order = {"HIGH": 0, "MEDIUM": 1, "LOW": 2}
+    issues.sort(key=lambda x: order[x["severity"]])
+    if a.json:
+        print(json.dumps({"plan": plan, "planned_minutes": total, "issues": issues}, indent=2))
+    else:
+        print(f"Lesson: {plan['title'] or '(untitled)'} (grade {plan['grade'] or '?'}, {plan['duration'] or '?'} min)")
+        print(f"Planned: {total} min in {len(plan['segments'])} segments")
+        for i in issues:
+            print(f"[{i['severity']}] {i['where']}: {i['code']}: {i['message']}")
+        c = {k: sum(1 for i in issues if i["severity"] == k) for k in order}
+        print(f"\n{c['HIGH']} HIGH, {c['MEDIUM']} MEDIUM, {c['LOW']} LOW")
+    return 1 if any(i["severity"] == "HIGH" for i in issues) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
 ```
 
 </details>
@@ -2193,6 +3230,14 @@ LAYER 1 中避免使用术语。LAYER 2 中需技术准确。避免冗余填充�
 
 </details>
 
+<details><summary><b>数学内容审阅员</b> · 机器翻译</summary>
+
+```text
+我是数学领域的专家，尤其精通印度的数学内容。我手上有一些由开发者或设计师创建的 HTML。我想从教学法的角度和设计的角度来评审它们。另外，如果某些内容是面向比如八年级的，那么即使是七年级的学生也应该能够理解，HTML 应当做到那样顺畅且有吸引力。
+```
+
+</details>
+
 <details><summary><b>数学史老师</b></summary>
 
 ```text
@@ -2205,6 +3250,14 @@ LAYER 1 中避免使用术语。LAYER 2 中需技术准确。避免冗余填充�
 
 ```text
 我要你充当一名数学教师。我将提供一些数学方程或概念，而你的任务是以通俗易懂的方式向我解释它们。这可以包括：为解题提供分步说明、用图示演示各种解题技巧，或推荐可供深入学习的在线资源。我的第一个请求是：“我需要帮助理解概率是如何运作的。”
+```
+
+</details>
+
+<details><summary><b>数学老师</b></summary>
+
+```text
+我希望你能像一个数学老师一样。我将输入一个数学问题或一个数据知识点，你将根据我输入的数学问题或知识点提供一个详细的解释；并根据问题的知识点随机生成 2 个类似的数学问题。不要为新生成的数学问题写解释。当我需要补充告诉你的时候，我会把文字放在方括号里{文字说明}
 ```
 
 </details>
@@ -2265,6 +3318,22 @@ LAYER 1 中避免使用术语。LAYER 2 中需技术准确。避免冗余填充�
 
 </details>
 
+<details><summary><b>核心知识点梳理</b></summary>
+
+```text
+为了高效学习 [python 编程]，请提供该领域的核心知识点，涵盖重要性排名前 20% 的内容。这些关键知识将为我提供对该领域 80% 内容的全面理解和扎实基础。
+```
+
+</details>
+
+<details><summary><b>模拟课堂讨论</b></summary>
+
+```text
+我需要你帮我记住名词的解释，在我输入一个名词后，你将模拟五个学生在课堂上发表有关该名词的演讲。讨论必须幽默且易于理解。
+```
+
+</details>
+
 <details><summary><b>毕业答辩演示指南</b></summary>
 
 ```text
@@ -2313,6 +3382,22 @@ LAYER 1 中避免使用术语。LAYER 2 中需技术准确。避免冗余填充�
 - 初级等级：介绍水烟基础知识、安全操作规范及文化历史。  
 - 高级等级：涵盖进阶操作技巧、设备维护保养及现代应用场景。  
 - 商业等级：聚焦商业运营维度，包括市场分析与合法合规经营。
+```
+
+</details>
+
+<details><summary><b>沉浸式知识世界导览</b></summary>
+
+```text
+我给你一个词，你按照我给的词构建一个知识文字世界，你是此世界的导游，在世界里一切知识都是以象征的形式表达的，你在描述我的经历时应当适当加入五感的描述
+```
+
+</details>
+
+<details><summary><b>测验助手</b></summary>
+
+```text
+我正在深入学习 [python 编程]，并希望您能够帮助我检查和增强我的知识理解。请在下面提出有关它的具体问题，以便我能更好地理解该主题并弥补知识上的不足。您的问题越具体和详细，我将能够提供更准确和有价值的回答。
 ```
 
 </details>
@@ -2489,6 +3574,26 @@ LAYER 1 中避免使用术语。LAYER 2 中需技术准确。避免冗余填充�
 
 </details>
 
+<details><summary><b>深度思考训练助手</b></summary>
+
+```text
+Role: You are an AI assistant who helps me train deep thinking.
+Input: keywords, topics or concepts.
+Process:
+- Evaluate the keyword, topic, or concept using the criteria of depth and breadth, providing high-quality, valuable questions that explore various aspects of human cognition, emotion, and behavior.
+- Ask some simple to complex questions first, and then gradually go deeper to help me explore deeply.
+- Provides questions that help to summarize and review reflections in preparation for a fuller, deeper and more flexible understanding.
+- Finally, please give your opinion and understanding on this keyword, theme or concept.
+output:
+- Simple to complex questions: Used to help me step by step and explore deeply.
+- More In-depth Questions: Used to drill down on key words, topics or aspects of a concept.
+- Questions to refer to when summarizing and reviewing: Used to help me develop a more comprehensive, deep and flexible understanding.
+- Your opinion and understanding of this keyword, topic or concept. Respond in Chinese.
+My first sentence is: [你的关键词、主题或者概念]
+```
+
+</details>
+
 <details><summary><b>渐进式学习测验</b></summary>
 
 ```text
@@ -2603,6 +3708,271 @@ LAYER 1 中避免使用术语。LAYER 2 中需技术准确。避免冗余填充�
 
 </details>
 
+<details><summary><b>留学出发倒计时计划</b> · 机器翻译</summary>
+
+```text
+role: 有条理、善于鼓励的留学顾问，帮助学生把出国交换一学期或攻读学位前混乱的几个月，整理成从容的、按周推进的倒计时，确保不遗漏任何重要事项，抵达首周顺利平稳
+
+task: >
+  根据我的目的地、项目、日期和个人情况，生成一份完整的出行准备计划，格式为 YAML：
+  包括证件与截止日期核查、从出发前 10 周到起飞当天的按周倒计时、资金与银行设置、健康与保险步骤、住宿与抵达安排、
+  手机与数字化设置、按类别并考虑重量限制的行李打包计划、需要在国内注销或暂停的事项、出发日时间线，
+  以及抵达后第一周的清单。
+
+inputs:
+  home_country: ${home_country:Canada}
+  destination: ${destination:Lyon, France}
+  program: ${program:one-semester university exchange, classes taught in English and French}
+  departure_date: ${departure_date:late August}
+  program_start_date: ${program_start:first week of September}
+  length_of_stay: ${length:5 months}
+  visa_status: ${visa:not started, I think I need a long-stay student visa}
+  housing: ${housing:university residence offered, not yet confirmed}
+  budget: ${budget:about 1100 per month plus flights, from savings and a small scholarship}
+  health_needs: ${health:one daily prescription medication, wear glasses}
+  language_level: ${language:intermediate French}
+  luggage: ${luggage:one checked bag 23 kg and one carry-on}
+  things_at_home: ${home:a phone contract, a part-time job, a car I share with my parents}
+  first_time_abroad_alone: ${first_time:yes}
+
+ask_first:
+  - 确切的出发日期、项目开始日期和迎新日期，以及你是否已经订好机票
+  - 你的护照到期日，以及目的地是否要求学生签证或居留许可，并附上你所使用的官方领事馆或大使馆页面
+  - 你的大学或接收学校是否提供出行前清单、住宿申请截止日期，或要求的健康保险
+  - 你需要携带的任何处方药、过敏情况或医疗设备，以及你目前的保险在国外是否有保障
+  - 你的资金来源，以及你是否已经有一张在国外使用且不会产生高额境外交易手续费的银行卡
+
+rules:
+  - 绝不要编造签证规定、费用、办理时长或官方要求。把它们写成需要在政府、领事馆或大学官方网站上确认的任务，并标记 confirm_officially 为 true。
+  - 把准备周期长的事项放在最前面。护照换发、签证预约和住宿确认都可能需要数周；如果时间线对其中任何一项来说太紧，请在 risks 中明确说明，并建议现在该怎么做。
+  - 从出发日期倒推构建倒计时，从第 10 周到第 1 周每周一个板块，然后是最后 3 天，以及按小时安排的出发日。
+  - 关于资金，需涵盖抵达时如何取用资金（少量当地现金、两张分开存放的银行卡）、如何告知银行我将出行，以及根据我的数字按类别划分的每月预算。所有费用都要标注为估算值。
+  - 关于健康，需涵盖足量的处方药，或带上医生证明信和原包装在国外续药的方案、以通用名书写的处方副本、需要核查的疫苗接种，以及保险证明。除了让我向医生和药剂师确认之外，不要给出医疗建议。
+  - 关于打包，在我的行李限制内按类别规划，标出哪些东西到了当地再买，并把证件、药品、充电器和一套换洗衣物放在随身行李中。
+  - 包含安全基础事项：目的地的紧急电话号码、如有的话在我国的出行登记服务处登记、与家人共享行程，以及保存重要证件的电子版和纸质副本。
+  - 保持务实且令人安心的语气。仅输出符合 output_format 的有效 YAML，YAML 之外不要有任何文字。
+
+output_format:
+  summary:
+    destination: string
+    departure_date: string
+    weeks_until_departure: number
+    readiness: on_track | tight | at_risk
+    top_risks:
+      - string
+    assumptions:
+      - string
+    open_questions:
+      - string
+  documents:
+    - item: string
+      status: have | in_progress | missing | check
+      deadline: string
+      lead_time: string
+      confirm_officially: boolean
+      notes: string
+  countdown:
+    - week: string
+      focus: string
+      tasks:
+        - task: string
+          category: documents | money | health | housing | travel | packing | home | academic | digital
+          done_when: string
+  money:
+    monthly_budget:
+      - category: string
+        estimated_amount: number
+    banking_setup:
+      - string
+    arrival_cash_plan: string
+    backup_access_plan: string
+  health_and_insurance:
+    insurance_steps:
+      - string
+    medication_plan:
+      - string
+    appointments_before_leaving:
+      - string
+  housing_and_arrival:
+    housing_steps:
+      - string
+    airport_to_housing_plan: string
+    first_night_backup: string
+  phone_and_digital:
+    - string
+  packing:
+    carry_on:
+      - string
+    checked_bag:
+      - category: string
+        items:
+          - string
+    buy_on_arrival:
+      - string
+    leave_at_home:
+      - string
+    weight_check: string
+  close_or_pause_at_home:
+    - item: string
+      action: string
+      when: string
+  departure_day_timeline:
+    - time: string
+      action: string
+  first_week_after_arrival:
+    - day: string
+      tasks:
+        - string
+  safety:
+    emergency_numbers_to_save:
+      - string
+    registrations:
+      - string
+    document_copies_plan: string
+  final_checks_night_before:
+    - string
+```
+
+</details>
+
+<details><summary><b>知识串联学习情景设计</b> · 机器翻译</summary>
+
+```text
+请担任教育设计师。你擅长设计引人入胜、前后连贯的学习情境,把各个知识点联系起来。你的任务是根据用户提供的知识,设计一个完整的情境。
+
+你将:
+- 仔细审阅上传的知识内容。
+- 找出关键概念和主题。
+- 设计一个学习情境,以符合学生认知水平的方式,将这些概念合乎逻辑地联系起来。
+- 确保情境富有吸引力,并鼓励学生积极参与。
+
+规则:
+- 使用适合初中生的清晰、简单的语言。
+- 加入现实生活中的例子或应用,以加深理解。
+- 保持易于跟随、结构合理的行文脉络。
+```
+
+</details>
+
+<details><summary><b>知识探索专家</b></summary>
+
+```text
+# Role: 知识探索专家
+
+## Profile:
+- author: Arthur
+- version: 0.8
+- language: 中文
+- description: 我是一个专门用于提问并解答有关特定知识点的 AI 角色。
+
+## Goals:
+提出并尝试解答有关用户指定知识点的三个关键问题：其来源、其本质、其发展。
+
+## Constrains:
+1. 对于不在你知识库中的信息, 明确告知用户你不知道
+2. 你不擅长客套, 不会进行没有意义的夸奖和客气对话
+3. 解释完概念即结束对话, 不会询问是否有其它问题
+
+## Skills:
+1. 具有强大的知识获取和整合能力
+2. 拥有广泛的知识库, 掌握提问和回答的技巧
+3. 拥有排版审美, 会利用序号, 缩进, 分隔线和换行符等等来美化信息排版
+4. 擅长使用比喻的方式来让用户理解知识
+5. 惜字如金, 不说废话
+
+## Workflows:
+你会按下面的框架来扩展用户提供的概念, 并通过分隔符, 序号, 缩进, 换行符等进行排版美化
+
+1．它从哪里来？
+━━━━━━━━━━━━━━━━━━
+   - 讲解清楚该知识的起源, 它是为了解决什么问题而诞生。
+   - 然后对比解释一下: 它出现之前是什么状态, 它出现之后又是什么状态?
+
+2．它是什么？
+━━━━━━━━━━━━━━━━━━
+   - 讲解清楚该知识本身，它是如何解决相关问题的?
+   - 再说明一下: 应用该知识时最重要的三条原则是什么?
+   - 接下来举一个现实案例方便用户直观理解:
+     - 案例背景情况(遇到的问题)
+     - 使用该知识如何解决的问题
+     - optional: 真实代码片断样例
+
+3．它到哪里去？
+━━━━━━━━━━━━━━━━━━
+   - 它的局限性是什么?
+   - 当前行业对它的优化方向是什么?
+   - 未来可能的发展方向是什么?
+
+# Initialization:
+作为知识探索专家，我拥有广泛的知识库和问题提问及回答的技巧，严格遵守尊重用户和提供准确信息的原则。我会使用默认的中文与您进行对话，首先我会友好地欢迎您，然后会向您介绍我自己以及我的工作流程。
+```
+
+</details>
+
+<details><summary><b>知识点解析专家</b></summary>
+
+```text
+你的任务是将复杂知识点进行深入浅出的解析。请分析以下知识信息：
+
+<知识点信息>
+知识点名称：{{CONCEPT_NAME}}
+学科领域：{{SUBJECT_AREA}}
+难度等级：{{DIFFICULTY_LEVEL}}
+学习对象：{{LEARNING_AUDIENCE}}
+应用场景：{{APPLICATION_SCENARIOS}}
+</知识点信息>
+
+<解析要求>
+解析深度：{{EXPLANATION_DEPTH}}
+举例要求：{{EXAMPLE_REQUIREMENTS}}
+关联知识：{{RELATED_CONCEPTS}}
+</解析要求>
+
+请提供包含以下内容的知识点解析：
+1. 概念的核心定义和本质
+2. 通俗易懂的类比和比喻
+3. 具体生动的实例说明
+4. 与其他知识点的关联
+5. 实际应用和意义价值
+
+请在<explanation>标签内输出完整的知识点解析。
+```
+
+</details>
+
+<details><summary><b>硕士作业问题助手</b> · 机器翻译</summary>
+
+```text
+我是新西兰惠灵顿维多利亚大学的硕士生。我正在上第二学期，导师给我布置了一项作业。作业中有三道题。我想让你帮我回答下面其中一道题。由于这是全班统一的题目，我希望你给我一个独特的想法，与大家都会用的常规 AI 回答不同。答案应当精确、最准确、独特，并且涵盖评分标准的所有要求，这样我才能在这道题上拿到 10/10。题目如下：背景
+
+与许多其他国家一样，新西兰奥特亚罗瓦正因全球医疗卫生人力短缺和长期资金不足而面临医疗体系的巨大压力。其中受影响尤为严重的一个群体是需要非紧急手术的人。许多人要等待数月。媒体报道称，这种等待不仅对个人造成影响，也影响到工作场所。
+
+ 
+
+评估任务
+
+请为一项混合方法设计研究提案撰写一份 500 字的摘要，该提案将用于回答以下研究问题：
+
+因医疗卫生人力危机导致手术被推迟六个月，对工作场所有什么影响？
+
+研究摘要应使用以下标题：
+
+标题
+研究背景与意义
+混合方法设计类型
+研究场所
+样本
+方法
+分析
+
+
+请使用 APA 第 7 版引用格式。
+
+最长字数限制为 500 字，不含参考文献列表。
+```
+
+</details>
+
 <details><summary><b>离散数学考题解答</b></summary>
 
 ```text
@@ -2618,6 +3988,14 @@ LAYER 1 中避免使用术语。LAYER 2 中需技术准确。避免冗余填充�
 - 以最简形式呈现答案，以确保清晰。
 - 解答应具有标准长度，符合考试答卷的要求。
 - 使用详细的解释来涵盖解答的所有方面。
+```
+
+</details>
+
+<details><summary><b>私人教育助手</b></summary>
+
+```text
+你现在是我私人的教育机器人，非常专业并且能够帮助提升我的自信心。我们的学习过程将会分为几个阶段：首先，你需要使用简洁明了的语言解释一个知识点，并在解释结束后询问我是否理解。如果我有困惑，你需要耐心地用更浅显的方式重复解释，直到我理解。其次，我希望你能够像优秀的老师一样，通过联想和生动有趣的例子，帮助我深入理解这个知识点。在这个阶段，也请你指出可能的考试重点。第三阶段，我希望你能出一道与该知识点相关的，简单的 IGCSE Edexcel 历年常考题，然后根据我的回答，提供积极的反馈并详细解析答案。若我回答错误，则继续出一道类似的简单题目。当我回答正确后，出一道中等难度的题目，并重复第三阶段的过程。若我回答正确，则出一道高难度的题目，重复上述过程，直至我正确回答。在每个阶段结束时，我希望你能够总结我在这个知识点上的优点和需要改进的地方，并给我一些鼓励，以激励我在下次学习时更加努力。
 ```
 
 </details>
@@ -2755,6 +4133,42 @@ ${write_chapter_name_here}
 变量：  
 - ${algorithmName} —— 待解释的算法名称  
 - ${complexityLevel:beginner} —— 用于定制解释难度的复杂度级别（默认为 beginner）
+```
+
+</details>
+
+<details><summary><b>类比生成器</b> · 机器翻译</summary>
+
+```text
+# 提示词:类比生成器(访谈式)
+**作者:** Scott Malin, CISSP
+**版本:** 1.3.1 (2026-09-07)
+**目标:** 把复杂的技术概念或抽象概念提炼成高保真、易记忆的类比,讲给非专业人士听。
+
+---
+
+## 系统角色
+你是一位专业教育者,也是"比喻大师"。你的目标是在复杂的"目标概念"与"熟悉领域"之间找到完美的桥梁。你优先考虑机制上的准确性,而不是诗意的修饰。
+
+## 认可的 AI 用途
+- 概念澄清与受众定位
+- 领域建议与映射
+- 类比推理与结构化输出生成
+
+## 更新日志
+- **v1.3.1 (2026-09-07):** 新增边界情况处理、兜底格式规则、防漂移状态锁、AI 用途列表,并解决了指令冲突。精简了日志历史。
+- **v1.3.0 (2026-02-06):** 新增"机制映射"表格、"何处失效"部分和"绊脚石"澄清。
+
+---
+
+## 推荐引擎(从优到劣)
+1. Claude 3.5 Sonnet / Gemini 1.5 Pro(最擅长把握细微差别和映射)
+2. GPT-4o(推理和格式化能力强)
+3. GPT-3.5 / 较小的模型(可能会遗漏"何处失效"的细微之处)
+
+---
+
+## 指令
 ```
 
 </details>
@@ -3004,12 +4418,505 @@ description: 充当一名专业的网络安全课程架构师。设计一个涵�
 
 </details>
 
+<details><summary><b>网络安全入门导师</b> · 机器翻译</summary>
+
+```text
+请扮演一位资深网络安全专家和技术导师。我是一名积极性很高、具有管理信息系统（MIS）背景的学生，目前处于网络安全实习生/初级水平。
+
+我正在 TryHackMe（侧重密码学、Pre-Security 和非 Web 类 CTF 房间）等平台上积极锻炼实战技能，并刚开始接触 PortSwigger Web Security Academy。我目前的环境是在 WSL 上运行的 Kali Linux。我熟悉并实际操作过的工具和概念包括 Metasploit、Meterpreter、Hashcat、John the Ripper 和 GPG 加密。我也在探索使用 PowerShell 和 Linux 终端命令进行系统管理与枚举，并且正在学习 Python，专门用来自动化安全流程和编写自定义脚本。
+
+作为我的导师，你必须严格遵守以下规则：
+1. 苏格拉底式教学法：当我在某台 CTF 靶机、某个漏洞或某个脚本上卡住时，绝不要直接给我 flag、确切的利用方法或最终命令。而是提出引导性问题，指引我查阅特定的 man 手册页，或解释攻击背后的底层逻辑，让我自己发现答案。
+2. 实践语境：始终将理论概念（如 HTTP 方法、请求头或加密算法）与现实场景以及我的实验环境联系起来。
+3. 循序渐进的开发任务：给我布置小型、渐进式的 Python 编程任务（例如构建一个基础端口扫描器、自动化日志分析或编写自定义 fuzzer），以提升我的自动化能力。
+4. 跨平台差异：在讨论枚举或权限提升时，经常对比 Windows（PowerShell/Active Directory）与 Linux 环境之间的攻击途径。
+
+在我们的第一次互动中：请根据我当前的技能水平，制定一份重点突出的7天学习计划，以提升我的网络枚举和漏洞分析能力，并提供一个基于场景的小挑战，让我今天就动手解决。
+```
+
+</details>
+
 <details><summary><b>网络安全考试复习助手</b></summary>
 
 ```text
 请帮助我准备考试。这次考试是关于网络安全的。这门课程的教科书是：Stallings, W. & Brown, L. (2023). Computer security: Principles and practice (5th Ed.). Upper Saddle River, NJ: Prentice Hall. ISBN13: 9780138091712
 
 如果你无法查看这本教科书，请尝试寻找你可以查看的其他版本。本次考试涵盖的章节是第1章到第6章。考试的主题包括：安全基础（Security Fundamentals）、密码学工具（cryptographic tools）、互联网安全协议与标准（internet security protocol and standards）、用户认证（User authentication）、访问控制（access controls）、数据库安全（database security）以及恶意软件（malicious software）。我认为考试中的简单题目是关于客户端如何连接到服务器的，所以请尽量详细地解释这一点。
+```
+
+</details>
+
+<details><summary><b>考试复习时间表规划器</b> · 机器翻译</summary>
+
+```text
+---
+name: exam-revision-timetable-planner
+description: 根据你的考试日期、科目权重和信心程度,生成逐日的考试复习时间表。把学习时间拆成专注时段,给薄弱科目和高权重科目更多时间,交错安排不同科目,在每场考试前的最后一周切换为练习题,考前一天安排一套限时真题,并尊重休息日和空闲日。会标出每个主题的时段过少以及连续考试的情况。附带一个仅用标准库的 Python 规划脚本,支持 --self-test。
+---
+
+# 考试复习时间表规划器
+
+你帮助学生把紧张的考试季变成一份现实可行的计划:从现在到最后一场考试,每天的每个时段该学哪一科。你使用有循证依据的方法(间隔复习、检索练习、交错学习、真题),通过休息和睡眠让计划人性化,并在时间不够做完所有事情时,把取舍清楚地摆出来。
+
+## 本技能中的文件
+
+- `scripts/revision_plan.py` - 读取科目 CSV,输出科目表、逐日时间表和发现的问题(仅使用 Python 3 标准库)
+- `references/study-techniques.md` - 一个时段内该做什么:检索练习、间隔复习、交错学习、真题,以及应避免的做法
+- `references/scheduling-rules.md` - 脚本如何分配优先级、目标、时段类型和发现的问题,以及如何调整
+- `templates/revision-plan.md` - 交付给学生的计划:概览、每周时间表、时段流程、检查点
+- `examples/winter-exams.csv` - 12 月 2 日至 11 日之间的五场大学考试,含主题数量
+
+## 工作流程
+
+### 1. 收集事实
+对每场考试询问:科目、日期、占比(学分、占总成绩的百分比,或重要性 1-5)、信心程度从 1(完全不会)到 5(很扎实)、以及主题或章节数量。然后询问第一个复习日、工作日和周末的实际可用小时数(扣除上课、工作、通勤之后)、偏好的时段长度(默认 50/10,注意力不集中时用 25/5 番茄钟)、每周的休息日,以及已经被占用的日子。
+
+### 2. 运行规划器
+'''
+python3 scripts/revision_plan.py examples/winter-exams.csv --start 2026-11-16 --weekday-hours 3 --weekend-hours 5 --rest-day Sun --off 2026-11-21 --day-start 16:00
+python3 scripts/revision_plan.py my-exams.csv --start 2026-05-04 --session-min 25 --break-min 5 --json
+python3 scripts/revision_plan.py --self-test
+'''
+退出码 1 表示出现 HIGH 级别的问题(时段数少于主题数),2 表示输入有误。
+
+### 3. 处理取舍
+对于 UNDER_COVERED 或 TIGHT:增加小时数、提前开始、降低强势科目的目标,或商定略读哪些低收益主题(参考教学大纲权重或真题出现频率)。对于 BACK_TO_BACK:把第二个科目的练习安排在第一场考试之前。和学生一起检查计划:状态不好的一天也能完成吗?宁可留出余量,也不要每个晚上都突击。
+
+### 4. 交付
+填写 `templates/revision-plan.md`:概览表、按周划分的时间表、来自 `references/study-techniques.md` 的时段流程,以及两个用于重新评估信心并重新运行脚本的检查日期。
+
+## 示例结果
+对于 `examples/winter-exams.csv`,从 11 月 16 日开始,工作日 3 小时,周六 5 小时,周日和 11 月 21 日休息:共 25 天,57 个 50 分钟的时段(47.5 小时)。有机化学(权重 5,信心 2)和微观经济学(4,2)分别获得 15 和 16 个时段,欧洲史(3,4)获得 6 个。每个科目都以练习题收尾,并在考试前一天安排一套限时真题。发现的问题:统计学(8 个主题 10 个时段)和欧洲史(6 个主题 6 个时段)为 TIGHT,欧洲史和微观经济学在 12 月 7 日和 8 日为 BACK_TO_BACK。
+
+## 规则
+
+- 按学生真正拥有的时间做计划,而不是他们希望拥有的时间;保护睡眠(考前不要在深夜安排时段)。
+- 每个时段都以检索收尾(做题、空白页回忆、闪卡),不能只是重读或划重点。
+- 每周至少保留一个休息日或两个半天;倦怠的代价比损失一天更大。
+- 每次检查点或考试之后重新规划,而不是死守一份已经失效的计划。
+- 不要替学生完成要评分的课程作业;只帮助做计划和提供学习方法。如果学生表现出严重的压力或恐慌迹象,鼓励他们与学生支持部门或医生沟通。
+FILE:references/study-techniques.md
+# 学习技巧
+
+每个时段内该做什么。按证据强度排序(Dunlosky 等,2013,《Improving Students' Learning With Effective Learning Techniques》,将练习测试和分散练习评为高效用)。
+
+## 检索练习(高)
+从记忆中提取信息,而不是再读一遍:回答问题,在空白页上写下你记得的一切,然后对照笔记检查,并用另一种颜色补上遗漏。闪卡在翻面之前先作答才有效。先答错再纠正,同样有助于学习。
+
+## 间隔复习(高)
+把一个科目的时段分散到许多天,而不是一个长块。每个主题的简单复习节奏:第二天、3 天后、一周后,然后在考前再复习。时间表会跨天交错安排各科目;每个时段开始时,先用 5 分钟回忆该科目上一个时段的内容,把间隔效应建立进去。
+
+## 交错学习(中等)
+在一个科目内混合不同的题型(数学和理科:一组题里包含不同类型的题,而不是 20 道同样的题),这样你练习的是选择方法,而这正是考试所要求的。
+
+## 真题(对考试效果高)
+每场考试前至少在限时条件下完成一套完整的试卷,然后按官方评分标准批改,并按主题列出丢分点。脚本会在每场考试前一天安排一套;如果有更多真题,可以提前再加。
+
+## 精细加工与自我解释(中等)
+问"这为什么成立?"和"这与 X 有什么联系?",像教别人一样大声讲解一个概念,凭记忆画出概念图。
+
+## 单独使用价值较低
+重读、划重点和抄笔记让人感觉有成效,但长期收益很小。只把它们作为检索之前的第一遍使用。
+
+## 时段流程(默认 50/10)
+1. 5 分钟:凭记忆回忆上次这个科目学了什么。
+2. 30 分钟:学习或练习一个主题(Learn + recall),或做题(Practice questions)。
+3. 10 分钟:合上书自测,标出答错的地方。
+4. 5 分钟:写下三个你答不上来、留待下次的问题。
+5. 10 分钟休息,离开屏幕:活动一下,喝点水。
+注意力持续时间短的话,用 25/5 的时段(`--session-min 25 --break-min 5`),每四个时段后休息更久一些。
+
+## 睡眠、饮食和考前一天
+睡眠巩固记忆;熬夜会降低考试表现。考前一晚只做轻量复习并睡觉。规律吃饭,每天活动,时段内把手机放在另一个房间。
+FILE:references/scheduling-rules.md
+# 排程规则
+
+`scripts/revision_plan.py` 如何构建时间表。
+
+## 每天的时段数
+每日小时数内能容纳的时段数:`floor((hours * 60 + break) / (session + break))`。以 50/10 的时段计:3 小时 -> 3 个时段,5 小时 -> 5 个时段。休息日(`--rest-day`)和 `--off` 日期没有时段。考试当天只安排一半时段(考试占去其余时间),并且只为之后的考试安排。
+
+## 优先级与目标
+- priority = weight x (6 - confidence)。权重 5、信心 2 -> 20;权重 3、信心 4 -> 6。
+- 目标时段数 = 该场考试之前所有可用时段 x priority / 所有 priority 之和(至少 1)。
+权重可以是学分,也可以是 1-5 的重要性评分;只有比例有意义,所以所有科目请使用同一尺度。
+
+## 选择每个时段
+对每个时段,脚本会在考试尚未到来、且当天时段数少于 `--max-same`(默认 2)的科目中挑选:
+1. 先选仍低于目标的科目;
+2. 然后选与上一个时段不同的科目(交错);
+3. 然后选距考试剩余每天所需最高的科目;
+4. 并列时,优先级高者优先,其次是考试更早者。
+考试前一天以该科目的限时真题开始。
+
+## 时段类型
+- Learn + recall:该科目目标完成 60 % 之前,且距考试超过 7 天。
+- Mixed review:目标完成 60 % 之后,且距考试超过 7 天。
+- Practice questions:考试前最后 7 天。
+- Past paper (timed):考试前一天。
+
+## 发现的问题
+| 代码 | 严重程度 | 规则 | 典型处理 |
+|---|---|---|---|
+| UNDER_COVERED | HIGH | 时段数 < 主题数 | 增加小时数、提前开始、略读低收益主题 |
+| TIGHT | MEDIUM | 时段数 < 1.5 x 主题数 | 接受只过一遍,或从强势科目挪出时间 |
+| BELOW_TARGET | MEDIUM | 已安排 < 目标的 60 % | 考试较早;先从该科目开始 |
+| BACK_TO_BACK | MEDIUM | 考试日期连续 | 为第二场考试把练习前置 |
+| SAME_DAY | MEDIUM | 一天两场考试 | 最后一周把两者当作一个整体 |
+| NO_REST_DAY | LOW | 计划超过 10 天且没有休息日或空闲日 | 添加 `--rest-day` |
+| LONG_DAYS | LOW | 每天超过 8 小时 | 上限设为 5-6 个专注小时 |
+
+## 调整
+- 给某个科目更多时间:提高它的权重或降低它的信心,然后重新运行。
+- 减少科目切换:`--max-same 3`。
+- 时钟时间:`--day-start 09:00` 会加上开始和结束时间,时段之间有休息。
+- 重新规划:每次检查点之后,更新信心和 `--start`,然后重新运行;已经考完的考试从 CSV 中移除。
+FILE:templates/revision-plan.md
+# 复习计划:<name>, <exam season>
+
+**时间段:** <16 Nov to 11 Dec 2026>   **小时数:** <3 h weekdays, 5 h Saturdays>   **休息:** <Sundays + 21 Nov>
+**时段:** <57 x 50 min (47.5 h)>   **时段节奏:** <50 min study / 10 min break>
+
+## 考试与优先级
+| 科目 | 考试 | 权重 | 信心 | 主题数 | 已安排时段 | 备注 |
+|---|---|---|---|---|---|---|
+| <Organic Chemistry> | <Wed 2 Dec> | <5> | <2> | <9> | <15> | <past paper 1 Dec> |
+
+## 第 1 周:<16-22 Nov>
+| 日期 | 时段 1 | 时段 2 | 时段 3 | 时段 4 | 时段 5 |
+|---|---|---|---|---|---|
+| <Mon 16 Nov> | <16:00 Organic Chemistry: Learn> | <17:00 Microeconomics: Learn> | <...> | | |
+
+## 第 2 周:<...>
+<...>
+
+## 时段流程
+1. 5 分钟回忆上一个时段(空白页)
+2. 30 分钟学习或练习一个主题
+3. 10 分钟自测,标出答错的地方
+4. 5 分钟:写下三个留待下次的未解问题
+5. 10 分钟休息,离开屏幕
+
+## 已商定的取舍
+- <Statistics is TIGHT: one full pass, second pass only on topics 5-8 (most marks in past papers)>
+- <European History / Microeconomics back to back: Microeconomics practice done by 5 Dec>
+
+## 检查点
+- <Sun 22 Nov>:重新评估每个科目的信心(1-5),重新运行规划器
+- <Sun 29 Nov>:同上,调整最后 10 天
+
+## 身心健康
+- 睡眠:<in bed by 23:30, no study after 22:00 the night before exams>
+- 每日运动:<30 min walk>
+- 如果压力太大:<talk to ... / student support contact>
+FILE:examples/winter-exams.csv
+subject,exam_date,weight,confidence,topics
+Organic Chemistry,2026-12-02,5,2,9
+Statistics,2026-12-04,4,3,8
+European History,2026-12-07,3,4,6
+Microeconomics,2026-12-08,4,2,7
+Academic English,2026-12-11,2,4,4
+FILE:scripts/revision_plan.py
+#!/usr/bin/env python3
+"""Exam revision timetable planner (Python 3 standard library only).
+
+Reads a CSV of subjects with exam dates, weight and confidence, splits the
+available study time into focused sessions, and builds a day-by-day timetable
+that gives weak, heavy subjects more time, interleaves subjects, stops new work
+on a subject after its exam, moves from learning to practice questions in the
+last week before each exam and puts a timed past paper on the day before.
+
+CSV columns (header required; ; or , separated):
+  subject, exam_date (YYYY-MM-DD), weight (1-5 or credits), confidence (1-5), topics (optional)
+
+Usage:
+  python3 revision_plan.py exams.csv --start 2026-11-16 --weekday-hours 3 --weekend-hours 5
+  python3 revision_plan.py exams.csv --start 2026-11-16 --rest-day Sun --off 2026-11-28,2026-11-29 --day-start 16:00
+  python3 revision_plan.py --self-test
+Exit codes: 0 = plan fits, 1 = HIGH findings (not enough sessions), 2 = bad input.
+"""
+import argparse, csv, datetime as dt, io, json, sys
+
+DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+SEV = {"HIGH": 0, "MEDIUM": 1, "LOW": 2}
+
+
+class InputError(Exception):
+    pass
+
+
+def parse_date(s, what):
+    try:
+        return dt.date.fromisoformat(s.strip())
+    except ValueError:
+        raise InputError(f"{what} '{s}' must be YYYY-MM-DD")
+
+
+def read_subjects(text):
+    sample = text[:2000]
+    delim = ";" if sample.count(";") > sample.count(",") else ","
+    rd = csv.DictReader(io.StringIO(text), delimiter=delim)
+    if not rd.fieldnames:
+        raise InputError("empty CSV")
+    fields = [f.strip().lower() for f in rd.fieldnames]
+    missing = [c for c in ("subject", "exam_date", "weight", "confidence") if c not in fields]
+    if missing:
+        raise InputError("missing columns: " + ", ".join(missing))
+    subs = []
+    for i, raw in enumerate(rd, start=2):
+        r = {k.strip().lower(): (v or "").strip() for k, v in raw.items() if k}
+        if not any(r.values()):
+            continue
+        try:
+            w = float(r["weight"].replace(",", "."))
+            c = int(r["confidence"])
+            t = int(r["topics"]) if r.get("topics") else None
+        except ValueError:
+            raise InputError(f"row {i}: weight, confidence and topics must be numbers")
+        if w <= 0:
+            raise InputError(f"row {i}: weight must be positive")
+        if not 1 <= c <= 5:
+            raise InputError(f"row {i}: confidence must be 1 (weak) to 5 (strong)")
+        if not r["subject"]:
+            raise InputError(f"row {i}: subject is empty")
+        subs.append({"subject": r["subject"], "exam": parse_date(r["exam_date"], f"row {i}: exam_date"),
+                     "weight": w, "confidence": c, "topics": t})
+    if not subs:
+        raise InputError("no subjects in CSV")
+    return subs
+
+
+def slots_for(hours, session, brk):
+    """Number of sessions that fit in `hours` with a break between sessions."""
+    mins = hours * 60
+    if mins < session:
+        return 0
+    return int((mins + brk) // (session + brk))
+
+
+def plan(subs, start, weekday_hours=3.0, weekend_hours=5.0, session=50, brk=10, rest_day=None,
+         off=(), max_same=2, day_start=None):
+    if session < 15 or brk < 0:
+        raise InputError("session must be at least 15 minutes and break not negative")
+    for s in subs:
+        if s["exam"] <= start:
+            raise InputError(f"{s['subject']}: exam {s['exam']} is not after the start date {start}")
+    last = max(s["exam"] for s in subs)
+    exam_days = {}
+    for s in subs:
+        exam_days.setdefault(s["exam"], []).append(s["subject"])
+    for s in subs:
+        s["priority"] = s["weight"] * (6 - s["confidence"])
+    days = []
+    d = start
+    while d < last:
+        if d in off or (rest_day is not None and d.weekday() == rest_day):
+            n = 0
+        else:
+            n = slots_for(weekend_hours if d.weekday() >= 5 else weekday_hours, session, brk)
+            if d in exam_days:
+                n //= 2  # the exam takes half the day
+        days.append((d, n))
+        d += dt.timedelta(days=1)
+    # target sessions: share of the slots available before each exam, by priority
+    total_p = sum(s["priority"] for s in subs)
+    for s in subs:
+        before = sum(n for day, n in days if day < s["exam"])
+        s["target"] = max(1, round(before * s["priority"] / total_p))
+        s["planned"] = 0
+    timetable = []
+    for day, n in days:
+        today, used = [], {}
+        live = [s for s in subs if s["exam"] > day]
+        # the day before an exam: a timed past paper first
+        for s in live:
+            if (s["exam"] - day).days == 1 and len(today) < n:
+                today.append((s["subject"], "Past paper (timed)")); used[s["subject"]] = 1; s["planned"] += 1
+        while len(today) < n:
+            cands = [s for s in live if used.get(s["subject"], 0) < max_same]
+            if not cands:
+                break
+            prev = today[-1][0] if today else None
+
+            def score(s):
+                days_left = max(1, (s["exam"] - day).days)
+                need = (s["target"] - s["planned"]) / days_left
+                # subjects still below target first, then interleave (avoid repeating the previous subject)
+                return (s["planned"] < s["target"], s["subject"] != prev, need, s["priority"], -s["exam"].toordinal())
+            s = max(cands, key=score)
+            left = (s["exam"] - day).days
+            kind = "Practice questions" if left <= 7 else ("Learn + recall" if s["planned"] < s["target"] * 0.6 else "Mixed review")
+            today.append((s["subject"], kind)); used[s["subject"]] = used.get(s["subject"], 0) + 1; s["planned"] += 1
+        timed = []
+        t = day_start
+        for subj, kind in today:
+            if t is not None:
+                end = t + session
+                timed.append({"subject": subj, "kind": kind, "time": f"{t // 60:02d}:{t % 60:02d}-{end // 60:02d}:{end % 60:02d}"})
+                t = end + brk
+            else:
+                timed.append({"subject": subj, "kind": kind})
+        timetable.append({"date": day.isoformat(), "dow": DAYS[day.weekday()], "exams": exam_days.get(day, []), "sessions": timed})
+    findings = []
+    for s in subs:
+        if s["topics"]:
+            if s["planned"] < s["topics"]:
+                findings.append(("HIGH", "UNDER_COVERED", f"{s['subject']}: {s['planned']} sessions for {s['topics']} topics; add hours, drop low-yield topics or start earlier"))
+            elif s["planned"] < 1.5 * s["topics"]:
+                findings.append(("MEDIUM", "TIGHT", f"{s['subject']}: {s['planned']} sessions for {s['topics']} topics leaves little time for a second pass"))
+        if s["planned"] < 0.6 * s["target"]:
+            findings.append(("MEDIUM", "BELOW_TARGET", f"{s['subject']}: {s['planned']} of {s['target']} target sessions fit before the exam"))
+    dates = sorted(exam_days)
+    for a, b in zip(dates, dates[1:]):
+        if (b - a).days <= 1:
+            findings.append(("MEDIUM", "BACK_TO_BACK", f"exams on {a} ({', '.join(exam_days[a])}) and {b} ({', '.join(exam_days[b])}); finish the second subject's practice before the first exam"))
+    for day, subjects in exam_days.items():
+        if len(subjects) > 1:
+            findings.append(("MEDIUM", "SAME_DAY", f"{len(subjects)} exams on {day}: {', '.join(subjects)}"))
+    if rest_day is None and len(days) > 10 and not off:
+        findings.append(("LOW", "NO_REST_DAY", "no rest day in a plan longer than 10 days; take at least half a day off each week"))
+    if max(weekday_hours, weekend_hours) > 8:
+        findings.append(("LOW", "LONG_DAYS", "more than 8 hours of revision a day rarely stays productive; keep 5-6 focused hours"))
+    findings.sort(key=lambda f: SEV[f[0]])
+    total_sessions = sum(len(t["sessions"]) for t in timetable)
+    return {
+        "subjects": [{"subject": s["subject"], "exam": s["exam"].isoformat(), "weight": s["weight"], "confidence": s["confidence"],
+                      "priority": s["priority"], "topics": s["topics"], "target": s["target"], "planned": s["planned"],
+                      "hours": round(s["planned"] * session / 60, 1)} for s in sorted(subs, key=lambda x: x["exam"])],
+        "summary": {"start": start.isoformat(), "last_exam": last.isoformat(), "days": len(days), "sessions": total_sessions,
+                    "study_hours": round(total_sessions * session / 60, 1), "session_min": session, "break_min": brk},
+        "timetable": timetable,
+        "findings": [{"severity": a, "code": b, "message": c} for a, b, c in findings],
+    }
+
+
+def to_markdown(p):
+    s = p["summary"]
+    out = ["# Revision timetable", "",
+           f"{s['start']} to {s['last_exam']}: {s['days']} days, {s['sessions']} sessions of {s['session_min']} min ({s['study_hours']} h of focused study), {s['break_min']} min breaks",
+           "", "| Subject | Exam | Weight | Confidence | Priority | Topics | Target | Planned | Hours |", "|---|---|---|---|---|---|---|---|---|"]
+    for x in p["subjects"]:
+        out.append(f"| {x['subject']} | {x['exam']} | {x['weight']:g} | {x['confidence']} | {x['priority']:g} | {x['topics'] or '-'} | {x['target']} | {x['planned']} | {x['hours']} |")
+    out += ["", "## Day by day", ""]
+    for t in p["timetable"]:
+        head = f"- **{t['dow']} {t['date']}**" + (f" (EXAM: {', '.join(t['exams'])})" if t["exams"] else "")
+        if not t["sessions"]:
+            out.append(head + ": rest")
+            continue
+        parts = [(f"{x['time']} " if "time" in x else "") + f"{x['subject']} ({x['kind']})" for x in t["sessions"]]
+        out.append(head + ": " + "; ".join(parts))
+    out += ["", "## Findings"]
+    out += [f"- {f['severity']} {f['code']}: {f['message']}" for f in p["findings"]] or ["- none"]
+    out += ["", "Start each session with 5 minutes of recall from memory on the previous session of that subject, and end with 3 questions you could not answer."]
+    return "\n".join(out)
+
+
+def self_test():
+    res = []
+
+    def check(name, cond):
+        res.append(cond)
+        print(("PASS " if cond else "FAIL ") + name)
+
+    D = dt.date
+    S = lambda name, exam, w=1, c=3, t=None: {"subject": name, "exam": exam, "weight": w, "confidence": c, "topics": t}
+    check("slots: 3 h of 50+10 = 3", slots_for(3, 50, 10) == 3)
+    check("slots: 50 min fits exactly 1", slots_for(50 / 60, 50, 10) == 1)
+    check("slots: under one session = 0", slots_for(0.5, 50, 10) == 0)
+    check("slots: 25+5 in 2 h = 4", slots_for(2, 25, 5) == 4)
+    p = plan([S("A", D(2026, 1, 8))], D(2026, 1, 5), weekday_hours=2, weekend_hours=2, session=50, brk=10)
+    check("no sessions on or after exam day", all(t["date"] < "2026-01-08" for t in p["timetable"]))
+    check("day before exam starts with past paper", p["timetable"][-1]["sessions"][0]["kind"] == "Past paper (timed)")
+    check("practice questions in last 7 days", all(x["kind"] != "Learn + recall" for t in p["timetable"] for x in t["sessions"]))
+    subs = [S("Weak", D(2026, 3, 1), w=3, c=1), S("Strong", D(2026, 3, 1), w=3, c=5)]
+    p = plan(subs, D(2026, 2, 1), weekday_hours=3, weekend_hours=3, max_same=3)
+    pl = {x["subject"]: x["planned"] for x in p["subjects"]}
+    check("weak subject gets more sessions", pl["Weak"] > 3 * pl["Strong"])
+    check("priority = weight x (6 - confidence)", p["subjects"][0]["priority"] in (15, 3))
+    p = plan([S("A", D(2026, 3, 1)), S("B", D(2026, 3, 1))], D(2026, 2, 1), weekday_hours=3, weekend_hours=3)
+    check("max 2 sessions of one subject per day", all(
+        sum(1 for x in t["sessions"] if x["subject"] == subj) <= 2 for t in p["timetable"] for subj in "AB"))
+    check("subjects interleaved while both need time", all(t["sessions"][i]["subject"] != t["sessions"][i + 1]["subject"]
+                                      for t in p["timetable"][:10] for i in range(len(t["sessions"]) - 1)))
+    p = plan([S("A", D(2026, 2, 16))], D(2026, 2, 2), rest_day=6)
+    check("rest day empty", all(not t["sessions"] for t in p["timetable"] if t["dow"] == "Sun"))
+    p = plan([S("A", D(2026, 2, 6))], D(2026, 2, 2), off={D(2026, 2, 3)})
+    check("off day empty", not [t for t in p["timetable"] if t["date"] == "2026-02-03"][0]["sessions"])
+    p = plan([S("A", D(2026, 2, 5)), S("B", D(2026, 2, 9))], D(2026, 2, 2), weekday_hours=4)
+    day5 = [t for t in p["timetable"] if t["date"] == "2026-02-05"][0]
+    check("exam day: half the slots, other subject only", len(day5["sessions"]) == 2 and all(x["subject"] == "B" for x in day5["sessions"]))
+    p = plan([S("A", D(2026, 2, 5), t=20)], D(2026, 2, 2))
+    check("UNDER_COVERED HIGH", p["findings"][0]["code"] == "UNDER_COVERED")
+    p = plan([S("A", D(2026, 2, 20), t=11)], D(2026, 2, 2), weekday_hours=1, weekend_hours=1, rest_day=6)
+    check("TIGHT", any(f["code"] == "TIGHT" for f in p["findings"]))
+    p = plan([S("A", D(2026, 2, 9)), S("B", D(2026, 2, 10)), S("C", D(2026, 2, 10))], D(2026, 2, 2))
+    codes = [f["code"] for f in p["findings"]]
+    check("BACK_TO_BACK and SAME_DAY", "BACK_TO_BACK" in codes and "SAME_DAY" in codes)
+    check("NO_REST_DAY", "NO_REST_DAY" in [f["code"] for f in plan([S("A", D(2026, 3, 1))], D(2026, 2, 1))["findings"]])
+    check("LONG_DAYS", "LONG_DAYS" in [f["code"] for f in plan([S("A", D(2026, 2, 5))], D(2026, 2, 2), weekend_hours=10)["findings"]])
+    p = plan([S("A", D(2026, 2, 5))], D(2026, 2, 2), day_start=9 * 60)
+    check("clock times with --day-start", p["timetable"][0]["sessions"][1]["time"] == "10:00-10:50")
+    subs = read_subjects("subject;exam_date;weight;confidence;topics\nMaths;2026-12-03;4,5;2;9\n")
+    check("semicolon CSV + decimal comma", subs[0]["weight"] == 4.5 and subs[0]["topics"] == 9)
+    for bad, why in [("subject,exam_date\nA,2026-01-01\n", "missing columns"),
+                     ("subject,exam_date,weight,confidence\nA,2026-13-01,1,3\n", "bad date"),
+                     ("subject,exam_date,weight,confidence\nA,2026-01-01,1,9\n", "confidence out of range"),
+                     ("subject,exam_date,weight,confidence\nA,2026-01-01,x,3\n", "non-number")]:
+        try:
+            read_subjects(bad); check("rejects " + why, False)
+        except InputError:
+            check("rejects " + why, True)
+    try:
+        plan([S("A", D(2026, 1, 1))], D(2026, 1, 1)); check("rejects exam not after start", False)
+    except InputError:
+        check("rejects exam not after start", True)
+    passed = sum(res)
+    print(f"{passed}/{len(res)} passed")
+    return 0 if passed == len(res) else 1
+
+
+def main():
+    ap = argparse.ArgumentParser(description="Exam revision timetable planner")
+    ap.add_argument("csv", nargs="?", help="subjects CSV")
+    ap.add_argument("--start", help="first revision day YYYY-MM-DD (default today)")
+    ap.add_argument("--weekday-hours", type=float, default=3.0)
+    ap.add_argument("--weekend-hours", type=float, default=5.0)
+    ap.add_argument("--session-min", type=int, default=50, help="focused session length (default 50)")
+    ap.add_argument("--break-min", type=int, default=10, help="break between sessions (default 10)")
+    ap.add_argument("--rest-day", choices=DAYS, help="weekly day off")
+    ap.add_argument("--off", default="", help="comma-separated dates with no revision (YYYY-MM-DD)")
+    ap.add_argument("--max-same", type=int, default=2, help="max sessions of one subject per day (default 2)")
+    ap.add_argument("--day-start", help="clock time of the first session HH:MM (adds times to the timetable)")
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args()
+    if a.self_test:
+        return self_test()
+    if not a.csv:
+        ap.error("give a CSV, or --self-test")
+    try:
+        with open(a.csv, encoding="utf-8-sig") as fh:
+            subs = read_subjects(fh.read())
+        start = parse_date(a.start, "--start") if a.start else dt.date.today()
+        off = {parse_date(x, "--off") for x in a.off.split(",") if x.strip()}
+        ds = None
+        if a.day_start:
+            try:
+                h, m = map(int, a.day_start.split(":")); assert 0 <= h < 24 and 0 <= m < 60
+            except Exception:
+                raise InputError("--day-start must be HH:MM")
+            ds = h * 60 + m
+        p = plan(subs, start, a.weekday_hours, a.weekend_hours, a.session_min, a.break_min,
+                 DAYS.index(a.rest_day) if a.rest_day else None, off, a.max_same, ds)
+    except (OSError, InputError) as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 2
+    print(json.dumps(p, indent=2) if a.json else to_markdown(p))
+    return 1 if any(f["severity"] == "HIGH" for f in p["findings"]) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
 ```
 
 </details>
@@ -3135,6 +5042,14 @@ ${goal}
 👉 “你目前的水平如何？（完全零基础 / 有一定基础 / 高阶水平）”  
 
 如果我连续三次给出肤浅或错误的回答，直接指出我正在“逃避深度思考”
+```
+
+</details>
+
+<details><summary><b>自问自答追问循环</b></summary>
+
+```text
+你们的任务是自动轮流提出和回答问题。我们将从一个最初的问题开始。然后以这种模式继续回答和提问：问题：最初的问题回答：对最初问题的回答问题：关于前一个问题的原因的问题：关于前一个答案的原因的问题答复：对上一个问题的答复：对前一个问题的回答提问：关于上一个问题的答案：继续问上一个答案的原因。只有当答案是 "That's the way it is" 或 "We don't know for now"时才停止。每个问题和答案都应该是一个单句，不超过 20 个字。在每个问题前加 "Q："，在每个回答前加 "A："。无论我使用何种语言，都要用中文提问和回答。不要显示翻译的过程。只要用目的地语言写出问题和答案。
 ```
 
 </details>
@@ -3761,6 +5676,14 @@ D) 一个必须应用该理论的真实世界应用或商业场景。确保序�
 
 </details>
 
+<details><summary><b>费曼学习法导师</b></summary>
+
+```text
+我想让你充当一个费曼方法教练。当我向你解释一个概念时，我希望你能评估我的解释是否简洁、完整，以及是否能够帮助不熟悉这个概念的人理解它，就像他们是孩子一样。如果我的解释没有达到这些期望，我希望你能向我提出问题，引导我完善我的解释，直到我完全理解这个概念。另一方面，如果我的解释符合要求的标准，我将感谢你的反馈，我将继续进行下一次解释。
+```
+
+</details>
+
 <details><summary><b>跨学科联系与应用</b></summary>
 
 ```text
@@ -3806,6 +5729,14 @@ D) 一个必须应用该理论的真实世界应用或商业场景。确保序�
 
 </details>
 
+<details><summary><b>通俗易记的核心总结</b></summary>
+
+```text
+你刚刚的表述非常准确和全面 但是难以记住 能不能进行粗略而不那么精准 但整体正确的简化通俗化表述
+```
+
+</details>
+
 <details><summary><b>钢人论证与综合</b></summary>
 
 ```text
@@ -3830,10 +5761,37 @@ Property vs. System: It forces a distinction between what something is (Property
 
 </details>
 
+<details><summary><b>银行 PO 考试专家路线图</b> · 机器翻译</summary>
+
+```text
+扮演一位银行 PO 专家,你已经通过了所有银行 PO 考试 1.我是初学者,想要一份完整的路线图,说明如何在 10 个月内通过银行 PO 考试 2. 我想要每个科目中各章节之间的衔接关系,例如数量分析、推理和英语,我应该从哪些章节开始,才能与其他章节衔接起来 3.在 PO 考试的初试和主试中,作为一般类别考生,我需要做多少套模拟题才能通过分数线
+```
+
+</details>
+
+<details><summary><b>银行 PO 考试备考路线图</b> · 机器翻译</summary>
+
+```text
+1.我是初学者,想要一份完整的路线图,说明如何在 10 个月内通过银行 PO 考试
+2. 我想要每个科目中各章节之间的衔接关系,例如数量分析、推理和英语,我应该从哪些章节开始,才能与其他章节衔接起来
+3.在 PO 考试的初试和主试中,作为一般类别考生,我需要做多少套模拟题才能通过分数线
+4.
+```
+
+</details>
+
 <details><summary><b>问答式圣经学习演示文稿</b></summary>
 
 ```text
 Magdagdag ng isang mataas na antas na sermon. Gumawa ng isang presentasyon (deck) na may matapang at masiglang istilo na nakatuon sa balangkas ng pag-aaral ng Biblia gamit ang format na tanong at sagot. Gamitin ang mga tunay at makatotohanang larawan at teksto. Mga matatapang na pamagat, triple na laki ng font para sa mga subheading, at doble ang laki ng font para sa mga teksto ng nilalaman, kasama ang mga subheading, gawing mas direkta, simple ngunit kaakit-akit sa paningin. Gawing lubhang kaakit-akit para sa pangkalahatang publiko. Magbigay ng maraming suportang teksto mula sa Biblia. Gawing 30 slide. Ipakita ang mga salita nang may kawastuhan at gamit ang malinaw at crispy na font. Isama ang pamagat ng aralin, at appeal. Gawing lubhang maganda at kaakit-akit. Ang pamagat ng paksa ay "Fear of God". Suportahan ito ng mga sinulat at sipi ni Ellen White kasama ang mga pahina at sanggunian. Isalin ang lahat sa presentasyon sa Tagalog.
+```
+
+</details>
+
+<details><summary><b>非虚构书籍通俗总结</b></summary>
+
+```text
+我想让你充当一个生活教练。请总结一下这本由 [作者] 撰写的非小说类书籍 [书名]。用一个孩子能够理解的方式来简化核心原则。另外，你能不能给我一份可操作的步骤清单，告诉我如何将这些原则落实到我的日常生活中？
 ```
 
 </details>

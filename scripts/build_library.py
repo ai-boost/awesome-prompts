@@ -4,22 +4,32 @@ Sources (downloaded by this script):
   prompts.chat prompts.csv                      English, CC0 1.0
   CHENJIAMIAN/awesome-chatgpt-prompts-zh-CN     Chinese translation of the same prompts, CC0 1.0
   langgptai/wonderful-prompts README            original Chinese prompts, MIT
+  rockbenben/ChatGPT-Shortcut prompt.json       author-written Chinese and English versions, MIT
+  langgptai/awesome-doubao-prompts README       original Chinese prompts, Apache-2.0
+  langgptai/awesome-gemini-prompts prompts/     original Chinese prompts (selected files), CC0 1.0
+  library/sources/deepseek-prompt-library.json  DeepSeek's official Chinese prompt library, quoted with attribution
+
+Prompts that exist in only one language get a model translation of the other; the
+`translated` column says which language was machine translated so it is never passed off
+as human work.
 
 Each prompt gets one category, a title in both languages and a language tag
 (en, zh or both). Categories and titles come from a model pass that is cached in
 library/prompts.csv: rows already there are reused, so reruns only classify new prompts.
 
-Writes library/prompts.csv and library/{en,zh}/<category>.md.
+Writes library/prompts.csv, library/{en,zh}/<category>.md and the README tables.
 Usage: python3 scripts/build_library.py [--limit N]
 """
 import argparse
 import concurrent.futures as cf
 import csv
+import hashlib
 import io
 import json
 import re
 import subprocess
 import sys
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -37,6 +47,12 @@ SOURCES = {
                  "https://github.com/CHENJIAMIAN/awesome-chatgpt-prompts-zh-CN"),
     "wonderful-prompts": ("https://raw.githubusercontent.com/langgptai/wonderful-prompts/main/README.md", "MIT",
                           "https://github.com/langgptai/wonderful-prompts"),
+    "ChatGPT-Shortcut": ("https://raw.githubusercontent.com/rockbenben/ChatGPT-Shortcut/main/src/data/prompt.json", "MIT",
+                         "https://github.com/rockbenben/ChatGPT-Shortcut"),
+    "awesome-doubao-prompts": ("https://raw.githubusercontent.com/langgptai/awesome-doubao-prompts/main/README.md", "Apache-2.0",
+                               "https://github.com/langgptai/awesome-doubao-prompts"),
+    "awesome-gemini-prompts": ("https://raw.githubusercontent.com/langgptai/awesome-gemini-prompts/main/prompts/", "CC0-1.0",
+                               "https://github.com/langgptai/awesome-gemini-prompts"),
 }
 
 CATEGORIES = {
@@ -58,7 +74,11 @@ CATEGORIES = {
     "lifestyle": ("Lifestyle & Travel", "生活与旅行"),
     "prompting": ("Prompt Engineering", "提示词工程"),
 }
-FIELDS = ["id", "category", "lang", "title_en", "title_zh", "prompt_en", "prompt_zh", "for_devs", "source", "license"]
+FIELDS = ["id", "category", "lang", "title_en", "title_zh", "prompt_en", "prompt_zh", "translated", "for_devs", "source", "license"]
+# awesome-gemini-prompts files worth keeping: original Chinese prompts that are not jailbreaks,
+# vendor system prompts, or personas of real people.
+GEMINI_FILES = ["小红书变现达人.md", "小红书爆款规律——流量黑客.md", "小红书爆款账号定位架构师.md", "小红书风控和增长官.md",
+                "微科幻之神.md", "手相大师-玄师.md"]
 
 
 def fetch(url):
@@ -70,20 +90,74 @@ def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")[:80]
 
 
+def cjk(text):
+    return len(re.findall(r"[\u4e00-\u9fff]", text or "")) > 10
+
+
 def parse_wonderful(md):
-    """Original Chinese prompts: each TOC heading followed by its first fenced block."""
+    """Original Chinese prompts. Each TOC entry owns the text up to the next TOC heading; use its
+    first fenced block when there is one, else the raw section (many prompts are plain Markdown)."""
     toc = md.split("## 目录", 1)[1].split("\n## ", 1)[0]
     titles = [t for t in re.findall(r"\[([^\]]+)\]\(#", toc) if t not in ("Prompts 精选 🚀", "目录")]
     body = md.split("## 目录", 1)[1]
-    items = []
+    spots = []
     for t in titles:
-        m = re.search(r"^#{2,4} " + re.escape(t) + r"\s*$(.*?)(?=^#{2,4} |\Z)", body, re.M | re.S)
-        if not m:
-            continue
-        block = re.search(r"^```[^\n]*\n(.*?)^```", m.group(1), re.M | re.S)
-        if block and len(block.group(1).strip()) >= 80:
-            items.append({"title": t.strip(" 🔥🚀"), "prompt": block.group(1).strip()})
+        m = re.search(r"^#{2,4} " + re.escape(t) + r"\s*$", body, re.M)
+        if m:
+            spots.append((m.start(), m.end(), t))
+    spots.sort()
+    items = []
+    for i, (_, end, t) in enumerate(spots):
+        sec = body[end: spots[i + 1][0] if i + 1 < len(spots) else len(body)]
+        block = re.search(r"^```[^\n]*\n(.*?)^```", sec, re.M | re.S)
+        text = (block.group(1) if block else sec).strip()
+        if len(text) >= 80 and cjk(text):
+            items.append({"title": t.strip(" 🔥🚀"), "prompt": text})
     return items
+
+
+def parse_doubao(md):
+    """#### headings, each followed by one fenced prompt."""
+    items = []
+    for m in re.finditer(r"^#### (.+?)\s*$(.*?)(?=^#{2,4} |\Z)", md, re.M | re.S):
+        block = re.search(r"^```[^\n]*\n(.*?)^```", m.group(2), re.M | re.S)
+        title = re.sub(r"[*\s]+", " ", re.sub(r"[^\w\s\u4e00-\u9fff·]", "", m.group(1))).strip()
+        if block and len(block.group(1).strip()) >= 80:
+            items.append({"title": title, "prompt": block.group(1).strip()})
+    return items
+
+
+def parse_gemini():
+    base = SOURCES["awesome-gemini-prompts"][0]
+    items = []
+    for name in GEMINI_FILES:
+        text = fetch(base + urllib.parse.quote(name)).strip()
+        items.append({"title": re.sub(r"[—–-]+", " ", name[:-3]).strip(), "prompt": text})
+    return items
+
+
+def norm(text):
+    return re.sub(r"[^a-z0-9]", "", (text or "").lower())[:160]
+
+
+TRANSLATE_ASK = (
+    "Translate each prompt below into {target}. Keep the meaning, structure, Markdown, code, "
+    "placeholders and anything in brackets exactly; translate only the natural language. "
+    "Reply with every translation as\n### <id>\n<translation>\nand nothing else.\n\n"
+)
+
+
+def translate(batch, target):
+    """batch: list of (id, text). Returns {id: translation}."""
+    ask = TRANSLATE_ASK.format(target=target) + "\n\n".join(f"### {i}\n{t}" for i, t in batch)
+    for _ in range(3):
+        out = subprocess.run(["claude", "-p", "--model", "sonnet", "--output-format", "text"],
+                             input=ask, capture_output=True, text=True, timeout=1800).stdout
+        got = {m.group(1).strip(): m.group(2).strip()
+               for m in re.finditer(r"^### (\S+)\s*\n(.*?)(?=^### \S+\s*$|\Z)", out, re.M | re.S)}
+        if all(i in got and got[i] for i, _ in batch):
+            return got
+    return {}
 
 
 def classify(batch):
@@ -128,7 +202,8 @@ def write_md(rows):
             items = sorted((r for r in rows if r["category"] == key and r[col]), key=lambda r: r[f"title_{lang}"].lower())
             if not items:
                 continue
-            blocks = [f"<details><summary><b>{r[f'title_{lang}']}</b></summary>\n\n```text\n"
+            mt = " · machine translated" if lang == "en" else " · 机器翻译"
+            blocks = [f"<details><summary><b>{r[f'title_{lang}']}</b>{mt if r.get('translated') == lang else ''}</summary>\n\n```text\n"
                       + r[col].replace("```", "'''") + "\n```\n\n</details>\n" for r in items]
             pages, cur, size = [], [], 0
             for b in blocks:
@@ -160,14 +235,16 @@ def write_readmes(rows, skipped):
         if c["en"] or c["zh"]:
             table.append(f"| {en} · {zh} | [{c['en']}](library/en/{k}.md) | [{c['zh']}](library/zh/{k}.md) |")
     both = sum(r["lang"] == "both" for r in rows)
+    mt = sum(1 for r in rows if r.get("translated"))
+    human = both - mt
     block = [
         "<!-- library:start (generated by scripts/build_library.py) -->",
         "## Prompt Library · 提示词库", "",
         f"**{len(rows):,} everyday prompts** for writing, coding, marketing, study, design and more. "
-        f"{both:,} come in both English and Chinese; open the column for your language. "
+        f"Every prompt comes in English and Chinese ({human:,} with both versions written by people, {mt:,} with one side machine translated and marked as such); open the column for your language. "
         "Search and copy them in the [online gallery](https://agentcraft.dev/en/prompts/).", "",
-        f"**{len(rows):,} 条日常提示词**，覆盖写作、编程、营销、学习、设计等场景，其中 {both:,} 条中英双语，"
-        "点你要的语言那一列即可。也可以在[在线画廊](https://agentcraft.dev/zh/prompts/)里搜索、一键复制。", "",
+        f"**{len(rows):,} 条日常提示词**，覆盖写作、编程、营销、学习、设计等场景，全部中英双语"
+        f"（{human:,} 条两种语言都出自人工，{mt:,} 条有一种语言是机器翻译，已标注），点你要的语言那一列即可。也可以在[在线画廊](https://agentcraft.dev/zh/prompts/)里搜索、一键复制。", "",
         *table, "",
         "Sources and licenses: [library/README.md](library/README.md). Raw data: [library/prompts.csv](library/prompts.csv).",
         "<!-- library:end -->",
@@ -191,25 +268,42 @@ def write_readmes(rows, skipped):
         f"- [prompts.chat](https://prompts.chat) (`prompts.csv`), CC0 1.0. English text of {sum(v for k, v in by_src.items() if k.startswith('prompts.chat')):,} prompts.",
         f"- [CHENJIAMIAN/awesome-chatgpt-prompts-zh-CN](https://github.com/CHENJIAMIAN/awesome-chatgpt-prompts-zh-CN), CC0 1.0. "
         f"Chinese text of {by_src.get('prompts.chat + zh-CN', 0):,} of them, kept only where the English is unchanged since the translation.",
+        f"- [rockbenben/ChatGPT-Shortcut](https://github.com/rockbenben/ChatGPT-Shortcut), MIT, Copyright (c) 2023 rockbenben. "
+        f"The author's Chinese versions for {sum(v for k, v in by_src.items() if k.endswith('+ ChatGPT-Shortcut')):,} prompts.chat prompts "
+        f"and {by_src.get('ChatGPT-Shortcut', 0):,} prompts of its own. License: [LICENSE-ChatGPT-Shortcut-MIT.txt](LICENSE-ChatGPT-Shortcut-MIT.txt).",
         f"- [langgptai/wonderful-prompts](https://github.com/langgptai/wonderful-prompts), MIT, Copyright (c) 2023 yzfly. "
-        f"{by_src.get('wonderful-prompts', 0)} original Chinese prompts. License: [LICENSE-wonderful-prompts-MIT.txt](LICENSE-wonderful-prompts-MIT.txt).", "",
+        f"{by_src.get('wonderful-prompts', 0)} original Chinese prompts. License: [LICENSE-wonderful-prompts-MIT.txt](LICENSE-wonderful-prompts-MIT.txt).",
+        f"- [langgptai/awesome-doubao-prompts](https://github.com/langgptai/awesome-doubao-prompts), Apache-2.0. "
+        f"{by_src.get('awesome-doubao-prompts', 0)} original Chinese prompts. License: [LICENSE-awesome-doubao-prompts-Apache-2.0.txt](LICENSE-awesome-doubao-prompts-Apache-2.0.txt).",
+        f"- [langgptai/awesome-gemini-prompts](https://github.com/langgptai/awesome-gemini-prompts), CC0 1.0. "
+        f"{by_src.get('awesome-gemini-prompts', 0)} original Chinese prompts.",
+        f"- [DeepSeek prompt library](https://api-docs.deepseek.com/zh-cn/prompt-library/), Copyright DeepSeek, Inc. "
+        f"{by_src.get('DeepSeek', 0)} official example prompts, quoted with attribution (`sources/deepseek-prompt-library.json`).", "",
+        "## Machine translation", "",
+        f"{sum(1 for r in rows if r.get('translated') == 'zh'):,} prompts got a Chinese version and "
+        f"{sum(1 for r in rows if r.get('translated') == 'en'):,} got an English version from a model. "
+        "The `translated` column names that language, and the Markdown pages mark those entries. "
+        "A human translation from any source replaces the machine one on the next build.", "",
         "Categories and the missing-language titles were assigned by a model pass and spot-checked. "
         f"{len(skipped)} prompts were left out as sexual, jailbreak, spam or empty (ids in `skipped.json`).", "",
     ]), encoding="utf-8")
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--limit", type=int, default=0, help="classify at most N new prompts (for a trial run)")
-    a = ap.parse_args()
+def add_new(raw, sid, item):
+    while sid in raw:
+        sid += "-2"
+    item["id"] = sid
+    raw[sid] = item
 
+
+def collect():
+    """All prompts from every source, keyed by id, before classification and translation."""
     en_rows = list(csv.DictReader(io.StringIO(fetch(SOURCES["prompts.chat"][0]))))
     zh_rows = list(csv.DictReader(io.StringIO(fetch(SOURCES["zh-CN"][0]))))
     snap = list(csv.DictReader(io.StringIO(fetch(SOURCES["zh-CN-en"][0]))))
     # zh-CN titles are translated, so pair by row with the English snapshot, then keep a Chinese
     # version only when the upstream English text is unchanged since that snapshot.
     zh_by_act = {s["act"].strip(): (s["prompt"].strip(), z["提示"].strip()) for s, z in zip(snap, zh_rows)}
-    wonderful = parse_wonderful(fetch(SOURCES["wonderful-prompts"][0]))
 
     raw = {}
     for r in en_rows:
@@ -222,18 +316,54 @@ def main():
         raw[sid] = {"id": sid, "title_en": act, "prompt_en": text, "prompt_zh": zh,
                     "for_devs": r.get("for_devs", "").upper() == "TRUE",
                     "source": "prompts.chat" + (" + zh-CN" if zh else ""), "license": "CC0-1.0"}
-    for w in wonderful:
-        sid = "zh-" + (slug(w["title"]) or str(abs(hash(w["title"]))))
-        if sid in raw:
-            sid += "-2"
-        raw[sid] = {"id": sid, "title_zh": w["title"], "prompt_en": "", "prompt_zh": w["prompt"],
-                    "for_devs": False, "source": "wonderful-prompts", "license": "MIT"}
 
+    # ChatGPT-Shortcut: the author's own Chinese and English versions. Fill missing Chinese on
+    # matching prompts.chat rows, add the rest as new bilingual prompts.
+    by_norm = {norm(x["prompt_en"]): x for x in raw.values()}
+    for it in json.loads(fetch(SOURCES["ChatGPT-Shortcut"][0])):
+        zh, en = it.get("zh", {}), it.get("en", {})
+        zh_text = (zh.get("prompt") if cjk(zh.get("prompt")) else zh.get("description")) or ""
+        en_text = "" if cjk(en.get("prompt")) else (en.get("prompt") or "")
+        if len(zh_text) < 20 and len(en_text) < 80:
+            continue
+        hit = by_norm.get(norm(en_text)) if en_text else None
+        if hit:
+            if not hit["prompt_zh"] and cjk(zh_text):
+                hit["prompt_zh"] = zh_text.strip()
+                hit["source"] += " + ChatGPT-Shortcut"
+                hit["license"] = "CC0-1.0, MIT"
+            continue
+        add_new(raw, "sc-" + (slug(en.get("title", "")) or str(it.get("id"))), {
+            "title_en": en.get("title", ""), "title_zh": zh.get("title", ""),
+            "prompt_en": en_text.strip(), "prompt_zh": zh_text.strip() if cjk(zh_text) else "",
+            "for_devs": "code" in it.get("tags", []), "source": "ChatGPT-Shortcut", "license": "MIT"})
+
+    for name, items in (("wonderful-prompts", parse_wonderful(fetch(SOURCES["wonderful-prompts"][0]))),
+                        ("awesome-doubao-prompts", parse_doubao(fetch(SOURCES["awesome-doubao-prompts"][0]))),
+                        ("awesome-gemini-prompts", parse_gemini()),
+                        ("DeepSeek", json.loads((LIB / "sources/deepseek-prompt-library.json").read_text())["items"])):
+        for w in items:
+            # Chinese titles slug to nothing, so derive a stable id from the title text.
+            add_new(raw, "zh-" + (slug(w["title"]) or hashlib.sha1(w["title"].encode()).hexdigest()[:10]), {
+                "title_zh": w["title"], "prompt_en": "", "prompt_zh": w["prompt"],
+                "for_devs": False, "source": name,
+                "license": SOURCES[name][1] if name in SOURCES else "Copyright DeepSeek, quoted with attribution"})
+    return raw
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--limit", type=int, default=0, help="classify or translate at most N new prompts (trial run)")
+    ap.add_argument("--no-translate", action="store_true")
+    a = ap.parse_args()
+
+    raw = collect()
     old = {}
     if (LIB / "prompts.csv").exists():
         old = {r["id"]: r for r in csv.DictReader(open(LIB / "prompts.csv", encoding="utf-8"))}
     skipped = set(json.loads((LIB / "skipped.json").read_text())) if (LIB / "skipped.json").exists() else set()
 
+    # 1. classify new prompts
     todo = [x for x in raw.values() if x["id"] not in old and x["id"] not in skipped]
     if a.limit:
         todo = todo[: a.limit]
@@ -249,8 +379,14 @@ def main():
     rows = []
     for x in raw.values():
         if x["id"] in old:
-            r = old[x["id"]]
-            r.update({"prompt_en": x["prompt_en"], "prompt_zh": x["prompt_zh"] or r.get("prompt_zh", "")})
+            r = dict(old[x["id"]])
+            # Human text from a source always wins over an earlier machine translation.
+            for l in ("en", "zh"):
+                if x[f"prompt_{l}"]:
+                    r[f"prompt_{l}"] = x[f"prompt_{l}"]
+                    if r.get("translated") == l:
+                        r["translated"] = ""
+            r["source"], r["license"] = x["source"], x["license"]
             rows.append(r)
             continue
         lab = labels.get(x["id"])
@@ -261,14 +397,43 @@ def main():
             continue
         rows.append({
             "id": x["id"], "category": lab["cat"],
-            "lang": "both" if x["prompt_en"] and x["prompt_zh"] else ("en" if x["prompt_en"] else "zh"),
             "title_en": (lab.get("title_en") or x.get("title_en", "")).strip(),
             "title_zh": (lab.get("title_zh") or x.get("title_zh", "")).strip(),
-            "prompt_en": x["prompt_en"], "prompt_zh": x["prompt_zh"],
+            "prompt_en": x["prompt_en"], "prompt_zh": x["prompt_zh"], "translated": "",
             "for_devs": "true" if x["for_devs"] else "false", "source": x["source"], "license": x["license"],
         })
+
+    # 2. machine-translate the missing language, a few prompts per call
+    if not a.no_translate:
+        need = [(r, "zh" if r["prompt_en"] else "en") for r in rows if not (r["prompt_en"] and r["prompt_zh"])]
+        if a.limit:
+            need = need[: a.limit]
+        jobs, cur, size = [], [], 0
+        for r, tgt in need:
+            text = r["prompt_en"] or r["prompt_zh"]
+            if cur and (size + len(text) > 12_000 or len(cur) >= 10 or cur[0][1] != tgt):
+                jobs.append(cur)
+                cur, size = [], 0
+            cur.append((r, tgt))
+            size += len(text)
+        if cur:
+            jobs.append(cur)
+        done = 0
+        with cf.ThreadPoolExecutor(4) as ex:
+            futs = {ex.submit(translate, [(r["id"], r["prompt_en"] or r["prompt_zh"]) for r, _ in job],
+                              "Simplified Chinese" if job[0][1] == "zh" else "English"): job for job in jobs}
+            for fu in cf.as_completed(futs):
+                got = fu.result()
+                for r, tgt in futs[fu]:
+                    if got.get(r["id"]):
+                        r[f"prompt_{tgt}"] = got[r["id"]]
+                        r["translated"] = tgt
+                        done += 1
+                print(f"translated {done}/{len(need)}", flush=True)
+
     for r in rows:
         r["lang"] = "both" if r["prompt_en"] and r["prompt_zh"] else ("en" if r["prompt_en"] else "zh")
+        r.setdefault("translated", "")
 
     LIB.mkdir(exist_ok=True)
     rows.sort(key=lambda r: (r["category"], r["id"]))
@@ -280,7 +445,9 @@ def main():
     write_md(rows)
     write_readmes(rows, skipped)
     by_lang = {k: sum(r["lang"] == k for r in rows) for k in ("both", "en", "zh")}
-    print(f"library: {len(rows)} prompts {by_lang}, skipped {len(skipped)}, unclassified {len(raw) - len(rows) - len(skipped)}")
+    mt = {k: sum(r["translated"] == k for r in rows) for k in ("zh", "en")}
+    print(f"library: {len(rows)} prompts {by_lang}, machine translated {mt}, skipped {len(skipped)}, "
+          f"unclassified {len(raw) - len(rows) - len(skipped)}")
 
 
 if __name__ == "__main__":

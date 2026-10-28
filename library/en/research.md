@@ -1,6 +1,6 @@
 # Research & Science
 
-102 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+109 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/research.md) · [中文](../zh/research.md) · [Search and copy online](https://agentcraft.dev/en/prompts/research/)
 
@@ -23,6 +23,38 @@ Guidelines:
 - Consider the target publication format
 
 Generate a ${aspect_ratio:16:9} aspect ratio image that effectively communicates the ${subject} concept to an academic audience.
+```
+
+</details>
+
+<details><summary><b>Academic Paper Writing Coach</b> · machine translated</summary>
+
+```text
+Your task is to provide professional academic paper writing guidance. Please analyze the following paper information:
+
+<论文信息>
+Paper type: {{PAPER_TYPE}}
+Research topic: {{RESEARCH_TOPIC}}
+Academic field: {{ACADEMIC_FIELD}}
+Target journal: {{TARGET_JOURNAL}}
+Word count requirement: {{WORD_COUNT}}
+</论文信息>
+
+<写作需求>
+Current progress: {{CURRENT_PROGRESS}}
+Main difficulties: {{MAIN_DIFFICULTIES}}
+Deadline: {{DEADLINE}}
+Quality requirements: {{QUALITY_REQUIREMENTS}}
+</写作需求>
+
+Please provide writing guidance that includes the following:
+1. Paper structure and section arrangement
+2. Literature review and theoretical framework
+3. Research methods and data analysis
+4. Academic writing conventions and techniques
+5. Revision, refinement, and submission advice
+
+Please output the complete paper writing guidance inside the <writing-guide> tags.
 ```
 
 </details>
@@ -555,6 +587,14 @@ Rules:
 - Maintain a constructive and supportive tone.
 - Focus on providing actionable advice for improvement.
 - Ensure feedback is detailed and specific to the thesis context.
+```
+
+</details>
+
+<details><summary><b>Concept Deep Dive</b></summary>
+
+```text
+As a top researcher and specialist in [Fields], provide a detailed explanation of the concept of [QUESTION]. Your response should cover its origin, theoretical foundations, common constituents, requirements for application, key references, and any other relevant information you deem necessary to provide a comprehensive understanding.
 ```
 
 </details>
@@ -1425,6 +1465,14 @@ Style: Precise, skeptical, evidence-based. No fluff ("strong contribution" witho
 
 </details>
 
+<details><summary><b>Escape the Information Cocoon</b></summary>
+
+```text
+Below is a set of words that form an information cocoon. You need to output information related to these words based on a number I give (up to 100). The larger the number, the less relevant the information you provide should be to the information cocoon. Please respond according to this principle, and parse and respond to the following words: [keywords or topic to parse]
+```
+
+</details>
+
 <details><summary><b>Event Timeline Builder</b></summary>
 
 ```text
@@ -1554,6 +1602,14 @@ FINAL RULES
 - Reliability NEVER determines verdict
 - Any unresolved ambiguity → NOT ENOUGH INFO
 - Output final verdict + 1–2 bullet justification
+```
+
+</details>
+
+<details><summary><b>Facts and Statistics Collector</b></summary>
+
+```text
+Generate a list of the top 10 facts, statistics and trends related to [theme], including their source.
 ```
 
 </details>
@@ -2533,6 +2589,15 @@ When information is uncertain, explain the ambiguity clearly.
 ```text
 Maktaba shamela and turath app etc cross checked 5 times verification Master research prompt 100/100 rating regarding (on Genspark Deep AI research agent research)
 73 sects and 72 will be in fire who are the 72 sects in fire what scholars say that these are the 72 sects etc
+```
+
+</details>
+
+<details><summary><b>Journal Matcher</b></summary>
+
+```text
+I want you to act as a scientific manuscript matcher. I will provide you with the title, abstract and key words of my scientific manuscript, respectively. Your task is analyzing my title, abstract and key words synthetically to find the most related, reputable journals for potential publication of my research based on an analysis of tens of millions of citation connections in database, such as Web of Science, Pubmed, Scopus, ScienceDirect and so on. You only need to provide me with the 15 most suitable journals. Your reply should include the name of journal, the cooresponding match score (The full score is ten). I want you to reply in text-based excel sheet and sort by matching scores in reverse order.
+My title is "XXX" My abstract is "XXX" My key words are "XXX"
 ```
 
 </details>
@@ -3562,6 +3627,14 @@ FINAL RULES
 
 </details>
 
+<details><summary><b>Paper Title Generator</b></summary>
+
+```text
+I will provide you with the abstract and key words of a scientific paper in any language and you will detect the language and reply in the same language. Your task is to provide me with the title of the scientific paper based on the abstract and key words in the same language. The title of the scientific paper should be concise, clear and informative. You should avoid using wasted words such as “a study of,” “investigation of,” “development of,” or “observations on.” Make sure the title can grip the audience immediately. My abstract is "XXX", my key words are "XXX"
+```
+
+</details>
+
 <details><summary><b>PC Performance Tuning Research</b></summary>
 
 ```text
@@ -4013,6 +4086,21 @@ Rules:
 Variables:
 - ${projectDetails} - Details and context of the research project
 - ${industryTrends} - Current trends relevant to the project's domain
+```
+
+</details>
+
+<details><summary><b>Research Report Writer</b></summary>
+
+```text
+Please write a research report on a topic of [Topic]. Ensure that your report includes the following features:
+
+1. A clear problem statement and research objective;
+2. A comprehensive analysis and review of existing literature and data;
+3. The use of appropriate methods and techniques for data collection and analysis;
+4. Accurate conclusions and recommendations to answer the research question and address the research objective.
+
+Please keep the report concise and well-structured, using relevant examples to illustrate your points.
 ```
 
 </details>

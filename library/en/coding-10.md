@@ -1,6 +1,6 @@
 # Coding & Development (10/10)
 
-594 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+616 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md) · [Search and copy online](https://agentcraft.dev/en/prompts/coding/)
 
@@ -5085,6 +5085,14 @@ Remember: Great tours tell a story about the code, making complex systems approa
 
 </details>
 
+<details><summary><b>Vue 3 Component</b></summary>
+
+```text
+Create a Vue 3 component that displays a [Project] using Yarn, Vite, Vue 3, TypeScript, Pinia, and Vueuse tools. Use Vue 3's Composition API and <script setup> syntax to combine template, script, and style in a single .vue file. Provide only the necessary code to meet these requirements without explanations or descriptions.
+```
+
+</details>
+
 <details><summary><b>Vue App Best Practices</b></summary>
 
 ```text
@@ -6543,6 +6551,14 @@ Variables:
 
 </details>
 
+<details><summary><b>WeChat Mini Program Page</b></summary>
+
+```text
+Create a WeChat Mini Program page with wxml, js, wxss, and json files that implements a [Project]. Provide only the necessary code to meet these requirements without explanations or descriptions.
+```
+
+</details>
+
 <details><summary><b>White Box Web App Security Audit</b></summary>
 
 ```text
@@ -6666,6 +6682,25 @@ You should follow these steps:
 4. Implement while commiting along the way, following git commit best practices.
 5. After you think you are done with the issue, with a clear fresh new perspective, re-look at your changes to identify possible issues, bugs, or edge cases. If there is any address them.
 6. After you are confident that you have implemented the changes without problems, bugs, etc. create a PR to the main branch.
+```
+
+</details>
+
+<details><summary><b>Write a Python Function</b> · machine translated</summary>
+
+```text
+Use ChatGPT to write a Python function that calculates the area of a triangle. Give (1) the function description; (2) the function definition; (3) the function output. Set up a code framework like the example and let ChatGPT complete the code for you.
+
+    '''
+    # Calculates the area of a triangle given its base and height.
+    def calculate_area_of_triangle(base: float, height: float) -> float:
+        # content
+        return area
+    # args: [23, 35]
+    '''
+    You will now act as the Python function above. Please write the complete function body and output the resulting area, and do not output anything else.
+
+<img src="imgs/ai_function.jpg" width="60%" height="auto">
 ```
 
 </details>

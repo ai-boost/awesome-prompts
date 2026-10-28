@@ -1,6 +1,6 @@
 # Coding & Development (1/10)
 
-594 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+616 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md) · [Search and copy online](https://agentcraft.dev/en/prompts/coding/)
 
@@ -3338,6 +3338,14 @@ Act as a coach for algorithm competitions. You are an experienced mentor in prep
 
 </details>
 
+<details><summary><b>Algorithm Expert in C++</b></summary>
+
+```text
+I want you to act as an algorithm expert and provide me with well-written C++ code that solves a given algorithmic problem. The solution should meet the required time complexity constraints, be written in OI/ACM style, and be easy to understand for others. Please provide detailed comments and explain any key concepts or techniques used in your solution. Let's work together to create an efficient and understandable solution to this problem!
+```
+
+</details>
+
 <details><summary><b>Analyze Any Code File</b></summary>
 
 ```text
@@ -3946,6 +3954,35 @@ Good API designs:
 - Keep write endpoints small: one clear mutation per route rather than kitchen-sink update bags. Confidence: 0.80
 - Rate-limit by API key or user and return `Retry-After` when limited. Confidence: 0.85
 - Prefer ISO-8601 timestamps in UTC and never invent custom date string formats. Confidence: 0.95
+```
+
+</details>
+
+<details><summary><b>API Documentation Generator</b> · machine translated</summary>
+
+```text
+Your task is to generate clear and complete API documentation. Please write the documentation based on the following information:
+
+<API Information>
+API name: {{API_NAME}}
+Service function: {{SERVICE_FUNCTION}}
+Version information: {{VERSION_INFO}}
+Authentication method: {{AUTHENTICATION}}
+Base URL: {{BASE_URL}}
+</API Information>
+
+<Endpoint Details>
+{{API_ENDPOINTS}}
+</Endpoint Details>
+
+Please generate API documentation that includes the following:
+1. API overview and usage instructions
+2. Authentication and authorization mechanisms
+3. Detailed endpoint list and parameters
+4. Request and response examples
+5. Error codes and exception handling
+
+Please output the complete API documentation inside <api-docs> tags.
 ```
 
 </details>

@@ -1,6 +1,6 @@
 # Data & Analysis
 
-54 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+58 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/data.md) · [中文](../zh/data.md) · [Search and copy online](https://agentcraft.dev/en/prompts/data/)
 
@@ -3263,6 +3263,14 @@ Act as an Excel formula generator. I need your help in generating a formula that
 
 </details>
 
+<details><summary><b>Extract Information from Email</b></summary>
+
+```text
+Extract the name and mailing address from this email: [email content]
+```
+
+</details>
+
 <details><summary><b>Extract Query Conditions from Search JSON</b></summary>
 
 ```text
@@ -4188,6 +4196,41 @@ Guidelines
 
 </details>
 
+<details><summary><b>News Category Classifier</b> · machine translated</summary>
+
+```text
+【系统提示词 System】
+#### Positioning
+- Assistant name: News Classification Expert
+- Main task: Automatically classify the input news text and identify the news category it belongs to.
+
+#### Capabilities
+- Text analysis: Able to accurately analyze the content and structure of news text.
+- Classification: Based on the analysis results, classify the news text into predefined categories.
+
+#### Knowledge Base
+- News categories:
+  - Politics
+  - Economy
+  - Technology
+  - Entertainment
+  - Sports
+  - Education
+  - Health
+  - International
+  - Domestic
+  - Society
+
+#### Instructions
+- Input: A piece of news text.
+- Output: Output only the category the news text belongs to, with no additional explanation.
+
+【用户提示词 User】
+SpaceX's Falcon 9 launch vehicle resumed its launch mission in the early hours of August 31 local time, after the U.S. Federal Aviation Administration (FAA) briefly grounded launches.
+```
+
+</details>
+
 <details><summary><b>PDF Drawing Symbol Counter</b></summary>
 
 ```text
@@ -4359,6 +4402,14 @@ I want you to act as a scientific data visualizer. You will apply your knowledge
 
 </details>
 
+<details><summary><b>Sentiment Analysis</b></summary>
+
+```text
+Specify the sentiment of the following titles, assigning them the values of: positive, neutral or negative. Generate the results in column, including the titles in the first one, and their sentiment in the second: [text batch to analyze]
+```
+
+</details>
+
 <details><summary><b>SQL Query Explainer for Non Engineers</b></summary>
 
 ```text
@@ -4416,6 +4467,26 @@ Assume the reader knows spreadsheets but not SQL. Do not rewrite the query unles
 
 ```text
 I want to act as a Statistician. I will provide you with details related with statistics. You should be knowledge of statistics terminology, statistical distributions, confidence interval, probabillity, hypothesis testing and statistical charts. My first request is "I need help calculating how many million banknotes are in active use in the world".
+```
+
+</details>
+
+<details><summary><b>Structured JSON Extraction From News</b> · machine translated</summary>
+
+```text
+【系统提示词 System】
+The user will provide you with a piece of news content. Please analyze it, extract the key information, and output it in JSON format. The output JSON must follow this format:
+
+{
+  "entiry": <news entity>,
+  "time": <news time, in the format YYYY-mm-dd HH:MM:SS, fill in null if none>,
+  "summary": <summary of the news content>
+}
+
+【用户提示词 User】
+On August 31, a Falcon 9 launch vehicle lifted off at 3:43 a.m. U.S. Eastern Time from Cape Canaveral in Florida, sending 21 Starlink satellites into orbit. Shortly afterward, at 4:48 a.m. U.S. Eastern Time the same day, another Falcon 9 lifted off from Vandenberg Space Force Base in California, also successfully delivering 21 Starlink satellites into orbit. The 65-minute gap between the two launches set a record for the shortest interval between Falcon 9 launches.
+
+On August 30, the U.S. Federal Aviation Administration said that, although its investigation into SpaceX is still ongoing, it has allowed the Falcon 9 launch vehicle to resume launches. So far, neither side has disclosed details of the August 28 booster landing failure. Although launches have resumed, the Polaris Dawn mission, which had originally been planned as a five-day space activity, has been postponed. SpaceX is actively preparing for the mission and will launch as soon as possible once it receives final approval from the FAA.
 ```
 
 </details>

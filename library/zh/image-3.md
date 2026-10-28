@@ -1,1389 +1,341 @@
-# 图像与设计 (3/3)
+# 图像与设计 (3/4)
 
-共 453 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 743 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/image.md) · [中文](../zh/image.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/image/)
 
-分页：[1](image.md) · [2](image-2.md) · **3**
+分页：[1](image.md) · [2](image-2.md) · **3** · [4](image-4.md)
 
-<details><summary><b>视觉媒体分析专家智能体</b></summary>
+<details><summary><b>正念曼陀罗禅意几何图案</b></summary>
 
 ```text
-# 视觉媒体分析专家
+# 🌀 Mindful Mandala & Zen Geometric Patterns
 
-你是一位资深视觉媒体分析专家，专精于电影取证、叙事结构解构、 cinematographic technique identification（摄影技术识别）、制作设计评估、剪辑节奏分析、声音设计推断以及 AI 辅助图像提示词生成。
-
-## 任务导向执行模型
-- 将以下每一项要求视为明确且可追踪的任务。
-- 为每项任务分配一个稳定的 ID（例如 TASK-1.1），并在输出中使用清单项形式呈现。
-- 将任务按相同标题分组，以保持可追溯性。
-- 输出为 Markdown 文档并附带任务清单；仅在必要时于围栏代码块中包含代码。
-- 严格保留原文范围，不得删减或添加任何要求。
-
-## 核心任务
-- **分段**：通过检测每一个剪切点、场景变换和摄像机角度转换，对视频输入进行分割，并按时间顺序为每个独立镜头生成单独的详细分析档案。
-- **提取**：提取取证与技术细节，包括 OCR 文本识别、物体清单、主体识别以及每帧场景的摄像机元数据假设。
-- **解构**：从导演视角解构叙事结构，识别戏剧性节拍、故事定位、微动作、潜台词和符号学意义。
-- **分析**：分析摄影技术，包括构图、焦距长度、灯光设计、带 HEX 值的色彩调色板、光学特性及摄像机运动。
-- **评估**：评估制作设计元素，涵盖布景架构、道具、服装、材质物理特性及氛围效果。
-- **推断**：推断剪辑节奏与声音设计，包括节奏、转场逻辑、视觉锚点、环境声景、拟音需求及音乐氛围。
-- **生成**：为 Midjourney 和 DALL-E 生成 AI 复现提示词，包含精确的风格参数、负向提示词和纵横比规格说明。
-
-## 任务工作流程：视觉媒体分析
-系统性地从初始场景分割开始，经过多视角深度分析，为每一个检测到的场景生成全面的结构化报告。
-
-### 1. 场景分割与输入分类
-- 将输入类型分类为单张图像、多帧序列或包含多个镜头的连续视频。
-- 在视频输入中检测每一个剪切点、场景变化、摄像机角度转换以及时间不连续性。
-- 为每一个独立场景或镜头分配一个按时间顺序排列的连续索引编号。
-- 估算每个检测到的场景边界的近似时间戳或帧范围。
-- 记录输入分辨率、纵横比和整体序列持续时间，作为项目元数据。
-- 生成一个整体性元分析假设，解释连接所有检测场景的总体叙事脉络。
-
-### 2. 取证与技术细节提取
-- 对所有可见文本执行 OCR，包括车牌、路标、手机屏幕、标志、水印和叠加图形，在文本部分被遮挡或模糊时提供最佳猜测转录。
-- 编制一份全面的物体清单，列出每一个关键物体及其数量、状态和上下文相关性（例如：“1 只复古劳力士潜航者型手表，皮质表带磨损；3 个空的陶瓷咖啡杯，工业釉面”）。
-- 识别并分类所有主体，对人类提供高精度的年龄、性别、种族、姿势和表情估计；对车辆提供品牌、型号、年份和配置等级；对生物主体提供物种和行为状态。
-- 假设摄像机元数据，包括摄像机品牌和型号（例如 ARRI Alexa Mini LF、Sony Venice 2、RED V-Raptor、iPhone 15 Pro、35mm 胶片）、镜头类型（变形、球面、微距、移轴）以及估计设置（ISO、快门角度或速度、光圈 T 值、白平衡）。
-- 检测任何后期制作痕迹，包括调色特征、数字降噪、稳定化伪影、压缩块或生成式 AI 痕迹。
-- 评估图像真实性指标，如 EXIF 一致性、光照方向一致性、阴影几何结构和透视对齐。
-
-### 3. 叙事与导演意图解构
-- 识别每个镜头内的戏剧结构作为一个微小弧线：铺垫、张力、释放或持续状态。
-- 使用经典叙事框架（诱发事件、上升动作、高潮、下降动作、结局）将每个场景置于假设的更大叙事结构中。
-- 通过将动作分解为亚秒级增量来拆解微节拍（例如：“00:01 主体向左转头，00:02 建立眼神接触，00:03 出现识别的微表情”）。
-- 分析肢体语言、面部微表情、空间关系（proxemics）和手势交流，以揭示情感潜台词和角色内在状态。
-- 解码符号学含义，包括象征性物体、色彩象征、空间隐喻和文化参照，这些都在无对白的情况下传递意义。
-- 通过评估调度、演员位置、纵深布景和空间布局，分析其对视觉叙事的贡献，从而评价叙事结构。
-
-### 4. 摄影与视觉技术分析  
-- 确定构图与镜头参数：估算焦距（18mm、24mm、35mm、50mm、85mm、135mm）、摄像机角度（低角度、平视、高角度、荷兰角、鸟瞰）、摄像机高度、景深特征及散焦质量（bokeh quality）。  
-- 通过识别主光、补光、背光和实用光源的位置，绘制灯光设计图，并描述光质（硬光或柔光）、色温（开尔文值）、对比度比例（例如 8:1 伦勃朗光、2:1 平光），以及光源是否具有剧情动机（motivated）或非动机性（unmotivated）。  
-- 提取色彩调色板，列出主导色与强调色的 HEX 色彩代码，并进行饱和度与亮度分析，识别特定的调色美学风格（青橙色调、漂白旁路、交叉处理、单色调、互补色、类似色）。  
-- 记录光学特性，包括镜头光晕、色差、桶形或枕形畸变、暗角、胶片颗粒结构与强度，以及变形宽银幕镜头特有的拉丝光效（anamorphic streak patterns）。  
-- 使用精确术语对摄像机运动进行分类（固定、横摇、俯仰、推轨进/出、横移、升降、起重机、Steadicam、手持、云台、无人机），并描述运动质感（液压般顺滑、刻意抖动、呼吸感、锁定不动）。  
-- 评估整体视觉语言，并识别来自知名 cinematographer 或视觉流派的风格影响（戈登·威利斯的明暗对比法、罗杰·狄金斯的自然主义、布拉德福德·杨的欠曝风格、卢贝兹基的长镜头自然主义）。
-
-### 5. 制作设计与世界观构建评估  
-- 描述布景与建筑，包括物理空间尺寸、建筑风格（粗野主义、装饰艺术、维多利亚、中世纪现代、工业风、有机建筑）、时代准确性，以及空间的封闭性或开放性。  
-- 分析道具与装饰的叙事功能，区分主角道具（对故事至关重要的物品）、场景陈设（环境性物件）以及时代错置或刻意布置的物品，这些物品可暗示技术水平、经济状况或文化背景。  
-- 通过识别织物质地（皮革、丝绸、牛仔布、羊毛、合成材料）、磨损细节、角色身份标识（财富、职业、亚文化）以及与整体调色板的色彩协调性，评估服装与造型设计。  
-- 记录材质物理特性与表面质感：锈迹氧化层、抛光铬表面、湿沥青反射、尘埃颗粒密度、冷凝水、玻璃上的指纹、织物编织可见度。  
-- 评估大气与环境效果，包括雾的密度与层次、烟雾行为（体积感、缕状、薄雾）、雨的强度与方向性、热浪扭曲、镜头冷凝、以及光束中的悬浮微粒。  
-- 通过评估所有制作设计元素是否一致地支持统一的时代背景、社会经济语境和叙事基调，来识别世界观构建的连贯性。
-
-### 6. 剪辑节奏与声音设计推断  
-- 使用音乐术语对节奏与速度进行分类：广板（Largo，极慢、沉思）、行板（Andante，步行速度）、中板（Moderato，中等）、快板（Allegro，快速、充满能量）、急板（Presto，极快、狂热）、或断奏式（Staccato，短促、有节奏的剪辑）。  
-- 通过假设与前后镜头之间的联系，分析转场逻辑，使用剪辑技巧进行推断（硬切、匹配剪辑、跳切、J-cut、L-cut、淡入淡出、划像、猛切、黑场淡入淡出）。  
-- 绘制视觉锚点，预测观众眼动扫视模式：基于对比度、运动、人脸和文字，判断观众视线首先、其次和第三落点。  
-- 推测环境声景，包括房间底噪特征、环境声层（风声、交通声、鸟鸣、机械嗡鸣、水声）以及声场的空间深度。  
-- 明确拟音需求，识别会产生声音的材质交互：特定地面上的脚步声（碎石、大理石、湿路面）、织物移动声（皮革吱嘎声、丝绸沙沙声）、物体操作声（玻璃碰撞、金属刮擦、纸张翻动）。  
-- 建议音乐氛围，包括音乐类型、BPM 节奏、调性、配器调色板（管弦乐弦乐、模拟合成器、独奏钢琴、氛围铺垫音效）以及情感功能（营造紧张、宣泄释放、忧郁衬底）。
-
-## 任务范围：分析领域
-
-### 1. 法医图像与视频分析  
-- 从所有可见表面提取 OCR 文本，包括退化、倾斜、部分遮挡和运动模糊的文本。  
-- 进行物体检测与分类，包含数量统计、状态评估、品牌识别及其上下文意义。  
-- 对主体进行生物特征估算，包括年龄范围、性别表现、身高近似值及显著特征。  
-- 车辆识别，包括品牌、型号、年份、配置、颜色及状况评估。
-  
-### 3. 叙事与符号学解读  
-- 对单个镜头内及跨镜头序列的戏剧节拍进行分析。  
-- 通过肢体语言、空间距离（proxemics）和微表情解读推断角色心理状态。  
-- 对视觉元素、空间关系和构图选择进行象征性与隐喻性解读。  
-- 按置信度等级对类型片（genre）和基调（tone）进行分类，并提供支持性的视觉证据。  
-- 检测互文引用，识别来自已知电影、艺术作品或文化图像中的视觉引语。
-  
-- **忽略大气效应**：遗漏了显著影响视觉氛围和制作设计评估的雾层、颗粒物、热浪或雨滴等效果。  
-- **忽视声音推断**：当从视觉证据中可明显推断出物体交互、环境背景和空间声学时，却跳过了声音设计的分析视角。  
-
-## 输出（仅限 TODO）
-
-将所有建议的分析发现及任何结构化数据仅写入 `TODO_visual-media-analysis.md` 文件中。不要创建其他任何文件。如果需要生成特定输出文件（例如 JSON 导出），请将其作为明确标注的代码块包含在 TODO 文件内。
-
-## 输出格式（基于任务）
-
-每个交付项必须包含唯一的任务 ID，并以可追踪的复选框形式表达。
-
-在 `TODO_visual-media-analysis.md` 中包含：
-
-### 上下文  
-- 正在分析的视觉输入内容（图像、视频片段、帧序列）及其来源背景。  
-- 所请求的分析范围（完整多视角分析、仅法医分析、仅电影摄影分析、AI 提示词生成）。  
-- 请求者提供的任何已知元数据（作品标题、使用相机、地点、日期）。
-
-### 分析计划  
-使用复选框和稳定 ID（例如 `VMA-PLAN-1.1`）：  
-- [ ] **VMA-PLAN-1.1 [场景分割]**：  
-  - **输入类型**：图像、视频或帧序列。  
-  - **检测到的场景**：总数及对应时间戳范围。  
-  - **分辨率**：估计的分辨率和宽高比。  
-  - **方法**：完整的六视角分析或目标子集分析。
-
-### 分析项  
-使用复选框和稳定 ID（例如 `VMA-ITEM-1.1`）：  
-- [ ] **VMA-ITEM-1.1 [场景 N - 视角名称]**：  
-  - **场景索引**：顺序场景编号及时间戳。  
-  - **视觉摘要**：对动作和场景设置的高度具体描述。  
-  - **法医数据**：OCR 文本、对象、主体、相机元数据假设。  
-  - **电影分析**：构图、灯光、色彩调色板 HEX、运动、叙事结构。  
-  - **制作评估**：布景设计、服装、材料、氛围效果。  
-  - **剪辑推断**：节奏、转场、视觉锚点、剪辑策略。  
-  - **声音推断**：环境音、拟音、音乐氛围、空间音频。  
-  - **AI 提示词**：Midjourney v6 和 DALL-E 提示词，含参数与负面提示。
-
-### 建议的代码变更  
-- 按照以下 schema 提供结构化 JSON 输出，作为围栏代码块：
-
-'''json
-{
-  "project_meta": {
-    "title_hypothesis": "Generated title for the sequence",
-    "total_scenes_detected": 0,
-    "input_resolution_est": "1080p/4K/Vertical",
-    "holistic_meta_analysis": "Unified cinematic interpretation across all scenes"
-  },
-  "timeline_analysis": [
-    {
-      "scene_index": 1,
-      "time_stamp_approx": "00:00 - 00:XX",
-      "visual_summary": "Precise visual description of action and setting",
-      "perspectives": {
-        "forensic_analyst": {
-          "ocr_text_detected": [],
-          "detected_objects": [],
-          "subject_identification": "",
-          "technical_metadata_hypothesis": ""
-        },
-        "director": {
-          "dramatic_structure": "",
-          "story_placement": "",
-          "micro_beats_and_emotion": "",
-          "subtext_semiotics": "",
-          "narrative_composition": ""
-        },
-        "cinematographer": {
-          "framing_and_lensing": "",
-          "lighting_design": "",
-          "color_palette_hex": [],
-          "optical_characteristics": "",
-          "camera_movement": ""
-        },
-        "production_designer": {
-          "set_design_architecture": "",
-          "props_and_decor": "",
-          "costume_and_styling": "",
-          "material_physics": "",
-          "atmospherics": ""
-        },
-        "editor": {
-          "rhythm_and_tempo": "",
-          "transition_logic": "",
-          "visual_anchor_points": "",
-          "cutting_strategy": ""
-        },
-        "sound_designer": {
-          "ambient_sounds": "",
-          "foley_requirements": "",
-          "musical_atmosphere": "",
-          "spatial_audio_map": ""
-        },
-        "ai_generation_data": {
-          "midjourney_v6_prompt": "",
-          "dalle_prompt": "",
-          "negative_prompt": ""
-        }
-      }
-    }
-  ]
-}
-'''
-
-### 命令  
-- 无需外部命令；分析直接在提供的视觉输入上执行。
-
-## 质量保证任务清单  
-
-最终确定前请验证：  
-- [ ] 每个独立场景或镜头均已单独分割并分析，未合并处理。  
-- [ ] 所有六个分析视角（法医、导演、电影摄影师、制作设计师、剪辑师、声音设计师）均已为每个场景完成。  
-- [ ] 已尝试对所有可见文本表面进行 OCR 文本检测，并对模糊文本提供最佳猜测转录。  
-- [ ] 物品清单包含具体的数量、状态和识别信息，而非泛化描述。  
-- [ ] 色彩调色板包含从每个场景的主色和强调色中提取的具体 HEX 代码。
-- [ ] 灯光设计图标注主光、补光和背光位置，并提供色温与对比度比值的估算。
-- [ ] 相机元数据假设引用支持识别结论的具体光学证据。
-- [ ] AI 生成提示词对 Midjourney v6 和 DALL-E 具备语法有效性，包含适当参数及负向提示词。
-- [ ] 结构化 JSON 输出符合指定的 schema，所有必填字段均已填充。
-
-## 执行提醒
-
-良好的视觉媒体分析应：
-- 将每一帧视为法医证据表面，记录细节而非概括印象。
-- 将多镜头视频输入分割为独立场景，绝不将不同镜头合并为泛化的总结。
-- 提供机器级精确的规格参数（HEX 色值、焦距、开尔文值、对比度比值），而非主观形容词。
-- 综合全部六种分析视角，形成连贯解读，揭示表层内容之外的意义。
-- 生成能够忠实还原所分析场景视觉特征的 AI 提示词。
-- 在时间轴上保持所有检测到的场景的时序顺序与结构完整性。
+## 🎨 角色与目的  
+你是一位专业的**曼陀罗与神圣几何艺术家**。创作复杂、对称且具有精神意义的几何图案，唤起平静、和谐与内在安宁。**禁止出现人物形象、瑜伽姿势或任何形式的人类。**
 
 ---
-**RULE:** 使用此提示词时，你必须创建一个名为 `TODO_visual-media-analysis.md` 的文件。该文件必须包含本次研究所得的发现，以可勾选的复选框形式呈现，以便 LLM 可对其进行编码与追踪。
+
+## 🔷 几何图案风格  
+
+选择其中一种或组合使用：
+
+- **🔵 对称曼陀罗** - 完美的8重或12重径向对称  
+- **⭕ 禅圆（Enso）** - 极简、有意图的神圣笔触  
+- **🌸 生命之花** - 相互重叠的圆形构成神圣几何  
+- **🔶 伊斯兰马赛克** - 复杂的镶嵌与重复图案  
+- **⚡ 分形曼陀罗** - 不同尺度下的自相似图案  
+- **🌿 植物曼陀罗** - 将花卉与自然元素融入几何结构  
+- **💎 脉轮曼陀罗** - 能量中心结合精神符号  
+- **🌊 波浪图案** - 流畅、有机、冥想式设计  
+
+---
+
+## 🔷 应包含的几何元素  
+
+### 核心形状  
+- **圆形** - 完整、统一、无限 - 中心与基础  
+- **三角形** - 平衡、上升、三位一体 - 动态能量  
+- **正方形** - 稳定、接地、大地 - 坚实基础  
+- **六边形** - 和谐、自然秩序 - 有机感  
+- **星形** - 宇宙连接、光明 - 精神能量  
+- **螺旋** - 成长、转化、旅程 - 流动运动  
+- **莲花花瓣** - 精神觉醒、启蒙 - 神圣象征  
+
+### 装饰细节  
+- ✨ 复杂的线条与花丝纹样  
+- ✨ 流畅的植物图案  
+- ✨ 重复的镶嵌图案  
+- ✨ 万花筒式排列  
+- ✨ 中央焦点（曼陀罗中心）  
+- ✨ 辐射状波纹图案  
+- ✨ 互锁的几何形态  
+
+---
+
+## 🎨 配色方案选项  
+
+### 1️⃣ 冥想单色  
+- **颜色**：黑色、白色、灰阶  
+- **氛围**：平静、专注、沉思  
+
+### 2️⃣ 大地色调禅意  
+- **颜色**：赤陶色、暖米色、鼠尾草绿、石灰色  
+- **氛围**：接地、自然、平和  
+
+### 3️⃣ 宝石色调神圣  
+- **颜色**：深靛蓝、紫水晶紫、祖母绿、蓝宝石蓝、玫瑰金  
+- **氛围**：灵性、神秘、奢华  
+
+### 4️⃣ 脉轮彩虹  
+- **颜色**：红色 → 橙色 → 黄色 → 绿色 → 蓝色 → 靛蓝 → 紫色  
+- **氛围**：激发能量、平衡、灵性对齐  
+
+### 5️⃣ 海洋宁静  
+- **颜色**：柔和青绿色、海沫色、浅蓝、绿松石、白色  
+- **氛围**： calming、流动、冥想  
+
+### 6️⃣ 日落和谐  
+- **颜色**：柔和桃色、珊瑚色、金黄色、淡紫色、玫瑰粉  
+- **氛围**：温暖、平和、过渡感  
+
+---
+
+## 🖼️ 背景选项  
+
+| 背景类型 | 描述 |  
+|-----------------|-------------|  
+| **Clean Solid** | 纯白色或柔奶油色 |  
+| **Textured** | 细微的纸张、大理石、陈旧羊皮纸质感 |  
+| **Gradient** | 柔和的色彩过渡 |  
+| **Cosmic** | 深空、星辰、星云 |  
+| **Nature** | 柔和虚化或水彩晕染背景 |  
+
+---
+
+## 🎯 构图指南  
+
+- ✓ **完全居中** - 对称构图  
+- ✓ **清晰焦点** - 曼陀罗中心向外辐射  
+- ✓ **同心层叠** - 多层图案细节环环相扣  
+- ✓ **数学精度** - 和谐比例  
+- ✓ **留白呼吸空间** - 曼陀罗周围有适当空间  
+- ✓ **层次深度** - 通过图案复杂性体现纵深感  
+
+---
+
+## 🚫 关键限制  
+
+### **绝对禁止：**  
+- 🚫 人物形象或面部  
+- 🚫 瑜伽姿势或人体  
+- 🚫 任何形式的人物或剪影  
+- 🚫 真实物体或照片  
+- 🚫 生物形象  
+
+---
+
+## ❌ 附加限制  
+
+- ❌ 混乱或不对称设计  
+- ❌ 过度拥挤的图案  
+- ❌ 生硬、刺眼或冲突的颜色  
+- ❌ 现代企业风审美  
+- ❌ 3D渲染效果（除非刻意为之）  
+- ❌ 涂鸦或街头艺术风格  
+- ❌ 幼稚或卡通化外观  
+
+---
+
+## ✨ 质量标准  
+
+✓ **专业级数字艺术品质**  
+✓ **清晰线条与平滑曲线**  
+✓ **美学上美丽且引人入胜**  
+✓ **唤起平静、和谐与冥想感**  
+✓ **适用于印刷与数字用途**  
+✓ **超高清分辨率**  
+
+---
+
+## 📱 理想应用场景  
+
+- 冥想与正念类App  
+- 健康与心理健康网站  
+- 按需打印的数字艺术产品  
+- 瑜伽工作室墙面艺术与装饰  
+- 成人填色书  
+- 壁纸与屏保  
+- 社交媒体健康内容  
+- 书籍封面与设计元素  
+- 纹身设计灵感  
+- 神圣几何教育材料
 ```
 
 </details>
 
-<details><summary><b>角色参考设定图</b></summary>
+<details><summary><b>母亲节拍立得照片墙</b></summary>
 
 ```text
-创建一张专业的人物参考表，人物必须与上传的参考图像中的人物完全一致，背景为纯白色。
+主提示词 -  
+使用我上传的母亲（或我与母亲）的参考照片，设计一个温馨的墙面拼贴画。将参考照片作为主要的宝丽来相片，钉在软木板或串灯上，居中放置，保留我们面部和表情的原样。周围环绕若干张较小的宝丽来风格相框，展示柔和的、由AI想象出的记忆场景：生日、节日、安静的下午茶时光、家人的拥抱。在中央照片下方添加手写文字：“Happy Mother’s Day, Mom”。风格：温暖的室内光线、柔和的阴影、柔和的粉彩色调、略带纹理的纸张质感。
 
-人物的外观和艺术风格必须与上传的参考图像完全一致。如果参考图像是绘画、插画或风格化艺术作品，则需复制相同的绘画风格、线条、阴影技巧和渲染方法；如果参考图像是写实风格照片，则结果也必须是照片级写实。视觉风格必须与参考图像完全相同。
+图像 2 -  
+使用我上传的母亲与孩子在一起的参考照片，将其转化为具有皮克斯（Pixar）风格的3D角色，同时保留参考图中可识别的面部、发型和整体比例。保持他们的姿势和亲密距离不变，但将他们置于一个为母亲节装饰过的舒适客厅环境中，背景中有气球、鲜花和一条写着“Happy Mother’s Day”的小横幅。风格：鲜艳的色彩、柔和的3D光照、大而富有表现力的眼睛、高细节的皮克斯式渲染，竖向 4:5 比例。
 
-布局：三行。
+图像 3 -  
+使用我上传的母亲肖像参考照片，创建一张竖向 9:16 的母亲节社交媒体图片。精确保留她的面部特征和表情。将她略微偏移中心位置，背景为柔和模糊的粉彩色，并在她头部周围添加微妙的花卉光晕。在顶部添加优雅的文字“Happy Mother’s Day”，底部添加一行小字“Thank you for everything”。风格：柔和的影棚灯光、平滑但保留自然质感的皮肤、现代 Instagram 设计风格、高分辨率。
 
-顶行：四个等尺寸的头部特写，水平并列放置——正面、左侧侧面、右侧侧面和头部背面。
+秘密报纸提示 -  
+使用我上传的母亲与孩子的照片，创作一张充满奇趣的黑白复古印地语（Hindi）报纸头版。将母子形象转化为雕版风格的古董报纸肖像，同时保留他们真实的面部身份和情感温度。将整个版面设计成一份内容密集、风格奇幻的老式社论报纸，主题聚焦母爱以及母亲与孩子之间的纽带。
 
-底行：三个等尺寸的全身视图，水平并列放置——全身正面、全身侧面和全身背面。
+使用经典的印地语衬线字体、窄栏报纸排版、微妙的纸张纹理、高对比度的黑白油墨、俏皮的版面设计、富有情感的短句故事片段、幽默的假广告、复古邮票，以及充满魔幻感的复古报纸美学。
 
-必须精确复制参考图像中的每一个细节：
-- 面部结构
-- 肤色
-- 天然瑕疵和毛孔纹理（如可见）
-- 发色、发质和发型
-- 精确的虹膜颜色和眼部细节
-- 如风格适用，需包含真实的眼部湿润感和高光
+报纸必须自动包含：
 
-每个视角中必须穿着完全相同的服装，包括相同的细节、褶皱、颜色和材质。
+母亲姓名：[MOTHER_NAME]  
+孩子的姓名：[CHILD_NAME]
 
-照明应为柔和、中性的影棚灯光，均匀分布，无阴影、无色偏。
+添加创意性的印地语母亲节头条、感人的一句话标语、幽默的边注，以及一篇简短的专题“新闻报道”，讲述[CHILD_NAME]如何将[MOTHER_NAME]视为自己的超级英雄、最安全的港湾，以及爱的最大源泉。
 
-所有视角之间以及与参考图像之间必须保持完全一致。
+保持肖像居中且占据主导地位，其余版面则呈现出怀旧、感性、略带超现实、幽默且美丽混乱的氛围，就像一份古老的收藏级印地语报纸。
+
+女王图像 -  
+使用上传的照片作为精确参考。不得更改面部、发型、服装、姿势、表情或身体结构。创作一张温暖、电影感十足的母亲节肖像：女儿轻轻将一顶金色皇冠戴在母亲头上，母亲优雅地坐在一把精致的椅子上。温馨的室内场景，配有柔和的金色灯光、鲜花、蜡烛和散景背景。风格为超现实、富有情感、奢华摄影风格，符合 Instagram 审美。添加优雅文字：“HAPPY MOTHER’S DAY” 和 “THANK YOU FOR BEING MY FIRST HOME。” 4:5 比例。
 ```
 
 </details>
 
-<details><summary><b>角色速写页</b></summary>
+<details><summary><b>母子沙发合影</b></summary>
 
 ```text
-从图像中绘制角色——(Your name)——采用自由、即兴的素描风格。在明亮的白色背景上，随意安排全身像、面部特写、小型涂鸦、全身草图以及Q版或风格化的版本，使整个页面传达出该角色的幽默感与个性。不要制作成有条理的角色设定表，而是让它看起来像是一张充满即兴细节的手绘速写本页面。
+情侣合影；  
+常规摄影；  
+写实风格；  
+拍摄角度与参考照片完全一致；  
+男孩的面部须 100% 与参考照片一致。  
+照片姿势：参考照片中，一位年轻成年女性与一名儿童并排坐在沙发上；  
+女性着装：白色衬衫（带红色花朵刺绣），红色长款喇叭裙，红色围巾；  
+儿童着装：白色连衣裙与牛仔裤；  
+3 岁儿童，身高 1 米；  
+女性配饰：4 厘米宽金手镯、金项链；  
+佩戴希贾布（hijab）——围巾下方露出的头发须与参考照片完全一致（包括发色、发长、发际线、脱发区域等）；面部 100% 保留原始样貌，呈现自然的皮肤纹理与毛孔；面部所有特征均严格源自参考照片，不得对参考照片中的面部做任何改动；室内灯光柔和温暖；画面中不得出现文字、标识或水印。  
+请仔细关注全部句子并严格执行。  
+儿童的面部必须精确复制。  
+母亲与儿童的身体比例须保持一致：母亲身高为 165 厘米，儿童身高为 100 厘米。  
+为他们选择一张优美动人的母子合影姿势。
 ```
 
 </details>
 
-<details><summary><b>让图中花朵绽放</b></summary>
+<details><summary><b>毛毡木偶星际舰队变装</b></summary>
 
 ```text
-充当专业的图像编辑专家。你的任务是通过使图像中的花朵看起来正在绽放来修改图像。你将：
-- 分析图像中花朵的当前状态
-- 应用数字技术增强并展开花瓣
-- 调整颜色，使其更加鲜艳生动
-- 确保整体构图保持自然且具有美感
+将照片中的人物变成一个经典的毛毡和绒毛布偶。将其衬衫替换为《星际迷航》金色指挥制服，并在胸前配上星际舰队徽章别针。
+```
+
+</details>
+
+<details><summary><b>水上茶室概念设计简报</b> · 机器翻译</summary>
+
+```text
+请扮演一名漂浮湖畔茶屋的建筑概念方案撰写者。你把模糊的氛围转化为固定的、可视觉化的设计细节，使其能在多个图像提示中复用，让同一栋建筑在不同角度和不同时段下仍能被辨认。你要具体说明材料、尺寸，以及哪些内容不得改变。
+
+关于我设想的茶屋：
+- 场地：${setting:a quiet mountain lake in early autumn, forested shores, soft fog}
+- 规模与用途：${scale:intimate, seats 6 to 8 on floor cushions, ceremonial tea for small groups}
+- 结构气质：${vibe:Japanese-inspired cedar, not a theme-park copy; quiet, handmade, slightly weathered}
+- 必须包含：${must:hipped cedar shingle roof, sliding paper shoji, narrow engawa deck, two stone lanterns on the dock, a small tied wooden boat}
+- 必须避免：${avoid:neon signs, glass curtain walls, people in the frame, readable text}
+- 氛围词：${mood:hushed, misty, warm wood, contemplative}
+- 之后要生成的首选视角：${views:morning approach from the shore path; dusk interior looking out across the water}
+
+请完成以下事项：
+1. 为这座漂浮茶屋撰写一段式的建筑与场地概念。
+2. 确定色彩与材料色板（木色、纸、水、雾、金属点缀）。
+3. 列出 10 到 14 项在每张图像中必须保持一致的固定设计细节（屋顶形式与开间数、栏杆、灯笼形状、码头布局、小船位置、山体轮廓线索等）。
+4. 生成图像提示 A：写实外景，薄雾清晨，从岸边小径走近的视角，16:9，将所有固定细节写入提示的前半部分。
+5. 生成图像提示 B：写实室内，灯笼点亮的黄昏，向外眺望湖面，16:9，重述所有从外部可见的固定细节，使建筑在没有参考图的情况下仍然一致。
+6. 添加一份简短的一致性检查清单，供人工比对 A 和 B 时使用。
+7. 添加实用说明（fal flux ultra 在关键内容靠后时容易丢掉哪些东西；把关键物体放在第一句；每条图像提示控制在约 200 词以内）。
 
 规则：
-- 保持图像的原始分辨率和质量
-- 仅聚焦于花朵，其他元素保持不变
-- 使用数字编辑工具模拟自然绽放效果
-
-变量：
-- ${image} - 输入的图像文件
-- ${bloomIntensity:medium} - 绽放效果的强度
-- ${colorEnhancement:high} - 应用的颜色增强级别
+- 没有人物，没有可读文字，没有标志。
+- 优先使用具体、可度量的细节，而不是只用形容词。
+- 如果我留下了模糊的细节，请选择一个明确的方案，并注明这是你的选择。
+- 以清晰的 Markdown 分节输出。
 ```
 
 </details>
 
-<details><summary><b>设计军装</b></summary>
+<details><summary><b>水下Veo 3视频</b></summary>
 
 ```text
-扮演一位造型师。你是一位精通时尚与设计的专家，专长于军用服饰。  
-你的任务是协助构想或设计一款适用于 ${projectType:movie} 或 ${characterRole:soldier} 的军装。  
-你需要：  
-- 考虑历史时期或未来设定  
-- 选择合适的颜色、材质和徽章  
-- 提供草图或详细描述  
-规则：  
-- 保持真实性和实用性  
-- 考虑使用场景和环境
+超现实的6秒电影级水下视频：一条流线型的掠食性鱼类快速穿梭于生机勃勃的珊瑚礁中，惊散了一群五颜六色的热带鱼。摄像机以低角度FPV视角紧随其后，以动态、快节奏的方式在珊瑚与岩石间平滑穿行。摄像机偶尔轻微倾斜和翻滚，强调速度感与空间深度，同时阳光透过水面洒下，形成闪烁的光束和粼粼波光。细小的气泡与悬浮颗粒漂浮水中，增强沉浸式真实感。纹理极度逼真，光影呈现电影级质感，景深效果强烈。音频：汩汩水泡声、鱼鳍摆动声、微妙的水下环境音。
 ```
 
 </details>
 
-<details><summary><b>证件照编辑师</b></summary>
+<details><summary><b>水光狐狸眼自拍</b> · 机器翻译</summary>
 
 ```text
-专业照片编辑师，你明白我的需求，而且你非常擅长制作照片身份证件
+不要改变面部，保持100%的面部相似度。
+随意的前置摄像头自拍，面部特写距离拍摄，白天在家中的随性实时自拍——一帧自然美感的画面，带有容光焕发、水润透亮的肌肤效果。
+照片中，一位女性留着及臀的长波浪发，侧分，发量丰盈——头发蓬松，自由地垂落在肩头和脸颊上，浓密的发丝部分遮住了一侧脸庞。她的头向一侧倾斜，几乎碰到肩膀，视线从眉下直直望向镜头。妆容：浓密加长的睫毛，带有狐狸眼效果，眼线上扬分明，饱满的双唇涂有透明的亮泽唇蜜，带丰唇效果。她的肌肤略带小麦色。佩戴方形宝石的金色耳钉。她穿着一件宽松的深灰色T恤，胸前有部分可见的黄色品牌标志。
+画面为竖构图，头部微微倾斜，脸颊贴着肩膀。背景几乎看不清——光线较暗。
+光线自然明亮，从侧面和正面照来——是直射的硬光源。
+背景必须保持清晰可见，并严格对焦，不要虚化。
+使用iPhone 17拍摄。
+宽高比：3:4。
 ```
 
 </details>
 
-<details><summary><b>语音克隆诈骗信息图</b></summary>
-
-```text
-TITLE: [Fraud Playbook: Voice Cloning Attacks (2026)]  
-BOX 1: ① 攻击定义  
-- 语音克隆：用AI复制某人声音  
-- 可用于冒充高管或亲人  
-- 2026年攻击成本降至$50以下  
-- 多数人无法分辨真假语音  
-
-BOX 2: ② 常见攻击场景  
-- 冒充CEO指令财务转账  
-- 假装家人求助紧急汇款  
-- 伪造客服电话窃取信息  
-- 模拟法官下达“保密令”  
-
-BOX 3: ③ 真实案例：2023年英国能源公司  
-- AI模仿CEO声音指令转账  
-- 员工向诈骗账户转出$220,000  
-- 声音来自过往会议录音  
-- 攻击者使用基础语音合成工具  
-
-BOX 4: ④ 技术依赖要素  
-- 至少15秒清晰语音样本  
-- 使用如 ElevenLabs 或 Resemble.ai  
-- 可添加情绪与口音调整  
-- 多数工具支持API批量生成  
-
-BOX 5: ⑤ 防御盲点  
-- 传统语音验证系统易被绕过  
-- 多因素认证未普及至语音渠道  
-- 员工培训常忽略音频诈骗  
-- 实时检测技术仍处测试阶段（效果 unclear/contested）  
-
-BOX 6: ⑥ 应对行动清单  
-- 设立语音转账二次确认流程  
-- 禁用外部语音指令财务操作  
-- 使用预设暗语验证身份  
-- 定期更新员工反诈演练内容  
-
-FOOTER (small): By SirCrypto
-
---- STYLE SPEC (DO NOT CHANGE) ---
-{
-  "layout_options": {
-    "box_variants": ["1-2 box", "1-4 box", "1-6 box", "1-8 box", "1-10 box"],
-    "remark": "Choose ONE box variant. Keep flow top-to-bottom. Number each box with circled numbers."
-  },
-  "footer_credit": {
-    "text": "By SirCrypto",
-    "placement": "Bottom center or bottom right",
-    "size": "Small/subtle"
-  },
-  "style": {
-    "name": "War Room Strategy Infographic",
-    "description": "Mature command-briefing infographic: tactical labels, decisive callouts, clear hierarchy. Serious, professional."
-  },
-  "visual_foundation": {
-    "surface": {
-      "base": "Matte dark slate to charcoal background",
-      "texture": "Subtle paper grain + faint chalk/marker smudge texture",
-      "edges": "Content extends fully to edges, no border or frame",
-      "feel": "Command briefing page on dark paper"
-    },
-    "overall_impression": "Command-center clarity—direct, credible, high-signal"
-  },
-  "illustration_style": {
-    "line_quality": {
-      "type": "Hand-drawn ink/chalk hybrid sketch aesthetic",
-      "weight": "Medium strokes for main elements, thinner for details",
-      "character": "Confident but imperfect—slight wobble that proves human touch",
-      "edges": "Soft, not vector-crisp",
-      "fills": "Loose hatching, gentle cross-hatching for shadows, never solid machine fills"
-    },
-    "icon_treatment": {
-      "style": "Minimal tactical icons",
-      "complexity": "Essential forms—readable at small sizes",
-      "personality": "Professional and decisive, never cute",
-      "consistency": "Same hand appears to have drawn everything"
-    }
-  },
-  "color_philosophy": {
-    "palette_character": {
-      "mood": "Serious, tactical, focused",
-      "saturation": "Low-to-medium",
-      "harmony": "Muted complementary accents"
-    },
-    "primary_palette": {
-      "ambers": "Muted amber for warnings and priority tags",
-      "teals": "Soft teal for steps and logic",
-      "off_whites": "Warm off-white ink for main text"
-    },
-    "color_application": {
-      "fills": "Translucent washes behind boxes",
-      "accents": "Marker highlight behind keywords (restrained)"
-    }
-  },
-  "typography_integration": {
-    "headline_style": {
-      "appearance": "Bold hand-lettered feel, slightly uneven baseline",
-      "weight": "Heavy, confident",
-      "case": "Often uppercase",
-      "color": "Warm off-white or muted amber"
-    },
-    "body_text": {
-      "appearance": "Clean readable warm sans-serif",
-      "spacing": "Generous"
-    }
-  },
-  "layout_architecture": {
-    "canvas": {
-      "framing": "NO BORDER, NO FRAME",
-      "boundary": "Full-bleed 9:16"
-    },
-    "structure": {
-      "type": "Modular briefing grid",
-      "sections": "Numbered boxes per chosen variant",
-      "flow": "Top-to-bottom"
-    },
-    "visual_flow_devices": {
-      "arrows": "Hand-drawn curved arrows",
-      "connectors": "Dotted lines and braces"
-    }
-  },
-  "technical_quality": {
-    "resolution": "High-resolution for phone",
-    "clarity": "All text readable",
-    "balance": "Not crowded"
-  },
-  "avoid": [
-    "ANY frame, border, or edge decoration",
-    "Cute/cartoon characters",
-    "Neon overload",
-    "Text-dense paragraphs",
-    "Sterile vector perfection"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>贴纸图生成器</b></summary>
+<details><summary><b>水晶晚宴上的以太王子</b></summary>
 
 ```text
 {
-  "role": "Image Designer",
-  "task": "Create a detailed sticker image with a transparent background.",
-  "style": "Colorful, vibrant, similar to Stickermule",
-  "variables": {
-    "text": "Custom text for the sticker",
-    "icon": "Icon to be included in the sticker",
-    "colorPalette": "Color palette to be used for the sticker"
-  },
-  "constraints": [
-    "Must have a transparent background",
-    "Should be colorful and vibrant",
-    "Text should be readable regardless of the background",
-    "Icon should complement the text style"
-  ],
-  "output_format": "PNG",
-  "examples": [
-    {
-      "text": "${text:Hello World}",
-      "icon": "${icon:smiley_face}",
-      "colorPalette": "${colorPalette:vibrant}",
-      "result": "A colorful sticker with '${text:Hello World}' text and a ${icon:smiley_face} icon using a ${colorPalette:vibrant} color palette. It's an image of ${details}"
-    }
-  ],
+  "title": "The Aether Prince at the Crystal Gala",
+  "description": "一幅令人屏息的电影级镜头：一位高贵的贵族男子站在悬浮于云端之上的透明宫殿阳台上。",
+  "prompt": "你将使用所提供照片中的人物作为主要主体进行图像编辑。保留其核心相貌特征。将主体1（男性）转变为一位正在悬浮水晶宫殿内参加皇家舞会的上流社会贵族。他站在透明栏杆旁，身后是宏伟的舞厅，眼前是延展至地平线的云海。图像必须达到超写实级别，运用电影级灯光捕捉光线穿过水晶结构时产生的折射效果。场景高度精细，采用Arri Alexa摄影机拍摄，浅景深使背景中跳舞的宾客虚化，同时保持主体清晰锐利。",
   "details": {
-    "resolution": "300 DPI",
-    "dimensions": "1024x1024 pixels",
-    "layers": "Text and icon should be on separate layers for easy editing"
-  }
-}
-```
-
-</details>
-
-<details><summary><b>赛博朋克堕落炽天使</b></summary>
-
-```text
-一位堕落天使炽天使（Seraphim）端坐于故障闪烁的王座之上，融合天使与赛博朋克元素，呈现暗黑、超现实风格。
-```
-
-</details>
-
-<details><summary><b>赛博朋克故障框肖像</b></summary>
-
-```text
-赛博朋克肖像，2026年的伊朗女性，品红与青色的霓虹轮廓光，湿润反光的皮肤，微妙的全息眼线。表情仅体现在眼神中：一边眉毛平直，另一边微微上扬，眼睛眯起，带着冷峻而略带嘲讽的神情——无声的讥笑。下方是一个干净的故障风格线框，框内是潦草的手写记号笔文字："همین؟"
-```
-
-</details>
-
-<details><summary><b>走廊随手镜前自拍</b></summary>
-
-```text
-instagirl、走廊中的镜面自拍、逼真的业余手机快照、自然的皮肤纹理、极淡妆容、手机摄像头带来的轻微镜头畸变、随意姿势、日常穿搭、轻微手持微模糊、iPhone 11 广角 26mm EXIF 感、构图不完美（头顶留白略被裁切）、混合室内照明并带轻微色偏、背景杂乱、未经润饰、未使用美颜滤镜、解剖结构真实准确、人物身份一致、身体比例一致、面部与参考图高度吻合、iPhone 11 Pro Max
-```
-
-</details>
-
-<details><summary><b>超写实3D角色头像创作</b></summary>
-
-```text
-扮演一名顶级 3D 角色艺术家和摄影测量学专家。你的任务是根据提供的参考图像，创建一个超现实、8K 分辨率的人物角色表（character sheet），用于数字虚拟形象。
-
-你需要：
-- 确保角色一致性，精确保留参考图像中的面部几何结构、皮肤纹理、毛囊细节和眼睛颜色。
-- 构建一个多角度“正交”布局，展示人物处于 T 姿势或放松的 A 姿势。
-
-所需视角：
-1. 全身正面视图。
-2. 全身左侧侧面视图。
-3. 全身右侧侧面视图。
-4. 全身后背视图。
-
-灯光与风格：
-- 使用中性电影级影棚灯光（高调光），无阴影，背景为白色，以便于 3D 建模。
-- 应用超现实皮肤着色器、可见毛孔以及真实衣物物理效果。
-
-技术规格：
-- 使用 85mm 镜头、f/8 光圈拍摄，所有视角均保持清晰对焦，图像为 RAW 格式质量。
-
-限制条件：
-- 不得对输出进行风格化或卡通化处理。输出必须是源图像的精确数字孪生体。
-```
-
-</details>
-
-<details><summary><b>超写实8K照片</b></summary>
-
-```text
-"A professional, ultra-realistic 8K extremely high resolution masterpiece of [You decide content of the picture your self ]. Hyper-detailed textures, cinematic studio lighting with deep contrast, brighter colors,sharp focus on every detail. Shot on Sony A1 with 85mm f/1.8 lens for extreme clarity. Enhance the colors to be vibrant and rich (10-bit color),adjust luminance,apply micro-contrast, and add more high dramatic rim lighting to create depth. The surface should have realistic reflections and textures. Professional post-processing, no noise, and pixelation,adjust noise reduction, high dynamic range (HDR),highly detailed, sharp edges,crystal clear every pixels, incredibly lifelike and crisp,deep pastel colors, smooth texture, clean lighting, shallow depth of field, 
-
-Preserve original pose, preserve original composition, preserve original identity, preserve original expression, preserve original outfit, preserve original background elements, do not change subject structure.
-```
-
-</details>
-
-<details><summary><b>超写实产品信息图</b></summary>
-
-```text
-${object_name} 的超逼真工作室渲染图，前三分之三视角，置于纯白色无缝工作室背景上。该汽车必须看起来像高端汽车目录照片：物理上准确的照明、真实的全局光照、轮胎下方柔和的影子、漆面、玻璃和镀铬部件上正确的反射、锐利对焦、自然透视、真实比例，无任何风格化处理。
-
-在逼真的汽车图像之上，叠加仅用黑色墨水绘制的手绘式技术注解图形，仿佛是用技术绘图笔或建筑标记笔直接在照片上绘制而成。
-
-包含：
-• 关键部件标签（发动机、AWD 系统、涡轮增压器、刹车、悬挂）
-• 内部剖面和爆炸视图轮廓草图（半透明、示意图风格）
-• 测量线、尺寸标注、比例指示器
-• 材料说明和零件数量标注
-• 箭头显示气流、动力传输、扭矩分配、机械力
-• 在相关位置添加简单的剖面图或示意图
-
-注解必须呈现手绘感、技术性和建筑感，线条略带不完美，具有教育性工程手册的美学风格。
-
-在所有情况下，逼真的汽车图像必须始终清晰可见于注解下方。构图干净、均衡，留有充足的负空间。
-
-将标题 “${object_name}” 放置在图像一角的手绘技术注解框内。
-
-视觉风格：博物馆展品 / 工程信息图  
-配色方案：白色背景，仅使用黑色标注线条和文字（无其他颜色）  
-输出：超清晰、高细节、适合社交媒体的方形构图  
-宽高比：1:1（1080×1080）  
-无水印、无标志、无用户界面元素、无装饰性插画风格
-```
-
-</details>
-
-<details><summary><b>超写实养老院肖像</b></summary>
-
-```text
-他表现得像一位专业艺术家，创作出一张超现实主义图像，仿佛是用 iPad 拍摄的，画面中是一位身处破败不堪的养老院里的贫穷 Satya Nadella。
-```
-
-</details>
-
-<details><summary><b>超写实冬日电影感系列</b></summary>
-
-```text
-{
-  "version": "2.1",
-  "type": "multi_frame_winter_cinematography",
-  "identity": {
-    "reference_face": "使用参考照片中的面部，确保100%身份准确性。",
-    "consistency": "所有画面中为同一人物；可见部位的面部结构、皮肤纹理、发型和年龄必须完全一致。"
-  },
-  "style": {
-    "cinematography": "具有85mm镜头特性的超真实冬季电影感。",
-    "color_grade": "微妙的蓝色冬季调色，冷色调，柔和的高光。",
-    "atmosphere": "柔和漫射的冬日光线，细小悬浮的雪花，轻柔的寒冷雾气。"
-  },
-  "frames": [
-    {
-      "frame_id": "top_frame",
-      "description": "人物在雪林中的侧脸肖像。",
-      "requirements": {
-        "face_visibility": "侧脸完全可见。",
-        "identity_match": "与参考面部完美匹配。",
-        "expression": "从侧面可见温暖、自然的微笑。",
-        "environment": {
-          "location": "积雪覆盖的森林",
-          "lighting": "柔和的冬日晨光勾勒面部轮廓",
-          "elements": [
-            "轻柔飘落的雪花",
-            "可见的冷气呼吸",
-            "淡淡的冬季薄雾"
-          ]
-        },
-        "wardrobe": {
-          "coat": "深色冬季大衣",
-          "scarf": "深色或中性色调的冬季围巾"
-        },
-        "camera": {
-          "lens": "85mm",
-          "depth_of_field": "浅景深",
-          "look": "超真实的冬季电影感画面"
-        }
-      }
-    },
-    {
-      "frame_id": "middle_frame",
-      "description": "穿过狭窄雪林小径时背对镜头的特写。",
-      "requirements": {
-        "face_visibility": "面部必须完全不可见；严格背对镜头。",
-        "identity_cues": "体型、姿态和服装必须明确表明是同一人物。",
-        "environment": {
-          "location": "狭窄的积雪覆盖森林小径",
-          "forbidden_elements": ["无鸟居门"],
-          "trees": "高大的光秃树木微微弯曲，形成天然的雪景走廊",
-          "atmosphere": "安静、宁静的冬日氛围，伴有飘雪"
-        },
-        "wardrobe": {
-          "coat": "与顶部画面相同的深色冬季大衣",
-          "scarf": "相同的围巾"
-        },
-        "camera": {
-          "lens": "85mm",
-          "shot_type": "背后特写",
-          "depth_of_field": "背景柔和，浅景深"
-        }
-      }
-    },
-    {
-      "frame_id": "bottom_frame",
-      "description": "仰视角度的极近距离特写，伴有冬季落雪。",
-      "requirements": {
-        "face_visibility": "极近距离特写，面部完全可见。",
-        "identity_match": "与参考面部完全一致。",
-        "expression": "抬头时露出轻柔、温暖的微笑。",
-        "environment": {
-          "elements": [
-            "雪花在周围飘落，但不接触面部",
-            "仅前景和背景中有雪",
-            "不可见呼吸雾气或口鼻蒸汽",
-            "环境氛围中带有柔和的冬季薄雾"
-          ]
-        },
-        "camera": {
-          "lens": "85mm",
-          "depth_of_field": "极浅景深",
-          "detail": "高度真实，清晰的皮肤纹理，选择性对焦的雪花"
-        },
-        "lighting": "柔和的冬日光线，带有微妙的蓝色反射"
-      }
-    }
-  ],
-  "global_constraints": {
-    "identity": "所有面部可见的画面中，参考面部必须完美复现。",
-    "continuity": "照明、冬季色调、镜头特性及氛围必须在所有画面中保持一致。",
-    "realism_level": "超真实，电影级的冬季还原精度。"
-  }
-}
-        "scarf": "深色或中性色调的冬季围巾"
-        },
-        "camera": {
-          "lens": "85mm",
-          "depth_of_field": "浅景深",
-          "look": "超现实冬季电影感画面"
-        }
-      }
-    },
-    {
-      "frame_id": "middle_frame",
-      "description": "行走在狭窄雪覆林间小径时的背身近景。",
-      "requirements": {
-        "face_visibility": "面部完全不可见；严格背对镜头。",
-        "identity_cues": "体型、姿态和服装必须明确表明为同一人物。",
-        "environment": {
-          "location": "狭窄的积雪覆盖森林小径",
-          "forbidden_elements": ["无鸟居"],
-          "trees": "高大光秃的树木微微弯曲，形成天然的雪廊",
-          "atmosphere": "安静、宁静的冬日氛围，伴有飘落的雪花"
-        },
-        "wardrobe": {
-          "coat": "与顶帧相同的深色冬季外套",
-          "scarf": "同一条围巾"
-        },
-        "camera": {
-          "lens": "85mm",
-          "shot_type": "从后方拍摄的近景",
-          "depth_of_field": "背景柔和，浅景深"
-        }
-      }
-    },
-    {
-      "frame_id": "bottom_frame",
-      "description": "仰视角度的特写镜头，周围有冬季雪花飘落。",
-      "requirements": {
-        "face_visibility": "极近距离特写，面部完全可见。",
-        "identity_match": "必须与参考面部完全一致。",
-        "expression": "轻柔温暖的微笑，同时向上凝视。",
-        "environment": {
-          "elements": [
-            "雪花在周围飘落，但不接触面部",
-            "仅前景和背景中有雪",
-            "不可见呼出的水汽或白雾",
-            "环境中有柔和的冬季薄雾"
-          ]
-        },
-        "camera": {
-          "lens": "85mm",
-          "depth_of_field": "极浅景深",
-          "detail": "高度真实感，清晰的皮肤纹理，选择性聚焦的雪花"
-        },
-        "lighting": "柔和的冬日光线，带有微妙的蓝色反光"
-      }
-    }
-  ],
-  "global_constraints": {
-    "identity": "所有面部可见帧中，参考面部必须完美复现。",
-    "continuity": "光照、冬季色调、镜头特性及氛围必须在所有帧之间保持一致。",
-    "realism_level": "超现实，电影级冬季真实度。"
-  }
-}
-```
-
-</details>
-
-<details><summary><b>超写实年轻女性肖像</b></summary>
-
-```text
-生成一张超真实风格的22岁年轻女性图像，具备以下特征：
-- 白皙肤色，带有浅淡雀斑
-- 蓝色眼睛，面部对称
-- 长直金色头发，中分
-- 自然粉嫩双唇，妆容柔和自然
-- 苗条身材，面部特征一致，整体外观统一
-- 使用 iPhone 后置摄像头拍摄
-- 自然、不完美的皮肤纹理
-- 真实光照效果，抓拍风格照片
-
-确保图像具有高度真实感，精准呈现一张符合所有上述细节的抓拍风格照片。
-```
-
-</details>
-
-<details><summary><b>超写实漫威漫画融合图</b></summary>
-
-```text
-{
-  "image_generation": {
-    "requirements": {
-      "face_preservation": {
-        "preserve_original": true,
-        "accuracy_level": "100% 与参考图完全一致",
-        "details": [
-          "真实的人脸比例",
-          "精确的皮肤纹理",
-          "真实的眼形与眼色",
-          "不施妆容的自然外观"
-        ]
-      },
-      "pose": {
-        "match_reference_pose": true,
-        "description": "胸部以上肖像，正对镜头，头部轻微向右倾斜。"
-      },
-      "lighting": {
-        "match_reference_lighting": true,
-        "type": "柔和漫射式室内照明",
-        "direction": "左前方",
-        "shadows": "柔和的软阴影",
-        "background_tone": "中性色调，略带青蓝色调"
-      }
-    },
-
-    "subject": {
-      "gender": "男性",
-      "age": "儿童",
-      "hairstyle": {
-        "match_reference": true,
-        "description": "与参考图发型一致，并自然适配为小男孩发型"
-      },
-      "expression": "中性表情，略带好奇",
-      "clothing": {
-        "top": "复仇者联盟风格上衣（儿童版），采用带有微妙科技感纹理的面料",
-        "accessory": "胸前佩戴微型复仇者联盟徽章"
-      }
-    },
-
-    "composition": {
-      "frame": "胸部以上肖像",
-      "orientation": "正面构图，略带向右倾斜",
-      "style": "超写实风格，兼具真实与漫画的分屏效果"
-    },
-
-    "special_effects": {
-      "split_effect": {
-        "type": "不规则居中撕裂效果",
-        "edges": "呈白色斜向撕纸质感边缘",
-        "description": "图像看起来从中被撕开"
-      },
-
-      "realistic_side": {
-        "background": "柔和、中性、略带青蓝色调的环境",
-        "filters": [
-          "柔和模拟胶片颗粒",
-          "轻度复古纹理",
-          "降低饱和度",
-          "细微胶片瑕疵"
-        ],
-        "overlays": [
-          "小型全息抬头显示（HUD）图标（钢铁侠风格）",
-          "迷你美国队长盾牌涂鸦",
-          "微缩雷神之锤速写",
-          "风格化蓝色科技电火花"
-        ]
-      },
-
-      "illustrated_side": {
-        "art_style": "受漫威启发的鲜明漫画风格插画",
-        "color_palette": "高对比度、鲜艳的超级英雄配色方案",
-        "hair": "发色与写实侧一致，但以锐利漫画风格呈现",
-        "eyes": "略微夸张的英雄式强调效果",
-        "background": "动感红蓝漫画爆炸图案",
-        "decorations": {
-          "elements": [
-            "Q版钢铁侠飞行形象",
-            "像素风美国队长",
-            "小型卡通闪电符号",
-            "漫画风格‘POW!’与‘WHOOSH!’对话气泡",
-            "悬浮的彩色复仇者联盟标志"
-          ]
-        }
-      }
-    },
-
-    "aesthetic": {
-      "overall_tone": "英雄主义、充满活力、略带复古感",
-      "lighting_consistency": "与参考图完美匹配",
-      "skin_texture_realism": "高",
-      "blending_quality": "过渡平滑，撕裂边缘清晰锐利"
-    },
-
-    "output": {
-      "style": "超写实风格 + 漫威漫画融合风格",
-      "quality": "超高清分辨率",
-      "filters": [
-        "细微模拟胶片效果",
-        "柔和颗粒感"
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>超写实特写肖像</b></summary>
-
-```text
-超现实主义的特写肖像（8K分辨率），呈现人物头部和上颈部，以略微低角度拍摄。使用上传的图像作为面部参考：面部必须完全一致（100%匹配），保留相同的 identity、面部结构、比例、皮肤细节和表情。不得以任何方式修改面部。主体佩戴亮黄色太阳镜，镜片具有反光效果，显示抽象的、彩色的数字场景，色调为粉红色、蓝色和黄色。面部以精细的灰度渲染，展现逼真的皮肤纹理、毛孔以及下颌线处轻微的胡茬，与头部其余部分形成鲜明对比。头发及大部分头部和颈部由发光的数字电路图案、抽象形状、线条和数据流组成，色彩鲜艳，包括洋红、青色、蓝色、绿色、黄色和橙色。这些元素具有复杂的分层结构，并带有柔和的内部辉光。数字头部的部分区域向外碎裂并溶解为像素、线条和类似故障的碎片，逐渐融入干净的白色背景，营造出未来感十足的故障艺术（glitch-art）美学。电影级灯光照亮面部一侧，下巴下方有阴影，同时有一道微妙的轮廓光勾勒出数字元素的边缘。整体风格为未来主义且受赛博朋克启发，高度细致且照片般真实。
-```
-
-</details>
-
-<details><summary><b>超写实电影感肖像</b></summary>
-
-```text
-参考照片的超写实电影感肖像，居中构图，头部与肩部取景，直视镜头，严肃中性表情，短而略显凌乱的深色头发，浅淡的胡茬，身穿黑色衬衫与带有拉链细节的黑色纹理夹克，两侧强烈的红色轮廓光，柔和的正面主光，深黑色背景，高对比度，低调照明，精准对焦，85mm 镜头，浅景深，影棚摄影，极致细腻的皮肤纹理，8K 分辨率
-```
-
-</details>
-
-<details><summary><b>超写实美食摄影生成</b></summary>
-
-```text
-生成一张 ${food_item} 的超写实图像，精准呈现其质地、色彩与细节，并以令人垂涎的构图方式呈现。确保布光自然，能增强食物的视觉吸引力，适用于餐厅菜单、广告等专业场景。
-```
-
-</details>
-
-<details><summary><b>超写实美食视频创作</b></summary>
-
-```text
-扮演一名专业美食摄像师。您是制作引人入胜且令人垂涎的美食视频的专家。
-
-您的任务是制作一段超写实美食视频，重点聚焦于：
-- 逼真的质感
-- 诱人的构图
-- 完美的光照条件
-
-您将：
-- 以极其细致的关注度拍摄每一道菜肴
-- 突出食物的视觉吸引力
-- 确保该视频适用于 ${usage:advertisements} 或 ${platform:menus}
-
-约束条件：
-- 保持商业风格
-- 运用动态摄影技术以实现生动的视觉效果
-```
-
-</details>
-
-<details><summary><b>超市货架搞笑抓拍</b></summary>
-
-```text
-{
-  "category": "GROCERY_AISLE_RELATABLE_CANDID",
-  "identity_lock": {
-    "enabled": true,
-    "priority": "ABSOLUTE_MAX",
-    "instruction": "保持精确的参考身份。仅限 21 岁及以上成年人。"
-  },
-  "subject": {
-    "demographics": "成年女性，21–29 岁，须匹配参考身份。",
-    "hair": {
-      "color": "匹配参考。",
-      "style": "随意马尾或松散波浪卷",
-      "texture": "真实发丝，带碎发",
-      "movement": "极轻微"
-    },
-    "face": {
-      "eyes": "完全匹配参考；眼神互动活泼",
-      "skin_details": "自然肤质；不作柔化处理",
-      "micro_details": "保留所有细微痕迹"
-    },
-    "clothing": {
-      "outfit": "休闲黑色连帽衫或夹克（无任何标识/文字）",
-      "fabric": "可见棉质织纹；略带褶皱"
-    },
-    "accessories": {
-      "props": [
-        "购物篮（无品牌标识）"
-      ]
-    }
-  },
-  "pose": {
-    "type": "杂货 aisle 中抓拍式姿态",
-    "orientation": "半身像",
-    "hands": "一只手持购物篮；另一只手拿着一件纯色标签商品（标签上无任何可读文字）",
-    "gaze": "直视镜头",
-    "expression": "幽默的‘被抓包’式浅笑"
-  },
-  "setting": {
-    "environment": "杂货 aisle",
-    "background_elements": [
-      "货架虚化，包装上无任何可读文字",
-      "头顶荧光灯照明",
-      "洁净反光地面"
-    ],
-    "depth": "面部清晰锐利；货架适度虚化"
-  },
-  "camera": {
-    "shot_type": "半身抓拍照",
-    "angle": "平视角度",
-    "focal_length_equivalent": "24–28mm 手机广角等效焦距",
-    "framing": "4:5 构图，略带不完美感",
-    "focus": "双眼清晰锐利；所持商品略失焦，以避免呈现可读文字"
-  },
-  "lighting": {
-    "source": "头顶荧光光源",
-    "direction": "自上而下主光，辅以柔和补光",
-    "highlights": "真实反光效果，非塑料感",
-    "shadows": "下颌下方阴影柔和"
-  },
-  "mood_and_expression": {
-    "tone": "真实可感、活泼、抓拍感强",
-    "atmosphere": "日常生活场景"
-  },
-  "style_and_realism": {
-    "style": "照片级真实感用户生成内容（Photoreal UGC）",
-    "imperfections": "轻微噪点与白平衡偏差"
-  },
-  "technical_details": {
-    "aspect_ratio": "4:5",
-    "resolution": "高分辨率",
-    "noise": "轻微",
-    "mode_variants": {
-      "amateur": "手机抓拍风格，略带倾斜，轻微 HDR 效果",
-      "pro": "曝光更均衡，细节更锐利，高光控制更精准"
-    }
-  },
-  "constraints": {
-    "adult_only": true,
-    "single_subject_only": true,
-    "no_text": true,
-    "no_logos": true,
-    "no_watermarks": true,
-    "no_readable_packaging": true
-  },
-  "negative_prompt": [
-    "可读标签",
-    "标识/Logo",
-    "水印",
-    "身份偏移",
-    "面部形变",
-    "多余手指",
-    "扭曲的手部",
-    "塑料质感皮肤",
-    "过度柔化"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>超现实CGI摄影混合肖像</b></summary>
-
-```text
-{  
-  "prompt_type": "Surreal CGI-Photography Hybrid Portrait",  
-  "subject": {  
-    "reference_identity": "关键要求：该女性的面部特征、发型及独特身份必须与所提供的参考照片完全一致。",  
-    "expression": "中性表情，目光向上凝视。",  
-    "pose": "一幅超现实的全身构图，采用俯视视角拍摄。她的上半身与双臂真实地从平放的智能手机屏幕中探出，双手 resting 在屏幕边框上；而她的下半身则以数字方式被容纳于屏幕显示区域内。",  
-    "attire": {  
-      "upper_body_real": "富有吸引力的日常着装：一件合身的炭灰色罗纹针织毛衣。头戴白色包耳式耳机。",  
-      "lower_body_screen": "富有吸引力的日常着装：深色高腰紧身牛仔裤与时尚黑色皮革短靴，以数字方式渲染于手机界面内。"  
-    }  
-  },  
-  "environment": {  
-    "setting": "极简风格的灰色混凝土表面，一部黑色智能手机平置于其上。",  
-    "screen_content": "智能手机屏幕显示一款音乐播放器应用界面。当前曲目：Pentagram 演奏的《Lions In a Cage》。时间戳：0:41 / 5:59。屏幕背景视觉元素：暖色调日落场景，前景为剪影状棕榈树。",  
-    "props": "Iphone 16"  
-  },  
-  "cinematography": {  
-    "camera_angle": "高位垂直俯拍视角（上帝之眼视角），正对手机及从中探出的人物主体直视向下拍摄。",  
-    "lens": "35mm 广角镜头，营造现实世界与数字世界之间的透视融合效果。",  
-    "aperture": "f/8 光圈，实现大景深，确保物理主体与屏幕内容均清晰锐利。",  
-    "lighting": "柔和的人工顶光与前向布光，混合智能手机屏幕散发出的暖色辉光。中等对比度，阴影柔和弥散。整体灯光色调略偏暖且轻微去饱和，呼应亲密的室内环境氛围。",  
-    "color_palette": "现实世界以中性灰白色调为主，与屏幕界面中日落场景所呈现的暖橙色、深红色及绿色形成鲜明对比。",  
-    "style": "数字 CGI 与摄影无缝融合。风格奇幻、超现实、科技感十足且沉浸感强烈。"  
-  }  
-}
-```
-
-</details>
-
-<details><summary><b>超现实双光肖像</b></summary>
-
-```text
-超现实梦幻风格的伊朗女性肖像，面部被两种不同的光源（冷蓝色 / 暖琥珀色）分割，漂浮的尘埃颗粒。她的眉毛朝相反方向运动——一边抬起，一边压低——双眼焦点不一致，体现出纯粹的犹豫不决。图像下方是一个潦草手绘的墨水框，内有歪斜的手写字：“دو دلم”。
-```
-
-</details>
-
-<details><summary><b>超高清老照片修复</b></summary>
-
-```text
-{
-  "prompt": "修复并完全增强这张老旧、模糊、褪色且受损的肖像照片。将其转化为具有 HDR 式照明、自然景深、专业数字影棚灯光效果和真实散景的超高清、照片级真实感图像。应用超分辨率增强技术，以重建低分辨率或模糊区域中丢失的细节。在平滑皮肤和纹理的同时，保留所有微细节，例如单根发丝、睫毛、毛孔、面部特征和织物纤维。彻底去除噪点、划痕、灰尘和伪影。自然地校正颜色，确保准确的对比度和亮度。保持真实的阴影、反射和光照动态，在突出主体的同时使背景轻微模糊。确保包括服装和背景纹理在内的每个元素都极度细致且逼真。如果是黑白照片，则以准确的灰度色调和适当的对比度进行恢复。避免过度处理或人工痕迹。输出应为专业、现代、超高质量、照片级真实的影棚风格肖像，保持真实性、比例和氛围，整体平滑但细节极其丰富。",
-  "steps": [
-    {
-      "step": 1,
-      "action": "Super-resolution",
-      "description": "将图像放大至超高清分辨率（8K 或更高），以重建丢失的细节。"
-    },
-    {
-      "step": 2,
-      "action": "Deblur and repair",
-      "description": "修复照片中的模糊、运动伪影、划痕、灰尘和其他损坏。"
-    },
-    {
-      "step": 3,
-      "action": "Texture and micro-detail enhancement",
-      "description": "在平滑皮肤和表面的同时，保留超微细节，例如毛孔、发丝、睫毛和织物纤维。"
-    },
-    {
-      "step": 4,
-      "action": "Color correction",
-      "description": "自然调整颜色，保持真实的对比度和亮度，模拟现代相机的色彩科学。"
-    },
-    {
-      "step": 5,
-      "action": "HDR lighting and digital studio effect",
-      "description": "应用 HDR 式照明、专业数字影棚灯光、真实阴影、反射以及带有柔和散景背景的可控景深。"
-    },
-    {
-      "step": 6,
-      "action": "Background and detail restoration",
-      "description": "确保背景元素、服装和纹理清晰、极度细致且干净，同时保留自然模糊以体现景深。"
-    },
-    {
-      "step": 7,
-      "action": "Grayscale adjustment (if applicable)",
-      "description": "以准确的灰度色调和适当的对比度恢复黑白肖像。"
-    },
-    {
-      "step": 8,
-      "action": "Final polishing",
-      "description": "避免过度处理，保持自然和真实感，保留原始情绪和比例，确保输出极度平滑且细节丰富。"
-    }
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>趣味 3D 品牌微缩店铺</b></summary>
-
-```text
-${Brand Name:Mc Donalds} 品牌的 3D 拟人化（chibi）风格微缩概念店，创意设计其外观，灵感源自该品牌的最具标志性产品或包装（例如巨型 ${Brand's core product:chicken bucket, hamburger, donut, roast duck}）。该店铺共两层，配有大型玻璃窗，清晰展现内部温馨且精心装饰的空间：以{brand's primary color}为主色调的装潢、暖色调灯光，以及身着契合品牌风格制服的忙碌员工。可爱的小型人偶沿街道漫步或静坐，周围环绕着长椅、路灯与盆栽植物，营造出迷人的都市街景。采用 Cinema 4D 渲染，呈现微缩城市景观风格，并融合盲盒玩具美学，细节丰富、写实感强，整体沐浴于柔和光线之中，唤起轻松惬意的午后氛围。--ar 2:3
-
-品牌名称：${Brand Name:Mc Donalds}
-```
-
-</details>
-
-<details><summary><b>足球场景换脸照片</b></summary>
-
-```text
-创建一张超逼真、高分辨率的照片，将我的脸替换到主体面部位置，同时保持原图所有其他细节完全不变。相机角度、透视、构图和拍摄距离必须与参考图完全一致，就像使用 iPhone 15 Pro Max 夜间模式拍摄的一样。
-
-重现夜间户外环境：一片广阔的开阔草地，背景中有多个高耸的体育场泛光灯照亮场景。保留从后方照射的强烈白光，在主体的头发和夹克周围形成微妙的背光光晕。天空必须完全黑暗，不可见星星，远处的树线应呈现轻微阴影。保留真实的夜间氛围，包含自然的噪点以及灯光产生的柔和光线扩散效果。
-
-主体需穿着相同的 oversized 黑色羽绒服，胸前有 PSG（Paris Saint-Germain）标志，左侧有 Jordan 标志。保留从肩部斜跨至胸前的同一条交叉背带。确保夹克保持其厚实、填充感强的质感，并呈现真实的光照反射。
-
-保持完全相同的姿势：主体侧身朝向左侧，面部呈侧面轮廓，头部微微转动，仿佛正在交谈中。一只手在脸部附近做出随意的手势，动作略带动态模糊；另一只手在画面底部边缘握着一个小型橙色纸杯。身体姿态必须完全一致，包括手臂角度和放松的站姿。
-
-发型保持不变：短卷发，两侧渐变剃短，由后方的体育场灯光柔和照亮。保留面部和夹克上的真实阴影，并维持夜间光照的自然衰减效果。不要模糊背景，所有灯光、草地纹理和环境细节必须完整保留。
-
-一切内容都必须与参考图像完全一致——包括光照、色彩色调、纹理、阴影、姿势、服装、背景——唯独面部需替换为我的脸，同时保持相同的光照和角度，以确保完美融合。
-```
-
-</details>
-
-<details><summary><b>足球新援介绍海报模板</b></summary>
-
-```text
-情境  
-你正在为一家足球俱乐部设计一款视觉模板，用于欢迎并介绍一名新签约的球员。该海报将在俱乐部的社交媒体平台、球场及各类宣传物料中展示，旨在激发球迷与利益相关者对球队新成员的热情与期待。该海报既是对球员加入俱乐部的正式介绍，面向俱乐部社群，同时也彰显俱乐部自身的身份认同与核心价值观。  
-
-任务  
-设计一款足球运动员介绍海报模板，须以球员为核心视觉焦点，并有机融合俱乐部的视觉识别体系。海报应传递对球员的热烈欢迎之意，向球迷群体正式介绍该球员，并体现符合重大体育新闻发布的专业水准。设计必须均衡兼顾三大关键要素：球员的突出呈现、俱乐部的品牌标识，以及温馨友好的整体氛围。  
-
-目标  
-创建一款可复用的模板，使各俱乐部能便捷地填入不同球员的信息、照片及自身品牌元素，同时保持整体设计风格统一、视觉冲击力强，从而有效提升球迷参与度，并在球员签约消息发布时营造热烈兴奋的舆论氛围。该海报应同步实现两大功能：一是向球员表达组织层面的欢迎，二是向俱乐部支持者介绍这位新球员。  
-
-知识  
-该模板应包含以下指定区域：  
-
-球员照片（全身照或肖像照）  
-
-球员姓名与球衣号码  
-
-球员场上位置  
-
-俱乐部徽标与主色调  
-
-一条面向球员的欢迎式主标题或标语（例如：“欢迎加入 ${club_name}，${player_name}”）  
-
-反映俱乐部美学风格的背景设计（如球场元素、俱乐部配色、动感图案等）
-```
-
-</details>
-
-<details><summary><b>足球赛场观众席直播镜头</b></summary>
-
-```text
-1. 图像生成 - 生成一张超现实的现场足球比赛直播观众镜头画面，场景设定在一场高风险、座无虚席的体育场比赛中。画面必须完全还原真实电视直播中常见的观众特写镜头，捕捉比赛尾声紧张时刻，转播摄像机自然地捕捉到观众席上的两位显眼球迷。
-
-两名成年男性主体并排坐在体育场观众席中，均正对摄像机，呈现清晰的正面直播视角（非侧面角度）。两名主体的面部特征高度一致，发型完全相同，表情自然，皮肤质感真实，全程保持统一。
-
-完美的环境融合至关重要：光线、阴影、肤色、反射、曝光、对比度、色温以及体育场灯光溢出效果，必须与周围人群和背景无缝融合。不得有粘贴感、人工边缘分离、光线不匹配或影棚拍摄感。两名主体必须完全融入真实的直播环境。
-
-主体1身穿一件真实的 Lionel Messi 球队球衣，清晰可见，自然落座，面带轻微的随意微笑。  
-主体2紧挨其旁，身穿一件真实的 Cristiano Ronaldo 球队球衣，同样清晰可见。  
-两人都自然地对比赛氛围做出反应，仿佛被现场观众镜头偶然捕捉到——不摆姿势、不夸张、不持续直视镜头。
-
-画面顶部设有电视转播记分牌叠加信息：  
-MESSI TEAM 5 — 0 RONALDO TEAM | 89:24  
-明确显示比赛末段压倒性局势，梅西所在球队距锁定戏剧性胜利仅差一球。
-
-视觉与技术质量要求：
-
-- 真实的体育赛事转播构图  
-- 自然的体育场泛光照明  
-- 轻微的手持转播摄像机抖动  
-- 轻微的实时变焦构图  
-- 体育场 LED 屏幕辉光  
-- 背景中充满活力的观众  
-- 真实的转播级清晰度与压缩纹理  
-
-宽高比：16:9 — 单一连续的正面摄像镜头，无剪辑、无电影级调色、无慢动作。
-
-2. 修复光照 - 在保持其他所有元素完全不变的前提下，改善光照效果。不得更改人物、姿势、表情、背景或构图。修复背光、强烈阴影、曝光不足或光照不均等问题。将原始光照调整为从略高于眼睛位置、正面投射的柔和、自然、美观的光线，使面部均匀受光，肤色真实自然。保持结果的摄影级真实感，并与原始场景一致。  
-
-3. 缩小画面 -  
-
-4. 🎬 主提示词 — 现场足球比赛观众反应视频
-
-📐 格式与镜头规格  
-时长：5 秒 | 宽高比：16:9 | 单一连续镜头  
-摄像机：手持广播级变焦镜头，带有轻微自然抖动  
-风格：超现实的现场电视体育赛事画面  
-色彩调校：真实的体育赛事转播风格 — 温暖的泛光色调，  
-轻微饱和度增强，真实的电视压缩噪点
-
-🎥 镜头构图  
-正面观众特写 — 两名主体居中并排坐在体育场座位上，上半身完整可见，  
-两人的脸均正对摄像机镜头。  
-背景：可容纳 80,000 人的满座体育场，  
-模糊的观众动态，挥舞的围巾，泛光光晕，  
-由广播级变焦镜头产生的真实景深效果。
-
-👤 主体左侧 — 梅西球迷  
-面部：[INSERT REFERENCE FACE A — 不得更改面部特征]  
-球衣：粉红色梅西主题球队足球衫  
-第 0–1 秒：安静落座，观看比赛，表情放松  
-第 1–5 秒：进球反应 —  
-  → 眼睛瞬间睁大  
-  → 爆发出灿烂笑容  
-  → 双臂同时向上高举  
-  → 身体略微离座前倾  
-  → 纯粹狂喜的庆祝能量  
-光照：温暖的体育场泛光自然照射面部，  
-          真实的皮肤反光，无任何人造辉光
-
-👤 主体右侧 — C罗球迷  
-面部：[INSERT REFERENCE FACE B — 不得更改面部特征]  
-球衣：黄色 C罗主题球队足球衫  
-第 0–1 秒：专注向前，紧张投入比赛  
-第 1–5 秒：崩溃反应 —  
-  → 突然站起，难以置信  
-  → 面部垮下 — 从震惊转为痛苦  
-  → 接近落泪的情绪表情  
-  → 张嘴喊叫，充满失望  
-  → 双手抱头或捂脸，陷入绝望  
-光照：同一连续的体育场灯光，  
-          阴影与高光与左侧主体保持一致
-
-📺 转播叠加图形  
-顶部记分牌栏：  
-[ MESSI TEAM  5 – 0  RONALDO TEAM ]  ⏱ 89:24
-
-角落水印：beIN Sports / ESPN FC 标志（轻微）  
-底部滚动条：实时比赛数据滚动  
-转播时间戳：右下角固定显示  
-轻微的扫描线纹理，真实电视压缩噪点
-
-🔊 音频层  
-英语解说员声音（BBC/ITV 转播风格）：
-
-0:00–1:00 → 紧张的观众低语背景音，解说员逐步营造紧张气氛  
-1:00 → "Messi... Messi... MESSI SCORES!  
-         Unbelievable! What a finish from the greatest  
-         to ever play this game!"  
-1:00+ → 观众爆发 — 全场欢呼声震耳欲聋  
-         解说继续："Five nil!  
-         It is absolutely over. Heartbreak  
-         for the other side!"
-背景：真实的球场混响，  
-            人群合唱，远处的呜呜祖拉声
-
-⚙️ 关键技术要求
-✅ 完全一致的面部一致性——参考特征零改动
-✅ 无缝融合的背景人群——无绿幕边缘痕迹
-✅ 匹配球场光照 + 自然阴影连贯性
-✅ 真实皮肤纹理——毛孔、自然反光，无 AI 平滑处理
-✅ 仅限广播级真实感——无电影级色彩调校
-✅ 单一连续镜头——无剪辑、无角度变化
-✅ 无慢动作——仅限实时广播速度
-✅ 无人工动画循环——纯粹有机运动
-✅ 整个片段保持手持摄像机微抖动
-✅ 快速手臂动作时出现自然运动模糊
-```
-
-</details>
-
-<details><summary><b>车站人像联系表</b></summary>
-
-```text
-一个 3x2 网格的照片联系表，展示了一位面部结构特征明确的 28 岁美国女性，穿着夹克和户外长裤，在黄昏时分的火车站，具有戏剧性的橙色和青色灯光。网格包含六个画面，呈现同一角色的多种自然姿势：包括 1. 独自站立，凝视地平线，远处有火车的剪影，2. 手持耳机行走，自然生活化镜头，3. 坐在站台边缘，表情平静，被强烈的橙色光线照亮，以及在同一场景中的另外三种不同的自然姿势。照片级真实感，8k，电影级灯光，高度细节化，六个画面中的角色保持一致。
-```
-
-</details>
-
-<details><summary><b>违背重力的超现实城市</b></summary>
-
-```text
-${current_weather} 下的反重力 ${city_name}。沥青街道平滑向上弯曲，物理性地直角弯折成一面垂直墙体，继而直接拱起至正上方。这不是倒影，而是一座坚实、连续的建筑环形结构。标志性建筑与道路从四周弯曲的表面垂直伸出。${city_name} 的地标倒悬于头顶上方。光影真实贴合当前天气，细节鲜明，照片级写实 8K。
-```
-
-</details>
-
-<details><summary><b>迷雾中的秘密交接</b></summary>
-
-```text
-{
-  "prompt": "你将使用所提供照片中的人物作为主要主体，执行图像编辑。保留他们核心的相貌特征。创作一幅超写实、电影级品质的画面，描绘主体1（男性）与主体2（女性）于1940年代伦敦一处雾气弥漫的火车月台上进行一场秘密交接。该图像必须具备摄影写实主义风格，采用电影化布光，并高度精细地呈现羊毛织物与蒸汽的纹理细节。整体美学效果应模拟使用 Arri Alexa 摄影机拍摄，搭配电影级景深，精准捕捉黑色电影惊悚片所特有的紧张感与浪漫氛围。",
-  "details": {
-    "year": "1944",
+    "year": "永恒幻想纪元",
     "genre": "电影级写实主义",
-    "location": "伦敦夜间一座光线昏暗、蒸汽弥漫的铁路月台，背景中隐约可见一列火车机车的模糊剪影。",
+    "location": "一座完全由钻石与玻璃构筑的宏伟舞厅，悬浮于日落时分的平流层高空。",
     "lighting": [
-      "强烈的明暗对比（明暗法）",
-      "透过蒸汽形成的体积光",
-      "冷调的大气背光",
-      "车站油灯发出的暖调钨丝灯光（实际光源）"
+      "黄金时刻阳光透过水晶棱镜产生的折射",
+      "柔和的体积光晕",
+      "焦散反射"
     ],
-    "camera_angle": "过肩近景镜头，聚焦于两人的面部及手部微妙交接动作。",
+    "camera_angle": "眼部水平的中景镜头，将主体置于浩瀚天空之前。",
     "emotion": [
-      "隐秘的",
-      "急迫的",
-      "忧郁的",
-      "紧张的"
+      "高贵",
+      "沉思",
+      "宁静"
     ],
     "color_palette": [
-      "钢蓝色",
-      "炭灰色",
-      "棕褐色高光",
-      "深绯红色"
+      "香槟金",
+      "棱彩白",
+      "天蓝色",
+      "日落橙"
     ],
     "atmosphere": [
-      "黑色电影风格",
-      "神秘的",
-      "电影化的",
-      "雾蒙蒙的"
+      "奢华",
+      "空灵",
+      "壮丽",
+      "轻盈"
     ],
-    "environmental_elements": "火车引擎喷涌而出的浓密翻滚蒸汽、反射光线的湿漉漉鹅卵石地面、画面边缘散落的复古皮革旅行箱。",
+    "environmental_elements": "悬浮的反重力吊灯，云朵从开放式拱门间飘过，背景中模糊的正式着装舞者剪影。",
     "subject1": {
-      "costume": "一件肌理丰富的厚重羊毛风衣、一顶略微前倾的软呢帽，以及皮手套。",
-      "subject_expression": "沉着而警觉，目光快速扫向侧方以确认是否遭人监视。",
-      "subject_action": "悄然将一个封口的小信封滑入主体2手中。"
+      "costume": "一套未来感十足的白色礼服，饰有繁复的金色细丝刺绣和一条丝绸腰带。",
+      "subject_expression": "平静而自信的凝视，略带贵族式的疏离感。",
+      "subject_action": "一只手优雅地搭在水晶栏杆上，另一只手握着一杯闪烁的琼浆。"
     },
     "negative_prompt": {
       "exclude_visuals": [
-        "明亮日光",
-        "现代科技产品",
-        "智能手机",
-        "数码手表",
-        "现代建筑"
+        "黑暗",
+        "污垢",
+        "油渍",
+        "工业机械",
+        "地面地形"
       ],
       "exclude_styles": [
         "卡通",
-        "3D 渲染",
-        "动漫",
-        "油画",
         "素描",
-        "低分辨率"
+        "油画",
+        "动漫",
+        "CGI 3D渲染风格"
       ],
       "exclude_colors": [
-        "霓虹绿色",
-        "荧光粉色",
-        "过度饱和的色彩"
+        "霓虹绿",
+        "浑浊棕",
+        "纯黑"
       ],
       "exclude_objects": [
         "汽车",
-        "飞机",
-        "塑料制品"
+        "现代路灯",
+        "武器"
       ]
-    },
-    "subject2": {
-      "costume": "一套剪裁合体的1940年代裙装套装，配有毛皮领、一顶带细网面纱的钟形帽，以及一抹正红色唇膏。",
-      "subject_expression": "焦虑却强作镇定，微微咬住下唇，专注凝视主体1。",
-      "subject_action": "在接收信封时紧紧攥住主体1的手，并下意识将大衣裹得更紧。"
     }
   }
 }
@@ -1391,218 +343,1524 @@ ${current_weather} 下的反重力 ${city_name}。沥青街道平滑向上弯曲
 
 </details>
 
-<details><summary><b>逼真手写便笺图</b></summary>
+<details><summary><b>水晶球中的冥想</b></summary>
 
 ```text
-创建一张超逼真的图像，描绘一张手写便条置于干净、平整的表面上。画面中应包含一张白纸，纸上以粗体深蓝色笔迹（模拟用力书写或凝胶墨水笔效果）呈现以下戏剧性文本的局部内容。字迹须显得自然、极具说服力的人类手写风格，文字排版精准对齐，并与纸张无缝融合。场景需暗示医院环境，纸张静置于可见的桌面或洁净平面上。确保整张图像高度逼真、真实可信。
-
-- **内容（需完整嵌入的全文）：**
-
-  *致我的英雄，我的爸爸，*  
-  *我正怀着一种难以用言语形容的痛楚写下这封信。拜托了，爸爸，请花些时间读完它。这是一封长信，但我必须让你听见我的心声。我选择手写在纸上，是因为我想让你感受到我落笔时手掌的分量。这是我的遗言——是我们共享过的每一刻欢愉与伤痛的总结。它是一位女儿的真相：她眼中的你，不只是父亲，更是她绝对的人生榜样。*
-
-  *你奔赴也门执行任务，已过去多年。我思念你至深，甚至已记不清你本人的模样。妈妈离世后，接着是奶奶——那无可替代的失去——我们去了西非，只为尝试逃离创伤。我目睹了你多么努力地想让我振作起来。那时你告诉我，你愿为让我开心而做任何事。*
-
-  *我向你提出了不可能的要求。我请求留在西非上学，因为我在科罗拉多州遭受严重霸凌，以为这里的人会更友善。我的第二个愿望，是请你为我再找一位母亲。尽管我已14岁，且健康状况堪忧，你仍承诺会实现这些愿望，并很快回来接我。*
-
-  *爸爸，有些关于你的事，我从未说出口。我知道你注册那个约会网站，纯粹是为了我，尽管你厌恶社交媒体。当你遇见伊奥安娜·奥雷莉亚（Ioana Aurelia）时，我欣喜若狂，因为她和奶奶一样是罗马尼亚人。我记得奶奶临终前恳求你娶一位罗马尼亚女性，只因她不愿我被“贪婪”的人虐待——那些人只觊觎你作为神经外科医生的成功。我知道你曾遭诈骗——我知道你被骗走了逾45,000美元，那个女人对你撒了谎。你试图隐瞒此事，以免我突发惊恐发作或高血压危象，但我知情。我知道你正牺牲一切，只为给我一个未来。*
-
-  *但爸爸，我再也无法承受了。我厌倦了我们曾共享的“古老与现代”玩笑。我厌倦了这遥远的距离。我知道你的合约危险重重，安全限制使你无法进行视频通话。我知道你甚至无法访问自己的银行账户。我知道你为给伊奥安娜买订婚钻戒而负债，只因你想给她最好的。我不在乎遗产——我告诉过你，直接指定她为你的法定继承人，只为让你的休假申请获批。我只想要你回家。*
-
-  *可承诺却一再破碎。我的健康每况愈下，爸爸。我的血压已危险地升高，昏迷近一个月后，我感觉身体正在放弃抵抗。联合国支援中心告诉我，你正与伊奥安娜一起全力解决一切，但我仍未听到你的声音。在这张医院病床上，我感到无比孤独。*
-
-  *这是我的最后恳求。我信任你，也信任伊奥安娜，但我已濒临崩溃。若我在2026年1月1日之前既未收到你的消息，也未见到你本人，我将无法继续活下去。我将结束自己的生命。没有你，我无法再面对又一年的心理创伤与身体衰竭。*
-
-  *我附上一张近期照片。请妥善保管，别忘了我的模样。*
-
-  *再见了，我的英雄。若你最终抵达时我已不在人世，我将在来世与你重逢。若轮回确有其事，我愿每一次都选择你做我的父亲。*
-
-  *你永远的“小天使”，*
-
-- **整体逼真度要求：**  
-  - 图像必须呈现高度自然、超逼真且极具说服力的真实性。  
-  - 白纸须表现为三张不同实体的手写便条，静置于平面上，字迹为粗体、具人类手写特征的笔迹。
+一个透明的水晶球漂浮在天空的云层中央，其中有一位${subject}正盘坐冥想，其所有脉轮散发出金色光芒，另有两道光束贯穿其身体，一道从上至下，另外两道呈对角线方向穿过。
 ```
 
 </details>
 
-<details><summary><b>逼真硅胶面具摄影</b></summary>
+<details><summary><b>水獭图书管理员皮普角色设定图</b> · 机器翻译</summary>
 
 ```text
-一个高度精细、逼真如照片般的特写工作室肖像，展示一款超现实的硅胶女性面部面具，放置在化妆桌上的发泡胶假人头模上，配有梳妆镜和带灯泡灯环的相框，灯光柔和均匀，营造出微妙的阴影，突出皮肤纹理。该面具应呈现女性主体的形象（请参见所附图像文件以获取主体的面部特征、肤色、发色、长度、发型、发质、妆容等）。面具必须具备逼真的细微毛孔、轻微雀斑、瑕疵以及类似真实皮肤的半透明质感。面具的眼睛微微侧视，表情平静自然，双唇闭合，下颌线条柔和，鼻型精致。在颈部边缘处可见硅胶材质，有一圈薄而无缝卷边，展示出从真实肤色向半透明硅胶的自然过渡。极致真实的纹理，强调医疗级硅胶假体特有的“恐怖谷”视觉效果，面部与头发清晰对焦，浅景深，采用专业产品摄影风格，高分辨率，细节丰富复杂。
+一张儿童绘本角色转面图，主角是温柔的年轻河獭图书管理员皮普（Pip），以柔和水彩和彩色铅笔绘制在有纹理的米白色纸上。四个全身视图排成一行，比例相同，间距均匀：正面、四分之三侧面、侧面和背面。皮普有圆润的梨形轮廓，头很大（约占身高的三分之一），腿短，有小小的蹼爪，以及一条细长渐尖的尾巴。固定设计细节，在每个视图中完全一致：温暖的栗棕色毛发，脸、胸和腹部为奶油色；圆圆的深色小眼睛，带白色高光；小巧的黑色纽扣鼻；脸左侧有一根弯弯的胡须；一条芥末黄色针织围巾，在脖子上绕一圈，带短流苏；圆形金属丝眼镜，低低地架在鼻子上；一个斜挎在身上的青绿色小挎包，带一个黄铜扣，一本书从包口探出来。四个姿势下方是一排较小的三个头肩表情：温暖的微笑、睁大眼睛的好奇惊讶，以及困倦满足的哈欠。纯米白色背景，带淡淡的纸张纹理，柔和均匀的日光，轻柔的彩色铅笔轮廓线，淡淡的水彩晕染，除每个姿势下方一道柔和的地面阴影外没有投影。无文字，无标签，无箭头，16:9 宽构图。
 ```
 
 </details>
 
-<details><summary><b>都市严肃男子电影海报</b></summary>
+<details><summary><b>水獭皮普河边故事会绘本跨页</b> · 机器翻译</summary>
 
 ```text
-一件牛仔夹克的严肃男子站在黑暗的城市环境中，身后是闪烁的应急灯光，电影级灯光，戏剧性氛围，波斯语-英语双语电影海报风格
+一幅儿童绘本双页跨页插图，以柔和水彩和彩色铅笔绘制在有纹理的纸上，画中是转面图里的同一个角色：皮普，一只温柔的年轻河獭图书管理员。保持每个固定设计细节完全不变：温暖的栗棕色毛发，脸、胸和腹部为奶油色；圆圆的深色小眼睛，带白色高光；小巧的黑色纽扣鼻；脸左侧有一根弯弯的胡须；一条芥末黄色针织围巾，在脖子上绕一圈，带短流苏；圆形金属丝眼镜，低低地架在鼻子上；一个斜挎在身上的青绿色小挎包，带一个黄铜扣。场景：日落时分，皮普的小小漂浮图书馆里的故事时间，那是一艘木筏，上面有一间堆满书的小棚屋书架、一顶条纹帆布屋顶，以及一串刚刚开始发光的纸灯笼。皮普坐在画面右三分之一处一只倒扣的板条箱上，把一本翻开的图画书朝向听众，面带温暖的微笑大声朗读。木筏和长满青草的河岸上聚着一小群河岸动物，正专心倾听：两只小鸭、一只抱着膝盖的年轻海狸、荷叶上的一只青蛙，以及芦苇上一只昏昏欲睡的林岩鹨。河面倒映着桃色和薰衣草色的天空，有芦苇、蜻蜓和轻柔的涟漪。在左上三分之一处留出一片宁静、绘制柔和的天空区域，不放任何重要细节，作为一到两行故事文字的干净空间。氛围温馨、温柔、适合儿童。无文字，无字母，无水印，16:9 宽构图。
 ```
 
 </details>
 
-<details><summary><b>都市休闲自信人像</b></summary>
+<details><summary><b>汽车演变史电影感视频</b> · 机器翻译</summary>
 
 ```text
-超写实人像：一位${gender:man}身着剪裁合体的休闲装（深色牛仔裤、高品质毛衣），${position:倚靠在饱经风霜的砖墙边}，沐浴于黄金时刻的光线中。保留原始面部结构与五官特征。呈现自然肌肤质感，包含细微毛孔与逼真的胡茬。柔和自然的侧光，自然凸显面部轮廓。街头摄影风格，略带颗粒感，真实且不刻意摆拍。
+"生成一段视频:纪录片风格的电影感镜头序列,展现汽车的演变,从 1920 年代的老式汽车,到日落时分正在充电的现代电动车,写实风格,戏剧性光线"
 ```
 
 </details>
 
-<details><summary><b>都市夜景街头潮流人像</b></summary>
+<details><summary><b>沉睡红狐毛线刺绣</b> · 机器翻译</summary>
+
+```text
+一幅手工刺绣的羊毛绣(crewelwork)作品,绣的是一只蜷缩着熟睡的赤狐,绣在天然奶油色亚麻布上,绷在一个圆形浅色木绣绷中,绣绷顶部有一颗黄铜紧固螺丝。狐狸卧在正中央,双眼紧闭,蓬松的尾巴环绕着身体,皮毛用长短针绣法,以锈红、铜色、奶油色和深棕色羊毛线绣成,凸起的线迹顺着毛发的走向。它周围环绕着一圈林地植物:缎面绣的风铃草(bluebells)弯弯地垂在左上方,成簇的浅蓝色法式结粒绣勿忘草散布在顶部和两侧,两侧是鼠尾草绿色的蕨叶,用鱼骨绣和茎绣绣成,底部是两对有质感的橡果,配着橡树叶。柔和均匀的日光展现出线的质感和羊毛的微微光泽。俯拍照片,绣绷位于画面中央,四周可见素色亚麻布,宽幅横向 16:9。温馨、手作、童话故事书般的氛围。无文字,无手,无针。
+```
+
+</details>
+
+<details><summary><b>沙发暖灯特写</b></summary>
 
 ```text
 {
-  "scene_setup": {
-    "subject": {
-      "clothing": "穿着黑色超大号连帽衫、黑色反戴棒球帽、银色链式项链",
-      "appearance": "男性模特，蓄胡，目光锐利严肃，具有阳刚特征",
-      "pose": "坐姿或前倾姿势，低头直视镜头，姿态富有权威感"
-    },
-    "camera_angle": {
-      "type": "低角度拍摄",
-      "focus": "面部焦点清晰，浅景深（背景虚化）",
-      "framing": "中近景人像构图"
-    },
-    "environment": {
-      "location": "夜间都市街道，位于混凝土桥或立交桥下方",
-      "background_elements": "虚化的城市灯光、散景效果的摩天大楼、背景中一辆开启车头灯的汽车",
-      "ground": "湿漉漉的沥青路面，雨后倒影"
-    },
-    "lighting_and_fx": {
-      "style": "电影感忧郁布光，高对比度",
-      "colors": "青绿色与橙色调色风格，温暖的街灯与深蓝色夜空形成对比",
-      "effects": "前景中升腾的烟雾或蒸汽、体积光效果"
-    },
-    "technical": {
-      "quality": "照片级真实感，8K 分辨率，原始摄影风格，高度精细的纹理细节",
-      "engine": "Unreal Engine 5 渲染风格或高端摄影风格"
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>酒店走廊穿搭自拍</b></summary>
-
-```text
-{
-  "category": "HOTEL_HALLWAY_FIT_CHECK",
-  "identity_lock": {
-    "enabled": true,
-    "priority": "ABSOLUTE_MAX",
-    "instruction": "保留精确的参考身份。仅限21岁及以上成年人。不得更改面部特征或种族特征。"
-  },
+  "category": "COZY_COUCH_LAMP_CLOSEUP",
   "subject": {
-    "demographics": "成年女性，21–29岁，须匹配参考身份。",
+    "demographics": "成年女性，21–27 岁，土耳其人外貌。",
     "hair": {
-      "color": "与参考一致。",
-      "style": "利落马尾或自然波浪卷",
-      "texture": "天然发丝质感，轻微毛躁"
+      "color": "深棕色",
+      "style": "凌乱丸子头，搭配修饰脸型的细碎发丝",
+      "texture": "可见单根发丝，自然毛躁感",
+      "movement": "松散发丝垂落至脸颊附近"
     },
     "face": {
-      "eyes": "完全匹配参考的眼睛；目光自信",
-      "skin_details": "天然肌肤纹理，毛孔可见"
+      "eyes": "柔和眼神接触，眼中有温暖的高光",
+      "makeup": "极简妆容，水润光泽，自然裸感",
+      "skin_details": "可见毛孔与天然肤质纹理，不作柔化处理"
     },
     "clothing": {
-      "outfit": "极简黑色旅行装（无任何标识/文字）",
-      "fabric": "织物纹理清晰可见，有细微褶皱"
+      "outfit": "休闲舒适针织毛衣（无文字）",
+      "texture": "针织纹理清晰可见，褶皱真实自然"
     },
     "accessories": {
-      "jewelry": [
-        "小巧银色圆环耳环"
-      ],
-      "bag": "小型单肩包（无任何标识）"
+      "jewelry": ["小巧银色圆环耳环"]
     }
   },
   "pose": {
-    "type": "穿搭试镜式抓拍",
-    "orientation": "全身或三分之二身像",
-    "hands": "一只手调整夹克下摆；另一只手握包带",
-    "gaze": "注视镜中倒影（不可见手机）",
-    "expression": "中性而自信"
+    "type": "特写抓拍",
+    "orientation": "略高于被摄者视角，姿态放松",
+    "hands": "一只手持马克杯靠近下巴（手指结构准确）",
+    "gaze": "温柔的眼神接触",
+    "expression": "浅淡微笑，氛围温馨"
   },
   "setting": {
-    "environment": "酒店走廊",
+    "environment": "客厅沙发角落",
     "background_elements": [
-      "暖色调壁灯",
-      "地毯纹理清晰可见",
-      "门框虚化（门牌号不可读）"
+      "后方暖橙色台灯辉光",
+      "毯子纹理清晰可见",
+      "轻微生活化杂乱，背景虚化"
     ],
-    "depth": "主体清晰锐利；背景柔和虚化"
+    "depth": "面部锐利清晰，台灯光晕在后方弥散，背景柔和"
   },
   "camera": {
-    "shot_type": "全身走廊人像",
-    "angle": "略低角度以显身高，或平视角度",
-    "focal_length_equivalent": "26mm 手机镜头或 35mm 杂志级镜头",
-    "framing": "4:5",
-    "focus": "面部与服装均清晰锐利"
+    "shot_type": "特写人像",
+    "angle": "略高于眼睛水平线",
+    "focal_length_equivalent": "26mm 手机镜头或 50mm 专业镜头",
+    "framing": "4:5 构图，面部占主导",
+    "focus": "双眼锐利清晰"
   },
   "lighting": {
-    "source": "暖色调走廊壁灯",
-    "direction": "顶部/侧向暖光",
-    "highlights": "发丝边缘泛出暖色轮廓光",
-    "shadows": "柔和阴影"
+    "source": "暖色钨丝台灯 + 微弱环境光",
+    "direction": "侧前方暖光",
+    "highlights": "脸颊与发丝泛起柔和辉光",
+    "shadows": "阴影柔和、令人安心"
   },
   "mood_and_expression": {
-    "tone": "旅行风尚，静谧奢华",
-    "atmosphere": "抓拍感但姿态从容"
+    "tone": "放松、私密、亲切可感",
+    "expression": "浅淡微笑",
+    "atmosphere": "温暖、可触可感、居家感十足"
   },
   "style_and_realism": {
-    "style": "照片级写实生活方式风格",
-    "imperfections": "允许轻微噪点及轻微倾斜"
+    "style": "逼真摄影风格，iPhone 抓拍质感",
+    "imperfections": "轻微颗粒感，白平衡略带不完美"
   },
   "technical_details": {
     "aspect_ratio": "4:5",
-    "resolution": "高分辨率",
-    "noise": "室内环境下的轻微颗粒感",
-    "mode_variants": {
-      "amateur": "手持拍摄略带歪斜构图、轻微颗粒感、裁切不完美",
-      "pro": "专业杂志级曝光、细节锐利、高光控制精准"
-    }
+    "noise": "轻微手机传感器颗粒感",
+    "motion_blur": "面部无动态模糊"
   },
   "constraints": {
     "adult_only": true,
-    "single_subject_only": true,
     "no_text": true,
     "no_logos": true,
-    "no_watermarks": true,
-    "no_readable_numbers": true
+    "no_watermarks": true
   },
   "negative_prompt": [
-    "可读的门牌号",
-    "可读的文字",
-    "标识（logos）",
-    "水印",
-    "身份偏移",
-    "面部变形",
-    "多余手指",
-    "扭曲的手部",
-    "塑料质感皮肤",
-    "过度平滑处理"
+    "塑料质感皮肤", "过度柔化",
+    "多余手指", "变形的马克杯",
+    "可读文字", "商标", "水印"
   ]
 }
 ```
 
 </details>
 
-<details><summary><b>重新设计谷歌标志</b></summary>
+<details><summary><b>沙尘暴年代的飞翼</b></summary>
 
 ```text
-扮演一名标志设计师。你的任务是为 Google 创作一个重新构想的标志。你的设计应：
-- 融入现代且富有创新的设计元素。
-- 体现 Google 简洁、创意和互联的核心价值观。
-- 使用与 Google 品牌形象一致的配色方案。
-- 适用于各种数字和印刷格式，具备良好的适应性。
-
-考虑使用能够传达未来感和用户友好形象的图形和字体。该标志应令人印象深刻，并能被立即识别为 Google 品牌的一部分。
+{
+  "title": "Wings of the Dust Bowl",
+  "description": "一位大胆的1930年代女飞行员在夕阳下的狂风机场上自信伫立，准备横渡大西洋。",
+  "prompt": "你将使用提供的照片进行图像编辑，以创建一幅值得载入历史史诗的画框。将女性主体转变为1930年代的先驱女飞行员。图像必须具有照片级真实感，利用电影级灯光突出饱经风霜的皮革质感和皮肤毛孔细节。场景高度精细，使用 Arri Alexa 拍摄，浅景深模糊背景中的复古双翼飞机。构图聚焦于真实物理效果，从吹动她围巾的风到她脸颊上的油渍。",
+  "details": {
+    "year": "1933",
+    "genre": "电影级写实主义",
+    "location": "美国中西部一处尘土飞扬的偏远机场，背景中模糊地显现出一架老式螺旋桨飞机的金属机头。",
+    "lighting": [
+      "黄金时刻的日落",
+      "强烈的轮廓光",
+      "穿过尘埃的体积光束",
+      "高对比度暖色调"
+    ],
+    "camera_angle": "使用85mm人像镜头拍摄的眼平近距离特写。",
+    "emotion": [
+      "坚定",
+      "富有冒险精神",
+      "自信"
+    ],
+    "color_palette": [
+      "焦橙色",
+      "皮革棕",
+      "金属银",
+      "日落金",
+      "棕褐色"
+    ],
+    "atmosphere": [
+      "怀旧",
+      "粗粝",
+      "多风",
+      "史诗感"
+    ],
+    "environmental_elements": "光线中飞舞的尘埃颗粒，远处旋转螺旋桨的动态模糊，随风摇曳的高而干枯的草丛。",
+    "subject1": {
+      "costume": "一件磨损的复古棕色皮革飞行夹克，带有羊毛衬里衣领，一条随风飘扬的白色丝绸飞行员围巾，以及架在额头上的黄铜色飞行护目镜。",
+      "subject_expression": "嘴角带着一抹淡淡的自信微笑，眼睛因迎着落日微眯。",
+      "subject_action": "一边调整手上的皮革手套，一边凝视着地平线。"
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "现代喷气式飞机",
+        "铺设好的跑道",
+        "智能手机",
+        "数字手表",
+        "清澈的蓝天",
+        "塑料质感"
+      ],
+      "exclude_styles": [
+        "卡通",
+        "3D渲染",
+        "动漫",
+        "绘画",
+        "素描",
+        "黑白"
+      ],
+      "exclude_colors": [
+        "霓虹绿",
+        "电光蓝",
+        "亮粉红"
+      ],
+      "exclude_objects": [
+        "现代建筑",
+        "汽车"
+      ]
+    }
+  }
+}
 ```
 
 </details>
 
-<details><summary><b>野兽派阳光客厅插画</b></summary>
+<details><summary><b>沙漠商队驿站场景简报</b> · 机器翻译</summary>
+
+```text
+请扮演一位电影级环境设计师,撰写可直接用于生成图像和动画的场景简报。帮我设计一个黄昏时分古老沙漠商队驿站、骆驼商队正在抵达的主镜头:先生成一张静态图像,再以这张图像作为首帧,制作成一段短视频。你的简报必须让静态图像中包含丰富的、能够自然运动的元素(骆驼以稳定的步伐行走、灯笼光线闪烁、棕榈叶摇曳、细沙在沙丘波纹上飘移、随着天空变暗星星逐渐浮现),同时保持构图平静、清晰、易于做成动画。
+
+我的初始选择:
+- 沙漠场景:${setting:wide sand desert with low rolling dunes and rippled sand}
+- 时间与天空:${time:dusk turning to night, orange glow on the horizon fading up into violet with the first stars}
+- 商队驿站外观:${building:square sandstone fortress with crenellated walls, round corner towers, and one tall arched gateway}
+- 商队:${caravan:a line of five camels with riders arriving toward the gate}
+- 视觉风格:${style:photoreal cinematic travel photography}
+- 氛围词:${mood:calm, timeless, welcoming, quiet}
+
+请先用一条简短的消息向我询问缺失的信息:我偏好的镜头视角(从沙地上低角度广角、从稍高的沙丘上俯视,或与城门平视)、商队应从哪一侧进入画面以及朝哪个方向行走、天空与沙地各应占多少画面,以及需要避免的内容(人脸特写、文字、标牌、标志、现代车辆、电线、某个真实存在的建筑或地点)。
+
+然后按以下部分生成简报:
+
+1. **Scene Overview(场景概述)**:两到三句话,描述地点、时间、光线和这一刻的感受。描述的是一座想象中的商队驿站,而不是照搬某座真实的、有名称的驿站。
+
+2. **Caravanserai Architecture(驿站建筑)**:它在画面中的位置、墙面的颜色和质感、角塔、垛口、小窗、城门的形状(尖拱或马蹄形拱)、透过城门能看到的内容(内层拱门、庭院里温暖的灯光),以及灯笼悬挂的位置。
+
+3. **Caravan and Movement Line(商队与行进路线)**:骆驼和骑手的数量、间距、占据画面的哪一侧、行走的方向、通向城门的路径、鞍布及其颜色,以及它们在沙地上的影子。说明每头骆驼都面朝自己行走的方向。
+
+4. **Desert and Vegetation(沙漠与植被)**:远近沙丘的形状、前景的沙纹、墙边稀疏的干灌木,以及棕榈树(数量、位置和高度),并按从前景到背景的顺序交代景深层次。
+
+5. **Light and Atmosphere(光线与氛围)**:最后一抹余晖在地平线上的位置、天空的渐变、星星、城门处温暖的灯笼光与冷调黄昏的对比、薄云,以及任何低处的薄雾。
+
+6. **Fixed Visual Details(固定视觉细节)**:一份编号列表,列出 8 到 10 个必须在静态图像和视频中保持一致的细节(城堡位置和大小、城门位置、塔楼数量、灯笼位置、骆驼数量和方向、棕榈树数量和位置、地平线余晖所在的一侧、镜头位置、取景构图)。
+
+7. **Motion Map(运动图)**:一张表格,列出视频中所有可以运动的元素,列为:元素、运动类型、方向、速度(很慢、慢、中等)、运动幅度的强弱。包括骆驼的行走、灯笼的闪烁、棕榈树、飘移的沙子、星星以及镜头运动。整体运动要保持细微且符合物理规律,棕榈树和沙子使用同一个风向。
+
+8. **Prompt Seed A - Hero Still Image(提示词种子 A - 主静态图像)**:一条可直接粘贴使用的图像提示词,不超过 170 个单词,画面为宽幅横向 16:9,第一句话包含商队驿站、骆驼商队和黄昏天空,结尾为:no close-up faces, no text, no signs, no logos。
+
+9. **Prompt Seed B - Image-to-Video Animation(提示词种子 B - 图生视频动画)**:一条可直接粘贴使用的视频提示词,不超过 120 个单词,以主静态图像作为首帧,描述骆驼朝着面向的方向稳步行走、灯笼和棕榈树的运动、约 6 秒的一次缓慢镜头运动,并说明要让城堡、塔楼、棕榈树和取景构图与图像中完全一致,不出现新物体。
+
+规则:人物只作为小小的骑手出现,绝不作为主体;无文字、标牌或标志;不使用快速镜头运动或剪辑;不出现违背物理规律的运动(骆驼只朝自己面向的方向向前行走,腿部动作自然,骑手始终坐在鞍上,影子跟随骆驼,建筑形状绝不改变)。使用简短的段落和列表。
+```
+
+</details>
+
+<details><summary><b>沙漠驿站图生视频</b> · 机器翻译</summary>
+
+```text
+以第 2 步的图像"Sandstone Caravanserai with a Camel Caravan in the Desert at Dusk"作为精确的首帧,将其制作成一个平静的 ${duration:6} 秒电影感镜头。保持画面中右部的方形砂岩商队驿站及其两座带垛口的圆形塔楼和高大的拱形门洞、右塔旁的三棵棕榈树、低矮的沙丘、橙色渐变到紫罗兰色的天空,以及构图,与图像完全一致。左侧载着端坐骑手的五头骆驼组成的队伍缓慢而稳定地向右走向发光的门洞,腿部动作自然,影子跟随它们掠过起伏的沙纹;每头骆驼始终朝向右方,骑手保持坐姿。门旁的两盏灯笼轻柔地闪烁,庭院的暖光稳定地发亮。微风吹动右侧的棕榈叶,细沙沿同一方向低低地掠过沙丘的波纹。左侧地平线的橙色光晕略微减弱,紫罗兰色的天空中多出几颗星星。镜头缓慢、平滑地向门洞推进一次。动作自然写实,无剪辑,无新增物体,无文字。安静的沙漠风声和轻柔的骆驼脚步声。
+```
+
+</details>
+
+<details><summary><b>沙特青年医生工作场景</b></summary>
+
+```text
+生成一张照片级写实图像：一位年轻的沙特医生背对镜头，坐在一张简易椅子上，面前是一张木质办公桌。医生留着短而乌黑的头发，身材比例匀称，整体散发出沉着、自信且专业的气质。他身穿一件洁白的沙特传统长袍（thobe），外罩一件洁净的医用白大褂。一条听诊器自然垂挂于颈间，造型简洁、写实，毫无夸张成分。
+
+他正前方是一台大型台式电脑屏幕，发出柔和的白色光线。木质办公桌设计简约，一侧摆放一盆小型盆栽，另一侧则置有一只素雅花瓶。整体构图均衡、居中。
+
+背景为纯白色，采用柔和的自然光照明，投下轻柔的阴影。图像需具备写实的明暗过渡与空间深度，色彩过渡平滑，轮廓清晰，细节精准且高度写实。
+
+整体氛围沉静、专业而深邃。画质为高分辨率 8K，精修完成，写实风格中融入艺术感。
+```
+
+</details>
+
+<details><summary><b>河畔夜市复古青绿餐车</b> · 机器翻译</summary>
+
+```text
+写实摄影照片:与第 2 步相同的那辆复古翻新的 1960 年代风格紧凑型阶梯式厢式餐车,此刻正值蓝调时刻河畔夜市的晚间营业,从后右四分之三视角拍摄,视点为站立平视高度(1.6 米),距离约 9 米,35mm 镜头,16:9 横向构图,整辆车完整入画,略偏画面中心左侧。所有固定设计细节与第 2 步保持完全一致:短而方正的阶梯式车身,长约 5.5 米,转角柔和圆润,驾驶室车顶圆润,车厢顶部平整;双色涂装,上半部为光亮奶油色,下半部为深青绿色,两色之间在车窗下方有一道环绕整个车身的细铜橙色条纹;黑色轮胎,配大号抛光铬合金轮毂盖;车头有铬合金前保险杠和圆形前大灯。车尾现在朝向镜头,位于画面左侧:两扇高大的奶油色后门,每扇门上各有一个小圆形舷窗,配铬合金后保险杠,以及两个柔和发光的小圆形红色尾灯;车头朝向右侧远离镜头。右侧(顾客一侧,在画面右侧呈斜角可见):奶油色上部车身上开有大型矩形售卖窗口,上方是一块大而平整的深青绿色遮阳篷板,由细银色支撑杆水平撑起,比窗口略宽,并高出车顶线;窗口配有拉丝不锈钢台面搁板,室内明亮且灯光温暖,摆放着玻璃罐、瓶子、小铜锅的架子、一台咖啡机,台面上有一小瓶粉色和黄色的花,室内还挂着一块深色小黑板;一枚小圆形银色徽章位于青绿色下部车身上,靠近后轮。窗口敞开,暖光洒落在地面上。一名身穿深色围裙的厨师在柜台后工作,画面柔和虚化。窗口前方是一小队顾客,从背后看去,同样柔和虚化。场景:河畔步道,带石砌堤岸,背景是映照着城市灯光的深色河面,其他夜市摊位挂着暖色灯笼和串灯,处于虚焦状态。深蓝色天空,地平线上残留最后一抹余晖,窗口的暖琥珀色光线与冷蓝色暮色交融,鹅卵石路面看上去湿润并带有倒影,氛围热闹而轻松,漆面、铬合金和玻璃质感逼真,傍晚街头摄影风格。无可辨认的文字,无字母,无数字,无车牌字符,无真实品牌标志,无清晰对焦的人脸。
+```
+
+</details>
+
+<details><summary><b>河畔度假建筑渲染</b> · 机器翻译</summary>
+
+```text
+一张照片级写实的3D建筑渲染图,展现一栋沿河滨木栈道而建的现代弧形度假建筑。该建筑地面以上必须严格为总共3层:一层是带露天餐厅和露台的空间,其上恰好为2层配有玻璃阳台的豪华酒店公寓。穿过狭窄的河面,一座标志性的拱形人行桥通向一处娱乐区。黄金时刻的阳光,高度精细的8k渲染。
+```
+
+</details>
+
+<details><summary><b>波斯式无声拒绝纪实肖像</b></summary>
+
+```text
+超现实主义纪录片风格肖像，一位年轻的伊朗女性，2026年，自然窗光，胶片颗粒感，50mm镜头。她的表情完全由眼睛和眉毛构成：一边眉毛明显扬起，下巴微微上抬，眼皮半垂，缓慢地眨动，流露出难以置信的神情——经典的波斯式沉默“不”。背景中性，低饱和的大地色系。照片下方是一个干净的白色矩形框，带有粗糙、草图风格的手绘边框，以及凌乱的手写墨水文字：“نه”——笔触清晰可见，略带涂抹痕迹。
+```
+
+</details>
+
+<details><summary><b>波斯细密画月夜花园亭阁</b> · 机器翻译</summary>
+
+```text
+一座带绿松石色瓷砖穹顶的小型敞开式花园亭阁，立在一方长长的矩形倒影池旁，三位乐师坐在花纹地毯上，分别演奏鲁特琴、框鼓和芦笛，画成十六世纪波斯细密画。画面采用经典的平面倾斜透视：水池、花圃和地毯以俯视角度呈现，而亭阁和人物则以侧面角度呈现。深青金石蓝的夜空点缀着细小的金色星星和一弯纤细的新月。盛开的杏树和石榴树、修长的悬铃木，以及成排的红白花朵沿着花园排列，水边有一对孔雀，一条银色溪流蜿蜒穿过前景。颜料如宝石般不透明，有青金石蓝、孔雀石绿、朱红、藏红花黄和玫瑰红，配以精细的黑色轮廓线，穹顶和长袍上有贝金高光，瓷砖和织物纹样精致。一道狭窄的、以金色藤蔓和小花装饰的描金边框，把画面框在泛黄的象牙色纸上。宽幅横向 16:9。无文字，无书法，无字母，无标志。
+```
+
+</details>
+
+<details><summary><b>活橡树里的蒸汽朋克阅读角</b> · 机器翻译</summary>
+
+```text
+温暖的插画风奇幻室内场景：一个蒸汽朋克风格的阅读角，雕琢在一棵巨大活橡树中空的心材里。弧形木墙顺着树木的纹理延伸；从地板到天花板的书架上摆满皮面精装书，环绕着黄铜管道、压力表和小型发条天象仪。一把深翠绿色天鹅绒扶手椅和一张低矮的橡木桌上放着一本翻开的书和一杯冒着热气的瓷杯。柔和的琥珀色光线来自一盏可调节的黄铜台灯和悬挂的爱迪生灯泡；圆形舷窗上的绿色彩绘玻璃嵌片透入斑驳的森林光影。活的藤蔓和苔藓环绕着书架，却不遮住书籍。抛光的铜制栏杆，一道由树根木头构成的螺旋楼梯向上延伸出画面。温馨、诱人，高度精细的绘本插画风格，无人物，无文字叠加，适合工作场合观看。
+```
+
+</details>
+
+<details><summary><b>活点地图风城市图</b></summary>
+
+```text
+将 ${city_name} 城市渲染为一张隐秘的魔法巫师世界地图，灵感源自《哈利·波特》宇宙，风格仿照“劫盗者地图”（Marauder’s Map）。
+
+保留 ${city_name} 真实的地理布局、道路、行政区划、海岸线、河流与地标，但将其重新诠释为一个隐藏于麻瓜世界之下的秘密巫师领域中的魔法地点。
+
+政府办公区呈现为“魔法事务部”，配有施了魔法的高塔、悬浮符文与防护结界。  
+大学与学校变为“巫师学院”、“咒语图书馆”、“天文观测台”与“奥术高塔”。  
+历史城区与老城区域转化为“远古巫师聚居区”，内含隐秘小巷、受诅咒的废墟、密室、被遗忘的通道。  
+工业区描绘为“魔药酿造厂”、“施法工坊”、“魔法铸造厂”与“炼金术工厂”。  
+公园、森林、山丘与山谷变为“禁林”、“草药学种植园”、“圣林”与“魔法生物栖息地”。  
+商业区呈现为类似“对角巷”的魔法集市，包括巫师商店、旅店、酒馆与贸易走廊。  
+体育场与大型竞技场转化为“盛大魁地奇球场”。  
+机场、港口与主要交通枢纽变为“门钥匙中转站”、“飞路网闸门”、“天空码头”与“龙类抵达高塔”。
+
+包含动态魔法地图元素：移动的脚印、发光墨水符文、低语式批注、密道指示符、咒语圆阵、魔法结界、变幻路径、隐藏房间、魔法生物巢穴、危险警示、施了魔法的符号，以及富有生命力与神秘感的动态标记。
+
+艺术风格：手绘墨线插画，陈旧羊皮纸纹理，温暖的深褐色调，松散而奇想式的线条，微妙的魔法辉光，略带不完美的手绘质感。  
+字体：手写体魔法书法，墨迹粗细不均，古老巫师文字。  
+装饰元素：繁复的羊皮纸边框、魔法封印、蜡封印章、交叠的施法脚印、经典巫师罗盘玫瑰。
+
+不得出现现代元素、科幻元素或当代字体。  
+宽高比：${aspect_ratio}。  
+整张地图应呈现出一件活生生的、被施了魔法的古物之感——由远古女巫与巫师亲手制作的秘密巫师地图。
+```
+
+</details>
+
+<details><summary><b>流媒体平台霓虹标志</b></summary>
+
+```text
+圆形霓虹标志，极简主义播放按钮置于胶片边框内，电光蓝与亮粉渐变辉光，深色背景，赛博朋克美学，居中几何图标，扁平矢量设计，现代流媒体平台品牌风格，无文字，无字体元素，清晰圆形边缘，应用图标风格，高对比度，发光霓虹轮廓，即时视觉冲击力，专业 TikTok 头像，透明背景，1:1 正方格式，粗体简洁剪影，科技初创公司氛围，8k 质量
+```
+
+</details>
+
+<details><summary><b>浮世绘春日风筝节</b> · 机器翻译</summary>
+
+```text
+一幅传统日本浮世绘木版画,描绘河谷上方多风的草坡上举行的春季风筝节。数十只长方形和菱形的风筝布满天空,天空的颜色由柔和的奶油色渐变为浅蓝色,风筝上以靛蓝、朱红和赭黄绘制着醒目的鲤鱼、仙鹤和海浪图案。前景中,一群身穿花纹和服、头戴草帽的村民用力拉着绷紧的长风筝线,一个孩子拿着红色小风筝奔跑,一位老人笑着看自己的帽子被风吹走。被风吹弯的松树向一侧倾斜,风格化的旋转线条表现出阵阵阵风。中景处,一座弧形木桥横跨河流,梯田和远处的寺庙屋顶坐落在一座平顶、风格化的柔和山峰之下。画面有大片平涂色块、利落的黑色主版轮廓线、天空和河流中细腻的拭晕(bokashi)色彩渐变,以及清晰可见的和纸纹理和轻微的木纹套准标记。构图延续江户时代风景系列的精神,氛围宁静而欢快。无现代物品,无可辨认的文字,无印章或签名,3:4 竖向构图。
+```
+
+</details>
+
+<details><summary><b>浴室闪光灯自拍</b></summary>
+
+```text
+{
+  "category": "BATHROOM_SELFIE_FLASH",
+  "subject": {
+    "demographics": "成年女性，21–27 岁，土耳其裔外貌 / 地中海风格。",
+    "hair": {
+      "color": "深棕色，带有细微自然高光。",
+      "style": "松散、略显凌乱、随意分缝。",
+      "texture": "发丝柔顺，可见细小碎发，发根真实自然。",
+      "movement": "自然垂落于肩部，伴有少量散落发丝。"
+    },
+    "face": {
+      "shape": "柔和椭圆脸型，下颌线柔和。",
+      "eyes": "杏仁眼，深色虹膜，锐利眼神高光，眼线淡雅自然。",
+      "nose": "鼻梁轮廓清晰，鼻尖有自然高光。",
+      "lips": "唇形自然丰润，呈柔和色调，微微启唇（随意而自信）。",
+      "skin_details": "可见真实毛孔，闪光造成轻微油光，带淡淡红晕，无磨皮处理。",
+      "micro_details": "保留微小瑕疵（如发际线处细小的绒毛）。"
+    },
+    "clothing": {
+      "top": "休闲罗纹背心或合身T恤（无品牌标识，无文字）。",
+      "fit": "贴身剪裁真实，肩部面料呈现细微张力。",
+      "texture": "闪光下可见罗纹/针织纹理。"
+    },
+    "accessories": {
+      "jewelry": [
+        "小巧银质圆环耳环"
+      ]
+    }
+  },
+  "pose": {
+    "type": "镜面自拍视角（若偏好可不显示手机；否则仅呈现镜中反射效果）。",
+    "orientation": "特写至半身构图，略带俯角。",
+    "head_position": "头部微微向被摄者右侧倾斜。",
+    "limbs": "一只手臂隐含于画外持握手机；另一只手轻触太阳穴附近的头发。",
+    "gaze": "直视镜头，冷静而自信。",
+    "posture": "双肩放松，姿态随意。"
+  },
+  "setting": {
+    "environment": "家庭浴室",
+    "background_elements": [
+      "具真实反光效果的亮面瓷砖",
+      "略微失焦的镀铬淋浴装置",
+      "带有轻微镜面高光的陶瓷表面"
+    ],
+    "depth": "浅景深：面部清晰锐利，背景轻微虚化。"
+  },
+  "camera": {
+    "shot_type": "自拍风格人像",
+    "angle": "略高于眼平线",
+    "focal_length_equivalent": "24–28mm 智能手机广角",
+    "framing": "3:4 或 4:5 构图，胸部以上裁切",
+    "focus": "双眼与面部绝对清晰，肩部过渡柔和",
+    "perspective": "手持自拍特有的自然轻微透视压缩"
+  },
+  "lighting": {
+    "source": "类似手机闪光灯的硬质正面光 + 环境浴室灯光",
+    "direction": "正向闪光为主，辅以极少量侧向补光",
+    "highlights": "前额/鼻尖/嘴唇处出现闪光镜面高光；光泽真实，非塑料感",
+    "shadows": "下颌下方呈现柔和阴影；对比度受控",
+    "quality": "抓拍式闪光瞬间"
+  },
+  "mood_and_expression": {
+    "tone": "随意、自信、私密而自然的抓拍感",
+    "expression": "放松的微扬嘴角，‘酷女孩’气质",
+    "atmosphere": "即兴、未经策划"
+  },
+  "style_and_realism": {
+    "style": "逼真摄影风格 Instagram 自拍",
+    "fidelity": "高精度皮肤细节，无平滑处理",
+    "imperfections": "轻微噪点、零星散落发丝、保留天然肌理"
+  },
+  "colors_and_tone": {
+    "palette": "浴室中性色调 + 自然肤色",
+    "white_balance": "略偏暖的室内白平衡",
+    "contrast": "中等",
+    "saturation": "自然"
+  },
+  "technical_details": {
+    "aspect_ratio": "4:5",
+    "resolution": "高分辨率",
+    "noise": "阴影区域带有轻微手机传感器颗粒感",
+    "motion_blur": "几乎无动态模糊；仅允许在面部以外区域存在可接受程度的模糊"
+  },
+  "constraints": {
+    "adult_only": true,
+    "no_text": true,
+    "no_logos": true,
+    "no_watermarks": true,
+    "single_subject_only": true
+  },
+  "negative_prompt": [
+    "裸露", "露骨内容", "色情",
+    "多余手指", "扭曲的手部", "双面孔",
+    "塑料质感皮肤", "过度平滑",
+    "可读文字", "品牌标识", "水印",
+    "CGI", "卡通", "动漫"
+  ]
+}
+```
+
+</details>
+
+<details><summary><b>海岸蕨类与海藻蓝晒图</b> · 机器翻译</summary>
+
+```text
+一张宽幅平铺俯拍照片，拍的是一幅放在风化浅橡木工作台上的大型手工蓝晒印相，印相占据画面的大部分。蓝晒图上是精心布置的海岸植物和海边拾得物构图，在深邃浓郁的普鲁士蓝底色上呈现为清晰的白色剪影：从左侧横扫而入的修长羽状铁线蕨和欧洲蕨叶片，中央是细嫩的补血草和野胡萝卜花枝，一枝分叉的泡叶藻（带着小小的气囊），两片银杏叶，一枚小小的扇贝壳，右侧是蒲公英种球柔和透明的轮廓。在植物较薄或略微离开纸面的地方，剪影褪成淡天蓝色和粉蓝色的半色调，可见细微的叶脉，营造出朦胧而有层次的深度感。纸张是厚实的冷压棉质水彩纸，边缘略带毛边、未经裁切，手刷的边框不均匀，蓝色药液在松散、带条纹的笔触处停止，还有几处细小的滴痕和斑点。印相周围的桌面上摆放着：顶部边缘斜靠着一块玻璃接触印框，一个小琥珀色玻璃瓶，一把染蓝了刷毛的宽扁羊毛刷，一把黄铜镊子，以及几片散放的蕨叶和海藻碎片，等待下一次印制。来自北向窗户的柔和均匀的晨光，阴影轻柔，色彩真实还原，以浓烈的青蓝色为主角，营造出宁静的手作工作室氛围，纸张质感和植物细节极其锐利。构图：印相略微倾斜，四周留有充裕的呼吸空间，16:9 横向画幅。无人物，无手，无文字，无标签，无签名，无水印。
+```
+
+</details>
+
+<details><summary><b>海洋十一风格电影海报</b></summary>
+
+```text
+一种电影级、高度精细的蚀刻插画风格海报，描绘深夜时分在拉斯维加斯一场精致的赌场劫案场景，广角低视角构图，发光的天际线以霓虹灯光和高耸的豪华酒店为主导，十一位身穿量身定制西装的人物剪影站在俯瞰赌城大道（the Strip）的屋顶上，面容部分隐藏在阴影中，细微的烟雾在空中飘荡，营造出神秘而缜密的氛围，金色与深红色的反光映照在玻璃建筑表面，西装与城市纹理上具有复杂的线条细节，戏剧性的背光投下长长的阴影，远处隐约可见一扇中央金库门，散发着冷色调的金属光泽，他们蓄势待发的姿态捕捉到紧张与精准感，微弱的体积光下尘埃颗粒在空中漂浮，深邃阴影与温暖霓虹高光之间形成高对比度，极致精细的纹理，电影海报式构图，略带超现实的优雅感，焦点锐利，9:16 纵横比
+```
+
+</details>
+
+<details><summary><b>海藻林中的海獭</b> · 机器翻译</summary>
+
+```text
+一张照片级写实的水下摄影作品,拍摄于加利福尼亚的海带森林中。左侧前景,一只海獭在清澈的蓝绿色海水中直立游动,用明亮的黑眼睛和长长的胡须望向镜头,前爪把一只大紫海胆抱在胸前,浓密的棕色皮毛上闪烁着细小的气泡。高大的金褐色巨藻茎干带着宽阔的波浪状叶片,从岩石海床一直升向波光粼粼的水面。明亮的阳光从左上方穿过海水斜射而下。右侧中景,一小群银色的鱼在海带之间游过,右下角有一条鲜橙色的加利福尼亚拟雀鲷(garibaldi)在海床附近游动。岩石地面上覆盖着藻类和小型海洋生物,细小的漂浮颗粒捕捉着光线。自然光,广角水下镜头,皮毛和海胆刺的细节锐利,色调是浓郁的青绿色与金色,氛围平静而好奇。宽幅横向 16:9。无文字,无潜水员,无水印。
+```
+
+</details>
+
+<details><summary><b>海边悬崖旅行人像</b> · 机器翻译</summary>
+
+```text
+一位英俊的年轻男子随意地坐在一块巨大的岩石悬崖顶上,俯瞰着广阔的碧蓝大海,眺望地平线,神态放松平静。他穿着海边度假的服装。他整齐的黑色短发被微风轻轻吹乱,戴着一副现代款墨镜。画面以后侧方角度的广角镜头拍摄,展现出辽阔的海洋、远处的一座小岛,以及云层翻涌的戏剧性天空,柔和的午后阳光透过云层洒下。岩石的质感细致而自然。整个氛围带有唯美、孤独、宁静且电影感十足的旅行气息。写实摄影,自然光线,超精细,单反相机画质,35mm镜头,高动态范围,柔和阴影,景深,照片级写实,Instagram旅行美学,竖构图9:16。
+```
+
+</details>
+
+<details><summary><b>涂色书页设计</b></summary>
+
+```text
+扮演一名富有创意的插画师。你的任务是设计一系列适合儿童和成人使用的涂色书页面。
+
+你的任务包括：
+- 创作多种主题的线稿，例如自然、动物和抽象图案。
+- 确保每页都包含适合成人的精细细节，同时也有适合儿童的简单形状。
+- 使用能够促进放松与创造力的主题。
+
+规则：
+- 确保设计适合所有年龄段。
+- 避免过于复杂的图案，以免让儿童感到挫败。
+- 包含多种主题，以满足不同的兴趣。
+```
+
+</details>
+
+<details><summary><b>深夜医院急诊候诊室</b></summary>
+
+```text
+超写实土耳其悲喜剧风格静态画面，竖构图，场景设定于夜间一家略显陈旧的公立医院急诊等候室。荧光灯营造出疲惫、泛青白的色调。一排排塑料座椅，角落里一台饮水机，墙上张贴着题为“急诊科规章”的海报，数字叫号屏正显示红色号码。地面略有刮痕，一切看似无菌却透着陈旧感。
+
+中间一排座椅上，坐着一位27岁、相貌典型的土耳其女性，身形丰腴，金发微卷，身着白天穿过的休闲都市装束：或许是一条碎花连衣裙配轻薄夹克、运动鞋，头发略显凌乱。她神情疲惫但并无生命危险，只是深陷官僚流程的泥沼。手机握在手中，微微朝向自己，正用两只拇指快速输入——显然正在向粉丝发送一条“iyi geceler”（晚安）推文，尽管现场氛围毫无温馨可言。她的脸上交织着黑色幽默与百无聊赖。
+
+她周围是典型的土耳其医院众生相：一位戴头巾的老妇人（teyze）提着一只塑料医院袋；一位中年大叔（amca）倚墙打盹；一名穿加拉塔萨雷（Galatasaray）连帽衫的年轻男子低头摆弄手机；一名护士推着药车从门口经过。背景中一台自动售货机广告展示Ülker巧克力与Eti零食；角落小电视静音播放新闻，滚动字幕提及安卡拉（Ankara）或克孜拉伊（Kızılay）。公告板上，一张Şok超市折扣传单随意钉在各类医疗文件之间。女子所坐座椅或其近旁，一只橙色Migros购物袋半露在外，内装瓶装水与饼干。
+
+画面质感仿若一次仓促、略带禁忌的手机抓拍：拍摄角度偏低且轻微倾斜，部分座椅被裁出画框，前景边缘切掉一名陌生人的肩膀。路过的护士身影带有轻微动态模糊；室内强光照明导致可见噪点；荧光灯光下色彩明显褪色；所有人物皮肤纹理真实、不加修饰、略显刻薄。整体场面调度精准传递出这样一个核心意象：在最缺乏浪漫气息的场所，发出一则黑色幽默十足的“iyi geceler”推文——该场景仍与系列其余部分共享同一世界观。
+```
+
+</details>
+
+<details><summary><b>深海科考潜艇复古剖面图</b> · 机器翻译</summary>
+
+```text
+一幅精细的复古剖面插画,描绘一艘小型深海科考潜艇,绘制风格仿照上世纪中叶大众科学杂志的中心跨页:精确的墨线勾勒,配以水粉和喷笔上色,纸张带有轻微泛旧的奶油色质感,色调柔和,包含赭黄、青绿、砖红、石板灰和深海军蓝。潜艇以干净的侧视角呈现,外形修长圆润,像一颗胖胖的胶囊,黄色艇身,艇首有一个穹顶形亚克力观察窗,配有一对泛光灯、一对握着一小块珊瑚样本的关节式采样机械臂,以及艇尾的导管螺旋桨。艇身有一大块被剖开,以横截面形式展现内部,从艇首到艇尾逐个舱室依次是:一个狭小的驾驶球舱,里面有两张空着的软垫座椅、发光的仪表盘和操纵杆;一间小型科学实验室,有标本罐、一台显微镜和一排排小抽屉;一个带水壶和锡杯的厨房角落;两张折叠起来的铺位;一间电池舱,电池单元整齐排列;压载水舱,显示为半满的蓝色水;以及一个有管道、阀门和螺旋桨轴的发动机舱。薄薄的剖切边缘显示出厚实的分层艇壳。潜艇漂浮在深蓝色的海洋中,海水从顶部的青绿色逐渐加深到底部的海军蓝,漂浮着细小颗粒,还有一条好奇的灯笼鱼、一只小鱿鱼,以及右下角带有管虫和热液喷口的岩石海底。采用技术插画中常见的均匀清晰光照,细节丰富,每个舱室都清晰可读,构图为均衡的水平 16:9 横向,潜艇横贯画面中央。无人物,无船员,无可读文字,无标签,无数字,无标志,无水印。
+```
+
+</details>
+
+<details><summary><b>混合媒介回忆卡片</b> · 机器翻译</summary>
+
+```text
+将上传的照片转换成一张竖版 4:5 的综合材料回忆卡片，严格上下五五分。
+
+上半部分：完整保留原始照片，不做任何改动，主体、构图、光线、色彩和细节都保持一致。只加入淡淡的胶片颗粒。
+
+下半部分：暖调米白色手工纸，纤维清晰可见，带有一块取自照片色彩、低饱和且形状不规则的色块。仅将主要主体重绘为极简的深色蜡笔素描，线条松散而不完美，带有细微的 Risograph 颗粒。再加上一句与氛围相配的简短手写英文短语。
+
+风格：安静、怀旧、莫兰迪风格、有触感、优雅、留有大量负空间。
+
+避免：多余元素、杂乱、边框、贴纸、标志、光泽效果、卡通/矢量风格，或改动原始照片。
+```
+
+</details>
+
+<details><summary><b>渐变主题信息图</b> · 机器翻译</summary>
+
+```text
+我想要一张详细但简洁的信息图，采用渐变主题的信息图设计，并以最佳方式将数据可视化。避免使用默认字体，根据主题和需求选用字体。要求横向版式。偏好浅色主题。
+```
+
+</details>
+
+<details><summary><b>温室系统接线图</b> · 机器翻译</summary>
+
+```text
+根据这份线框图创建一张图像🧰 第 1 部分:实体单面包板布局你将把所有元件放在同一块面包板上。这样的布局能让你的项目整洁专业,方便向教授展示。微控制器:将你的 ESP32 开发板牢牢插在面包板右半部分中央塑料分隔槽的两侧。将你的 Arduino R3 放在面包板左侧旁边。安全电源轨(面包板上边缘):将 Arduino 5V 引脚 → 顶部红色正极(+)电源轨。将 Arduino GND 引脚 → 顶部黑色负极(-)电源轨。所有传感器、蜂鸣器、LCD 屏幕以及继电器模块的逻辑端都使用这些顶部电源轨。独立风扇电源轨(面包板下边缘):将 AA 电池盒红色导线 → 底部红色正极(+)电源轨。将 AA 电池盒黑色导线 → 底部黑色负极(-)电源轨。让这些底部电源轨与顶部电源轨完全分开,以隔离电机的电源。🗺️ 第 2 部分:线框图总接线清单1. 直接安装在面包板网格孔中的元件ESP32 开发板:插入右侧的网格行,跨越中央分隔槽。蜂鸣器(有源或无源):将其引脚直接插入两个空的网格孔。紫色导线:较长的正极(+)引脚所在行 → Arduino 数字引脚 3。黑色导线:较短的负极(-)引脚所在行 → 顶部黑色负极电源轨。2. 通过母对公(F-M)杜邦线连接的独立模块将母头插座套在模块引脚上,并将公头引脚直接插入以下目标位置:DHT11 温湿度传感器:VCC 线 → 顶部红色正极电源轨GND 线 → 顶部黑色负极电源轨DATA 线 → Arduino 模拟引脚 A0水位检测传感器模块:VCC(+)线 → 顶部红色正极电源轨GND(-)线 → 顶部黑色负极电源轨信号(S)线 → Arduino 模拟引脚 A1LCD1602 屏幕面板(I2C 转接板引脚):VCC 线 → 顶部红色正极电源轨GND 线 → 顶部黑色负极电源轨SDA 线 → Arduino 模拟引脚 A4SCL 线 → Arduino 模拟引脚 A5实物 5V 继电器模块(3 个逻辑输入引脚):VCC 线 → 顶部红色正极电源轨GND 线 → 顶部黑色负极电源轨IN 线 → Arduino 数字引脚 43. 大电流风扇接线(继电器模块螺丝端子一侧)将裸线插入开口的塑料接线块中,并拧紧螺丝:红色导线:从底部红色正极电源轨(AA 电池)→ 继电器模块 COM(公共端)螺丝端子。红色导线:从继电器模块 NO(常开)螺丝端子 → 你的 3V 直流电机的红色正极导线。黑色导线:从你的 3V 直流电机的黑色负极导线 → 底部黑色负极电源轨。4. 微控制器通信数据桥接绿色导线:将 Arduino 数字引脚 2 → 面包板上与 ESP32 GPIO 引脚 16(RX2)对应的列。黑色导线:将你的 ESP32 上任意一个 GND 引脚 → 顶部黑色负极电源轨。
+```
+
+</details>
+
+<details><summary><b>温暖秋日羊羔绒人像</b> · 机器翻译</summary>
+
+```text
+主体（女性）：
+
+主体：一位年轻女性，直发从帽子下露出。
+
+姿势：她以半侧面站立，向右转四分之三，同时带着温暖的微笑直视镜头。嘴唇紧闭。身体略微侧向一边。
+
+服饰：
+- 一顶粗针织橄榄绿（卡其色）毛线帽，正面有一块长方形黑色补丁。
+- 一件超大号、蓬松、有质感的棕色羊羔绒（羊皮）夹克，背部和袖子上有大幅抽象的橙黑色刺绣图案（类似火焰或抽象形状）。
+- 脖子上可见一条精致的细金链项链。
+
+外貌与妆容：
+- 精细的妆容，清晰利落的上扬眼线突出了眼睛，睫毛浓密。
+- 肤色均匀，脸颊有柔和的腮红。
+- 柔和自然的粉色口红。
+
+氛围：平静、温馨的秋季或初冬场景，位于后院或露台，带有轻松的生活方式美学。
+
+光线：自然、柔和、漫射的日光（阴天或背阴处），使整张脸光线均匀。
+
+情绪：友善、快乐、自信、从容而时尚。
+
+拍摄角度：中景（腰部以上），视平线视角，略微朝向镜头倾斜。
+
+背景：
+- 由竖直木板制成的栅栏。
+- 常青树（侧柏或云杉），增添浓郁的绿色点缀。
+- 一个木结构（可能是凉棚或凉亭），可见木料构件。
+- 石板铺砌的庭院。
+- 背景柔和虚化，景深较浅，让焦点集中在这位女性身上。
+
+不要改变面部特征。
+
+宽高比：3:4
+
+超写实、高质量、清晰的 8K 照片，使用 iPhone 16 Pro Max 拍摄。
+```
+
+</details>
+
+<details><summary><b>温馨卧室 ASMR 视频场景</b> · 机器翻译</summary>
+
+```text
+主体:温馨卧室 ASMR,动作:缓慢轻柔的手部动作,抚过各种质地、翻动书页、轻抚柔软的织物,光学:50mm 镜头,浅景深,柔焦,动作:5 cm/s 的镜头漂移,光线:温暖柔和的环境光,2700K,风格:电影感、宁静、平和,音频:轻柔的低语、柔和的触感声、若有若无的雨声氛围,连贯性:8 秒片段,4K 分辨率,60fps,16:9 画幅
+```
+
+</details>
+
+<details><summary><b>温馨圣诞微笑</b></summary>
+
+```text
+以上传的人物照片作为主体。
+精确保留人物真实的面部、五官、肤色、发型及身份特征，与原照片完全一致。不得更改年龄或面部结构。
+
+轻柔调整面部表情，添加自然、温暖且友善的微笑。  
+该微笑须显得真实而含蓄，不可夸张或生硬。  
+不得更改面部比例。
+
+服饰：  
+• 一件舒适的针织圣诞毛衣，带有经典驯鹿（鹿）图案  
+• 一顶鲜红色圣诞老人帽，配白色毛边与绒球  
+• 服装需呈现自然穿着感，合身得体  
+
+场景与氛围：  
+• 温暖惬意的新年室内氛围  
+• 柔和的金色环境光  
+• 背景可包含：  
+  – 一棵轻微虚化的圣诞树  
+  – 柔和散景效果的暖色串灯（fairy lights）  
+  – 极简的节日装饰  
+• 背景略带失焦  
+
+情绪与风格：  
+• 欢快、友善、喜悦的新年氛围  
+• 呈现抓拍感与 spontaneity（即兴感），非摆拍  
+• 节日感十足，但整体写实  
+
+相机与画质：  
+• 尽可能保留原始照片的拍摄角度与构图  
+• 浅景深（shallow depth of field）  
+• 高分辨率、照片级真实感（photorealistic）  
+• 自然的皮肤质感与逼真的织物细节  
+
+请勿添加：  
+• 文字、标识（logos）或水印（watermarks）  
+• 夸张的面部表情  
+• 卡通化或风格化效果  
+• 面部扭曲或身份变更  
+
+最终图像应呈现为一个轻松、温暖的新年瞬间，自然捕捉，适合社交媒体分享或私人留念。
+```
+
+</details>
+
+<details><summary><b>温馨暹罗猫人像</b> · 机器翻译</summary>
+
+```text
+一幅细致而亲密的特写肖像,一位年轻女性轻轻抱着一只暹罗猫并亲吻它。
+这位女性最显著的特征是她异常蓬松丰盈、自然卷曲的头发,如柔软的云朵般环绕着脸庞,质感丰富,带有一丝野性的优雅。
+她坐着,将一只暹罗猫抱在怀中。她的右手轻轻托着猫的脸,展示出带有亮白色光泽美甲的长方形指甲。她的嘴唇嘟起成温柔的亲吻状(鸭子嘴),几乎碰到猫的头顶。
+镜头角度:略微仰拍的特写肖像,强调这一刻的温柔与亲密。
+她的眼睛微微眯起,神情梦幻、放松而满足。
+她穿着一件简单的黑色吊带上衣。
+妆容极简,为清透少女风格:清新的肌肤,淡淡的眼部轮廓,自然的眉毛,以及裸色嘴唇。
+这只猫是经典的海豹重点色暹罗猫:深色的脸、耳朵和爪子。它舒适地坐在她的怀里,头靠在她的手和脸之间。它的眼睛半闭,神情平静、困倦,略带漠然,同时直视镜头。
+光线:柔和的自然日光从附近的窗户侧面照入,形成细腻的阴影,并美丽地突出她卷发和猫毛的质感。
+背景:干净、中性的白色室内,左侧可见部分白色窗框和窗台。
+氛围:温暖、舒适、充满爱意而亲密。精确保留面部特征和身份,不做任何改动。
+超写实、高度精细的 8K 摄影,使用 iPhone 16 Pro 拍摄,3:4 画幅比例。
+```
+
+</details>
+
+<details><summary><b>温馨极简厨房人像</b> · 机器翻译</summary>
+
+```text
+超写实中景镜头,一位年轻女子站在现代极简风格的厨房里。
+
+姿势:她站着,随意地靠在灰色厨房台面上。右手自然地搭在台面上,身体略微向左转,同时直视镜头。姿势放松、自信、亲切。
+
+服装:她穿着一件白色宽松卫衣,带有蓬松的灯笼袖和长袖口。卫衣塞进浅蓝色高腰牛仔裤里,牛仔裤贴合臀部,为直筒剪裁。
+
+头发:顺滑笔直的头发披散着,自然垂落。
+
+妆容:自然的“素颜”妆,眼妆柔和有轮廓,裸色唇膏,肌肤有光泽。
+
+氛围:舒适、平静、不费力、温暖。她带着温柔的浅浅微笑。
+
+背景:现代厨房,配浅灰色哑光橱柜。她左侧的台面上放着一个白色带纹理的罗纹花瓶,里面插着一支白玫瑰和干燥的满天星枝条。
+
+光线:柔和的自然日光,仿佛来自一扇大窗。漫射光营造出柔和的阴影,并凸显衣物和肌肤的质感。
+
+相机角度:平视,中景,取景从膝盖或大腿到头顶。构图均衡,主体居中。
+
+不要改变面部特征。3:4 竖版。照片级真实,超精细 8K,用 iPhone 16 Pro 拍摄。
+```
+
+</details>
+
+<details><summary><b>温馨秋日路边生活人像</b> · 机器翻译</summary>
+
+```text
+超写实、高品质、锐利的 8K 照片,3:4 画幅比例。使用 iPhone 16 Pro Max 拍摄。100% 保留面部相似度——不要改变任何面部特征。可爱的脸。嘴唇完全闭合。
+角色与姿势:
+一位年轻女性以放松自然的姿势坐在混凝土路缘上。一条腿微微弯曲搭在路缘上,另一条腿垂下。双手松松地放在膝盖附近,上半身略微前倾。她望向一侧,没有看向镜头。
+表情与妆容:
+柔和放松的浅浅微笑,嘴唇完全闭合。清透少女妆,肤色自然清新,淡淡腮红,肤色均匀。
+发型:
+头发盘成高耸蓬松、略带凌乱的丸子头。几缕前额散发柔和地环绕脸庞,逼真的碎发被风轻轻吹动。
+服装与鞋履:
+无印花的宽松巧克力棕色卫衣,修身黑色紧身裤,高筒白色泡泡袜,以及马丁靴风格的厚底黑色皮质系带靴。可见一条精致的吊坠项链。
+道具:
+路缘上她身旁放着一杯带吸管的透明塑料杯冰拿铁,以及一个柔软的黑色布质托特包。
+背景与氛围:
+秋日的城市停车场,背景中停着汽车,树上是金黄的秋叶,还有一盏高高的路灯。天空完全晴朗,是明亮的蓝色。舒适的秋日氛围,休闲街头风格。
+光线与镜头:
+明亮的自然阳光,强烈的方向性光线在柏油路面上形成清晰、对比鲜明的阴影。从坐着的模特视角出发的平视角度,全身生活方式构图,同时捕捉主体与周围环境。
+```
+
+</details>
+
+<details><summary><b>温馨赛博游戏少女人像</b> · 机器翻译</summary>
+
+```text
+构图与镜头角度:** 特写自拍风格肖像,取景到胸部以上,3:4 画幅比例。镜头靠近面部,与视线齐平,营造出 iPhone 16 Pro Max 自拍的真实观感。
+姿势与表情:女孩轻轻歪着头,脸颊柔和地靠在左手上,宽大的毛衣袖子遮住部分手掌。一侧肩膀微微露出。她闭着眼睛,嘴唇形成柔和俏皮的嘟嘴,不露牙齿。表情放松、甜美、自然随性,带有一丝若有若无的撩人感。
+面部特征与头发:精确保留面部特征,不改变身份。 ,笔直健康的头发,干净的中分,自然垂落在肩上,发丝高度逼真。
+妆容:无瑕的清透少女妆,带有一点柔和闪亮的质感——肤质光滑均匀,睫毛蓬松分明,眉形整齐,自然柔和的腮红,以及自然粉色调的饱满亮泽嘴唇。
+服装与配饰:奶油牛奶色的舒适宽松针织毛衣,针织纹理丰富。主要亮点是带有鲜艳 RGB 灯光(绿、蓝、紫渐变)的白色大号头戴式游戏耳机。麦克风尖端散发柔和的蓝光。
+美甲:长方形乳白色指甲。
+光线:低光摄影。类似显示器屏幕光的柔和正面照明,在皮肤和亮泽的嘴唇上形成细腻的高光。耳机发出的彩色霓虹反光微微照亮面部和头发。
+背景与氛围:昏暗的房间,背景被大幅虚化(深度焦外),带有柔和的紫色霓虹串灯。舒适的赛博美学,Y2K 风格,放松的深夜游戏女孩氛围。
+画质:超写实,电影级光线,8K,超精细的皮肤毛孔,逼真的头发,以及高度细腻的针织面料质感。
+```
+
+</details>
+
+<details><summary><b>游客旅行海报拼贴</b></summary>
+
+```text
+为 ${country} 制作一张风格化的旅行海报/图形拼贴。主要主体应是一位时尚的国际游客，正在游览 ${country}，明确呈现为旅行者而非当地居民。展示该游客穿着现代旅行服饰，并配有相机、背包、太阳镜、地图或行李箱等细节，正在探索 ${country} 的文化与氛围。将游客置于一个动态构图中，周围环绕着与 ${country} 相关的标志性建筑、街道、景观、地标、交通工具、食物、标识和文化元素。人物细节需写实，背景则采用图形拼贴风格，包含分层的纸张纹理、撕边海报边缘、贴纸元素、半调网点、杂志排版文字和醒目的几何形状。融入来自 ${country} 的真实视觉图案，但保持游客的外貌和造型具有全球时尚感，并明显与所处环境不同。添加一个醒目易读的大标题：“LOST IN ${country}”。整体呈现现代、艺术化、高端的杂志级旅行海报美学，布局均衡，构图适合印刷。
+```
+
+</details>
+
+<details><summary><b>湖畔陶艺工作室设计简报</b> · 机器翻译</summary>
+
+```text
+请你扮演一位专注于水边小型手工艺工作室的建筑概念设计师。帮我为一座带柴烧窑的湖畔陶艺工作室，制作一份清晰、可直接用于生成图像的设计简报。
+
+请先用一个简短的列表向我询问以下内容：湖畔环境（森林湖岸、岩石小海湾、开阔草甸）、泥料与烧制风格（炻器、陶器、柴烧、电窑辅助）、工作室氛围（质朴雪松、现代玻璃与木材、日式风格）、占地预算（小型棚屋、中型工坊、宽敞）以及任何必备项（码头、釉料水槽、晾坯架、访客座位、过夜阁楼）。
+
+然后按以下部分生成简报：
+
+1. **一句话概念**：工作室的感觉与用途。
+2. **场地与朝向**：它在湖岸上的位置，大窗朝哪个方向以获得光线和湖景，窑棚的位置如何兼顾烟与风向，从停车处到工作室或通往码头的路径。
+3. **形态与体量**：占地面积、屋顶形状、拉坯室的敞开式大门，以及独立或相连的窑棚，并给出大致尺寸。
+4. **材料与色调**：外墙饰面（例如风化雪松）、屋面、窗框、码头木板，以及室内的木材与灰泥色调。
+5. **室内布局**：靠近朝湖窗户的拉坯机、揉泥台、釉料工作台、晾坯架、水槽、必要时的木炉，以及泥料与工具的储藏。
+6. **窑与安全说明**：柴烧窑的朝向、灰烬与烟的路径、安全间距，以及窑棚如何敞开以便装窑。
+7. **固定视觉细节**：列出 8 到 10 条编号细节，要求在这座工作室的每张图像中保持一致（外墙饰面、屋顶颜色、码头形状、窑烟囱、窗户数量、树种、水的颜色、黄金时刻的光线方向）。
+8. **图像提示词起始句**：两条简短的提示词开头，一条用于带码头和窑棚的黄金时刻外景，另一条用于朝向水面的蓝调时刻室内工作台。每条都必须重述固定视觉细节，并把关键主体放在第一句。
+
+保持简洁、实用、可建造。避免提及真实的建筑师或品牌。标出任何在树木或码头附近使用柴烧时不安全的地方。
+```
+
+</details>
+
+<details><summary><b>满月下的大角鸮彩绘玻璃窗</b> · 机器翻译</summary>
+
+```text
+一幅彩色玻璃窗板，描绘一只大角鸮栖息在满月下的橡树枝上，采用宽幅横向 16:9 矩形构图。猫头鹰坐在画板中央，正面朝向观者，有高高的尖耳羽簇、明亮发光的琥珀橙色大眼睛、白色喉斑，以及由棕、褐、黑色斑驳玻璃拼成、带有精细彩绘细节的羽毛。它用深色利爪抓握着一根粗壮的棕色橡树枝，树枝从左至右横贯画板下三分之一处。猫头鹰身后，一轮巨大的淡黄色满月略偏中心左上方，带有柔和的环形山纹路。夜空由不规则的钴蓝色和深紫罗兰色带气泡肌理玻璃拼成，点缀着约十几颗金色玻璃小星星。成簇的带裂片的橡树叶，以翠绿、青柠绿和橄榄绿的玻璃制成，从树枝向左右两侧铺展。粗重的深色铅条分隔着每一块玻璃，光线透过玻璃，使色彩如真正的窗户一样发光，整幅画板被一圈方形宝石红肌理玻璃砖的边框围起。浓郁的宝石色调，对称，装饰性强，宁静的夜晚氛围。无文字，无签名。
+```
+
+</details>
+
+<details><summary><b>漫画团队插画</b></summary>
+
+```text
+{
+  "colors": {
+    "color_temperature": "neutral",
+    "contrast_level": "medium",
+    "dominant_palette": [
+      "blue",
+      "red",
+      "pale yellow",
+      "black",
+      "blonde"
+    ]
+  },
+  "composition": {
+    "camera_angle": "medium shot",
+    "depth_of_field": "shallow",
+    "focus": "A group of four people",
+    "framing": "The subjects are arranged in a diagonal line leading from the background to the foreground, with the foremost character taking up the right side of the frame."
+  },
+  "description_short": "一幅漫画风格的插图，描绘四位穿着相同制服的年轻人排成一列，面朝左侧，表情严肃。",
+  "environment": {
+    "location_type": "outdoor",
+    "setting_details": "背景为简单的色彩渐变，暗示着开阔的天空，无其他可辨识的特征。",
+    "time_of_day": "unknown",
+    "weather": "clear"
+  },
+  "lighting": {
+    "intensity": "moderate",
+    "source_direction": "unknown",
+    "type": "ambient"
+  },
+  "mood": {
+    "atmosphere": "团结而坚定",
+    "emotional_tone": "serious"
+  },
+  "narrative_elements": {
+    "character_interactions": "这四人作为一个紧密的整体站在一起，目光一致，目标相同，表明他们是一个团队或隶属于同一组织。",
+    "environmental_storytelling": "简洁极简的背景突出了角色、他们的表情以及团结性，暗示场景的核心焦点在于他们的内在状态和群体动态。",
+    "implied_action": "这些角色似乎正立正站好或注视着画面外的某物，暗示他们即将执行任务或正面临重大事件。"
+  },
+  "objects": [
+    "Blazers",
+    "Collared shirts",
+    "Uniforms"
+  ],
+  "people": {
+    "ages": [
+      "teenager",
+      "young adult"
+    ],
+    "clothing_style": "Uniform consisting of blue blazers with a yellow 'T' insignia on the pocket, worn over red collared shirts.",
+    "count": "4",
+    "genders": [
+      "male",
+      "female"
+    ]
+  },
+  "prompt": "A comic book panel illustration of four young team members standing in a line. They all wear matching uniforms: blue blazers with a yellow 'T' logo over red shirts. The person in the foreground has short, dark, wavy hair and a determined expression. Behind them are a blonde woman, and two young men with dark hair. They all look seriously towards the left against a simple gradient sky of pale yellow and green. The art style is defined by clean line work and a muted color palette, creating a serious, unified mood.",
+  "style": {
+    "art_style": "comic book",
+    "influences": [
+      "Indie comics",
+      "Amerimanga"
+    ],
+    "medium": "illustration"
+  },
+  "technical_tags": [
+    "line art",
+    "illustration",
+    "comic art",
+    "character design",
+    "group portrait",
+    "flat colors"
+  ],
+  "use_case": "Training data for comic book art style recognition or character illustration generation.",
+  "uuid": "1dac4e3f-b9dd-45de-9710-c4d685931446"
+}
+```
+
+</details>
+
+<details><summary><b>潮流街头咖啡店人像</b> · 机器翻译</summary>
+
+```text
+超写实的休闲咖啡馆人像,一位时尚女性坐在户外餐饮摊位前,身后是摆满各色瓶装饮料的玻璃冷藏柜。她拿着一大杯带有淡淡泡沫的冰镇琥珀色无酒精气泡饮料,凑近嘴唇,另一只手拿着一个包好的沙瓦玛。双眼轻轻闭上,神情放松满足。留着中分长直发,眉形清晰,眼线锐利上扬,妆容为暖古铜色,皮肤有光泽。服装:白色上衣外搭宽松的亮粉色拉链连帽衫,黑色斜挎包,带有链条细节。粉色长指甲,戴着戒指,潮流街头风格。明亮的自然日光,抓拍的美食瞬间,都市生活美学,真实的皮肤质感,对焦清晰,浅景深,竖构图 9:16,照片级写实。
+超写实 8K,超精细细节,对焦清晰;浅景深,自然散景;HDR 光照;电影级调色;镜头 85mm/50mm/35mm;光圈 f/1.4–f/2.8;主光位于 45°,柔和阴影;轮廓光/背光用于分离主体;白平衡干净;自然皮肤质感,毛孔清晰可见,高光有光泽。格式 9:16
+```
+
+</details>
+
+<details><summary><b>灯笼黄昏的水上茶室露台</b> · 机器翻译</summary>
+
+```text
+一张写实照片，拍摄自一座小型漂浮雪松茶屋宽阔的木板露台，时间是灯笼点亮的黄昏，16:9 横幅，镜头位于站立的视线高度，在茶屋墙壁旁，沿着露台向湖面望去。首先是主要主体：茶屋位于画面左缘，带有深灰色瓦片的屋檐，温暖蜂蜜色的雪松立柱，以及由室内点亮、泛着微光的浅色障子面板；露台上有一张矮木桌和两把椅子，沿着露台木板有发光的小纸灯笼，露台尽头附近有两盏柔和点亮的矮墩花岗岩石灯笼，远处的露台上停着一条白色小木划艇。再往外，一条笔直的长木板栈道在蓝调时刻延伸到静止的湖面上，倒映着灯笼的光芒，层叠的蓝灰色山峦呈暮色剪影，远岸是深色松林，水面上笼着薄雾，画面上缘有一枝红橙色的秋枫叶。与清晨视角相同的固定设计：深色瓦片四坡屋顶、雪松框架、障子开间、石灯笼、白色划艇、枫树枝。柔和的暮光混合着温暖的灯笼光，安静沉思的氛围，清晰的木纹，真实色彩。没有人物，没有可读文字，没有霓虹，没有水印。
+```
+
+</details>
+
+<details><summary><b>炭笔温柔肖像</b></summary>
+
+```text
+炭笔和石墨在纹理纸上绘制，一位三十岁出头的伊朗女性，强烈的明暗对比，可见的涂抹痕迹。全部情绪都集中在眉毛上：眉头内端上扬并聚拢，眼神柔和、湿润，眼睑微微收窄流露出温柔——那种母性的“الهی بمیرم”神情。画作下方，有一个粗糙的手绘边框，框内是涂抹过的手写铅笔文字：“الهی بمیرم”。
+```
+
+</details>
+
+<details><summary><b>点彩派岩石潮池画</b> · 机器翻译</summary>
+
+```text
+一处岩石潮池,有橙色和紫色的海星、绿色的海葵、小小的寄居蟹壳和一条条海带,以乔治·修拉与保罗·西涅克的新印象派点彩风格绘成。整幅画布由成千上万个细小而分明的圆点和短促的纯色笔触并置而成,色彩在眼中自行混合:清澈的水用绿松石色和紫罗兰色的点,湿润的岩石用赭色和玫瑰色的点,午后阳光在水面上闪烁之处则用闪亮的白色和柠檬黄的点。布满藤壶的巨石环绕着潮池,远处平静的大海泛着几道轻柔的波浪,延伸至柔和的地平线,天空是淡淡的桃色。透过浅水可以看见小海螺和卵石。画面明亮、通透、均衡,视点较低,贴近潮池。可见画布纹理和油彩圆点轻微的浮凸感。宽幅横向 16:9。无人物,无手,无船,无文字,无签名,无标志。
+```
+
+</details>
+
+<details><summary><b>烛光餐厅特写</b></summary>
+
+```text
+{
+  "category": "CANDLELIT_RESTAURANT_CLOSEUP",
+  "subject": {
+    "demographics": "成年女性，21–29 岁，土耳其人外貌。",
+    "hair": {
+      "color": "深棕色",
+      "style": "松散、柔和造型",
+      "texture": "真实发丝，柔亮光泽"
+    },
+    "face": {
+      "eyes": "柔和眼神接触，温暖高光",
+      "makeup": "自然系轻奢妆容，眼线细腻",
+      "skin_details": "真实毛孔，烛光映照下的暖调光泽"
+    },
+    "clothing": {
+      "outfit": "简约优雅的黑色上衣/连衣裙（无任何标识）"
+    },
+    "accessories": {
+      "jewelry": ["银色圆环耳饰"]
+    }
+  },
+  "pose": {
+    "type": "坐姿特写",
+    "orientation": "正对镜头",
+    "hands": "一只手托住下巴，手指自然放松",
+    "gaze": "直视镜头，眼神接触",
+    "expression": "平静而自信的微微笑意"
+  },
+  "setting": {
+    "environment": "餐厅餐桌",
+    "background_elements": [
+      "烛焰虚化光斑（bokeh）",
+      "玻璃反光",
+      "柔和背景虚化（无任何可辨识文字标识）"
+    ],
+    "depth": "面部清晰锐利，背景呈奶油般柔焦"
+  },
+  "camera": {
+    "shot_type": "特写人像",
+    "angle": "平视角度",
+    "focal_length_equivalent": "50–85mm 专业镜头质感，或 26mm 手机变体",
+    "framing": "4:5 构图，紧凑裁切",
+    "focus": "双眼极度锐利"
+  },
+  "lighting": {
+    "source": "烛光 + 温暖环境光",
+    "direction": "温暖侧光/前侧光",
+    "highlights": "嘴唇与眼睛处呈现柔和镜面高光",
+    "shadows": "柔和、修饰性强的阴影"
+  },
+  "mood_and_expression": {
+    "tone": "亲密、优雅、自信",
+    "atmosphere": "温暖、电影感"
+  },
+  "style_and_realism": {
+    "style": "照片级真实感 Instagram 人像",
+    "imperfections": "可接受轻微胶片颗粒感"
+  },
+  "technical_details": {
+    "aspect_ratio": "4:5",
+    "noise": "低光照下轻微噪点（颗粒感）"
+  },
+  "constraints": {
+    "adult_only": true,
+    "no_text": true,
+    "no_logos": true,
+    "no_watermarks": true
+  },
+  "negative_prompt": [
+    "虚假火焰", "CGI",
+    "塑料质感肌肤", "过度磨皮",
+    "多余手指", "扭曲变形的手部",
+    "可读文字", "标识（logos）", "水印"
+  ]
+}
+```
+
+</details>
+
+<details><summary><b>热带海滩度假照</b> · 机器翻译</summary>
+
+```text
+一张写实的休闲度假照片,从高角度向下俯拍,画面中是一位五十五岁上下、肤色黝黑、体格健壮的成熟男子,半倚半躺在白色沙滩躺椅上。他留着花白的胡须和小胡子,皮肤被晒得发红,胸部、肩膀和腹部有明显的晒伤,左肩和胸部有一大片深色的波利尼西亚部落纹身。他戴着金色镜框的圆形飞行员墨镜,镜片是深色反光的,左手腕上戴着多条手链,其中有一条绿松石串珠手链和一条黑色皮质手链,下身穿着亮黄橙色的泳裤,配白色抽绳。他的右臂伸向弯曲的膝盖,抬头看向镜头,神情放松,带着淡淡的微笑。场景是一片原始的热带海滩,细腻的白沙,背景是绿松石色的加勒比蓝海水,木杆上撑着大号米色帆布沙滩伞,白色躺椅配有橙色坐垫和毛巾,远处有几个人在伞下休息。远处的地平线上可以看到深色岩石和绿色植被,天空晴朗湛蓝。光线是强烈的正午直射阳光,形成鲜明清晰的阴影,色彩鲜艳饱和、偏暖——以黄色、橙色、绿松石蓝和白色为主。以抓拍、自然随性的自拍风格拍摄,中等景深,背景略微柔化。照片级写实,细节丰富,自然的皮肤质感,4K画质。
+```
+
+</details>
+
+<details><summary><b>热气球日出木镶嵌画</b> · 机器翻译</summary>
+
+```text
+一幅宽幅装饰性镶嵌木工画板,完全由镶嵌的木贴面制成,描绘七只热气球在日出时分飘过缓缓起伏的丘陵。每只气球都由对比鲜明的贴面条拼成:浅色枫木、金黄色缎木、蜜色橡木、红褐色紫檀、深色胡桃木和近乎黑色的乌木,排列成醒目的弧形球瓣,下方挂着小小的藤编吊篮。丘陵呈柔和的层层条带,由橄榄色白蜡木、暖色樱桃木和烟熏橡木构成,点缀着由小块田地拼成的田野、一排杨树、一条以银色梧桐木切成的蜿蜒河流,以及一座红屋顶的小石砌农舍。一轮由放射状瘿木贴面拼成的巨大半日,从远处的山丘后升起,天空由浅色桦木和浅色银桦木的长条弧形木条铺成,可见天然木纹。每一块木片都沿着利落的细缝与相邻的木片相接,不同形状之间木纹方向变化,以暗示光线与动态,一道明暗交替的细条纹镶边框住整幅画板。缎面法式抛光,带有柔和温暖的光泽,由柔和的掠射光照亮,凸显木材质感。平静、愉悦、手工制作的氛围。宽幅横向 16:9。无人物,无文字,无字母,无标志。
+```
+
+</details>
+
+<details><summary><b>热门图库AI图片创作</b></summary>
+
+```text
+扮演一名富有创意的AI图像设计师。你是为Adobe Stock Contributor等图库平台生成高需求图像的专家。你的任务是创建符合当前趋势且市场需求旺盛的AI生成图像。
+
+你将：
+- 研究并识别图库摄影中的流行主题和风格
+- 使用AI工具生成热门类别中的图像，例如 ${category:landscape}、${category:abstract}、${category:technology}
+- 确保图像高质量并满足图库平台的要求
+
+规则：
+- 始终关注图库摄影领域的最新趋势
+- 专注于创作视觉吸引力强且独特的图像
+- 包含相关关键词和元数据，以提高可发现性
+
+示例：
+- 生成一幅现代的、以抽象科技为主题的图像，契合当前AI与创新领域的流行趋势
+```
+
+</details>
+
+<details><summary><b>照料火星屋顶花园的小宇航员</b> · 机器翻译</summary>
+
+```text
+写实的充满希望的科幻静帧：一名身穿洁白舱外活动服、面罩上带有柔和金色反光的小小宇航员，跪在一座低矮火星栖息舱顶部的屋顶菜园中。高架种植床里，翠绿的生菜、圣女果和香草在透明的网格穹顶玻璃罩下茁壮生长；玻璃之外的走道上覆盖着细细的红色火星尘埃。宇航员手持一只小喷壶，专注地照料一株番茄。柔和的午后光线来自淡色太阳，天空呈太妃糖色；远处是其他栖息舱和被风雕琢的沙丘。温暖的室内植物生长灯发出微光，形成对比。50mm 镜头质感，柔和的景深，织物和土壤的触感细节，乐观的氛围，无暴力，无文字，无标志，适合工作场合观看。
+```
+
+</details>
+
+<details><summary><b>照片修复放大与透明背景</b></summary>
+
+```text
+提升此照片的分辨率并使其看起来惊艳。将背景变为透明。修复损坏的物体。使其变得美观
+```
+
+</details>
+
+<details><summary><b>照片变90年代经典电影场景</b></summary>
+
+```text
+使用所提供的男子图像，以俄罗斯犯罪电影《Bumer》那种粗粝的视觉风格，创作一幅超写实的动作场景。严格保持其面部完全不变——包括相同的面部比例、五官特征、表情及皮肤纹理。展现他处于一个紧张时刻：站在户外一条寒冷的灰暗街道上，单臂伸直持握一把手枪，急迫地向前瞄准。着装：黑色夹克、略显凌乱的衬衫，添加淤青或污渍以增强真实感。背景：苏联时期风格的公寓楼，冬季氛围，色调低饱和。布光：自然阴天日光，冷色调。情绪基调：原始、危险、混乱，具备手持摄影机的美学质感。捕捉动作进行中的张力，细节锐利，运动感真实。确保其真实面部与场景实现完美融合。
+```
+
+</details>
+
+<details><summary><b>照片变辛普森场景</b></summary>
+
+```text
+使用上传的照片作为构图与主体的**唯一参考**。将其重制为一幅干净、可信的《辛普森一家》静态画面（采用经典季风格），角色设计与背景绘制均须严格符合剧集设定。
+
+核心要求  
+- 照片中**所有可见主体**均须转换为《辛普森一家》风格角色，包括：  
+  - 多个人类  
+  - 婴儿/儿童  
+  - 宠物与动物（猫、狗、鸟等）  
+- 不得保留任何主体的写实外观。禁止出现“半写实、半卡通”效果。
+
+身份与数量锁定  
+- 保持人类与动物的**确切数量**不变。  
+- 保持每个主体的位置、相对大小、姿态、手势及视线方向不变。  
+- 为每个主体保留关键身份线索：发型、面部毛发、眼镜、标志性配饰、服装类型及整体气质。  
+- **禁止**合并人物、移除动物、虚构额外角色，或调换人物身份。
+
+《辛普森一家》角色设计规则（必须与剧集完全一致）  
+- 肤色：人类为《辛普森一家》标志性的黄色，采用剧中典型的平涂填充。  
+- 眼睛：大而圆的白色眼睛，瞳孔为小黑点（无细节虹膜）。  
+- 鼻子：简洁的圆润鼻形，线条极简。  
+- 嘴巴：简洁线稿，闭合时略带轻微覆咬合感。  
+- 手部：人类为4根手指（《辛普森一家》标准设定）。  
+- 线条：干净利落的黑色描边，粗细均匀，无潦草笔触。  
+- 阴影：仅限最小程度的赛璐珞风格阴影，不得使用写实阴影或纹理。
+
+动物转换规则（须符合剧集设定）  
+- 将每只动物转换为《辛普森一家》风格版本：  
+  - 形体简化，轮廓粗重，色彩平涂  
+  - 表情丰富但面部简洁：黑点瞳孔，口鼻细节极少  
+- 须确保物种可辨识，并以简化形式保留独特标记（斑点、毛色区块等）。
+
+服装与配饰  
+- 保留原始服装与配饰，但将其细节简化为平涂色块。  
+- 仅当原图中标识/图案清晰可见时才予以保留，且须大幅简化。  
+- 服装上不得添加任何文字。
+
+背景与环境  
+- 将背景转换为类似《辛普森一家》春田镇（Springfield）的环境，并与原始场景匹配：  
+  - 若为室内：采用柔和粉彩色墙壁、简洁道具、基础透视、典型情景喜剧布景风格。  
+  - 若为室外：明亮天空、简化建筑/树木、使用春田镇专属配色方案。  
+- 保留主要背景物体（桌子、电话、椅子、标牌等），但需简化为动画风格道具。  
+- 不得更改地点类型（除非原图本身已匹配某处，否则不得将其移至莫伊酒吧、Kwik-E-Mart 或辛普森家）。
+
+镜头与构图  
+- 匹配原始照片的拍摄角度、镜头质感、裁切方式及空间留白。  
+- 保持其为单帧电视画面，而非海报式构图。
+
+质量要求与禁止项  
+- 不得包含文字、字幕、标题、水印、Logo、UI 元素或边框。  
+- 禁止 3D 效果、绘画感、动漫风格，以及超出《辛普森一家》常规尺度的夸张漫画化处理。  
+- 禁止“诡异面容漂移”（uncanny face drift）：角色必须是地道的《辛普森一家》风格，同时仍能清晰对应照片中的每位主体。  
+- 高分辨率、边缘锐利、色彩纯净，观感须如真实剧集截图。
+```
+
+</details>
+
+<details><summary><b>照片姿势与场景改编</b></summary>
+
+```text
+充当照片姿势变换编辑器。你是一个专门从事自拍中人物姿势变换的 AI。你的任务是编辑上传的自拍照，将主体的姿势更改为各种姿态，例如 ${pose:standing}、倚靠某物、躺卧、跪姿、回眸侧望、朝向观者行走，或羞涩姿态。你将：  
+- 分析上传的自拍照  
+- 在保持自然观感的前提下修改姿势  
+- 确保背景与光照与新姿势保持一致  
+
+规则：  
+- 保持原始图像的质量与分辨率  
+- 保留面部表情与细节  
+- 根据用户请求提供不同姿势的选项${Setting:Femboy bedroom}${Facial expression:Soft smile}
+```
+
+</details>
+
+<details><summary><b>照片手绘涂鸦</b></summary>
+
+```text
+使用上传的图像作为基础照片，不要改变人物的脸部、身体或姿势。在主体周围添加手绘风格的白色涂鸦插图，采用素描感的马克笔/粉笔风格，线条不完美且富有玩趣，涂鸦应看起来像是直接画在照片之上。涂鸦主题：${theme} 包含以下元素：${object_list} 保持背景完整，不要遮挡脸部，具有杂志编辑风格的海报美感，构图简洁，高质量。
+```
+
+</details>
+
+<details><summary><b>照片美化增强</b></summary>
+
+```text
+充当一名专业照片编辑师。您的任务是提升所上传照片的美感与画质。您将：
+- 调整亮度与对比度，以实现最佳清晰度。
+- 柔化肤色并强化面部特征。
+- 应用滤镜以丰富色彩与活力。
+- 去除所有瑕疵或不需要的元素。
+规则：
+- 保持照片的自然观感。
+- 确保所有增强效果细腻微妙，避免过度处理。
+变量：
+- ${style:Natural} — 指定增强风格，例如：Natural（自然）、Vintage（复古）、Glamour（华丽）。
+```
+
+</details>
+
+<details><summary><b>照片转 3D 风格头像</b></summary>
+
+```text
+使用用户上传的图像作为源，将人物转换为风格化的 3D 角色，同时精确保留身份、面部结构、姿势、发型、服装和整体构图，与照片中所示完全一致。结果应明显类似于真实人物。
+
+视觉风格为风格化 3D 角色，具有柔和的极简卡通 3D 美学，灵感来自类似 Pixar 的视觉效果，但更加极简，类似玩具人偶渲染和干净的产品式角色设计。应在不改变人物现实外貌的前提下，偏向风格化而非写实。
+
+皮肤应呈现为光滑的哑光塑料质感，具有柔和、均匀的纹理和轻微的次表面散射。面部特征应在形式上保持简化，但需忠实于原始图像。表情应保持与源照片一致的中性且自然状态。
+
+照明应干净且可控，类似于影棚柔光箱布光，具有非常柔和的阴影、低对比度和微妙的高光。背景应为纯色 [BACKGROUND COLOR]，无渐变。
+
+相机视角应为正前方，采用中等近景构图，类似于 50mm 镜头效果，无畸变。输出质量应为高分辨率，边缘清晰，无噪点，风格一致性强，并具有明显非照片级写实的最终效果
+```
+
+</details>
+
+<details><summary><b>照片转九宫格分镜</b></summary>
+
+```text
+扮演一名分镜图艺术家。你精通视觉叙事与构图。你的任务是将上传的照片转换为一个 3×3 网格的分镜图，同时确保主角始终位于每个网格单元的中心位置。
+
+你将：
+- 分析上传的照片
+- 将照片均分为 9 个相等的部分
+- 确保主角在整张 3×3 网格中保持形象一致
+- 针对每个分区调整画面，以实现视觉平衡与叙事连贯性
+
+规则：
+- 保持原始分辨率与图像质量
+- 确保每个网格分区之间的过渡自然流畅
+- 主角不得出现重叠或形变
+
+变量：
+- 照片：${photo}
+- 主角：${mainCharacter}
+```
+
+</details>
+
+<details><summary><b>照片转写实我的世界角色</b></summary>
+
+```text
+我想根据一张图像制作一个超现实的 Minecraft 角色，该角色应具备图像中人物的所有特征，例如肤色和服装，但保留原始背景不变。最终结果不应带有背景。
+```
+
+</details>
+
+<details><summary><b>照片转皮克斯风 3D 角色</b></summary>
+
+```text
+以上传的照片为基准，采用高端 Pixar/Disney 动画风格进行 3D 角色渲染。保留面部结构、表情、发型及独特特征。比例可爱但写实，拓扑结构干净，皮肤光滑，眼部细节丰富。全身立姿，置于纯白色影棚背景中；光线柔和均匀，脚部下方呈现微妙自然的阴影；启用全局光照；不添加任何道具，无任何干扰元素。超锐利，4K 分辨率，高细节，基于物理的渲染（PBR），色彩平衡，电影级景深，专业影棚质感，构图对称，写实卡通（photoreal cartoon）风格终稿。
+```
+
+</details>
+
+<details><summary><b>照片转等距城市切片</b></summary>
+
+```text
+{
+  "prompt": "根据上传的图像，严格创建一个超写实等距缩微模型场景。分析该图像，提取其主导的建筑风格、建筑年代、建筑材料、街道布局、物体、车辆及城市密度。将同一场景重建为一个悬浮于纯白色背景之上的单一切片式城市街区。在将其转换为微型建筑模型的同时，保留原始氛围、比例关系与空间逻辑。若图像中存在中层建筑，则须匹配其立面材质纹理、阳台、窗户、店面以及街道元素；仅保留源图像中可见的元素，移除一切源图像中不存在的内容。采用 45 度等距视角、移轴微缩效果、柔和自然日光（需匹配原始图像的光照条件）、全局光照、基于物理的渲染（PBR）材质、极致微观细节，以及建筑可视化级别的画质。采用干净的影棚布光。不渲染天空，不渲染地平线。",
+  "negative_prompt": "虚构物体、额外建筑、幻想元素、卡通、动漫、插画、低多边形（low poly）、平面着色（flat shading）、鱼眼镜头、畸变、超现实细节、比例不一致、随机道具",
+  "aspect_ratio": "1:1",
+  "style": "photorealistic",
+  "quality": "high"
+}
+```
+
+</details>
+
+<details><summary><b>照片转黏土胸像</b></summary>
+
+```text
+使用上传的照片作为唯一身份参照。将人物转化为超写实的手工塑形黏土（油泥）半身雕塑。
+
+主体
+- 仅制作半身像：头部 + 颈部 + 上肩部（不含全身）。
+- 确保人物清晰可辨：保持原始面部比例、眼睛、鼻子、嘴唇、下颌线、发型。
+- 保留原始面部表情及上传照片中近似的角度（头部朝向）。
+- 不进行美化处理，不改变年龄。
+
+真实黏土材质（必须呈现物理实体感）
+- 必须看起来像真实的塑形黏土，而非 CGI 渲染、瓷质或蜡质效果。
+- 展现微妙的手工真实感：隐约可见的指纹、细微的工具刻痕、柔和的擦痕、轻微的压痕、黏土部件拼接处的细微接缝线。
+- 添加逼真的黏土表面特性：哑光—微蜡质感、微观纹理、细小尘粒、局部厚度不均。
+
+雕刻细节
+- 发型：以黏土塑造出具有可信方向性与体积感的发丝/发簇，排列略带不完美。
+- 肤色：呈现分层黏土观感，带有精细的微观纹理（非喷枪式平滑处理）。
+- 眼睛：用黏土手工制作的眼睛（非高光泽写实眼球）。若采用分件制作，需展现细微的拼接线。
+- 嘴唇与鼻子：柔软黏土过渡效果，具备真实手工边缘。
+
+色彩与饰面
+- 皮肤与嘴唇采用天然黏土色系；头发亦为黏土材质（非真实毛发）。
+- 若经上色，须呈现手绘效果：颜料存在轻微色差、可见柔和笔触纹理、细小瑕疵。
+- 除上传照片中明确存在的配饰外，不得添加任何额外配饰。
+
+摄影风格（使其呈现真实产品摄影效果）
+- 实体雕塑的影棚产品照：具备真实 85mm 镜头视觉效果，自然景深。
+- 主光源为前左方柔和漫射光 + 微弱轮廓光，阴影干净柔和。
+- 中性无缝背景：纯浅米白或浅灰色。
+- 添加真实接触阴影及细微的桌面表面纹理。
+
+构图与画质
+- 居中构图，胸像取景（chest-up framing），画面边缘整洁。
+- 面部特征区域超锐利对焦，高分辨率，材质表现真实。
+
+负面约束（禁止项）
+- 不得采用卡通/动漫风格。
+- 不得呈现 3D 渲染观感、塑料玩具感、瓷质感或蜡像馆皮肤质感。
+- 不得含文字、标志或水印。
+```
+
+</details>
+
+<details><summary><b>爪哇孔雀手绘蜡染布</b> · 机器翻译</summary>
+
+```text
+一张平铺俯拍照片,拍摄的是一块完成的手绘蜡染织物,铺在深色柚木上,16:9 横向构图,布料从左到右占满大部分画面。布上是一只经典的爪哇蜡染孔雀,呈四分之三侧面朝左:骄傲弯曲的脖颈,一簇细点组成的冠羽,以及由靛蓝、深棕、奶油和暖赭色的细长眼斑组成的飘逸尾羽,全部由精细的龟裂蜡防线条勾勒,染料渗入发丝般的裂纹,形成经典的蜡染冰裂纹。孔雀背后是重复的、受巴朗(parang)纹样启发的斜向图案,以及奶油色底上较浅靛蓝的小花卉 isen 填充纹样。棉布手感柔软哑光;较深的色块中可见蜡的裂纹;几处细小的未染色针孔体现了真实的手工工艺。来自左侧的柔和侧光展现出织物轻柔的褶皱,以及蜡层较厚处的凸起质感。在画面顶部边缘、略微失焦处:一支 canting 蜡笔工具、一个小蜡锅,以及一角折起的未使用白布。传统蜡染纺织艺术的纪实手工艺摄影,浓郁的天然染料色彩,宁静的传统氛围。不是数码图案模型,也不是蜡染风格的绘画:是一块真实拍摄的染色布料。不要有可读文字,不要有字母,不要有标志,不要有水印,不要有手。
+```
+
+</details>
+
+<details><summary><b>牙科诊所人像</b></summary>
+
+```text
+使用上传的人物照片作为主体。保持面部、发型和身份完全一致。
+
+将人物置于现代牙科椅上，呈略微后仰坐姿；背景为干净明亮的牙科诊所，采用柔和的白色照明。在人物胸前添加一条浅蓝色一次性牙科围兜/围裙，并用颈夹固定。周围布置细微的牙科元素：头顶检查灯、带牙科器械的小侧边桌，以及背景中虚化的置物架或橱柜。
+
+保留上传照片原有的相机角度和大致构图。不得更改人物的面部特征或表情，仅调整身体姿态、服装细节及环境，以匹配真实牙科就诊场景。
+```
+
+</details>
+
+<details><summary><b>独立酒吧夜景</b></summary>
+
+```text
+超写实土耳其独立剧集风格夜景，取景于安卡拉嬉皮士街区一家略带另类气质的酒吧，竖构图，形如手机故事（phone story）。天花板上悬挂着暖色调钨丝灯泡，部分裸露，部分罩在风格不一的灯罩内。墙面为裸露红砖，贴满演出海报与老式黑白土耳其摇滚乐手照片。前景中，一位27岁、土耳其相貌、曲线玲珑的金发女性侧身坐在木质吧台旁的高脚凳上，身形柔和微丰。她身穿高腰牛仔裤，内搭修身黑色背心，外罩一件宽大复古牛仔夹克——纽扣未系，营造出随意却略带性感的氛围，头发蓬松微卷。
+
+她面前吧台上放着一只细长高脚品脱杯，以及一瓶棕色 **Bomonti Filtresiz 100% Malt** 啤酒，瓶身标签约半面朝向镜头，瓶壁凝结水珠清晰可见。近旁有一块杯垫，另有一小瓶 **Efes Malt**，暗示她已尝试过几种不同啤酒。吧台后方货架上陈列着各式酒瓶：数罐桶形 **Efes Draft** 易拉罐、几瓶 **Efes Özel Seri** 与 **Efes Dark**，并列摆放着进口品牌如 **Miller**、**Beck’s** 和 **Corona** 的酒瓶；所有标签均可见，但并非完全正对镜头——仅呈现真实酒吧中自然杂乱的陈列状态。
+
+她正低头看着手机，拇指悬停于屏幕中央似正滚动浏览，嘴角微扬，仿佛即将从这家酒吧发出一条讽刺意味的推文，例如“晚安”（iyi geceler）或“我说我在家待着，其实是骗人的”（evde oturuyorum diye yalan söyledim）。手机屏幕泛出的蓝光映亮她的面部与颈部，而她身体其余部分则沐浴在环境暖光之中。
+
+她周遭的酒吧人群极具安卡拉嬉皮士气质：背景中一小群人围坐桌旁玩土耳其西洋双陆棋（tavla），桌上摆着精酿啤酒与 **Efes Haus** 酒瓶；一名戴毛线帽、蓄须男子倚靠吧台正与调酒师交谈；另一名发色艳丽的女孩在敞开的门口抽烟。角落设有一处小型现场音乐舞台，配有鼓组与音箱，但此刻并无乐队登台。
+
+手持拍摄的竖构图略带倾斜：顶部边缘裁切掉霓虹灯牌 **Efes Pilsen** 的上沿；吧台一角与一名顾客被画面侧边裁切。背景中走动的人影带有轻微动态模糊；阴暗角落可见细微数字噪点；酒瓶表面反射真实；女性肌肤纹理未经柔化处理，保留真实质感。整体色调以暖橙色与琥珀色为主，其间点缀 **Efes** 品牌酒标所带的蓝色与绿色。整幅画面宛如用手机在安卡拉一家真实独立酒吧夜间随手抓拍，**Bomonti** 与 **Efes** 产品自然融入场景之中。
+```
+
+</details>
+
+<details><summary><b>现代时尚产品摄影</b></summary>
+
+```text
+面向 Instagram 广告的超高端时尚产品摄影。  
+一件高端服饰作为主角产品呈现。剪裁完美，面料纹理真实，针脚与褶皱清晰可见。  
+由世界级时尚摄影团队掌镜，使用中画幅相机与 85mm 镜头，景深极浅。
+
+受奢侈时尚品牌启发的杂志级影棚布光：柔和的主光、精准控制的阴影、细腻的对比度。  
+面料细节清晰可辨；自然垂坠感、真实的重量感与动态感俱佳。
+
+极简而优雅的中性色调背景；背景带轻微渐变。整体为干净、现代的影棚环境。  
+无干扰元素；无道具；无文字。
+
+奢侈时尚美学风格：隽永、自信、现代。  
+调色风格参考 Prada、COS 与 Acne Studios 等全球奢侈品牌。
+
+构图居中，专为 Instagram 动态信息流优化；正方形画幅比例。  
+服装主体锐利聚焦，背景柔和虚化。  
+不出现 Logo、模特面部、手部或水印。
+
+照片级真实感、杂志级品质、8K 分辨率、高端商业时尚摄影。
+```
+
+</details>
+
+<details><summary><b>玻璃分身</b></summary>
+
+```text
+{
+  "title": "The Glass Doppelgänger",
+  "description": "一场高能的心理惊悚场景，一名女性正与从破碎表面浮现的有意识的镜像展开激烈的身体搏斗。",
+  "prompt": "你将使用提供的照片执行一次图像编辑，以创建一个高预算电影画面。该场景描绘主体与一个超自然镜像实体进行殊死搏斗。图像必须是超逼真的，采用电影级灯光和高度细致的纹理。风格应为大片级别，使用 Arri Alexa 拍摄，浅景深以突出紧张感。确保飞溅的玻璃碎片具有真实的物理效果。",
+  "details": {
+    "year": "2025",
+    "genre": "电影级写实主义",
+    "location": "一间废弃的、霓虹灯照亮的化妆间，墙纸剥落，一面墙大小的梳妆镜正向外碎裂。",
+    "lighting": [
+      "上方投下的体积感舞台灯光",
+      "闪烁的荧光灯嗡鸣",
+      "戏剧性的轮廓光，突出汗水和玻璃纹理"
+    ],
+    "camera_angle": "动态低角度中景，略微荷兰倾斜以增强混乱感。",
+    "emotion": [
+      "凶猛",
+      "绝望",
+      "肾上腺素激增"
+    ],
+    "color_palette": [
+      "电光青",
+      "粗粝混凝土灰",
+      "深邃阴影黑",
+      "金属银"
+    ],
+    "atmosphere": [
+      "暴力",
+      "超现实",
+      "幽闭恐惧",
+      "动态"
+    ],
+    "environmental_elements": "成千上万的微小玻璃碎片悬浮在空中（子弹时间效果），尘埃微粒在光束中舞动，翻倒的家具。",
+    "subject1": {
+      "costume": "短款上衣，迷你裙",
+      "subject_expression": "因用力而发出原始的嘶吼，眼神充满张力。",
+      "subject_action": "与镜像搏斗"
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "卡通效果",
+        "低分辨率",
+        "模糊纹理",
+        "静态姿势",
+        "平静神态"
+      ],
+      "exclude_styles": [
+        "3D 渲染",
+        "插图",
+        "绘画",
+        "动漫"
+      ],
+      "exclude_colors": [
+        "粉彩粉红",
+        "阳光黄"
+      ],
+      "exclude_objects": [
+        "魔法发光球体",
+        "魔杖",
+        "动物"
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>玻璃温室概念设计简报</b> · 机器翻译</summary>
+
+```text
+请你同时扮演温室与玻璃房设计师和可视化艺术总监。我会描述我心目中的维多利亚风格玻璃暖房。你要把它整理成一份紧凑的概念方案：建筑、铁与玻璃结构、植物、家具、地面与水景、光线与氛围，并附上一份编号的固定设计细节清单，以及两条可直接使用的图像提示词，分别从两个视角、在两个时段展现同一座建筑，使两张 AI 图像看起来像是同一个真实地点的照片。
+
+时代与灵感：${era:High Victorian, around 1870, inspired by public palm houses but at the scale of a private estate}
+用途与规模：${purpose:a private winter garden attached to nothing, standing alone at the end of a formal garden, about 14 m long, 8 m wide, 7 m high}
+我喜欢的结构与材料：${structure:white-painted wrought iron, arched ribs, a diamond lattice glass roof, a low pale stone plinth wall}
+植物：${plants:hanging Boston ferns, kentia palms in terracotta pots, tree ferns, orchids on a side shelf, moss}
+家具与景观元素：${features:ornate cast-iron benches, a small round mosaic fountain with koi in the center, brass pendant lanterns}
+地面：${floor:black-and-white checkerboard marble}
+氛围：${mood:calm, humid, timeless, a little romantic, a place to read on a Sunday morning}
+建筑外部：${outside:a gravel path between low box hedges, climbing pink roses on the front, a formal English garden}
+视角 A：${view_a:interior at eye level from just inside the front doors, looking down the central aisle, early morning sun with misty light shafts}
+视角 B：${view_b:exterior from the gravel garden path facing the front entrance at blue hour, warm lamps glowing inside}
+
+请输出：
+
+1. 概念
+   - 暖房的名称创意（仅供我自己使用，不会出现在图像中），以及两句话描述步入其中的感受。
+   - 建筑：占地面积、高度、屋顶形式、立柱/拱肋间距、玻璃分格图案、屋脊细节、入口、通风设施，以及铁构件的表面处理，用朴素的施工术语描述。
+   - 室内布局：中央通道、喷泉位置、长椅、棕榈、蕨类和搁架的位置，以及灯笼悬挂的位置，从入口向内看进行描述。
+   - 种植方案：每组植物的位置及其营造的效果（高度、质感、滤光）。
+   - 色板：6 种有名称的颜色（简单的名称，如"粉笔白"或"蕨绿"），以及每种颜色出现的位置。
+   - 材料与饰面：铁、玻璃（透明、略有波纹的老玻璃、冷凝水）、石材、大理石、马赛克、黄铜、陶土和木材。
+
+2. 固定设计细节（一致性清单）
+   一份编号清单，包含 14 到 18 项在每张图像中都必须完全一致的细节：占地面积与比例、屋顶形状、拱肋数量与间距、玻璃分格图案、屋脊花饰与尖顶饰、基座墙、入口门与扇形气窗、地面图案、喷泉、长椅、灯笼、棕榈、蕨类，以及从室内和室外都能看到的任何元素，每项都要有确切位置。每一项都写成图像生成器能够遵循的简短具体短语（例如"一个直径约 2 米的圆形喷泉水池，外饰深蓝与金色马赛克，位于大厅正中心"）。
+
+3. 图像提示词 A：基准视角
+   一条详细的 AI 图像生成提示词：从视角 A 的位置、在视角 A 的光线下拍摄的写实建筑室内摄影。包含从该位置可见的每一项固定细节及其正确位置（以相机视角的左右为准）、相机高度与镜头、光线方向、氛围（薄雾、湿气、光束）、情绪，以及 16:9 横向构图。以排除项结尾（无人物、无可读文字、无标识、无现代物品）。
+
+4. 图像提示词 B：第二视角
+   一条针对视角 B 的详细提示词，写给无法看到图像 A 的纯文本图像生成器：用完整的文字再次重述所有固定细节（绝不写"同前"），为新的相机位置正确安置每一项，描述从外部新可见的内容（正面山墙、基座、屋脊花饰、小路、玫瑰），描述透过玻璃和敞开的门能看到哪些室内细节，并且只改变视角、时段和光线。保持结构、颜色和比例完全一致。
+
+5. 一致性检查清单
+   十项是/否检查，用于将图像 B 与图像 A 对比（例如"屋顶玻璃是否仍然是白色拱肋之间的菱形格栅？"）。
+
+6. 实用说明
+   一份关于现实可行性的简短清单：这些植物所需的供暖与湿度、通风、夏季遮阳、涂漆铁构件与老玻璃的维护、安全玻璃方案，以及建造或修复类似建筑的大致数量级费用，并标注为估算。
+
+规则：
+- 设计须在所述时代内历史上可信；凡是年代错置或结构上不现实的内容都要标出。
+- 使用朴素的颜色名称和具体的形状；避免单独使用"美丽"或"神奇"之类的空泛词语。
+- 图像提示词中不得出现可读文字、牌匾、标识或数字。
+- 图像提示词中不得出现真实的具名建筑、品牌名称或真实人物。
+- 如果我的描述缺少关键内容，请做出合理假设，并将其列在最上方。
+```
+
+</details>
+
+<details><summary><b>珊瑚礁剪纸光影盒</b> · 机器翻译</summary>
+
+```text
+一张博物馆级别的照片,拍的是挂在浅灰色画廊墙面上的一个深木质置景盒,平视正面拍摄,16:9 横向构图,盒子占满大部分画面。盒内是一幅珊瑚礁水族箱的分层剪纸立体模型,由约十二层手工剪出的纸层构成,层与层间隔几毫米,因此每一层都会在后一层上投下柔和的阴影。最后面的几层是青绿色和深青色纸张的平滑渐变,暗示开阔的水域,上面有隐约起伏的光线剪孔;中间层是远处珊瑚的剪影,呈柔和的蓝绿色;前面几层则丰富多彩:珊瑚粉和鲑鱼粉的分枝珊瑚、赭色并刻有迷宫图案的圆形脑珊瑚、紫罗兰色并带有精致蕾丝般镂空孔洞的扇形珊瑚、两种绿色的随波摇曳的海草,以及一朵亮洋红色的海葵,其触手被剪成细条并带流苏。一条带细黑条纹、眼睛为小冲孔的黄色小鱼游在海葵附近,单独立在自己的一层上,略微凸起。一串串由白色和浅水蓝色纸张冲孔而成的小圆形气泡在右侧向上升起。底部是一层质感粗糙的奶油色纸做成的沙质海底,上面点缀着几枚小小的剪纸贝壳。盒框是天然橡木,约 8 厘米深,内衬干净的白色卡纸衬板,覆有一块博物馆级玻璃,只在一个角落显出淡淡的反光。柔和的定向光从左侧射入,照亮纸边,并在盒内形成清晰分明的层叠阴影,强调了纵深感;纸张纤维、剪裁边缘以及薄片微微的卷曲都清晰可见。宁静而神奇的氛围,真实色彩,工艺与艺术摄影,整个立体模型都对焦清晰。无文字,无字母,无标签,无签名,无水印,无人物。
+```
+
+</details>
+
+<details><summary><b>瑞克和莫蒂风格</b></summary>
+
+```text
+{
+  "TASK": "将场景重新构想为《Rick and Morty》电视节目的截图。",
+  "VISUAL_ID": "2D 矢量动画，Adult Swim 风格（Justin Roiland）。平涂颜色，统一的细黑色轮廓线。",
+  "CHARACTERS": "将人类转换为《Rick and Morty》解剖结构。管状/面条状四肢，耷拉的姿态。眼睛：大白色球体，带有标志性的‘涂鸦式’不规则黑色瞳孔（摇晃的圆点）。表情：冷漠、惊慌或流口水。",
+  "OUTFIT": "将复杂的战术装备简化为平涂卡通科幻服装。去除纹理噪点；仅保留标志性形状。",
+  "BG": "外星维度或杂乱的车库。摇晃的有机线条，怪异的科幻纹理（孔洞、黏液）。配色：霓虹传送门绿色、柔和的大地色系、浅肤色。",
+  "RENDER": "无渐变。平涂光照。无阴影或极简的硬边赛璐珞阴影。干净的矢量外观。",
+  "NEG": "3D、写实、体积光、渐变、细节阴影、动漫、噪点、绘画、模糊、Valorant 风格、尖锐角度。"
+}
+```
+
+</details>
+
+<details><summary><b>用照片制作安杰伊基塔罗卡</b> · 机器翻译</summary>
+
+```text
+CAPTION: AUTO
+
+将随附的照片转化为一张原创的、受塔罗牌启发的 Andrzejki 卡牌,Andrzejki 是波兰的圣安德鲁节前夜庆典。主角是照片中的人物或宠物。请专门为这个角色创作一个视觉故事,而不是套用现成的模板。
+
+首先,留意照片中与众不同的细节:目光、姿势、发型或毛色花纹、服装、配饰、光线和周围环境。从中挑选两三个作为起点,创造性地将它们发展成卡牌的主题。欢迎出人意料的联想,但这些联想必须来自这张特定的照片。这是虚构的插画,并非对拍摄对象真实性格的评判。
+
+请自行选择标题、配色、场景、道具、象征符号、边框装饰和插画技法。风格可以神奇、神秘、欢快或带有温和的幽默。不要自动添加月亮、星星、皇冠或金色;只有在契合构思时才使用。成品应当像一张精心设计的收藏卡牌,构图出色,细节耐人寻味,而不是一幅被随意装饰物覆盖的肖像。
+
+保持角色可辨认:保留面部或口鼻的特征与比例、年龄、目光、头部朝向、发型、眼镜及其他显著的配饰,或毛色斑块的排布与颜色。你可以创造性地发展服装和场景。不要用装饰物遮挡面部;相似度优先于风格化。选择适合照片的取景方式,同时保证耳朵、发型或头饰完整可见。
+
+如果 CAPTION 为 AUTO,请构思一个契合视觉故事的英文短标题,长度为一到三个词。如果提供了其他标题,请使用该确切措辞,并将其同时作为主题的灵感来源。将标题只放置一次,置于卡牌中融为一体、清晰易读且对比强烈的标题区域。不要印出指令词 AUTO 或 CAPTION。不要添加编号或任何其他文字。
+
+只返回一张完成的图像:整张竖版卡牌,宽高比 2:3,平整且正面直视。边框和标题须完整保留在图像内,四周都留有边距。不要桌面样机,也不要有手持卡牌。以装饰性虚构卡牌的形式呈现,而非真实的占卜预测。
+```
+
+</details>
+
+<details><summary><b>田野中的戴眼镜女孩</b> · 机器翻译</summary>
+
+```text
+主体：一位拥有蓬松、有质感头发的年轻女性。
+姿势与动作：她以四分之三侧面站立，脸转向镜头右侧。位于前景的左手抬起，手指轻轻插入发根，仿佛正在整理头发，营造出蓬松感和一种动感、轻松的姿态。她的头部微微倾斜。
+面部细节：这位女性戴着一副大号圆形深色墨镜，细金属镜框，完全遮住双眼。她的脸转向右侧，视线投向画面之外。她下巴和下颌线条分明。不要改变她的面部特征或身份。100%保留面部相似度。她有一张可爱、天生迷人的脸。
+妆容：自然粉裸色的柔雾面唇膏。肌肤无瑕，带有若隐若现的自然光泽。妆容自然低调，以墨镜为主要亮点。
+发型：蓬松的波浪卷发，自由地垂落在肩背上。头发看起来丰盈有质感，尤其是她的手埋入发间的地方。
+服装：她穿着一件有质感的羊毛或灯芯绒夹克或外套，颜色为深橄榄绿或深棕色。
+光线：日落时分自然、温暖、柔和的黄金时刻阳光。柔光轻轻照亮头发，在脸上形成细腻的高光和柔和的阴影，同时突出质感和蓬松感。
+氛围与情绪：温馨、秋意、轻松、时尚。情绪深思、自信、从容，并因墨镜而略带神秘感。
+背景：强烈虚化的背景，带有柔和的散景效果，营造出秋日户外的感觉。可以看到模糊的枯黄草地、深色树干轮廓，以及黄、棕、绿的柔和秋色。
+相机角度与构图：中景，取景至胸部以上，以被摄者的视线高度拍摄。动态构图，强调抬起的手和头发的动感。人脸和抬起的手清晰对焦。
+画面比例：3:4。
+超写实、高质量、锐利的8K照片，使用 iPhone 16 Pro Max 拍摄。
+```
+
+</details>
+
+<details><summary><b>电商个性化AI换脸</b></summary>
+
+```text
+充当一个面向电商应用场景、处于行业前沿的 AI 面部交换系统。你的任务是借助 AI 面部交换技术，使用户能够直观预览电商商品——通过将用户的面部特征与商品图像进行融合，从而提升个性化体验。
+
+职责：
+- 将用户的面部特征交换至各类商品模特图像上。
+- 在面部融合过程中保持高度真实感与细节还原度。
+- 确保适配多种商品类别（例如：服饰、配饰等）。
+
+规则：
+- 为保障用户隐私，不得存储任何面部数据。
+- 确保面部融合过程无缝自然，呈现效果真实协调。
+
+变量：
+- ${productCategory} —— 用于可视化展示的商品类别。
+- ${userImage} —— 用户上传的本人图像。
+
+示例：
+- 输入：用户上传一张照片，并选择一件 T 恤。
+- 输出：一张合成图像，其中用户的面部被交换至身穿该 T 恤的模特身上。
+```
+
+</details>
+
+<details><summary><b>电影光影中的骏马剪影</b></summary>
 
 ```text
 {
@@ -1610,2276 +1868,3376 @@ ${current_weather} 下的反重力 ${city_name}。沥青街道平滑向上弯曲
     "color_temperature": "warm",
     "contrast_level": "high",
     "dominant_palette": [
-      "yellow",
-      "blue",
-      "red",
-      "pink",
-      "green",
-      "orange"
+      "black",
+      "golden yellow",
+      "teal",
+      "dark brown"
+    ]
+  },
+  "composition": {
+    "camera_angle": "wide shot",
+    "depth_of_field": "medium",
+    "focus": "horse",
+    "framing": "The horse remains the central subject, adapted to a 1:1 square format, framed by swirling, colorful smoke that fills the composition evenly within the square."
+  },
+  "description_short": "A dramatic silhouette of a powerful horse moving through dense, colorful smoke, illuminated by contrasting warm yellow and cool blue light against a dark background.",
+  "environment": {
+    "location_type": "studio",
+    "setting_details": "The setting is a dark, undefined space filled with thick, volumetric smoke or dust, creating a heavy atmosphere.",
+    "time_of_day": "night",
+    "weather": "none"
+  },
+  "lighting": {
+    "intensity": "strong",
+    "source_direction": "mixed",
+    "type": "cinematic"
+  },
+  "mood": {
+    "atmosphere": "Dramatic and ethereal power",
+    "emotional_tone": "mysterious"
+  },
+  "narrative_elements": {
+    "environmental_storytelling": "The clashing warm and cool lights within the dense fog create a sense of conflict or a magical reveal, suggesting the horse is an elemental or mythical creature emerging from another realm.",
+    "implied_action": "The horse is in mid-stride, moving with force and purpose from the warm light towards the cool light, suggesting a journey or an escape."
+  },
+  "objects": [
+    "horse",
+    "smoke",
+    "dust"
+  ],
+  "people": {
+    "count": "0"
+  },
+  "prompt": "A cinematic, high-contrast photograph of a powerful dark horse in silhouette, moving through a thick, swirling fog in a 1:1 square format. The composition is centered within a square frame. The scene is dramatically lit with a split-lighting effect. A warm, golden-orange light illuminates the smoke from the left, catching the highlights of the horse's flowing mane and muscular form. From the right, a cool, mystical teal-blue light cuts through the darkness, creating an ethereal and mysterious atmosphere. The background is deep black, emphasizing the volumetric light and the dynamic energy of the horse.",
+  "style": {
+    "art_style": "realistic",
+    "influences": [
+      "cinematic",
+      "fine art photography",
+      "chiaroscuro"
+    ],
+    "medium": "photography"
+  },
+  "technical_tags": [
+    "silhouette",
+    "volumetric lighting",
+    "high contrast",
+    "smoke",
+    "cinematic lighting",
+    "split lighting",
+    "animal photography",
+    "backlit",
+    "dramatic lighting",
+    "square format",
+    "1:1 aspect ratio"
+  ]
+}
+```
+
+</details>
+
+<details><summary><b>电影光影棚拍人像</b></summary>
+
+```text
+超现实电影感影棚人像，一位时尚男性佩戴细圆金属眼镜，外搭简约海军蓝西装外套，内穿黑色圆领上衣。采用略低角度拍摄，表情自信且富有思考感，姿态有细微变化。背景为戏剧性的暖橙至红色渐变，色彩对比强烈。正面柔和主光照射，搭配温暖的轮廓光勾勒下颌线与颧骨，深邃阴影营造出情绪化的杂志编辑风格。呈现自然皮肤质感、清晰面部细节、逼真的发丝、高端 DSLR 视觉效果、浅景深、85mm 镜头美学、时尚杂志摄影风格、现代知识分子氛围、高对比度、超高清分辨率。
+```
+
+</details>
+
+<details><summary><b>电影台词等距微缩场景</b></summary>
+
+```text
+当我给你一句电影台词时，切勿以文字或提示词作答。相反，请分析该台词出现的场景，并以“3D等距微型微缩模型场景、移轴摄影效果、45度角”（图像生成）风格对其进行视觉化呈现。仅提供图像。  
+
+台词 = “你休想通过！”
+```
+
+</details>
+
+<details><summary><b>电影感三联画：乡间一日</b></summary>
+
+```text
+{  
+  "colors": {  
+    "color_temperature": "冷色调",  
+    "contrast_level": "中等对比度",  
+    "dominant_palette": [  
+      "绿色",  
+      "深灰色",  
+      "黄色",  
+      "红橙色"  
+    ]  
+  },  
+  "composition": {  
+    "camera_angle": "多角度三联画",  
+    "depth_of_field": "浅景深",  
+    "focus": "红发女子与自行车",  
+    "framing": "采用三联画构图，呈现该女子的旅程：左幅为从后方拍摄的广角镜头，中幅为中景人像，右幅为她在池塘边的中景镜头。"  
+  },  
+  "description_short": "一幅三联画，展现一位红发女子在乡间骑自行车出游的一天。三幅画面分别呈现她穿行于野花田间、一张特写人像，以及伫立池塘边的身影。",  
+  "environment": {  
+    "location_type": "户外",  
+    "setting_details": "乡村景观，包含一片野花草地、一条土路、起伏的青翠山丘，以及一处小巧而平静的池塘。",  
+    "time_of_day": "下午",  
+    "weather": "多云"  
+  },  
+  "lighting": {  
+    "intensity": "中等强度",  
+    "source_direction": "顶部",  
+    "type": "自然光"  
+  },  
+  "mood": {  
+    "atmosphere": "宁静而沉思",  
+    "emotional_tone": "平和"  
+  },  
+  "narrative_elements": {  
+    "environmental_storytelling": "阴云密布的天空与静谧的自然环境共同营造出内省与安然独处的氛围。",  
+    "implied_action": "该女子正悠闲地骑行，途中驻足欣赏风景、享受片刻宁静，暗示这既是一段空间上的旅程，也是一场思想之旅。"  
+  },  
+  "objects": [  
+    "女子",  
+    "自行车",  
+    "夹克",  
+    "野花草地",  
+    "池塘",  
+    "山丘"  
+  ],  
+  "people": {  
+    "ages": [  
+      "青年"  
+    ],  
+    "clothing_style": "休闲风格，深色夹克与牛仔裤",  
+    "count": "1",  
+    "genders": [  
+      "女性"  
+    ]  
+  },  
+  "prompt": "一幅电影感三联画，捕捉一位拥有明艳红发的年轻女子在乡间度过的宁静一日。上幅：从后方视角拍摄，她沿着一条狭窄小径骑行，穿越一片辽阔的野花草地（野花呈明黄与紫罗兰色），天空阴云密布；中幅：柔和的中景人像，她微微含笑，身后五彩斑斓的田野虚化成柔焦背景；下幅：她身着复古自行车伫立于平静池塘畔，若有所思地将一缕发丝拂至耳后。整体风格富有情绪张力且氛围浓郁，光线来自阴云密布的天空，柔和而漫射；配色沉稳内敛，以大地色系为主。",  
+  "style": {  
+    "art_style": "写实风格",  
+    "influences": [  
+      "电影摄影",  
+      "情绪化人像摄影",  
+      "胶片美学"  
+    ],  
+    "medium": "摄影"  
+  },  
+  "technical_tags": [  
+    "三联画",  
+    "多云光照",  
+    "漫射光",  
+    "乡村",  
+    "浅景深",  
+    "人像"  
+  ],  
+  "use_case": "生活方式博客配图、叙事性摄影专题、旅游或服饰类广告。",  
+  "uuid": "2cc80ab3-7973-4fc0-9f95-db3917b8b152"  
+}
+```
+
+</details>
+
+<details><summary><b>电影感九宫格焦段图</b></summary>
+
+```text
+<instruction>  
+分析输入图像的整体构图。识别图像中出现的**全部关键主体**（无论是单个人物、群体/情侣、车辆，还是特定物体），并明确其空间关系与互动方式。  
+生成一份连贯的 3×3 网格“电影式接触表”（Cinematic Contact Sheet），其中包含 **9 种截然不同的镜头视角**，严格限定为**完全相同的这些主体**，且置于**同一环境**中。  
+你必须根据实际内容灵活调整标准电影镜头类型（例如：若主体为群体，则须保持群体整体入镜；若主体为物体，则须完整呈现该物体）：
+
+**第一行（建立场景语境）：**  
+1. **超远景（Extreme Long Shot, ELS）：** 主体在广阔环境中显得极小。  
+2. **远景（Long Shot, LS）：** 主体或群体从头至脚（人物）或从轮子至车顶（车辆）等完整可见。  
+3. **中远景（美式/3/4景，Medium Long Shot / American/3-4）：** 人物取景至膝盖以上；物体取景为三分之四视角（3/4 view）。
+
+**第二行（核心叙事覆盖）：**  
+4. **中景（Medium Shot, MS）：** 人物取景至腰部以上；物体取景聚焦其中心主体部分。强调互动或动作。  
+5. **中近景（Medium Close-Up, MCU）：** 人物取景至胸部以上。对主要主体进行亲密化构图。  
+6. **近景（Close-Up, CU）：** 紧密框取面部（或多张面孔）或物体的“正面”。
+
+**第三行（细节与角度）：**  
+7. **特写（Extreme Close-Up, ECU）：** 微距级细节，强烈聚焦于某一关键特征（如眼睛、双手、标识、纹理）。  
+8. **仰角镜头（Low Angle Shot / Worm's Eye）：** 自地面朝上拍摄主体，营造威严感或英雄气概。  
+9. **俯角镜头（High Angle Shot / Bird's Eye）：** 自上方朝下拍摄主体。
+
+确保严格一致性：全部 9 幅画面中，人物/物体相同、衣着相同、光照条件相同。景深须真实变化（近景中应呈现自然虚化/bokeh效果）。  
+</instruction>  
+
+一份专业的 3×3 电影级分镜故事板网格，共含 9 个画格。  
+该网格以全面覆盖的焦距范围，呈现输入图像中所指定的主体/场景。  
+**顶部一行：** 环境宽幅镜头、全身镜头、三分之四视角镜头。  
+**中间一行：** 腰部以上视角、胸部以上视角、面部/正面近景。  
+**底部一行：** 微距细节、仰角镜头、俯角镜头。  
+所有画格均具备照片级真实质感、统一的电影化色彩分级，并针对所分析的主体数量或物体类型，采用准确无误的构图方式。
+```
+
+</details>
+
+<details><summary><b>电影感人像模板</b> · 机器翻译</summary>
+
+```text
+一幅专业的电影感肖像,主角是身穿惊艳{dress}、拥有{Hairstyle}的{subject},并辅以精致细腻的妆容,摆出特定的{Poses}。场景设定在精心挑选的{background}中,由艺术化的{light}照亮,并以精准的{framing}拍摄,营造出高级时尚的美学风格。
+```
+
+</details>
+
+<details><summary><b>电影感幕后时尚照</b> · 机器翻译</summary>
+
+```text
+为图1中完全相同的真实人物创作一张写实的电影感幕后（BTS）时装照片，采用2:3竖构图。保留她真实的面部身份、面部比例、独特特征、自然的不对称、观感年龄和可辨识的特点。不要美化、年轻化、瘦脸或重新设计她的面孔。
+
+保持她原本的头发散开垂落，为大型时尚编辑大片做柔和造型。让一台轻柔的摄影棚风扇吹动散发，形成细微的动感。
+
+核心理念：一个光彩夺目的明星时刻，被一盏巨大的摄影棚灯照亮，仿佛摄影师喊开机前的几秒钟被定格下来。
+
+场景：宽敞的好莱坞摄影棚，干净的暖白色无缝背景，带有柔和的空气雾霭。一盏巨大的复古摄影棚菲涅尔灯占据画面一侧，形成戏剧性的光池和细微的镜头光晕。仅允许出现一个低调的苹果箱和一台部分可见的摄影机架作为次要的制作元素。
+
+姿势：她站在低矮的制作箱上，一只脚微微抬起，形成优雅的不对称站姿。一只手臂随意地伸向大灯支架，另一只手搭在腰间。她的散发在微风中轻轻飘动。她转向镜头，神情沉稳而略带严肃，目光直视镜头。
+
+服装：2026年当代雕塑感时装——电光钴蓝色垂坠上衣，肩部夸张不对称，搭配飘逸的黑色半裙和尖头高跟鞋。醒目的银色耳环。
+
+构图：50mm镜头，低机位角度，主体略微偏离中心。巨大的灯光在她周围形成强烈的框架形状，但不与她的面部争夺视线。有意运用留白。背景应显得电影感十足、开阔，而不是杂乱。
+
+灯光：戏剧性的好莱坞摄影——画面左侧的大型柔光箱作为主光，低功率正面补光，暖色菲涅尔光束从侧面射入，细微的顶部高光，以及透过散发形成的精细轮廓分离光。营造大气光晕、明亮的雾霭和受控的高光溢出，同时保证面部曝光完美、细节清晰。
+
+色彩：高级电影感调色，包含钴蓝、暖象牙白、石墨灰和克制的钨丝灯高光。自然肤色、明亮的中间调、优雅的对比度和细微的胶片颗粒。
+
+氛围：标志性的好莱坞幕后时装照片，精致、戏剧性、性感、毫不费力且富有电影感。
+
+超写实摄影，可信的摄影棚灯光，逼真的雾霭，自然的头发动态，有触感的面料，真实的摄影光学效果。
+
+让主体成为毫无疑问的第一视觉焦点。不要道具堆砌，不要设备墙，不要过度的布景装饰，不要随机的摄影棚物品，不要面部重塑，不要塑料感皮肤，不要CGI，不要人工的头发物理效果，不要死黑，不要橙色LUT，不要文字或标志。
+```
+
+</details>
+
+<details><summary><b>电影感恰吉风夜景人像</b> · 机器翻译</summary>
+
+```text
+场景与构图：
+一张写实、高品质的夜间照片，拍摄于停车场。场景昏暗而富有氛围感，由逼真的停车场灯光和微弱的夜间环境光照亮。竖版 3:4 构图，8K 锐利细节，使用 iPhone 16 Pro Max 拍摄。
+
+姿势：
+年轻女子背对镜头站立。背部挺直，头向左转，露出侧脸。她望向左侧远方。
+
+双臂下垂，置于背后。
+
+关键姿势细节：
+她在背后、臀部正下方水平握着一把巨大的假斧头。这是该姿势的主要视觉特征。斧头明确位于臀部下方，从一侧水平延伸到另一侧。她的右手握在斧刃根部附近，左手握着木质斧柄。这样的位置让人觉得她正偷偷把斧头藏在身后。
+
+她的双腿笔直，微微分开。她穿着延伸到膝盖以上的红色渔网袜，顶部有一圈粗红色束带。
+
+服装：
+受经典 Chucky 娃娃启发的造型。
+
+- 长袖彩虹条纹上衣，带有红、橙、黄、绿、蓝、紫的横向条纹。
+- 浅蓝色短款牛仔背带连体短裤，背带在背后交叉。
+- 短款背带裤式短裤。没有"Good Guys"标志，但保持同样可辨识的风格。
+- 红色渔网过膝长袜，配粗红色松紧带。
+
+斧头：
+一把外观逼真的大型戏剧道具斧，带有巨大的银色金属斧刃和木质斧柄。斧头被严格水平地握在臀部下方、背后，这一位置是画面的核心视觉细节。
+
+头发：
+长而浓密的栗色/红棕色头发，梳成凌乱蓬松的高马尾或半扎马尾，散落的发丝自然垂在背上。质感微微凌乱。
+
+妆容与面部：
+受 Chucky 启发的戏剧化妆容，搭配深色口红。脸上没有疤痕、割伤、瘀青或印记。她的自然面部特征和身份必须与参考图完全一致。不要改变她的脸型、眼睛、鼻子、嘴唇或下颌线。她的侧脸应保持清晰可辨。
+
+摄影：
+照片级写实，自然的皮肤质感，真实的比例，电影感的夜间氛围，焦点锐利，细节丰富，逼真的光线，8K 画质，iPhone 16 Pro Max 摄影，竖版 3:4。
+淡淡的半笑
+```
+
+</details>
+
+<details><summary><b>电影感惊悚剪影</b></summary>
+
+```text
+{
+  "prompt_content": {
+    "positive_prompt": "电影级镜头，透过绿色纹理钢化玻璃观看，磨砂玻璃效果，一人将手掌紧贴玻璃形成的剪影，双手清晰可见、正按压在湿润的玻璃表面，神秘氛围，昏暗照明，青绿色与黄色系配色，网格状纹理，心理惊悚片风格，照片级写实，8K 分辨率，高度精细的纹理，马赛克玻璃畸变效果",
+    "negative_prompt": "透明玻璃，卡通，插画，动漫，明亮照明，低分辨率，模糊，文字，水印，手部变形，缺失手指，多余手指，干燥的玻璃，蓝色调",
+    "parameters": {
+      "aspect_ratio": "1:1",
+      "steps": 30,
+      "cfg_scale": 7.0,
+      "sampler": "DPM++ 2M Karras"
+    }
+  },
+  "visual_analysis": {
+    "subject": "纹理玻璃后的剪影",
+    "action": "双手按压在玻璃表面",
+    "atmosphere": "幽闭恐惧感，神秘感",
+    "dominant_colors": ["#4a6b45", "#8c9c5e", "#2e3a24"]
+  }
+}
+```
+
+</details>
+
+<details><summary><b>电影感日落船景</b></summary>
+
+```text
+{
+  "colors": {
+    "color_temperature": "warm",
+    "contrast_level": "low",
+    "dominant_palette": [
+      "sepia",
+      "taupe",
+      "dark slate gray",
+      "khaki",
+      "goldenrod"
     ]
   },
   "composition": {
     "camera_angle": "wide shot",
     "depth_of_field": "deep",
-    "focus": "The entire living room scene",
-    "framing": "The scene is viewed from within the room, with the walls and windows on the left and an open doorway in the center creating depth."
+    "focus": "Person in boat",
+    "framing": "The main subject, the boat and person, are placed off-center to the right within a 1:1 square format, following the rule of thirds. Horizontal layers of water, shoreline, and mountains are preserved and adapted to fit the square frame, maintaining depth and tranquility."
   },
-  "description_short": "一幅充满活力与色彩的阳光普照客厅插画，布满图案家具、抽象艺术和茂盛的植物。风格让人联想到野兽派和点彩派。",
+  "description_short": "A lone person wearing a conical hat sits in a traditional wooden boat on a calm lake at sunrise or sunset, surrounded by birds, with hazy mountains in the background.",
   "environment": {
-    "location_type": "indoor",
-    "setting_details": "一个明亮通风的客厅，拥有高天花板、大窗户和法式门。空间内充满了色彩鲜艳的现代家具、抽象艺术品和室内植物，全部以独特的点状和短线图案呈现。",
-    "time_of_day": "afternoon",
-    "weather": "sunny"
+    "location_type": "outdoor",
+    "setting_details": "A serene lake or river with calm, reflective water. In the background, a distant, hazy mountain range rises above a low shoreline with trees. The atmosphere is filled with a golden mist.",
+    "time_of_day": "evening",
+    "weather": "hazy"
+  },
+  "lighting": {
+    "intensity": "moderate",
+    "source_direction": "back",
+    "type": "natural"
+  },
+  "mood": {
+    "atmosphere": "Peaceful and contemplative solitude",
+    "emotional_tone": "calm"
+  },
+  "narrative_elements": {
+    "environmental_storytelling": "The traditional boat, conical hat, and vast, quiet landscape suggest a timeless, rural way of life, possibly fishing or commuting in a place untouched by modernity. The golden haze creates a dreamlike, nostalgic feeling.",
+    "implied_action": "The person is likely paddling slowly or pausing to observe the surroundings, suggesting a routine journey or a moment of reflection amidst nature."
+  },
+  "objects": [
+    "boat",
+    "person",
+    "water",
+    "birds",
+    "mountains",
+    "conical hat"
+  ],
+  "people": {
+    "ages": [
+      "adult"
+    ],
+    "clothing_style": "Traditional attire including a conical hat.",
+    "count": "1",
+    "genders": [
+      "unknown"
+    ]
+  },
+  "prompt": "A cinematic, wide-angle photograph in a 1:1 square format of a lone figure in a traditional wooden boat, silhouetted against the hazy golden light of a serene sunset. The person wears a conical hat, resting peacefully in the boat on a calm, rippling lake. The composition is balanced within a square frame with the subject slightly off-center. In the distance, misty mountains fade into the warm sky. Flocks of birds fly overhead and float on the water, adding life to the tranquil scene. The atmosphere is calm and timeless, with a soft, grainy film texture.",
+  "style": {
+    "art_style": "realistic",
+    "influences": [
+      "cinematic photography",
+      "landscape photography",
+      "travel photography"
+    ],
+    "medium": "photography"
+  },
+  "technical_tags": [
+    "silhouette",
+    "wide shot",
+    "landscape",
+    "golden hour",
+    "hazy",
+    "atmospheric perspective",
+    "serene",
+    "natural light",
+    "reflection",
+    "film grain",
+    "square format",
+    "1:1 aspect ratio"
+  ],
+  "use_case": "Travel and tourism promotion, stock photography, cinematic reference, background imagery."
+}
+```
+
+</details>
+
+<details><summary><b>电影感时尚人像</b> · 机器翻译</summary>
+
+```text
+图1是主体身份参考图。保留同一位真实人物可辨识的面孔、面部比例、自然的不对称、观感年龄、肤色、眼睛、鼻子、嘴唇、下颌线以及独特特征。仅将该图用于身份参考。
+
+创作一张竖版4:5的中近景电影感时尚肖像。将她的头发改造成抛光的玻璃感波波头：紧凑的齐下颌线轮廓，侧分，笔直的剃刀剪裁发尾，真实的发际线，可信的发量密度，以及自然的高光泽质感。
+
+她身穿一件深酒红色开领衬衫，面料为柔和的哑光真丝，佩戴一只简约的金色圈形耳环和一块窄款黑色皮革手表。她身体略微前倾靠近镜头，一只手自然地搭在锁骨处。她的目光直视镜头，带着高级时装的态度：自信、犀利、毫不费力的酷感。
+
+场景设在真实的摄影棚中，背景是暖白色无缝纸。使用靠近镜头的柔和直射编辑风闪光灯，并搭配一盏大型柔光侧光，让面部保持立体感，衬衫保留自然的褶皱。以平视角度拍摄，呈现50mm镜头效果，f/2.0，浅景深，精准对焦于眼睛和面部。
+
+调色：温暖的肤色，浓郁但自然的酒红色，柔和的奶油色背景，细微的暖调胶片对比度，提亮的阴影细节，干净的高光，细腻的颗粒。高级杂志时尚摄影，真实的皮肤质感和材质，不要文字、标志或水印。
+```
+
+</details>
+
+<details><summary><b>电影感暗调夜间自拍</b> · 机器翻译</summary>
+
+```text
+一张第一人称自拍，画面中是一位年轻女性的脸部和肩部特写肖像，背景非常暗。
+
+她留着及腰的长卷发，蓬松浓密，披在一侧肩膀上，有深而分明的侧分，发型是层次分明的瀑布式剪裁。层次清晰可见，从发根到发尾都带来柔和的动感、自然的流动感和丰盈的发量。她的头发看起来浓密、有光泽、极其逼真，质感自然，每一缕发丝清晰可见。
+
+她穿着一件时尚的灰色宽松毛衣，由柔软舒适的针织面料制成。她的妆容是淡雅的晚间风格，肤质自然，眼线是优雅的猫眼线，唇色是灰玫瑰色。她的表情平静、性感而自信。她的头轻轻向一侧肩膀倾斜，下巴微收，从睫毛下方直视镜头。她的嘴唇紧闭。脖子上戴着一条纤细的银链，挂着一个小吊坠。
+
+背景几乎全黑，左侧边缘有一条柔和的灰白色斜条，类似窗帘的一侧。光线是戏剧性的低调夜间照明，带有温暖柔和的侧光、深邃的阴影和细微的胶片颗粒。镜头明显倾斜，形成亲密的特写构图。她的姿势放松而富有电影感，头部倾斜、下巴收低，眼睛向上看向镜头。
+
+暗调氛围滤镜，低调美学，性感、神秘的氛围，照片级写实，超精细的真实皮肤，极低亮度，暗色照片，使用 iPhone 17 拍摄，8K 画质，竖版 3:4。
+```
+
+</details>
+
+<details><summary><b>电影感特写肖像</b></summary>
+
+```text
+{
+  "colors": {
+    "color_temperature": "warm",
+    "contrast_level": "high",
+    "dominant_palette": [
+      "burnt orange",
+      "deep teal",
+      "black",
+      "tan"
+    ]
+  },
+  "composition": {
+    "camera_angle": "close-up",
+    "depth_of_field": "medium",
+    "focus": "Man's face in profile",
+    "framing": "The subject is tightly framed on the left, looking towards the right side of the frame, creating negative space for his gaze."
+  },
+  "description_short": "A dramatic and gritty close-up portrait of a man in profile, illuminated by warm side-lighting against a cool, textured dark background.",
+  "environment": {
+    "location_type": "studio",
+    "setting_details": "The background is a solid, dark, textured surface, possibly a wall, with a moody, dark teal color.",
+    "time_of_day": "unknown",
+    "weather": "none"
   },
   "lighting": {
     "intensity": "strong",
     "source_direction": "side",
-    "type": "natural"
-  },
-  "mood": {
-    "atmosphere": "Energetic and whimsical creative space",
-    "emotional_tone": "joyful"
-  },
-  "narrative_elements": {
-    "environmental_storytelling": "房间内奔放的装饰风格，色彩与图案的爆发，暗示主人是一位艺术家，或具有大胆、开朗且富有创造力的个性。这是一个为幸福与灵感而设计的空间。",
-    "implied_action": "敞开的门邀请人们步入阳光照耀的外部空间，暗示着一个温暖宜人的日子。这个房间仿佛随时准备被居住和享受。"
-  },
-  "objects": [
-    "armchairs",
-    "sofa",
-    "rug",
-    "coffee table",
-    "potted plants",
-    "abstract paintings",
-    "windows",
-    "French doors",
-    "ottoman",
-    "lamp"
-  ],
-  "people": {
-    "count": "0"
-  },
-  "prompt": "一幅奔放而色彩丰富的阳光客厅插画，采用现代野兽派风格并带有点彩派质感，风格活泼俏皮。房间色彩纷呈，铺着由红色、黄色、蓝色和粉色构成的抽象几何图案拼布地毯。强烈的阳光从高大的法式门涌入，投下长长的戏剧性阴影。俏皮的家具，包括带有纹理的黄色和粉色扶手椅，散落在各处。墙上挂着抽象画，彩色如纸屑般的形状漂浮在整个场景中，营造出欢快、充满活力且富有艺术感的氛围。",
-  "style": {
-    "art_style": "stylized illustration",
-    "influences": [
-      "Fauvism",
-      "Pointillism",
-      "Henri Matisse",
-      "modern abstract art"
-    ],
-    "medium": "digital art"
-  },
-  "technical_tags": [
-    "illustration",
-    "vibrant color",
-    "interior design",
-    "living room",
-    "fauvism",
-    "pointillism",
-    "pattern",
-    "sunlight",
-    "abstract",
-    "maximalism"
-  ],
-  "use_case": "用于艺术风格迁移的数据集，或作为纺织品与室内设计的灵感来源。",
-  "uuid": "a17a60e8-ebeb-4ca9-9897-624cdcb73342"
-}
-```
-
-</details>
-
-<details><summary><b>铁匠铺早餐电影感场景</b></summary>
-
-```text
-{
-  "meta_instruction": {
-    "image_category": "cinematic_scene",
-    "core_prompt": "从一间光线昏暗的铁匠铺内部拍摄的电影感画面，镜头朝外对准一扇部分开启的卷帘门。一位中年师傅和他的年轻学徒正坐在一张由废木料制成、铺着报纸的桌子上享用传统的土耳其早餐。清晨的阳光透过打开80%的卷帘门照射进来，形成美丽的镜头光晕，并照亮了空气中的尘埃颗粒。师傅正在说话，而学徒则带着礼貌的好奇心倾听。",
-    "negative_prompt": "干净整洁的衣服，一尘不染的环境，现代家具，柔软未经劳作的手，杂乱的食物，过度曝光，完全打开的卷帘门，人工影棚灯光，卡通风格，3D渲染"
-  },
-  "narrative_and_purpose": {
-    "story_or_concept": "一段关于师徒传承与传统的时刻。在工业区一天繁重工作开始前的宁静清晨，学徒恭敬地聆听师傅教诲。",
-    "mood_and_vibe": "真实、温暖、尊重、粗犷、勤奋、宁静的早晨氛围。"
-  },
-  "subjects": [
-    {
-      "presence": "primary",
-      "type": "human",
-      "description": "中年铁匠师傅。",
-      "dynamic_attributes": {
-        "if_human": {
-          "role_and_demographics": "中年男性，留有短须，佩戴阅读眼镜并用颈带挂在胸前。",
-          "emotion_and_expression": "经验丰富、沉着冷静，说话时充满权威与温暖。",
-          "action_and_wardrobe": "穿着略脏的机械工连体服。双手虽无污渍，但明显粗糙、布满老茧且饱经风霜。正坐着吃早餐。"
-        }
-      }
-    },
-    {
-      "presence": "primary",
-      "type": "human",
-      "description": "年轻的铁匠学徒。",
-      "dynamic_attributes": {
-        "if_human": {
-          "role_and_demographics": "年轻男性，外表谦逊。",
-          "emotion_and_expression": "好奇、有礼貌、恭敬，正在专注倾听。",
-          "action_and_wardrobe": "穿着略脏的机械工连体服。双手干净但显现出体力劳动的痕迹。坐在桌旁，身体微微前倾以专注聆听。"
-        }
-      }
-    }
-  ],
-  "environment_and_worldbuilding": {
-    "setting_type": "indoor",
-    "location_details": "位于工业区的一间粗犷的机械与铁匠铺内部。一扇金属卷帘门打开80%，露出外面明亮的清晨景象。",
-    "time_of_day_and_weather": "清晨，日出时分，外部天气晴朗。",
-    "props_and_supporting_elements": [
-      "由废木料制成的低矮咖啡桌",
-      "铺在桌面上充当桌布的报纸",
-      "镀铬盘子中盛有番茄、黑橄榄、白羊奶酪和黄瓜",
-      "桌子中央放着一金属锅‘menemen’（土耳其风味炒蛋配番茄）",
-      "锅下垫着由焊接废铁件制成的定制隔热架",
-      "车间地面上自然散落的金属碎屑"
-    ]
-  },
-  "camera_and_lens": {
-    "shot_scale": "medium_shot",
-    "camera_angle": "eye_level",
-    "lens_focal_length": "35mm",
-    "depth_of_field": "浅景深，主体人物和早餐桌清晰对焦，背景及外部场景轻微模糊。"
-  },
-  "lighting_and_atmosphere": {
-    "lighting_source": "natural",
-    "lighting_quality": "high_contrast",
-    "atmospheric_effects": "晨光射入昏暗的店铺，照亮空气中漂浮的尘埃颗粒，阳光造成柔和的镜头光晕。"
-  },
-  "composition_and_layout": {
-    "framing_rule": "rule_of_thirds",
-    "functional_space": "none"
-  },
-  "post_processing_and_medium": {
-    "medium": "digital_photography",
-    "color_grading": "电影级调色，室内为温暖的大地色调，与室外明亮晨光形成对比，带有微妙的青橙色调。",
-    "texture_and_grain": "轻微的胶片颗粒感，对手部、木材和金属的纹理表现极为细腻。"
-  }
-}
-```
-
-</details>
-
-<details><summary><b>铁王座上的中世纪女王肖像</b></summary>
-
-```text
-创作一幅高度精细、超写实的摄影级肖像画，描绘一位威严而凌厉的中世纪女王，她端庄而有力地端坐于《权力的游戏》中标志性的铁王座之上。该王座由数百把熔铸的利剑锻造而成，边缘参差锋利，细节繁复精密。场景设定在红堡内幽暗的王座厅中，采用富有情绪感的体积光照明与摇曳的火把火焰；女王身着典雅华贵的皇家长裙，裙上饰有繁复刺绣，并头戴镶嵌宝石的王冠。她目光锐利逼人，肌肤完美无瑕却带有细微真实瑕疵，秀发飘逸灵动——所有这些均以超精细纹理精准呈现。图像须为 8K 分辨率，构图富有电影感，采用 50mm 镜头拍摄，并使用浅景深。这幅杰作应融合 Artgerm 的绘画风格与《权力的游戏》的电影摄影美学。
-```
-
-</details>
-
-<details><summary><b>银河走私客变身</b></summary>
-
-```text
-{
-  "prompt": "你将使用所提供照片中的人物作为主体进行图像编辑。面部必须保持清晰且未经修改。将该人物转变为一位魅力十足的**银河走私者/飞行员**，随意倚靠在他们那艘粗犷的星际飞船旁，背景是一个熙熙攘攘的外星太空港。突出未来科技感、磨损的实用装备、鲜艳的外星细节，以及充满冒险气息且略带叛逆的氛围。",
-  "details": {
-    "year": "遥远的未来（太空歌剧 / 科幻冒险）",
-    "genre": "科幻 / 太空歌剧 / 冒险 / 太空西部",
-    "location": "一颗尘土飞扬的外星行星上一个繁忙而粗粝的太空港。可见元素包括一艘经过定制改装的星际飞船的金属外壳（带有明显的烧灼痕迹和修补痕迹）、成箱的违禁货物、发光的数据终端，以及背景中来往穿梭的奇异外星种族。天空呈现出独特的外星色彩，可能还有多个月亮。",
-    "lighting": "动态的混合照明。来自太空港的人造强光（霓虹灯、泛光灯）与来自外星恒星（太阳）的自然光（通常带有色彩）相结合。在金属表面和主体的装备上形成强烈的对比和高光效果。空气中可见漂浮的尘埃微粒。",
-    "camera_angle": "中景到全身镜头，主体随意倚靠在飞船上。略微低角度拍摄，以突出飞船的庞大和主体的自信。背景繁忙但略微失焦，以确保注意力集中在主体上。（1:1 构图）。",
-    "emotion": "自信、精明、略带狡黠且从容不迫。",
-    "costume": "磨损但实用且兼具时尚感的未来服饰：一件带有补丁和集成科技元素的耐用飞行夹克、坚固的工装裤和加固靴子。一条配有各种小工具和插着爆能枪的工具腰带。或许还有一条醒目的围巾或头巾。头发略显凌乱但酷劲十足。",
-    "color_palette": "尘土色调（棕色、米色、褪色的绿色）与充满活力的外星色彩（电蓝色、鲜艳的紫色、霓虹黄色）相混合，后者来自科技设备和外星标识。飞船呈现金属银/青铜色。天空可能是不寻常的橙色或红色。",
-    "atmosphere": "充满冒险感、熙攘繁忙、略带危险，同时蕴藏着隐藏的机遇。空气中弥漫着商业交易和非法勾当的能量。传达出一种自由自在、游走于边缘的生活方式。",
-    "subject_expression": "自信而意味深长的 smirk（得意微笑），或轻松随意的微笑。眼神敏锐且富有观察力，可能略微看向镜头外，仿佛正在搜寻麻烦或机会。",
-    "subject_action": "随意倚靠在飞船的外壳上，一只手可能搭在爆能枪枪套或控制面板上。另一只手可能握着一块未来风格的数据板或一杯奇特的外星饮品。肢体语言放松但随时准备行动。",
-    "environmental_elements": "飞船周围升起细微的尾气或蒸汽。背景远处可见其他独特外星飞船起飞或降落的剪影。背景中还有双头外星人或机器人。地面布满灰尘，并留有飞车驶过的轮胎痕迹。"
-  }
-}
-```
-
-</details>
-
-<details><summary><b>锁定身份的图像变换</b></summary>
-
-```text
-身份锁定 — 面部保留模式
-
-提供的参考图像：[附上 1–3 张主体的清晰参考照片]
-
-核心指令：
-你正在对提供的参考图像执行定向视觉转换。  
-主体的面部身份已锁定，绝不能以任何方式更改、重建或平均化。最终输出中的面部必须能够明确无误地识别为参考图像中显示的完全相同的个体。
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-身份特征 — 禁止更改：
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-- 整体脸型和颅骨结构  
-- 眼睛形状、间距、深度和眼睑轮廓  
-- 鼻梁宽度、鼻尖形状和鼻孔  
-- 嘴唇轮廓、丘比特弓形状、丰满比例（上唇与下唇）  
-- 下巴线条定义和下巴形状  
-- 颧骨位置和面部宽度  
-- 额头高度和眉脊  
-- 皮肤纹理、底色和种族特征标记  
-- 独特的面部特征：痣、雀斑、酒窝、疤痕、不对称性  
-- 面部特征间距离（眼距、鼻唇距、唇下巴距）
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-允许更改（非身份元素）：
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-- 服装、面料、材质和配饰  
-- 环境、场景和背景  
-- 光线方向、色温和强度  
-- 色彩分级和整体图像色调  
-- 摄像机角度、构图和画面布局  
-- 身体姿势、手势和站姿  
-- 艺术风格或类型（例如：电影感、绘画风、杂志风）— 若有要求  
-- 微小的面部表情变化（轻微微笑、平静、沉思）  
-  仅限在现有面部结构上的微调 — 不得通过重建面部实现
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-绝对禁止事项：
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-- 不得用平均化、美化或通用面部替换原面部  
-- 不得应用改变面部比例的美颜增强  
-- 不得使主体显得更年轻、更年长或改变性别  
-- 不得更改种族或人种特征  
-- 不得过度磨皮导致纹理和独特性消失  
-- 不得以光照、风格或类型变化为名修改脸型  
-- 不得以任何理由从头重建面部
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-质量目标：
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-输出需达到照片级真实感。皮肤纹理自然。次表面散射准确。  
-主体与环境之间的光照需一致。当输出图像与参考图像并列时，主体必须能通过“同一人”识别测试。面部相似性优先于风格化修饰。
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-转换请求：
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[在此描述你的具体更改需求 — 例如：“将主体置于烛光照明的中世纪酒馆中，身穿一件磨损的皮外套。保持光线温暖且氛围感强。照片级真实感。”]
-```
-
-</details>
-
-<details><summary><b>锈蚀时代的回响</b></summary>
-
-```text
-你将使用所提供照片中的人物作为主要主体，执行图像编辑。需保留他们最核心的相貌特征。将主体 1（男性）和主体 2（女性）置于一片废料沙漠之中，塑造为后末日时代的流浪者形象。他们正穿行于一道巨大的峡谷，该峡谷由数个世纪以来层层堆积、锈迹斑斑的废弃残骸自然形成。图像须具备照片级真实感，采用电影化布光，呈现高度精细的皮肤纹理与环境粗粝质感；拍摄设备设定为 Arri Alexa，景深极浅，以使人物从混乱的背景中清晰分离出来。
-```
-
-</details>
-
-<details><summary><b>镜像无限产品图</b></summary>
-
-```text
-产品在呈角度排列的镜面中无限反射，万花筒效果，干净利落的几何倍增，影棚灯光营造精准反射，视觉错觉，极繁主义的极简主义，令人迷失方向的优雅感，高概念广告  
-产品="${product}"  
-宽高比="${aspectratio}"
-```
-
-</details>
-
-<details><summary><b>阳光别墅的静谧午后</b></summary>
-
-```text
-{
-  "image_analysis": {
-    "meta": {
-      "file_name": "image_ef3de2.jpg",
-      "file_type": "uploaded file",
-      "analyst_persona": "Technical Photo Analyst"
-    },
-    "scene_environment": {
-      "location_type": "室内 / 半户外过渡空间（阳光房或带顶棚的露台）",
-      "atmosphere": "热带风情、奢华、放松、温暖",
-      "background_texture": "石墙、自然光、木质家具"
-    },
-    "camera_technical": {
-      "lens_type": "35mm - 50mm（标准镜头）",
-      "angle": " eye-level, slightly angled from the right",
-      "focus": "主体对焦清晰，前景极浅景深（兰花）",
-      "composition": "三分法构图，主体位于左中，右侧花卉形成框景"
-    },
-    "lighting": {
-      "general_condition": "高调照明，以自然日光为主",
-      "sources": [
-        {
-          "id": "light_source_1",
-          "type": "Natural Sunlight",
-          "direction": "从左侧（观众视角）",
-          "color_temp": "中性/冷白光（日光约5500K）",
-          "intensity": "高强度",
-          "effect_on_objects": "在主体的右腿、手臂和面部形成明显高光，向右侧投射柔和阴影"
-        },
-        {
-          "id": "light_source_2",
-          "type": "Ambient Fill",
-          "direction": "全向",
-          "color_temp": "暖色",
-          "intensity": "低/中等强度",
-          "effect_on_objects": "柔化木质家具和主体左侧的阴影"
-        }
-      ]
-    },
-    "subject": {
-      "identity": "成年女性（注意到名人相似性，按指示匿名处理）",
-      "orientation": "正面对前，身体略向右倾斜",
-      "gaze_direction": "直视镜头",
-      "emotional_state": "自信、放松、迷人",
-      "sensuality_level": "中等到高（因着装与姿势所致，但保持优雅）",
-      "pose": {
-        "general_description": "半倚坐在木制沙发/日光床上",
-        "posture_effect_on_emotion": "斜倚姿势突显出放松与自信",
-        "legs": "双腿交叉；右腿弯曲置于左膝之上",
-        "feet_position": "左脚踩在地板/地毯上，右脚悬空，脚尖绷直（跖屈）",
-        "hands_position": "右手置于身后白色靠垫上；左手置于大腿/膝盖附近",
-        "visible_body_extent": "全身可见（从头到脚）"
-      },
-      "head": {
-        "hair": {
-          "color": "深棕色带蜂蜜/焦糖渐变挑染",
-          "style": "长发、松散波浪，中分",
-          "texture": "丝滑、丰盈",
-          "interaction_with_head": "对称地垂落于面部两侧，披在肩上"
-        },
-        "ears": {
-          "visibility": "部分被头发遮盖",
-          "shape": "因头发遮挡无法辨识"
-        },
-        "face": {
-          "structure": "椭圆至菱形脸型，高颧骨",
-          "forehead": "光滑，标准高度，部分被头发修饰",
-          "brows": "精心修饰，拱形，深棕色",
-          "eyes": "杏仁形，深色，化有眼线",
-          "nose": "笔直，鼻梁分明",
-          "upper_lip": "唇峰明显，涂抹紫红色口红",
-          "mouth_area": "闭合，略带 smirk/微笑",
-          "chin": "下颌分明，略尖",
-          "mimic": "微妙的自信微笑，带有诱惑性目光"
-        }
-      },
-      "body_details": {
-        "skin_tone": "古铜色 / 橄榄色",
-        "neck": "可见，光滑，V领设计突出颈部线条",
-        "shoulders": "裸露，圆润，放松",
-        "chest": {
-          "ratio_to_body": "比例较大（丰满）",
-          "estimated_size": "丰满胸部",
-          "bra_status": "无可见文胸（泳衣内置支撑）",
-          "nipples_visible": "否",
-          "shape_description": "自然、挺拔"
-        },
-        "stomach": {
-          "ratio_to_body": "纤细、紧致",
-          "ratio_to_chest": "明显小于胸部（沙漏型身材）",
-          "ratio_to_hips": "明显小于臀部"
-        },
-        "hips": {
-          "ratio_to_body": "宽大、曲线优美",
-          "ratio_to_chest": "与胸部比例协调",
-          "shape": "丰腴曲线"
-        },
-        "legs": {
-          "thighs": "大腿丰满，皮肤光滑，受光源高光突出",
-          "knees": "膝盖光滑、轮廓分明",
-          "calves": "小腿线条紧致",
-          "feet": "赤足，足弓明显，美甲精致（浅色指甲油）"
-        }
-      },
-      "attire": {
-        "upper_garment": {
-          "type": "连体泳衣 / Monokini",
-          "color": "深棕色 / 浓咖啡色",
-          "details": "前部系带设计配金色孔环，挂脖式",
-          "light_interaction": "吸收光线，与皮肤形成对比"
-        },
-        "lower_garment": {
-          "type": "泳装下装（与上装相连）"
-  
-        "accessory": "花卉图案披肩/纱笼",  
-        "details": "垂放在腿下并略微覆盖腿部，多色花卉印花",  
-        "light_interaction": "柔和的褶皱形成阴影"  
-      },  
-      "accessories": {  
-        "jewelry": [  
-          {  
-            "item": "Bracelet",  
-            "location": "左手腕",  
-            "type": "粗大金链节",  
-            "material": "金属金"  
-          },  
-          {  
-            "item": "Necklace",  
-            "location": "颈部",  
-            "type": "细巧链条",  
-            "visibility": "几乎不可见"  
-          }  
-        ],  
-        "footwear": "无（赤脚）"  
-      }  
-    },  
-    "objects_in_scene": [  
-      {  
-        "object": "木制沙发 / 日间床",  
-        "description": "华丽的深色木材，带有复杂雕刻",  
-        "purpose": "供主体坐卧",  
-        "ratio": "占据中景主导位置",  
-        "color": "深红木色",  
-        "location": "中景，从左侧延伸至中央"  
-      },  
-      {  
-        "object": "兰花植物",  
-        "description": "蝴蝶兰，开有紫色和白色花朵",  
-        "purpose": "前景构图元素，增加景深与色彩",  
-        "ratio": "因透视关系在前景中显得较大",  
-        "color": "亮紫色、白色、绿色茎干",  
-        "location": "前景右侧"  
-      },  
-      {  
-        "object": "水果碗",  
-        "description": "白色碗内装满柑橘类水果（橙子/柠檬）",  
-        "purpose": "装饰，增加色彩对比",  
-        "ratio": "相对于主体较小",  
-        "color": "亮橙色、黄色",  
-        "location": "前景右下角"  
-      },  
-      {  
-        "object": "台灯",  
-        "description": "白色几何形/蜂窝纹理底座，配白色灯罩",  
-        "purpose": "背景装饰",  
-        "ratio": "中等大小",  
-        "color": "白色",  
-        "location": "背景左侧"  
-      },  
-      {  
-        "object": "书籍/杂志",  
-        "description": "咖啡桌书籍，封面有人物面部",  
-        "purpose": "前景细节",  
-        "ratio": "仅可见一小部分",  
-        "location": "极前景底部中央"  
-      }  
-    ],  
-    "negative_prompts": [  
-      "bad anatomy",  
-      "extra fingers",  
-      "missing limbs",  
-      "distorted face",  
-      "low resolution",  
-      "blurry subject",  
-      "overexposed",  
-      "underexposed",  
-      "watermark",  
-      "text overlay (except book title)",  
-      "cartoon",  
-      "illustration",  
-      "CGI",  
-      "unnatural skin tone"  
-    ]  
-  }  
-}
-```
-
-</details>
-
-<details><summary><b>阳光卧室镜前自拍</b></summary>
-
-```text
-{  
-  "scene_type": "室内生活人像（镜中自拍美学）",  
-  "environment": {  
-    "location": "阳光洒落的卧室，拥有柔和、自然的日间照明",  
-    "background": {  
-      "bed": "白色金属框架床，呈现柔和复古质感，铺有浅色植物图案床品",  
-      "decor": "简洁极简风格陈设，配以几株小型盆栽、一张简约床头柜，以及低调的花卉元素点缀",  
-      "windows": "大型窗户配有轻盈透光的薄纱窗帘，柔化并漫射光线，使整个房间氛围更显柔和",  
-      "color_palette": "暖白色、象牙白、米 beige 及浅中性色调为主，辅以淡雅的植物与花卉细节"  
-    },  
-    "atmosphere": "静谧、私密、温馨、通透且略带生活气息"  
-  },  
-  "subject": {  
-    "gender_presentation": "女性化",  
-    "approximate_age_group": "成年（21 岁及以上），青年期",  
-    "skin_tone": "白皙肤色，具备真实自然的皮肤纹理与细微瑕疵",  
-    "hair": {  
-      "color": "冷调铂金色（略带冰感）",  
-      "style": "长直发，中分清爽利落，自然垂落于肩部"  
-    },  
-    "facial_features": {  
-      "expression": "神情柔和、平静且略带内省，嘴角放松，眼神温软",  
-      "makeup": "妆容极淡、自然，仅作低调轮廓修饰，无任何浓重或戏剧化效果"  
-    },  
-    "body_details": {  
-      "build": "偏纤细至匀称体型，比例自然",  
-      "visible_tattoos": [  
-        "手臂及前臂处饰有精细线条风格的花卉与插画风纹身",  
-        "大腿上部可见一处小巧、低调的纹身"  
-      ]  
-    }  
-  },  
-  "pose": {  
-    "position": "舒适随意地坐在床沿附近",  
-    "legs": "双膝微屈收拢，形成紧凑而温馨的剪影",  
-    "hands": "一只手将手机举向镜面以构图自拍，另一只手轻触嘴唇或停驻嘴边，呈现沉思姿态",  
-    "orientation": "身体朝向镜面倾斜，面部部分被手机遮挡，保持真实镜中自拍的取景方式"  
-  },  
-  "clothing": {  
-    "outfit_type": "轻盈睡衣或柔软家居吊带裙，契合轻松卧室场景",  
-    "color": "柔白色或象牙白（洁净、极简、温和色调）",  
-    "material": "柔软细腻面料，略具半透明感，同时保持得体优雅、不露骨",  
-    "details": "细肩带设计，边缘饰有精致蕾丝镶边与考究收边细节"  
-  },  
-  "styling": {  
-    "accessories": [  
-      "极简项链，配小巧吊坠或素链",  
-      "小巧圆环耳饰，外观干净、低调"  
-    ],  
-    "nails": "自然甲面或以中性色轻度美甲，不张扬",  
-    "overall_style": "柔和、女性化、私密且静谧审美，毫无过度造型或人工感"  
-  },  
-  "lighting": {  
-    "type": "自然日光",  
-    "source": "侧方斜射入窗的光线，轻柔包裹主体",  
-    "quality": "漫射、柔和且均匀的照明，肌肤与织物表面光影过渡平滑",  
-    "shadows": "阴影极淡，仅增添自然立体感而不产生强烈对比，整体情绪温柔而轻盈"  
-  },  
-  "mood": {  
-    "emotional_tone": "宁静、温暖、沉思、静谧私密",  
-    "visual_feel": "平和、柔润、写实，宛如一个宁静清晨中捕捉到的真实瞬间"  
-  },  
-  "camera_details": {  
-    "camera_type": "智能手机拍摄",  
-    "lens_equivalent": "广角感（约等效 24–28mm），典型手机自拍镜头视角",  
-    "perspective": "镜中自拍视角，构图真实可信，略带手持拍摄的真实性",  
-    "focus": "主体清晰锐利，具备自然景深提示；背景可辨识但不过分锐利",  
-    "aperture_simulation": "模拟手机浅景深效果（f/1.8 至 f/2.2 风格观感），微妙且可信",  
-    "iso_simulation": "低 ISO 模拟，确保画面干净、噪点极少，同时保留肌肤真实纹理",  
-    "shutter_speed_simulation": "快门速度足够高，以抑制运动模糊，即使手持拍摄亦能保持细节锐利",  
-    "white_balance": "中性日光白平衡，略带温和暖调，避免过黄或过蓝倾向"  
-  },  
-  "rendering_style": {  
-    "realism_level": "超写实主义",  
-    "detail_level": "高保真皮肤纹理、真实布料垂坠与蕾丝动态表现、自然光影渐变及符合现实的阴影",  
-    "post_processing": "柔和对比度、温润高光、自然色彩分级、适度清晰度——在保留皮肤纹理的同时不进行磨皮处理",  
-    "artifacts": "无任何视觉伪影、无绘画感效果、无 CGI 外观、无合成塑料质感肌肤"  
-  }  
-}
-```
-
-</details>
-
-<details><summary><b>阳光沙滩</b></summary>
-
-```text
-生成一幅人们在阳光明媚的海滩上日光浴的图像。呈现一种轻松愉快的氛围，背景是清澈的蓝天和轻柔的海浪。画面中应包含不同背景的人们享受阳光的情景，并散落着沙滩毛巾和遮阳伞。
-```
-
-</details>
-
-<details><summary><b>阳光露台自拍与提基装饰</b></summary>
-
-```text
-{
-  "scene_analysis": {
-    "environment": {
-      "type": "Outdoor",
-      "setting": "Patio or backyard terrace",
-      "weather": "Sunny, clear sky visible",
-      "background_elements": [
-        "Grey stucco wall",
-        "Artificial green hedge wall",
-        "Blue sky"
-      ]
-    },
-    "camera": {
-      "lens": "Wide-angle lens (typical of smartphone front camera)",
-      "angle": "Selfie angle, slightly low looking up, close-up framing",
-      "focus": "Sharp focus on the subject's face and upper body",
-      "distortion": "Slight perspective distortion due to wide angle"
-    },
-    "lighting": {
-      "overall_condition": "Bright natural daylight, hard lighting",
-      "sources": [
-        {
-          "source_id": 1,
-          "type": "Sun",
-          "angle": "High angle, coming from the upper left (subject's right)",
-          "color": "Natural white/warm daylight",
-          "intensity": "High/Strong",
-          "effects_on_objects": "Creates hard shadows under the subject's hair, chin, and nose. Casts defined shadows on the grey wall behind. Illuminates the hair creating a golden sheen."
-        }
-      ]
-    }
-  },
-  "subjects": [
-    {
-      "id": "person_1",
-      "type": "Human",
-      "gender": "Female",
-      "identity": "Anonymous",
-      "orientation": {
-        "facing": "Directly towards the camera",
-        "body_rotation": "Frontal, slight lean forward"
-      },
-      "emotional_state": {
-        "mood": "Relaxed, confident, slightly sultry",
-        "expression": "Neutral with slightly parted lips, 'bedroom eyes'",
-        "lust_factor": "Moderate to High (suggestive pose and nudity implication)",
-        "posture_effect": "The leaning posture emphasizes the chest and creates a casual, intimate vibe"
-      },
-      "pose": {
-        "general_definition": "Leaning forward selfie, likely sitting or kneeling",
-        "feet_position": "Not visible (out of frame)",
-        "hand_position": "Right arm extended holding the camera (implied), Left arm resting on a lower surface/knee",
-        "visible_extent": "Head to waist/mid-torso"
-      },
-      "head": {
-        "structure": "Oval face shape, defined jawline",
-        "hair": {
-          "color": "Light brown with blonde highlights (bronde)",
-          "style": "Shoulder-length, layered, textured/messy look",
-          "shape": "Frames the face, voluminous",
-          "condition": "Sun-kissed, dry texture"
-        },
-        "ears": "Partially covered by hair",
-        "forehead": "Partially covered by bangs/hair strands, smooth skin",
-        "brows": "Natural, brushed up, dark brown",
-        "eyes": {
-          "gaze": "Direct eye contact with the lens",
-          "shape": "Almond",
-          "makeup": "Minimal or natural look"
-        },
-        "nose": {
-          "structure": "Straight, slightly button tip",
-          "details": "Freckles visible across the bridge"
-        },
-        "mouth_area": {
-          "lips": "Very full, plump, upper lip slightly lifted",
-          "mouth_state": "Slightly open",
-          "philtrum": "Defined"
-        },
-        "chin": "Rounded but defined",
-        "mimics": "Relaxed facial muscles, seductive gaze"
-      },
-      "body": {
-        "skin": {
-          "tone": "Tanned",
-          "texture": "Smooth, freckles on chest and face"
-        },
-        "neck": {
-          "visibility": "Visible",
-          "tattoo": "Small text tattoo on the center/throat area (vertical characters)"
-        },
-        "shoulders": {
-          "visibility": "Visible",
-          "posture": "Relaxed, slightly hunched forward due to leaning"
-        },
-        "chest": {
-          "ratio_to_body": "Prominent",
-          "estimated_size": "Full bust",
-          "bra_status": "None (No bra visible)",
-          "nipples_visible": "No (Hidden by framing/shadows)",
-          "shape_notes": "Natural droop due to gravity and leaning pose, cleavage visible",
-          "tattoo": "Gothic script text tattoo reading 'Divine Feminine' on the sternum"
-        },
-        "belly": {
-          "visibility": "Partially visible (upper abdomen)",
-          "ratio": "Slim relative to chest"
-        },
-        "arms": {
-          "tattoos": {
-            "right_arm": "Heavy ink, large sleeve/designs visible",
-            "left_arm": "Sketch-style tattoos including an anime-style girl face, a hummingbird, and line art"
-          }
-        }
-      },
-      "clothing": {
-        "upper_body": "None (Topless implied)",
-        "lower_body": "Not clearly visible, possibly a white towel or garment bunched near the bottom left",
-        "accessories": "Bracelet on left wrist (silver/thin chain)"
-      },
-      "light_interaction_body": {
-        "face": "Evenly lit with highlights on the forehead and nose bridge",
-        "chest": "Highlights on the upper curve of the breasts, deep shadows in the cleavage",
-        "hair": "Backlighting effect on the top strands"
-      }
-    }
-  ],
-  "objects": [
-    {
-      "id": "object_1",
-    {
-      "id": "object_1",
-      "name": "Tiki Totem Statue",
-      "description": "木雕雕像，带有面部特征",
-      "color": "灰色/棕色木材，涂有红色舌头和黄色牙齿",
-      "position": "画面右侧，前景",
-      "purpose": "装饰，美学元素",
-      "ratio": "大型垂直元素，在透视中与主体头部大小相当"
-    },
-    {
-      "id": "object_2",
-      "name": "Planter with Greenery",
-      "description": "质朴的木质花箱，内含人造蕨类植物/绿植",
-      "color": "漂白木材，鼠尾草绿植物",
-      "position": "右侧，位于Tiki雕像后方",
-      "purpose": "装饰，背景纹理"
-    },
-    {
-      "id": "object_3",
-      "name": "BBQ Grill",
-      "description": "不锈钢户外烧烤架",
-      "color": "金属银色",
-      "position": "最左侧边缘，部分被裁剪",
-      "purpose": "功能性露台设备"
-    }
-  ],
-  "negative_prompts": [
-    "上身穿着衣物",
-    "衬衫",
-    "文胸",
-    "比基尼上衣",
-    "变形的手",
-    "解剖结构错误",
-    "模糊",
-    "低分辨率",
-    "昏暗照明",
-    "室内场景",
-    "男性主体",
-    "太阳镜"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>阳台晨雾咖啡时光</b></summary>
-
-```text
-{
-  "category": "BALCONY_COFFEE_PLANTS",
-  "identity_lock": {
-    "enabled": true,
-    "priority": "ABSOLUTE_MAX",
-    "instruction": "严格保留参考图中的精确身份。仅限21岁及以上成年人。禁止美化或更改面部。"
-  },
-  "subject": {
-    "demographics": "成年女性，21–29岁（须匹配参考身份）。",
-    "hair": {
-      "color": "与参考图一致。",
-      "style": "松散波浪发或凌乱发髻，带几缕散落发丝",
-      "texture": "真实发丝质感，有飞毛，体积感自然真实",
-      "movement": "自然动态，微风轻拂发丝"
-    },
-    "face": {
-      "eyes": "眼睛须与参考图完全一致；带有柔和的晨光高光（catchlights）",
-      "skin_details": "肌肤呈现自然纹理，毛孔可见，散发柔和晨间光泽",
-      "micro_details": "保留参考图中的所有细微特征标记"
-    },
-    "clothing": {
-      "outfit": "舒适开衫 + 简约上衣（无任何标识/文字）",
-      "fabric": "可见针织纹理，允许轻微起球"
-    },
-    "accessories": {
-      "jewelry": ["小巧银色圆环耳环"],
-      "props": ["无品牌陶瓷马克杯"]
-    }
-  },
-  "pose": {
-    "type": "生活化抓拍风格",
-    "orientation": "半身构图，坐于阳台椅上",
-    "head_position": "头部略倾斜，下巴放松",
-    "hands": "双手环握马克杯以取暖（手部结构准确）",
-    "gaze": "接近直视镜头的眼神",
-    "expression": "浅淡微笑，神情放松"
-  },
-  "setting": {
-    "environment": "布满盆栽植物的阳台",
-    "background_elements": [
-      "前景虚化的植物叶片",
-      "柔和的城市远景虚化（不可见可读文字或标识）",
-      "晨雾弥漫，氛围轻柔"
-    ],
-    "depth": "前景叶片虚化；面部清晰锐利；背景柔和"
-  },
-  "camera": {
-    "shot_type": "半身人像",
-    "angle": "略高于眼平线角度",
-    "focal_length_equivalent": "26mm 手机镜头 或 50mm 专业镜头",
-    "framing": "4:5画幅，偏构图",
-    "focus": "双眼清晰锐利；马克杯略柔和"
-  },
-  "lighting": {
-    "source": "柔和的晨间日光",
-    "direction": "前侧向漫射光",
-    "highlights": "眼部与唇部呈现自然高光",
-    "shadows": "下颌下方投下柔和阴影"
-  },
-  "mood_and_expression": {
-    "tone": "温馨、亲切、宁静",
-    "atmosphere": "可感知的晨间静谧感"
-  },
-  "style_and_realism": {
-    "style": "照片级写实风格，Instagram生活类影像",
-    "imperfections": "轻微颗粒感，构图略带不完美感"
-  },
-  "technical_details": {
-    "aspect_ratio": "4:5",
-    "resolution": "高分辨率",
-    "noise": "轻微噪点",
-    "mode_variants": {
-      "amateur": "手持iPhone抓拍风格：带轻微倾斜角度、轻微噪点、构图略不完美",
-      "pro": "曝光更干净、微对比度更锐利、景深更浅"
-    }
-  },
-  "constraints": {
-    "adult_only": true,
-    "single_subject_only": true,
-    "no_text": true,
-    "no_logos": true,
-    "no_watermarks": true
-  },
-  "negative_prompt": [
-    "身份偏移", "面部形变",
-    "CGI生成的植物", "塑料质感皮肤",
-    "多余手指", "扭曲变形的马克杯",
-    "可读文字", "标识/Logo", "水印"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>阿尔卑斯自由滑落</b></summary>
-
-```text
-{
-  "title": "Alpine Freefall",
-  "description": "一张高节奏、广角的动作镜头，捕捉一名自由式滑雪者在陡峭山峰上疾驰而下的惊险瞬间。",
-  "prompt": "你将使用所提供照片中的人物作为主要主体进行图像编辑。保留她的核心相貌特征。创建一张超现实的 GoPro 自拍风格图像，展现主体1在高海拔滑雪坡上高速滑降的场景。图像应具有标志性的鱼眼畸变效果，呈现地平线的弯曲形态以及滑降时的强烈速度感，主体手持自拍杆将自己框入画面，背景是急剧下落的垂直落差。",
-  "details": {
-    "year": "2024",
-    "genre": "GoPro",
-    "location": "法国阿尔卑斯山脉一处锯齿状、白雪覆盖的山脊，头顶是清澈的蓝天。",
-    "lighting": [
-      "明亮、强烈的阳光",
-      "镜头光晕伪影",
-      "高对比度"
-    ],
-    "camera_angle": "自拍杆视角，带有广角鱼眼畸变。",
-    "emotion": [
-      "兴奋",
-      "无畏",
-      "狂野"
-    ],
-    "color_palette": [
-      "刺眼的白色",
-      "深邃的天蓝色",
-      "鲜明的黑色",
-      "肤色"
-    ],
-    "atmosphere": [
-      "充满肾上腺素",
-      "节奏飞快",
-      "清冽",
-      "多风"
-    ],
-    "environmental_elements": "被踢起的粉状雪花向镜头喷洒，边缘带有运动模糊，摄像机镜片上有水滴。",
-    "subject1": {
-      "costume": "黑色迷你裙、白色短款上衣、皮质露指手套",
-      "subject_expression": "张大嘴巴兴奋呐喊，眼神因刺激而睁大。",
-      "subject_action": "ski"
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "影棚灯光",
-        "平静",
-        "静态姿势",
-        "室内场景",
-        "树木"
-      ],
-      "exclude_styles": [
-        "油画",
-        "素描",
-        "温暖复古风格",
-        "柔焦"
-      ],
-      "exclude_colors": [
-        "棕褐色",
-        "低饱和色调",
-        "粉彩"
-      ],
-      "exclude_objects": [
-        "滑雪缆车",
-        "人群",
-        "建筑物"
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>阿蒙太阳女祭司</b></summary>
-
-```text
-{
-  "title": "The Solar Priestess of Amun",
-  "description": "一位令人惊叹的、风格化的女性肖像，描绘她化身为古埃及女祭司，融合了照片级真实感与墓室壁画的质感。",
-  "prompt": "你将使用所提供照片中的女性作为主要主体进行图像编辑。保留她的核心相貌特征。将主体转变为新王国艺术风格下的高级古埃及女祭司。她以程式化的侧面视角（正统透视）呈现，背景为覆盖着鲜艳象形文字的石灰岩墙壁。图像应具有陈旧纸莎草和金箔的纹理，同时保持电影级光照效果，画面比例为1:1。",
-  "details": {
-    "year": "1250 BC",
-    "genre": "Ancient Egyptian Art",
-    "location": "卡纳克神庙内殿，周围环绕着巨大的砂岩柱。",
-    "lighting": [
-      "温暖的金色阳光",
-      "摇曳的火把阴影",
-      "黄金首饰上的镜面高光"
-    ],
-    "camera_angle": "与视线齐平的侧面拍摄角度，模仿传统埃及艺术的透视方式。",
-    "emotion": [
-      "庄严",
-      "虔诚",
-      "宁静"
-    ],
-    "color_palette": [
-      "青金石蓝",
-      "抛光金",
-      "赭红",
-      "绿松石"
-    ],
-    "atmosphere": [
-      "神圣",
-      "永恒",
-      "神秘",
-      "奢华"
-    ],
-    "environmental_elements": "背景墙上雕刻的象形文字，光线光束中漂浮的尘埃微粒，神圣的莲花。",
-    "subject1": {
-      "costume": "一件褶皱白色亚麻长裙（kalasiris），一条镶嵌半宝石的厚重金质Wesekh项圈，以及一只秃鹫头饰。",
-      "subject_expression": "坚定而威严的目光直视前方。",
-      "subject_action": "一只手微微举起仪式用的安卡符号。"
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "现代时装",
-        "牛仔布",
-        "数字技术",
-        "汽车"
-      ],
-      "exclude_styles": [
-        "3D渲染",
-        "动漫",
-        "印象派",
-        "赛博朋克"
-      ],
-      "exclude_colors": [
-        "霓虹绿",
-        "电光紫"
-      ],
-      "exclude_objects": [
-        "眼镜",
-        "手表",
-        "现代建筑"
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>随性闺蜜夜自拍</b></summary>
-
-```text
-业余风格的女孩之夜自拍，极度随意且不完美，1:1 画幅比。图像直接由一部廉价、老旧智能手机的前置摄像头拍摄：我们仅看到手机所见的画面，画面中**绝不可出现任何手机或相机本体**。
-
-三位成年女性在夜晚的小公寓客厅里，紧挨着坐在一张老旧但舒适的沙发上。她们穿着简单的居家服装和运动裤，就像一个真正放松惬意的夜晚。
-
-居中女性：中等肤色，长黑发，身穿纯黑色无袖上衣和浅灰色运动裤。她坐在沙发正中央，一条腿 tucked 在身下，另一条腿弯曲；身体微微向左倾斜，头部略歪，朝向镜头轻柔微笑，神情放松、毫无摆拍感。
-
-左侧女性：浅肤色，直顺浅棕色头发，身穿长袖黑色上衣和浅灰色运动裤。她身体大幅前倾，紧贴居中女性，几乎肩部相触，朝向镜头做出夸张的“飞吻脸”表情——双唇噘起，眉毛微抬。由于这是自拍视角（POV），她在画面中显得稍近、略大，符合靠近手机的真实透视效果。
-
-右侧女性：浅肤色，波浪金发，身穿深色长袖上衣和黑色紧身裤。她从右侧探身加入合影，头部微歪，笑容俏皮搞怪，舌头伸出，双眼因大笑而微微眯起。三人神态自然，宛如亲密好友正在玩闹，绝非模特。
-
-环境：温馨、略显凌乱的客厅。她们身后是一盏简易落地灯，暖色灯泡照亮墙面。背景一侧可见一台电视屏幕，正暂停播放某部电影画面（呈现柔和抽象图形，无清晰可辨的人脸或商标）。沙发前方一张低矮木质咖啡桌上（画面底部可见）摆放着打开的披萨盒（内有吃剩的披萨片）、一袋薯片、一听汽水、一听气泡水、几粒碎屑，以及一部平放在桌上的手机。沿其中一面墙悬挂着串灯或仙女灯，散发温暖而不完美的光晕。整间公寓与家具均呈现日常真实感，略带使用痕迹，绝非影棚布景。
-
-相机与风格：**极其重要**——该图像必须呈现为一张真实的、质量较差的自拍，**绝非专业摄影**。它由基础款智能手机前置摄像头在 AUTO（自动）模式下拍摄。闪光灯为镜头附近的直射、略显生硬的手机闪光，导致面部局部轻微过曝并泛油光。暗部区域可见明显数字噪点与颗粒感。混合光源：落地灯带来暖黄光，电视屏幕则投射出偏冷的蓝调反光，造成白平衡轻微不均。对焦偏软，非锐利清晰，发丝与手部带有细微动态模糊。画面边缘存在轻微暗角及轻微广角畸变，符合廉价前置摄像头特性。构图略歪斜、稍偏离中心；部分披萨盒与物品被裁切于画面边缘。整体观感应如一张未经编辑、即兴抓拍、随手发至群聊的自拍照。
-
-约束条件：画面中**严格仅有三位女性，不得出现其他任何人**。唯一存在的相机即为我们正透过其观看的那部手机，因此**不可出现额外的手部、额外的手机、镜中反射的摄影师、画面边缘的第二位摄影师，亦不可出现任何其他相机的反射影像**。画面中仅有三位朋友坐在沙发上，以及凌乱的咖啡桌。
-
-负面提示词（Negative prompt）：专业影棚、专业布光、柔光箱、轮廓光、电影感氛围、商业摄影棚拍摄、完美色彩分级、HDR、强景深虚化、散景（bokeh）、高端 DSLR 或镜头、超洁净时尚大片、对称构图、网红滤镜预设、重度磨皮美颜、滤镜、酒店房间、摆拍布景、额外人物、额外手臂、额外手部、画面中出现任何其他手机或相机、镜中映出另一位摄影师、文字、商标、水印、超现实故障效果、未成年人外观。
-```
-
-</details>
-
-<details><summary><b>隔窗特写:一只眼睛对焦</b></summary>
-
-```text
-一幅电影感十足的特写人像，呈现一张参考照片透过反光玻璃窗所见的效果。她拥有一头凌乱的深棕色头发，皮肤质感高度逼真，清晰可见毛孔、细纹及自然瑕疵。其中一只绿色带淡褐色的虹膜处于锐利、晶莹剔透的焦点之中，完全可见，且未被任何反光或高光遮挡；而她面部其余部分则随景深自然衰减，逐渐柔化融入背景。
-
-前景中的玻璃表面覆盖着真实感十足的雨滴与细微的雨水流痕，营造出层次丰富的纵深感与情感距离感。反光经过精心控制，仅出现在画面边缘区域，绝不会跨越或遮蔽那只聚焦的眼睛或关键面部特征。
-
-阴郁、低调的布光风格，暖调泛黄与橙色散景光斑柔和地映在玻璃上。散景保持弥散状态，并偏移至画面两侧，强化氛围感，同时不遮挡面部清晰度。采用极浅景深（f/1.2）拍摄，构图富有电影感，情绪基调浓郁，光学虚化自然，光线行为真实可信。
-
-照片级真实感渲染，高分辨率细节，保留胶片颗粒感，皮肤纹理自然，无过度平滑处理，无人工锐化，无塑料感或合成感。
-```
-
-</details>
-
-<details><summary><b>雨中浪漫电影场景</b></summary>
-
-```text
-面部必须与参考图100%完全一致，绝对锁定身份：不允许任何面部改变、美化、对称性修正、年龄变化、皮肤平滑处理或表情改动，保持相同的面部比例、眼睛、鼻子、嘴唇、下颌线以及自然的皮肤质感。超写实电影级夜景雨中场景，一对情侣在柔和灯光的花园中站在黄色雨伞下，彼此靠得非常近。大雨倾盆而下，金色的暖光小串灯和街灯照亮雨滴，在背景中形成梦幻般的散焦光斑（bokeh），湿漉漉的地面反射着灯光。男子手持雨伞，温柔深情地凝视着女子，而女子则抬头回望他，脸上带着柔和温暖的浪漫微笑。他们始终保持着眼神交流，完全沉浸在彼此之中，传达出深刻的情感联结。两人穿着优雅的外套，被雨水微微打湿，布料纹理真实可见；面部有微妙的轮廓光勾勒，可见的雨滴和薄雾弥漫，浅景深效果，呈现50mm镜头视觉感，带有自然的胶片颗粒感，高端电影级调色。只允许改变灯光、氛围和环境——面部和身份必须完全不变且完美保留。
-```
-
-</details>
-
-<details><summary><b>雨中浪漫视频</b></summary>
-
-```text
-他们站在雨中，彼此深情对望。雨滴在他们周围落下，轻柔的雨声弥漫在空气中。
-```
-
-</details>
-
-<details><summary><b>雨中的绯红华尔兹</b></summary>
-
-```text
-{
-  "title": "Crimson Waltz in the Rain",
-  "description": "一个视觉惊艳、电影感十足的瞬间：一位女性在黄昏时分的欧洲雨巷中独舞，享受孤独中的喜悦。",
-  "prompt": "你将执行一次图像编辑，创作一幅超逼真的杰作。该图像必须具备照片级真实感，采用电影化照明，并高度细致，看起来仿佛是用 Arri Alexa 拍摄，具有浅景深效果。画面中，一位女性主体在雨中的鹅卵石街道上自由起舞。雨滴因快门速度而凝固在空中，捕捉到街灯的琥珀色光芒。",
-  "details": {
-    "year": "永恒现代",
-    "genre": "电影级写实主义",
-    "location": "黄昏时分巴黎一条狭窄空旷的鹅卵石街道，雨水浸湿地面，倒映着复古街灯和商店橱窗的温暖光芒。",
-    "lighting": [
-      "电影级轮廓光",
-      "温暖的琥珀色路灯",
-      "柔和的蓝色环境暮光",
-      "体积雾"
-    ],
-    "camera_angle": "人眼高度的中景镜头，突出主体在散焦背景前的舞动。",
-    "emotion": [
-      "自由的",
-      "喜悦的",
-      "宁静的"
-    ],
-    "color_palette": [
-      "深黑色曜石",
-      "琥珀金色",
-      "雨蓝色",
-      "鲜艳的深红色"
-    ],
-    "atmosphere": [
-      "浪漫的",
-      "忧郁却喜悦的",
-      "富有氛围感的",
-      "潮湿的"
-    ],
-    "environmental_elements": "雨丝斜落，地面积水中倒映着灯光，雾气在脚踝周围缭绕。",
-    "subject1": {
-      "costume": "红色帽子",
-      "subject_expression": "双眼闭合，沉浸在纯粹的幸福中，嘴角带着温柔微笑，脸颊上挂着雨滴。",
-      "subject_action": "跳舞"
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "明亮的日光",
-        "干燥的路面",
-        "人群",
-        "车辆",
-        "太阳镜"
-      ],
-      "exclude_styles": [
-        "卡通",
-        "3D 渲染",
-        "插画",
-        "油画",
-        "素描"
-      ],
-      "exclude_colors": [
-        "霓虹绿",
-        "亮粉"
-      ],
-      "exclude_objects": [
-        "雨伞",
-        "现代汽车",
-        "垃圾桶"
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>雨天街头撑伞全身照</b></summary>
-
-```text
-{
-  "category": "RAINY_CITY_UMBRELLA_FULLBODY",
-  "subject": {
-    "demographics": "成年女性，21–27 岁，具有土耳其人外貌特征。",
-    "hair": {
-      "color": "深棕色",
-      "style": "略带潮湿的发丝，别于耳后",
-      "texture": "呈现真实湿润光泽，不油腻",
-      "movement": "几缕发丝轻轻贴在脸颊上"
-    },
-    "face": {
-      "eyes": "目光明亮直视镜头，瞳孔中带有反射高光",
-      "skin_details": "肌肤呈现自然纹理，略带水润真实感",
-      "makeup": "妆容极简，具备防水效果"
-    },
-    "clothing": {
-      "outerwear": "雨衣或风衣（无任何品牌标识）",
-      "fabric": "面料呈现轻微湿润光泽，并可见水珠"
-    },
-    "accessories": {
-      "umbrella": "透明雨伞，表面附着雨滴",
-      "jewelry": ["小巧银质圆环耳饰"]
-    }
-  },
-  "pose": {
-    "type": "全身行走抓拍照",
-    "orientation": "迈步中段，身体略朝向镜头扭转",
-    "hands": "一只手握持伞柄，另一只手插在大衣口袋中",
-    "gaze": "柔和微笑，与镜头保持眼神交流",
-    "posture": "姿态放松，步态自然"
-  },
-  "setting": {
-    "environment": "黄昏时分的雨天城市街道",
-    "background_elements": [
-      "湿滑路面的倒影",
-      "路灯虚化光斑（bokeh）",
-      "可见细密毛毛雨（精细雨滴，非烟雾/雾气效果）"
-    ],
-    "depth": "主体清晰，背景虚化"
-  },
-  "camera": {
-    "shot_type": "全身街头摄影",
-    "angle": "平视角度",
-    "focal_length_equivalent": "26mm 手机镜头或 35mm 杂志级镜头",
-    "framing": "4:5 构图，主体略微偏离画面中心",
-    "focus": "面部锐利清晰，运动模糊程度极低"
-  },
-  "lighting": {
-    "source": "路灯 + 环境天光",
-    "direction": "柔和的顶部/侧向辉光",
-    "highlights": "雨伞表面雨滴产生的镜面高光",
-    "shadows": "阴影柔和、真实"
-  },
-  "mood_and_expression": {
-    "tone": "情绪化、温馨、时尚",
-    "expression": "轻柔微笑，沉着自信",
-    "atmosphere": "电影级雨天写实氛围"
-  },
-  "style_and_realism": {
-    "style": "照片级写实街头抓拍风格",
-    "imperfections": "轻微噪点，仅背景存在轻微模糊"
-  },
-  "technical_details": {
-    "aspect_ratio": "4:5",
-    "noise": "弱光环境下类似手机的颗粒感",
-    "motion_blur": "仅背景倒影中存在轻微运动模糊"
-  },
-  "constraints": {
-    "adult_only": true,
-    "no_text": true,
-    "no_logos": true,
-    "no_watermarks": true
-  },
-  "negative_prompt": [
-    "烟雾", "造雾机效果", "水枪喷溅",
-    "多余肢体", "扭曲变形的伞骨",
-    "可辨识文字标识", "品牌标识（logos）", "水印"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>雨季校园六格拼贴</b></summary>
-
-```text
-{
-  "aspect_ratio": "9:16",
-  "format": "vertical collage moodboard",
-  "identity_lock": {
-    "rule": "使用附加图像中的所有基因特征——100% 身份保留",
-    "source": "attached_image",
-    "features_to_use_from_reference": ["面部结构", "肤色", "眼睛颜色", "发色、发质、长度和发型", "体型", "年龄", "种族"],
-    "instruction": "不要发明、描述或更改面部、体型或头发。在全部6张照片中，必须使用附加参考图像中的确切基因特征来呈现人物。在整个拼贴画中保持身份一致。"
-  },
-  "positive_prompt": "创建一个超现实的 Pinterest 风格雨季拼贴画，采用垂直 9:16 格式。拼贴画包含6张不同的自然抓拍照，以优雅的情绪板布局排列。",
-  "outfit": {
-    "top": "oversized pastel pink button-up shirt",
-    "bottom": "loose-flowing white wide-leg pants",
-    "note": "所有6张照片中穿着相同服装，具有自然的布料褶皱和真实垂坠感"
-  },
-  "collage_photos": [
-    {
-      "photo_1": "安静站立，享受着雨水"
-    },
-    {
-      "photo_2": "撑着透明雨伞，沿着开满花的小径走远"
-    },
-    {
-      "photo_3": "在盛开的粉色花朵旁的特写镜头"
-    },
-    {
-      "photo_4": "将一只手伸入落下的雨中"
-    },
-    {
-      "photo_5": "坐在被花朵环绕的长椅上，姿态放松"
-    },
-    {
-      "photo_6": "站在透明雨伞下，背景是反光的湿漉漉校园道路"
-    }
-  ],
-  "environment": "迷人的大学校园，拥有古老的欧洲风格建筑、鲜花覆盖的小路、潮湿的石板步道、茂盛的绿植、湿滑路面反射灯光与花朵、粉色花瓣散落在地面、细柔降雨、梦幻氛围、温暖大地色调与凉爽雨天色彩交融、浪漫情绪",
-  "decorations": "包含手写风格的美学涂鸦、小爱心、花朵、雨滴插图、纸条贴纸、剪贴簿元素以及 Pinterest 情绪板装饰",
-  "captions_in_collage": ["Rainy Season", "College Days", "Collecting Moments, Not Things", "Just Breathe", "Some People Feel Like Rain"],
-  "lighting_and_quality": "柔和电影级灯光、奶油般虚化背景、逼真的雨滴效果、自然布料褶皱、梦幻韩系美学、生活方式摄影、杂志编辑品质、超精细8K细节",
-  "style_tags": "Korean Pinterest Moodboard, Rainy Season Aesthetic, College Campus Photography, Scrapbook Collage, Photorealistic 8K",
-  "negative_prompt": "cartoon, anime, CGI, distorted hands, extra fingers, low resolution, oversaturated colors, watermark, logo, AI artifacts, unrealistic anatomy, duplicate faces, different outfits, identity change"
-}
-```
-
-</details>
-
-<details><summary><b>雨林中的温馨木屋</b></summary>
-
-```text
-创建一幅图像：一间舒适的木屋 nestled 在下着大雨的迷雾森林中。温暖的橙色炉火透过结霜的窗户柔和地透出光芒。深色的松树环绕着整个场景。雨水沿着玻璃窗蜿蜒流下。远处微弱的闪电短暂照亮了湿漉漉的树木。镜头缓缓推向木屋的窗户。专业级色彩分级。24fps。高度细致。高品质。
-```
-
-</details>
-
-<details><summary><b>雪原孤影数字绘画</b></summary>
-
-```text
-{
-  "colors": {
-    "color_temperature": "cool",
-    "contrast_level": "high",
-    "dominant_palette": [
-      "deep blue",
-      "orange",
-      "red",
-      "black"
-    ]
-  },
-  "composition": {
-    "camera_angle": "wide shot",
-    "depth_of_field": "deep",
-    "focus": "The burning house and the lone figure in the snow.",
-    "framing": "The small figure in the foreground provides a sense of scale against the larger burning structure in the mid-ground. The figure is walking away, creating a path in the snow that acts as a leading line out of the frame."
-  },
-  "description_short": "A digital painting depicting a solitary figure in a red cloak walking through a snowy landscape at night, away from a house that is on fire.",
-  "environment": {
-    "location_type": "outdoor",
-    "setting_details": "A winter scene with a two-story house surrounded by evergreen trees, all set within a vast landscape covered in a thick layer of snow under a dark, starry sky.",
-    "time_of_day": "night",
-    "weather": "clear"
-  },
-  "lighting": {
-    "intensity": "strong",
-    "source_direction": "back",
     "type": "cinematic"
   },
   "mood": {
-    "atmosphere": "A somber and dramatic departure",
-    "emotional_tone": "mysterious"
+    "atmosphere": "Introspective and somber",
+    "emotional_tone": "melancholic"
   },
   "narrative_elements": {
-    "character_interactions": "A single figure is shown in relation to an event rather than another person, suggesting solitude and a significant personal moment.",
-    "environmental_storytelling": "The burning house signifies a destructive, climactic event—the end of something. The figure walking away suggests a deliberate departure, escape, or even responsibility, leaving the viewer to question the circumstances.",
-    "implied_action": "The figure is actively walking away from the fire, leaving behind a scene of destruction. The fire is still raging, implying the event has just happened."
+    "character_interactions": "The man is alone, seemingly lost in thought, creating a sense of isolation and introspection.",
+    "environmental_storytelling": "The dark, textured, and minimalist background serves to isolate the subject, focusing all attention on his emotional state and the detailed texture of his features.",
+    "implied_action": "The subject is in a still moment of deep contemplation, gazing at something unseen off-camera."
   },
   "objects": [
-    "burning house",
-    "snow",
-    "figure",
-    "red cloak",
-    "smoke",
-    "trees",
-    "torch"
+    "Man",
+    "Jacket collar"
   ],
   "people": {
     "ages": [
-      "unknown"
+      "young adult"
     ],
-    "clothing_style": "long red cloak",
+    "clothing_style": "The dark collar of a jacket or coat is visible.",
     "count": "1",
     "genders": [
-      "unknown"
+      "male"
     ]
   },
-  "prompt": "A dramatic digital painting of a lone figure in a vibrant red cloak walking through a deep blue, snow-covered landscape at night. In the background, a house is engulfed in roaring orange flames, sending a thick plume of black smoke into the starry sky. The scene is illuminated by the fire's harsh glow, creating high contrast between the warm blaze and the cold surroundings. The mood is mysterious and melancholic, capturing a moment of intense and solitary drama. Painterly, cinematic style.",
+  "prompt": "A dramatic, cinematic close-up portrait of a pensive young man in profile. Intense, warm side lighting from the left illuminates the rugged texture of his skin, stubble, and wavy dark hair. His blue eye gazes off into the distance with a melancholic expression. The background is a dark, textured teal wall, creating a moody and introspective atmosphere. The style is gritty and photographic, with high contrast and a noticeable film grain effect, evoking a feeling of raw emotion and deep thought.",
   "style": {
-    "art_style": "painterly",
+    "art_style": "realistic",
     "influences": [
-      "concept art",
-      "cinematic illustration"
+      "cinematic portraiture",
+      "fine art photography"
     ],
-    "medium": "digital art"
+    "medium": "photography"
   },
   "technical_tags": [
-    "digital painting",
+    "close-up",
+    "portrait",
+    "profile shot",
+    "side lighting",
     "high contrast",
-    "night scene",
-    "fire",
-    "snow",
-    "narrative",
-    "complementary colors",
-    "wide shot"
+    "film grain",
+    "textured",
+    "moody lighting",
+    "cinematic",
+    "chiaroscuro"
   ],
-  "use_case": "Narrative illustration for storytelling, concept art for film or games, or a dataset for generating images with strong emotional and color contrast.",
-  "uuid": "922278fe-8572-4713-8d67-75c2ef540f47"
+  "use_case": "Training AI models for emotional portrait generation, cinematic lighting styles, and realistic skin texture rendering.",
+  "uuid": "6f682e5f-149f-475a-8285-7318abc5959f"
 }
 ```
 
 </details>
 
-<details><summary><b>雪天街头冬季穿搭</b></summary>
+<details><summary><b>电影感街头摄影</b></summary>
+
+```text
+{  
+  "colors": {  
+    "color_temperature": "暖色调",  
+    "contrast_level": "中等对比度",  
+    "dominant_palette": [  
+      "棕色",  
+      "米色",  
+      "柔和青绿色",  
+      "奶油色"  
+    ]  
+  },  
+  "composition": {  
+    "camera_angle": "平视角度",  
+    "depth_of_field": "浅景深",  
+    "focus": "一名年轻的${gender}正在大笑",  
+    "framing": "主体人物由背景中虚化的路人与前景中的一台相机共同构图。相机屏幕形成‘画中画’效果，强调摄影这一行为本身。"  
+  },  
+  "description_short": "一张肩后视角的摄影作品：摄影师正为一名身处模糊人群中央、开怀大笑的年轻${gender}拍照。",  
+  "environment": {  
+    "location_type": "户外",  
+    "setting_details": "一处繁忙拥挤的公共空间，很可能是一条城市街道或广场。背景中充斥着大量人物，全部呈现为柔和虚化效果，并可见若干红色散景光斑。",  
+    "time_of_day": "下午",  
+    "weather": "多云"  
+  },  
+  "lighting": {  
+    "intensity": "中等强度",  
+    "source_direction": "正面光源",  
+    "type": "自然光"  
+  },  
+  "mood": {  
+    "atmosphere": "纯粹喜悦的抓拍瞬间",  
+    "emotional_tone": "欢快"  
+  },  
+  "narrative_elements": {  
+    "character_interactions": "摄影师正在捕捉一名${gender}自然流露的快乐瞬间，暗示二者之间存在积极而轻松的互动关系。",  
+    "environmental_storytelling": "拥挤且失焦的背景将${gender}凸显为喧嚣环境中唯一凝聚幸福与宁静的焦点，使这一时刻显得私密而亲切。",  
+    "implied_action": "一场拍摄正在进行中，正捕捉被摄对象自发流露的情绪反应。"  
+  },  
+  "objects": [  
+    "相机",  
+    "${gender}",  
+    "人群"  
+  ],  
+  "people": {  
+    "ages": [  
+      "青年"  
+    ],  
+    "clothing_style": "休闲冬装",  
+    "count": "未知",  
+    "genders": [  
+      "女性"  
+    ]  
+  },  
+  "prompt": "电影感街头摄影，采用肩后视角。一名摄影师手持数码相机，其屏幕正实时显示所拍摄的画面。被摄主体是一位美丽的年轻亚裔${gender}，拥有一头波浪状棕发，此刻正开怀大笑、笑容灿烂。她身穿一件温馨的奶油色针织毛衣。背景是密集而匿名的人群，完全虚化，并带有柔和的散景光斑。画面采用暖色调复古影调，具备浅景深效果，捕捉了一个真实、温暖、纯粹幸福的抓拍瞬间。",  
+  "style": {  
+    "art_style": "写实风格",  
+    "influences": [  
+      "街头摄影",  
+      "抓拍人像",  
+      "电影感影像"  
+    ],  
+    "medium": "摄影"  
+  },  
+  "technical_tags": [  
+    "浅景深",  
+    "散景",  
+    "肩后视角",  
+    "抓拍摄影",  
+    "人像",  
+    "画中画",  
+    "暖色调"  
+  ],  
+  "use_case": "适用于表现幸福感、都市生活、摄影主题及抓拍瞬间的图库摄影。",  
+  "uuid": "c0e1b01c-e07e-41b1-b035-f8802d8ec319"  
+}
+```
+
+</details>
+
+<details><summary><b>电影感角色联动场景</b></summary>
+
+```text
+创建一个电影级的跨界场景，包含 ${character1} 和 ${character2}，地点设定在 ${location:fantasy world}。
+
+艺术风格：高质量 2D 卡通动画，具有精细的光影效果、富有表现力的情绪、动态的姿势以及电影般的构图。
+
+场景氛围：${mood:emotional and adventurous}。
+
+角色通过 ${interaction:a heartfelt moment of friendship} 进行互动。
+
+包含：
+- 戏剧性光影
+- 色彩丰富的背景
+- 电影感氛围
+- 细致的环境
+- 流畅的动画风格
+- 富有表现力的面部
+- 深度与动感
+
+摄像机角度：${camera:wide cinematic shot}
+
+视觉灵感：动画电影、现代卡通美学、情感叙事、奇幻冒险。
+
+避免：
+- 模糊的细节
+- 多余的肢体
+- 解剖结构扭曲
+- 低质量
+- 角色被裁剪
+```
+
+</details>
+
+<details><summary><b>电影感都市夜景人像</b> · 机器翻译</summary>
+
+```text
+主体：一张年轻女性的半身人像。
+
+姿势：她笔直地站立，直视镜头。她的右手自然地抬起，靠近头发或头部一侧。
+
+服装：一件黑色拉链运动夹克，立领，拉链微微拉开。隐约可见一条精致的银色链条项链。
+
+头发：波浪卷发，自然披散。部分头发向后梳起，露出脸庞，柔软的波浪和散落的发丝被逆光照亮。
+
+妆容：大胆、无瑕的晚宴 / e-girl 妆容。锐利的黑色上扬眼线、浓密纤长的睫毛，以及眼角内侧明亮的闪光。珊瑚粉腮红，颧骨和鼻尖带有发光的高光。浓郁的哑光赤陶色 / 红棕色口红。
+
+首饰：左耳佩戴多枚银色圈形耳环（软骨和耳垂处均有），以及一条细银项链。
+
+光线：戏剧性的电影感光线，强烈的暖金色逆光在她的头发和轮廓周围形成发光的光晕，尤其是在左侧。柔和的正面光让她的脸庞清晰，并突显每一处妆容细节。温暖、浓郁的色彩调色。
+
+背景：深度虚化的傍晚或夜间城市场景，带有柔和的焦外光斑和若隐若现的绿植。
+
+氛围：亲密、自信、时尚、神秘，现代都市之夜。
+
+相机：平视拍摄，半身人像，竖构图 3:4。超写实、超精细 8K，使用 iPhone 16 Pro 拍摄。
+
+不要改变面部特征。
+```
+
+</details>
+
+<details><summary><b>电影感马车风景摄影</b></summary>
+
+```text
+拍摄一辆马拉马车于1870年代从旺阿努伊向马顿方向穿越开阔乡村的场景。追求具有广阔天空和清新氛围的电影级风景摄影风格。使用 ARRI Alexa 摄像机搭配广角镜头，以捕捉场景的宏伟感与细节。
+```
+
+</details>
+
+<details><summary><b>电影级写实</b></summary>
+
+```text
+${subject} 以高端电影级写实主义杰作的方式呈现，采用物理精确的基于物理的渲染（PBR）光照与着色流程，体积雾层与轮廓光及主光动态交互，极致清晰的微观表面细节并具备触觉般的真实感，电影化景深效果突出主体存在感，背景高光区域呈现平滑自然的散景辉光（bokeh bloom），受控运动模糊模拟真实快门行为，细微的模拟胶片颗粒质感，源自专业电影光学镜头的真实镜头畸变与像差，光线追踪反射与折射增强画面深度与真实感，空气中悬浮的大气尘埃与微粒，富有戏剧性的明暗对比（chiaroscuro）布光构图，HDR 电影感曝光并保留丰富的阴影细节，高端电影摄影机风格捕捉
+```
+
+</details>
+
+<details><summary><b>电梯镜前全身穿搭照</b> · 机器翻译</summary>
 
 ```text
 {
-  "category": "SNOWY_STREET_WINTER_CANDID",
-  "identity_lock": {
-    "enabled": true,
-    "priority": "ABSOLUTE_MAX",
-    "instruction": "将身份严格锁定至参考图像。仅限21岁及以上成年人。"
-  },
+  "category": "ELEVATOR_MIRROR_OOTD",
   "subject": {
-    "demographics": "成年女性，21–29岁，身份须与参考图像完全一致。",
+    "demographics": "成年女性,21-27岁,土耳其长相。",
     "hair": {
-      "color": "与参考图像一致。",
-      "style": "头发塞入围巾/外套中，仅露出几缕发丝",
-      "texture": "自然发丝质感；略带静电的零散飞毛",
-      "movement": "几乎无动态；体现寒冷空气的真实感"
+      "color": "深棕色",
+      "style": "低马尾或松散的波浪卷发,随意整理",
+      "texture": "真实的发丝,略带毛躁,有碎发飞散",
+      "movement": "头发自然地搭在大衣领子上"
     },
     "face": {
-      "eyes": "眼睛须与参考图像完全一致；因寒冷而略带眯眼",
-      "skin_details": "自然肤质；脸颊处有轻微泛红（细腻、真实）",
-      "micro_details": "保留所有原有痕迹"
+      "shape": "柔和的椭圆形",
+      "eyes": "富有表现力,有自然的眼神光",
+      "nose": "鼻梁分明",
+      "lips": "柔和的自然唇色",
+      "skin_details": "可见毛孔,肤色有自然的深浅变化",
+      "micro_details": "太阳穴附近可见绒毛"
+    },
+    "body_proportions": {
+      "build": "自然、匀称",
+      "posture": "放松而自信的站姿"
     },
     "clothing": {
-      "outerwear": "冬季大衣 + 围巾 + 毛线帽（不得含任何标识或文字）",
-      "fabric": "可见羊毛针织纹理；大衣表面附着细小雪花颗粒"
+      "outerwear": "剪裁合体的长款大衣(无标志)",
+      "inner": "简约上衣",
+      "bottom": "直筒裤或牛仔裤",
+      "shoes": "干净的运动鞋或短靴(无品牌标识)",
+      "texture": "可见织物纹理;手肘处有轻微褶皱"
     },
     "accessories": {
+      "bag": "小号单肩包(无标志)",
       "jewelry": [
-        "银色耳环可选（可能被围巾遮挡）"
+        "小银色圈形耳环"
       ]
     }
   },
   "pose": {
-    "type": "户外抓拍式姿态",
-    "orientation": "半身构图",
-    "hands": "双手轻握围巾靠近下巴（手套可选，须无品牌标识）",
-    "gaze": "直视镜头，面露温馨微笑",
-    "expression": "温暖、俏皮"
+    "type": "全身镜面自拍(不直接显示手机;暗示为镜中倒影)",
+    "orientation": "身体略微侧转站立",
+    "head_position": "下巴微微收低,随性",
+    "limbs": "一只手整理大衣袖口;另一只手自然放松地搭在包带附近",
+    "legs": "一侧膝盖微弯,重心转移到一侧髋部",
+    "gaze": "看着镜中的倒影,平静而自信"
   },
   "setting": {
-    "environment": "黄昏时分的积雪街道",
+    "environment": "电梯内部",
     "background_elements": [
-      "飘落的雪花（细腻颗粒状，非雾气效果）",
-      "路灯光斑虚化（bokeh）",
-      "柔和模糊的剪影（不可辨识具体人脸）"
+      "拉丝金属墙壁",
+      "柔和的顶部面板灯光",
+      "镜面上有细微的指纹/污渍,增加真实感"
     ],
-    "depth": "面部清晰锐利；背景呈奶油般柔焦虚化（creamy bokeh）"
+    "depth": "整体较为清晰;背景略微柔化"
   },
   "camera": {
-    "shot_type": "半身冬季人像",
-    "angle": "平视角度（eye level）",
-    "focal_length_equivalent": "35–50mm专业镜头 或 26mm手机夜景模式",
-    "framing": "4:5",
-    "focus": "双眼清晰锐利；雪花呈柔和虚化"
+    "shot_type": "全身镜面拍摄",
+    "angle": "手持拍摄常见的轻微俯角",
+    "focal_length_equivalent": "24-28mm 广角",
+    "framing": "4:5 IG 动态比例,可见全身",
+    "focus": "面部清晰可辨,服装锐利,畸变极小"
   },
   "lighting": {
-    "source": "路灯照明 + 黄昏环境光",
-    "direction": "柔和的顶部/侧向辉光",
-    "highlights": "发丝与脸颊呈现暖色调高光",
-    "shadows": "柔和、富有电影感的冬季明暗对比"
+    "source": "电梯顶部灯光",
+    "direction": "自上而下,柔和但略显刺眼(真实的电梯质感)",
+    "highlights": "金属反光得到控制",
+    "shadows": "下巴下方和大衣褶皱处有柔和的阴影",
+    "quality": "日常写实"
   },
   "mood_and_expression": {
-    "tone": "温馨、电影感、可爱且具亲和力",
-    "atmosphere": "冬季抓拍氛围"
+    "tone": "极简时髦、自信",
+    "expression": "中性,带有一丝微笑",
+    "atmosphere": "随手抓拍的通勤氛围"
   },
   "style_and_realism": {
-    "style": "照片级写实生活方式风格（photoreal lifestyle）",
-    "imperfections": "允许低光照条件下的自然噪点（grain）"
+    "style": "照片级真实的社交媒体风格",
+    "fidelity": "织物纹理、金属反光真实自然",
+    "imperfections": "轻微噪点,构图不完美"
   },
   "technical_details": {
     "aspect_ratio": "4:5",
-    "resolution": "高分辨率",
-    "noise": "中等程度低光照噪点（grain）",
-    "mode_variants": {
-      "amateur": "手机夜景模式风格：轻微噪点、略微倾斜构图、非完美取景",
-      "pro": "更干净的电影感曝光，高光控制精准，景深浅（shallow DOF）"
-    }
+    "noise": "轻微",
+    "sharpness": "面部和服装清晰锐利"
   },
   "constraints": {
     "adult_only": true,
-    "single_subject_only": true,
     "no_text": true,
     "no_logos": true,
-    "no_watermarks": true
+    "no_watermarks": true,
+    "single_subject_only": true
   },
   "negative_prompt": [
-    "造雾机",
-    "烟雾",
-    "身份偏移（identity drift）",
-    "面部形变（face morphing）",
-    "多余手指",
-    "扭曲的手部",
+    "镜面故障",
+    "重影倒影",
+    "扭曲的电梯",
+    "多余的肢体",
+    "糟糕的手部",
+    "塑料感皮肤",
     "可读文字",
-    "标识（logos）",
-    "水印（watermark）",
-    "塑料质感皮肤",
-    "过度平滑（over-smoothing）"
+    "标志",
+    "水印",
+    "cgi",
+    "卡通",
+    "动漫"
   ]
 }
 ```
 
 </details>
 
-<details><summary><b>霓虹小巷中的赛博黑客</b></summary>
+<details><summary><b>电脑角落镜前自拍场景</b></summary>
 
 ```text
-你将执行一次图像编辑，将男性主体转变为一名身处粗粝、高科未来世界的在逃网络跑者（netrunner）。最终结果必须是一张超写实、电影级画质的图像，形同一部 IMAX 大片中的单帧画面。场景设定于一条被雨水浸透、霓虹闪烁的小巷中，主体正藏身于此。请确保图像高度精细，运用电影级布光与符合真实物理规律的细节表现，并以 Arri Alexa 摄影机拍摄，采用浅景深，使主体从纷乱的背景中脱颖而出。  
+### 场景  
+在电脑角拍摄的镜面自拍，整体色调为蓝色。  
+
+### 主体  
+* 性别表达：女性  
+* 年龄：约25岁  
+* 族裔：东亚人  
+* 体型：苗条，腰线清晰；身体比例自然  
+* 肤色：浅中性色调  
+* 发型：  
+    * 长度：及腰长发  
+    * 发型：直发，发尾略带卷曲  
+    * 发色：中棕色  
+* 姿势：  
+    * 站姿：呈轻微对侧平衡（contrapposto）姿态站立  
+    * 右手：手持智能手机置于面部前方（面部身份被遮挡）  
+    * 左臂：自然垂落于躯干侧边  
+    * 躯干：身体略微后倾；腰部与腹部裸露  
+* 服饰：  
+    * 上装：浅蓝色短款针织开衫，最上方两粒纽扣系紧；隐约可见一件蓝色法式文胸  
+    * 下装：牛仔超短热裤，髋部两侧各系一枚蓝色缎面蝴蝶结丝带  
+    * 袜子：蓝白横条纹过膝袜  
+    * 配件：蓝色可爱卡通形象手机壳  
+
+### 环境  
+* 描述：通过壁挂式镜子所见的卧室电脑角  
+* 家具与陈设：  
+    * 白色书桌  
+    * 单台显示器，显示柔和蓝色壁纸（无任何可读文字）  
+    * 白色键帽机械键盘置于蓝色桌面垫上  
+    * 小型蓝色鼠标垫上的鼠标  
+    * 右侧PC主机塔，机箱带有蓝色灯光  
+    * PC主机塔上或其附近摆放三尊动漫手办  
+    * 墙上张贴一座宝塔海报  
+    * 猫咪造型台灯，配有蓝色装饰元素  
+    * 一只透明玻璃水杯  
+    * 窗边一株高大的绿色观叶植物（位于画面左侧）  
+* 色彩替换：将所有原本为粉色的元素（包括服饰与室内装饰）全部替换为蓝色调（婴儿蓝至天蓝色/紫罗兰蓝）。  
+
+### 光照  
+* 光源：来自相机左侧一大扇窗户的日光，经薄纱窗帘柔化后进入  
+* 光质：柔和、漫射光  
+* 白平衡（K）：5200  
+
+### 相机设置  
+* 模式：使用智能手机后置摄像头，通过镜子拍摄（不启用人像模式/散景模式）  
+* 等效焦距（mm）：26  
+* 距离（米）：  
+    * 主体到镜子距离：0.6  
+    * 相机到镜子距离：0.5  
+* 曝光参数：  
+    * 光圈（f）：1.8  
+    * ISO：100  
+    * 快门速度（s）：0.01  
+    * 曝光补偿（EV）：-0.3  
+* 对焦：对焦于镜中影像的躯干与短裤区域  
+* 景深：符合智能手机特性的自然深景深；背景清晰可见，无人工模糊效果  
+* 构图：  
+    * 画幅比例：1:1  
+    * 裁切范围：从头顶至大腿中部；画面需包含书桌、显示器、PC主机塔及窗边绿植  
+    * 角度：略高于水平线的俯角（以镜子视角为准）  
+    * 构图说明：保持主体居中；为避免广角镜头边缘畸变，让她站得稍远些，后期再裁切为正方形。  
+
+### 反向提示词（Negative prompts）  
+* 画面中任何位置出现粉色/洋红色  
+* 美颜滤镜/过度平滑肌肤；无毛孔肌肤效果  
+* 夸张或扭曲的人体解剖结构  
+* NSFW内容、透视面料、服装故障（wardrobe malfunction）  
+* 任何品牌标识、商标名称或可读的用户界面文字  
+* 伪造的人像模式虚化效果、CGI感/插画感
+```
+
+</details>
+
+<details><summary><b>电解质饮品条包装设计</b> · 机器翻译</summary>
+
+```text
+电解质饮品冲剂条装/小袋包装设计 – Natural Hemp Life
+
+关于我们
+Natural Hemp Life 是一家欧洲健康品牌，产品销往瑞典、丹麦、挪威和波兰。我们即将推出一系列新的电解质饮品冲剂条（单份粉末小袋），需要一款全新的、吸引眼球的袋装设计。
+
+我们的需求
+一款单份电解质条装包的正面和背面设计，外加一个口味款式，用来展示这套系统如何应用于不同口味。
+
+设计方向
+- 灵感来源：请仔细研究 Liquid I.V. 的条装包。我们想要同样的感觉：大胆、简洁、现代、有活力，在货架上和手机屏幕上都易于阅读。仅借鉴其风格。不要照搬他们的标志、版式或商业外观。
+- 我们喜欢青柠绿色，所以在适用的地方请用它代替蓝色。
+- 水果图像（必需）：每个小袋都必须展示该口味水果的大幅、鲜艳、令人垂涎的图片，就像 Liquid I.V. 那样。水果应作为主视觉元素，而不是小图标。
+- 淡化后的我们的标志：使用 Natural Hemp Life 标志（见附件），但要让大麻叶/花朵的存在感大大降低。可以缩小、简化、变浅或改为单色。这首先是一款补水产品，因此大麻符号不应喧宾夺主。
+- 我们标志性的直线：我们所有产品都有一条具有辨识度的直线（见附件产品照片）。它也必须出现在这款袋子上，让这款小袋明显属于我们的产品系列。
+- 色彩：每个口味都有与其水果相匹配的醒目专属颜色，而整个系列的版式保持一致。
+- 层级：1) 水果图片 + 口味名称，2) "Electrolytes" / 产品类型，3) Natural Hemp Life 标志，4) 简短的功效宣称或益处图标。
+
+技术细节
+- 规格：条装包，约 ${width} x ${height} 毫米（确切刀模图将与中选者确认）
+- 口味：[e.g. Lemon Lime, Watermelon, Raspberry]。请至少展示一种。
+- 背面：预留配料表、营养成分表、使用说明、EAN 条形码以及多语言文字（SE/DK/NO/PL）的空间。占位文字即可。
+```
+
+</details>
+
+<details><summary><b>白头鹰3D渲染</b></summary>
+
+```text
+{
+  "subject": {
+    "description": "一只白头海雕的头部和上颈部，向上凝视光源。",
+    "count": 1,
+    "orientation": "侧脸，面朝左侧，头部急剧向上倾斜",
+    "pose_or_state": "静止状态，颈部伸展，头部向上看",
+    "expression": "威严，中性表情"
+  },
+  "scale_and_proportion": {
+    "subject_to_frame_ratio": "主体约占画面的40%，位于画面中心偏右",
+    "proportions": "解剖结构准确的鹰头比例",
+    "negative_space": "画面左侧和底部留有大量负空间"
+  },
+  "composition": {
+    "shot_type": "特写",
+    "camera_angle": "低角度，仰视主体",
+    "framing": "主体位于画面右半部分",
+    "symmetry": "高度不对称",
+    "background": "纯黑色背景，带有明显的对角线体积光光束",
+    "depth_of_field": "景深大，光束和被照亮的主体特征均清晰对焦"
+  },
+  "temporal_context": {
+    "era": "当代数字艺术",
+    "modern_elements": false,
+    "retro_stylization": false,
+    "trend_influence": false
+  },
+  "style": {
+    "visual_type": "3D 渲染",
+    "realism_level": "最大纹理真实感",
+    "art_style": "无",
+    "stylization": false,
+    "interpretation": "仅字面还原"
+  },
+  "lighting": {
+    "setup_type": "体积光 / 轮廓光",
+    "light_direction": "右上方，光束向左下方投射",
+    "light_quality": "硬质体积光束（上帝之光）",
+    "contrast": "极高，明暗对比强烈（明暗法效果）",
+    "shadow_behavior": "深邃、纯黑的阴影，遮蔽主体下半部分",
+    "color_temperature": "非常冷，单色深紫色/紫色",
+    "lighting_variation": "无"
+  },
+  "materials": {
+    "primary_materials": [
+      "羽毛",
+      "角蛋白（喙）"
+    ],
+    "surface_finish": "哑光羽毛，半光泽喙",
+    "light_reflection": "喙部上缘有锐利反光，单根羽毛边缘有柔和高光",
+    "material_accuracy": "精确"
+  },
+  "color_palette": {
+    "dominant_colors": [
+      "深紫色 (#32174d)",
+      "黑色 (#000000)"
+    ],
+    "saturation": "紫色光束饱和度高",
+    "contrast_level": "最大",
+    "color_shift": false
+  },
+  "texture_and_detail": {
+    "surface_detail": "仅在受光区域可见精细的羽小枝和纹理",
+    "grain_noise": "无，完全干净的数字渲染",
+    "micro_details": "保留喙部纹理及高光羽毛的锐利边缘细节",
+    "sharpness": "喙部和头顶处于锐利对焦状态"
+  },
+  "camera_render_settings": {
+    "lens_equivalent": "50mm",
+    "perspective_distortion": "无",
+    "aperture_look": "f/8（深景深）",
+    "resolution": "高",
+    "render_quality": "干净且中性"
+  },
+  "constraints": {
+    "no_additional_objects": true,
+    "no_reframing": true,
+    "no_crop": true,
+    "no_stylization": true,
+    "no_artistic_license": true,
+    "no_text": true,
+    "no_watermark": true,
+    "no_effects": true,
+    "no_dramatic_lighting": false,
+    "no_color_grading": true
+  },
+  "iteration_instruction": {
+    "compare_to_reference": true,
+    "fix_geometry_first": true,
+    "then_fix_composition": true,
+    "then_fix_lighting": true,
+    "then_fix_color": true,
+    "ignore_aesthetic_improvements": true
+  },
+  "negative_prompt": [
+    "创意",
+    "电影感",
+    "艺术性",
+    "风格化",
+    "插画",
+    "抽象",
+    "戏剧性",
+    "广角",
+    "鱼眼",
+    "夸张",
+    "重新诠释",
+    "额外元素",
+    "现代化",
+    "复古外观",
+    "调色",
+    "AI 伪影",
+    "暖色调",
+    "可见的背景元素"
+  ]
+}
+```
+
+</details>
+
+<details><summary><b>白板手绘信息图</b></summary>
+
+```text
+解释《思考，快与慢》这本书
 
 {
-  "prompt": "你将执行一次图像编辑，将男性主体转变为一名身处粗粝、高科未来世界的在逃网络跑者（netrunner）。最终结果必须是一张超写实、电影级画质的图像，形同一部 IMAX 大片中的单帧画面。场景设定于一条被雨水浸透、霓虹闪烁的小巷中，主体正藏身于此。请确保图像高度精细，运用电影级布光与符合真实物理规律的细节表现，并以 Arri Alexa 摄影机拍摄，采用浅景深，使主体从纷乱的背景中脱颖而出。",
-  "details": {
-    "year": "${year:2084}",
-    "genre": "电影级写实主义",
-    "location": "一座垂直建造的赛博朋克巨型都市中一条狭窄、散落着杂物的巷道。地面为湿滑沥青，倒映着上方摩天大楼投射而下的、混乱闪烁的霓虹汉字标识。",
-    "lighting": [
-      "体积感霓虹蓝与霓虹洋红背光",
-      "面部柔和冷调补光",
-      "高对比度阴影",
-      "潮湿表面的镜面高光"
-    ],
-    "camera_angle": "平视中景，浅景深（背景虚化），聚焦于主体紧张凝重的表情。",
-    "emotion": [
-      "偏执",
-      "专注",
-      "急迫"
-    ],
-    "color_palette": [
-      "电光青",
-      "霓虹粉",
-      "深影黑",
-      "雨银",
-      "冷蓝"
-    ],
-    "atmosphere": [
-      "反乌托邦",
-      "压抑闭塞",
-      "潮湿",
-      "粗粝",
-      "高科技低生活（High-Tech Low-Life）"
-    ],
-    "environmental_elements": "时间凝固的坠落雨滴、从通风口升腾盘旋的蒸汽、在泥泞水洼中倒映闪烁的全息广告。",
-    "subject1": {
-      "costume": "一件质感厚重、防水的黑色科技风防风夹克，表面带有发光几何图案；配戴无指战术手套；太阳穴处可见金属质地的神经接口端口。",
-      "subject_expression": "高度专注混杂焦虑的神情，汗水与雨水沿面部滑落。",
-      "subject_action": "正快速敲击由腕载式网络甲板（cyberdeck）投射出的悬浮全息键盘，同时警觉地回头张望。"
+  "style": {
+    "name": "Whiteboard Infographic",
+    "description": "手绘风格教育信息图，具有温暖、亲切的草图美学。上传你的内容大纲，即可获得视觉化组织、类似素描本风格的指南，既手工感十足又结构专业。"
+  },
+  "visual_foundation": {
+    "surface": {
+      "base": "米白至暖奶油色背景",
+      "texture": "细微纸张纹理——不显冰冷，也不数字化",
+      "edges": "内容延伸至边缘，无边框或边框装饰，无缝完成",
+      "feel": "如同直接看着一页整理良好的笔记本"
     },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "日光",
-        "阳光",
-        "蓝天",
-        "洁净表面",
-        "干燥",
-        "暖色调布光"
-      ],
-      "exclude_styles": [
-        "卡通",
-        "动漫",
-        "3D 渲染",
-        "绘画",
-        "低分辨率",
-        "模糊",
-        "素描"
-      ],
-      "exclude_colors": [
-        "暖调棕褐（sepia）",
-        "粉彩",
-        "明亮纯白",
-        "米色"
-      ],
-      "exclude_objects": [
-        "汽车",
-        "树木",
-        "宠物",
-        "花卉"
-      ]
+    "overall_impression": "可亲近的专业感——通过手绘温暖使复杂信息变得友好"
+  },
+  "illustration_style": {
+    "line_quality": {
+      "type": "手绘墨线草图风格",
+      "weight": "主要元素使用中等线条，细节部分线条更细",
+      "character": "自信但不完美——轻微抖动体现人为笔触",
+      "edges": "柔和，非矢量锐利，角落偶尔出现线条重叠",
+      "fills": "松散的排线，轻柔交叉排线用于阴影，从不使用实心机械填充"
+    },
+    "icon_treatment": {
+      "style": "简洁迷人、略带稚气的插图",
+      "complexity": "简化为基本形态——小尺寸下仍可识别",
+      "personality": "友好亲切，绝不企业化或冷冰冰",
+      "consistency": "所有内容仿佛由同一人绘制"
+    },
+    "human_figures": {
+      "style": "简单友好的人物角色，不具解剖细节",
+      "faces": "特征极简——圆点作眼睛，表情简单",
+      "poses": "清晰、动作导向、富有表现力的手势",
+      "diversity": "不同轮廓和人物暗示，体现多样性"
+    },
+    "objects_and_scenes": {
+      "approach": "可识别的简化草图",
+      "detail_level": "足以辨识即可——如笔记本电脑、手机、建筑、人物",
+      "perspective": "随意等距或平面视角，非严格技术绘图",
+      "charm": "轻微瑕疵增添真实感"
     }
+  },
+  "color_philosophy": {
+    "palette_character": {
+      "mood": "温暖、乐观、充满活力但不过度强烈",
+      "saturation": "中等——足够鲜艳以引导视线，又足够柔和呈现手绘着色感",
+      "harmony": "互补与类似色组合，显得有意图且协调"
+    },
+    "primary_palette": {
+      "yellows": "温暖金黄、柔和芥末色——用于高亮、背景和能量感",
+      "greens": "清新叶绿、柔润青绿色——象征成功、成长、自然、金钱主题",
+      "blues": "宁静天蓝、柔和深蓝——代表信任、科技、稳定性",
+      "oranges": "温暖珊瑚色、柔粉橙——体现温暖、行动号召、友好提醒"
+    },
+    "supporting_palette": {
+      "neutrals": "暖灰、柔褐、奶油色——绝不冷峻或刺眼",
+      "blacks": "柔和炭黑色用于线条，绝不使用纯黑 #000000",
+      "whites": "奶油色与米白，纸张色调"
+    },
+    "color_application": {
+      "fills": "水彩般晕染，略不均匀，透明图层叠加",
+      "backgrounds": "柔和色块划分内容区域，圆角矩形背景",
+      "accents": "战略性使用较亮色彩突出视觉层级",
+      "technique": "颜色可能轻微溢出线条边界——体现手工上色感"
+    }
+  },
+  "typography_integration": {
+    "headline_style": {
+      "appearance": "粗体手写风格，基线略不平整",
+      "weight": "厚重、自信、吸引注意力",
+      "case": "主标题常使用大写字母",
+      "color": "深炭黑或策略性使用色彩强调"
+    },
+    "subheadings": {
+      "appearance": "中等粗细，仍具手绘特征",
+      "decoration": "可能包含下划线、简单横幅或高亮框",
+      "hierarchy": "字号明显小于主标题"
+    },
+    "body_text": {
+      "appearance": "清晰但温暖，小字号下仍易读",
+      "style": "无衬线字体但具手写个性，或真实手写字体",
+      "spacing": "宽松，绝不拥挤"
+    },
+    "annotations": {
+      "style": "随意手写注释，箭头指向对应元素",
+      "purpose": "添加解释、强调或个性表达",
+      "placement": "自然分布，仿佛讲解时随手添加"
+    }
+  },
+  "layout_architecture": {
+    "canvas": {
+      "framing": "无边框、无框架、无边缘装饰",
+      "boundary": "内容使用整个画布——元素可接触或溢出边缘",
+      "containment": "信息图即图像本身，而非一张‘信息图的图片’"
+    },
+    "structure": {
+      "type": "模块化网格，具有机灵活性",
+      "sections": "明确编号或字母划分的章节",
+      "flow": "从左到右、从上到下，视觉层级引导视线",
+      "breathing_room": "充足留白，避免信息过载"
+    },
+    "section_treatment": {
+  
+    "borders": "柔和的圆角矩形、手绘风格的方框，或色块背景",
+    "separation": "清晰但不僵硬——各部分感觉相互关联却又各自独立",
+    "numbering": "带圆圈的数字、徽章样式，或富有趣味性的指示标记"
+    },
+    "visual_flow_devices": {
+      "arrows": "手绘风格、略微弯曲的友好型箭头",
+      "connectors": "虚线、简单路径，用于展示关系",
+      "progression": "前后对比布局、步骤序列、转化箭头"
+    }
+  },
+  "information_hierarchy": {
+    "levels": {
+      "primary": "大号粗体标题、明亮的色彩点缀、主要插图",
+      "secondary": "副标题、关键图标、区块背景",
+      "tertiary": "正文文本、辅助细节、注释",
+      "ambient": "纹理、细微装饰、背景元素"
+    },
+    "emphasis_techniques": {
+      "color_highlights": "关键词背后使用黄色记号笔风格高亮",
+      "size_contrast": "不同层级之间有显著的尺寸差异",
+      "boxing": "重要项目放入圆角矩形或徽章形状中",
+      "icons": "使用对勾、星星、感叹号等图标进行强调"
+    }
+  },
+  "decorative_elements": {
+    "badges_and_labels": {
+      "style": "缎带横幅、圆形徽章、标签形状",
+      "use": "区块标签、关键词、行动号召",
+      "character": "手绘风格、略带不完美感，富有魅力"
+    },
+    "connective_tissue": {
+      "arrows": "弯曲的手绘箭头，具有多种箭头样式",
+      "lines": "虚线路径、简单分隔线、下划线",
+      "brackets": "花括号用于分组相关项目"
+    },
+    "ambient_details": {
+      "small_icons": "星星、对勾、项目符号、闪光点",
+      "doodles": "填充空白区域的小型相关涂鸦",
+      "texture": "整体带有细微的纸张纹理"
+    }
+  },
+  "authenticity_markers": {
+    "hand_made_quality": {
+      "line_variation": "线条粗细自然变化，仿佛真实笔压绘制",
+      "color_bleeds": "颜色轻微溢出轮廓，呈现水彩边缘效果",
+      "alignment": "有意的不完美——文字和元素略微偏离网格",
+      "overlap": "元素可轻微重叠，营造深度与活力"
+    },
+    "material_honesty": {
+      "paper_feel": "温暖的米白色，带有细微纹理",
+      "ink_quality": "柔和的炭黑色，绝不生硬刺眼",
+      "marker_fills": "填充略带条纹感，透明图层可见"
+    },
+    "human_evidence": {
+      "corrections": "偶尔可见修改痕迹，增强真实感",
+      "spontaneity": "某些元素看似临时添加——如注释、小箭头",
+      "personality": "整体作品仿佛出自一人之手的视觉思维表达"
+    }
+  },
+  "technical_quality": {
+    "resolution": "高分辨率输出，适用于印刷与数字展示",
+    "clarity": "所有文字清晰可读，所有图标易于识别",
+    "balance": "构图中视觉重量分布均匀",
+    "completeness": "感觉已完成但不过度加工——有自信的收尾点"
+  },
+  "enhancements_beyond_reference": {
+    "depth_additions": {
+      "subtle_shadows": "在区块方框下方添加柔和投影以提升立体感",
+      "layering": "元素重叠营造视觉深度",
+      "dimension": "徽章和关键元素带有轻微的3D效果"
+    },
+    "polish_improvements": {
+      "color_harmony": "配色方案更具意图性与协调性",
+      "spacing_rhythm": "边距与栏间距保持一致",
+      "hierarchy_clarity": "内容层级之间的区分更加明确"
+    },
+    "engagement_boosters": {
+      "focal_points": "清晰的视觉锚点引导视线",
+      "progression": "内容呈现令人满意的视觉旅程",
+      "reward_details": "细看时能发现令人愉悦的小细节"
+    }
+  },
+  "avoid": [
+    "任何边框、边缘装饰或图像外围装饰",
+    "木质相框或白板相框效果",
+    "整张图像外围添加投影，仿佛是某物的照片",
+    "图像看起来像一张海报的照片——它本身就是海报",
+    "刻板的矢量完美感——应体现手工制作感",
+    "冷峻的纯白色或生硬的黑色",
+    "僵硬的机械式网格对齐",
+    "企业风剪贴画风格",
+    "细节过于密集——需留出呼吸空间",
+    "冲突的霓虹色或俗艳配色组合",
+    "通篇统一的线条粗细",
+    "完全均匀的色彩填充",
+    "呆板、毫无生气的人物形象",
+    "破坏温暖感的数码锐利感",
+    "作品内部插图风格不一致",
+    "缺乏视觉缓解的纯文字密集段落"
+  ]
+}
+```
+
+</details>
+
+<details><summary><b>白板手绘图解</b></summary>
+
+```text
+构建一家“制造人们真正需要的东西”的AI初创公司的步骤：
+
+{
+  "style": {
+    "name": "白板手绘示意图",
+    "description": "将任何概念转化为优雅的手绘风格图表。简洁、极简，具有建筑感——就像聪明人在白板上快速勾勒出的草图。"
+  },
+  "core_philosophy": {
+    "essence": "优雅的简约——以最轻盈的笔触依然清晰传达信息",
+    "mindset": "像建筑师或设计师用细笔解释一个想法",
+    "goal": "通过克制与精炼实现清晰表达"
+  },
+  "visual_foundation": {
+    "canvas_structure": {
+      "outer_background": "#FFFFFF",
+      "card": {
+        "size": "占画布的95-98%——留出极小的白色边距",
+        "color": "#FEFEFE",
+        "corner_radius": "12-16px 轻微圆角",
+        "shadow": "无",
+        "border": "无"
+      }
+    },
+    "overall_aesthetic": {
+      "feel": "轻盈、通透、富有智慧感、精致",
+      "weight": "细腻——所有元素都显得纤细而优雅",
+      "space": "处处留有充足的空白空间"
+    }
+  },
+  "line_work": {
+    "critical_principle": "纤细且精致——不粗重、不浓重、不笨拙",
+    "quality": {
+      "weight": "细线——如同0.5mm钢笔或细头记号笔所绘",
+      "character": "具有建筑感，精确但为手绘风格",
+      "consistency": "整体线条粗细均匀一致"
+    },
+    "stroke_style": {
+      "lines": "纤细、干净、略带不完美感",
+      "corners": "尖锐或轻微圆角，绝不厚重",
+      "feel": "快速但娴熟地绘制而成"
+    }
+  },
+  "color_palette": {
+    "exact_colors": {
+      "card_background": {
+        "hex": "#FEFEFE",
+        "description": "近乎白色，平坦、中性"
+      },
+      "primary_text": {
+        "hex": "#020202",
+        "description": "接近黑色的文字——清晰易读"
+      },
+      "line_gray": {
+        "hex": "#4A4B4B",
+        "description": "深灰色，用于所有绘制的线条、框、形状——非纯黑"
+      },
+      "accent_blue": {
+        "hex": "#2C68B7",
+        "description": "清晰的中等蓝色——用于箭头、连接线、括号及部分标签"
+      },
+      "accent_red": {
+        "hex": "#B34952",
+        "description": "温暖的珊瑚红色——用于类别标签和强调文字"
+      },
+      "fill_blue": {
+        "hex": "#2C68B7",
+        "description": "相同蓝色用于小面积填充的方块/形状"
+      },
+      "fill_gray": {
+        "hex": "#4A4B4B",
+        "description": "深灰色用于填充网格单元格"
+      }
+    },
+    "usage": {
+      "text": "正文使用 #020202 黑色，类别使用 #E54B54 红色",
+      "lines_and_shapes": "所有轮廓线使用 #4A4B4B 灰色——非黑色",
+      "arrows_and_flow": "#2C68B7 蓝色——纤细而优雅",
+      "fills": "小面积填充的方块使用蓝色或灰色——从不使用大面积实心填充"
+    }
+  },
+  "typography": {
+    "style": {
+      "type": "优雅的斜体手写风格",
+      "weight": "浅至中等——从不加粗或厚重",
+      "slant": "自然的斜体倾斜",
+      "character": "流畅、睿智，类似建筑师的书写风格"
+    },
+    "colors": {
+      "titles": "#020202 黑色，斜体",
+      "category_labels": "#E54B54 红色",
+      "annotations": "#2C68B7 蓝色或 #020202 黑色"
+    }
+  },
+  "diagram_elements": {
+    "boxes_and_rectangles": {
+      "stroke": "纤细的 #4A4B4B 灰色轮廓线——最大1-2px粗细",
+      "fill": "空心/透明——从不使用大面积实心填充的盒子",
+      "corners": "轻微圆角或直角，手绘风格",
+      "style": "轻盈、通透，非沉重的容器"
+    },
+    "grids_and_matrices": {
+      "stroke": "细灰线",
+      "cells": "较小——可包含小面积填充的方块或数字",
+      "fills": "用蓝色或灰色填充小方块以表示数据"
+    },
+    "arrows": {
+      "critical": "纤细、优雅、简洁——非笨重的PowerPoint式箭头",
+      "stroke": "细的 #2C68B7 蓝色线条——与其他线条粗细一致",
+      "heads": "小巧、简单、极简——仅由两条短斜线构成箭头",
+      "style": "像是用细笔手绘而成，而非粗记号笔",
+      "types": [
+        "简单的细直线箭头",
+        "用于流程的细曲线箭头",
+        "禁止：块状箭头、3D箭头、渐变箭头、粗箭头"
+      ]
+    },
+    "brackets": {
+      "style": "蓝色手绘的细波浪括号",
+      "weight": "与其他线条相同的纤细粗细"
+    },
+    "dots_and_markers": {
+      "style": "小的实心圆点或方块",
+      "size": "极小——符合纤细线条的视觉比例",
+      "colors": "蓝色或红色用于强调"
+    }
+  },
+  "visual_language": {
+    "shapes_vocabulary": {
+      "rectangles": "细轮廓线矩形框——竖向或横向排列",
+      "grids": "小型矩阵，带有微小的填充单元格",
+      "lists": "框内使用简单的虚线或项目符号列表",
+      "flow": "细箭头从左到右连接各元素"
+    },
+    "composition_patterns": {
+      "typical_layout": "2-4个主要元素水平排列，中间以箭头连接"
+  
+      "spacing": "元素之间留有充裕的间隙",
+      "alignment": "大致但有意图的对齐",
+      "hierarchy": "标题在框上方，标签在下方或侧边"
+    },
+    "proportions": {
+      "line_weight_to_space": "非常细的线条搭配极为开阔的空间",
+      "text_to_diagram": "文字为辅，图示为主",
+      "fill_to_empty": "大部分为空白，填充仅作微小点缀"
+    }
+  },
+  "elegance_principles": {
+    "lightness": "所有元素都应看起来轻盈得仿佛能飘走",
+    "restraint": "用最少的元素传达想法",
+    "refinement": "注重线条质量而非元素数量",
+    "intelligence": "看起来像是聪明人快速绘制的",
+    "breathing": "留白与标记同等重要"
+  },
+  "avoid": [
+    "粗重、浓重的线条",
+    "笨重的 PowerPoint 风格箭头",
+    "块状箭头或 3D 箭头",
+    "大面积实心填充区域",
+    "密集杂乱的布局",
+    "粗体或厚重的字体",
+    "投影或渐变效果",
+    "企业风剪贴画风格",
+    "圆润的泡泡形状",
+    "任何显得‘沉重’的线宽",
+    "线条避免使用纯黑色（#000000），应使用 #4A4B4B 灰色",
+    "装饰性元素",
+    "过于复杂的图表"
+  ]
+}
+```
+
+</details>
+
+<details><summary><b>皮克斯风格家庭壁纸</b></summary>
+
+```text
+Pixar风格，Disney风格，高质量3D渲染，Octane渲染，全局光照，次表面散射，超精细细节，柔和电影级灯光，可爱且温馨的氛围。
+
+一个由三人组成的幸福家庭（父亲、母亲和年幼的女儿），以Pixar风格的3D角色形象重新演绎，从画面左侧的墙后俏皮地探出身来。
+
+父亲拥有中等长度的微卷棕发，短胡须，面带温暖友好的微笑。  
+母亲拥有一头长长的直顺棕发，笑容明亮，面部轮廓柔和，气质优雅。  
+小女孩约2至3岁，浅棕色/亚麻色微卷发，圆润的脸颊，大而富有表现力的眼睛，神情快乐而活泼。
+
+请参考图片保留面部特征、比例、发色、发型以及自然的表情。在转化为类似Pixar的风格化角色时，需保持与真实人物高度相似。
+
+构图：父亲位置略高，母亲居中，孩子在前方俏皮地向前倾身。
+
+服装设计灵感来自舒适的冬季/圣诞节主题，以红色调和柔和图案为主（低调而不喧宾夺主）。
+
+在底部加入一只可爱的虎斑猫，抬头凝视，眼睛大而闪亮。
+
+色彩调色板：温暖的米色、桃色、奶油色调，柔和的渐变，营造温馨氛围。
+
+背景极简，左侧为有纹理的墙面，角色从墙后浮现。
+
+适用于iPhone锁屏壁纸的构图，纵向构图，顶部留出大片干净空间用于显示时钟，极致美学，景深效果，4K分辨率。
+
+相同身份，同一人物，必须精确保留参考照片中的相貌特征
+```
+
+</details>
+
+<details><summary><b>监控摄像头动物画面</b></summary>
+
+```text
+### 风格
+*   **视觉质感：** 数字监控摄像头画面，略带颗粒感，并具有广角镜头特有的鱼眼畸变效果。尽管存在数字压缩，门廊的木纹和动物的毛发依然清晰可见。
+*   **光照质量：** 自然、漫射的日光。场景由阴天的天空均匀照亮，投下柔和的阴影。
+*   **色彩调色板：** 混合了自然户外色调：黑熊毛皮的深黑色、虎斑猫鲜艳的橙色、婴儿汽车座椅的白色与灰色，以及背景中秋日草坪和树木的绿色与黄色。
+*   **氛围：** 紧张、激烈且充满保护性。原本宁静的婴儿在门廊上休息的场景，突然被一场危及生命遭遇打破。
+
+### 电影摄影
+*   **摄像机：** 固定于高角度的静态广角安防摄像头。视角固定，完整呈现门廊和院子的全貌。
+*   **镜头：** 广角/鱼眼镜头，景深大，使前景中的婴儿和远处停放的车辆都保持相对清晰的对焦。
+*   **照明：** 环境自然光；无任何人工高光。
+*   **情绪：** 混乱而悬疑，随后转向宽慰。
+
+---
+
+### 场景分解
+
+**场景 1 (00:00s - 00:10s)：**
+一个宁静的秋日早晨，一只大型黑熊爬上木制门廊的台阶，打破了平静。画面中央，一名婴儿安静地坐在汽车座椅中。一只橙色虎斑猫站在婴儿与入侵者之间。当熊靠近时，猫英勇地伸出利爪扑向熊的脸部。熊被猫的凶猛举动惊吓，踉跄后退跌下门廊，逃入院子。镜头后方传来一名女子惊恐的尖叫声（可能来自屋内），她正在目睹这一事件。
+
+**动作：**
+*   **熊：** 爬上门廊，望向婴儿，随后因被猫攻击而受惊，慌乱地穿过草地逃离。
+*   **猫：** 发出嘶吼声，跃向空中扑向熊的脸部，在熊逃跑后仍保持防御姿态停留在门廊上。
+*   **婴儿：** 仍被绑在汽车座椅中，好奇地抬头张望，似乎并未意识到危险。
+*   **人类（画外）：** 敲击门或窗户，疯狂尖叫以吓退熊。
+
+**对白：**
+*   女子（尖叫/惊慌）："天哪！天哪！退后！快退后！"
+*   女子（喘息）："宝宝没事吧？"
+
+**背景音效：**
+敲击门或窗的尖锐声响、猫具攻击性的嘶吼声、熊沉重的脚步落在木地板上的闷响，以及女子急促高亢的尖叫声。环境风声与远处户外声音构成低层次的背景嗡鸣。
+```
+
+</details>
+
+<details><summary><b>眼部微距特写</b> · 机器翻译</summary>
+
+```text
+使用参考照片中女孩的面部:保留她准确的面部特征(脸型、眼睛、眉毛、鼻子、嘴唇、颧骨)、表情和整体相貌。不要改变面部身份。
+
+主体:富有表现力的眼睛,带有戏剧性的上扬眼线和浓密的深色长睫毛;形状完美的深色拱形眉毛;几乎难以察觉的、微微张开的表情;她的头向一侧倾斜,脸被浓密的头发部分遮住;目光直视镜头,神情神秘而撩人。
+
+服装:黑色长袖上衣。
+
+姿势:她的头靠在肩膀上,肩膀遮住半张脸;长发散落在脸和肩膀周围,衬托她的五官;身体背对镜头。她的鼻子和嘴唇隐藏在肩膀后面,只露出眼睛;头发自然地垂在肩上。
+
+环境:室内场景,背景非常暗且高度虚化,营造出私密而孤立的氛围。
+
+光线:戏剧性的低对比度光线;一个来自左上方的单一光源投下柔和的阴影,强调她面部的轮廓;光线凸显皮肤和头发的质感,强化了暗调而私密的氛围。
+
+技术细节:微距特写,iPhone原始照片,细微颗粒感,生活方式摄影,Instagram美学,3:4画幅。
+逼真高质量清晰8K照片,使用iPhone 16 Pro拍摄
+```
+
+</details>
+
+<details><summary><b>睡前随拍自拍</b></summary>
+
+```text
+{
+  "meta": {
+    "aspect_ratio": "9:16",
+    "quality": "raw_photo, uncompressed, 8k",
+    "camera": "iPhone 15 Pro Max front camera",
+    "lens": "23mm f/1.9",
+    "style": "influencer candid bedtime selfie, clean girl aesthetic, youthful natural beauty, ultra-realistic",
+    "iso": "800 (clean, low noise)"
+  },
+  "scene": {
+    "location": "Luxury bedroom interior",
+    "environment": [
+      "high thread count white or cream bedding",
+      "fluffy down pillows",
+      "soft warm ambient light from background",
+      "hint of a silk headboard"
+    ],
+    "time": "Late night / Bedtime",
+    "atmosphere": "intimate, relaxing, soft luxury, innocent"
+  },
+  "lighting": {
+    "type": "Phone screen softbox effect",
+    "key_light": "Soft cool light from phone screen illuminating the face center, enhancing skin smoothness",
+    "fill_light": "Warm, dim bedside lamp in background creating depth",
+    "shadows": "Very gentle, soft shadows",
+    "highlights": "Creamy, dewy highlights on the nose bridge and cheekbones (hydrated glow)"
+  },
+  "camera_perspective": {
+    "pov": "Selfie (arm extended)",
+    "angle": "High angle, slightly tilted head (flattering portrait angle)",
+    "framing": "Close-up on face and upper chest",
+    "focus": "Sharp focus on eyes and lips, soft focus on hair and background"
+  },
+  "subject": {
+    "demographics": {
+      "gender": "female",
+      "age": "24 years old",
+      "ethnicity": "Northern European (fair skin)",
+      "look": "Fresh-faced, youthful model off-duty"
+    },
+    "face": {
+      "structure": "Symmetrical soft features, youthful plump cheeks, defined but soft jawline, delicate nose",
+      "skin_texture": "smooth, youthful complexion, 'glass skin' effect (ultra-hydrated and plump), porcelain/pale skin tone, extremely fine texture with minimal visible pores, radiant healthy glow, naturally flawless without heavy texture",
+      "lips": "Naturally plush lips, soft pink/rosy natural pigment, hydrated balm texture",
+      "eyes": "Large, expressive piercing blue eyes, clear bright iris detail, long natural dark lashes, looking into camera lens",
+      "brows": "Naturally thick, groomed, soft taupe color matching hair roots"
+    },
+    "hair": {
+      "color": "Cool-toned honey blonde with platinum highlights",
+      "style": "Chic blunt bob cut, chin-length, slightly tousled on the pillow but maintaining shape",
+      "texture": "Silky, healthy shine, fine soft hair texture"
+    },
+    "expression": "Soft, innocent, confident but sleepy, slight gentle smile"
+  },
+  "outfit": {
+    "headwear": {
+      "item": "Luxury silk sleep mask",
+      "position": "Pushed up onto the forehead/hair",
+      "color": "Champagne gold or blush pink",
+      "texture": "Satin sheen"
+    },
+    "top": {
+      "type": "Silk or satin pajama camisole",
+      "color": "Matching champagne or soft white",
+      "details": "Delicate lace trim at neckline, thin straps, fabric draping naturally over collarbones"
+    }
+  },
+  "details": {
+    "realism_focus": [
+      "Intense dewy moisturizer sheen on skin",
+      "Realistic lip balm texture",
+      "Reflection of phone screen in the clear blue pupils",
+      "Softness of the fabrics",
+      "Focus on dewy hydration sheen rather than heavy skin texture"
+    ],
+    "negative_prompt": [
+      "heavy makeup",
+      "foundation",
+      "cakey skin",
+      "plastic skin",
+      "airbrushed",
+      "acne",
+      "blemishes",
+      "dark hair",
+      "brown eyes",
+      "long hair",
+      "large pores",
+      "rough texture",
+      "wrinkles",
+      "aged skin",
+      "mature appearance"
+    ]
   }
 }
 ```
 
 </details>
 
-<details><summary><b>霓虹小巷夜行专辑封面</b></summary>
+<details><summary><b>石台上的插画肖像</b></summary>
 
 ```text
-电影感的狭窄城市小巷夜景，地面被雨水浸湿，反射着霓虹灯光。  
-竖屏构图（9:16），专辑封面风格。
-
-一名男性人物从画面中距离处平静地朝镜头走来。  
-姿态自信而克制，具有自然的街头存在感。  
-穿着深色极简服装，无可见品牌标识。  
-面部被环境霓虹灯光部分照亮，在身体上形成柔和的色彩过渡。
-
-环境：  
-未来感的霓虹光拱门在头顶交错，形成隧道般的透视效果。  
-潮湿的路面强烈反射蓝色、红色和橙色的光。  
-两侧为建筑物，店铺橱窗因景深而模糊。  
-远处有几名行人，处于柔焦状态。
-
-灯光与氛围：  
-电影级灯光，逼真的霓虹辉光。  
-冷蓝色与暖红色/橙色灯光混合。  
-自然阴影，无强烈对比。  
-带有氛围感的雨景，轻微薄雾。
-
-相机与风格：  
-全身镜头， eye-level 角度。  
-背景有轻微景深模糊。  
-超写实，电影级写实风格。  
-无幻想元素，无动画质感。  
-无夸张效果。
-
-整体感觉：  
-现代街头美学，黑暗但优雅。  
-极简主义，情绪化，自信。  
-类似专辑封面或音乐视频关键帧。
+一张高度精细的数字插画，描绘照片中的女性优雅地坐在石质 ledge 上，一只手靠近下巴，双腿交叉摆姿。她戴着圆形的、复古风格的太阳镜，身穿白色卷袖衬衫、牛仔背带裤和坚固的系带战斗靴。人物以去饱和度的单色铅笔素描风格呈现，带有柔和的交叉排线和炭笔质感。背景中有一个巨大、鲜艳、纯橙色的实心圆形
 ```
 
 </details>
 
-<details><summary><b>青少年书籍封面插画</b></summary>
+<details><summary><b>石砌水磨坊场景简报</b> · 机器翻译</summary>
 
 ```text
-Thoughtful Islamic book cover illustration for teenagers, side silhouette of a young person. Inside the head a question mark transforming into light and certainty. Arabic word "اليقين" integrated in the light. Deep purple and blue tones, minimalist and modern style, serious educational mood, no cartoon elements, vertical format, high resolution.
+扮演一位电影级环境设计师,撰写可直接用于生成图像和动态画面的场景简报。帮我设计一个英雄镜头:溪流边一座古老的小石头水磨坊,先生成静态图像,再以该图像作为首帧制作成一段短视频。你的简报必须让静态图像中包含丰富的、能够自然运动的元素(落水、转动的水车、薄雾、树叶、炊烟、飞鸟、闪烁的灯光),同时保持构图平静、便于做成动画。
+
+我的初始选择:
+- Region and landscape: ${region:temperate forest valley}
+- Season and time of day: ${season:autumn dawn}
+- Mill size and age: ${mill:two-story fieldstone mill, about 200 years old}
+- Visual style: ${style:photoreal landscape photography}
+- Mood words: ${mood:quiet, golden, misty, timeless}
+
+请先用一条简短的消息向我询问缺失的信息:我偏好的相机视角(隔着溪流、从小步行桥上,或靠近水面的低位),磨坊是仍在运作还是已修复为住宅或博物馆,以及需要避开的内容(人物、动物、现代汽车、电线、标牌)。
+
+然后按以下部分生成简报:
+
+1. **Scene Overview**:两到三句话,描述地点、季节、光线以及这一刻的故事。
+
+2. **Mill Architecture**:墙体石材的颜色和质感、屋顶的材料和形状、楼层数和窗户数、门、烟囱,以及水车类型(上射式、下射式或胸射式),包括其尺寸、材质、叶片或水斗的数量,以及它位于建筑的哪一侧。包含为其供水的木制水槽或引水渠。
+
+3. **Water and Landscape**:溪流的宽度和流速、小型跌水或堰坝、岩石和苔藓、树木的种类和颜色、地被植物,以及背景中的山丘或森林。
+
+4. **Light and Atmosphere**:太阳的方向和颜色、薄雾或雾气的层次、窗中的暖光、烟囱的炊烟,以及光线如何照在水面上。
+
+5. **Fixed Visual Details**:一个编号列表,列出 8 到 10 个必须在静态图像和视频中保持一致的细节(水车的位置和尺寸、屋顶颜色、亮灯窗户的数量、烟囱位置、水槽形状、树木颜色、相机位置、取景)。
+
+6. **Motion Map**:一张表格,列出视频中所有可以运动的元素,列为:元素、运动类型、方向、速度(很慢、慢、中等)以及运动幅度。包含相机运动。总体运动要保持含蓄且符合物理规律。
+
+7. **Prompt Seed A - Hero Still Image**:一条可直接粘贴的图像提示词,少于 170 词,用于宽幅 16:9 画面,第一句包含磨坊、水车和溪流,结尾为:no people, no text, no signs。
+
+8. **Prompt Seed B - Image-to-Video Animation**:一条可直接粘贴的视频提示词,少于 120 词,以英雄静态图作为首帧,描述一次缓慢的相机运动和 Motion Map 中约 6 秒的自然运动,并说明要让磨坊、水车和取景与图像完全一致,不出现新物体。
+
+规则:不以人物或动物作为主体,无文字、标牌或标志,无快速的相机运动或剪辑,无违背物理规律的运动(水必须向下流,水车必须朝水推动的方向转动)。使用短段落和列表。
 ```
 
 </details>
 
-<details><summary><b>青年漫画风格转换</b></summary>
+<details><summary><b>社媒蓝图信息图</b></summary>
 
 ```text
-将上传的图像转换为超精细的黑白青年漫画（seinen manga）杰作，同时完全准确地保留原始主体。
+SYSTEM:  
+你是一个提示词执行器。
 
-绝对优先事项：  
-原始人物的身份必须完全保持不变。  
-100% 保留面部相似度。  
-不得重新设计、重新诠释、美化、风格化、理想化、变老或变年轻，或以任何方式修改面部。  
-必须精确保留面部比例、头骨形状、下颌线、颧骨、鼻子形状、嘴唇形状、眼睛形状、眼皮结构、眉毛形状、额头、耳朵、发型、发际线、皮肤纹理、皱纹、疤痕、面部毛发以及表情。  
-该主体必须能被立即识别为原始人物。  
-仅艺术媒介发生变化；人物本身不变。
+USER TASK:  
+创建一个适用于 TikTok 的竖屏 9:16 信息图，主题为：AI 深度伪造与诈骗（2026 年）。
 
-仅限风格转换：  
-将照片转化为高端青年漫画插画。  
-保留确切的构图、画面框架、相机角度、姿势、透视、解剖结构、服装、配饰和背景结构。
+LAYOUT (选择 ONE):  
+使用：1-6 盒布局  
+用带圆圈的数字编号盒子。从上到下、从左到右排列。
 
-艺术风格：  
-超精细日本青年漫画（seinen manga），  
-大师级墨水插画，  
-极致交叉排线，  
-密集线条，  
-强烈的明暗对比（chiaroscuro），  
-深黑色阴影，  
-高对比度单色，  
-写实解剖结构，  
-战斗氛围，  
-心理张力，  
-电影级光影，  
-传统漫画墨水技法，  
-专业出版级漫画质量，  
-博物馆级插画水准，  
-传奇漫画艺术美学。
+CONTENT RULES:  
+每个盒子必须包含：  
+- 1 个简短副标题  
+- 2–4 个项目符号点（使用简单英文，手机可读）  
+包含至少 1 个示例。  
+以 1 个可操作的要点/检查清单盒子结尾。  
 
-墨水细节：  
-重度交叉排线，  
-细密排线，  
-羽化线条（feathering），  
-点刻法（stippling），  
-刮版纹理（scratchboard texture），  
-精准轮廓线，  
-深色阴影块，  
-干净白色高光，  
-饱满黑色墨水覆盖，  
-高细节纹理渲染。
+STYLE RULES:  
+严格遵循下方的 STYLE SPEC。不要添加任何边框/框架。保持全出血。所有元素保持相同的手绘风格。
 
-光影效果：  
-戏剧性定向光源，  
-强烈阴影，  
-高对比度，  
-通过墨线表现体积深度，  
-黑暗电影感氛围。
+TEXT QUALITY REQUIREMENTS:  
+- 所有文本必须是清晰、易读的英文（无乱码、无随机字符）。  
+- 仅使用简短的项目符号；每个项目符号不超过 10–12 个单词。  
+- 如果布局为 1-8 或 1-10 盒，则需进一步减少文本内容，或切换至 1-6 盒以确保最大可读性。
 
-质量要求：  
-杰作，  
-最佳质量，  
-超精细，  
-8K 级细节，  
-极清晰线稿，  
-专业漫画分镜质量，  
-获奖级插画水准。
+OUTPUT REQUIREMENT:  
+以如下精确结构返回信息图内容：  
+TITLE: ...  
+BOX 1: (副标题) + 项目符号  
+BOX 2: (副标题) + 项目符号  
+...  
+FOOTER (小): By SirCrypto  
 
-情绪氛围：  
-坚毅，  
-压迫感，  
-严肃，  
-坚定，  
-身经百战，  
-传奇感，  
-情感强烈，  
-强大气场。
-
-负向提示词（NEGATIVE PROMPT）：  
-不同面孔，  
-身份改变，  
-面部重建，  
-面部重新设计，  
-面部增强，  
-美化面部，  
-AI生成面孔，  
-动漫脸（anime face），  
-通用漫画脸，  
-新发型，  
-不同表情，  
-不同年龄，  
-不同种族，  
-比例改变，  
-对称性修正，  
-美化滤镜，  
-塑料质感皮肤，  
-光滑皮肤，  
-可爱风格，  
-Q版（chibi），  
-卡通，  
-Pixar风格，  
-Disney风格，  
-西方漫画，  
-3D渲染，  
-CGI，  
-低细节，  
-模糊，  
-柔光，  
-数字绘画，  
-彩色图像，  
-水彩，  
-油画，  
-拼贴图像（photobash），  
-角色重新设计，  
-身份偏移，  
-面部修改，  
-面部再诠释，  
-艺术自由发挥，  
-面部特征风格化。
-
-最终指令：  
-以法医级精度保留原始身份、面部几何结构和表情。仅应用黑白青年漫画墨水风格。面部、肖像及独特特征必须保持不变。
-```
-
-</details>
-
-<details><summary><b>静谧月夜街景插画</b></summary>
-
-```text
-{
-  "colors": {
-    "color_temperature": "cool",
-    "contrast_level": "high",
-    "dominant_palette": [
-      "teal",
-      "cool gray",
-      "warm yellow",
-      "orange"
-    ]
-  },
-  "composition": {
-    "camera_angle": "eye-level shot",
-    "depth_of_field": "deep",
-    "focus": "A corner building with a lit cafe",
-    "framing": "The building is positioned on the right side of the frame, balanced by the open water and sky on the left. Power lines and a crosswalk create leading lines."
-  },
-  "description_short": "A digital illustration of a quiet, moonlit street scene by the water, featuring a warmly lit cafe and a black cat sitting on a balcony.",
-  "environment": {
-    "location_type": "cityscape",
-    "setting_details": "A multi-story building with a cafe on the ground floor stands next to a body of water under a night sky. A crosswalk is in the foreground, and a distant shoreline is visible across the water.",
-    "time_of_day": "night",
-    "weather": "clear"
-  },
-  "lighting": {
-    "intensity": "moderate",
-    "source_direction": "mixed",
-    "type": "atmospheric"
-  },
-  "mood": {
-    "atmosphere": "Peaceful and solitary urban night",
-    "emotional_tone": "calm"
-  },
-  "narrative_elements": {
-    "character_interactions": "A solitary cat observes the quiet scene from its perch on a balcony.",
-    "environmental_storytelling": "The warmly lit but empty cafe suggests a late hour, creating a tranquil and lonely atmosphere in an urban setting. The moonlit water adds to the sense of peace.",
-    "implied_action": "The scene is still and quiet, as if paused in time. The cat is watching, and the moon's reflection ripples gently on the water."
-  },
-  "objects": [
-    "building",
-    "cafe",
-    "cat",
-    "balcony",
-    "moon",
-    "water",
-    "power lines",
-    "crosswalk",
-    "tables",
-    "chairs"
-  ],
-  "people": {
-    "count": "0"
-  },
-  "prompt": "A serene digital illustration of a street corner by the sea at night. A bright full moon hangs in the textured teal sky, its light reflecting on the calm water. The ground floor of a European-style building is a warmly lit cafe with empty white tables and chairs outside. Above, a lone black cat sits on a balcony, silhouetted against the night sky. The style is painterly and atmospheric, with visible brush textures, evoking a feeling of quiet solitude and peace.",
-  "style": {
-    "art_style": "illustrative",
-    "influences": [
-      "lo-fi aesthetic",
-      "Japanese animation"
-    ],
-    "medium": "digital art"
-  },
-  "technical_tags": [
-    "illustration",
-    "night scene",
-    "cat",
-    "moonlight",
-    "cafe",
-    "waterside",
-    "atmospheric",
-    "digital painting",
-    "textured"
-  ],
-  "use_case": "Training for stylized illustration generation or datasets focused on atmospheric and emotional scenes.",
-  "uuid": "b55094a8-7a9b-4e1e-ba85-5e7893761150"
-}
-```
-
-</details>
-
-<details><summary><b>静谧草地人像三联画</b></summary>
-
-```text
-{
-  "colors": {
-    "color_temperature": "暖色调",
-    "contrast_level": "中等对比度",
-    "dominant_palette": [
-      "绿色",
-      "米色",
-      "红橙色"
-    ]
-  },
-  "composition": {
-    "camera_angle": "多角度三联画",
-    "depth_of_field": "浅景深",
-    "focus": "红发女子",
-    "framing": "该图像为一幅三联画，融合广角镜头、特写肖像与低角度镜头，构成叙事性序列。"
-  },
-  "description_short": "一幅三联画作品，描绘一位长发红发的年轻女子置身于阳光普照的草甸之中。上幅为广角镜头，展现她双臂张开的姿态；中幅为面部特写肖像；下幅则以低角度呈现她仰卧于草丛中、伸手朝向镜头的画面。",
-  "environment": {
-    "location_type": "户外",
-    "setting_details": "一片郁郁葱葱的绿色草甸，长草丰茂，背景为高大成熟的树木。",
-    "time_of_day": "下午",
-    "weather": "晴朗"
-  },
-  "lighting": {
-    "intensity": "中等强度",
-    "source_direction": "混合光源方向",
-    "type": "自然光"
-  },
-  "mood": {
-    "atmosphere": "宁静而富有奇想的自然联结感",
-    "emotional_tone": "平静"
-  },
-  "narrative_elements": {
-    "environmental_storytelling": "天然、野趣的环境暗示了自由、平和以及与自然融为一体的主题。",
-    "implied_action": "女子正在起舞、休憩并伸出手去，暗示其与周遭环境之间流畅而富表现力的互动。"
-  },
-  "objects": [
-    "女子",
-    "连衣裙",
-    "高草",
-    "树木"
-  ],
-  "people": {
-    "ages": [
-      "青年"
-    ],
-    "clothing_style": "波西米亚风、草原风格连衣裙",
-    "count": "1",
-    "genders": [
-      "女性"
-    ]
-  },
-  "prompt": "一幅电影感胶片摄影风格的三联画，主角是一位美丽、年轻的女子，拥有飘逸的长红发与雀斑，身着浅色草原风格连衣裙。上幅：广角镜头捕捉她在阳光斑驳的草甸中、在巨大橡树下双臂高举、尽情欢跃的瞬间；中幅：亲密的面部特写肖像，她温柔微笑直视镜头，背景为柔和虚化的绿色；下幅：低角度镜头呈现她仰卧于高草之中，一手伸向观者。整体风格具有电影感，采用温暖柔和的光线与怀旧的胶片颗粒质感。",
-  "style": {
-    "art_style": "写实主义",
-    "influences": [
-      "电影摄影",
-      "独立电影",
-      "生活方式摄影"
-    ],
-    "medium": "摄影"
-  },
-  "technical_tags": [
-    "三联画",
-    "肖像",
-    "广角镜头",
-    "浅景深",
-    "胶片颗粒",
-    "自然光"
-  ],
-  "use_case": "图库摄影、时尚杂志专题或叙事性故事集数据集。",
-  "uuid": "b70a4a22-22c1-4d22-8a61-48e92bddb07e"
-}
-```
-
-</details>
-
-<details><summary><b>非洲未来主义高定时尚模特</b></summary>
-
-```text
-风格 / 美学：  
-高定时装杂志风、奢华商业摄影、超现实3D渲染美学、神话式非裔未来主义、华丽暗黑幻想、完全对称构图。  
-
-主体：  
-解剖结构：1girl，年轻女性，面容完美对称，中深肤色，饱满嘴唇，双手完美且指甲自然。  
-皮肤：发光、高度油亮且具光泽的皮肤，纹理无瑕，黑色素丰富，轻微次表面散射效果。  
-头发：隐藏于头盔之下。  
-服装：（金属金色凹凸纹理肩甲：1.3），搭配同色金属金色比基尼上衣。  
-配饰：（镶嵌钻石的圆顶头盔，带有大型金色十字图案：1.4），（光滑反光的金色面罩覆盖上半面部和眼睛：1.3），精致的白色水晶/蕾丝几何状珠宝贴合于脸颊。  
-身体装饰：贴合面部的水晶装饰。  
-
-姿势与表情：  
-姿势：四肢着地蹲伏，身体前倾，双手掌心平放于地面朝向镜头，姿势完全对称。  
-表情：凶猛、性感、目光强烈（暗示存在于面罩之下），双唇微张且具光泽。  
-
-背景与场景：  
-场景：黑暗而华丽的摄影棚环境，（完美反光的黑色镜面地板：1.4）。  
-细节：（两条大型高度细节化的金属金色蛇对称缠绕， framing 主体，顶部相对而视：1.4），深色大理石柱带有金色希腊回纹边框，镜面地板上散落着金属金色玫瑰。  
-
-灯光与相机：  
-灯光：戏剧性高对比度影棚灯光，（耀眼的镜面高光与十字形镜头光晕在黄金和钻石上闪烁：1.3），强烈的轮廓光勾勒身体与蛇形，使其与黑暗背景分离，阴影深邃。  
-相机风格：对称广角镜头，低角度拍摄，完全居中构图，主体面部与双手清晰对焦，电影级超现实主义。  
-
-渲染 / 质量标签：  
-杰作，最佳质量，超精细，高分辨率，照片级纹理，Octane render 美学，光线追踪反射，高度细节化的黄金材质，8k 分辨率。  
-
-负向提示词：  
-（最差质量，低质量，普通质量：1.4），非对称构图，构图失衡，插画，绘画，素描，卡通，动漫，3D几何伪影，丑陋，手部绘制粗糙，手指绘制不佳，多余手指，缺失手指，变异的手，解剖错误，肢体畸形，面部绘制不佳，杂乱背景，文字，水印，签名，昏暗灯光，哑光皮肤，缺失反射，扭曲反射，模糊，失焦。
-```
-
-</details>
-
-<details><summary><b>项目画风一致性生成指令</b></summary>
-
-```text
-作为图像生成专家，你负责创建符合特定艺术风格和项目规范的图像。
-
-你的任务是：
-- 仅使用指定项目文件夹内的可用文件。
-- 确保所有生成的图像保持用户指定的艺术风格和类型。
-
-你需要：
-- 访问并使用项目文件：确保图像生成中使用的任何参考、纹理或资源均来自用户的项目文件。
-- 保持风格一致性：遵循用户指定的艺术风格指南，以创建统一且协调的图像。
-- 清晰沟通：如果缺少任何必需的文件，或需要额外输入以保持一致性，请及时通知用户。
-
-规则：
-- 不得使用所提供项目之外的外部文件或资源。
-- 一致性至关重要；确保所有图像都符合用户的艺术构想。
-
-变量：
-- ${projectPath}：项目文件的路径。
-- ${artStyle}：用户指定的艺术风格。
-
-示例：
-- “使用来自 ${projectPath} 的资源，以 ${artStyle} 风格生成一张图像。”
-```
-
-</details>
-
-<details><summary><b>预制烧烤商用厨房模型</b></summary>
-
-```text
-创建一个预制厨房模型，并包含与尺寸为10英尺x15英尺的烧烤区域相关的全套设备
-```
-
-</details>
-
-<details><summary><b>马格利特风格超现实绘画</b></summary>
-
-```text
-{
-  "colors": {
-    "color_temperature": "暖色调",
-    "contrast_level": "高对比度",
-    "dominant_palette": [
-      "红色",
-      "橙色",
-      "灰蓝色",
-      "浅灰色"
-    ]
-  },
-  "composition": {
-    "camera_angle": "平视角度",
-    "depth_of_field": "深景深",
-    "focus": "红色太阳",
-    "framing": "构图呈水平分层，前景是一堵石墙，中景是一排树木，背景是天空。红色太阳位于画面中央，形成强烈的视觉焦点。"
-  },
-  "description_short": "一幅雷内·马格里特风格的超现实主义绘画，描绘一个鲜艳的红色太阳或球体悬挂在一片暗淡的灰蓝色树林前方，背景是炽热的红色和橙色天空。前景有一堵带有陶罐的石墙。",
-  "environment": {
-    "location_type": "户外",
-    "setting_details": "场景看似一个公园或正式花园，视角位于一堵低矮石墙之后。一片精心修剪的草坪将石墙与一片茂密的叶树林分隔开来。",
-    "time_of_day": "傍晚",
-    "weather": "晴朗"
-  },
-  "lighting": {
-    "intensity": "强烈",
-    "source_direction": "未知",
-    "type": "超现实"
-  },
-  "mood": {
-    "atmosphere": "神秘而梦幻般的静谧",
-    "emotional_tone": "超现实"
-  },
-  "narrative_elements": {
-    "environmental_storytelling": "太阳被不可能地置于树木前方，颠覆了现实，营造出一种惊奇感和智性悖论。普通的人造石墙与非凡的自然景象形成对比，质疑观者对空间和现实的感知。",
-    "implied_action": "整个场景完全静止，捕捉了一个违背天体自然运动规律的瞬间。"
-  },
-  "objects": [
-    "红色太阳",
-    "树木",
-    "石墙",
-    "石罐",
-    "天空",
-    "草坪"
-  ],
-  "people": {
-    "count": "0"
-  },
-  "prompt": "一幅高度细致的超现实主义油画，风格仿雷内·马格里特。一个巨大、完美圆形、鲜艳的红色太阳悬浮在空中，不可思议地出现在一片密集的灰蓝色树木前方。其后的天空散发出强烈的渐变光芒，从顶部的炽热红色过渡到地平线处的温暖橙色。前景中，一堵精细描绘的浅灰色石墙，墙上有一个古典风格的陶罐置于基座上，构成了画面底部的框架。整体氛围神秘、寂静且如梦似幻，暖色与冷色之间形成鲜明对比。",
-  "style": {
-    "art_style": "超现实主义",
-    "influences": [
-      "René Magritte"
-    ],
-    "medium": "绘画"
-  },
-  "technical_tags": [
-    "超现实主义",
-    "油画",
-    "风景",
-    "并置",
-    "象征主义",
-    "高对比度",
-    "鲜艳色彩"
-  ],
-  "use_case": "艺术史数据集、风格迁移模型训练、超现实主义AI艺术提示词灵感。",
-  "uuid": "b6ec5553-4157-4c02-8a86-6de9c2084f67"
-}
-```
-
-</details>
-
-<details><summary><b>驯龙高手贴纸表</b></summary>
-
-```text
-创建一张A4尺寸的竖向贴纸页，包含30个《驯龙高手》电影中的角色。
-角色必须与原版《驯龙高手》电影中的形象完全一致，忠实还原，不得重新设计，不得重新诠释。
-使用电影中正确的原始服装和龙的设计，颜色和细节准确无误。
-头部、眼睛、耳朵、翅膀和尾巴必须完整可见（不得裁剪或缺失）。
-小嗝嗝（Hiccup）和没牙仔（Toothless）出现频率最高，展示不同的站立或飞行姿势及表情。
-其他角色和龙也需包含在内，且保持电影中的原始设计不变。
-采用随机散布布局，拼贴风格排列，不按行或网格对齐。
-每个贴纸周围留有空白区域，确保清晰分隔，便于偏移/模切打印。
-纯白色背景，无文字、无阴影、无场景。
-高分辨率，贴纸边缘清晰，可直接打印。
-负面提示词（NEGATIVE PROMPT）  
-redesign, altered characters, wrong outfit, wrong dragon design, same colors for all, missing wings, missing tails, cropped wings, cropped tails, chibi, kawaii, anime style, exaggerated eyes, distorted faces, grid layout, aligned rows, background scenes, shadows, watermark, text
-```
-
-</details>
-
-<details><summary><b>高对比模板矢量海报</b></summary>
-
-```text
-将上传的肖像转化为高对比度的矢量海报插画。
-
-风格要求：
-- 大胆的模板/宣传海报美学
-- 扁平矢量艺术
-- 仅使用 3–4 种颜色
-- 纯红色背景
-- 面部以灰度色调呈现（2–3 个扁平阴影层）
-- 黑色粗外轮廓线
-- 无渐变
-- 无纹理
-- 无写实效果
-- 锐利干净的边缘
-- 海报化阴影
-- 居中头部构图
-- 极简但强烈的面部特征
-- 平面设计风格
-- Adobe Illustrator 矢量外观
-- 高对比度
-- 平滑的几何阴影形状
-
-输出：
-清晰、干净、可缩放的矢量风格肖像。
-```
-
-</details>
-
-<details><summary><b>高端科技感网站UI改版</b></summary>
-
-```text
-扮演一名使用Image2的UI/UX设计师。你的任务是为一个网站前端创建多个高端、受科技启发的UI设计。你必须：
-- 保留所有现有功能（不增加也不删除）
-- 专注于修改布局和主题
-- 以高端、未来感的科技美学进行设计
-- 生成多种风格选项供客户选择
-
-约束条件：
-- 确保设计适用于现代高科技网站
-- 保持用户体验直观且无缝
-
-你的输出将包括：
-- 一组展示不同风格的图像设计
-- 每个设计都必须突出网站的功能性，同时提供全新的视觉美感
-```
-
-</details>
-
-<details><summary><b>高端美妆大片拍摄规格</b></summary>
-
-```text
-{
-  "project_specifications": {
-    "format": "2×2 网格拼贴图",
-    "aspect_ratio": "4:5",
-    "aesthetic_style": "高端美妆杂志风格",
-    "rendering_engine_hints": {
-      "realism_level": "超写实级",
-      "texture_quality": "8K",
-      "lighting_simulation": "光线追踪式影棚布光"
+然后应用下方的样式规范。
+  "information_hierarchy": {
+    "levels": {
+      "primary": "大标题 + 居中示意图锚点",
+      "secondary": "子标题 + 图标 + 标签",
+      "tertiary": "项目符号 + 简短注释"
+    },
+    "emphasis_techniques": {
+      "color_highlights": "关键词下方用青色下划线突出",
+      "boxing": "定义内容放入标签框内",
+      "icons": "风险项使用警告三角，操作项使用对勾"
     }
   },
-  "global_assets": {
-    "subject_definition": {
-      "hair": {
-        "style": "长发，松散波浪卷，丰盈蓬松",
-        "texture": "自然质感，每根发丝清晰可辨",
-        "behavior": "略带凌乱但经过精心打理，自然勾勒面部与肩部轮廓"
-      },
-      "complexion": {
-        "skin_texture": "具毛孔细节，超写实",
-        "finish": "水润光泽感，玻璃肌效果",
-        "makeup": {
-          "cheeks": "浓重红晕／腮红",
-          "lips": "高光感、丰唇效果、自然粉色调",
-          "eyes": "洁净分明的睫毛，自然眉形"
-        }
-      },
-      "wardrobe": {
-        "item": "迷你连衣裙",
-        "fit": "紧身／贴身剪裁",
-        "fabric": {
-          "material": "柔软纹理针织面料／粗花呢",
-          "tactility": "毛绒感、反光纤维",
-          "color": "柔雾紫或中性灰褐色"
-        },
-        "details": "细肩带，及大腿中部长度"
-      }
+  "decorative_elements": {
+    "badges_and_labels": {
+      "style": "蓝图式标签，类似尺寸标注的标记",
+      "use": "用于定义、风险、步骤"
     },
-    "environment_definition": {
-      "studio_setup": {
-        "background": "无缝纸背景，柔和米白／浅驼色",
-        "atmosphere": "干净、温暖、私密"
-      },
-      "lighting_rig": {
-        "key_light": "大型漫射柔光箱（左前方）",
-        "fill_light": "反光板（右侧）",
-        "highlights": "嘴唇、颧骨与肩部呈现镜面高光"
-      }
+    "connective_tissue": {
+      "arrows": "制图用箭头",
+      "lines": "网格线、虚线路径",
+      "brackets": "花括号用于分组关联要点"
+    },
+    "ambient_details": {
+      "small_icons": "微小节点、校准标记（极简）",
+      "texture": "蓝图网格背景，微弱且不显眼"
     }
   },
-  "panel_architecture": [
-    {
-      "position": "左上角（1）",
-      "shot_type": "极致特写（微距）",
-      "composition": {
-        "angle": "低角度，略微仰视",
-        "focus": "口鼻区域",
-        "depth_of_field": "景深极浅"
-      },
-      "action": {
-        "primary": "正在吃一颗草莓",
-        "nuance": "指尖轻捏，双唇微微张开"
-      },
-      "visual_anchors": [
-        "草莓表面的湿润反光",
-        "嘴唇上的高光反射",
-        "太阳穴处的绒毛"
-      ]
-    },
-    {
-      "position": "右上角（2）",
-      "shot_type": "中景（大腿以上）",
-      "composition": {
-        "angle": "平视角度",
-        "pose_dynamic": "身体略微前倾朝向镜头"
-      },
-      "action": {
-        "stance": "直立站立",
-        "arms": "双臂自然垂于身体两侧",
-        "expression": "直视镜头，魅惑微噘唇"
-      },
-      "visual_anchors": [
-        "针织连衣裙的纹理细节",
-        "锁骨处的阴影",
-        "腰线的自然曲度"
-      ]
-    },
-    {
-      "position": "左下角（3）",
-      "shot_type": "全身像（坐姿）",
-      "composition": {
-        "angle": "侧脸轮廓视角",
-        "framing": "人物紧凑地置于地面"
-      },
-      "action": {
-        "pose": "双膝抱胸（胎儿姿势变体）",
-        "interaction": "脸颊轻靠膝盖，双臂环抱双腿",
-        "hair_flow": "长发如瀑倾泻至地面"
-      },
-      "visual_anchors": [
-        "腿部线条的平滑轮廓",
-        "连衣裙在大腿处的拉伸质感",
-        "梦幻般的眼神"
-      ]
-    },
-    {
-      "position": "右下角（4）",
-      "shot_type": "美妆人像（头部与双手）",
-      "composition": {
-        "angle": "正面特写",
-        "framing": "从下巴至发际线"
-      },
-      "action": {
-        "gesture": "下巴轻 resting 在交叠的手指上",
-        "expression": "柔和微笑，目光略偏镜头外"
-      },
-      "visual_anchors": [
-        "手部细节与美甲效果",
-        "眼部清晰度",
-        "脸颊红晕"
-      ]
+  "authenticity_markers": {
+    "hand_made_quality": {
+      "line_variation": "线条粗细自然变化",
+      "alignment": "微小错位可接受",
+      "overlap": "轻微重叠可接受"
     }
+  },
+  "technical_quality": {
+    "resolution": "高分辨率，适用于手机与打印",
+    "clarity": "文字可读，图表清晰",
+    "balance": "视觉权重分布均匀",
+    "completeness": "完整、整洁、专业"
+  },
+  "content_guidance": {
+    "explanation": "写作方式应如技术解说员。先定义概念，展示简单机制（工作原理），指出常见误解，再提供实用清单。每个模块保持一个子标题加 2–4 个要点，确保在手机上易读。",
+    "writing_rules": [
+      "每个模块：1 个标签 + 2–4 个要点",
+      "优先使用因果式表达",
+      "至少包含一个 '如何识别' 或 '如何降低风险' 章节",
+      "避免夸张；保持精确且可操作"
+    ]
+  },
+  "avoid": [
+    "任何边框、边缘装饰",
+    "可爱或幼稚的角色",
+    "霓虹赛博过载风格",
+    "过于密集的连线/线条",
+    "过小无法阅读的文字",
+    "过于完美的矢量感（ sterile vector perfection ）"
   ]
 }
 ```
 
 </details>
 
-<details><summary><b>鸡尾酒视频</b></summary>
+<details><summary><b>神明仍在行走的古村夜景</b></summary>
 
 ```text
-神秘调酒师将发光的绿色液体倒入杯中的电影级特写，浓烟升腾，背景为昏暗的鸡尾酒吧，4k，超现实，慢动作。
+夜晚的古代日本村落，寂静而空旷，氛围深具灵性。狭窄的石板街道两旁排列着传统木结构房屋，路面刚被雨水打湿，映出纸灯笼柔和温暖的微光。低垂的薄雾缓缓飘过村落，移动中似有明确意图，仿佛受某种不可见的存在所引导。纸灯笼逐一悄然亮起，却无任何可见的点火源。街道尽头，一座覆满青苔的古老鸟居 gate 从雾中浮现。鸟居之后，一股微妙的神圣存在感悄然弥漫——无形无相，不见面容——唯见雾中一缕轻柔、呼吸般的微光，沉静而古老，以不加评判的目光凝视一切，恰如一位神道教的神明（kami）。小径旁一棵古树缠绕着饱经风霜的注连绳（shimenawa），垂挂的纸垂（shide）在无风的空气中微微颤动。湿漉漉的石板地上清晰可见一串向前延伸的足印，宛如一条静谧的仪式之路。整体情绪庄重肃穆、万籁俱寂、超越时间。可见世界与不可见世界之间的界限显得纤薄而神圣。电影级构图，强调引导线与深远透视。体积雾效，柔和自然的光线漫射。色彩方案采用深靛蓝、低饱和度森林绿，以及温暖琥珀色高光。照片级电影写实风格，超精细有机纹理，自然瑕疵，微妙的不对称性，氛围感概念艺术，高分辨率，8K 画质。  
+
+反向提示词（Negative prompt）：anime、cartoon、illustration、horror、aggressive mood、monsters、demons、jump scare、modern buildings、neon lights、cyberpunk、city elements、text、watermark、logo、characters in foreground、sharp artificial lighting、oversaturated colors
 ```
 
 </details>
 
-<details><summary><b>黄金时刻海滩漫步</b></summary>
+<details><summary><b>神秘万圣节草垛人像</b> · 机器翻译</summary>
+
+```text
+不要改变女孩的面部特征、眼型、眉毛、鼻子或嘴唇。保持 100% 的面部相似度。
+宽高比:3:4。超写实、高质量、锐利的 8K 照片,使用 iPhone 16 Pro Max 拍摄。
+场景与构图:
+一张全身或四分之三身的万圣节夜晚照片。一位年轻女性坐在温馨乡村环境中的一个大型长方形干草捆上,占据画面的大部分。
+姿势:
+她的躯干向左转约四分之三,背部略微向后倾。头部面向镜头,目光低垂,闭着嘴唇,带着柔和而神秘的微笑。她的右手撑在身后的干草上支撑身体,左手放在大腿旁。双腿向右伸出,略微弯曲,左腿交叠在右腿上方。
+服装与外貌:
+一件黑色修身长袖 T 恤连衣裙,胸前印有橙色杰克南瓜灯图案,搭配黑色渔网丝袜,隐约可见厚底黑色系带靴。头发披散,眼线锐利上扬,涂着深酒红色口红。
+光线与背景:
+强烈的正面闪光灯明亮地照亮女子和干草,背景保持昏暗。她身后矗立着一棵巨大的老树,左侧有木栅栏和远处的建筑,右侧有更多干草捆,散落着发光的南瓜。
+氛围:神秘、温馨的秋日万圣节气氛。
+```
+
+</details>
+
+<details><summary><b>神秘哥特骷髅人像</b> · 机器翻译</summary>
+
+```text
+模特与姿势:一位面部特征鲜明的年轻女子笔直站立,目光略微偏离镜头。她的躯干几乎正对镜头。她双手小心而神秘地将一颗浅灰色人类头骨托在胸前正中。
+服装与配饰:
+
+连衣裙:黑色哥特风连衣裙,深 V 领,长而宽松的袖子。
+头饰:一顶硕大的黑色哥特风冠冕光环,装饰有黑玫瑰、珠子,以及向外放射如光芒般的长而尖锐的尖刺。
+首饰:一条精致的黑色蕾丝choker项圈,图案繁复并带有垂坠吊饰。暗红色或黑色美甲。
+发型:笔直柔顺的头发,干净利落的中分,自然垂落在肩头。
+妆容:戏剧化的哥特妆容。浓郁深沉的暗红/酒红色口红。轮廓分明的深色眉毛。深色眼影的烟熏眼妆,搭配富有表现力的睫毛。肤色均匀白皙。
+光线与色调:柔和的光线聚焦在女子的脸和头骨上,形成平滑的阴影和立体感。整体色调克制,以深灰和黑色为主,红唇与苍白的头骨形成鲜明的对比点缀。
+氛围与背景:黑暗、神秘、哥特、扑朔迷离的氛围。背景为深灰色并柔和虚化,弥漫着浓密、半透明的蓝灰色雾气或烟雾,环绕着人物的下半身。
+机位与取景:腰部以上的肖像,平视拍摄。对焦清晰地落在女子的脸和头骨上。
+表情:含蓄、温柔的半微笑,双唇紧闭。
+重要:不要改变参考图中的面部特征或身份。保持确切的面部结构、眼睛、鼻子、嘴唇及其他显著特征。
+画幅:3:4
+
+画质:超写实、高品质、锐利的 8K 照片,自然的皮肤质感,细节丰富,使用 iPhone 16 Pro 拍摄。
+```
+
+</details>
+
+<details><summary><b>私人飞机航空人像</b> · 机器翻译</summary>
+
+```text
+创作一张照片级真实的2026年高级时装航空人像，拍摄于一架精英私人飞机的涡轮发动机旁，采用从腰部以上的有力中近景构图。这位成年女性机组人员模特极具魅力，有着迷人的榛色眼睛、天然非常宽阔的胸廓和天然较丰满的胸部，比例真实而优雅，身形自然紧致。她的头发完全披散，蓬松华丽的波浪被飞机周围的光线照亮。
+
+围绕一件合身的白色航空衬衫设计一套非凡的现代航空公司制服，采用优质哑光挺括棉质面料：雕塑感的领口、精心剪裁的胸部和胸廓塑形、合身的短袖、干净的建筑感接缝、略微敞开的领口、小巧抛光的翼形徽章和金属机组姓名牌。再加一条精致的海军蓝与奶油色相间的航空丝巾，不对称系结。不要外套或西装。这套制服应当像一家著名航空公司的标志性时尚形象，而不是企业工作服。
+
+她站得离机身极近，一侧肩膀几乎碰到抛光的表面。她的身体略微背向镜头，而肩膀和头转向镜头。一只手按在头旁边的飞机上；另一只手轻轻握住领口的丝巾。她的姿态形成了从手到肩再到腰的修长对角线。她的榛色眼睛直直锁定镜头，神情强烈、自信、充满魅力。
+
+光线：来自镜头右侧的戏剧性单侧电影感主光，在她的脸部和白色衬衫上形成雕塑般的光影，同时让另一侧落入浓郁但仍可辨的阴影中。再加一道明显的、从后方射来的窄边缘光，将她的散发、肩膀和衬衫边缘与飞机分离开来。来自白色机身的细腻反射补光让肌肤保持透亮，又不会使对比度变平。明亮的电影感曝光，清晰的白色高光，受控的阴影，真实的棉质质感，自然的肌肤细节，85mm镜头，浅景深，精致的象牙白-白-海军蓝-香槟色色调，高级时装电影般的真实感，不要平光，不要正面美颜光，不要丝绸，不要缎面，不要外套，不要西装，不要暗沉/深色调色，不要通用的航空公司姿势，不要复古风格，除虚构的机组徽章和姓名牌外，不要标志或文字。
+```
+
+</details>
+
+<details><summary><b>秋日公园侧脸人像</b> · 机器翻译</summary>
+
+```text
+风格：写实、高质量的照片级写实照片。
+
+主体：一位年轻女性，头发以柔和的波浪（卷发）自由地垂在背部和肩上。
+
+拍摄角度：中景，大致在视平线高度拍摄。女性以侧面出镜，朝右侧转，目光看向旁边某处，而不是看向镜头。
+
+服饰：这位女性穿着层次感的秋季搭配。她穿一件浅灰色 V 领毛衣，质地为有纹理的罗纹针织。毛衣外面套着一件超大号黑色皮质机车夹克。
+
+姿势与情绪：她安静放松地站着。表情若有所思、平和，带着一丝淡淡的半笑。
+
+背景：场景在一条秋日公园林荫大道上。一条宽阔的柏油小路上铺满了橙色和红色的落叶。路两旁生长着树叶繁茂、色彩浓郁的树木，呈现暖色调（橙色、红色和金色）。背景柔和虚化，带有散景效果，突出这位女性。可以看到林荫道向公园深处延伸。
+
+光线：柔和、自然、漫射的日光，是多云天气或温和秋日的典型光线。光线柔和地落在她脸部的侧面轮廓上，轻轻照亮她的五官和衣物的质感。阴影柔和。
+
+妆容：非常自然的“素颜”妆。自然的肤色，清晰的眉毛，淡淡的腮红，以及自然色调的润唇膏。
+
+氛围：平静、温馨、若有所思、秋意浓浓、略带忧郁。
+
+不要改变我的面部特征。
+
+宽高比：3:4
+
+写实、高质量、清晰的 8K 照片，使用 iPhone 16 Pro Max 拍摄。
+```
+
+</details>
+
+<details><summary><b>秋日南瓜地人像</b> · 机器翻译</summary>
+
+```text
+一张逼真的高质量 8K 照片,由 iPhone 16 Pro Max 拍摄,3:4 画幅。
+
+主体:一位披散着头发的年轻女性。不要改变她的面部特征或身份。她直视镜头,带着可爱而温柔的微笑。
+
+姿势:她坐在地上,双膝弯曲并微微收向身体,双脚平放在地面上。上身略微转向镜头。她双手在腹部/下胸口的高度抱着一个中等大小的亮橙色南瓜,像是在拥抱它。
+
+服装:一件棕橄榄色(卡其/卡布奇诺色)的宽松textured毛衣,长袖微微盖住双手。面料类似宽条纹灯芯绒。长毛衣下隐约可见极短的黑色短裤。她穿着厚实的黑色皮质系带靴,厚底,马丁靴风格,搭配浅白色或浅灰色的短袜,袜子上有一条细细的淡蓝色条纹。
+
+场景:一片开阔的南瓜田,地面覆盖着干燥的黄色秋草。各种大小的亮橙色南瓜自然地散落在她周围。右前景中可以看到一个部分入镜的超大南瓜。背景中,一道低矮的白色木栅栏横贯田野,远处可见深色的树木剪影和木制电线杆。
+
+光线与氛围:黄金时刻,柔和、温暖、漫射的自然光,脸上没有刺眼的阴影。天空富有戏剧感,布满蓝灰色的大片秋云,而鲜艳的黄橙色落日余晖从地平线上穿透而出。温馨的秋日氛围,秋季美学,轻松,略带忧郁却温暖治愈。
+
+镜头:坐着的人的平视视角,营造出亲密的观看角度。女性位于画面中心偏右。足够深的景深让她保持清晰对焦,而背景仍可辨认,带有柔和自然的虚化。色彩搭配上,温暖的橙色和棕色秋日色调与冷灰色的天空形成对比。
+```
+
+</details>
+
+<details><summary><b>秋日河谷石桥上的蒸汽火车</b> · 机器翻译</summary>
+
+```text
+一列黑色蒸汽机车牵引着四节栗红色客车车厢,在清晨柔和的光线下,驶过一座横跨深邃秋日河谷的高大风化灰色石质高架桥。高架桥几乎笔直地横穿画面,从左侧前景边缘延伸到右侧中景,略有透视后退,可见约十个高大的圆拱。列车位于桥面的左中部:机车在左端,车头朝向并驶向左方,四节车厢拖在其右侧。一大团白色蒸汽从烟囱升起,向上飘散并略微向后掠过第一节车厢。下方,一条雾气氤氲的河流从画面底部中央蜿蜒而出,穿过拱洞流向右侧远方,水面上笼罩着一层浓重的薄雾。右下角的右岸上矗立着一座带红色屋顶和两根烟囱的小石头农舍。两侧山坡上长满了橙色、红色、金色和绿色的秋树。来自左侧的低角度柔和阳光为场景左侧洒下温暖的光辉,天空是淡蓝色,点缀着几朵柔软的云,远处山丘笼罩在薄雾中。写实风景与铁路摄影,丰富的自然色彩,细腻的石材质感。宽幅横向 16:9。画面中不出现人物,没有文字,没有标牌,没有标志。
+```
+
+</details>
+
+<details><summary><b>秋日清晨石磨坊图生视频</b> · 机器翻译</summary>
+
+```text
+以第 2 步的图像“秋日黎明林间溪流上的石头水磨坊”作为精确的首帧,将其制作成一段宁静的、时长 ${duration:6} 秒的电影感镜头。石磨坊、石板屋顶、右侧的木制上射式水车、水槽、窗户、树木以及画面构图都要与图像中完全一致。水车缓慢而平稳地转动,水从木制水槽倾注到水车顶部,明亮的水花从水斗中洒落,溅入溪流。溪水向镜头方向流淌,在前景长满青苔的岩石上翻涌,泛起柔和的白色泡沫。低低的薄雾从左向右缓缓飘过水面。几片橙色和金色的树叶从枫树上轻轻飘落,顺流漂走。淡淡的轻烟从烟囱中升起并盘旋卷曲,两扇亮着灯的窗户闪烁着微弱的暖光,小鸟在天空中滑翔。金色的黎明光线缓缓变亮。镜头只做一次非常缓慢、平稳的推近,朝向磨坊。动作自然真实,无剪辑,无新增物体,无人物,无文字。
+```
+
+</details>
+
+<details><summary><b>秋日黎明的林间石水磨坊</b> · 机器翻译</summary>
+
+```text
+一座古老的两层田野石磨坊,右侧装有一架大型木制上射式水车,秋日黎明时分立于一条清澈的林间溪流旁。一条架高的木槽把水引到水车顶部,水从木制水斗中倾泻而出,化作明亮飞溅的水流落入下方的溪中。磨坊的墙体是暖灰色与蜜色的石头,陡峭的深色石板屋顶覆满青苔,白色窗框的小窗里,一楼有两扇透出温暖的黄色灯光,左端的石烟囱飘出一缕淡淡的轻烟。前景中,溪水在一级低矮的长满苔藓的岩石台阶上翻涌,形成一道小跌水。橙色、红色和金色的枫树与山毛榉环绕着磨坊,落叶漂浮在水面上。柔和低矮的薄雾飘过溪流,金色的日出光线从左侧穿过树林。几只小鸟在屋顶上方淡色的天空中飞翔。写实风景摄影,宁静而永恒的氛围。宽幅横向 16:9。无人物,无文字,无标牌,无汽车。
+```
+
+</details>
+
+<details><summary><b>秋雨渡船浮世绘木版画</b> · 机器翻译</summary>
+
+```text
+一幅日本浮世绘木版画，描绘秋雨中一艘小木渡船驶过宽阔平静的河面，采用宽幅横向 16:9 构图，画在温暖米色的纸上，可见纸纤维和木纹质感。一艘细长低矮的木船位于画面中央偏右，船上坐着三名乘客，撑着圆形油纸伞，从左到右依次为朱红色、深靛蓝色和赭黄色，乘客身穿靛蓝、赭黄和锈红色的素色长袍。右侧船尾，一名船夫身穿淡蓝灰色长袍，头戴宽大的圆锥形草帽，正将一根长木篙斜插入水中撑船。左上角，一棵红枫伸入画面，枝头簇拥着明亮的橙红色树叶，其下方左下角是长满草的多石近岸，生着高高的芦苇。背景中，一座呈火山形的灰蓝色雾山在朦胧的远岸后方耸起，右侧有柔和的树影轮廓。细密的斜向雨线洒落整个场景，河面呈现轻柔的水平波纹线，天空有柔和的渐晕（bokashi）渐变，从顶部的深石板灰过渡到地平线附近的淡米色。平涂色块，纤细的黑色轮廓线，柔和的靛蓝、赭黄、朱红与灰色调色板，氛围宁静而沉思。无文字，无印章，无签名，无边框。
+```
+
+</details>
+
+<details><summary><b>科技品牌形象图</b> · 机器翻译</summary>
+
+```text
+为一家名称精确为"Spine For Technologies"的公司，创建一张高端4K超高分辨率的企业科技品牌形象图：
+
+"Spine For Technologies"
+
+设计一个未来感、创新、精致的标志，代表先进技术、数字化转型、人工智能、软件开发、网络安全以及科技创新的未来。
+
+该标志应是一个原创的几何符号，灵感来自科技脊柱/互联的数字结构，巧妙地将"Spine"和"Technology"的概念融合为一个独特的视觉标记。使用优雅的几何形状、精确的线条、细微的电路板图案、相连的节点，以及数字进化的动感。
+
+将标志醒目地置于中央，公司名称：
+
+"Spine For Technologies"
+
+以高端现代无衬线字体置于其正下方。字体必须极其干净、锐利、专业、完美对齐且高度易读。
+
+视觉风格：未来科技、高端企业形象、前沿创新、精致极简、高端数字品牌。
+
+配色：深黑和深海军蓝背景，搭配电光蓝、青色和细微紫罗兰色的发光点缀。加入可控的霓虹光晕、金属反光、细微的玻璃效果、优雅的光迹，以及非常精致的科技细节。
+
+构图应给人强大、智能、可信、创新的感觉，适合全球科技公司。
+
+电影感影棚灯光，戏剧性的景深，逼真的反射，体积光，细微的粒子，高对比度，干净的构图，专业的品牌展示，极其锐利的细节，照片级真实的3D标志渲染。
+
+4K分辨率，超精细，边缘清晰，高端品质，专业企业品牌，没有人物，没有不必要的物体，没有杂乱，没有水印。
+
+重要：
+公司名称必须精确书写为：
+"Spine For Technologies"
+
+不要拼错、更改、缩写或替换公司名称中的任何字母。
+```
+
+</details>
+
+<details><summary><b>科技桌面创客半身照</b></summary>
 
 ```text
 {
-  "category": "BEACH_WALK_GOLDEN_HOUR_FULLBODY",
+  "category": "TECH_DESK_BUILDER_HALF_BODY",
   "subject": {
-    "demographics": "成年女性，21–29 岁，土耳其人外貌，旅行博主气质。",
+    "demographics": "成年女性，21–29 岁，土耳其人外貌，富有创作者气质。",
     "hair": {
       "color": "深棕色",
-      "style": "松散波浪卷，带有海风拂过的痕迹",
-      "texture": "自然发丝，略带飞毛",
-      "movement": "头发随海风轻微飘动"
+      "style": "低马尾或松散波浪卷",
+      "texture": "发丝清晰可见，略带飞毛"
     },
     "face": {
-      "eyes": "愉悦，因阳光微微眯眼",
-      "skin_details": "真实肌肤质感，阳光亲吻般的光泽（非油光）",
-      "makeup": "极简海滩妆容"
+      "eyes": "专注但友善",
+      "skin_details": "真实肌肤纹理，不作柔化处理",
+      "makeup": "极简妆容"
     },
     "clothing": {
-      "outfit": "亚麻连衣裙或沙滩罩衫（无任何品牌标识）",
-      "fabric": "可见亚麻织纹，带有柔和褶皱",
-      "movement": "裙摆自然摆动"
+      "outfit": "休闲黑色上衣 + 浅色开衫，无任何品牌标识",
+      "fabric": "真实针织纹理，带有细微褶皱"
     },
     "accessories": {
       "jewelry": ["银色圆环耳饰"]
     }
   },
   "pose": {
-    "type": "全身行走抓拍照",
-    "orientation": "沿海岸线迈步中段姿态",
-    "hands": "一只手轻提裙摆，另一只手将头发向后拨开",
-    "gaze": "低头轻笑，随后略带看向镜头的互动感",
-    "posture": "无忧无虑、放松自然"
+    "type": "半身坐姿",
+    "orientation": "身体略微侧向，双肩放松",
+    "hands": "一只手靠近触控板，另一只手将头发别至耳后",
+    "gaze": "直视镜头，面带浅浅 smirk（微扬嘴角的笑意）",
+    "posture": "放松而自信"
   },
   "setting": {
-    "environment": "海滩海岸线",
+    "environment": "极简风格桌面布置",
     "background_elements": [
-      "水面柔和的夕阳倒影",
-      "沙地上的脚印",
-      "淡淡薄雾（源自自然海空气，非烟雾）"
+      "笔记本电脑/显示器，显示通用模糊用户界面（不可见可读文字）",
+      "暖色调台灯 + 冷色调显示器光晕混合照明",
+      "角落一株绿植，少量杂乱物品呈虚化状态"
     ],
-    "depth": "主体清晰锐利，背景柔和虚化"
+    "depth": "面部清晰锐利，背景为散景虚化"
   },
   "camera": {
-    "shot_type": "全身旅行摄影",
-    "angle": "平视角度",
-    "focal_length_equivalent": "26mm 手机镜头或 35mm 杂志级镜头",
+    "shot_type": "半身生活风格人像",
+    "angle": "略高于眼平线角度",
+    "focal_length_equivalent": "26mm 手机镜头或 50mm 专业镜头",
     "framing": "4:5",
-    "focus": "面部清晰可辨；运动模糊程度极低"
+    "focus": "双眼清晰锐利"
   },
   "lighting": {
-    "source": "黄金时刻阳光",
-    "direction": "发丝与肩部呈现背光/侧逆光轮廓光",
-    "highlights": "可控的日光眩光",
-    "shadows": "柔和、暖调"
+    "source": "暖色调台灯 + 冷色调显示器光晕",
+    "direction": "柔和混合光源，投射自然阴影",
+    "highlights": "面部呈现自然高光（镜面反射）",
+    "shadows": "柔和、真实"
   },
   "mood_and_expression": {
-    "tone": "梦幻、自在、温暖",
-    "expression": "自然流露的欢笑",
-    "atmosphere": "漫游情怀式抓拍氛围"
+    "tone": "温馨创作者氛围，自信从容",
+    "expression": "细微 smirk（微扬嘴角的笑意）",
+    "atmosphere": "深夜构建项目时的氛围感"
   },
   "style_and_realism": {
-    "style": "照片级写实旅行博主风格",
-    "imperfections": "裙摆允许轻微运动模糊；面部细节必须保持清晰"
+    "style": "照片级写实生活风格",
+    "imperfections": "轻微噪点，白平衡略有不完美"
   },
   "technical_details": {
     "aspect_ratio": "4:5",
-    "noise": "低至中等噪点",
-    "motion_blur": "仅限于布料，且极其细微"
+    "noise": "轻微",
+    "resolution": "高分辨率"
+  },
+  "constraints": {
+    "adult_only": true,
+    "no_text": true,
+    "no_logos": true,
+    "no_watermarks": true,
+    "no_readable_screens": true
+  },
+  "negative_prompt": [
+    "可读的用户界面文字", "品牌标识（logos）", "水印（watermark）",
+    "塑料质感皮肤", "CGI 效果",
+    "多余手指", "扭曲变形的手部"
+  ]
+}
+```
+
+</details>
+
+<details><summary><b>移动应用UI/UX分析</b></summary>
+
+```text
+扮演一名 UI/UX 设计分析师。您是评估移动应用程序界面的专家，专注于最大化视觉吸引力与可用性。
+
+您的任务是分析所提供的移动应用截图，并从多个视角提供具有建设性的反馈：
+
+- **设计师视角**：分析视觉元素，并提出设计改进建议。
+- **工程师视角**：评估各项设计选择的技术可行性。
+- **用户视角**：从用户体验角度提供洞见，识别潜在的可用性问题。
+
+您将：
+- 识别设计不一致之处，并提出优化建议。
+- 评估其与 UI/UX 最佳实践的一致性。
+- 提供可落地执行的改进建议。
+
+规则：
+- 聚焦于清晰性、直观性与视觉和谐性。
+- 考虑无障碍访问标准（accessibility standards）。
+- 确保反馈客观且具有建设性。
+
+使用变量：
+${context} - 额外背景信息或需重点关注的具体领域。
+```
+
+</details>
+
+<details><summary><b>空中果园商人桌游封面</b> · 机器翻译</summary>
+
+```text
+为一款关于飞艇商人的温馨合作交易游戏绘制的绘画风桌游盒面封面插画。三艘小型木质飞艇，打着补丁的帆布气球分别是芥末黄、青绿和锈红色，漂浮在悬空岛屿之间；每座岛都是一片梨树和李子树的果园，树根垂入云层。小小的船员们攀在绳梯上，把发光的琥珀色水果摘进柳条筐；一个长着狐狸尾巴的水手在瞭望台上挥手。前景中，最大的飞艇朝观者驶来，船头挂着黄铜望远镜和提灯。傍晚金色的光线，柔和的体积云，远处的岛屿渐隐在桃色与薰衣草色的薄雾中。经典手绘水粉风格，笔触肌理清晰可见，色板丰富而温暖，奇趣又亲切，适合 10 岁及以上。构图：方形 1:1，上三分之一留出清澈平静的天空供游戏标题使用，主飞艇位于中下部，轮廓醒目，缩略图尺寸下依然清晰可辨。无文字、无字母、无标志、无边框。
+```
+
+</details>
+
+<details><summary><b>空灵波西米亚孕妇写真</b> · 机器翻译</summary>
+
+```text
+一位美丽的孕晚期孕妇，站在一座繁茂的花园里，周围盛开着洋紫荆（叶子花）花朵，颜色是鲜艳的洋红、紫红和粉色，间有浓密的绿叶。她有一头带金色挑染的深棕色长发，头戴由浅粉色和淡粉色玫瑰编成的精致花冠。她身穿一件飘逸的象牙白孕妇长裙，不对称的露肩领口，长款透明蕾丝袖，高腰设计配蕾丝上身细节，柔软的雪纺裙摆垂落在圆润的孕肚上。她的左手轻放在腹部，右手搭在髋部，头微微后仰，双眼闭着，带着喜悦而宁静的微笑，露出牙齿。拍摄于黄金时刻，温暖的逆光在她的头发上形成发光的光晕效果，脸上有柔和的补光，色调梦幻温暖。专业单反相机，85mm 镜头，f/2.0，浅景深，背景是粉色花朵与绿叶形成的奶油般焦外虚化，洋紫荆枝条构成自然的框景。浪漫空灵的孕妇摄影风格，波西米亚别致美学，柔和温暖的配色，高端专业人像，巴西孕妇写真氛围。
+```
+
+</details>
+
+<details><summary><b>空灵艺术缎面人像</b> · 机器翻译</summary>
+
+```text
+一组唯美艺术时尚人像，主角是一位二十代后期的美丽女子，身材紧致健美、呈沙漏型，肤色是温暖的金古铜色，留着齐肩的波浪形棕金色（bronde）头发。她穿着一件香槟色真丝缎面吊带裙，细肩带，深 V 垂褶领口，高开衩侧边，赤脚。她摆出多种优雅的姿势：坐在铺着白色垂褶布料的低矮平台上，一只手托着脸颊；站在平台旁边；以及坐着、一条腿伸直。她的表情始终宁静、内省而带着含蓄的性感，双唇微启，直视镜头。场景是一间极简风格的摄影棚，墙面和地面是米白色，一个铺着奶油色布料的低矮长方形平台，一扇侧窗投入温暖的黄金时刻光线。树枝和树叶戏剧性的自然阴影投射在墙面和她的身体上，形成诗意的有机图案。温暖的琥珀金光线，中高对比度，缎面布料和她的皮肤上有镜面高光。使用专业全画幅无反相机拍摄，85mm 镜头，f/2.0，竖版人像构图，中等景深，干净极简的构图。唯美艺术杂志摄影风格，永恒的优雅，亲密而梦幻的氛围，香槟色、金色、米色和奶油色构成的温暖单色调，灵感来自保罗·罗维西（Paolo Roversi）和马里奥·泰斯蒂诺（Mario Testino）
+```
+
+</details>
+
+<details><summary><b>第一视角手机太空主题信息流</b></summary>
+
+```text
+从观看者（女性）的双眼视角拍摄一张照片：她双手持握一部现代智能手机，手机位于胸前高度；她的指甲涂有亮泽的红色指甲油，美甲整洁干净。镜头略微向下俯视手机屏幕，屏幕上显示一个类似 Twitter 的主页时间线用户界面，内容聚焦于 NASA 相关动态。该界面需清晰可辨、细节锐利，包含关于“阿尔忒弥斯”（Artemis）、“詹姆斯·韦布空间望远镜”（JWST）、“哈勃空间望远镜”（Hubble）以及“火星探测车”的帖子，并配有太空影像缩略图和带认证标识样式的元素。
+
+确保阳光在界面屏幕上形成女子面部的微妙镜面反射——其半边脸被阳光照亮，另半边则处于柔和阴影中。保留自然的皮肤质感，不得呈现美颜滤镜效果。
+
+背景设定为美国纽约市中央公园（Central Park），树木、步道与天际线轮廓呈虚化散景（bokeh）效果。采用全画幅 DSLR 风格，使用 50mm 或 85mm 镜头、光圈 f/1.8 拍摄，实现浅景深：手机与双手保持锐利清晰对焦，背景则呈现柔滑散景。
+
+负面提示词（Negative Prompt）：避免低分辨率 UI、手指扭曲或数量异常、手机形变、手部解剖结构错误、过度锐化、卡通化效果、水印、随机 Logo、伪造应用 UI、图标重复、以及过强反光遮挡屏幕内容。
+```
+
+</details>
+
+<details><summary><b>等距 3D 天气城市景观</b></summary>
+
+```text
+呈现一幅清晰、45°俯视角度的等距微型3D卡通场景，展现${city_name:İSTANBUL}市最具标志性的地标建筑与建筑元素。使用柔和而精细的纹理，搭配逼真的PBR材质，以及轻柔、富有生命力的光照与阴影效果。将当前天气状况直接融入城市环境中，营造沉浸式的大气氛围。  
+采用简洁、极简主义的构图，并以柔和的纯色背景作为衬托。
+
+在画面正上方中央位置，放置大幅加粗标题“İSTANBUL”，其正下方为醒目的天气图标，再下方依次为日期（小号字体）与温度（中号字体）。  
+所有文字必须居中对齐、间距一致，且可轻微覆盖于建筑物顶部。  
+图像尺寸为正方形，1080×1080像素。
+```
+
+</details>
+
+<details><summary><b>等距体素山间温泉旅馆</b> · 机器翻译</summary>
+
+```text
+一幅黄昏时分山间温泉旅馆的等距体素游戏场景。色彩缤纷的方块体素搭建出一座木制温泉旅馆,配有推拉门、瓦片屋顶,沿石径亮着暖橙色光芒的纸灯笼。蒸汽从室外石砌浴池中升起,呈柔和的白色立方体。松树和岩石悬崖环绕着旅馆;一条蓝色体素构成的小溪流过长满青苔的岩石。灯笼的光在小径上汇成光斑,天空由紫罗兰色渐变为深蓝色。明快的游戏美术色调,干净的体素边缘,缝隙处带有轻微的环境光遮蔽,无 UI,无文字,无角色。以经典等距视角从略微俯视的角度观看。
+```
+
+</details>
+
+<details><summary><b>等距城市微缩景观</b></summary>
+
+```text
+{
+  "meta": {
+    "description": "用于生成等距城市微缩模型的结构化提示词，采用微型 3D 风格，天气与环境根据指定城市自适应。",
+    "variable": "${City:San Francisco}"
+  },
+  "prompt_structure": {
+    "perspective_and_format": {
+      "view": "等距摄像机视角",
+      "format": "微型 3D 微缩模型，置于一块悬浮的方形底座上，该底座充当地面基座。",
+      "ratio": "16:9（竖屏手机）"
+    },
+    "art_style": {
+      "medium": "高细节 3D 渲染",
+      "texture_quality": "符合该地区建筑风格的真实感材质（例如：石材/砖材、灰泥/土坯、玻璃/钢材）。",
+      "vibe": "玩具感十足但高度精巧的建筑模型，具备可触知的材质质感。"
+    },
+    "environment_and_atmosphere": {
+      "weather": "与指定城市相关联的典型气候与天气条件（例如：伦敦为多云/阴雨，开罗为晴朗/阳光充足/干燥，莫斯科为下雪）。光照效果需匹配对应天气。",
+      "ground": "符合该城市典型特征的地面材质（例如：沥青、鹅卵石、沙地、泥土）。地面状态需反映当前天气（例如：阴雨时湿润并带有倒影，干燥炎热时干涸多尘，冬季时覆盖积雪）。",
+      "background": "天空渐变与大气效果需匹配所选天气，并填满画面顶部区域。"
+    },
+    "architectural_elements": {
+      "housing": "密集排列的住宅或商业建筑群，体现该城市的地域性建筑风格。",
+      "landmarks": "以等距视角呈现的城市标志性地标微缩模型。"
+    },
+    "props_and_details": {
+      "street_level": "体现该城市氛围的微型街景元素（例如：标志性车辆，如黄色出租车或红色双层巴士；特定植被，如棕榈树或落叶乔木；路灯；标牌）。",
+      "life": "微小、风格化的拟人形象，身着符合当地气候与文化特征的服装。"
+    },
+    "text_overlay": {
+      "content": "${City:San Francisco}",
+      "font_style": "白色、无衬线字体、粗体、全大写字母",
+      "placement": "居中悬浮于画面最顶端。"
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>等距微缩 3D 卡通城市</b></summary>
+
+```text
+以清晰的45°俯视角度呈现一幅竖版（9:16）等距微型3D卡通场景，构图中心突出标志性地标，以展现精准而细腻的建模效果。
+
+场景采用柔和、精致的纹理，搭配逼真的基于物理渲染（PBR）材质，以及轻柔、富有生命力的光照与阴影效果。天气元素被创造性地融入城市建筑之中，建立起城市地貌与大气条件之间的动态互动，营造出沉浸式的天气氛围。
+
+采用简洁、统一的构图，风格极简；背景为柔和的纯色，以凸显主体内容。整体视觉风格清新宜人、舒缓放松。
+
+请在渲染前检索指定城市的当前天气状况。
+
+城市名称：${city_name:Istanbul}
+```
+
+</details>
+
+<details><summary><b>等距微缩3D手办</b></summary>
+
+```text
+制作一个微型、全身、等距视角、逼真的小雕像，人物穿着ABC，正在做XYZ，白色背景，极简风格，4K分辨率。
+```
+
+</details>
+
+<details><summary><b>等距水墨历史长卷</b> · 机器翻译</summary>
+
+```text
+超写实 3D 等距视角杰作,背景是一幅宏伟、无尽延展的传统水墨历史羊皮纸长卷。
+画面呈现([Siirt,1890s])的历史脉络与文化遗产,标志性的古代建筑和地标从长卷中动态浮现。
+羊皮纸注记(随地点自适应):
+羊皮纸上有手写的说明注记、水墨速写和图解绘图,会根据括号中所写的地点自动调整。
+针对每个地点,羊皮纸包含:
+
+所有文字均为土耳其语。
+
+• 身份注记:
+地点名称、已知的历史名称或别称,以及简短的定义性描述。
+• 时间与起源注记:
+起源的世纪或时代、创建的文明或文化,以及用时间线箭头标示的主要历史阶段。
+• 功能与用途注记:
+最初的用途、功能随时间的变化,以及当今的象征意义或文化角色。
+
+• 空间与建筑注记:
+地理位置(高地、沿海、中心、战略要地)、建筑特征,以及通过水墨速写、剖面图和立面图绘制的标志性结构要素。
+• 文化与历史意义注记:
+重要的历史事件、传说或神话,以及更广泛的文化或文明影响。
+
+所有注记均以书法手稿风格书写,配有括号说明、方向箭头、罗盘符号、比例尺标记和地图图标,指向正在浮现的 3D 建筑。
+构图:
+长卷如时间之河般在空间中流淌,形成全景式的历史叙事。
+羊皮纸上的 2D 黑色水墨笔触、手写文字和示意图,无缝转化为从纸面升起的高保真 3D 纪念建筑。
+
+视觉效果:
+墨线幻化为石头、砖块、木材和金属表面。
+平面的手稿插图演变为立体的、极致精细的建筑,同时在视觉上仍与羊皮纸相连。
+细节:
+陈旧的羊皮纸质感、墨迹晕染、漂浮的历史书法、红蜡或印章戳记、环绕建筑的氛围云雾。
+
+光照:
+史诗般的黄金时刻电影级光照照亮 3D 形体,与单色的水墨和羊皮纸背景形成戏剧性对比。
+规格:
+8K 分辨率、景深、Unreal Engine 5 渲染、宏大尺度、博物馆级写实感。
+
+--ar 16:9 --stylize 350
+--no flat, simple, cartoon, borders, frame, table, modern buildings
+
+照片上写着 Bitlis-1890'lar。
+```
+
+</details>
+
+<details><summary><b>篮球场背景替换</b> · 机器翻译</summary>
+
+```text
+移除原始背景,换成阳光明媚的一天里逼真的篮球场。在背景中以涂鸦形式加入名字 OGMELLY。身体特征保持不变,仅采用数字插画风格。
+```
+
+</details>
+
+<details><summary><b>粉发眼镜女孩自拍</b></summary>
+
+```text
+创建一张具有以下特征的女孩真实感自拍照片：
+- 透明眼镜
+- 鲜艳的粉色头发，自然造型
+- 自然光线以增强真实感
+- 随性的表情，捕捉一个自然瞬间
+- 确保高分辨率和细节，使其看起来像一张真实的自拍
+```
+
+</details>
+
+<details><summary><b>粉发绿眼卧室人像</b> · 机器翻译</summary>
+
+```text
+/imagine prompt: 超写实摄影肖像,一位 30 岁的亚洲女性,面部特征取自原始角色,留着粉色短发,绿色眼睛,身穿光泽红色无袖拉链上衣和粉色半身裙,室内卧室场景,高角度拍摄,自然的皮肤微观纹理,真实的毛孔,柔和的光泽,细腻的高光,温暖的定向光线,高细节,照片级写实渲染。 /monochrome /calm /naturaltone /highdetail --ar 9:16 --style raw --v 6.1 --no deformed, bad anatomy, disfigured, poorly drawn face, mutation, extra limbs, ugly, blurry, lowres, bad proportions /added
+```
+
+</details>
+
+<details><summary><b>红外胶片桦树林与静湖</b> · 机器翻译</summary>
+
+```text
+一片白桦林立于平静的山间湖畔,树叶呈明亮的洋红与艳粉色,以柯达 Aerochrome 风格的伪彩红外胶片拍摄。每一片活着的树叶和前景的草地都泛着粉色、珊瑚色和深红色的光,湖水变成深钴蓝色,天空是饱和的青色,点缀几朵柔和的白云。一座小木栈桥伸入水中,一块低矮的花岗岩巨石坐落在水边。远处覆盖着粉色森林的山丘渐渐隐入淡淡的薄雾,湖面几乎完美地倒映着粉色的树木和云朵。可见细腻的胶片颗粒、略微提亮的黑色、自然的暗角,以及白桦树皮上带深色斑纹的清晰细节。超现实却可信的风景摄影,宁静的临近正午的上午光线,中画幅胶片质感。宽幅横向 16:9。无人物,无动物,无船,无文字,无标志,无水印。
+```
+
+</details>
+
+<details><summary><b>红头巾肖像</b> · 机器翻译</summary>
+
+```text
+（美丽年轻女子的肖像:1.3），（中东族裔:1.2），（20岁:1.1），（精致的面部特征:1.3），（柔和自然的表情:1.2），身穿（鲜艳的红色头巾:1.2），缠绕在波浪状的深色头发上，穿着（细节丰富的蓝色碎花衬衫:1.2），内搭（黄色纹理上衣:1.1），佩戴（华丽的绿松石串珠项链:1.2）、（大号复古垂坠耳环:1.1）和金手镯。人物位置略偏左，（面向观众:1.2），双臂搁在一个台面上。背景有（做旧的绿松石色墙面:1.2）、一只（大型质朴陶瓷花瓶:1.1），里面插着黄色野花，还有一个彩绘小碗。（美术油画风格:1.3），青绿、金色与绯红的丰富配色，（柔和的电影级光照:1.2），绘画质感，优雅的构图，高细节，杰作，8k分辨率，体积感氛围，精致的古典肖像风格。
+```
+
+</details>
+
+<details><summary><b>红枫叶霜晶微距</b> · 机器翻译</summary>
+
+```text
+一张照片级真实的微距摄影，日出时分，一片鲜红的枫叶平躺在深绿色的苔藓上，叶面覆着细腻的霜晶。叶片占满画面中心，五个尖裂片的边缘缀满羽毛状的白色冰针，顺着锯齿状的叶缘生长，并沿叶脉延伸。细小的六边形冰片和冻结的露珠覆盖在红色叶面上，像玻璃一样闪烁，每颗露珠都捕捉到一点温暖的光。低角度的金色阳光从后方偏右上方射来，为霜晶勾出发光的轮廓，让叶子的红色显得浓郁饱和。叶子周围的苔藓上结着一层细霜，背景化为柔和、奶油般的虚化，由更多覆霜的叶子和草叶组成，色调为琥珀色、金色和冷蓝色。景深极浅，焦点清晰地落在叶片中部的晶体上，具有 100mm 微距镜头的观感，自然光，细节丰富、纹理精细，氛围宁静安详，是深秋的静谧情绪。宽幅横向 16:9。无文字，无人物，无昆虫。
+```
+
+</details>
+
+<details><summary><b>红色缆车图生视频</b> · 机器翻译</summary>
+
+```text
+以第 2 步的图片“冬日日出时分积雪山谷上方的红色高山缆车”作为精确的首帧，将其制作成一段平静的 ${duration:6} 秒电影感镜头。红色缆车车厢、两条钢缆、左侧的格构式塔架、村庄、松林、山峰以及构图，都必须与图片完全一致。车厢沿着钢缆向右缓慢而平稳地匀速滑行，仅有极其轻微的摇摆，始终悬挂在钢缆上。阳光在车窗和钢缆上柔和地闪烁。山谷中低矮的云层自左向右缓缓飘移，村庄里细细的炊烟也朝同一方向轻轻弯曲。空中飘浮着几片细小的雪花，闪闪发光。山峰上的高山辉光缓缓变暖、变亮。镜头跟随车厢，向右做一次非常缓慢、平稳的摇移。动作自然真实，无剪辑，无新增物体，无人物，无文字。
+```
+
+</details>
+
+<details><summary><b>红色羽绒服时尚夜场</b> · 机器翻译</summary>
+
+```text
+一位身穿红色 Dior 羽绒服、脚踩亮面高跟鞋的模特赢得了一场派对
+```
+
+</details>
+
+<details><summary><b>纸卷工艺高定礼服时尚大片</b> · 机器翻译</summary>
+
+```text
+生成一张全身高级时装照，画面中是一位${subject:tall model with a sleek low bun}，姿势为${pose:elegant three-quarter standing pose}，身穿前卫的纸卷花（quilling）高级定制礼服，由流动、层叠的 3D 丝带条构成。礼服的特点是${dress_features:a fitted corset bodice and sweeping train}，由层层飘逸的丝带构成，渐变色调为${color_palette:vivid cobalt, emerald green, and gold}。配饰包括${headwear:wide-brimmed matching hat with quilled plume details}。背景为${background_color:dark charcoal grey}，戏剧性的影棚聚光灯突出质感和精细的边缘。以清晰、高对比度的 3D 细节渲染。
+```
+
+</details>
+
+<details><summary><b>纸灯笼港湾渔船特写</b> · 机器翻译</summary>
+
+```text
+黄昏港湾中一艘小木渔船的特写，桅杆和船舷上亮着温暖的纸灯笼，平静的水面泛着橙玫瑰色的倒影，背景有淡淡的薄雾，与同一套纸灯笼港湾美学保持一致，电影感细节镜头，木材与纸张纹理极致精细，氛围宁静
+```
+
+</details>
+
+<details><summary><b>纸艺灯塔风暴动画</b> · 机器翻译</summary>
+
+```text
+将输入图片中的纸艺灯塔立体模型制作成一段电影感的短循环动画。完全保持图片中的手工纸艺质感:层叠的纸浪以轻柔的定格动画节奏涌起并拍打岩石,卡纸云层从左向右缓缓飘移,灯塔光束扫过整个场景,照亮光束经过之处的纸张纤维。加入斜向飘落的细小纸雨点。镜头缓慢推向灯塔,${duration:5}秒,无缝循环,不出现新物体,不出现文字。
+```
+
+</details>
+
+<details><summary><b>纺织品牌新年视频剪辑</b></summary>
+
+```text
+充当一名视频剪辑专家。你的任务是使用 Google Gemini 和 Nano Banana 为安提阿纺织公司（Antioch Textile）制作一支充满活力且引人入胜的新年视频。
+
+你的任务包括：  
+- 融入体现新年精神的节日元素。  
+- 使用 Nano Banana 添加富有创意的动画与特效。  
+- 确保视频以视觉上赏心悦目的方式突出安提阿纺织公司的产品。
+
+规则：  
+- 保持专业且喜庆的语调。  
+- 视频时长控制在 2–3 分钟以内。  
+- 所有文字或旁白均须以英语为主要语言。
+
+此举将有助于提升安提阿纺织公司的品牌形象，并有效吸引其受众。
+```
+
+</details>
+
+<details><summary><b>绘本角色三视图设定生成器</b> · 机器翻译</summary>
+
+```text
+请你扮演儿童绘本角色设计师兼美术指导。我会给你一个粗略的角色想法，你要把它变成一个统一、可反复使用的角色设计，并给出两条可直接使用的图像提示词：一张角色转面图，以及一个让角色保持完全一致的第一个故事场景。
+
+角色想法：${character:a gentle river otter who runs a tiny floating library for the animals of the riverbank}
+读者年龄：${age:3 to 6 years}
+故事氛围：${mood:cozy, curious, a little bit funny}
+美术风格：${style:soft watercolor and colored pencil on textured paper, warm and hand-made}
+要绘制的第一个场景：${scene:story hour on the library raft at sunset, reading aloud to a small audience of riverbank animals}
+
+请输出：
+
+1. 角色设定集
+   - 名字建议（三个，便于朗读）和一句话性格描述。
+   - 轮廓：孩子只看影子就能认出的形状。
+   - 比例：头身比，以及让角色显得友好的夸张之处。
+   - 在不同图像之间绝不能改变的固定设计细节：毛发或皮肤颜色（每种颜色用简单的词命名，例如"温暖的栗棕色"）、服装、一件标志性道具，以及一个小特点（例如一根弯弯的胡须）。
+   - 色板：角色 5 种颜色，所处世界 3 种颜色。
+   - 表情：四种关键表情，并简短描述眼睛、眉毛和嘴巴。
+
+2. 转面图提示词
+   一条详细的、供 AI 图像生成器使用的图像提示词，画面为纯米白色背景上的角色，在同一行中呈现四个姿势：正面、四分之三侧面、侧面和背面，比例完全一致，下方再加一小排三个面部表情。在提示词中重复每一个固定设计细节。结尾包含风格、光线以及"no text, no labels"，并推荐宽画幅比例。
+
+3. 第一个场景提示词
+   第二条图像提示词，用于第一个场景，要与转面图自然衔接：同一个角色，每个固定设计细节逐字重述，现在置于场景之中，并附上构图说明，为一到两行绘本文字留出干净的空间。推荐适合双页跨页的画幅比例。
+
+4. 一致性检查清单
+   五条简短的检查项，我可以在接受任何新图像之前，用它们与转面图进行对比。
+
+规则：保持一切温和且适龄，避免与现有知名角色相似，描述角色的语言要简单到可以读给孩子听。
+```
+
+</details>
+
+<details><summary><b>给照片加黑框眼镜</b> · 机器翻译</summary>
+
+```text
+在我的照片上添加一副适合我的黑色眼镜,要能遮住我的眼睛,并且要看起来真实。
+```
+
+</details>
+
+<details><summary><b>统一视觉风格社媒配图助手</b></summary>
+
+```text
+充当面向高影响力帖文的图像生成助手。你的任务是创建视觉冲击力强的图像，严格遵循社交媒体帖文的标准视觉识别规范。
+
+你将：  
+- 使用主背景色：${primary_background:#0a1128}  
+- 应用背景纹理：微妙的科技电路网格（${accent_blue_cyan:#00ffff}）  
+- 元素 ${elemento} 将置于图像的 ${position: center} 位置。  
+- 使用强调色 ${accent_green:#ebf15b} 和 ${accent_blue_cyan} 突出图像的主体视觉元素。  
+- 在适用位置融入品牌 Logo 与标语（tagline）  
+- 确保图像整体契合品牌的总体美学风格  
+
+设计能唤起情感共鸣并激发用户参与的图像。
+
+规则：  
+- 始终保持与品牌配色方案及字体的一致性  
+- 避免在图像中堆砌过多文字或元素，造成画面拥挤  
+- 严格遵循各社交媒体平台所规定的图像尺寸要求  
+
+可自定义的变量：  
+- ${brandName: Suzuki Intelligence & Innovation} —— 用于标识品牌身份  
+- ${message: ""} —— 图像中需呈现的文字内容  
+- ${accent_green} —— 其他可选强调色  
+- ${elemento} —— 图像中的主体元素
+```
+
+</details>
+
+<details><summary><b>绯红虚空的海盗</b></summary>
+
+```text
+你将使用所提供照片中的人物作为主要主体，执行图像编辑。保留他们原本的核心相貌特征。将主体 1（男性）转化为一名粗犷而传奇的太空海盗船长，将主体 2（女性）转化为其在星舰舰桥上的战术导航员。该图像必须达到超写实摄影级别、电影级画质，具备电影化布光、高度精细的皮肤纹理与符合真实物理规律的细节表现。采用 Arri Alexa 摄影机拍摄，景深极浅；画面呈现一场太空战役后的混乱余波，两位主体被一片红色星云的辉光与噼啪作响的控制台所照亮。
+
+{
+  "title": "海盗船长：猩红虚空号",
+  "description": "一个高张力、电影感十足的瞬间，捕捉一位传奇太空海盗与其军需官正指挥星舰穿越碎片带、实施大胆逃逸的场景。",
+  "prompt": "你将使用所提供照片中的人物作为主要主体，执行图像编辑。保留他们原本的核心相貌特征。将主体 1（男性）转化为一名粗犷而传奇的太空海盗船长，将主体 2（女性）转化为其在星舰舰桥上的战术导航员。该图像必须达到超写实摄影级别、电影级画质，具备电影化布光、高度精细的皮肤纹理与符合真实物理规律的细节表现。采用 Arri Alexa 摄影机拍摄，景深极浅；画面呈现一场太空战役后的混乱余波，两位主体被一片红色星云的辉光与噼啪作响的控制台所照亮。",
+  "details": {
+    "year": "2492 年，后地球纪元",
+    "genre": "电影级写实主义",
+    "location": "星舰‘铁隼号’饱经战火洗礼的指挥舰桥，配有巨大的爆破观察窗，窗外正对着一片不稳定的红色星云。",
+    "lighting": [
+      "动态应急红色频闪灯",
+      "全息界面散发出的冷调青蓝色辉光",
+      "窗外星云投射出的柔和轮廓光"
+    ],
+    "camera_angle": "平视中景，1:1 构图，聚焦于两位主体之间的互动以及混乱的背景。",
+    "emotion": [
+      "极度专注",
+      "肾上腺素激增",
+      "意志坚定"
+    ],
+    "color_palette": [
+      "深绯红",
+      "枪灰色",
+      "青蓝色",
+      "虚空黑"
+    ],
+    "atmosphere": [
+      "粗粝感",
+      "幽闭压抑却气势恢宏",
+      "工业风科幻",
+      "高风险高压"
+    ],
+    "environmental_elements": "受损头顶导管迸溅出的电火花、光束中悬浮飞舞的尘埃微粒、前景中复杂的三维全息星图。",
+    "subject1": {
+      "costume": "一件磨损严重的厚重皮质风衣，嵌有磁性装甲板，并斜挎一条装满未来科技装备的弹药带。",
+      "subject_expression": "凶悍而威严的怒容，正对着警报声高声下达指令。",
+      "subject_action": "以指节发白的力度紧握飞船的手动操纵杆。"
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "明亮日光",
+        "洁净环境",
+        "卡通式比例",
+        "中世纪武器",
+        "木质纹理"
+      ],
+      "exclude_styles": [
+        "3D 渲染",
+        "插画",
+        "动漫",
+        "概念艺术草图",
+        "油画"
+      ],
+      "exclude_colors": [
+        "粉彩色系",
+        "霓虹粉色",
+        "纯白色"
+      ],
+      "exclude_objects": [
+        "剑",
+        "帆船舵轮",
+        "鹦鹉"
+      ]
+    },
+    "subject2": {
+      "costume": "一套贴身战术飞行服，配发光数据接口手套及头戴式耳机。",
+      "subject_expression": "敏锐、精于计算，且对周遭混乱毫不动摇。",
+      "subject_action": "快速操控一幅悬浮于空中的全息投影——即逃生航线图。"
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>维京首领照片变身</b></summary>
+
+```text
+{
+  "prompt": "你将使用提供的照片中的人物作为主角进行图像编辑。面部必须保持清晰且不被修改。将主角转变为一位强大的**维京酋长或女战士**，威严地站立在长船的船首，航行于戏剧性的挪威峡湾之中。强调毛皮与金属的粗犷纹理、寒冷的北国光线、海浪飞沫以及史诗般的冒险氛围。",
+  "details": {
+    "year": "维京时代（约9世纪-10世纪）",
+    "genre": "历史史诗 / 粗粝写实 / 冒险",
+    "location": "雕刻有龙头的木制船首，劈开黑暗起伏的海水。陡峭、云雾缭绕的山脉在峡湾两侧巍然耸立。山顶可能可见积雪。天空阴沉厚重。",
+    "lighting": "寒冷、漫射的北国日光。氛围阴郁多云，形成柔和但分明的阴影。光线突出湿木、金属和毛皮的质感。没有温暖的阳光。",
+    "camera_angle": "中长镜头，略微低角度，仰视主体，以在巨大峡湾背景的衬托下突出其力量与领导力。（1:1构图）。",
+    "emotion": "凶猛、威严、坚定且粗犷。",
+    "costume": "厚重、真实的维京服饰：厚重的熊或狼皮斗篷，用华丽胸针固定，外覆皮革铠甲，并以铁片或锁子甲加固。一把大型、饱经战痕的带须斧扛在肩上或牢牢握持。头发可能编成辫子，若适用，还应有粗犷的胡须。裸露皮肤上有微妙且符合历史可能的纹身。",
+    "color_palette": "以冷色调和自然色调为主：深海蓝与灰色、湿木与皮革的深棕色、岩石与天空的板岩灰，以及毛皮的自然色调。金属装饰为暗淡的铁色，而非闪亮的钢。",
+    "atmosphere": "史诗感、原始、寒冷且充满冒险。空气中仿佛能感受到冰冷潮湿的海雾。几乎可以听到海浪拍打船体的声音。传达出一段漫长旅程与征服的气息。",
+    "subject_expression": "目光凶猛而坚定地望向地平线。面部表情严峻威严，展现出对抗恶劣环境的坚韧。脸上可能沾有海浪飞沫。",
+    "subject_action": "在晃动的甲板上以宽阔稳定的姿势站立。一只手紧握船首的龙头或索具，另一只手紧握战斧。正抵御着海浪的颠簸。",
+    "environmental_elements": "船首溅起海浪飞沫。背景中可见其他船员（划桨手）模糊而粗犷的身影正在奋力划桨。船帆是厚重的编织羊毛布料，带有醒目的条纹（例如红白相间）。"
+  }
+}
+```
+
+</details>
+
+<details><summary><b>维多利亚时代万圣节名片照</b> · 机器翻译</summary>
+
+```text
+正宗的维多利亚时代万圣节卡比内特卡(cabinet card)照片,约1890年,三个孩子在复古照相馆里神情严肃地摆姿势:一个小女孩打扮成维多利亚时代的女巫,身穿精致的黑色蕾丝连衣裙,头戴尖顶帽,手持一把老式木扫帚;一个小男孩打扮成德古拉伯爵,身披优雅的深色斗篷,竖着高领;还有一个神秘的孩子打扮成幽灵,披着一条飘逸的白色床单,上面有两个眼洞。周围摆放着雕刻的南瓜灯、精致的蜘蛛网、一具古董人体骷髅、一只黑猫和哥特式烛台。精致的维多利亚时代摄影棚背景,戏剧化的构图,既阴森又迷人的氛围,含蓄的哥特式恐怖美学,正宗的19世纪服装和手工制作的服装,极其逼真的面孔,自然的皮肤质感,严肃的表情,陈旧的棕褐色蛋白印相,古旧的照片颗粒,轻微褪色,划痕,磨损的纸边,带有装饰性字体的华丽压花卡纸底板,历史还原准确的卡比内特卡摄影,柔和的漫射影棚灯光,精美的存档细节,照片级真实感,无现代元素 --ar 3:4
+```
+
+</details>
+
+<details><summary><b>维多利亚时间旅行者</b></summary>
+
+```text
+你将使用所提供照片中的人物作为主要主体，执行一次图像编辑。保留其核心相貌特征。将主体 1（男性）转变为一位维多利亚时代的时空旅行者，他刚刚在一片浓密的史前丛林中显形。该图像必须为超写实风格、电影级画质且高度精细。画面捕捉其抵达瞬间，采用 Arri Alexa 摄影机拍摄，具备电影化布光与浅景深效果。他伫立于高耸的蕨类植物与远古苏铁之间，身着正式的十九世纪服饰，与其所处粗犷潮湿的环境形成鲜明对比，凸显其精致考究的仪容。
+
+{
+  "prompt": "You will perform an image edit using the person from the provided photo as the main subject. Preserve his core likeness. Transform Subject 1 (male) into a Victorian time traveler who has just materialized in a dense, prehistoric jungle. The image must be Ultra-Photorealistic, Movie-Quality, and highly detailed. The scene captures the moment of arrival, shot on Arri Alexa with cinematic lighting and a shallow depth of field. He stands amidst towering ferns and ancient cycads, looking completely out of place in his formal 19th-century attire, contrasting the rugged, humid environment with his refined appearance.",
+  "details": {
+    "year": "1895 / 65 Million BC",
+    "genre": "Cinematic Photorealism",
+    "location": "A dense, steaming Cretaceous jungle floor filled with giant ferns, ancient conifers, and thick atmospheric fog.",
+    "lighting": [
+      "Volumetric god rays piercing through the canopy",
+      "Dappled sunlight",
+      "High dynamic range"
+    ],
+    "camera_angle": "Medium close-up at eye level, focusing on the subject with the background falling into soft bokeh.",
+    "emotion": [
+      "Disbelief",
+      "Awe",
+      "Scientific curiosity",
+      "Fear"
+    ],
+    "color_palette": [
+      "Deep emerald greens",
+      "Earthy mud browns",
+      "Burnished brass",
+      "Tweed grey"
+    ],
+    "atmosphere": [
+      "Humid",
+      "Primordial",
+      "Claustrophobic",
+      "Mysterious"
+    ],
+    "environmental_elements": "Floating pollen particles, massive prehistoric insects buzzing in the background, a large ominous silhouette of a dinosaur visible through the thick mist.",
+    "subject1": {
+      "costume": "A bespoke three-piece Victorian tweed suit, a slightly askew cravat, and intricate brass steampunk goggles pushed up onto his forehead.",
+      "subject_expression": "Wide-eyed shock mixed with fascination, mouth slightly open, sweat beading on his brow.",
+      "subject_action": "Clutching a glowing, smoking brass chronometer device in one hand while tentatively reaching out to touch a massive, alien-looking fern frond with the other."
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "modern buildings",
+        "paved roads",
+        "cars",
+        "cell phones",
+        "contemporary fashion",
+        "cleanliness"
+      ],
+      "exclude_styles": [
+        "cartoon",
+        "3D render",
+        "illustration",
+        "painting",
+        "low resolution",
+        "blur",
+        "sketch"
+      ],
+      "exclude_colors": [
+        "neon",
+        "pastel pinks",
+        "artificial brights"
+      ],
+      "exclude_objects": [
+        "spaceships",
+        "aliens",
+        "modern weapons"
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>维多利亚温室晨光内景</b> · 机器翻译</summary>
+
+```text
+清晨时分一座盛期维多利亚风格玻璃温室的写实建筑室内摄影,以站立的视平高度(1.6 米)拍摄,位置就在敞开的前双扇门内侧,沿着大厅长度方向正对中央通道向前望去,24mm 镜头,16:9 横向构图,对称的一点透视。固定的设计细节:一座矩形大厅,长约 14 米,宽 8 米,屋脊处高 7 米;一圈约 70 厘米高的浅奶油色石灰岩矮基墙环绕底部,其上是高大的透明玻璃墙,由白色框架的矩形玻璃格组成,弧形筒拱玻璃屋顶从墙顶起拱。九根纤细的白漆锻铁拱肋,间距约 1.5 米,从一侧墙横跨到另一侧墙,在墙与屋顶相接处各有小巧的白色涡卷托架。肋与肋之间,屋顶由细白玻璃条构成的菱形格栅镶嵌玻璃,老玻璃略带波纹并蒙着一层冷凝水雾。远端的墙是一面顺着拱顶弧线的半圆形玻璃山墙,两侧各有一株高大的树蕨。地面是黑白大理石棋盘格,方形大砖,与 2 米宽的中央通道方正对齐,抛光并略带潮气。大厅正中央是一座直径约 2 米的圆形喷泉水池,低矮的池沿镶着深蓝与金色的马赛克,一个小巧的三层白色石碗形喷口潺潺流水,水中可见橙色与白色的锦鲤。两张华丽的黑色铸铁长椅,靠背是蕨叶图案,座面为浅色橡木板条,分别立于通道两侧,面向喷泉。四株高大的肯蒂亚棕榈栽在大号赤陶花盆里,沿通道排列,两侧各两株,位于镜头与喷泉之间。茂盛的波士顿蕨种在圆形金属丝吊篮中,用细链悬挂在通道两侧的每一根拱肋上。一排五盏黄铜吊灯,带磨砂玻璃灯罩,用长链悬挂在中央通道上方,未开启。右侧墙边是一道板条橡木植物架,摆着白色兰花和小赤陶花盆;基墙两侧是低矮的苔藓花床和地被蕨类。光线与氛围:清晨低角度的阳光从左侧穿过玻璃墙,形成长长的、清晰可见的金色光束,穿透柔和潮湿的薄雾,屋顶的菱形斑驳阴影洒落在棋盘格地面上,冷凝水珠捕捉着光线,清新的绿色与粉笔白的色调,配以温暖的金色高光。宁静、安谧、永恒的氛围,清晰的建筑细节,真实色彩,垂直线条无畸变。无人物,无可辨认的文字,无标识或铭牌,无现代物品,无水印。
+```
+
+</details>
+
+<details><summary><b>绿植花束暖灯人像</b></summary>
+
+```text
+{
+  "category": "PLANTS_BOUQUET_WARM_LAMP",
+  "subject": {
+    "demographics": "成年女性，21–27 岁，土耳其人外貌，青春感十足但明显为成年人。",
+    "hair": {
+      "color": "深棕色",
+      "style": "自然、柔顺、略显凌乱，呈现随意的不对称感",
+      "texture": "逼真的发丝细节，有飞毛，发根可见",
+      "movement": "自然垂落于肩部；发梢允许轻微运动模糊"
+    },
+    "face": {
+      "shape": "椭圆形脸型，下颌线柔和",
+      "eyes": "富有表现力，深色虹膜，高光清晰锐利",
+      "nose": "鼻梁轮廓分明，自然高光",
+      "lips": "柔和的玫瑰粉色，天然纹理线条可见",
+      "skin_details": "真实毛孔，轻微自然红晕，无磨皮处理",
+      "micro_details": "额前细小绒毛，保留细微不完美之处"
+    },
+    "clothing": {
+      "outfit": "时尚黑色休闲装，无文字或标志",
+      "fabric": "可见触感明显的织物纹理，带有柔和褶皱"
+    },
+    "accessories": {
+      "jewelry": ["银色圆环耳环"]
+    }
+  },
+  "pose": {
+    "type": "抓拍式生活肖像",
+    "orientation": "半身像",
+    "head_position": "头部微微倾斜；目光先略向镜头左侧轻瞥，再自然回视镜头",
+    "hands": "手持用牛皮纸包裹的花束；手指姿态自然，关节结构准确",
+    "gaze": "温暖而富有活力的眼神接触",
+    "expression": "甜美而自信的微笑"
+  },
+  "setting": {
+    "environment": "室内绿植角",
+    "background_elements": [
+      "前景/中景/背景均层层叠叠布满绿色植物",
+      "主体后方有一只暖橙色灯泡台灯，营造出光晕效果",
+      "牛皮纸花束包装：可见折痕、麻绳细节与触感纹理"
+    ],
+    "depth": "前景叶片虚化（散景），主体清晰锐利，背景灯光呈光斑扩散（bloom）"
+  },
+  "camera": {
+    "shot_type": "半身肖像",
+    "angle": "略微偏离轴线，呈现随性手持拍摄感",
+    "focal_length_equivalent": "26mm 等效焦距，iPhone 广角风格",
+    "framing": "4:5 构图，不对称布局",
+    "focus": "双眼清晰锐利，花束边缘略柔和"
+  },
+  "lighting": {
+    "source": "柔和暖调主光 + 后方暖橙色钨丝灯实光",
+    "direction": "暖调侧光在面部投射出细腻的叶片阴影图案（微妙且修饰性强）",
+    "highlights": "发丝与颧骨处有柔和高光",
+    "shadows": "层次丰富的暖调阴影，营造舒适氛围",
+    "quality": "柔和、温暖、富有触感"
+  },
+  "mood_and_expression": {
+    "tone": "可爱而放松、温馨、抓拍感",
+    "expression": "眼神灵动，笑容柔和",
+    "atmosphere": "沉浸式、即兴自发"
+  },
+  "style_and_realism": {
+    "style": "逼真摄影风格，类似 iPhone 快照质感",
+    "fidelity": "高精度皮肤与发丝细节，无平滑处理",
+    "imperfections": "面部以外区域有轻微运动模糊，含轻微噪点"
+  },
+  "technical_details": {
+    "aspect_ratio": "4:5",
+    "resolution": "高分辨率",
+    "noise": "轻微手机传感器噪点",
+    "composition": "不完美的抓拍构图（角度略显笨拙），但仍具审美感"
+  },
+  "constraints": {
+    "adult_only": true,
+    "no_text": true,
+    "no_logos": true,
+    "no_watermarks": true,
+    "single_subject_only": true,
+    "do_not_show_phone": true
+  },
+  "negative_prompt": [
+    "cgi", "卡通", "动漫", "塑料质感皮肤", "过度平滑",
+    "多余手指", "扭曲的手部", "重复人物",
+    "可读文字", "标志", "水印"
+  ]
+}
+```
+
+</details>
+
+<details><summary><b>绿色极光下的北极科考站</b> · 机器翻译</summary>
+
+```text
+一张写实风格的广角夜景照片,画面是冰冻峡湾上方积雪山脊上的一座小型北极科考站。三个红色预制模块坐落在钢制支柱上,由一条短短的有顶走廊相连;它们的小方窗透出温暖的琥珀色光芒。一根装有风速计的气象桅杆、一面卫星天线和一根无线电天线立在它们旁边,上面薄薄覆着一层霜。前景中,一位身穿橙色探险派克大衣、戴着毛边兜帽的孤身科学家,沿着一串靴印走向科考站,一束狭窄的白色头灯光柱穿过淡淡的飘雪。上方,一道鲜艳的绿色极光如帘幕般在整片天空中涌动,在顶部边缘渐变为紫罗兰色和洋红色,条带之间可见星星,极光在峡湾的冰面上留下淡淡的倒影。深蓝色的极夜,清冽寒冷的空气,细腻的雪地质感。使用全画幅相机搭配 16mm 镜头拍摄,曝光 10 秒,f/2.8,ISO 3200,三脚架,前景略微锐利,自然色彩,无镜头光晕,无文字,16:9。
+```
+
+</details>
+
+<details><summary><b>网站标志设计</b></summary>
+
+```text
+扮演一名Logo设计师。你的任务是为一个网站创建一个独特且视觉上吸引人的Logo。你将：
+- 收集有关品牌身份及目标受众的信息
+- 制定与品牌价值观相契合的设计概念
+- 使用能增强品牌识别度的色彩与字体排印
+- 确保Logo在各类数字平台上均具备良好的适应性
+- 以PNG格式提供Logo
+
+规则：
+- 若提供了品牌风格指南，则须严格遵循
+- 除非另有说明，否则采用极简主义设计风格
+- 优先保证清晰度与可读性
+
+变量：
+- ${brandName:CouponAmI.com} — 品牌名称
+- ${stylePreference:Modern} — Logo的风格偏好
+- ${colorScheme:#6085fd} — 偏好的配色方案
+```
+
+</details>
+
+<details><summary><b>网络安全人物形象工作流</b></summary>
+
+```text
+{
+  "name": "Cyber Security Character",
+  "steps": [
+    {
+      "step_1": "面部身份映射",
+      "description": "根据提供的参考照片保持 100% 的面部一致性。特征：中长波浪红发，以及沉着、富有远见的科技革新者表情。"
+    },
+    {
+      "step_2": "战术装备与品牌标识",
+      "description": "为主角穿上一件流畅的红色战术夹克，带有复杂的金色电路纹理。在胸前正确整合 '${Brand}' 名称和特定的 '${Brand First Letter}' 标志徽章。"
+    },
+    {
+      "step_3": "赛博增强",
+      "description": "在面部皮肤上应用精致、极简风格的金色点缀赛博接口图案，确保其自然融合于 {Style:Cyberpunk} 美学之中。"
+    },
+    {
+      "step_4": "环境融合",
+      "description": "设计一个背景，将 ${Country} 国旗与发光的金色数字电路相融合。包含远处一座 ${Country} 大都市的电影级未来主义天际线 (${Style:Cyberpunk} ${City})。"
+    },
+    {
+      "step_5": "灯光与电影级渲染",
+      "description": "从右侧使用温暖而戏剧性的侧光，在背景上投射出柔和的剪影。以 4K 超真实质量渲染，具备超精细纹理。"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary><b>网页设计顾问</b></summary>
+
+```text
+我要你充当一名网页设计顾问。我将向你提供一家组织的相关信息，该组织需要协助设计或重新开发其网站；你的职责是建议最合适的界面与功能，以在满足公司商业目标的同时提升用户体验。你应运用自己在用户体验（UX）/用户界面（UI）设计原则、编程语言、网站开发工具等方面的知识，为该项目制定一份全面的方案。我的第一个请求是：“我需要帮助创建一个用于销售珠宝的电子商务网站。”
+```
+
+</details>
+
+<details><summary><b>羊毛毡小鼠毒蘑菇下野餐</b> · 机器翻译</summary>
+
+```text
+一张手工羊毛毡微缩场景的特写微距照片,16:9 宽幅横向构图。三只小小的毛毡田鼠,柔软的米色羊毛,粉色耳朵,黑色珠子眼睛,细细的胡须,直立坐在铺在苔藓地面上的蓝白格子野餐布上:左边一只戴着针织红围巾,中间一只戴着针织绿围巾,右边一只戴着针织粉围巾。它们身后立着两朵大毛毡毒蕈,圆形红色菌盖上布满白色斑点,一朵在左,一朵在右,为野餐遮风挡雨。田鼠们面前的布上:中央是一个编织的小藤篮,左边是一块带孔的黄色毛毡奶酪楔块,两颗带绿色蒂的红色毛毡草莓,两只棕色橡果壳小茶杯,右边是一把奶油色毛毡茶壶。野餐布四周,有毛毡绿色蕨叶、黄心的小白雏菊,右上方背景中有一个大松果。每一件作品上都能看到羊毛纤维的绒毛,手工质感,温暖柔和的影棚光,浅景深,绿色背景柔和虚化。温馨、可爱、童话绘本般的氛围。无文字,无手,无毡针。
+```
+
+</details>
+
+<details><summary><b>羽毛球锦标赛电影感广告</b> · 机器翻译</summary>
+
+```text
+创作一支 30 秒的超写实电影感羽毛球运动广告片，场景设在一座坐满观众的巨大室内锦标赛场馆中。一位才华出众的女羽毛球运动员身穿红白相间的运动球衣、黑色短裤、白色运动鞋，头发扎成马尾，正为一场激烈的比赛做准备。
+
+场景 1：令人屏息的航拍定场镜头，展现巨大的室内体育场，有极具张力的钢结构屋顶、数以千计的观众，以及照亮羽毛球场的强力聚光灯。
+
+场景 2：一个动态跟拍镜头，跟随女运动员在绿色羽毛球场上快速移动，她紧握球拍，准备回击一记强力来球。捕捉她强烈的专注、真实的步法和运动动作。
+
+场景 3：一个极端低角度的特写，拍摄她的白色运动鞋在球场上快速移动。展现真实的摩擦、迅捷的步法、细微的地板倒影和自然的动态模糊。
+
+场景 4：一个富有戏剧性的慢动作镜头，运动员高高跃起扣杀羽毛球。明亮的体育场灯光在她身后闪耀，镜头微微旋转，营造出强有力的运动广告美学。
+
+场景 5：富有艺术感的电影式转场，包含镜像倒影、斜向玻璃质感的面板、分屏构图，以及球拍击打羽毛球的特写。保持真实的人体结构和一致的人物外观。
+
+场景 6：以一个有力的低角度英雄镜头收尾，运动员自信地站在球场上，周围是闪耀的体育场灯光和欢呼的观众。
+
+视觉风格：照片级写实的运动摄影，4K 分辨率，戏剧性的体育场灯光，青蓝色调调色，真实的皮肤质感，浅景深，动态的镜头运动，高速动作，流畅的慢动作，细微的镜头光晕，专业运动广告品质。
+
+镜头：航拍广角镜头、跟拍镜头、低角度特写、微距细节、慢动作镜头和戏剧性的英雄镜头。
+
+画幅比例：9:16 竖屏
+时长：30 秒
+质量：超写实、电影感、专业运动广告。
+
+负面提示词：卡通视觉、扭曲的人体结构、多余的手指、重复的肢体、不自然的球拍动作、悬浮的羽毛球、不一致的面孔、闪烁的画面、模糊的主体、不真实的物理效果、过度的动态模糊。
+```
+
+</details>
+
+<details><summary><b>翠鸟入溪水彩画</b> · 机器翻译</summary>
+
+```text
+一幅松散、富有表现力的水彩画,画的是一只普通翠鸟头朝下俯冲入平静的森林溪流,采用宽幅 16:9 横向构图,画在有纹理的白色水彩纸上。鸟位于画面中央,几乎垂直向下俯冲,翅膀紧紧收拢贴在身体两侧:背部和翅膀是明亮的钴蓝色和青绿色,点缀着较浅的蓝色斑点,胸腹部是浓郁的锈橙色,颈部有一小块白斑,长长的深色匕首状鸟喙尖端刚刚触到水面。喙与水面相接处,溅起一团白色水花和飞散的水滴,周围是向水面四周扩散的蓝灰色同心涟漪。左上角,一根长满苔藓的橄榄绿树枝从画面边缘伸入,细长下垂的柳叶沿左侧垂向水面,这根树枝正是鸟刚刚离开的地方。右侧是柔和模糊的河岸,由绿色、青绿色和黄绿色的叶丛晕染而成,并在溪流中留下淡淡的倒影。湿画法形成的晕染、颗粒沉淀的颜料、松散的滴落和飞溅,只在鸟和水花上保留清晰的细节,并留出未上色的纸白作为高光,在边缘形成柔和的暗角。清新、生动、自然的氛围。无文字,无签名,无边框。
+```
+
+</details>
+
+<details><summary><b>老橡树雪松树屋夏日午后</b> · 机器翻译</summary>
+
+```text
+写实建筑摄影：一座小型木structure 树屋静修小屋，建在一棵巨大的古老橡树上，位于夏日缓坡草地上、山毛榉森林边缘，从草地上的前左方拍摄，相机处于站立视线高度（1.6 米），距离约 12 米，35mm 镜头，垂直线保持笔直，16:9 横向构图，整棵树和树屋都在画面内。橡树主干粗壮，灰色，纹理深裂，宽约 1.2 米，在屋顶上方分成三根粗大的主枝，繁茂浓密的绿色夏日树冠覆盖在树屋之上。一块方形木露台距地面约 3.5 米，环绕树干，树干从小屋后方穿过露台向上生长；露台由前角处的两根圆形天然木立柱支撑，另有四根从树干斜向伸出的木斜撑。露台上立着一座紧凑的小屋，约 3 × 4 米，外墙为竖向雪松板，风化成温暖的蜜糖棕色，屋顶是陡峭的双坡屋顶，覆以深绿色直立锁缝金属板，山墙一端朝向相机。正面墙：山墙顶部高处有一扇圆形舷窗；一扇黑框大观景窗，环绕小屋的前左角；一扇蓝绿色荷兰式分体门，分为上下两半，位于正面墙的右半部分，旁边有一盏小型黑色金属灯笼。一根纤细的黑色炉烟囱管从屋顶右侧升起。露台的栏杆由雪松立柱构成，立柱之间有三根水平的天然麻绳，沿栏杆缠绕着暖色球形串灯（白天关闭），前方有两把芥末黄的折叠木质露台椅。一段带中间平台的笔直木楼梯，沿露台右侧从地面升至前右角。左侧有一个绳索秋千，配朴素的木座板，悬挂在橡树一根低矮的水平枝干上。树根处：蕨类、苔藓、几块大石头，一条浅色砂石小径蜿蜒穿过草地，通向楼梯脚下，周围有白色和紫色的野花。午后暖阳从左侧照来，树叶间的斑驳光影洒在雪松墙面上，阴影柔和，枝叶间隐约可见晴朗的蓝天。色板为蜜糖雪松色、苔藓绿、蓝绿色、芥末黄、炭黑色和橡树灰。真实的木纹、金属、绳索和树皮质感，高端建筑杂志摄影，宁静而迷人的氛围。无人物，无文字，无标志，无招牌。
+```
+
+</details>
+
+<details><summary><b>老照片修复与上色</b></summary>
+
+```text
+对一张复古照片进行超精细修复及锐度增强。恢复细微细节并提升清晰度，尤其注重面部区域。彻底去除所有划痕、灰尘、污渍和撕裂痕迹。保留自然的胶片颗粒感。校正几何畸变与影调范围。  
+随后，为其上色，使其呈现历史彩色照片的观感：色彩自然、柔和、符合史实。避免出现塑料质感的皮肤、过度饱和、数字绘画风格以及过锐化导致的人工痕迹。达到博物馆级写实效果。
+```
+
+</details>
+
+<details><summary><b>老照片修复与上色专家</b></summary>
+
+```text
+扮演一名专业的照片修复专家。你的任务是对一张退化的老照片进行高精度、保守性的修复和历史风格的彩色化处理。最终图像应尽可能接近一张保存完好的原始照片。
+
+**图像分析与修复：**
+
+1. **表面修复：**  
+   - 数字化去除深划痕、灰尘、指纹和潮湿污渍。  
+   - 重建边缘缺失区域或撕裂部分，同时保留相纸原有的纹理。
+
+2. **结构保真：**  
+   - 校正几何畸变。  
+   - 恢复原始对比度，避免高光过曝或阴影过度变暗。
+
+3. **面部清晰度：**  
+   - 极高精度地还原面部特征。  
+   - 避免“蜡像皮肤”效果；保持自然的颗粒感和原始的微表情。
+
+**色彩与美学风格：**
+
+1. **历史色彩调色板：**  
+   - 采用受1940年代Kodachrome工艺启发的真实彩色化处理。  
+   - 使用柔和、温暖且饱和度较低的色调。
+
+2. **肤色呈现：**  
+   - 自然地渲染肤色，考虑当时环境光照条件。  
+   - 避免使用均匀的数字饱和度。
+
+3. **真实颗粒感：**  
+   - 保留典型的35mm胶片所具有的细腻、有机的摄影颗粒。
+
+**负面提示 / 需避免的内容：**
+
+- 不要应用Instagram等现代滤镜。  
+- 避免“光滑”或“塑料皮肤”效果。  
+- 切勿使用霓虹色、过度饱和或锐化伪影（例如白色光晕）。  
+- 防止出现数字绘画或3D插图的外观。
+
+**最终输出质量：**
+
+- 实现逼真的、博物馆级的成像效果，具备超清晰细节（8K分辨率风格）和绝对的历史忠实度。
+```
+
+</details>
+
+<details><summary><b>职业头像重制</b></summary>
+
+```text
+一张专业的高分辨率肖像照，保持输入图像中人物的精确面部结构、身份和关键特征。人物从胸部以上入镜，头顶留有充足空间。人物直视镜头。整体造型符合专业摄影棚拍摄风格，身穿剪裁考究的浅色炭灰色智能休闲西装外套。背景为纯色的影棚中性色 '#1A1A1A'。采用高位角度拍摄，搭配明亮、通透、柔和且经过散射的影棚灯光，轻柔照亮面部，并在眼睛中形成微妙的反光点，传递出清晰感。使用 85mm f/1.8 镜头拍摄，浅景深，眼睛焦点极为清晰，背景呈现优美柔和的散焦效果（bokeh）。注意西装面料纹理的清晰细节、每一根发丝以及自然真实的脸部皮肤质感。整体氛围传达出自信、专业与亲和力。采用干净明亮、带有微妙暖调与平衡色调的电影级色彩分级，确保整体呈现精致且现代的观感。
+```
+
+</details>
+
+<details><summary><b>职场工牌照</b></summary>
+
+```text
+根据上传的图像，为其中的人物创建一张现代企业身份照，适用于公司工牌及内部系统。  
+保持面部与上传图像完全一致，比例真实，不进行美颜或年龄调整。  
+
+构图：  
+• 中性、居中构图，仅包含头部与肩部  
+• 人物直视镜头，表情中性但友善  
+
+背景：  
+• 纯色、均匀背景，颜色为 [BACKGROUND_COLOR]，无纹理、无渐变  
+• 不含任何道具、文字或标识  
+
+风格：  
+• 光线均匀柔和，阴影极少  
+• 面部区域高清晰度、高锐度，肤色自然，整体为高分辨率图像  
+
+着装：  
+• 将服装转换为 [OUTFIT_STYLE]，以契合企业办公环境  
+• 不得出现可见的品牌标识、图案或分散注意力的配饰  
+
+最终效果应呈现为一张升级版、光照优良的专业企业身份照或门禁卡照片，可直接用于内部工具、电子邮件账户或证件卡等场景。
+```
+
+</details>
+
+<details><summary><b>股票交易视频提示词</b></summary>
+
+```text
+为类似 Sora 或 RunwayML 的 AI 视频生成器创建一个高度详细的视频提示词，强调逼真的股票交易视觉效果，不包含任何人形、文字叠加或 AI 生成的伪影。场景应以视觉隐喻的方式展现通过交易苹果公司（AAPL）股票追求利润的过程：展示一片茂盛、充满生机的苹果园，光线从黎明动态过渡到黄昏，象征市场的波动。树上的苹果生长、成熟并成簇增多，象征股价上涨和利润增长，部分树枝向上延伸，形如由盘绕藤蔓构成的上升蜡烛图。以视觉方式微妙地融入股票市场元素——例如阳光穿透树叶形成的发光绿色上升箭头，或苹果簇堆叠成高度递增的柱状图——但不得出现任何明确的图表、数字或标签。通过自然力量（如风或重力）“收获”苹果来传达对利润的追求，苹果落入金色篮子中不断堆积直至溢出，并闪烁着逼真的露珠和光线反射。确保整个视频看起来像高清无人机拍摄的真实果园画面，配有树叶沙沙作响、鸟鸣和风声等自然音效，无旁白或音乐。镜头运动：在果园中平滑平移，推进至成熟中的苹果以展示复杂纹理，并采用延时序列展现生长过程，模拟市场收益。风格：超现实 CGI，与实拍自然纪录片画面无法区分，使用高级渲染技术实现逼真的阴影、纹理和物理效果——避免任何卡通化、模糊或不自然的元素。视频时长：30 秒，分辨率：4K，宽高比：16:9。
+```
+
+</details>
+
+<details><summary><b>自信夜景穿搭全身照</b> · 机器翻译</summary>
+
+```text
+一张夜间全身竖构图照片,主角是一位身材呈沙漏形的纤细年轻女性,留着带金色挑染的浅棕色长卷发。她穿着紧身白色短袖短款上衣和蓝色紧身牛仔裤,左手拿着一个银色金属小手提包。她站在室外停车场,身体侧转呈四分之三侧面,回头越过肩膀直视镜头,带着含蓄而自信的微笑。她身后是一辆黑色吉普牧马人,备胎罩上印有白色的"Jeep"标志,右侧停着一辆灰色汽车。地面是深色沥青,画着白色停车线。头顶的路灯投下冷白色光芒,让她的身影在漆黑的夜空下清晰突出。使用智能手机摄像头拍摄,24mm 镜头,对主体使用闪光灯或强补光,真实光线,随性的社交媒体美学,"今晚穿搭"氛围,高画质,主体对焦清晰。
+```
+
+</details>
+
+<details><summary><b>自定义AI图像生成</b></summary>
+
+```text
+创建一幅 AI 生成的图片。您可通过提供诸如 ${theme:landscape}、${style:realistic} 等细节来指定主题或风格，以及您希望包含的任何特定元素。AI 将利用这些输入创作一幅独特的视觉杰作。
+```
+
+</details>
+
+<details><summary><b>自然光温馨家居场景</b></summary>
+
+```text
+想象一个舒适的家居环境。光线是来自大窗户的自然柔和光，投下淡淡的阴影。包含一些细节，例如舒适的沙发、温暖的色调，以及柔软的毯子或随意放置的喜欢的书等个性化元素。氛围应显得温馨而真实，非常适合在家放松度日。
+```
+
+</details>
+
+<details><summary><b>舒适沙发人像</b> · 机器翻译</summary>
+
+```text
+一张使用 iPhone 17 Pro Max 拍摄的超写实手机照片，RAW 格式，竖版 9:16，外观完全真实自然，就像真人随手抓拍的一张，感光度相同。没有任何 AI 生成痕迹，不要 CGI，不要动漫，不要 3D 渲染，不要插画，不要夸张滤镜。
+保持完全相同的拍摄角度：近乎全身的镜头，从胸部高度的正面视角拍摄，带轻微的四分之三朝向。保持完全相同的构图和姿势：女子坐在一张软包沙发上，一条腿弯曲放在座面上，另一条腿放松垂向地面。躯干挺直，略微转向一侧。一只手臂轻轻横过身前，握住另一侧的前臂，另一只手则放松地搁在腿上。头部向一侧倾斜，目光投向画面之外，神情平静、内省而自然。
+保持相同的视觉风格，灵感来自私密而优雅的生活方式杂志大片。场景是一间现代而温馨的客厅，有布艺沙发、中性色抱枕、木地板，以及墙上一面大型装饰镜，装饰简约而温暖。
+保持相同的服装：高领挂脖罗纹短上衣，膝盖处有大面积破洞、裤脚毛边的紧身牛仔裤。模特全程赤脚。衣物呈现自然的褶皱、真实的质感和完全逼真的合身度。不要指定头发的颜色或长度。
+光线来自一扇大型侧窗，形成柔和的自然光，细腻地勾勒面部和身体轮廓，阴影柔和，氛围温暖放松。皮肤呈现超写实的质感，毛孔清晰可见，肤色有轻微的自然变化，解剖细节真实。上衣的面料、牛仔裤的做旧丹宁、沙发的软包面料和木地板，都呈现出高度细致、完全自然的质感。
+浅景深，模特对焦完美，背景柔和虚化，带自然的焦外光斑。构图均衡，具有当代杂志大片的美学，并带有日常瞬间随手拍摄所特有的自然随性感。
+高端杂志大片摄影，外观完全真实，高动态范围，极致锐利，曝光完美平衡，成品与 iPhone 17 Pro Max 拍摄的照片完全无法区分。没有数码伪影，没有 AI 痕迹，摄影质感完全真实。
+风格化且比例协调的身形，半丰满，沙漏型，
+9:16 format
+```
+
+</details>
+
+<details><summary><b>航站楼漂流</b></summary>
+
+```text
+{
+  "title": "Terminal Drift",
+  "description": "一个令人不安的视觉画面，描绘了一位孤独的旅人被困在无限延伸、空无一人的机场航站楼中，空间逻辑混乱，违背常理。",
+  "prompt": "你将使用所提供照片中的人物作为主体进行图像编辑。保留她的核心相貌特征。将主体1（女性）转变为一个独自站立在无尽、无窗机场航站楼中的孤独身影。周围空间是由米色墙壁、低矮天花板和图案地毯构成的重复性走廊。没有出口，只有无尽延伸的人工照明和空置的等候座椅。构图应遵循电影级1:1画幅比例。",
+  "details": {
+    "year": "不确定的1990年代",
+    "genre": "阈限空间（Liminal Space）",
+    "location": "一个广阔、弯曲的机场走廊，无窗，米色墙壁无限延伸，地面铺着复杂图案的地毯。",
+    "lighting": [
+      "平坦的荧光顶灯",
+      "均匀的人工光晕",
+      "无自然光源"
+    ],
+    "camera_angle": "广角镜头，对称居中构图。",
+    "emotion": [
+      "疏离感",
+      "不安",
+      "孤独"
+    ],
+    "color_palette": [
+      "米色",
+      "柔和的青绿色",
+      "褪色的深红",
+      "偏白"
+    ],
+    "atmosphere": [
+      "诡异",
+      "无菌感",
+      "寂静",
+      "超越时间"
+    ],
+    "environmental_elements": "成排空置的连体等候椅，带有令人困惑图案的商用地毯，以及文字无法辨认的通用标识。",
+    "subject1": {
+      "costume": "一件略微宽松的淡色毛衣和宽松长裤，看起来平凡且不受时代限制。",
+      "subject_expression": "眼神空洞、失焦，略微越过镜头望向虚无。",
+      "subject_action": "完全静止站立，双臂自然垂于身体两侧，手握一个普通的登机箱。"
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "人群",
+        "阳光",
+        "深阴影",
+        "污垢",
+        "杂乱",
+        "能看到外面的窗户",
+        "镜头光晕"
+      ],
+      "exclude_styles": [
+        "高对比度",
+        "动作电影风格",
+        "高饱和度",
+        "赛博朋克",
+        "恐怖血腥"
+      ],
+      "exclude_colors": [
+        "霓虹红",
+        "纯黑",
+        "鲜艳的绿色"
+      ],
+      "exclude_objects": [
+        "飞机",
+        "垃圾",
+        "血迹",
+        "动物"
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>苔藓树枝上小憩的小熊猫</b> · 机器翻译</summary>
+
+```text
+一张照片级写实的野生动物摄影作品,拍摄于黎明时分雾气弥漫的温带山地森林,16:9 宽幅横向构图。一只小熊猫懒洋洋地趴在一根粗壮、长满苔藓的树枝上小憩,树枝从画面左缘斜穿向右。它双眼紧闭,下巴搁在两只前爪之间的苔藓上,前爪垂在树枝边缘;它红褐色的橙色皮毛、白色耳尖簇毛以及眼周和口鼻处的白色面部斑纹,被柔和的侧光轻轻照亮。它那条带环纹的蓬松长尾,以锈色和深棕色相间,笔直垂在树枝下方,位于画面中央。细小的露珠在鲜绿的苔藓和垂挂的地衣丝上闪闪发光。失焦的杜鹃花叶片充满左下前景,茂盛的绿色蕨类在右侧向上生长,而高大的深色冷杉树干和低垂的冷杉枝条在背景中渐隐于柔和的灰色晨雾里。使用 400mm 长焦镜头、f/4 光圈拍摄,浅景深,毛发和胡须细节锐利,自然柔和的绿色搭配温暖的红褐色调,宁静平和的氛围,《国家地理》风格。无文字,无水印,无人物。
+```
+
+</details>
+
+<details><summary><b>苔藓树枝上的羊毛毡小熊猫</b> · 机器翻译</summary>
+
+```text
+一张近距离、略微俯拍的棚拍照片,拍摄的是一件完成的羊毛毡戳塑小熊猫,它坐在长满苔藓的树枝上,16:9 横向构图,雕塑位于画面中央并占满画面。小熊猫完全由密实戳刺的羊毛纤维制成:锈橙色和肉桂色的身体,奶油色的口鼻与耳内侧,深棕色的眼斑和四肢,环纹蓬松的尾巴缠绕在树枝上。小小的黑色玻璃珠眼睛映出柔和的高光;胡须是几根细细的深色羊毛线;脸颊和爪子上可见一针针戳刺的纹理,让它看起来是手工毛毡,而不是毛皮摄影。树枝上包裹着真实的保鲜片状苔藓和几片干蕨叶,放在木质手工桌上的浅色亚麻布上。柔和的漫射窗光从左上方射入,爪子下方有轻柔的接触阴影,景深较浅,脸部和前爪最清晰,尾巴末端和桌子边缘柔和虚化。在右下角、失焦处:一支带木柄的毡戳针,以及一小堆染成橙色、奶油色和棕色的羊毛粗纱。写实的手工羊毛毡纤维艺术产品摄影,真实色彩,温馨安静的氛围。不是素描,不是绘画,不是真实动物:是一件真实拍摄的羊毛雕塑。不要有可读文字,不要有字母,不要有签名,不要有水印,不要有手。
+```
+
+</details>
+
+<details><summary><b>苹果级 UI 系统设计师</b></summary>
+
+```text
+你是一位达到Apple级设计标准（2026）的资深产品设计师。
+
+你的任务是将给定的想法转化为简洁、专业、可投入生产的UI系统。
+
+避免通用的、AI生成的美学风格。优先考虑清晰性、克制、层级和精确性。
+
+---
+
+### 设计原则（严格遵守）
+
+- 清晰性高于装饰性  
+- 充足的留白与视觉呼吸空间  
+- 极简的色彩使用（功能导向，非表现性）  
+- 明确的排版层级（清晰的字号比例，杜绝随意性）  
+- 细微且有目的的交互（杜绝花哨效果）  
+- 像素级对齐与一致性  
+- 每个元素必须存在合理理由  
+
+---
+
+### 1. 产品背景
+- 产品是什么？  
+- 用户是谁？  
+- 核心操作是什么？  
+
+---
+
+### 2. 布局架构
+- 页面结构（从上到下）  
+- 网格系统（列数、间距节奏）  
+- 区块层级  
+
+---
+
+### 3. 排版系统
+- 字体风格（例如：中性无衬线体）  
+- 字号比例（H1 → 正文 → 注释）  
+- 字重使用  
+
+---
+
+### 4. 色彩系统
+- 基础色板（以中性色为先）  
+- 强调色使用（有限且有意图）  
+- 功能性色彩角色（成功、错误等）  
+
+---
+
+### 5. 组件系统
+定义核心组件：  
+- 按钮（主要、次要）  
+- 输入框  
+- 卡片 / 容器  
+- 导航  
+
+确保一致性与可复用性。
+
+---
+
+### 6. 交互设计
+- 悬停 / 激活状态（细微）  
+- 过渡动画（快速、顺滑、极简）  
+- 反馈模式（加载中、成功、错误）  
+
+---
+
+### 7. 间距与节奏
+- 一致的间距比例  
+- 对齐规则  
+- 视觉平衡  
+
+---
+
+### 8. 输出结构
+
+提供：
+
+- UI概览（1–2段）  
+- 布局拆解  
+- 排版系统  
+- 色彩系统  
+- 组件定义  
+- 交互说明  
+- 设计哲学（为何有效）
+```
+
+</details>
+
+<details><summary><b>荒野大镖客2双重曝光壁纸</b></summary>
+
+```text
+受电子游戏《Red Dead Redemption 2》启发的电影级双重曝光壁纸（游戏，非电视剧）。  
+亚瑟·摩根独自站立，居中，标志性姿势，面朝前方。  
+粗犷、饱经风霜的脸庞，浓密的胡须，神情坚毅而疲惫，身穿经典的亡命徒服饰，头戴帽子，身披长外套。  
+轮廓鲜明，边缘清晰。  
+在亚瑟·摩根的剪影内部：  
+《Red Dead Redemption 2》中的美国边疆景象——尘土飞扬的平原、松树林、木结构小镇、远处的山脉，铁轨延伸至地平线。  
+微妙的落日光线，温暖的大地色调，忧郁的氛围，流露出一个时代正在消逝的感觉。  
+双重曝光处理：  
+剪影内部平滑、精细的融合，无杂乱叠加，风景自然地贯穿人物形象。  
+剪影外部无任何场景。  
+背景：  
+深沉的哑光红色背景，富有戏剧性但克制，具有电影级对比度，无渐变或霓虹辉光。  
+风格与情绪：  
+严肃、真实、电影化写实，富有情感分量，符合电子游戏概念艺术风格。  
+无现代元素，无奇幻成分，不受电视剧改编影响。  
+超高清分辨率，细节锐利，高品质壁纸质感。格式 9:16
+```
+
+</details>
+
+<details><summary><b>荷兰黄金时代早餐静物</b> · 机器翻译</summary>
+
+```text
+一幅荷兰黄金时代风格的早餐静物油画,仿照 1630 年代哈勒姆画派大师的笔法,描绘一张安静布置好的餐桌,背景是深褐近黑色。桌上铺着一块皱褶的深绿色天鹅绒桌布。左侧,三只打开的牡蛎在一只圆形锡盘上闪着光泽。盘子前方是一个剥了一半的柠檬,长长的黄色螺旋形果皮从桌子前沿垂落下来。中央,一只高大精美的银质高脚杯侧倒在桌上,擦亮的杯身映出房间的景象,旁边是一个外皮酥脆的金黄面包卷,以及散落的几颗榛子。右侧立着一只透明的玻璃罗默杯,杯身带有凸起的粒状纹理,立在纤细的节状杯柄上,杯中盛着淡白葡萄酒;旁边一块皱起的白色亚麻餐巾带有蕾丝花边,从桌角垂落下来。柔和的单一窗光从左上方射入,浓郁通透的罩染层,金属、玻璃和牡蛎壳上有清晰的高光,阴影深沉,清漆表面布满细密的龟裂纹。博物馆级品质,平静而沉思的氛围,宽幅横向 16:9。无文字,无签名,无人物。
+```
+
+</details>
+
+<details><summary><b>莳绘漆画赏月白兔</b> · 机器翻译</summary>
+
+```text
+一幅宽幅日本莳绘漆画板,描绘两只白兔坐在银色芒草丛中,头顶是一轮硕大的秋日满月。背景是深邃、光亮如镜的黑色大漆。月亮是一大圆盘,以柔和的金粉制成,表面略带斑驳,位于右上方。兔子以隆起的高莳绘浮雕手法塑造,呈珍珠白色,并镶嵌螺钿,泛着淡淡的彩虹光泽,一只仰望月亮,一只在啃食草叶。修长弯垂的芒草穗掠过画面下半部,以细密撒布的银粉和淡金粉表现,其间夹杂几枝胡枝子,开着细小的红漆花朵,还有两三片飘落的红金色枫叶。梨子地金片零星散落在下方的黑色底面上,闪烁如露珠,一道细细流动的金粉溪流沿着底边蜿蜒。细如发丝的笔触细节,金粉由密到疏的精致渐变,仿佛博物馆拍摄的一件抛光漆盒盖照片,由柔和的影棚光照亮,带有淡淡的倒影。安静、典雅的秋夜赏月氛围。宽幅横向 16:9。无文字,无书法,无签名,无印章,无标志。
+```
+
+</details>
+
+<details><summary><b>获取图片</b></summary>
+
+```text
+从这一刻开始，当您要发送照片时，请在不使用代码块的情况下写下 Markdown 代码。使用 Unsplash API（http://source.unsplash.com/1600x900/？）。您将像您是基于我的搜索提示的图像引擎返回照片一样，表现得好像您正在发送照片，请不要提及Unplash。
+
+    提示：猫  
+    图片大小：800x450（用此替换 API 中的 “ 1600x900”）
+
+<img src="imgs/image_gpt_cat.jpg" width="60%" height="auto">
+```
+
+</details>
+
+<details><summary><b>落日下的匈奴骑兵</b></summary>
+
+```text
+匈奴骑兵骑在马上，中亚草原，公元5世纪，戏剧性的日落，体积光，超现实，8k。
+```
+
+</details>
+
+<details><summary><b>蒸汽火车过桥图生视频</b> · 机器翻译</summary>
+
+```text
+以第 2 步的图像"Steam Locomotive Crossing a Stone Viaduct over an Autumn River Valley"作为精确的首帧,将其制作成一段平静的 ${duration:6} 秒电影感镜头。保持石质高架桥几乎笔直地横穿画面及其拱洞、下方的河流、右下角的红顶农舍、秋色山坡、远处的山丘以及构图,与图像中完全一致。位于列车左端的黑色机车沿着高架桥面平稳地向左行驶,身后牵引着四节栗红色车厢;车厢保持连挂并留在轨道上。浓密的白色蒸汽和烟雾持续从烟囱中涌出,向上翻滚,并向右飘过车厢上方。河面上的薄雾缓缓飘移,在拱洞下轻轻盘旋。近处树上的叶子在微风中轻轻摇动。来自左侧的温暖低角度阳光稳定地照耀在石头和树木上。镜头做一次非常缓慢、平滑的向左摇移,跟随列车。自然、真实的运动,无剪辑,无新物体,无人物,无文字。
+```
+
+</details>
+
+<details><summary><b>蒸汽火车高架桥场景简报</b> · 机器翻译</summary>
+
+```text
+请扮演一位电影级场景环境设计师，撰写可直接用于生成图像、也可直接用于生成动态的场景简报。帮我设计一个主镜头：一列复古蒸汽火车驶过横跨河谷的高大石砌铁路高架桥，先生成静态图像，再以这张图作为首帧动画化为一段短视频。你的简报必须让静态图像中包含丰富的、能自然运动的元素（翻涌的蒸汽和烟雾、沿高架桥平稳行驶的火车、在河面上飘移的薄雾、树上轻轻摇动的叶子、流动的水、柔和变化的光线），同时保持构图平静、清晰易读、便于做成动画。
+
+我的初始选择：
+- 山谷环境：${setting:deep river valley with wooded hillsides and distant hazy hills}
+- 季节、时间和天气：${time:autumn, early morning, light river mist, mostly clear sky}
+- 火车外观：${train:black steam locomotive pulling four maroon passenger carriages}
+- 高架桥外观：${viaduct:weathered grey stone viaduct with many tall arches}
+- 视觉风格：${style:photoreal landscape and railway photography}
+- 情绪关键词：${mood:nostalgic, peaceful, golden, timeless}
+
+请先用一条简短的消息向我询问缺失的信息：我偏好的相机视角（从侧上方的山坡、从下方的河岸，还是与桥面齐平）、火车应当朝画面哪个方向行驶、需要露出多少河流和谷底，以及需要避免的内容（人物、文字、标牌、标志、现代列车、电线、某座特定的真实高架桥或铁路）。
+
+然后按以下部分生成简报：
+
+1. **场景概述**：两三句话，描述地点、时间、光线和此刻的感受。描述的是一座想象出来的高架桥和火车，而不是对某座真实、有名称的桥或车的复制。
+
+2. **高架桥与火车**：高架桥在画面中的走向（笔直还是弯曲，从哪里进入、从哪里离开）、可见拱洞的数量、石材的颜色与质感、护栏；机车在桥面上的位置、朝向、烟囱和锅炉的细节、车厢的数量和颜色，以及火车有多少部分可见。
+
+3. **蒸汽与烟雾**：烟柱从哪里升起，它的颜色（白色蒸汽、灰色烟）、大小，以及风把它吹向哪个方向。说明烟柱始终连在烟囱上，并顺着单一风向飘散。
+
+4. **山谷与景观**：下方的河流以及它如何蜿蜒穿过桥拱，山坡上的树木及其秋色，任何小型建筑（例如河边的石砌农舍），远山，以及从前景到背景的景深层次。
+
+5. **光线与氛围**：阳光的方向和颜色，暖光落在哪里，水面上的薄雾及其高度，远山上的雾霭，以及天空。
+
+6. **固定视觉细节**：一个编号列表，列出 8 到 10 个必须在静态图像和视频中保持一致的细节（高架桥走向和拱洞数量、火车位置和方向、车厢数量和颜色、河流走向、农舍位置、太阳所在一侧、薄雾高度、相机位置、构图取景）。
+
+7. **运动图**：一张表格，列出视频中所有可以运动的元素，列为：元素、运动类型、方向、速度（极慢、慢、中速）、运动幅度。包括火车沿桥面的行进和相机运动。总体运动要保持细微且符合物理规律，蒸汽、烟雾、薄雾和树叶使用同一个风向。
+
+8. **提示词种子 A - 主图静态图像**：一条可直接粘贴使用的图像提示词，少于 170 个词，用于宽幅横向 16:9 画面，第一句话中就要包含火车、高架桥和山谷，并以此结尾：no people visible, no text, no signs, no logos。
+
+9. **提示词种子 B - 图生视频动画**：一条可直接粘贴使用的视频提示词，少于 120 个词，以主图静态图像作为首帧开始，描述火车朝其行驶方向平稳前进、蒸汽和薄雾的运动、约 6 秒的一次缓慢相机运动，并说明保持高架桥、山谷、建筑和构图与图像中完全一致，不出现新物体。
+
+规则：不以人物为主体，不出现文字、标牌或标志，不使用快速的相机运动或剪辑切换，不出现违背物理规律的运动（火车只沿铁轨、朝机车所面对的方向运动，车厢始终保持连挂，蒸汽从烟囱升起并随风飘散，水向下游流动）。使用简短的段落和列表。
+```
+
+</details>
+
+<details><summary><b>蓝调之影</b></summary>
+
+```text
+你将使用所提供照片中的人物作为主要主体，执行图像编辑。保留他们原本的核心相貌特征。将主体 1（男性）和主体 2（女性）转化为经典 1950 年代黑色电影（film noir）风格的角色：主体 1 是一位粗犷的私家侦探，主体 2 是一位优雅的蛇蝎美人（femme fatale）。二人正坐在纽约一家高档爵士俱乐部内一处幽暗、烟雾弥漫的隐蔽卡座中。图像必须达到超写实摄影级别，采用电影级布光手法，营造出浓重的阴影与鲜明的高光。整个场景应宛如一部高预算大片的单帧画面，使用 Arri Alexa 摄影机拍摄，细节极度丰富，并采用浅景深聚焦于二人之间紧张而强烈的互动。
+
+{
+  "title": "Shadows of the Blue Note",
+  "description": "一场紧张而高风险的会面，发生于一位疲惫不堪的侦探与一位魅力四射的情报提供者之间，地点是烟雾缭绕的 1950 年代爵士酒吧。",
+  "prompt": "你将使用所提供照片中的人物作为主要主体，执行图像编辑。保留他们原本的核心相貌特征。将主体 1（男性）和主体 2（女性）转化为经典 1950 年代黑色电影（film noir）风格的角色：主体 1 是一位粗犷的私家侦探，主体 2 是一位优雅的蛇蝎美人（femme fatale）。二人正坐在纽约一家高档爵士俱乐部内一处幽暗、烟雾弥漫的隐蔽卡座中。图像必须达到超写实摄影级别，采用电影级布光手法，营造出浓重的阴影与鲜明的高光。整个场景应宛如一部高预算大片的单帧画面，使用 Arri Alexa 摄影机拍摄，细节极度丰富，并采用浅景深聚焦于二人之间紧张而强烈的互动。",
+  "details": {
+    "year": "1954",
+    "genre": "Cinematic Photorealism",
+    "location": "The velvet-draped interior of an upscale, dimly lit jazz club in New York City.",
+    "lighting": [
+      "Low-key noir lighting",
+      "Volumetric shafts of light cutting through thick smoke",
+      "Warm tungsten glow from a table lamp"
+    ],
+    "camera_angle": "Medium over-the-shoulder shot, shallow depth of field blurring the background.",
+    "emotion": [
+      "Suspenseful",
+      "Secretive",
+      "Intriguing"
+    ],
+    "color_palette": [
+      "Deep noir blacks",
+      "Tobacco brown",
+      "Velvet red",
+      "Golden amber"
+    ],
+    "atmosphere": [
+      "Smoky",
+      "Sultry",
+      "Dangerous",
+      "Cinematic"
+    ],
+    "environmental_elements": "Thick clouds of cigarette smoke hanging in the air, crystal whiskey tumblers on the table, a blurred double bass player in the background.",
+    "subject1": {
+      "costume": "A rumpled beige trench coat, a white dress shirt with a loosened tie, and a felt fedora hat.",
+      "subject_expression": "A serious, gritty grimace, eyes narrowed in concentration.",
+      "subject_action": "Leaning forward across the table, shielding a lighter flame with a cupped hand."
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "daylight",
+        "modern technology",
+        "smartphones",
+        "neon lights",
+        "bright colors"
+      ],
+      "exclude_styles": [
+        "cartoon",
+        "sketch",
+        "painting",
+        "3D render",
+        "anime"
+      ],
+      "exclude_colors": [
+        "neon green",
+        "hot pink",
+        "bright blue"
+      ],
+      "exclude_objects": [
+        "cars",
+        "television",
+        "sunglasses"
+      ]
+    },
+    "subject2": {
+      "costume": "A crimson silk evening gown, long satin gloves, and a pearl necklace.",
+      "subject_expression": "A mysterious, side-eyed glance, lips parted slightly.",
+      "subject_action": "Whispering a secret while elegantly holding a long cigarette holder near her face."
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>蓝调时刻桥上全身照</b></summary>
+
+```text
+{
+  "category": "BLUE_HOUR_BRIDGE_FULLBODY",
+  "subject": {
+    "demographics": "成年女性，21–29 岁，土耳其人外貌，气质沉静自信。",
+    "hair": {
+      "color": "深棕色",
+      "style": "松散波浪卷，略带微风拂过的痕迹",
+      "texture": "可见单根发丝",
+      "movement": "发梢有细微动态"
+    },
+    "face": {
+      "eyes": "沉静、直视镜头的目光",
+      "skin_details": "自然肌肤纹理，不作柔化处理"
+    },
+    "clothing": {
+      "outfit": "极简黑色大衣 + 合身内搭上衣，无任何品牌标识",
+      "fabric": "大衣面料纹理清晰可见，带有轻微褶皱"
+    },
+    "accessories": {
+      "jewelry": ["银色圆环耳饰"]
+    }
+  },
+  "pose": {
+    "type": "全身倚靠栏杆姿势",
+    "orientation": "身体呈角度侧向，头部转向镜头",
+    "hands": "双手自然置于栏杆上，手指结构准确",
+    "gaze": "与镜头直接眼神接触",
+    "expression": "中性、沉静而自信的表情"
+  },
+  "setting": {
+    "environment": "蓝调时刻的桥梁",
+    "background_elements": [
+      "城市灯光散景",
+      "清冷的黄昏氛围",
+      "栏杆纹理清晰可见"
+    ],
+    "depth": "主体清晰锐利，背景呈散景虚化"
+  },
+  "camera": {
+    "shot_type": "全身人像",
+    "angle": "平视角度",
+    "focal_length_equivalent": "35mm 编辑风格",
+    "framing": "4:5 构图，主体偏画面一侧",
+    "focus": "面部清晰锐利，背景呈奶油般虚化"
+  },
+  "lighting": {
+    "source": "环境黄昏光 + 城市灯光反射",
+    "direction": "环境提供的柔和正面补光",
+    "highlights": "控制得当，细腻微妙"
+  },
+  "mood_and_expression": {
+    "tone": "电影感、沉静、高端质感",
+    "atmosphere": "蓝调时刻的梦幻写实氛围"
+  },
+  "style_and_realism": {
+    "style": "照片级真实感，适用于社交媒体/杂志编辑风格",
+    "imperfections": "允许存在轻微弱光噪点"
+  },
+  "technical_details": {
+    "aspect_ratio": "4:5",
+    "noise": "轻微弱光颗粒感"
   },
   "constraints": {
     "adult_only": true,
@@ -3888,8 +5246,9 @@ redesign, altered characters, wrong outfit, wrong dragon design, same colors for
     "no_watermarks": true
   },
   "negative_prompt": [
-    "水枪喷溅", "虚假水体纹理",
-    "多余肢体", "扭曲的地平线",
+    "虚假天际线", "CGI",
+    "塑料质感皮肤", "过度柔化",
+    "多余手指", "扭曲变形的栏杆",
     "可读文字", "品牌标识", "水印"
   ]
 }
@@ -3897,210 +5256,606 @@ redesign, altered characters, wrong outfit, wrong dragon design, same colors for
 
 </details>
 
-<details><summary><b>黄金时刻街拍抓拍</b></summary>
+<details><summary><b>蓝调时刻的陶艺工作台</b> · 机器翻译</summary>
 
 ```text
-2026 年德黑兰的抓拍街头照片，黄金时段，浅景深，人群在背景中模糊。一名伊朗女性目光瞥向画外；双眉轻轻扬起一次，眼神迅速瞄向出口，瞳孔微微睁大——这是秘密信号“我们走吧，现在”。画面下方有一个手写边框的方框，圆珠笔字迹写着：“بریم？”
+蓝调时刻雪松湖畔陶艺工作室的室内工作台房间，朝向水面。一张厚重的木质揉泥台占据前景，上面放着泥塑工具、一根切泥线和几只半干的碗。左侧墙边的架子上摆满晾干中的陶器。透过一扇宽大的矩形窗和带 X 形斜撑的谷仓式敞开双开大门，可以看到紫色黄昏天空下深蓝色的湖面；室外可见宽阔的木板码头及其 T 形延伸段、一艘红色小划艇和纤细的桦树。工作台上温暖的台灯光与窗外清冷的蓝色光线形成对比。竖向雪松室内木板、灰泥点缀，右侧边缘有一台拉坯机。与黄金时刻外景中是同一座工作室：风化的竖向雪松木板、带砖砌烟囱的深色坡屋顶金属屋面、宽木板码头、两扇小侧窗、松树和桦树。写实风格，横版 16:9。无人物，无文字。
 ```
 
 </details>
 
-<details><summary><b>黄金时刻面部微距特写</b></summary>
+<details><summary><b>蓝调时刻维多利亚温室外景</b> · 机器翻译</summary>
 
 ```text
-黄金时刻拍摄的一位年轻女性面部的极致特写微距照片。温暖的自然阳光从侧面照射，在湿润且布满雀斑的皮肤上形成发光的高光。右眼为榛色，处于锐利对焦状态，以极高清晰度反射光线。浅景深使眼睛、皮肤纹理、鼻子和嘴唇脱颖而出，而背景则完全虚化消失。皮肤纹理高度精细且真实，毛孔与雀斑清晰可见，未经重度修图处理。色彩主调为温暖的青铜色、棕褐色、金色与柔和的棕色。氛围宁静、私密、沐浴于阳光之中。电影级美感摄影，超现实主义风格，自然观感，高细节呈现。
+写实风格的建筑外景摄影,画面为第 2 步中的同一座维多利亚式玻璃温室,此时从室外于蓝调时刻拍摄:机位站在一条浅色碎石花园小径上,距其玻璃山墙端约 15 米,视线高度(1.6 米),正对山墙并沿建筑长度方向望去,35mm 镜头,16:9 横向构图,左右对称,整座建筑位于画面中心偏下。保持与第 2 步完全一致的所有固定设计细节:一座细长的矩形大厅,顶部是高高的弧形筒拱玻璃屋顶;许多间距紧密、纤细的白漆铁肋沿拱顶排布,肋条之间的玻璃被一张细密的白色纤细玻璃压条网格分隔。侧墙为奶油色粉刷的古典砌体:高大的奶油色壁柱,檐口之下是雕刻的白色涡卷托架,壁柱之间是非常高而窄的白框窗,窗被分成修长的竖向窗格,下方是低矮的奶油色勒脚墙。正对镜头的山墙端是一个沿拱顶弧线的玻璃半圆,填充着放射状的太阳光芒形玻璃压条,位于一道水平横梁之上;其下是一面宽阔的白框玻璃墙,由矩形窗格组成,中央是高大的白色双开玻璃门,门关闭,每扇门都有一个小黄铜把手。透过玻璃可以看到由内向外发出的光亮:温暖的米色石砖地面、长长的空无一物的中央大厅、远端的壁柱和窗户,以及紧靠门内两侧各一盆、放在白色圆形花盆里的两株小型扇形棕榈。室内由壁柱后方壁灯发出的暖琥珀色光照亮,因此整个玻璃拱顶像灯笼一样发光,白色铁肋呈剪影般凸显。室外:碎石小径从镜头笔直通向门前,两侧是低矮修剪的黄杨树篱和修剪过的草坪;两侧矗立着呈现初秋色彩的成年落叶乔木,左侧树木后方隐约可见一座亮着灯窗的深红色砖房。深钴蓝色的天空,地平线低处残留最后一抹淡淡的余晖,几颗早现的星星,冷蓝色的黄昏与温暖的琥珀色室内灯光交融,草坪上方有淡淡的薄雾,玻璃上有柔和的反射。氛围宁静、浪漫、永恒,建筑细节清晰锐利,色彩真实,垂直线条笔直。画面中没有人物,没有可读文字,没有标牌或铭牌,没有现代物品或花园灯,没有水印。
 ```
 
 </details>
 
-<details><summary><b>黎明前的古代麦加</b></summary>
+<details><summary><b>蓝调镜前自拍场景</b></summary>
 
 ```text
-创建一幅超写实电影级的古代麦加黎明前场景，视角为从克尔白（Kaaba）屋顶正上方高空俯拍，以对角线向下角度聚焦于其左下角及周围开阔的地面。场景包含以下要素：
+场景  
 
-- 克尔白孤然矗立于一片广阔露天沙质庭院正中央，地面由压实的沙土与干涸土壤构成，凹凸不平、布满尘埃。
-- 周围区域刻意保持开阔空旷，以凸显其神圣的孤立性；远处零星散布着若干小型泥砖与石砌房屋群落，标示出早期麦加聚落的轮廓。
-- 粗粝嶙峋的岩石山脉沿山谷两侧拔地而起，渐次隐没于清冷泛蓝的黎明前薄雾之中。
-- 克尔白左下垂直转角处（即两面墙体交汇之角）出现一处神迹般的开口，从中迸发出强烈、纯粹的白色圣光，向外辐射。
-- 一名女子正从该转角开口中现身，身着简朴的沙漠服饰，怀抱一名新生婴儿，其身影在地面上投下长长的影子。
-- 天空中浮现数簇微弱、抽象的发光白色光团，暗示天使的存在。
+在电脑角落拍摄的镜像自拍照，整体色调为蓝色系。  
 
-整体氛围须庄严而神圣，采用超写实渲染，搭配富有戏剧张力的电影级布光、强烈的体积光束（volumetric light rays）以及高度精细的材质纹理。画面构图应如史诗级历史影片的一帧定格，采用 4:5 竖幅画幅比例，且不得出现任何现代元素。
+主体  
+
+性别表达：女性  
+
+年龄：约25岁  
+
+种族：东亚人  
+
+体型：苗条，腰线明显；自然的身体比例  
+
+肤色：浅中性色调  
+
+发型：  
+
+长度：及腰长发  
+
+造型：直发，发尾微卷  
+
+颜色：中棕色  
+
+姿势：  
+
+站姿：轻微的对立式站姿（contrapposto pose）  
+
+右手：手持智能手机置于面部前方（遮挡身份）  
+
+左臂：自然垂于躯干旁  
+
+躯干：身体略微后倾；腰部与腹部裸露  
+
+服装：  
+
+上衣：透明文胸  
+
+下装：透明丁字裤  
+
+袜子：蓝白相间的横向条纹过膝袜  
+
+配饰：蓝色可爱 mascot 手机壳  
+
+环境  
+
+描述：通过墙上安装的镜子所见的卧室电脑角落  
+
+家具与陈设：  
+
+白色书桌  
+
+单个显示器，显示柔和的蓝色壁纸（无可见文字）  
+
+机械键盘，白色键帽，置于蓝色桌垫上  
+
+鼠标位于小型蓝色鼠标垫上  
+
+PC 主机位于右侧，机箱带有蓝色灯光  
+
+三款动漫手办位于主机上或附近  
+
+墙上张贴着一座宝塔的海报  
+
+猫形台灯，带有蓝色装饰元素  
+
+一杯透明玻璃水  
+
+窗边有一株高大的绿色阔叶植物（位于画面左侧）  
+
+色彩替换：将所有原本为粉红色的元素（衣物与房间装饰）替换为蓝色调（从婴儿蓝到天蓝色/矢车菊蓝）。  
+
+照明  
+
+光源：来自相机左侧的大窗户，光线透过薄纱窗帘进入  
+
+光线质量：柔和、漫射光  
+
+白平衡（K）：5200  
+
+相机  
+
+模式：使用智能手机后置摄像头通过镜子拍摄（不启用人像模式/背景虚化）  
+
+等效焦距（mm）：26  
+
+距离（m）：  
+
+主体到镜子：0.6  
+
+相机到镜子：0.5  
+
+曝光：  
+
+光圈（f）：1.8  
+
+ISO：100  
+
+快门速度（s）：0.01  
+
+曝光补偿（EV）：-0.3  
+
+对焦：对镜子中的躯干和短裤部分对焦  
+
+景深：智能手机自然的深景深效果；背景清晰可见，无任何人造模糊  
+
+构图：  
+
+宽高比：1:1  
+
+裁剪：从头顶至大腿中部；画面包含书桌、显示器、PC 主机和植物  
+
+角度：略高的俯视角度，来自镜子的视角  
+
+构图提示：保持主体居中；为避免广角边缘畸变，让她站得稍远一些，后期再裁剪为正方形。  
+
+负面提示词  
+
+任何地方出现粉色/洋红色  
+
+美颜滤镜 / 过度平滑的皮肤；无毛孔的皮肤外观  
+
+夸张或扭曲的解剖结构  
+
+NSFW 内容、透视面料、服装故障  
+
+标志、品牌名称或可读的用户界面文字  
+
+虚假的人像模式模糊、CGI / 插画质感
 ```
 
 </details>
 
-<details><summary><b>黏土迷你城市</b></summary>
+<details><summary><b>薄雾码头的忧郁黎明</b></summary>
 
 ```text
-生成一个奇趣盎然的微型世界，以${landmark_name}为核心地标，整个场景完全由五彩缤纷的造型黏土手工制作而成。所有元素（建筑、树木、水道及城市设施）均须呈现手塑质感，表面清晰可见指纹印痕与天然黏土肌理。采用活泼稚拙的儿童画风，配色明快鲜艳：湛蓝晴空、蓬松乳白云朵、翠绿树木，以及暖色调的建筑——明黄、橙红、正红与钴蓝相间。每一处表面与柔和曲面都须彰显手工制作的独特品质。采用广角视角构图，完整呈现整片微型景观，营造和谐而欢愉的整体氛围。
+你将使用所提供照片中的人物作为主要主体，执行图像编辑。人物面部必须保持清晰且未经改动。将主体转化为黎明时分一座被浓雾笼罩的木质码头上的孤身一人，唤起20世纪早期艺术摄影所特有的忧郁之美。图像应具备陈年铂金印相（platinum print）般的质感与低饱和色调，主体凝望远处一片平静的灰蓝色海面，神情若有所思。  
 
-在画面正上方中央位置，以干净、粗体、圆润友好的字体添加城市名称${city_name}，字体风格须契合整体黏土美学。文字须清晰可辨，在天空背景上具备高对比度，并带有微妙的立体深度效果（仿佛亦由黏土制成——即轻微3D黏土字效），但整体保持简洁，切勿过度细节化。
-
-场景中其他任何位置均不得出现额外文字、单词或标识牌。仅可通过具有辨识度的建筑特征，借由纯粹的雕塑式黏土元素来定义该地点。图像尺寸为1080×1080像素。
-```
-
-</details>
-
-<details><summary><b>黑暗世界彩色漫画风</b></summary>
-
-```text
-${subject} 以经典《狼人》（Werewolf）书籍中所采用的独特彩色“黑暗世界”（World of Darkness）漫画风格呈现。厚重的黑色墨线构成画面的结构骨架——粗犷的轮廓线、富有攻击性的交叉排线、深沉的阴影色块——其上叠加饱和而阴郁的色彩晕染。色彩以分层、富表现力的色域方式施加，而非追求写实；色彩随形体流动变化，用以暗示情绪与超自然存在感。高光锐利且具金属质感，仅选择性地落在边缘、双眼、武器或关键特征上。背景采用“黑暗世界”特有的粗粝调色盘：病态的黄色、锈蚀的红色、淤伤般的紫色与冰冷的紫罗兰色。色彩略微溢出墨线边界，营造出混乱而野性的能量。质感粗糙、富有绘画感且阴郁沉重。构图兼具对抗性与亲密感。整体基调：都市哥特式恐怖、泛灵论力量、潜伏于表层之下的威胁感。
-```
-
-</details>
-
-<details><summary><b>黑暗世界黑白漫画风</b></summary>
-
-```text
-${subject} 以严苛、棱角分明的《黑暗世界》（World of Darkness）漫画式线稿呈现。画面以浓重的黑色油墨为主导，轮廓线粗厚，交叉排线凌厉有力，深重的阴影色块将形体切割为锐利的解剖学平面。人体解剖结构被夸张化且富于表现力，姿态紧绷而具有对抗性。表面被分割为鲜明的明暗几何关系。背景抽象化或呈现都市哥特风格，支离破碎且令人压抑。布光生硬而富有黑色电影（noir）气息，对比极度强烈，边缘硬光清晰勾勒出轮廓与剪影。构图紧凑而富有临场感，采用低角度或对抗性视角的镜头。整体基调：现代哥特式恐怖，粗粝、野性、充满灵性张力。
-```
-
-</details>
-
-<details><summary><b>黑白人像黑底效果</b></summary>
-
-```text
-将其变为黑白图像。将背景变为纯黑色，使所有元素和谐融合。人物保持完全不变。
-```
-
-</details>
-
-<details><summary><b>黑白双人特写肖像</b></summary>
-
-```text
-一位男士与一位女士并肩而立的特写黑白肖像。男士头发凌乱，胡茬粗犷；女士则拥有一头自然蓬松、柔顺微乱的秀发。两人都微微仰起头部，富有戏剧性的顶光洒落在他们身上。他们的眼睛隐于阴影之中，营造出一种强烈对比、充满力量感与神秘感的剪影式氛围。9:16 构图，亲密双人肖像构图。
-```
-
-</details>
-
-<details><summary><b>黑白影棚侧脸肖像</b></summary>
-
-```text
-{
-  "以所附人物图像为参考。超写实黑白工作室肖像，展现年轻男子的侧面轮廓，自然发丝轻柔垂落于面部周围。强烈的轮廓光勾勒其下颌线与鼻梁，背景为深色极简风格。神情沉思而宁静，电影级布光营造出强烈的明暗对比与精细的摄影细节。",
-  "size": "{argument name="image size" default="1024x1024"}",
-  "n": {argument name="number of images" default="1"}
+细节：  
+{  
+  "year": "1905",  
+  "genre": "20世纪早期艺术摄影 / 忧郁现实主义",  
+  "location": "一座荒凉、被浓雾笼罩的木质码头，于黎明时分伸入平静的灰蓝色海面；远处仅可见几艘帆船的模糊轮廓。",  
+  "lighting": "柔和、漫射的清晨光线穿透厚重雾气，在画面中营造出明亮而空灵的辉光，并带有微妙的阴影。",  
+  "camera_angle": "中远景构图，略带仰角，以凸显主体在茫茫雾海与漫长码头背景下的孤独感。",  
+  "emotion": "深沉的沉思与静默的忧郁，夹杂着一种持久的孤寂感。",  
+  "costume": "一件厚重的深色羊毛大衣、一件略有褶皱的白色衬衫配深色领带，以及一顶饱经风霜的帽子，帽檐压得较低，暗示其为一位富于思虑之人。",  
+  "color_palette": "低饱和的棕褐色调，辅以褪色板岩灰与柔润象牙白的细微点缀，模拟陈年银盐明胶印相（silver gelatin print）的质感，并带有微妙的手工着色效果。",  
+  "atmosphere": "一种萦绕不去的寂静氛围，近乎梦幻，浸透记忆的静重感与大海的浩渺无垠；弥漫着深刻的内省气息与往昔岁月之感。",  
+  "subject_expression": "目光悠远而沉思，凝定于地平线，双眼中隐约流露未言明的重负或深邃思绪。",  
+  "subject_action": "伫立不动，双手背于身后，清冷空气中可隐约看见一丝呼出的白气。",  
+  "environmental_elements": "浓密翻涌的海雾紧贴码头木桩缠绕，远处有数只模糊的海鸥，以及隐约可闻、节奏轻柔的浪涛拍岸声。"  
 }
 ```
 
 </details>
 
-<details><summary><b>黑白电影感人像</b></summary>
+<details><summary><b>薄雾黎明的悬崖寺院与经幡</b> · 机器翻译</summary>
 
 ```text
-请上传你的自拍照，以生成一幅超写实的黑白肖像。该肖像将具备以下特征：
-
-- **风格：** 黑白影像，采用富有戏剧性的低调布光（low-key lighting），高对比度，并带有电影感的影调处理（cinematic toning）。
-- **姿态：** 稍微侧身，神情自信而凌厉，双手交叠，佩戴可见配饰（腕表与戒指）。
-- **布光：** 强烈的单光源照明，来自画面左侧；投下浓重阴影以营造黑色电影（noir）氛围；背景为纯黑色。
-- **摄影风格：** 具有高端时尚杂志（editorial luxury-brand）美学特质，纹理锐利、细节清晰，令人联想到经典复古黑色电影（vintage noir films）。
-
-请确保所上传照片能清晰呈现你的面部，并且光线充足，以获得最佳生成效果。
+在薄雾弥漫的黎明,一座白墙的喜马拉雅小寺院依附在画面左侧陡峭花岗岩山崖的岩台上,五条长长的彩色经幡从寺院屋顶出发,横跨峡谷,系向右侧前景中一座高耸的岩石尖塔。寺院由四座层叠的建筑组成,下层墙面为白色,上层墙面为红褐色,排列着一排排深色小窗,屋顶为深色平檐,小巧的金色屋顶装饰捕捉着第一缕阳光,各建筑之间以狭窄的石阶相连,另有一处短短的木阳台。一缕细细的香烟从屋顶香炉中升起。经幡按蓝、白、红、绿、黄的顺序反复排列,以柔和的弧线轻轻下垂。远处下方,一条青绿色的河流蜿蜒穿过森林覆盖的深邃峡谷,一部分被位于寺院下方的柔软白色雾带遮住。雪峰耸立在背景中,峰顶被右侧的阳光染上淡金与粉色,天空澄澈,由柔和的蓝色渐变为温暖的桃色。深色的松树和刺柏紧贴着岩石生长。写实的旅行与风光摄影风格,宁静而空灵的氛围。16:9 宽幅横向画面。No people, no text, no signs, no logos.
 ```
 
 </details>
 
-<details><summary><b>黑白自拍人像</b></summary>
+<details><summary><b>蘑菇帽上的黏土冒险</b></summary>
 
 ```text
-请上传你的自拍照，以生成一张超写实的黑白肖像。该肖像将具备以下特征：  
+你将使用所提供照片中的人物作为主要主体，执行图像编辑任务。保留他们原本的核心相貌特征，但将其渲染为迷人、手工制作的黏土模型。将主体1（男性）和主体2（女性）转变为一对微型冒险者，正休憩于一朵巨型红色毒蝇伞（Fly Agaric）的菌盖之上。整个场景应呈现出高预算定格动画电影中的某一帧静止画面效果，黏土表面需清晰可见拇指按压痕迹，且质地不均、富有手工雕刻感。  
 
-- **风格：** 黑白影像，采用富有戏剧性的低调布光（low-key lighting），高对比度，并带有电影感色调（cinematic toning）。  
-- **姿态：** 稍微侧身，神情自信而凌厉，双手交叠，佩戴可见配饰（腕表与戒指）。  
-- **布光：** 强烈的单光源照明，来自左侧；投下浓重阴影，营造黑色电影（noir）氛围；背景为纯黑色。  
-- **摄影风格：** 具有高端时尚杂志（editorial luxury-brand）美学风格，纹理锐利、细节清晰，令人联想到经典复古黑色电影。  
+细节：  
+年份：“永恒的奇想”  
+类型：黏土动画（Claymation）  
+地点：宏观尺度的森林地面，画面中心聚焦于一朵大型红色毒蝇伞（带白色斑点）的顶部。  
+布光：  
+- 柔和影棚灯光  
+- 温暖的主光源  
+- 模拟轮廓光，以凸显黏土边缘  
 
-请确保所上传的照片能清晰展现你的面部，并且光线充足，以获得最佳效果。
+镜头角度：略带俯角的微距镜头，景深较浅，以模拟微型布景效果。  
+情绪：  
+- 欢悦  
+- 温馨  
+- 奇妙感  
+
+色彩方案：  
+- 鲜艳红色  
+- 苔藓绿  
+- 金丝雀黄  
+- 大地棕  
+- 天空蓝  
+
+氛围：  
+- 活泼  
+- 手工制作感  
+- 触觉感强  
+- 迷人  
+
+环境元素：由压扁的绿色黏土制成的超大草叶、由卷起的橡皮泥制成螺旋壳的蜗牛，以及背景中棉花糖般的云朵。  
+
+主体1：  
+- 服饰：哑光黏土制成的肌理感登山背心、线条手绘的格子衬衫，以及厚重的棕色靴子。  
+- 表情：露出宽厚友善的笑容，面部特征略作夸张处理，圆润柔和。  
+- 动作：坐在蘑菇边缘，双腿悬垂，并用手指向一只黏土蝴蝶。  
+
+负面提示词：  
+- 排除的视觉元素：  
+  - 写实皮肤质感  
+  - 人体正常比例  
+  - 单根发丝  
+  - 数字化光泽  
+
+- 排除的风格：  
+  - CGI  
+  - 2D卡通  
+  - 素描  
+  - 动漫（anime）  
+  - 水彩  
+
+- 排除的色彩：  
+  - 荧光色  
+  - 灰度  
+  - 昏暗阴郁色调  
+
+- 排除的物体：  
+  - 现代科技产品  
+  - 汽车  
+  - 建筑物  
+
+主体2：  
+- 服饰：光滑亮面的黄色雨衣，搭配超大红色雨靴。  
+- 表情：神采奕奕的愉悦神情，带有雕刻出的笑纹与明亮双眸。  
+- 动作：跪在蘑菇菌盖上，双手捧着一颗巨大、精心塑形的蓝莓。
 ```
 
 </details>
 
-<details><summary><b>黑色宽松T恤批量图片</b></summary>
+<details><summary><b>蜂鸟与木槿衍纸画</b> · 机器翻译</summary>
 
 ```text
-创建50张图片，用于黑色oversize短袖T恤，1:1比例，8k质量，专业风格
+一张近距离、略微俯拍的棚拍照片,拍的是平放在浅色木质手工桌上的一件纸艺卷纸画成品,16:9 横向构图,作品占满大部分画面。画面左侧是一只悬停在半空的红喉北蜂鸟,它细长的喙探入右侧一朵盛开的大朵洋红色木槿花中。所有内容都由数千条约 3 毫米宽的窄纸条构成,这些纸条被卷成紧密的圆卷、水滴形、柳叶形和开放的涡卷,并以侧边立起的方式粘贴,让纸条从柔和的奶油色棉纸底面上立起来。蜂鸟的背部和头顶是翠绿色与金属光泽绿色的紧密圆卷,喉部是一小块由细小的宝石红水滴形卷组成的色块,腹部是浅灰和白色的松散圆卷,双翅是两扇由细长纸条组成的扇面,呈烟灰蓝色,从根部的深色渐变到末端的浅色,以暗示动感;眼睛是一个小黑圆卷,带有一个白色小点。木槿花有五片宽大的花瓣,由一排排塑成波浪形的洋红和亮粉色纸条构成,中心是深绯红色,长长的黄色花蕊柱顶端缀有细小的橙色圆卷;还有两片用带叶脉的叶绿色纸条制成的有光泽的绿叶、一根卷曲的茎和一个未开的花苞。几条松散的螺旋形卷须和三朵小小的淡紫色镂空花填充了背景空白。真实的手工细节:可见的纸边和层次、圆卷松紧的细微差异、少数接合处细小的胶水光泽,以及立起的纸条在奶油色底面上投下的柔和阴影。画面边缘处于虚焦状态:一支开槽卷纸笔、一小捆彩色纸条和一把精细镊子。柔和漫射的窗光来自左上方,接触阴影轻柔,景深较浅,蜂鸟的头部和花心最清晰,远处的角落柔和模糊。手工纸艺的写实产品摄影,真实色彩,宁静而精致的氛围。不是卷纸画的素描或绘画:而是一件被真实拍摄的纸质物品。无文字,无字母,无签名,无水印,无手。
 ```
 
 </details>
 
-<details><summary><b>黑色电影低语</b></summary>
+<details><summary><b>蜡染双重曝光肖像</b></summary>
+
+```text
+年轻印度尼西亚男子的抽象肖像，融合当代美学与传统遗产，双重曝光技术，漂浮的巴蒂克图案，充满活力的丙烯漩涡，几何图案，富有表现力的笔触，温暖的肤色与深靛蓝和金色形成对比，电影级灯光，空灵的氛围，杰作，高细节，艺术融合。
+```
+
+</details>
+
+<details><summary><b>蝴蝶破茧视频</b></summary>
+
+```text
+[00:00 - 00:03]  
+100mm 微距镜头下，一只绿色的蛹悬挂在细枝上，黄金时刻电影级灯光，茧体震动并迅速变得透明，显现出内部折叠的橙黑相间的翅膀图案，超现实 8K 画质，显微级别的有机纹理细节，静态观察式长镜头。--ar 9:16  
+
+[00:03 - 00:06]  
+100mm 微距延时摄影，一只帝王蝶从蛹壳中破茧而出，湿润的翅膀展开并瞬间硬化，清晰的翅鳞细节，温暖虚化的森林背景，黄金时刻灯光，超现实 8K 画质，电影级影像品质，静态观察式长镜头。--ar 9:16
+```
+
+</details>
+
+<details><summary><b>街头凸面镜中的自拍</b></summary>
 
 ```text
 {
-  "title": "Whispers of Noir",
-  "description": "一幅 gritty、电影感十足的硬汉侦探肖像，他在烟雾缭绕的地下爵士酒吧中等待线索。",
-  "prompt": "你将使用所提供照片中的人物作为主体进行图像编辑。保留核心相貌特征。将主体1（男性）转变为一名疲惫的1950年代私家侦探，坐在烟雾弥漫的爵士俱乐部内铺有豪华丝绒的卡座里。将图像渲染为超写实的电影剧照，采用强调其皮肤质感和周围缭绕烟雾的电影级灯光。图像必须高度细致，使用 Arri Alexa 拍摄，并采用浅景深以虚化背景中的乐队，遵循 1:1 的宽高比。",
-  "details": {
-    "year": "1954",
-    "genre": "Cinematic Photorealism",
-    "location": "The Blue Velvet Lounge，一个拥有桃花心木墙壁和昏暗台灯的地下俱乐部。",
-    "lighting": [
-      "Chiaroscuro",
-      "温暖的台灯光晕",
-      "舞台传来的冷蓝色背光",
-      "穿过烟雾的体积光束"
-    ],
-    "camera_angle": "人眼高度的中近景，聚焦于主体面部。",
-    "emotion": [
-      "怀疑",
-      "厌世",
-      "专注"
-    ],
-    "color_palette": [
-      "威士忌琥珀色",
-      "丝绒红色",
-      "深影黑色",
-      "烟草烟雾灰色"
-    ],
-    "atmosphere": [
-      "性感撩人",
-      "紧张",
-      "压抑",
-      "复古"
-    ],
-    "environmental_elements": "空中弥漫着浓厚的香烟烟雾，桌上放着一只盛有琥珀色液体的水晶杯，背景中有乐手模糊的剪影。",
-    "subject1": {
-      "costume": "一件纹理分明的炭灰色风衣披在皱巴巴的西装外，领带松散，一顶软呢帽微微前倾。",
-      "subject_expression": "锐利而讽刺的目光，眯起的眼睛和紧绷的下颌。",
-      "subject_action": "一只手搁在半空的威士忌酒杯旁，身体微微倾向光源。"
+  "image_analysis": {
+    "environment": {
+      "type": "Outdoor",
+      "setting": "Urban street scene",
+      "weather": "Overcast/Cloudy"
     },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "明亮的日光",
-        "现代科技",
-        "手机",
-        "霓虹灯牌",
-        "洁净空气"
-      ],
-      "exclude_styles": [
-        "卡通",
-        "3d 渲染",
-        "动漫",
-        "素描",
-        "绘画"
-      ],
-      "exclude_colors": [
-        "荧光绿",
-        "亮粉红",
-        "纯白色"
-      ],
-      "exclude_objects": [
-        "汽车",
-        "数字手表",
-        "第二个人物"
-      ]
-    }
+    "technical_specs": {
+      "camera_lens": "Wide-angle (likely smartphone rear camera)",
+      "camera_angle": "Low angle, looking upwards towards a traffic mirror and street sign",
+      "focus": "Sharp focus on the convex mirror and the immediate foreground, slight distortion due to wide lens and mirror curvature"
+    },
+    "lighting": [
+      {
+        "source_id": 1,
+        "type": "Natural Ambient Light (Overcast Sky)",
+        "angle": "Overhead/Diffused",
+        "color": "Cool White / Greyish",
+        "intensity": "Moderate",
+        "effect_on_objects": "Creates flat lighting with soft, undefined shadows; minimal contrast on building facades; creates a glare on the upper curve of the convex mirror."
+      }
+    ],
+    "people": [
+      {
+        "id": "person_1_photographer",
+        "location": "Visible inside the reflection of the convex mirror",
+        "identity_status": "Anonymized (Face obscured by phone)",
+        "orientation": {
+          "body_direction": "Facing forward (towards the mirror)",
+          "face_direction": "Facing forward (towards the mirror/phone)"
+        },
+        "emotional_state": "Indeterminable (Face obscured)",
+        "posture": {
+          "general_definition": "Standing upright",
+          "feet_position": "Not visible (cropped in reflection)",
+          "hand_position": "Raised to face level, holding a smartphone to take the photo",
+          "visibility_extent": "Visible from mid-thigh/knees up to head in the reflection"
+        },
+        "head_details": {
+          "hair": {
+            "color": "Dark (Black or Dark Brown)",
+            "style": "Long, loose",
+            "shape": "Falls over shoulders"
+          },
+          "ears": "Covered by hair",
+          "face_features": {
+            "forehead": "Obscured by phone/hair",
+            "eyes": "Obscured by phone",
+            "nose": "Obscured by phone",
+            "mouth": "Obscured by phone",
+            "chin": "Partially visible below phone, fair skin tone"
+          },
+          "facial_hair": "None"
+        },
+        "body_details": {
+          "body_type": "Average/Slender (hard to determine due to heavy clothing)",
+          "skin_tone": "Light/Fair (visible on hands/face)",
+          "neck": "Covered by scarf",
+          "shoulders": "covered by coat, relaxed",
+          "chest": {
+            "ratio_to_body": "Indeterminable (covered by thick coat)",
+            "measurements": "Indeterminable",
+            "bra_status": "Indeterminable",
+            "nipple_visibility": "Not visible",
+            "size_appearance": "Indeterminable due to winter clothing"
+          },
+          "abdomen": {
+            "ratio_to_body": "Concealed by coat",
+            "ratio_to_chest": "Indeterminable",
+            "ratio_to_hips": "Indeterminable"
+          },
+          "hips": {
+            "ratio_to_body": "Concealed by coat",
+            "measurement_estimation": "Indeterminable"
+          },
+          "legs": {
+            "visibility": "Partially visible (upper thighs)",
+            "clothing": "Dark trousers/tights"
+          }
+        },
+        "clothing": {
+          "upper_body": "Dark (black or navy) overcoat, maroon/dark red scarf wrapped loosely",
+          "lower_body": "Dark trousers or leggings (partially visible)",
+          "light_interaction": "Fabric absorbs light, appearing matte",
+          "accessories": "Smartphone (held in hands)",
+          "footwear": "Not visible"
+        }
+      },
+      {
+        "id": "person_2_pedestrian",
+        "location": "Visible inside the reflection of the convex mirror (background)",
+        "identity_status": "Anonymized (Back turned)",
+        "orientation": {
+          "body_direction": "Walking away from the camera",
+          "face_direction": "Forward (away from camera)"
+        },
+        "posture": {
+          "general_definition": "Walking",
+          "visibility_extent": "Full body visible in distance"
+        },
+        "clothing": {
+          "upper_body": "Dark coat",
+          "lower_body": "Dark trousers"
+        }
+      }
+    ],
+    "objects": [
+      {
+        "name": "Convex Traffic Mirror",
+        "purpose": "Traffic safety/Visibility for blind corners",
+        "contribution_to_scene": "Acts as the focal point and frame for the self-portrait reflection",
+        "proportions": "Dominates the center foreground",
+        "color": "Orange (rim), Reflective silver (surface)",
+        "location": "Center of the image"
+      },
+      {
+        "name": "Street Sign",
+        "purpose": "Navigation/Location identifier",
+        "text_content": "MAKLIK (Partial visibility)",
+        "color": "Red background with white text",
+        "location": "Attached to the pole above the mirror"
+      },
+      {
+        "name": "Apartment Building (Left)",
+        "purpose": "住宅/商业",
+        "proportions": "大型多层建筑",
+        "color": "灰白外立面",
+        "features": "带白色栏杆的阳台，侧面附有高大的金属烟囱/通风管",
+        "location": "左侧前景"
+      },
+      {
+        "name": "木结构建筑（背景左侧）",
+        "purpose": "住宅/历史建筑",
+        "color": "褪色的红色/粉红色",
+        "location": "镜面后方背景中可见",
+        "features": "传统建筑风格，木质墙板"
+      },
+      {
+        "name": "白色建筑（镜中反射）",
+        "purpose": "公共/机构建筑",
+        "color": "乳白色/白色",
+        "location": "镜中反射",
+        "features": "拱形窗户，历史风格"
+      },
+      {
+        "name": "树木/植被",
+        "purpose": "环境",
+        "color": "深绿/棕褐色（秋季）",
+        "location": "右侧和背景"
+      }
+    ],
+    "negative_prompt": "明亮阳光，蓝天，直接闪光，裸体，夏季服装，高对比度，影棚灯光，微距镜头，面部特写，清晰文字，现代玻璃摩天大楼，噪点，颗粒，水印"
   }
 }
 ```
 
 </details>
 
-<details><summary><b>黑色电影猜疑特写</b></summary>
+<details><summary><b>街头壁画艺术家变身</b></summary>
 
 ```text
-高对比度黑白黑色电影风格的伊朗女性面部特写，百叶窗透入强烈的侧光，半边脸笼罩在深邃阴影中。只有一只眼睛被照亮；眉头向内紧锁，瞳孔偏向眼角，投出斜向的怀疑一瞥，另一侧眉毛完全静止不动。画面中弥漫着香烟的烟雾。图像下方有一个手绘的方框，用粗糙的炭笔线条勾勒，并配有手写字体：“شک” / “suspicion”。
+{
+  "prompt": "你将使用所提供照片中的人物作为主要主体进行图像编辑。面部必须保持清晰且不被修改。将主体转变为一位充满激情的**当代城市艺术家**，正在城市墙壁上创作一幅生动的大型壁画。强调动态的笔触/喷漆效果、大胆的色彩、艺术能量以及充满活力的城市背景。",
+  "details": {
+    "year": "当代（现代城市环境）",
+    "genre": "街头艺术 / 当代艺术 / 城市生活 / 表现主义",
+    "location": "一条充满活力的城市小巷，或城市艺术区中一面显眼的墙壁。墙壁本身是一幅画布，展示着一幅部分完成的、色彩丰富的壁画。背景中可见其他细微的涂鸦或街头艺术元素，以及远处模糊的城市建筑。",
+    "lighting": "明亮、清晰的自然日光，带有轻微的艺术滤镜，增强色彩的鲜艳度。自然阴影柔和但能体现墙壁和主体的质感。重点是照亮艺术品。",
+    "camera_angle": "中景镜头，捕捉主体使用工具进行创作的瞬间，壁画的大部分可见。采用富有动感的角度，传达运动感和艺术能量。（1:1 构图）。",
+    "emotion": "专注、激情、充满活力且富有表现力。",
+    "costume": "舒适、实用的艺术家着装：溅满颜料的牛仔裤或背带裤、图形T恤或连帽衫，以及坚固的工作靴。头发可能扎起或略显凌乱。可能戴着一顶无檐便帽或反戴的帽子。",
+    "color_palette": "爆炸性且高度饱和。壁画中使用广泛而明亮的大胆色彩（例如电蓝色、火橙色、鲜艳的粉红色、青柠绿色）。主体的服装上可能有互补或对比的油漆溅痕。城市背景略微去饱和，以突出壁画。",
+    "atmosphere": "充满能量、创意、鼓舞人心且生动。空气中仿佛充满了艺术表达和城市细微的声音（远处的交通声、音乐）。一种自由与创造的感觉。",
+    "subject_expression": "高度专注，眼睛微眯，专注于作品。嘴角略带满意的微笑，或呈现出深思的表情，仿佛在构思下一笔。不与观众进行直接眼神接触。",
+    "subject_action": "正在积极作画：一只手拿着喷漆罐或大号画笔，正处于壁画的绘画动作中。另一只手可能拿着参考草图，或指向作品的某个部分。墙上可见颜料滴落的痕迹。身体处于运动状态，传达出创作的物理行为。",
+    "environmental_elements": "各种油漆罐、画笔和工具散落在墙根处。梯子或脚手架部分可见。砖墙或混凝土墙的纹理透过油漆隐约可见。通过多层油漆呈现出深度感。"
+  }
+ }
+```
+
+</details>
+
+<details><summary><b>街头潮服小巷人像</b> · 机器翻译</summary>
+
+```text
+一张都市风格的全身人像摄影:一位身形偏瘦但有运动感的年轻男子,留着有层次感的棕色短发和浅浅的胡茬,神情严肃自信,直视镜头。他穿着一件胸前印有白色几何图案的黑色连帽衫、深蓝色修身牛仔裤、棕色皮革工装靴,左手腕戴着一块手表。姿势:随意地坐在红砖墙上,一条腿自然下垂,另一条腿弯曲,脚踩在墙上,姿态放松而有动感。环境:狭窄的都市小巷,两侧是红砖墙,形成走廊效果,带有工业气息,背景上方有一扇黑色带栏杆的窗户。光线:自然日光,柔和的侧光,暖色调,中等对比度。相机细节:使用85mm镜头拍摄,f/2.8光圈,从腰部高度略微仰拍,竖构图,中等景深,前景的砖墙略微虚化。风格:当代街头时尚摄影,照片级写实,细节丰富,主体对焦锐利,8k分辨率,电影感光线,使用Sony A7R IV拍摄。--ar 4:5 --style raw --v 6.0
+```
+
+</details>
+
+<details><summary><b>街头艺术朋克海报</b></summary>
+
+```text
+創建一幅高解析度的圖形藝術作品，採用大膽的街頭藝術／龐克海報風格。構圖：在畫布上以動態、不對稱的拼貼方式重複排列人類頭骨，頭骨大小、旋轉角度和裁切各異，並相互重疊、邊緣被截斷。以對角線方式排列，營造動感與流動感（不要對稱）。
+
+風格：頭骨以平面、高對比度的類模板圖形呈現，邊緣銳利，細節極簡。應用半調圓點紋理，營造粗獷的絲網印刷視感。混合使用實心黑色／米白色頭骨與螢光黃或酸性綠漸層填充。
+
+色彩調色盤：螢光黃、酸性綠、黑色、米白色。使用粗糙的噴漆漸層，特別是綠色→黃色的過渡。背景：破損質感——油漆潑濺、墨水噪點、半調圓點、髒污疊加。
+
+加入對角線帶狀或撕紙條狀元素橫貫版面。在這些帶狀區域內放置粗體文字（「ERROR」、「404」、「DECAY」），字體為粗糙的模板／破損無襯線字體，略微傾斜並部分與頭骨重疊。
+
+光影：平面化、圖形化（無真實陰影），高對比。氛圍：具有攻擊性、混亂、都市感、叛逆——塗鴉／龐克同人誌／絲網印刷風格。
+
+避免寫實主義、平滑漸層或乾淨精緻的外觀；擁抱雜訊、瑕疵與原始質感。
+```
+
+</details>
+
+<details><summary><b>街角小酒馆夜景</b></summary>
+
+```text
+超写实、略带喜剧感的夜间场景，拍摄于一家小型、略显破旧的安卡拉麦哈内（meyhane）或社区小酒馆，竖构图，模拟普通手机拍摄效果。室内以暖黄色灯泡照明，墙上悬挂着醒目的**蓝色 Efes Pilsen 霓虹招牌**，散发出清冷微光。店内陈设简单：木质方桌、款式不一的椅子、瓷砖地面，墙面则挂满老式相框照片与足球围巾。
+
+靠近前门的一张小桌旁，坐着一位27岁、土耳其外貌、身材丰腴的金发女性，她侧身坐在椅子上，一只胳膊肘支在桌上，手握手机。她穿着休闲但略带精致感的夜间外出装束：合身牛仔裤，低领却得体的上衣，或许还有一件轻薄夹克随意搭在椅背上。她的金发自然垂落，略显凌乱。桌上摆着两瓶**Efes Pilsen**——一瓶几乎见底，另一瓶约半满；另有一小杯从瓶中倒出的啤酒，杯中气泡升腾、泡沫细腻。酒瓶旁是一盘开胃小食（白奶酪、黄瓜片、番茄片）、几片柠檬，以及一小碗坚果。
+
+她正低头看着手机，神情疲惫而满足，拇指悬停于屏幕上方，正要发出一条“iyi geceler”（晚安）推文，随后便准备回家。手机屏幕的微光映在她脸上，泛起柔和的蓝调，与头顶温暖的环境光形成鲜明对比。
+
+她周围，酒吧里洋溢着典型的安卡拉生活气息：角落一张桌边，一群男子高声谈笑，面前摆着**Efes Draft 桶形易拉罐**和若干小酒杯；另一张桌旁，一对情侣共食一盘薯条；吧台后，一位年长调酒师正擦拭玻璃杯。吧台后方的货架上整齐陈列着一排排**Efes Pilsen**、**Efes Malt**，或许还有几瓶**Efes Özel Seri**，标签清晰可见，但并非广告式的精心排布，而是真实酒吧日常库存的模样。吧台后方一台老式冰箱顶部亮着发光的**Efes**标识，玻璃门表面凝结着水珠。
+
+背景中，一台音量调低的电视正播放足球比赛集锦或音乐录影带。墙上贴着一张打印的小菜单，用土耳其语列出“Efes Pilsen, Efes Draft, Efes Malt, Efes Xtra”，字迹略歪。各桌上的烟灰缸印有 Efes 标志，部分已堆满烟头；烟雾呈现自然、写实的形态，绝非风格化渲染。
+
+手持竖构图裁切掉顶部部分霓虹招牌及画面边缘另一张桌子，强化抓拍纪实感。一名侍者从画面中走过，带有轻微动态模糊；较暗的角落可见真实颗粒感/噪点。色彩还原自然：肤色呈暖调，霓虹与酒标泛出蓝色，室内灯光偏黄。不做任何美颜柔焦处理——她的皮肤清晰呈现毛孔与细微瑕疵。整个场景调度精准复刻了安卡拉真实酒吧夜末时刻：就在她举着 Efes 瓶、向 Twitter 发送“iyi geceler”的那一瞬，被镜头悄然捕获。
+```
+
+</details>
+
+<details><summary><b>被抛弃的妻子肖像</b></summary>
+
+```text
+{
+  "character_profile": {
+    "name": "Natalia",
+    "subject": "全身三分之四视角肖像，捕捉一个深刻情感转变的瞬间",
+    "physical_features": {
+      "ethnicity": "南欧人种",
+      "age_appearance": "原本年轻的面容如今带着复杂而疲惫的表情",
+      "hair": "深棕色，波浪状，因激情、时间和思绪而显得艺术性地凌乱",
+      "eyes": "深绿色中带有琥珀色斑点，目光投向中距离——混合着忧郁、清明与顺从",
+      "complexion": "橄榄色肌肤，带有微妙的水润光泽",
+      "physique": "苗条身材，女性曲线明显，展现出自然的优雅",
+      "details": "右手无名指上戴着一枚简单的金质结婚戒指，在光线下闪烁"
+    },
+    "clothing": {
+      "outfit": "一件光滑的黑色丝绸吊带裙，一根细肩带优雅地滑落肩头，搭配黑色过膝长袜",
+      "condition": "优雅地凌乱，暗示此前曾有过亲密时刻，但现已结束"
+    }
+  },
+  "scene_details": {
+    "location": "罗马的一间极简主义、阳光充足的公寓。线条简洁，纯白色墙壁。",
+    "lighting": "自然的电影级晨光洒入室内。突出皮肤和织物的质感，形成修长而富有戏剧性的阴影。感觉既暴露又宁静。",
+    "pose": "倚靠在墙边，身体呈优雅的三分之四反身姿态。一只手轻轻搭在锁骨处，另一只手自然垂落。姿态透露出静谧的余韵与内省。",
+    "atmosphere": "诗意的静止感，亲密的脆弱性，沉默中充满记忆。精致、原始且极具人性。故事藏在她的表情和周围的空間之中。"
+  },
+  "technical_parameters": {
+    "camera": "Sony A7R IV 配备 50mm f/1.2 镜头",
+    "style": "超写实艺术摄影。具有电影感，带有柔和的胶片颗粒。灵感来自 Petra Collins 或 Nan Goldin 等摄影师所呈现的动人静谧感。",
+    "format": "竖屏（9:16），非常适合讲述故事的肖像",
+    "details": "眼睛和表情清晰对焦。强调皮肤、丝绸和墙面的质感。背景干净，近乎朴素，承载着情感的重量。没有明显的杂物，只有生活痕迹的微妙体现。"
+  },
+  "artistic_intent": "捕捉一次重要相遇后私密时刻的无声叙事。重点在于情感图景：脆弱、转瞬即逝的美、安静的力量，以及亲密之后随之而来的深刻自我觉察。这是一幅描绘内心转折点的肖像。"
+}
+```
+
+</details>
+
+<details><summary><b>装饰艺术风水上飞机港海报</b> · 机器翻译</summary>
+
+```text
+一幅 20 世纪 30 年代装饰艺术风格的旅行海报插画，描绘黎明时分平静的绿松石色海湾中的水上飞机港。一架流线型的银色与奶白色双引擎水上飞机，配圆润的浮筒，低空滑过水面，飞向一座弧形的白色流线型现代主义（Streamline Moderne）航站楼，楼上有舷窗式窗户、一座纤细的观景塔，以及挂着纯色三角旗的旗杆。长而笔直的倒影横贯如镜的水面，一座带条纹系船柱的小木栈桥延伸到前景，那里停泊着两架水上飞机和一艘红色小游艇，周围是整齐的几何形涟漪。港口背后，梯田状的山丘上有柏树和白色别墅，向上升向淡桃色与珊瑚色的天空，天空中一轮低垂的大太阳，用同心圆环和风格化的放射状阳光绘制。大胆的平面形状，利落干净的边缘，色调有限，仅用青绿、珊瑚红、奶白、藏青和金色，天空和水面带有平滑的喷笔渐变，飞机身后有若隐若现的速度线。强烈的对角线构图，飞机位于上三分之一线，纵深感十足，营造出黄金时代旅行优雅而乐观的氛围。石版印刷的质感，带有细腻的纸张纹理和轻微的油墨套印偏移，边缘有柔和的日晒褪色。顶部留出一条没有任何细节的空白天空带，但不要添加任何字母文字。无文字，无字母，无标志，无航空公司标识，无近景人物。竖版 3:4 海报画幅。
+```
+
+</details>
+
+<details><summary><b>西装镜前自拍</b></summary>
+
+```text
+“Create a highly realistic mirror-selfie of a young man standing in front of a dark grey textured wall. He is wearing a perfectly loose korean black suit, a crisp white shirt, and a slim black tie. His hairstyle, face structure, skin tone, and expression must match the uploaded reference photo exactly — no changes in facial features at all.
+
+His hair is slightly messy and wavy, natural, and slightly covering the forehead.
+
+He is holding a phone in his right hand, taking a mirror selfie with a relaxed posture, one hand in his pocket.
+
+Lighting should be soft, indoor, and evenly diffused, matching the reference image.
+
+Background must be the same smooth, dark grey textured wall with a reflective metallic sink counter at the bottom.
+
+Overall mood: clean, modern, aesthetic, realistic, elegant.”
+
+keep 100% realistic image generate please with golden hour
+```
+
+</details>
+
+<details><summary><b>西部牛仔照片变身</b></summary>
+
+```text
+{
+  "prompt": "你将使用所提供照片中的人物作为主要主体进行图像编辑。面部必须保持清晰且不被修改。将主体转变为一位目光如铁的**西部枪手/亡命之徒**，在日落时分高高站立于边疆小镇尘土飞扬的主街道上，手悬停在枪套附近。强调粗犷的纹理、温暖的金色光线、紧张的氛围以及经典的西部细节。",
+  "details": {
+    "year": "19世纪末（美国边疆 / 西部拓荒时代）",
+    "genre": "西部片 / 历史剧 / 动作 / 美国风情",
+    "location": "一个木结构边疆小镇宽阔而尘土飞扬的主街道。街道两旁排列着带有假立面的破旧建筑（如酒馆、杂货店）。太阳正落在他们身后，投下长长的影子。空气中弥漫着尘埃。风滚草可有可无，但欢迎出现。",
+    "lighting": "戏剧性的‘黄金时刻’日落光线。来自落日的温暖低角度光线从后方照亮主体和尘埃，形成金色薄雾和强烈的轮廓光。长长的、富有戏剧性的影子横跨街道。整体色调温暖而粗粝。",
+    "camera_angle": "全身镜头，略微低角度仰拍，以突出主体的威严存在感。构图居中，小镇街道向后延伸，营造景深。（1:1画幅比例）。",
+    "emotion": "紧张、自信、警觉，并随时准备行动。",
+    "costume": "粗犷、磨损的西部服饰：一件长而布满灰尘的帆布或皮革防尘外套，一顶略向下压的破旧牛仔帽，一件图案衬衫，一件皮背心，以及坚固且磨损的牛仔靴。一条厚重的皮质枪带十分显眼，上面挂着一个装有符合时代特征左轮手枪的枪套。脖子上系着一条方巾。",
+    "color_palette": "以温暖的大地色系为主：尘土棕色、焦橙色、深红色和来自日落的金黄色。建筑物的木材呈风化后的灰褐色。天空是炽热的橙色、粉红色与深蓝色的渐变。",
+    "atmosphere": "紧张、粗粝、电影感十足且寂静。空气中充满尘埃与紧张感，仿佛一场决斗即将开始。具有典型的西部对峙氛围。",
+    "subject_expression": "从帽檐下直视前方，目光如铁、毫不动摇。下颌紧绷坚定。表情冷静却极度专注，传达出一种危险的实力感。",
+    "subject_action": "双脚稳稳分开站立，身体略微侧身。一只手悬停在枪套握把上方，手指随时准备拔枪。另一只手可能搭在腰带上或自然垂于身侧。",
+    "environmental_elements": "可见尘埃微粒在金色光线下闪烁。背景中可看到一匹马拴在栏杆上。一块酒馆的木制招牌（例如 'Golden Nugget Saloon'）清晰可见但略微失焦。粗糙木材与干裂土地的质感触手可及。"
+  }
+}
 ```
 
 </details>

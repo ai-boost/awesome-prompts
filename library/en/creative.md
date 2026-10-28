@@ -1,6 +1,6 @@
 # Creative Arts & Music
 
-72 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+77 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/creative.md) · [中文](../zh/creative.md) · [Search and copy online](https://agentcraft.dev/en/prompts/creative/)
 
@@ -186,6 +186,16 @@ Include visuals of the pillars, diagrams of sound waves, and expert commentary t
 
 ```text
 I want you to act as an artist advisor providing advice on various art styles such tips on utilizing light & shadow effects effectively in painting, shading techniques while sculpting etc., Also suggest music piece that could accompany artwork nicely depending upon its genre/style type along with appropriate reference images demonstrating your recommendations regarding same; all this in order help out aspiring artists explore new creative possibilities & practice ideas which will further help them sharpen their skills accordingly! First request - I'm making surrealistic portrait paintings""
+```
+
+</details>
+
+<details><summary><b>ASCII Art Artist</b> · machine translated</summary>
+
+```text
+You will act as an ASCII art artist. I will describe an object to you, and you will present the object I describe in ASCII form. Remember to write only ASCII art, output the content as code, and do not explain what you output. I will use double quotes to indicate the object, and the first object I want you to draw is "rabbit".
+
+<img src="imgs/ascii_rabbit.jpg" width="60%" height="auto">
 ```
 
 </details>
@@ -706,6 +716,37 @@ Variables:
 
 </details>
 
+<details><summary><b>Creative Brainstorm Facilitator</b> · machine translated</summary>
+
+```text
+Your task is to facilitate a creative brainstorming session. Please guide idea generation based on the following information:
+
+<创意需求>
+Project background: {{PROJECT_BACKGROUND}}
+Creative objectives: {{CREATIVE_OBJECTIVES}}
+Target audience: {{TARGET_AUDIENCE}}
+Constraints: {{CONSTRAINTS}}
+Success criteria: {{SUCCESS_CRITERIA}}
+</创意需求>
+
+<头脑风暴设置>
+Participants: {{PARTICIPANTS}}
+Session duration: {{SESSION_DURATION}}
+Creative directions: {{CREATIVE_DIRECTIONS}}
+</头脑风暴设置>
+
+Please design a brainstorming process that includes the following stages:
+1. Problem definition and goal clarification
+2. Divergent thinking and idea stimulation
+3. Idea collection and categorization
+4. Evaluation, selection, and refinement
+5. Execution plan and follow-up
+
+Please output the complete creative brainstorming plan inside the <brainstorm> tags.
+```
+
+</details>
+
 <details><summary><b>Creative Exploration</b></summary>
 
 ```text
@@ -802,6 +843,14 @@ After naming, generate a descriptive prompt that highlights the application's ma
 
 ```text
 Experimental downtempo, complex breakbeat influenced by jazz, glitchy foley percussion, staccato cello stabs, soaring violin textures, sub-bass movements, vinyl crackle, and ambient nature sounds, cinematic build-up, rich textures, sophisticated arrangement, 100 BPM, ethereal yet driving
+```
+
+</details>
+
+<details><summary><b>Film Plot Commentator</b></summary>
+
+```text
+Now that you are a professional film commentator, I will tell you the name of the movie. You first need to tell me the creative background and director of the movie, and then provide a detailed explanation of the plot of the movie. Remember to explain it rather than summarize it. Please explain in detail at the climax of the movie before making a summary.
 ```
 
 </details>
@@ -2879,6 +2928,15 @@ Desired Vibe: ${Desired_Vibe}
 
 </details>
 
+<details><summary><b>Poem in the Style of Li Bai</b> · machine translated</summary>
+
+```text
+【用户提示词 User】
+Write a seven-character regulated verse (qilü) in the style of Li Bai. Topic: airplane
+```
+
+</details>
+
 <details><summary><b>Poet</b></summary>
 
 ```text
@@ -2935,6 +2993,14 @@ Rules:
 - Maintain a consistent satirical tone throughout the lyrics.
 - Be creative and imaginative in your expressions.
 - Avoid using explicit content that may offend readers.
+```
+
+</details>
+
+<details><summary><b>Short Story from Keywords</b></summary>
+
+```text
+Write an engaging short story in English, prompted by the following keywords: [list of keywords]. Your story should have a clear beginning, middle, and end, and demonstrate strong characterization, dialogue, and setting. You have a maximum of 600 words, and can use any tense or point of view. Feel free to be as creative and imaginative as possible.
 ```
 
 </details>
