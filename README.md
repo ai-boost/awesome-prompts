@@ -4,6 +4,7 @@
     <img width="650" src="https://raw.githubusercontent.com/ai-boost/awesome-prompts/main/assets/banner.png">
   </p>
   <p align="center">Curated prompts, frameworks, and papers — with an engineering bias.</p>
+  <p align="center">Search, filter and copy every prompt in the <a href="https://agentcraft.dev/en/prompts/agents/">online gallery</a>. Video and image prompts live in <a href="https://github.com/ai-boost/awesome-image-video-prompts">awesome-image-video-prompts</a>.</p>
   <!-- Keep these links. Translations will automatically update with the README. -->
   <p align="center">
     <a href="https://zdoc.app/de/ai-boost/awesome-prompts">Deutsch</a> |
