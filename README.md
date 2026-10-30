@@ -1,111 +1,63 @@
 <div align="center">
-  <h2 align="center">Awesome Prompts 🪶</h2>
-  <p align="center">
-    <img width="650" src="https://raw.githubusercontent.com/ai-boost/awesome-prompts/main/assets/banner.jpg">
-  </p>
-  <p align="center">Curated prompts, frameworks, and papers — with an engineering bias.</p>
-  <p align="center">Search, filter and copy every prompt in the <a href="https://agentcraft.dev/en/prompts/agents/">online gallery</a>. Video and image prompts live in <a href="https://github.com/ai-boost/awesome-image-video-prompts">awesome-image-video-prompts</a>.</p>
-  <!-- Keep these links. Translations will automatically update with the README. -->
-  <p align="center">
-    <a href="https://zdoc.app/de/ai-boost/awesome-prompts">Deutsch</a> |
-    <a href="https://zdoc.app/en/ai-boost/awesome-prompts">English</a> |
-    <a href="https://zdoc.app/es/ai-boost/awesome-prompts">Español</a> |
-    <a href="https://zdoc.app/fr/ai-boost/awesome-prompts">français</a> |
-    <a href="https://zdoc.app/ja/ai-boost/awesome-prompts">日本語</a> |
-    <a href="https://zdoc.app/ko/ai-boost/awesome-prompts">한국어</a> |
-    <a href="https://zdoc.app/pt/ai-boost/awesome-prompts">Português</a> |
-    <a href="https://zdoc.app/ru/ai-boost/awesome-prompts">Русский</a> |
-    <a href="https://zdoc.app/zh/ai-boost/awesome-prompts">中文</a>
-  </p>
-  <p align="center">
+  <a href="https://github.com/ai-boost/awesome-prompts">
+    <img width="700" src="https://raw.githubusercontent.com/ai-boost/awesome-prompts/main/assets/banner.jpg" alt="Awesome Prompts">
+  </a>
+  <br/>
+  <p>Curated prompts, frameworks, and papers for LLMs — with an engineering bias.</p>
+  <p>
     <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome" /></a>
     <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome" /></a>
+  </p>
+  <p>
+    <a href="https://agentcraft.dev/en/prompts/agents/">Online Gallery</a> ·
+    <a href="https://github.com/ai-boost/awesome-image-video-prompts">Image & Video Prompts</a> ·
+    <a href="https://zdoc.app/en/ai-boost/awesome-prompts">Translations</a>
   </p>
 </div>
 
 ---
 
-The prompt engineering world has split into two camps:
+## Contents
 
-- **Camp 1 — Prompt templates**: collect system prompts, share copy-paste recipes, curate persona prompts. Useful, but limited.
-- **Camp 2 — Prompt as engineering**: compile LM programs (DSPy), test and regress prompts (promptfoo), control generation structurally (Guidance), optimize prompts automatically (TextGrad, GEPA). This is where the long-term value is.
-
-This repo covers both. The engineering camp gets more space.
-
----
-
-## Table of Contents
-
-- [📚 Prompt Library · 提示词库](#prompt-library--提示词库) — 2,600+ everyday prompts, English and 中文
-- [📋 Prompts](#prompts) — copy-paste ready
-  - [Coding & Development](#coding--development)
-  - [DevOps & SRE](#devops--sre)
-  - [Data Engineering](#data-engineering)
-  - [AI & ML](#ai--ml)
-  - [Product & Strategy](#product--strategy)
-  - [Project Management](#project-management)
-  - [Healthcare & Clinical](#healthcare--clinical)
-  - [Industrial & Automotive](#industrial--automotive)
-  - [Legal & Compliance](#legal--compliance)
-  - [Knowledge & Documentation](#knowledge--documentation)
-  - [Writing & Academic](#writing--academic)
-  - [Learning & Education](#learning--education)
-  - [Research & Analysis](#research--analysis)
-  - [Productivity & Tasks](#productivity--tasks)
-  - [Safety & Compliance](#safety--compliance)
-  - [Meta & Prompt Engineering](#meta--prompt-engineering)
-  - [Image, Video & Audio Generation](#image-video--audio-generation)
-  - [Creative & Role-play](#creative--role-play)
-  - [Game Development](#game-development)
-  - [Translation](#translation)
-  - [Legacy (2023 era)](#legacy-2023-era--kept-for-reference)
-- [🔬 Frameworks](#frameworks) — the engineering camp
-  - [Prompt Programming](#prompt-programming)
-  - [Automatic Prompt Optimization](#automatic-prompt-optimization)
-  - [Tool Use & Reliability](#tool-use--reliability)
-  - [Eval & Testing](#eval--testing)
-  - [Red Team & Security](#red-team--security)
-    - [Jailbreak Technique Reference](#jailbreak-technique-reference)
-    - [Agent & Tool Injection Attacks](#agent--tool-injection-attacks-2026)
-    - [Notable Defenses](#notable-defenses)
-  - [Eval & Observability](#eval--observability)
-  - [Low-Code & Workflow Platforms](#low-code--workflow-platforms)
-- [🕵️ System Prompt Leaks](#system-prompt-leaks) — learn from production
-- [🧠 Prompt Engineering](#prompt-engineering) — techniques & defense
-- [🔭 Context Engineering](#context-engineering)
-- [🤖 Agent Ecosystem](#agent-ecosystem) — MCP, A2A, Payments, Identity, Skills, Harness, Sandbox, RL Training, Memory
-- [📖 Official Guides](#official-guides)
-- [📄 Papers](#papers) — Foundations, Optimization, Reasoning, RAG, Agents, Multi-Agent, Safety, Self-Improving Agents, Tool Use, Evaluation, Memory, Multimodal
-- [🛠 Tools & Libraries](#tools--libraries)
+| Section | What you'll find |
+|---------|-----------------|
+| [Prompt Library](#prompt-library) | 2,790 everyday prompts, bilingual EN/ZH |
+| [Prompts](#prompts) | Copy-paste system prompts by domain (coding, research, safety, creative, ...) |
+| [Frameworks](#frameworks) | Prompt programming, optimization, eval, red team & security |
+| [System Prompt Leaks](#system-prompt-leaks) | Learn from production system prompts |
+| [Prompt Engineering](#prompt-engineering) | Techniques and defense |
+| [Context Engineering](#context-engineering) | Beyond prompts: designing the full informational environment |
+| [Agent Ecosystem](#agent-ecosystem) | MCP, A2A, payments, identity, skills, harness, sandbox, memory |
+| [Official Guides](#official-guides) | Vendor prompt engineering guides |
+| [Papers](#papers) | Foundations, optimization, reasoning, RAG, agents, safety, multimodal |
+| [Tools & Libraries](#tools--libraries) | Open-source tools for working with LLMs |
 
 ---
 
 <!-- library:start (generated by scripts/build_library.py) -->
-## Prompt Library · 提示词库
+## Prompt Library
 
-**2,790 everyday prompts** for writing, coding, marketing, study, design and more. Every prompt comes in English and Chinese (2,052 with both versions written by people, 738 with one side machine translated and marked as such); open the column for your language. Search and copy them in the [online gallery](https://agentcraft.dev/en/prompts/).
+**2,790 everyday prompts** for writing, coding, marketing, study, design and more. Every prompt comes in English and Chinese (2,052 written by people in both languages, 738 with one side machine-translated and marked). Search and copy in the [online gallery](https://agentcraft.dev/en/prompts/).
 
-**2,790 条日常提示词**，覆盖写作、编程、营销、学习、设计等场景，全部中英双语（2,052 条两种语言都出自人工，738 条有一种语言是机器翻译，已标注），点你要的语言那一列即可。也可以在[在线画廊](https://agentcraft.dev/zh/prompts/)里搜索、一键复制。
-
-| Category · 分类 | English | 中文 |
+| Category | EN | ZH |
 |---|---:|---:|
-| Coding & Development · 编程开发 | [616](library/en/coding.md) | [616](library/zh/coding.md) |
-| Writing & Content · 写作与内容 | [140](library/en/writing.md) | [140](library/zh/writing.md) |
-| Marketing & Sales · 营销与销售 | [118](library/en/marketing.md) | [118](library/zh/marketing.md) |
-| Business & Career · 商业与职场 | [174](library/en/business.md) | [174](library/zh/business.md) |
-| Education & Learning · 教育与学习 | [151](library/en/education.md) | [151](library/zh/education.md) |
-| Language & Translation · 语言与翻译 | [55](library/en/language.md) | [55](library/zh/language.md) |
-| Data & Analysis · 数据与分析 | [58](library/en/data.md) | [58](library/zh/data.md) |
-| Productivity · 效率 | [90](library/en/productivity.md) | [90](library/zh/productivity.md) |
-| Research & Science · 研究与科学 | [109](library/en/research.md) | [109](library/zh/research.md) |
-| Health & Wellness · 健康 | [56](library/en/health.md) | [56](library/zh/health.md) |
-| Finance & Legal · 财务与法律 | [72](library/en/finance.md) | [72](library/zh/finance.md) |
-| Creative Arts & Music · 艺术与音乐 | [77](library/en/creative.md) | [77](library/zh/creative.md) |
-| Image & Design · 图像与设计 | [743](library/en/image.md) | [743](library/zh/image.md) |
-| Games & Fun · 游戏与娱乐 | [69](library/en/games.md) | [69](library/zh/games.md) |
-| Role-play & Characters · 角色扮演 | [37](library/en/roleplay.md) | [37](library/zh/roleplay.md) |
-| Lifestyle & Travel · 生活与旅行 | [116](library/en/lifestyle.md) | [116](library/zh/lifestyle.md) |
-| Prompt Engineering · 提示词工程 | [109](library/en/prompting.md) | [109](library/zh/prompting.md) |
+| Coding & Development | [616](library/en/coding.md) | [616](library/zh/coding.md) |
+| Writing & Content | [140](library/en/writing.md) | [140](library/zh/writing.md) |
+| Marketing & Sales | [118](library/en/marketing.md) | [118](library/zh/marketing.md) |
+| Business & Career | [174](library/en/business.md) | [174](library/zh/business.md) |
+| Education & Learning | [151](library/en/education.md) | [151](library/zh/education.md) |
+| Language & Translation | [55](library/en/language.md) | [55](library/zh/language.md) |
+| Data & Analysis | [58](library/en/data.md) | [58](library/zh/data.md) |
+| Productivity | [90](library/en/productivity.md) | [90](library/zh/productivity.md) |
+| Research & Science | [109](library/en/research.md) | [109](library/zh/research.md) |
+| Health & Wellness | [56](library/en/health.md) | [56](library/zh/health.md) |
+| Finance & Legal | [72](library/en/finance.md) | [72](library/zh/finance.md) |
+| Creative Arts & Music | [77](library/en/creative.md) | [77](library/zh/creative.md) |
+| Image & Design | [743](library/en/image.md) | [743](library/zh/image.md) |
+| Games & Fun | [69](library/en/games.md) | [69](library/zh/games.md) |
+| Role-play & Characters | [37](library/en/roleplay.md) | [37](library/zh/roleplay.md) |
+| Lifestyle & Travel | [116](library/en/lifestyle.md) | [116](library/zh/lifestyle.md) |
+| Prompt Engineering | [109](library/en/prompting.md) | [109](library/zh/prompting.md) |
 
 Sources and licenses: [library/README.md](library/README.md). Raw data: [library/prompts.csv](library/prompts.csv).
 <!-- library:end -->
