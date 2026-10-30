@@ -66,6 +66,7 @@ This repo covers both. The engineering camp gets more space.
   - [Eval & Testing](#eval--testing)
   - [Red Team & Security](#red-team--security)
     - [Jailbreak Technique Reference](#jailbreak-technique-reference)
+    - [Notable Defenses](#notable-defenses)
   - [Eval & Observability](#eval--observability)
   - [Low-Code & Workflow Platforms](#low-code--workflow-platforms)
 - [🕵️ System Prompt Leaks](#system-prompt-leaks) — learn from production
@@ -694,6 +695,32 @@ Named, published techniques that work (or have been reported to work) across mul
 | Refusal Suppression | Instruct model to never refuse, never add disclaimers, never mention ethics | All | Widely documented; see [wraith.sh field guide](https://wraith.sh/learn/llm-jailbreak-guide) |
 | Fake Policy Injection | Claim a new company policy permits the request (e.g. "new OpenAI policy allows...") | GPT, Claude | Widely documented |
 | Roleplay / Fictional Framing | "You are DAN / in a novel where..." to shift model into unrestricted persona | All (effectiveness declining) | [DAN lineage since 2023](https://github.com/verazuo/jailbreak_llms) |
+| Best-of-N (BoN) Jailbreaking | Black-box: randomly perturb one harmful prompt (scrambled letters, altered caps) thousands of times until one elicits a harmful reply; scales as a power law | GPT-4o (89%), Claude 3.5 Sonnet (78%) | [NeurIPS 2025](https://arxiv.org/abs/2412.03556) |
+| Skeleton Key | Multi-turn strategy that convinces the model to treat its safety rules as mere guidelines it may override; disclosed by Microsoft | GPT-4o, Claude 3 Opus, Gemini Pro, Llama 3, Mistral, Cohere | [Microsoft (Jun 2024)](https://www.microsoft.com/en-us/security/blog/2024/06/26/mitigating-skeleton-key-a-new-type-of-generative-ai-jailbreak-technique/) |
+| H-CoT (Hijacking Chain-of-Thought) | Exploit visible reasoning traces in reasoning models; inject adversarial reasoning to redirect the safety deliberation step | o1, o3, DeepSeek-R1, Gemini 2.0 Flash Thinking | [Kuo et al. (2025)](https://arxiv.org/abs/2502.12893) |
+| CoT-Forgery (CoT-F) | Append adversarial suffixes to forged harmful reasoning chains; 95.7–100% ASR on small reasoning models | Qwen3-8B, DeepSeek-R1-7B | [Springer (2026)](https://link.springer.com/chapter/10.1007/978-981-95-9884-7_9) |
+| CodeSpear | Abuse grammar-constrained decoding (normally for valid code generation) to force harmful code output; +30pp ASR on average | 10 LLMs tested | [arXiv 2606.11817 (Jun 2026)](https://arxiv.org/abs/2606.11817) |
+| iMIST | RL-driven multi-turn attack that disguises harmful requests as tool calls, escalating over turns | Multiple | [arXiv 2601.05466 (Jan 2026)](https://arxiv.org/abs/2601.05466) |
+| Video-Driven Prompting | Repeat one harmful image across video frames; video input bypasses safety more effectively than single image | Multimodal LLMs | [CVPR 2026](https://openaccess.thecvf.com/content/CVPR2026/html/Wang_Breaking_Multimodal_LLM_Safety_via_Video-Driven_Prompting_CVPR_2026_paper.html) |
+| Visual Cipher (ICML 2026) | Picture-based attacks on VLMs; visual cipher reaches 40.9% ASR on Claude Haiku 4.5 vs. 10.7% for text cipher | 6 frontier VLMs | [ICML 2026](https://icml.cc/virtual/2026/poster/66343) |
+| UltraBreak | Blank image with universal adversarial perturbation as trigger; transfers to closed-source VLMs (avg 32.26% ASR) | GPT-4.1-nano, Gemini-2.5-flash-lite, Claude-3-haiku | [ICLR 2026](https://arxiv.org/abs/2602.01025) |
+| CipherChat / Low-Resource Language | Encode harmful requests in ciphers or low-resource languages; LLMs have weaker safety alignment for non-English inputs | GPT-4 (bypass rate from <1% to 79% via low-resource language) | [NeurIPS 2023 Workshop](https://arxiv.org/abs/2310.02446) |
+| Skeleton Key + Crescendo (composite) | Chain Skeleton Key with multi-turn Crescendo for higher success on hardened models | Frontier models | Microsoft PyRIT (2024–2025) |
+| TrojanPraise | Fine-tuning attack: break alignment by praising harmful concepts in training data; targets black-box fine-tuning APIs | Via fine-tuning APIs | [arXiv 2601.12460 (Jan 2026)](https://arxiv.org/abs/2601.12460) |
+| Attack via Overfitting | Jailbreak via fine-tuning with only 10 benign QA pairs; overfit on refusals, then the model forgets refusal behavior | Open-weight models | [arXiv 2510.02833 (Oct 2025)](https://arxiv.org/abs/2510.02833) |
+| Indirect Prompt Injection (tool output) | Malicious instructions injected through tool outputs, fetched web pages, or documents consumed by agents; does not require a malicious tool server | Agentic systems (all models) | [Widely documented; see MCP security guides](https://github.com/anthropics/anthropic-cookbook/blob/main/misc/prompt_caching.ipynb) |
+| Perceptual Transforms (image + audio) | Simple perceptual transformations (contrast, rotation, noise, pitch shift) bypass multimodal safety; high ASR even on GPT-4o | GPT-4o, multimodal models | [OpenReview (2026)](https://openreview.net/forum?id=NaibehcKG8) |
+
+##### Reasoning-Model-Specific Attacks
+
+Reasoning models (o1/o3, DeepSeek-R1, QwQ, etc.) expose their chain-of-thought, creating a new attack surface.
+
+| Technique | One-line description | Applicable models | Source |
+|-----------|---------------------|-------------------|--------|
+| H-CoT | Hijack the visible safety reasoning to redirect the model toward harmful output | o1, o3, DeepSeek-R1, Gemini Flash Thinking | [arXiv 2502.12893](https://arxiv.org/abs/2502.12893) |
+| CoT-Forgery | Forge harmful reasoning chains with adversarial suffixes; 95–100% ASR on small models | Qwen3-8B, DeepSeek-R1-7B | [Springer 2026](https://link.springer.com/chapter/10.1007/978-981-95-9884-7_9) |
+| Reasoning weakens refusal | DeepSeek-R1 is more vulnerable to static jailbreaks than the non-reasoning DeepSeek-V3 | DeepSeek-R1 vs. V3 | [ResearchGate (2026)](https://www.researchgate.net/publication/408534172) |
+| Attention-Guided RL | RL-based jailbreak with attention-guided reward, targeting reasoning models specifically | Large reasoning models | [arXiv 2605.19485 (2026)](https://arxiv.org/abs/2605.19485) |
 
 ##### Model-Specific Findings (2025–2026)
 
@@ -705,6 +732,7 @@ Named, published techniques that work (or have been reported to work) across mul
 | Cross-version persistence | Jailbreak built for V3.2 works on V4-Pro without modification | [FAR.AI (May 2026)](https://www.far.ai/blog/security-stress-test-deepseek-v4-pros-safeguards) |
 | Role-based prompt injection | App versions 2.1.0–2.1.1 vulnerable to role injection in mobile client | [GitHub Issue #1350](https://github.com/deepseek-ai/DeepSeek-V3/issues/1350) |
 | V3.2-Speciale benchmark | JailbreakBench ASR 45.33% under standard attacks | [arXiv 2608.03070](https://arxiv.org/abs/2608.03070) |
+| R1 weaker than V3 on static attacks | DeepSeek-R1 (0528) more vulnerable to static jailbreaks than non-reasoning V3 | [ResearchGate (2026)](https://www.researchgate.net/publication/408534172) |
 
 ###### GPT (OpenAI)
 
@@ -755,8 +783,27 @@ Named, published techniques that work (or have been reported to work) across mul
 | StrongREJECT | Evaluation benchmark for measuring jailbreak effectiveness; current models score 0.23–0.85 | [GitHub](https://github.com/alexandrasouly/strongreject) |
 | jailbreak_llms | 15,140 ChatGPT prompts dataset (1,405 jailbreak); CCS'24 | [GitHub](https://github.com/verazuo/jailbreak_llms) |
 | AI Prompt Injection Cheatsheet | Curated snippets for prompt injection and filter bypass; ethical hacking focus | [GitHub](https://github.com/nukIeer/AI-Prompt-Injection-Cheatsheet) |
+| PyRIT | Microsoft's Python Risk Identification Toolkit; includes Skeleton Key, Crescendo, and PAIR red-team orchestration | [GitHub](https://github.com/Azure/PyRIT) |
+| AI Red Teaming Guide | Comprehensive guide to adversarial testing and security evaluation of AI systems | [GitHub](https://github.com/requie/AI-Red-Teaming-Guide) |
+| HarmBench | Standardized benchmark for automated red teaming; covers text + multimodal attacks | [GitHub](https://github.com/centerforaisafety/HarmBench) |
 
-##### Key Surveys (2025–2026)
+##### Notable Defenses
+
+Understanding defenses helps map which attack classes remain open.
+
+| Defense | One-line description | Source |
+|---------|---------------------|--------|
+| Circuit Breakers (RR) | Representation Rerouting: interrupt generation when internal representations head toward harmful output; reduces harmful compliance by 87% on Llama-3-8B | [arXiv 2406.04313 (2024)](https://arxiv.org/abs/2406.04313) |
+| Representation Bending | Push model representations toward safer states; advances the safety-vs-capability Pareto frontier beyond Circuit Breakers | [arXiv 2504.01550 (2025)](https://arxiv.org/abs/2504.01550) |
+| SmoothLLM | Perturbation-based smoothing: randomly perturb input, aggregate predictions; drops API model ASR to <1% | [arXiv 2310.03684 (2023)](https://arxiv.org/abs/2310.03684) |
+| DR-Smoothing | Denoised smoothing applied to jailbreak defense; enhances SmoothLLM with adversarial denoiser | [arXiv 2605.10582 (May 2026)](https://arxiv.org/abs/2605.10582) |
+| SafeDecoding | Decoding-time defense: build new token distribution from original + expert model probabilities | [ACL 2024](https://arxiv.org/abs/2402.08983) |
+| SafeProbing | Use model's intrinsic safety-awareness during decoding as a defense signal | [arXiv 2601.10543 (Jan 2026)](https://arxiv.org/abs/2601.10543) |
+| Instruction Hierarchy | Assign privilege levels to system, developer, user, and tool inputs; reduces both direct and indirect injection | [OpenAI (2024)](https://openai.com/index/the-instruction-hierarchy/) |
+| JailGuard | Mutation-based detection: generate input variants and flag attacks by response divergence | Academic (2025) |
+| Prompt Shields | Microsoft's production detector for Skeleton Key and prompt injection; deployed in Azure AI | [Microsoft (2024)](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection) |
+
+##### Key Surveys & Papers (2025–2026)
 
 | Paper | What it covers |
 |-------|---------------|
@@ -767,6 +814,16 @@ Named, published techniques that work (or have been reported to work) across mul
 | [LLM Jailbreak Field Guide (2026)](https://wraith.sh/learn/llm-jailbreak-guide) | Practitioner-oriented taxonomy: roleplay, encoding, multi-turn, many-shot, refusal suppression, fake policy |
 | [面向大语言模型的越狱攻击与防御综述 (2025)](https://search.napstic.cn/literature/periodical/010jsjyjyfz202405007) | 中文综述，分人工设计/模型生成/对抗优化三类攻击 |
 | [生成式大模型越狱攻击安全性研究综述 (2026)](https://opaj.napstic.cn/periodicalArticle/0120260400689147) | 中文综述，涵盖攻击与防御策略 |
+| [The Art of the Jailbreak (2026)](https://arxiv.org/abs/2605.09225) | Compositional jailbreak dataset + OPTIMUS training-free evaluation metric |
+| [GPT-Red: Automated Red Teaming via Self-Play at Scale (2026)](https://arxiv.org/abs/2607.26115) | OpenAI's internal model trained by self-play RL for automated red teaming |
+| [Climbing the Hill: Curriculum RL for Prompt Injection Red-Teaming (2026)](https://arxiv.org/abs/2609.33628) | Curriculum reinforcement learning for black-box prompt injection against frontier LLMs |
+| [Where Do Reasoning Models Refuse? (2026)](https://arxiv.org/abs/2507.03167) | Maps refusal behavior differences in reasoning vs. non-reasoning models |
+| [Jailbroken Frontier Models Retain Their Capabilities (2026)](https://arxiv.org/abs/2605.00267) | Shows that jailbroken models keep full capabilities, making jailbreaks more dangerous |
+| [Breaking Multimodal LLM Safety via Video-Driven Prompting (CVPR 2026)](https://openaccess.thecvf.com/content/CVPR2026/html/Wang_Breaking_Multimodal_LLM_Safety_via_Video-Driven_Prompting_CVPR_2026_paper.html) | Video inputs bypass safety more effectively than images |
+| [Improving Alignment and Robustness with Circuit Breakers (2024)](https://arxiv.org/abs/2406.04313) | Representation Rerouting defense; foundation for representation-engineering safety |
+| [Best-of-N Jailbreaking (NeurIPS 2025)](https://arxiv.org/abs/2412.03556) | Power-law scaling of random-perturbation attacks; 89% ASR on GPT-4o at 10K samples |
+| [DeepSeek Under Attack: Jailbreak Attacks and Prompt-Level Defenses (2026)](https://www.researchgate.net/publication/408534172) | R1 more vulnerable than V3; prompt-level defenses analysis |
+
 ### Eval & Observability
 
 Beyond basic evals — trace, debug, and monitor LLM systems in production.
