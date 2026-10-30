@@ -2,7 +2,7 @@
 
 共 118 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/marketing.md) · [中文](../zh/marketing.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/marketing/)
+[English](../en/marketing.md) · [中文](../zh/marketing.md)
 
 <details><summary><b>30 条加密推文策略</b></summary>
 

@@ -2,7 +2,7 @@
 
 共 174 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/business.md) · [中文](../zh/business.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/business/)
+[English](../en/business.md) · [中文](../zh/business.md)
 
 分页：[1](business.md) · **2**
 

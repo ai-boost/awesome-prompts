@@ -2,7 +2,7 @@
 
 共 69 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/games.md) · [中文](../zh/games.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/games/)
+[English](../en/games.md) · [中文](../zh/games.md)
 
 <details><summary><b>2046 数字益智游戏</b></summary>
 

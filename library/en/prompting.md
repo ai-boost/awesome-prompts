@@ -2,7 +2,7 @@
 
 109 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/prompting.md) · [中文](../zh/prompting.md) · [Search and copy online](https://agentcraft.dev/en/prompts/prompting/)
+[English](../en/prompting.md) · [中文](../zh/prompting.md)
 
 Pages: **1** · [2](prompting-2.md)
 

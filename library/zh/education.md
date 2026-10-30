@@ -2,7 +2,7 @@
 
 共 151 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/education.md) · [中文](../zh/education.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/education/)
+[English](../en/education.md) · [中文](../zh/education.md)
 
 <details><summary><b>12个月AI与计算机视觉路线图</b></summary>
 

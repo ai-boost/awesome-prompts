@@ -2,7 +2,7 @@
 
 共 58 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/data.md) · [中文](../zh/data.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/data/)
+[English](../en/data.md) · [中文](../zh/data.md)
 
 <details><summary><b>AI数据提取与整理工具</b></summary>
 

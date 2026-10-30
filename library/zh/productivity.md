@@ -2,7 +2,7 @@
 
 共 90 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/productivity.md) · [中文](../zh/productivity.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/productivity/)
+[English](../en/productivity.md) · [中文](../zh/productivity.md)
 
 <details><summary><b>15页大学演示文稿制作</b></summary>
 

@@ -2,7 +2,7 @@
 
 56 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/health.md) · [中文](../zh/health.md) · [Search and copy online](https://agentcraft.dev/en/prompts/health/)
+[English](../en/health.md) · [中文](../zh/health.md)
 
 <details><summary><b>7 Day Vegan Meal Plan, 1700 Calories</b></summary>
 

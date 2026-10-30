@@ -2,7 +2,7 @@
 
 174 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/business.md) · [中文](../zh/business.md) · [Search and copy online](https://agentcraft.dev/en/prompts/business/)
+[English](../en/business.md) · [中文](../zh/business.md)
 
 Pages: **1** · [2](business-2.md)
 

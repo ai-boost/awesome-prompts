@@ -2,7 +2,7 @@
 
 116 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/lifestyle.md) · [中文](../zh/lifestyle.md) · [Search and copy online](https://agentcraft.dev/en/prompts/lifestyle/)
+[English](../en/lifestyle.md) · [中文](../zh/lifestyle.md)
 
 Pages: [1](lifestyle.md) · **2**
 

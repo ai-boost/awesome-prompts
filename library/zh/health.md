@@ -2,7 +2,7 @@
 
 共 56 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/health.md) · [中文](../zh/health.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/health/)
+[English](../en/health.md) · [中文](../zh/health.md)
 
 <details><summary><b>1700卡路里七日纯素食谱</b></summary>
 

@@ -2,7 +2,7 @@
 
 151 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/education.md) · [中文](../zh/education.md) · [Search and copy online](https://agentcraft.dev/en/prompts/education/)
+[English](../en/education.md) · [中文](../zh/education.md)
 
 <details><summary><b>12 Month AI and Computer Vision Roadmap</b></summary>
 

@@ -2,7 +2,7 @@
 
 118 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/marketing.md) · [中文](../zh/marketing.md) · [Search and copy online](https://agentcraft.dev/en/prompts/marketing/)
+[English](../en/marketing.md) · [中文](../zh/marketing.md)
 
 <details><summary><b>30 Tweet Crypto Content Strategy</b></summary>
 

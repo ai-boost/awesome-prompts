@@ -2,7 +2,7 @@
 
 37 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/roleplay.md) · [中文](../zh/roleplay.md) · [Search and copy online](https://agentcraft.dev/en/prompts/roleplay/)
+[English](../en/roleplay.md) · [中文](../zh/roleplay.md)
 
 <details><summary><b>Act Like a Character</b></summary>
 

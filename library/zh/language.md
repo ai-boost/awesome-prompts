@@ -2,7 +2,7 @@
 
 共 55 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/language.md) · [中文](../zh/language.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/language/)
+[English](../en/language.md) · [中文](../zh/language.md)
 
 <details><summary><b>iOS本地化文件翻译</b></summary>
 

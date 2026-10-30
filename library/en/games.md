@@ -2,7 +2,7 @@
 
 69 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/games.md) · [中文](../zh/games.md) · [Search and copy online](https://agentcraft.dev/en/prompts/games/)
+[English](../en/games.md) · [中文](../zh/games.md)
 
 <details><summary><b>2046 Puzzle Game Challenge</b></summary>
 

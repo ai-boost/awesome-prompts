@@ -2,7 +2,7 @@
 
 90 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/productivity.md) · [中文](../zh/productivity.md) · [Search and copy online](https://agentcraft.dev/en/prompts/productivity/)
+[English](../en/productivity.md) · [中文](../zh/productivity.md)
 
 <details><summary><b>15 Slide College Presentation Maker</b></summary>
 

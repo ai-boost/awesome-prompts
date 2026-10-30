@@ -2,7 +2,7 @@
 
 共 72 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/finance.md) · [中文](../zh/finance.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/finance/)
+[English](../en/finance.md) · [中文](../zh/finance.md)
 
 <details><summary><b>AI股票投资助手</b></summary>
 

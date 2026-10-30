@@ -214,14 +214,12 @@ def write_md(rows):
                 size += len(b.encode())
             pages.append(cur)
             name = en if lang == "en" else zh
-            online = (f"https://agentcraft.dev/en/prompts/{key}/" if lang == "en" else f"https://agentcraft.dev/zh/prompts/{key}/")
             for n, page in enumerate(pages, 1):
                 nav = " · ".join(f"[{i}]({page_name(key, i)})" if i != n else f"**{i}**" for i in range(1, len(pages) + 1))
                 head = [f"# {name}" + (f" ({n}/{len(pages)})" if len(pages) > 1 else ""), "",
                         (f"{len(items)} prompts. Copy one, replace anything in brackets, and paste it into any chat model."
                          if lang == "en" else f"共 {len(items)} 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。"),
-                        "", f"[English](../en/{key}.md) · [中文](../zh/{key}.md) · "
-                        + (f"[Search and copy online]({online})" if lang == "en" else f"[在线搜索复制]({online})"), ""]
+                        "", f"[English](../en/{key}.md) · [中文](../zh/{key}.md)", ""]
                 if len(pages) > 1:
                     head += [("Pages: " if lang == "en" else "分页：") + nav, ""]
                 (d / page_name(key, n)).write_text("\n".join(head) + "\n" + "\n".join(page), encoding="utf-8")
@@ -242,9 +240,9 @@ def write_readmes(rows, skipped):
         "## Prompt Library · 提示词库", "",
         f"**{len(rows):,} everyday prompts** for writing, coding, marketing, study, design and more. "
         f"Every prompt comes in English and Chinese ({human:,} with both versions written by people, {mt:,} with one side machine translated and marked as such); open the column for your language. "
-        "Search and copy them in the [online gallery](https://agentcraft.dev/en/prompts/).", "",
+        "Looking for skills that extend Claude Code instead? See the [Claude Code skills directory](https://agentcraft.dev/en/skills/).", "",
         f"**{len(rows):,} 条日常提示词**，覆盖写作、编程、营销、学习、设计等场景，全部中英双语"
-        f"（{human:,} 条两种语言都出自人工，{mt:,} 条有一种语言是机器翻译，已标注），点你要的语言那一列即可。也可以在[在线画廊](https://agentcraft.dev/zh/prompts/)里搜索、一键复制。", "",
+        f"（{human:,} 条两种语言都出自人工，{mt:,} 条有一种语言是机器翻译，已标注），点你要的语言那一列即可。想给 Claude Code 装 skills，可以看 [Claude Code skills 目录](https://agentcraft.dev/zh/skills/)。", "",
         *table, "",
         "Sources and licenses: [library/README.md](library/README.md). Raw data: [library/prompts.csv](library/prompts.csv).",
         "<!-- library:end -->",

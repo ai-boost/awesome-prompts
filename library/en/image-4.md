@@ -2,7 +2,7 @@
 
 743 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/image.md) · [中文](../zh/image.md) · [Search and copy online](https://agentcraft.dev/en/prompts/image/)
+[English](../en/image.md) · [中文](../zh/image.md)
 
 Pages: [1](image.md) · [2](image-2.md) · [3](image-3.md) · **4**
 

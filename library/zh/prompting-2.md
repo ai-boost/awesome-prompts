@@ -2,7 +2,7 @@
 
 共 109 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/prompting.md) · [中文](../zh/prompting.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/prompting/)
+[English](../en/prompting.md) · [中文](../zh/prompting.md)
 
 分页：[1](prompting.md) · **2**
 

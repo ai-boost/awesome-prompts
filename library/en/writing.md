@@ -2,7 +2,7 @@
 
 140 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/writing.md) · [中文](../zh/writing.md) · [Search and copy online](https://agentcraft.dev/en/prompts/writing/)
+[English](../en/writing.md) · [中文](../zh/writing.md)
 
 <details><summary><b>100 Word Summary</b></summary>
 

@@ -2,7 +2,7 @@
 
 109 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/research.md) · [中文](../zh/research.md) · [Search and copy online](https://agentcraft.dev/en/prompts/research/)
+[English](../en/research.md) · [中文](../zh/research.md)
 
 <details><summary><b>Academic Paper Figure Generator</b></summary>
 

@@ -2,7 +2,7 @@
 
 共 743 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/image.md) · [中文](../zh/image.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/image/)
+[English](../en/image.md) · [中文](../zh/image.md)
 
 分页：**1** · [2](image-2.md) · [3](image-3.md) · [4](image-4.md)
 

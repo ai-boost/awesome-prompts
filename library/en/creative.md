@@ -2,7 +2,7 @@
 
 77 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/creative.md) · [中文](../zh/creative.md) · [Search and copy online](https://agentcraft.dev/en/prompts/creative/)
+[English](../en/creative.md) · [中文](../zh/creative.md)
 
 <details><summary><b>1940s Village Life AI Video</b></summary>
 

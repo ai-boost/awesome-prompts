@@ -2,7 +2,7 @@
 
 共 140 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/writing.md) · [中文](../zh/writing.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/writing/)
+[English](../en/writing.md) · [中文](../zh/writing.md)
 
 <details><summary><b>AI文本人性化改写</b> · 机器翻译</summary>
 

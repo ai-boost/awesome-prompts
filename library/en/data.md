@@ -2,7 +2,7 @@
 
 58 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/data.md) · [中文](../zh/data.md) · [Search and copy online](https://agentcraft.dev/en/prompts/data/)
+[English](../en/data.md) · [中文](../zh/data.md)
 
 <details><summary><b>AI Data Extraction and Organization Tool</b></summary>
 

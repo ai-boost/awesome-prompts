@@ -2,7 +2,7 @@
 
 共 616 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/coding.md) · [中文](../zh/coding.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/coding/)
+[English](../en/coding.md) · [中文](../zh/coding.md)
 
 分页：[1](coding.md) · **2** · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md)
 

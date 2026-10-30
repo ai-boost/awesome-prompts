@@ -2,7 +2,7 @@
 
 共 116 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/lifestyle.md) · [中文](../zh/lifestyle.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/lifestyle/)
+[English](../en/lifestyle.md) · [中文](../zh/lifestyle.md)
 
 分页：**1** · [2](lifestyle-2.md)
 

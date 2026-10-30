@@ -2,7 +2,7 @@
 
 55 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/language.md) · [中文](../zh/language.md) · [Search and copy online](https://agentcraft.dev/en/prompts/language/)
+[English](../en/language.md) · [中文](../zh/language.md)
 
 <details><summary><b>Arabic Translation Dictionary</b></summary>
 

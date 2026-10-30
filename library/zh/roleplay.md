@@ -2,7 +2,7 @@
 
 共 37 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/roleplay.md) · [中文](../zh/roleplay.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/roleplay/)
+[English](../en/roleplay.md) · [中文](../zh/roleplay.md)
 
 <details><summary><b>AI角色创建指南</b></summary>
 

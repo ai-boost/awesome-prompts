@@ -2,7 +2,7 @@
 
 616 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
-[English](../en/coding.md) · [中文](../zh/coding.md) · [Search and copy online](https://agentcraft.dev/en/prompts/coding/)
+[English](../en/coding.md) · [中文](../zh/coding.md)
 
 Pages: **1** · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md)
 

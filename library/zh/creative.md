@@ -2,7 +2,7 @@
 
 共 77 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
-[English](../en/creative.md) · [中文](../zh/creative.md) · [在线搜索复制](https://agentcraft.dev/zh/prompts/creative/)
+[English](../en/creative.md) · [中文](../zh/creative.md)
 
 <details><summary><b>1940年代乡村生活视频</b></summary>
 
