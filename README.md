@@ -11,6 +11,7 @@
   <p>
     <a href="https://agentcraft.dev/en/prompts/agents/">Online Gallery</a> ·
     <a href="https://github.com/ai-boost/awesome-image-video-prompts">Image & Video Prompts</a> ·
+    <a href="https://huggingface.co/datasets/Adrian2016/awesome-prompts">Hugging Face Dataset</a> ·
     <a href="https://zdoc.app/en/ai-boost/awesome-prompts">Translations</a>
   </p>
 </div>

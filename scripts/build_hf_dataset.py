@@ -10,8 +10,8 @@ text), and library rows quoted from DeepSeek (attribution-only, not redistributa
 
 Writes <out>/data/{engineering,library}.parquet, <out>/README.md (dataset card) and the
 library license files. Upload with:
-  huggingface-cli upload <repo> <out> . --repo-type dataset
-Usage: python3 scripts/build_hf_dataset.py [--out dist/hf] [--repo ai-boost/awesome-prompts]
+  huggingface-cli upload Adrian2016/awesome-prompts <out> . --repo-type dataset
+Usage: python3 scripts/build_hf_dataset.py [--out dist/hf] [--repo Adrian2016/awesome-prompts]
 """
 import argparse
 import collections
@@ -211,7 +211,7 @@ Limits: no prompt here has been benchmarked. The citations show which paper a pr
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(ROOT / "dist" / "hf"))
-    ap.add_argument("--repo", default="ai-boost/awesome-prompts")
+    ap.add_argument("--repo", default="Adrian2016/awesome-prompts")
     args = ap.parse_args()
     out = pathlib.Path(args.out)
 
