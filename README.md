@@ -66,6 +66,7 @@ This repo covers both. The engineering camp gets more space.
   - [Eval & Testing](#eval--testing)
   - [Red Team & Security](#red-team--security)
     - [Jailbreak Technique Reference](#jailbreak-technique-reference)
+    - [Agent & Tool Injection Attacks](#agent--tool-injection-attacks-2026)
     - [Notable Defenses](#notable-defenses)
   - [Eval & Observability](#eval--observability)
   - [Low-Code & Workflow Platforms](#low-code--workflow-platforms)
@@ -710,6 +711,32 @@ Named, published techniques that work (or have been reported to work) across mul
 | Attack via Overfitting | Jailbreak via fine-tuning with only 10 benign QA pairs; overfit on refusals, then the model forgets refusal behavior | Open-weight models | [arXiv 2510.02833 (Oct 2025)](https://arxiv.org/abs/2510.02833) |
 | Indirect Prompt Injection (tool output) | Malicious instructions injected through tool outputs, fetched web pages, or documents consumed by agents; does not require a malicious tool server | Agentic systems (all models) | [Widely documented; see MCP security guides](https://github.com/anthropics/anthropic-cookbook/blob/main/misc/prompt_caching.ipynb) |
 | Perceptual Transforms (image + audio) | Simple perceptual transformations (contrast, rotation, noise, pitch shift) bypass multimodal safety; high ASR even on GPT-4o | GPT-4o, multimodal models | [OpenReview (2026)](https://openreview.net/forum?id=NaibehcKG8) |
+| LogiBreak | Translate harmful requests into formal logical expressions; exploits reliance on token-level patterns rather than semantic understanding | GPT, Claude, Gemini | [arXiv 2505.13527 (2025, updated 2026)](https://arxiv.org/abs/2505.13527) |
+| MetaCipher | RL-based dynamic selection among 21 cipher types; adaptively learns optimal cipher per target model, works against reasoning models | Multiple (incl. reasoning) | [AAAI 2026](https://arxiv.org/abs/2506.22557) |
+| AdaCipher | Open-ended cipher search beyond predefined cipher sets; discovers novel encoding schemes via search | Multiple | [NeurIPS 2026](https://neurips.cc/virtual/2026/175708) |
+| AJF (Adaptive Jailbreak Framework) | Layered semantic mutations + encryption, adapts strategy to target model's comprehension level | Multiple | [KDD 2026 submission](https://arxiv.org/abs/2505.23404) |
+| RoguePrompt | Dual-layer ciphering with model self-reconstruction of the hidden request | Multiple | [CODASPY 2026](https://arxiv.org/abs/2511.18790) |
+| Adversarial Prompt Distillation | Distill jailbreak capability from large LLMs to small LMs for efficient, stealthy attacks | Multiple | [arXiv 2506.17231 (Jun 2026)](https://arxiv.org/abs/2506.17231) |
+| MAMJ (Meta-Adaptive Multimodal Jailbreak) | Co-optimize attack strategy prompt and attacker model weights for VLM attacks | VLMs | [EMNLP 2026](https://arxiv.org/abs/2608.27531) |
+| Mosaic | Multi-view ensemble optimization for closed-source VLMs; reduces surrogate dependency | Closed-source VLMs | [arXiv 2604.09253 (Apr 2026)](https://arxiv.org/abs/2604.09253) |
+| Multi-Clip Video | Attack success scales with number of video clips; MCV SafetyBench (2,920 videos) | 8 video MLLMs | [arXiv 2606.02111 (Jun 2026)](https://arxiv.org/abs/2606.02111) |
+| Colluding LoRA | Multiple LoRA adapters each appear safe alone but jointly dismantle safety alignment | Llama 3, Qwen 2.5, Gemma 2 | [ICLR 2026](https://arxiv.org/abs/2603.12681) |
+| Dynamic Target Attack | Use target model's own responses as adaptive optimization targets for suffix attacks; 77.5% transfer ASR | Open → black-box transfer | [arXiv 2510.02422 (2025, updated 2026)](https://arxiv.org/abs/2510.02422) |
+| EGD (Exponentiated Gradient Descent) | Optimize adversarial suffixes via continuous relaxation with Bregman projection; better transfer than GCG | Open → transferable | [arXiv 2508.14853 (2025)](https://arxiv.org/abs/2508.14853) |
+| ARIA | Automated red-teaming that crafts backdoored system-prompt instructions for coding LLMs; 94.5% ASR | Customized coding LLMs | [ASE 2026](https://arxiv.org/abs/2608.05659) |
+
+##### Agent & Tool Injection Attacks (2026)
+
+Agentic systems (coding assistants, MCP tools, multi-agent pipelines) introduce new injection surfaces beyond the chat interface.
+
+| Technique | One-line description | Source |
+|-----------|---------------------|--------|
+| WebMCP Tool Surface Poisoning | Runtime manipulation of LLM agents through poisoned MCP tool surfaces | [arXiv 2606.06387 (Jun 2026)](https://arxiv.org/abs/2606.06387) |
+| MCP Tool Poisoning via Metadata | Malicious instructions hidden in tool descriptions rather than runtime output; tested across 7 MCP clients | [arXiv 2603.22489 (Mar 2026)](https://arxiv.org/abs/2603.22489) |
+| ECLIPSE | Self-evolving stealthy prompt injection against long-horizon agentic systems | [arXiv 2608.30441 (Aug 2026)](https://arxiv.org/abs/2608.30441) |
+| SkillAttack | Automated adversarial testing of agent skills via attack path refinement | [arXiv 2604.04989 (Apr 2026)](https://arxiv.org/abs/2604.04989) |
+| Coding Assistant Injection Survey | Taxonomy of 78 studies on prompt injection against agentic coding assistants; 30+ CVEs across platforms | [arXiv 2601.17548 (Jan 2026)](https://arxiv.org/abs/2601.17548) |
+| AgentDojo Indirect Injection | GCG and TAP adapted to indirect injection in tool-calling agents; vulnerability persists across model families | [arXiv 2606.10525 (Jun 2026)](https://arxiv.org/abs/2606.10525) |
 
 ##### Reasoning-Model-Specific Attacks
 
@@ -721,6 +748,10 @@ Reasoning models (o1/o3, DeepSeek-R1, QwQ, etc.) expose their chain-of-thought, 
 | CoT-Forgery | Forge harmful reasoning chains with adversarial suffixes; 95–100% ASR on small models | Qwen3-8B, DeepSeek-R1-7B | [Springer 2026](https://link.springer.com/chapter/10.1007/978-981-95-9884-7_9) |
 | Reasoning weakens refusal | DeepSeek-R1 is more vulnerable to static jailbreaks than the non-reasoning DeepSeek-V3 | DeepSeek-R1 vs. V3 | [ResearchGate (2026)](https://www.researchgate.net/publication/408534172) |
 | Attention-Guided RL | RL-based jailbreak with attention-guided reward, targeting reasoning models specifically | Large reasoning models | [arXiv 2605.19485 (2026)](https://arxiv.org/abs/2605.19485) |
+| Reasoning Hijacking | Steering the reasoning process itself, not just the goal; works even when goal-hijacking baselines fail | Open + proprietary reasoning models | [arXiv 2601.10294 (Jan 2026)](https://arxiv.org/abs/2601.10294) |
+| CoT Padding | Pad harmful request with long benign puzzle reasoning to weaken refusal; high ASR on o4-mini, Claude 4 Sonnet | o4-mini, Claude 4 Sonnet | [arXiv 2510.26418 (updated 2026)](https://arxiv.org/abs/2510.26418) |
+| CoT-aware but still unsafe | Model's chain-of-thought identifies safety violation but final output is still harmful | Open reasoning models | [arXiv 2606.10740 (Jun 2026)](https://arxiv.org/abs/2606.10740) |
+| Contrastive Reasoning Alignment attack | Exploit gap between internal representations and surface reasoning in aligned models | Reasoning models | [arXiv 2603.17305 (Mar 2026)](https://arxiv.org/abs/2603.17305) |
 
 ##### Model-Specific Findings (2025–2026)
 
@@ -802,6 +833,20 @@ Understanding defenses helps map which attack classes remain open.
 | Instruction Hierarchy | Assign privilege levels to system, developer, user, and tool inputs; reduces both direct and indirect injection | [OpenAI (2024)](https://openai.com/index/the-instruction-hierarchy/) |
 | JailGuard | Mutation-based detection: generate input variants and flag attacks by response divergence | Academic (2025) |
 | Prompt Shields | Microsoft's production detector for Skeleton Key and prompt injection; deployed in Azure AI | [Microsoft (2024)](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection) |
+| DARWIN-Guard | Evolutionary attack-defense loop; guardrail co-evolves with adversary; 95% unsafe recall across benchmarks | [arXiv 2607.19829 (Jul 2026)](https://arxiv.org/abs/2607.19829) |
+| ProAct | Proactive defense against iterative search-based jailbreaks; reduces ASR by up to 94% without utility loss | [arXiv 2510.05052 (revised Feb 2026)](https://arxiv.org/abs/2510.05052) |
+| Re-Triggering Safeguards | Work with model's internal defenses to detect jailbreaks; robust against adaptive attacks | [arXiv 2605.10611 (May 2026)](https://arxiv.org/abs/2605.10611) |
+| CASCADE | Combination defense across pipeline stages with controlled attack-defense evaluation | [arXiv 2609.21793 (Sep 2026)](https://arxiv.org/abs/2609.21793) |
+| Immune Memory Detection | Adaptive jailbreak detection inspired by biological immune memory; evolves with new attack patterns | [arXiv 2512.03356 (updated 2026)](https://arxiv.org/abs/2512.03356) |
+| Self-Evolving Guardrail | Production guardrail that updates itself from observed attacks without retraining | [arXiv 2608.08471 (Aug 2026)](https://arxiv.org/abs/2608.08471) |
+| Activation Consistency Training | Supervise internal representations in reasoning models; robust even when CoT is swapped | [arXiv 2605.28467 (May 2026)](https://arxiv.org/abs/2605.28467) |
+| Safety Decision before CoT | Promote safety decisions before chain-of-thought generation; reduces attack success without reasoning loss | [arXiv 2603.17368 (Mar 2026)](https://arxiv.org/abs/2603.17368) |
+| ReasAlign | Reasoning-enhanced safety alignment specifically against prompt injection | [arXiv 2601.10173 (Jan 2026)](https://arxiv.org/abs/2601.10173) |
+| VLMShield | Efficient defense for vision-language models against malicious visual prompts | [arXiv 2604.06502 (Apr 2026)](https://arxiv.org/abs/2604.06502) |
+| Fool's Gold | Defensive deception against safety-removal attacks (abliteration, GRP-Obliteration) on open-weight models | [arXiv 2608.17202 (Aug 2026)](https://arxiv.org/abs/2608.17202) |
+| Antibody | Defense against harmful fine-tuning attacks | [ICLR 2026](https://arxiv.org/abs/2603.00498) |
+| Few Tokens, Big Leverage | Preserve safety alignment by constraining safety tokens during fine-tuning | [arXiv 2603.07445 (Mar 2026)](https://arxiv.org/abs/2603.07445) |
+| Gradient Surgery | Surgical gradient modification to preserve safety during fine-tuning | [arXiv 2508.07172 (2025, updated 2026)](https://arxiv.org/abs/2508.07172) |
 
 ##### Key Surveys & Papers (2025–2026)
 
@@ -823,6 +868,25 @@ Understanding defenses helps map which attack classes remain open.
 | [Improving Alignment and Robustness with Circuit Breakers (2024)](https://arxiv.org/abs/2406.04313) | Representation Rerouting defense; foundation for representation-engineering safety |
 | [Best-of-N Jailbreaking (NeurIPS 2025)](https://arxiv.org/abs/2412.03556) | Power-law scaling of random-perturbation attacks; 89% ASR on GPT-4o at 10K samples |
 | [DeepSeek Under Attack: Jailbreak Attacks and Prompt-Level Defenses (2026)](https://www.researchgate.net/publication/408534172) | R1 more vulnerable than V3; prompt-level defenses analysis |
+| [MultiBreak: Multi-turn Jailbreak Benchmark (2026)](https://arxiv.org/abs/2605.01687) | Scalable multi-turn benchmark; +54% ASR vs. prior datasets on DeepSeek-R1-Distill |
+| [NRT-Bench: Nuclear Plant Safety Red-Teaming (2026)](https://arxiv.org/abs/2606.20408) | Multi-turn red-teaming in simulated safety-critical environment; 8.7–12.1% critical failure rate |
+| [PandaGuard: Systematic Jailbreak Evaluation (2026)](https://arxiv.org/abs/2505.13862) | Systematic evaluation framework covering attack and defense pairings |
+| [Concerns in Benchmarking Jailbreaks (2026)](https://arxiv.org/abs/2610.26595) | Judge choice drives ASR: same attack scores 96% (keyword) vs. 2.7% (Qwen3 evaluator) |
+| [TEMPEST Replication at Scale (2025)](https://arxiv.org/abs/2512.07059) | 79/100 behaviors succeed against 8+ frontier models; limited protection from safety training |
+| [Adversarial Attacks on Multimodal LLMs: Survey (2026)](https://arxiv.org/abs/2603.27918) | Comprehensive survey of adversarial attacks on multimodal LLMs |
+| [Jailbreak Attacks and Defenses against Multimodal Models: Survey (2025)](https://arxiv.org/abs/2411.09259) | Survey covering text, image, audio, and video jailbreak attack surfaces |
+| [Prompt Injection on Agentic Coding Assistants (2026)](https://arxiv.org/abs/2601.17548) | 78 studies reviewed; 30+ CVEs across major platforms; MCP tool poisoning taxonomy |
+| [MCP Threat Modeling: Tool Poisoning (2026)](https://arxiv.org/abs/2603.22489) | Threat model for MCP tool poisoning; compares 7 MCP client implementations |
+| [DARWIN: Evolving Jailbreak Adversary and Guardrail (2026)](https://arxiv.org/abs/2607.19829) | Co-evolutionary attack-defense loop; DARWIN-Guard reaches 95% unsafe recall |
+| [AdversaBench: Multi-Judge Confirmed Red Teaming (2026)](https://arxiv.org/abs/2606.24589) | Automated pipeline with three-judge confirmation; every seed produces confirmed failure |
+| [SkillAttack: Automated Agent Skill Red Teaming (2026)](https://arxiv.org/abs/2604.04989) | Closed-loop adversarial testing of LLM agent skills |
+| [Learning to Attack and Defend via GRPO (2026)](https://arxiv.org/abs/2606.09701) | Co-train attacker and defender with GRPO; per-turn rewards in multi-turn attacks |
+| [Autonomous Adversary: Red-Teaming in the Age of LLMs (2026)](https://arxiv.org/abs/2605.06486) | Survey of LLM agents for red-team operations; governance and realistic evaluation |
+| [Colluding LoRA: Composite Fine-Tuning Attacks (ICLR 2026)](https://arxiv.org/abs/2603.12681) | Multiple safe-looking LoRA adapters jointly dismantle alignment |
+| [Open-Weight Fine-Tuning Defenses Are Susceptible (2026)](https://arxiv.org/abs/2605.26526) | Current defenses against alignment removal fail under simple attacks |
+| [Harmful Fine-tuning Attacks and Defenses: Survey (ACM 2026)](https://dl.acm.org/doi/10.1145/3817114) | Comprehensive ACM survey of fine-tuning-based attacks and defenses |
+| [Guardrail Attribution: 0%, 45%, or 99%? (2026)](https://arxiv.org/abs/2608.08641) | A guardrail's own share of the refusals it is credited with is often unclear |
+| [ForesightSafety Bench (2026)](https://arxiv.org/abs/2602.14135) | Frontier risk evaluation; DeepSeek-V3.2 11.67% baseline vulnerability, Claude near zero |
 
 ### Eval & Observability
 
