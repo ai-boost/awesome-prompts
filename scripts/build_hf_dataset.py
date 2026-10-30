@@ -118,6 +118,11 @@ def card(repo, eng, lib):
     lic = collections.Counter(r["license"] for r in lib).most_common()
     lic_list = ", ".join(f"{l} ({n})" for l, n in lic)
     both = sum(1 for r in lib if not r["translated"])
+    cited = collections.defaultdict(list)
+    for r in eng:
+        for a in r["arxiv_ids"]:
+            cited[a].append(f"`{r['id']}`")
+    paper_list = "\n".join(f"- [arXiv:{a}](https://arxiv.org/abs/{a}): {', '.join(ids)}" for a, ids in sorted(cited.items()))
     return f"""---
 license:
 - cc-by-4.0
@@ -188,6 +193,12 @@ Columns: `id`, `category`, `lang` (language of the original: `en`, `zh` or `both
 | Category | Prompts |
 |---|---|
 {lib_table}
+
+## Papers cited
+
+Each line links a paper to the engineering prompts built on it.
+
+{paper_list}
 
 ## How it was made
 
