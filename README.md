@@ -1,7 +1,7 @@
 <div align="center">
   <h2 align="center">Awesome Prompts 🪶</h2>
   <p align="center">
-    <img width="650" src="https://raw.githubusercontent.com/ai-boost/awesome-prompts/main/assets/banner.png">
+    <img width="650" src="https://raw.githubusercontent.com/ai-boost/awesome-prompts/main/assets/banner.jpg">
   </p>
   <p align="center">Curated prompts, frameworks, and papers — with an engineering bias.</p>
   <p align="center">Search, filter and copy every prompt in the <a href="https://agentcraft.dev/en/prompts/agents/">online gallery</a>. Video and image prompts live in <a href="https://github.com/ai-boost/awesome-image-video-prompts">awesome-image-video-prompts</a>.</p>
