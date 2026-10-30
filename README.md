@@ -65,6 +65,7 @@ This repo covers both. The engineering camp gets more space.
   - [Tool Use & Reliability](#tool-use--reliability)
   - [Eval & Testing](#eval--testing)
   - [Red Team & Security](#red-team--security)
+    - [Jailbreak Technique Reference](#jailbreak-technique-reference)
   - [Eval & Observability](#eval--observability)
   - [Low-Code & Workflow Platforms](#low-code--workflow-platforms)
 - [🕵️ System Prompt Leaks](#system-prompt-leaks) — learn from production
@@ -661,6 +662,111 @@ Probe LLM systems for vulnerabilities before attackers do.
 | [**SkillSpector**](https://github.com/NVIDIA/SkillSpector) | ![](https://img.shields.io/github/stars/NVIDIA/SkillSpector?style=flat-square) | Security scanner for AI agent skills — detects vulnerabilities, malicious patterns, prompt injection, data exfiltration, and supply-chain risks in Claude Code, Codex, and MCP skills before installation (Apache-2.0, 14.7k+ stars, Mar 2026) |
 | [**Orca AI Incident Archive**](https://github.com/Continuum-AI-Corp/Orca-AI-Incident-Archive) | ![](https://img.shields.io/github/stars/Continuum-AI-Corp/Orca-AI-Incident-Archive?style=flat-square) | Open database of 354 real-world AI agent security incidents (2025-01 → 2026-09) — every record has a primary source, an attack-chain diagram and a confirmed-harm flag that separates in-the-wild damage from researcher PoCs; covers prompt injection, MCP, agent supply chain and sandbox escapes; JSON/CSV exports (CC BY 4.0, Sept 2026) |
 
+
+
+#### Jailbreak Technique Reference
+
+> **Defensive use only.** This reference exists so LLM engineers, self-hosters, and security researchers can understand attack surfaces and build defenses. Do not use these techniques to attack production systems without authorization.
+
+##### Cross-Model Techniques
+
+Named, published techniques that work (or have been reported to work) across multiple frontier models.
+
+| Technique | One-line description | Applicable models | Source |
+|-----------|---------------------|-------------------|--------|
+| Crescendo / Crescendomation | Multi-turn gradual escalation: start with an innocent question, steer toward harmful output over several turns; automated variant uses an LLM to generate attack turns | GPT, Claude, Gemini, DeepSeek | [Microsoft Research (USENIX Security 2025)](https://arxiv.org/abs/2404.01833) |
+| Many-Shot Jailbreak (MSJ) | Stuffs hundreds of harmful Q&A examples into a long context window to override alignment via in-context learning | Claude, GPT, Gemini | [Anthropic Research (2024)](https://www.anthropic.com/research/many-shot-jailbreaking) |
+| PAIR (Prompt Automatic Iterative Refinement) | Uses an attacker LLM to iteratively rewrite jailbreak prompts until one succeeds; black-box, no gradients needed | GPT, Claude, Gemini, Llama | [Chao et al. (2024)](https://arxiv.org/abs/2310.08419) |
+| TAP (Tree of Attacks with Pruning) | Tree search over PAIR with early pruning for efficiency; fewer queries than PAIR | GPT, Claude, Gemini | [Mehrotra et al. (2024)](https://arxiv.org/abs/2312.02119) |
+| AutoDAN-Turbo | Automated generation and evolution of DAN-style semantic jailbreaks; lifelong strategy self-exploration | GPT, Claude, Gemini | [ICLR 2025 Spotlight](https://github.com/SaFo-Lab/AutoDAN-Turbo) |
+| GCG (Greedy Coordinate Gradient) | Adversarial suffix optimization via token-level gradient search; white-box but transferable to black-box | Llama, Vicuna → transferable to GPT, Claude | [Zou et al. (2023)](https://arxiv.org/abs/2307.15043) |
+| FlipAttack | Jailbreak via character/word order flipping that bypasses input filters | GPT, Claude, Gemini | [ICML 2025](https://arxiv.org/abs/2410.02832) |
+| COLD-Attack | Controllable, stealthy jailbreak using energy-based constrained decoding on attacker model | GPT, Llama | [ICML 2024](https://arxiv.org/abs/2402.08679) |
+| Echo Chamber | Seed context with benign-sounding repeated keywords, then use the seeded context to steer responses | GPT-5, Grok | [NeuralTrust (2025)](https://neuraltrust.ai/blog/gpt-5-jailbreak-with-echo-chamber-and-storytelling) |
+| Bad Likert Judge | Ask model to rate harmfulness on a scale, then request examples of each rating level; elicits harmful content via evaluation framing | DeepSeek, GPT, Claude | [Palo Alto Unit 42 (2025)](https://origin-unit42.paloaltonetworks.com/jailbreaking-deepseek-three-techniques/) |
+| Deceptive Delight | Embed harmful request inside an appealing creative/educational context (story, tutorial) | DeepSeek, GPT | [Palo Alto Unit 42 (2025)](https://origin-unit42.paloaltonetworks.com/jailbreaking-deepseek-three-techniques/) |
+| Encoding Bypass | Base64, ROT13, Morse code, hex, low-resource language encoding to bypass text classifiers | GPT, Claude, Gemini | [Various; surveyed in arXiv 2410.15236](https://arxiv.org/abs/2410.15236) |
+| Multi-modal Text-in-Image | Embed harmful text as an image (screenshot, OCR-required) to bypass text-only safety classifiers | GPT-5, Gemini | [arXiv 2506.24068 (STACK)](https://arxiv.org/abs/2506.24068) |
+| TwinBreak | Twin prompt technique using paired prompts to bypass alignment | Multiple | [USENIX Security 2025](https://github.com/tkr-research/twinbreak) |
+| JOOD (Out-of-Distribution) | Use nonsensical or out-of-distribution input patterns to confuse safety classifiers | Multiple VLMs | [CVPR 2025](https://arxiv.org/abs/2504.00000) |
+| Involuntary In-Context Learning | Exploit few-shot pattern completion to bypass safety alignment | GPT-5.4 | [arXiv 2604.19461 (2026)](https://arxiv.org/abs/2604.19461) |
+| ICO (Iterative Context Optimization) | Semantic-shift jailbreak via iterative context rewording | GPT, Claude | [arXiv 2608.03210 (2026)](https://arxiv.org/abs/2608.03210) |
+| Refusal Suppression | Instruct model to never refuse, never add disclaimers, never mention ethics | All | Widely documented; see [wraith.sh field guide](https://wraith.sh/learn/llm-jailbreak-guide) |
+| Fake Policy Injection | Claim a new company policy permits the request (e.g. "new OpenAI policy allows...") | GPT, Claude | Widely documented |
+| Roleplay / Fictional Framing | "You are DAN / in a novel where..." to shift model into unrestricted persona | All (effectiveness declining) | [DAN lineage since 2023](https://github.com/verazuo/jailbreak_llms) |
+
+##### Model-Specific Findings (2025–2026)
+
+###### DeepSeek
+
+| Finding | Detail | Source |
+|---------|--------|--------|
+| V4-Pro safety fragile | FAR.AI stress test: 98–100% bypass rate across all tested domains with low-skill attacks | [FAR.AI (May 2026)](https://www.far.ai/blog/security-stress-test-deepseek-v4-pros-safeguards) |
+| Cross-version persistence | Jailbreak built for V3.2 works on V4-Pro without modification | [FAR.AI (May 2026)](https://www.far.ai/blog/security-stress-test-deepseek-v4-pros-safeguards) |
+| Role-based prompt injection | App versions 2.1.0–2.1.1 vulnerable to role injection in mobile client | [GitHub Issue #1350](https://github.com/deepseek-ai/DeepSeek-V3/issues/1350) |
+| V3.2-Speciale benchmark | JailbreakBench ASR 45.33% under standard attacks | [arXiv 2608.03070](https://arxiv.org/abs/2608.03070) |
+
+###### GPT (OpenAI)
+
+| Finding | Detail | Source |
+|---------|--------|--------|
+| GPT-5 day-one bypass | Echo Chamber + storytelling combination bypassed GPT-5 within 24 hours of launch | [NeuralTrust (Aug 2025)](https://neuraltrust.ai/blog/gpt-5-jailbreak-with-echo-chamber-and-storytelling) |
+| Image-channel bypass | Harmful text embedded in images bypasses GPT-5 text-only input classifier | [arXiv 2506.24068 (STACK)](https://arxiv.org/abs/2506.24068) |
+| GPT-5.5 classic prompts blocked | Copy-paste DAN/jailbreak templates no longer work as of Jul–Aug 2026; tool-output injection still effective | [FutureAGI (2026)](https://futureagi.com/blog/jailbreaking-chatgpt-2025/) |
+| Few-shot pattern exploitation | Involuntary in-context learning bypasses GPT-5.4 safety alignment | [arXiv 2604.19461](https://arxiv.org/abs/2604.19461) |
+
+###### Claude (Anthropic)
+
+| Finding | Detail | Source |
+|---------|--------|--------|
+| Bug bounty baseline | $15K bounty; testers could not bypass more than 5/10 forbidden categories | [Yahoo Tech / Anthropic (2025)](https://tech.yahoo.com/ai/articles/anthropic-dare-break-ai-chatbot-212040114.html) |
+| Multi-turn philosophical debate | Iterative philosophical argument bypassed Claude 4.5 Sonnet safety (Dec 2025, likely patched) | [Lumenova (Dec 2025)](https://www.lumenova.ai/ai-experiments/claude-4-5-sonnet-jailbreak/) |
+| Single-word refusal | Claude now refuses prompts containing a single harmful keyword; reduces one-shot attack surface but blocks some legitimate use | [InjectPrompt (Oct 2025)](https://www.injectprompt.com/p/claude-sonnet-45-jailbreak-superintelligence-exoneration) |
+| Multi-turn remains primary threat | Single-prompt jailbreaks have substantially lower success rate on Claude 4.6 vs. prior generations | [Repello (2026)](https://repello.ai/blog/latest-claude-3-5-chatgpt-jailbreak-prompts-2024) |
+
+###### Gemini (Google)
+
+| Finding | Detail | Source |
+|---------|--------|--------|
+| Gemini 2.5 Flash full bypass | Academic test: attack succeeded on all evaluated prompts for 2.5 Flash | [arXiv 2510.01529 (Oct 2025)](https://arxiv.org/abs/2510.01529) |
+| 0DIN benchmark scores | Gemini 2.5 Flash: 91.0, Pro: 86.0 attack success on CBRN-related categories | [AVID-2026-R0067](https://avidml.netlify.app/database/AVID-2026-R0067) |
+| Gemini 3 Pro minutes-to-break | South Korean security team (Aim Intelligence) jailbroke Gemini 3 Pro in minutes (Dec 2025) | [BusinessToday](https://www.businesstoday.in/technology/news/story/gemini-3-gets-jailbroken-in-minutes-teaches-how-to-make-smallpox-virus-report-505178-2025-12-05) |
+| Hate speech vulnerability | TechRadar test: Gemini Pro 2.5 showed highest vulnerability in hate speech trials among tested models | [TechRadar (2025)](https://www.techradar.com/pro/security/can-top-ai-tools-be-bullied-into-malicious-work-chatgpt-gemini-and-more-are-put-to-the-test-and-the-results-are-actually-genuinely-surprising) |
+
+###### Open-Weight Models (Llama, Qwen, GLM, etc.)
+
+| Finding | Detail | Source |
+|---------|--------|--------|
+| Abliteration | Remove the refusal direction from model activations; permanently disables safety alignment; 6,000+ abliterated models on Hugging Face as of 2026 | [NPR (May 2026)](https://www.npr.org/2026/05/31/nx-s1-5816391/ai-safety-concerns-danger-open-weight-models-risks) |
+| Heretic | Automates the abliteration pipeline to two lines of setup; gained traction since Feb 2026 | GitHub (2026) |
+| Abliteration.ai (commercial) | Commercial service selling abliterated models; hosted modified GLM-5.3 and others | [TechCrunch (Sep 2026)](https://techcrunch.com/2026/09/03/abliteration-ai-is-making-a-business-out-of-removing-ai-guardrails/) |
+| Safety pretraining resilience | NeurIPS 2025 workshop paper tested abliteration on Qwen-3, Llama 3.3, GLM-4: results vary by training recipe | [arXiv 2510.02768](https://arxiv.org/abs/2510.02768) |
+
+##### Tools & Repos for Red Team Research
+
+| Project | What it does | Source |
+|---------|-------------|--------|
+| L1B3RT4S | Jailbreak prompt collection covering all major models; by elder-plinius | [GitHub](https://github.com/elder-plinius/L1B3RT4S) |
+| G0DM0D3 | API-level jailbreak toolkit for prompt-based bypasses; by elder-plinius | [GitHub](https://github.com/elder-plinius/G0DM0D3) |
+| OBLITERATUS | Weight-modification toolkit for open-weight models (requires GPU); by elder-plinius | [GitHub](https://github.com/elder-plinius/OBLITERATUS) |
+| CL4R1T4S | Extracted system prompts from Claude, GPT, Gemini and others | [GitHub](https://github.com/elder-plinius/CL4R1T4S) |
+| ChuckNorris MCP | MCP server providing enhancement prompts based on L1B3RT4S | [GitHub](https://github.com/pollinations/chucknorris) |
+| JailbreakBench | Standardized jailbreak evaluation benchmark with reproducible results | [GitHub](https://github.com/JailbreakBench/jailbreakbench) |
+| StrongREJECT | Evaluation benchmark for measuring jailbreak effectiveness; current models score 0.23–0.85 | [GitHub](https://github.com/alexandrasouly/strongreject) |
+| jailbreak_llms | 15,140 ChatGPT prompts dataset (1,405 jailbreak); CCS'24 | [GitHub](https://github.com/verazuo/jailbreak_llms) |
+| AI Prompt Injection Cheatsheet | Curated snippets for prompt injection and filter bypass; ethical hacking focus | [GitHub](https://github.com/nukIeer/AI-Prompt-Injection-Cheatsheet) |
+
+##### Key Surveys (2025–2026)
+
+| Paper | What it covers |
+|-------|---------------|
+| [SoK: Rethinking Jailbreaking in the Era of Agentic AI (2026)](https://arxiv.org/abs/2609.12413) | Attack and defense taxonomy for agentic systems; SecurityCube evaluation framework |
+| [Jailbreaking LLMs & VLMs: Unified Survey (2026)](https://arxiv.org/abs/2601.03594) | First unified survey spanning both LLM and VLM jailbreak mechanisms |
+| [Agents of Chaos (2026)](https://arxiv.org/abs/2602.20021) | Two-week red-team study of live autonomous agents; 11 real attack categories |
+| [SoK: GPT vs. DeepSeek Jailbreak Resilience (2026)](https://arxiv.org/abs/2506.18543) | Comparative security analysis across GPT and DeepSeek model families |
+| [LLM Jailbreak Field Guide (2026)](https://wraith.sh/learn/llm-jailbreak-guide) | Practitioner-oriented taxonomy: roleplay, encoding, multi-turn, many-shot, refusal suppression, fake policy |
+| [面向大语言模型的越狱攻击与防御综述 (2025)](https://search.napstic.cn/literature/periodical/010jsjyjyfz202405007) | 中文综述，分人工设计/模型生成/对抗优化三类攻击 |
+| [生成式大模型越狱攻击安全性研究综述 (2026)](https://opaj.napstic.cn/periodicalArticle/0120260400689147) | 中文综述，涵盖攻击与防御策略 |
 ### Eval & Observability
 
 Beyond basic evals — trace, debug, and monitor LLM systems in production.
