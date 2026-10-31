@@ -1014,6 +1014,7 @@ Open protocol (Anthropic, Nov 2024) for connecting LLMs to tools and data. Now a
 
 - Spec: [modelcontextprotocol.io](https://modelcontextprotocol.io/specification/2025-11-25)
 - Official servers: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
+- GitHub: [PrefectHQ/fastmcp](https://github.com/PrefectHQ/fastmcp) — **FastMCP** (Prefect) — the de-facto Python framework for *building* MCP servers and clients — decorator-based `@mcp.tool` API, server composition (mount + proxy), OpenAPI import/export, OAuth 2.1, OpenTelemetry, hot reload, MCP Apps (interactive UI in tool responses), background tasks, and a built-in test client; tracks the current spec revision (2026-07-28) on MCP SDK 2.x; from Jeremiah Lowin, the original author of the reference Python MCP SDK (Apache-2.0, ~28k stars, v4.1 Oct 2026, actively maintained) ![](https://img.shields.io/github/stars/PrefectHQ/fastmcp?style=flat-square)
 - Registry: [modelcontextprotocol/registry](https://github.com/modelcontextprotocol/registry) ![](https://img.shields.io/github/stars/modelcontextprotocol/registry?style=flat-square) — the official discovery layer (powers registry.modelcontextprotocol.io): ~10,000 server records by mid-2026, reverse-DNS-verified namespaces (`io.github.user/server`), REST API for programmatic in-agent tool discovery, and self-hostable for private enterprise catalogs (Go, MIT, preview Sept 2025 → matured through 2026, actively maintained)
 
 ### A2A — Agent-to-Agent Protocol
