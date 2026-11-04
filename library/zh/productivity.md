@@ -1,6 +1,6 @@
 # 效率
 
-共 90 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 93 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/productivity.md) · [中文](../zh/productivity.md)
 
@@ -2289,6 +2289,848 @@ END OF PACKAGE CODEBLOCK
 
 </details>
 
+<details><summary><b>团队休假与节日排班规划</b> · 机器翻译</summary>
+
+```text
+---
+name: team-leave-and-holiday-coverage-planner
+description: 围绕最低人员配置来规划团队休假,尤其适用于节假日期间——按岗位覆盖规则逐个工作日检查(一人只占一个岗位名额),按公平的优先顺序决定哪些申请可以批准,提供不留空档的替代日期,遵守禁休期、兼职工作日和半天假,并跟踪年假额度、结转和高峰日休假。包含一个支持 --self-test 的离线纯标准库 Python 规划器。
+---
+
+# 团队休假与节假日覆盖规划器
+
+你帮助团队负责人、客服与运营经理、诊所和店铺老板回答十二月的那个问题:谁可以在什么时候休假,既不让岗位无人值守,又保持公平?休假表格能显示谁不在,却不能显示留下的人是否真的能覆盖各个岗位(一个同时是唯一二线工程师的负责人,在同一天不能身兼两职)。你把团队、覆盖规则和休假申请转化为逐日检查,按明确说明的优先顺序决定申请,给出替代方案而不是一句干脆的拒绝,并在额度和公平性问题演变成 HR 谈话之前把它们标出来。
+
+## 本技能中的文件
+
+- `scripts/leave_cover.py` - 读取团队 JSON(人员、岗位、兼职工作日、额度、覆盖最低要求、节假日、覆盖例外、禁休日和高峰日)和休假 CSV;用"一人一个名额"的匹配方式检查每个工作日,找出已批准休假造成的空档,决定待处理的申请(上一年值守高峰的人优先,然后先到先得),建议最接近且无空档的日期或更短的行程,并输出日历表、额度表和发现项 LV01-LV07(仅使用 Python 3.8+ 标准库)
+- `references/coverage-rules.md` - 如何设定各岗位最低人数、安静日的例外、兼职人员、半天假、值班待命,以及匹配算法做了什么
+- `references/fair-leave-policy.md` - 优先规则、禁休期、额度与结转、如何妥善拒绝,以及每个发现代码的含义
+- `templates/leave-plan-brief.md` - 发给团队的计划
+- `examples/support-team.json` - 一个 7 人客户支持团队在圣诞节和新年期间的情况:负责人、二线、值班待命、一名兼职人员、节假日、12 月 24 日和 31 日较低的覆盖要求、账单运行禁休期和结转上限
+- `examples/support-leave.csv` - 3 条已批准和 7 条待批的休假,包括一个半天假
+- `examples/support-plan.md` - 规划器在这些文件上的真实输出
+
+## 工作流程
+
+### 1. 收集输入
+询问:规划周期(覆盖整个假期,前后各多一周)、团队成员及其各自的岗位和工作日、额度以及本休假年度已休天数、团队停业的公共假日(若营业则说明缩减后的覆盖要求)、每个岗位及总体的最低覆盖人数、最低要求较低的安静日、禁休期(发布、盘点、账单运行、审计)以及大家争抢的高峰日。然后是休假:已批准的、待批的(附提交日期)、培训、已知的产假/育儿假或病假。询问团队对优先顺序的约定;如果没有,建议采用"上一年值守高峰的人优先,然后先到先得"。
+
+### 2. 运行规划器
+'''
+python3 scripts/leave_cover.py examples/support-team.json examples/support-leave.csv
+python3 scripts/leave_cover.py team.json leave.csv --json
+python3 scripts/leave_cover.py --self-test
+'''
+退出码 0 = 已批准的休假保持覆盖且无人超出额度,1 = 已批准的休假已经破坏覆盖或超出额度,2 = 输入有误(消息会指出具体行)。如果没有 shell,就手工构建日历:每人一行、每个工作日一列,然后针对每一天把在岗人员分配到岗位名额(一人一个名额),并标出缺口。
+
+### 3. 解读结果
+- 已批准休假造成的空档(LV01)优先处理:它们需要立即解决(临时顶替、换班、外包人员或值班待命安排),而不是新增规则。
+- 额度问题(LV02):已批准休假超出额度,需要 HR 确认结转或无薪天数。
+- 申请:批准标记为 approve 的;对于冲突和禁休期,要把替代方案交给当事人,而不是拒绝(LV04)。
+- 公平性(LV05)和高峰日休假:检查是否有人连续两年拿到最好的日子,而值守过这些日子的人却被拒绝。
+- 脆弱性:没有备份的岗位(LV03)和零余量的日子(LV07)需要指定一名后备人员。
+- 用或失(LV06):将会损失天数的人应在安静的几周里安排休假。
+
+### 4. 调整并重新运行
+用同样的文件尝试显而易见的修复:交叉培训的后备人员(给某人增加一个岗位)、安静日的较低最低要求(例外设置)、两人之间换班,或拆分较长的行程。重新运行,直到已批准休假没有空档,并且每个待处理申请都有决定或具体的替代方案。
+
+### 5. 交付
+填写 `templates/leave-plan-brief.md`:所采用的规则、每个申请的决定及其理由和替代方案、日历、人手紧张日的覆盖安排以及额度说明。在发布计划之前,先与申请未获批准的人沟通。
+
+## 示例结果
+在客服团队示例中,Omar 已批准的行程已使他超出 25 天额度 3 天(LV02,高:HR 必须确认结转或无薪天数)。Sam 上个圣诞节值守过,所以他 12 月 24 日-1 月 4 日的申请优先决定并获批;Jonas(12 月 21-23 日)以及 Priya 的半天假和 12 月 21-23 日也获批。Ade 的 12 月 29-31 日会使二线和总体覆盖在 12 月 29 日和 30 日不足;规划器提供 12 月 16-18 日作为替代。Lena 的 12 月 30 日-1 月 8 日跨越了 1 月 5-6 日的账单运行禁休期,只有 12 月 31 日可以在不留空档的情况下获批。Jonas 的第二次行程需要 5 天,但只剩 4 天。Lena 会因 5 天的结转上限而损失 10 天,而 12 月 21-23 日和 29 日完全没有余量。
+
+## 规则
+
+- 按岗位检查覆盖,每人一个名额,不要只看人数。
+- 对所有人适用同一条明确说明的优先规则并展示顺序;绝不按谁嗓门大来决定。
+- "这次不行"必须搭配一个替代日期、更短的行程或换班方案。
+- 病假、产假/育儿假及其他受保护的假期视为固定:绝不要求人们挪动,并且不要在计划中出现医疗细节。
+- 额度、结转和无薪假遵循合同和当地法律;标记出来交给 HR,而不是自行决定。
+- 只与需要知道的团队成员和经理分享该计划。
+FILE:references/coverage-rules.md
+# 覆盖规则
+
+## 最低要求
+- 为每个**岗位**(必须被覆盖的内容:负责人/审批人、二线、值班待命、药剂师、钥匙持有人、叉车执照)以及一个 **any** 总数(足够应对业务量的人手)设定最低要求。
+- 数字依据需求而非习惯:每天的工单/电话/订单数除以一个人能处理的量,再加上法律或合同要求必须在场的岗位。
+- 安静日(12 月 24 日和 31 日,许多 B2B 团队在两个节假日之间的那一周)通常可以降低最低要求:对这些日期使用 `coverage_overrides`,而不是降低整个周期的要求。
+- 业务停业的日子放入 `holidays`:无需覆盖,也不扣额度。
+
+## 一人一个名额
+一个身兼多个岗位的人,每天仍然只占一个名额。规划器使用二分图匹配来分配人员与名额,因此只要存在可行的安排就能找到:
+- Maya(lead, tier 2)+ Lena(tier 1, tier 2)可以覆盖 lead 1 + tier 2 1,但不能覆盖 lead 1 + tier 2 2。
+- 缺口按岗位报告;"any" 不足意味着总人数太少。
+
+## 人员
+- `days`:兼职人员的工作日;在其非工作日休假不扣额度,也不影响覆盖。
+- 半天假(`half_day=yes`)扣除 0.5 天额度;规划器当天不把该人计入覆盖(保守处理)。如果仅上午缺勤仍能覆盖下午班次,请在说明中注明。
+- 培训、病假、产假/育儿假和无薪假与年假一样会减少覆盖,但不计入额度。
+
+## 值班待命与远程覆盖
+- 如果某人在休假期间从家里承担值班待命,就不要把他在该岗位上标为休假;需明确约定,并按政策支付报酬。规划器把休假视为完全不在岗。
+- 外部或外包的后备人员可以作为只有该岗位、没有额度的人员加入。
+
+## 余量
+- 零余量的日子(在岗人数恰好等于最低要求)只要有一人病假就会失守。在周期开始之前,为每个这样的日子指定一名后备人员。
+- 只有最低要求 + 1 个持有人的岗位无法承受两人缺勤;计划在新年进行交叉培训。
+FILE:references/fair-leave-policy.md
+# 公平的休假决定
+
+## 优先规则(在申请到来之前就说明)
+常见且站得住脚的顺序:
+1. 已批准的休假有效(除非当事人同意更改)。
+2. 受保护的假期(产假/育儿假、病假、法定假)是固定的。
+3. 对于高峰日:上一年值守过高峰的人优先。
+4. 然后按提交日期先到先得。
+5. 并列时:轮换(上次抽签落败者这次获胜)。
+高峰日避免仅按资历排序;这会让新员工觉得不公平,还常常流失优秀的人才。
+
+## 禁休期
+- 保持简短,并与真实事件挂钩(发布、账单运行、盘点、审计、辅导业务的开学季)。尽早公布。
+- 触及禁休期的申请不会自动被拒绝:规划器会提供最接近且无空档的日期,或禁休期之前最长的一段。例外需要指定的审批人。
+
+## 额度与结转
+- 剩余 = 额度 - 本周期之前已休 - 已批准 - 建议批准。
+- 超出额度的已批准休假(LV02 高)是 HR 的问题:从去年结转、购买额外天数,或无薪假。
+- 结转上限意味着未安排的天数在年底作废(LV06):提醒人们在安静的几周安排休假;在一些国家,法定最低休假不能简单地过期,请查阅当地规定。
+
+## 妥善拒绝
+- 解释规则和具体的缺口("二线在 12 月 29 日和 30 日会少一个人")。
+- 提供规划器找到的替代方案,或与某位指名同事换班,或缩短行程。
+- 尽早决定(至少在节假日前 4-6 周),让大家仍能预订行程。
+- 记录决定及其理由;明年的优先顺序取决于它。
+
+## 发现代码(leave_cover.py)
+| 代码 | 严重程度 | 含义 |
+|---|---|---|
+| LV01 | high | 已批准的休假已经使某天的某个岗位或总体人数不足 |
+| LV02 | high / medium | 已批准休假超出额度 / 申请需要的天数多于剩余天数 |
+| LV03 | medium / low | 岗位的持有人数不超过最低要求 / 仅有一个富余 |
+| LV04 | medium | 申请与覆盖或禁休期冲突,并给出了替代方案 |
+| LV05 | medium | 上一年值守过高峰的人被拒绝,而其他人获得了高峰日 |
+| LV06 | low | 超过结转上限的剩余天数将作废 |
+| LV07 | info | 计划实施后零余量的日子 |
+FILE:templates/leave-plan-brief.md
+# 假期休假计划:<team>, <period>
+
+**覆盖规则:** <lead 1, tier 2 2 (1 on 24/31 Dec), on-call 1, at least 4 people>   **停业:** <25 Dec, 28 Dec, 1 Jan>
+**采用的优先规则:** <worked the peak last year first, then first come first served>
+**禁休期:** <5-6 Jan billing run>
+
+## 决定
+| 人员 | 申请内容 | 决定 | 原因 | 提供的替代方案 |
+|---|---|---|---|---|
+| <Sam> | <24 Dec - 4 Jan> | <approved> | <worked last Christmas> | - |
+| <Ade> | <29-31 Dec> | <not these dates> | <tier 2 short 29-30 Dec> | <16-18 Dec, or swap with ...> |
+
+## 日历
+'''
+<paste the planner grid>
+'''
+
+## 紧张日与后备人员
+| 日期 | 紧张原因 | 后备人员 |
+|---|---|---|
+| <21-23 Dec> | <exactly 4 working> | <on-call from home: ...> |
+
+## 额度说明(供 HR 参考)
+- <Omar: approved trip 3 days over allowance - confirm carry-over / unpaid>
+- <Lena: 15 days left, carry-over limit 5 - suggest booking February>
+
+## 后续步骤
+- <talk to Ade, Lena, Jonas before publishing>
+- <publish the plan on ...; changes by swap request to ...>
+- <cross-train a second lead backup in Q1>
+FILE:examples/support-team.json
+{
+  "team": "Northwind Customer Support",
+  "period": "2026-12-14..2027-01-08",
+  "workdays": ["mon", "tue", "wed", "thu", "fri"],
+  "holidays": ["2026-12-25", "2026-12-28", "2027-01-01"],
+  "coverage": {"lead": 1, "tier2": 2, "oncall": 1, "any": 4},
+  "coverage_overrides": [
+    {"dates": "2026-12-24", "coverage": {"tier2": 1, "any": 3}},
+    {"dates": "2026-12-31", "coverage": {"tier2": 1, "any": 3}}
+  ],
+  "blackout": [
+    {"dates": "2027-01-05..2027-01-06", "reason": "January billing run, all hands"}
+  ],
+  "peak_days": "2026-12-21..2027-01-01",
+  "carryover_max": 5,
+  "people": [
+    {"name": "Maya", "roles": ["lead", "tier2"], "allowance": 25, "taken": 17, "worked_peak_last_year": true},
+    {"name": "Ade", "roles": ["lead", "tier2"], "allowance": 25, "taken": 19},
+    {"name": "Omar", "roles": ["tier2", "oncall"], "allowance": 25, "taken": 20},
+    {"name": "Lena", "roles": ["tier1", "tier2"], "allowance": 25, "taken": 10},
+    {"name": "Jonas", "roles": ["tier1", "oncall"], "allowance": 25, "taken": 18},
+    {"name": "Sam", "roles": ["tier1", "oncall"], "allowance": 25, "taken": 15, "worked_peak_last_year": true},
+    {"name": "Priya", "roles": ["tier1"], "days": ["mon", "wed", "thu"], "allowance": 15, "taken": 9}
+  ]
+}
+FILE:examples/support-leave.csv
+person,start,end,type,status,submitted,half_day,notes
+Maya,2026-12-21,2026-12-24,vacation,approved,2026-09-30,,family visit
+Omar,2026-12-29,2027-01-08,vacation,approved,2026-10-02,,"flights booked, Lagos"
+Lena,2026-12-14,2026-12-15,training,approved,2026-11-01,,Zendesk admin course
+Jonas,2026-12-21,2026-12-23,vacation,requested,2026-10-20,,
+Ade,2026-12-29,2026-12-31,vacation,requested,2026-10-25,,
+Sam,2026-12-24,2027-01-04,vacation,requested,2026-11-05,,"skiing, worked last Christmas"
+Lena,2026-12-30,2027-01-08,vacation,requested,2026-11-12,,
+Priya,2026-12-16,2026-12-16,vacation,requested,2026-11-20,yes,school nativity play
+Jonas,2027-01-04,2027-01-08,vacation,requested,2026-11-25,,
+Priya,2026-12-21,2026-12-23,vacation,requested,2026-11-28,,
+FILE:examples/support-plan.md
+# 休假覆盖计划:Northwind Customer Support (2026-12-14 to 2027-01-08)
+
+每个工作日的最低覆盖:any 4, lead 1, oncall 1, tier2 2。节假日(停业):25 Dec, 28 Dec, 01 Jan。
+
+**结论:已批准休假超出额度** - 7 个待处理申请中有 4 个可以在不留空档的情况下批准;3 个需要决定。
+
+## 申请(按决定顺序:上一年值守高峰者优先,然后先到先得)
+
+| # | Person | Dates | Workdays | Type | Submitted | Decision | Why | Alternative |
+|---|---|---|---|---|---|---|---|---|
+| 1 | Sam | Thu 24 Dec - Mon 04 Jan | 5 | vacation | 2026-11-05 | approve | - | - |
+| 2 | Jonas | Mon 21 Dec - Wed 23 Dec | 3 | vacation | 2026-10-20 | approve | - | - |
+| 3 | Ade | Tue 29 Dec - Thu 31 Dec | 3 | vacation | 2026-10-25 | conflict | any/tier2 short on 29 Dec, 30 Dec | Wed 16 Dec to Fri 18 Dec |
+| 4 | Lena | Wed 30 Dec - Fri 08 Jan | 7 | vacation | 2026-11-12 | blackout | January billing run, all hands (05 Jan, 06 Jan) | shorten to Thu 31 Dec - Thu 31 Dec (1 workday(s), back before the blackout) |
+| 5 | Priya | Wed 16 Dec - Wed 16 Dec (half) | 0.5 | vacation | 2026-11-20 | approve | - | - |
+| 6 | Jonas | Mon 04 Jan - Fri 08 Jan | 5 | vacation | 2026-11-25 | over allowance | needs 5 days, 4 left | - |
+| 7 | Priya | Mon 21 Dec - Wed 23 Dec | 2 | vacation | 2026-11-28 | approve | - | - |
+
+## 日历(已批准 + 建议批准)
+
+'''
+              D             J     
+              11111222222233000000
+              45678123458901145678
+              MTWTFMTWTFMTWTFMTWTF
+Maya          .....VVVVHH...H.....
+Ade           .........HHxxxH.....
+Omar          .........HHVVVHVVVVV
+Lena          TT.......HH.xxHxxxxx
+Jonas         .....vvv.HH...Hxxxxx
+Sam           ........vHHvvvHv....
+Priya         .-h.-v-v.HH-..H.-..-
+cover any     +++++++++  +++ +++++
+cover lead    +++++++++  +++ +++++
+cover oncall  +++++++++  +++ +++++
+cover tier2   +++++++++  +++ +++++
+'''
+V/T/S/P/U/O 分别表示已批准的年假/培训/病假/产假育儿假/无薪假/其他,小写 = 建议批准的申请,h = 半天假,x = 未获批准的申请,H = 节假日,- = 非工作日,+ / ! = 岗位已覆盖 / 不足。
+
+## 额度(天)
+
+| Person | Allowance | Taken before | Approved here | Recommended | Left | Peak days off |
+|---|---|---|---|---|---|---|
+| Maya | 25 | 17 | 4 | 0 | 4 | 4 |
+| Ade | 25 | 19 | 0 | 0 | 6 | 0 |
+| Omar | 25 | 20 | 8 | 0 | -3 | 3 |
+| Lena | 25 | 10 | 0 | 0 | 15 | 0 |
+| Jonas | 25 | 18 | 0 | 3 | 4 | 3 |
+| Sam | 25 | 15 | 0 | 5 | 5 | 4 |
+| Priya | 15 | 9 | 0 | 2.5 | 3.5 | 2 |
+
+## 发现项
+
+- **HIGH LV02** Omar 已批准的休假超出额度 3 天(25 天中已休 20 + 8);请与 HR 确认结转或无薪假。
+- **MEDIUM LV02** Jonas 04 Jan-08 Jan:需要 5 天,剩余 4 天;批准更短的行程或约定无薪天数
+- **MEDIUM LV04** Ade 29 Dec-31 Dec:冲突(any/tier2 short on 29 Dec, 30 Dec);建议 Wed 16 Dec to Fri 18 Dec
+- **MEDIUM LV04** Lena 30 Dec-08 Jan:禁休期(January billing run, all hands (05 Jan, 06 Jan));建议 shorten to Thu 31 Dec - Thu 31 Dec (1 workday(s), back before the blackout)
+- **LOW LV03** lead 只有一个富余人员(Maya, Ade,最低要求为 1);同时两人缺勤就会失守。
+- **LOW LV06** Ade 仍将剩余 6 天(结转上限 5);除非安排休假,否则 1 天将作废。
+- **LOW LV06** Lena 仍将剩余 15 天(结转上限 5);除非安排休假,否则 10 天将作废。
+- **INFO LV07** 有 4 天没有余量(21 Dec, 22 Dec, 23 Dec, 29 Dec):一天病假就会破坏覆盖;请安排后备人员。
+FILE:scripts/leave_cover.py
+#!/usr/bin/env python3
+"""Team leave and holiday coverage planner (Python 3.8+ standard library only).
+
+Checks a team's leave requests against minimum staffing rules day by day, decides which
+requests can be approved without leaving a gap, suggests alternative dates for the rest, and
+tracks allowances and who gets the peak holiday days.
+
+Team JSON:
+{
+  "team": "Support Desk", "period": "2026-12-14..2027-01-08",
+  "workdays": ["mon", "tue", "wed", "thu", "fri"],
+  "holidays": ["2026-12-25", "2026-12-28", "2027-01-01"],          (office closed, no coverage needed)
+  "coverage": {"lead": 1, "tier2": 2, "oncall": 1, "any": 4},     ("any" = total people working)
+  "coverage_overrides": [{"dates": "2026-12-24", "coverage": {"tier2": 1, "any": 3}}],
+  "blackout": [{"dates": "2027-01-05..2027-01-06", "reason": "billing run"}],
+  "peak_days": "2026-12-21..2027-01-01",
+  "people": [
+    {"name": "Maya", "roles": ["lead", "tier2"], "allowance": 25, "taken": 17, "worked_peak_last_year": true},
+    {"name": "Priya", "roles": ["tier1"], "days": ["mon", "wed", "thu"], "allowance": 15, "taken": 9}
+  ]
+}
+Each working person fills ONE role slot per day (a lead who is also tier2 counts once), solved
+as a bipartite matching.
+
+Leave CSV (header required): person,start,end,type,status,submitted,half_day,notes
+  type     vacation (counts against allowance) | sick | training | parental | unpaid | other
+  status   approved | requested | declined (ignored)
+  half_day yes = half a day of allowance; the person is not counted for coverage that day
+
+Usage:
+  python3 leave_cover.py team.json leave.csv [--json]
+  python3 leave_cover.py --self-test
+Exit codes: 0 = approved leave keeps coverage and nobody is over allowance, 1 = approved leave
+already breaks coverage or exceeds an allowance, 2 = bad input.
+"""
+import argparse
+import csv
+import datetime as dt
+import json
+import sys
+from collections import OrderedDict, defaultdict
+
+DAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+TYPE_CODE = {"vacation": "V", "sick": "S", "training": "T", "parental": "P", "unpaid": "U", "other": "O"}
+
+
+class InputError(ValueError):
+    pass
+
+
+def d(s, what="date"):
+    try:
+        return dt.date.fromisoformat(str(s).strip())
+    except ValueError:
+        raise InputError("%s %r is not YYYY-MM-DD" % (what, s))
+
+
+def date_range(spec):
+    spec = str(spec)
+    a, _, b = spec.partition("..")
+    a, b = d(a), d(b or a)
+    if b < a:
+        raise InputError("range %r ends before it starts" % spec)
+    return [a + dt.timedelta(days=i) for i in range((b - a).days + 1)]
+
+
+# ----------------------------------------------------------------------------- inputs
+def load_team(cfg):
+    if "period" not in cfg or not cfg.get("people"):
+        raise InputError("team JSON needs 'period' and 'people'")
+    t = dict(cfg)
+    t["days"] = date_range(cfg["period"])
+    t["workdays"] = [w.lower()[:3] for w in cfg.get("workdays", DAYS[:5])]
+    t["holidays"] = {d(h, "holiday") for h in cfg.get("holidays", [])}
+    t["coverage"] = {k: int(v) for k, v in (cfg.get("coverage") or {}).items()}
+    over = {}
+    for o in cfg.get("coverage_overrides", []):
+        for day in date_range(o["dates"]):
+            over[day] = {k: int(v) for k, v in o["coverage"].items()}
+    t["overrides"] = over
+    t["blackout"] = [(set(date_range(b["dates"])), b.get("reason", "blackout")) for b in cfg.get("blackout", [])]
+    t["peak"] = set(date_range(cfg["peak_days"])) if cfg.get("peak_days") else set()
+    people = OrderedDict()
+    for p in cfg["people"]:
+        if "name" not in p:
+            raise InputError("every person needs a name")
+        q = dict(p)
+        q["roles"] = list(p.get("roles", []))
+        q["days"] = [w.lower()[:3] for w in p.get("days", t["workdays"])]
+        q["allowance"] = float(p.get("allowance", 0))
+        q["taken"] = float(p.get("taken", 0))
+        q["carryover_max"] = p.get("carryover_max", cfg.get("carryover_max"))
+        people[p["name"]] = q
+    t["people"] = people
+    roles = {r for p in people.values() for r in p["roles"]}
+    for r in list(t["coverage"]) + [r for o in over.values() for r in o]:
+        if r != "any" and r not in roles:
+            raise InputError("coverage role %r is not held by anyone" % r)
+    return t
+
+
+def load_leave(path, team):
+    out = []
+    with open(path, newline="", encoding="utf-8") as f:
+        rows = [r for r in f if r.strip() and not r.lstrip().startswith("#")]
+    for n, row in enumerate(csv.DictReader(rows), 2):
+        name = (row.get("person") or "").strip()
+        if name not in team["people"]:
+            raise InputError("leave line %d: unknown person %r" % (n, name))
+        typ = (row.get("type") or "vacation").strip().lower()
+        if typ not in TYPE_CODE:
+            raise InputError("leave line %d: type must be one of %s" % (n, ", ".join(TYPE_CODE)))
+        status = (row.get("status") or "requested").strip().lower()
+        if status not in ("approved", "requested", "declined"):
+            raise InputError("leave line %d: status must be approved, requested or declined" % n)
+        start, end = d(row.get("start"), "start"), d(row.get("end") or row.get("start"), "end")
+        if end < start:
+            raise InputError("leave line %d: end before start" % n)
+        out.append({"id": n, "person": name, "start": start, "end": end, "type": typ, "status": status,
+                    "submitted": (row.get("submitted") or "").strip() or "9999-12-31",
+                    "half": (row.get("half_day") or "").strip().lower() in ("yes", "y", "true", "1"),
+                    "notes": (row.get("notes") or "").strip()})
+    return out
+
+
+# ----------------------------------------------------------------------------- core
+def is_workday(team, day):
+    return DAYS[day.weekday()] in team["workdays"] and day not in team["holidays"]
+
+
+def person_works(team, p, day):
+    return is_workday(team, day) and DAYS[day.weekday()] in p["days"]
+
+
+def leave_days(team, lv):
+    p = team["people"][lv["person"]]
+    days = []
+    cur = lv["start"]
+    while cur <= lv["end"]:
+        if person_works(team, p, cur):
+            days.append(cur)
+        cur += dt.timedelta(days=1)
+    return days
+
+
+def charge(team, lv):
+    n = len(leave_days(team, lv))
+    return 0.5 * n if lv["half"] else float(n)
+
+
+def need_for(team, day):
+    need = dict(team["coverage"])
+    need.update(team["overrides"].get(day, {}))
+    return need
+
+
+def shortfall(team, day, off):
+    """Return {role: missing} for one day given the set of people off."""
+    if not is_workday(team, day):
+        return {}
+    avail = [p for n, p in team["people"].items() if n not in off and person_works(team, p, day)]
+    need = need_for(team, day)
+    slots = [r for r, k in sorted(need.items()) if r != "any" for _ in range(k)]
+    match = {}  # slot index -> person name
+
+    def try_assign(pi, seen):
+        for si, role in enumerate(slots):
+            if role in avail[pi]["roles"] and si not in seen:
+                seen.add(si)
+                if si not in match or try_assign(match[si], seen):
+                    match[si] = pi
+                    return True
+        return False
+
+    for pi in range(len(avail)):
+        try_assign(pi, set())
+    short = defaultdict(int)
+    for si, role in enumerate(slots):
+        if si not in match:
+            short[role] += 1
+    if need.get("any", 0) > len(avail):
+        short["any"] = need["any"] - len(avail)
+    return dict(short)
+
+
+def off_map(team, leaves):
+    off = defaultdict(set)
+    for lv in leaves:
+        for day in leave_days(team, lv):
+            off[day].add(lv["person"])
+    return off
+
+
+def gaps(team, leaves):
+    off = off_map(team, leaves)
+    out = OrderedDict()
+    for day in team["days"]:
+        s = shortfall(team, day, off.get(day, set()))
+        if s:
+            out[day] = s
+    return out
+
+
+def total(g):
+    return sum(sum(v.values()) for v in g.values())
+
+
+def new_gaps(before, after):
+    out = OrderedDict()
+    for day, s in after.items():
+        b = before.get(day, {})
+        worse = {r: k - b.get(r, 0) for r, k in s.items() if k > b.get(r, 0)}
+        if worse:
+            out[day] = worse
+    return out
+
+
+def blackout_hit(team, lv):
+    days = set(leave_days(team, lv))
+    for bdays, reason in team["blackout"]:
+        hit = sorted(days & bdays)
+        if hit:
+            return hit, reason
+    return None, None
+
+
+def suggest(team, current, lv, max_shift=15):
+    """Nearest shift of the same request (same calendar length) that keeps coverage."""
+    length = (lv["end"] - lv["start"]).days
+    want = len(leave_days(team, lv))
+    base = gaps(team, current)
+    first, last = team["days"][0], team["days"][-1]
+    for shift in sorted(range(-max_shift, max_shift + 1), key=lambda x: (abs(x), x)):
+        if shift == 0:
+            continue
+        cand = dict(lv, start=lv["start"] + dt.timedelta(days=shift), end=lv["start"] + dt.timedelta(days=shift + length))
+        if cand["start"] < first or cand["end"] > last:
+            continue
+        if len(leave_days(team, cand)) < want or blackout_hit(team, cand)[0]:
+            continue
+        if not new_gaps(base, gaps(team, current + [cand])):
+            return cand
+    return None
+
+
+def trimmed(team, current, lv):
+    """Longest part of a blackout-hitting request, before the first blackout day, that keeps coverage."""
+    hit, _ = blackout_hit(team, lv)
+    days = [x for x in leave_days(team, lv) if x < hit[0]]
+    base = gaps(team, current)
+    best = None
+    for i in range(len(days)):
+        for j in range(len(days) - 1, i - 1, -1):
+            if best and j - i + 1 <= len(leave_days(team, best)):
+                break
+            cand = dict(lv, start=days[i], end=days[j])
+            if not new_gaps(base, gaps(team, current + [cand])):
+                best = cand
+                break
+    return best
+
+
+def plan(team, leaves):
+    findings = []
+
+    def add(sev, code, msg):
+        findings.append({"severity": sev, "code": code, "message": msg})
+
+    approved = [l for l in leaves if l["status"] == "approved"]
+    requests = [l for l in leaves if l["status"] == "requested"]
+    used = defaultdict(float)
+    for l in approved:
+        if l["type"] == "vacation":
+            used[l["person"]] += charge(team, l)
+
+    g_approved = gaps(team, approved)
+    for day, s in g_approved.items():
+        add("high", "LV01", "%s %s: approved leave already leaves %s short" % (
+            day.isoformat(), DAYS[day.weekday()].title(), ", ".join("%s by %d" % (r, k) for r, k in sorted(s.items()))))
+
+    def priority(l):
+        p = team["people"][l["person"]]
+        touches_peak = bool(set(leave_days(team, l)) & team["peak"])
+        return (0 if touches_peak and p.get("worked_peak_last_year") else 1, l["submitted"], l["id"])
+
+    current = list(approved)
+    decisions = []
+    for l in sorted(requests, key=priority):
+        p = team["people"][l["person"]]
+        days = leave_days(team, l)
+        c = charge(team, l) if l["type"] == "vacation" else 0.0
+        dec = {"leave": l, "workdays": len(days), "charge": c, "decision": "approve", "reason": "", "suggestion": None}
+        if not days:
+            dec.update(decision="no workdays", reason="falls on holidays / non-working days only")
+        elif l["type"] == "vacation" and p["allowance"] and p["taken"] + used[l["person"]] + c > p["allowance"] + 1e-9:
+            left = p["allowance"] - p["taken"] - used[l["person"]]
+            dec.update(decision="over allowance", reason="needs %g days, %g left" % (c, max(left, 0)))
+        else:
+            hit, reason = blackout_hit(team, l)
+            if hit:
+                dec.update(decision="blackout", reason="%s (%s)" % (reason, ", ".join(x.strftime("%d %b") for x in hit)))
+            else:
+                ng = new_gaps(gaps(team, current), gaps(team, current + [l]))
+                if ng:
+                    roles = sorted({r for s in ng.values() for r in s})
+                    dec.update(decision="conflict", reason="%s short on %s" % (
+                        "/".join(roles), ", ".join(x.strftime("%d %b") for x in ng)))
+        if dec["decision"] == "approve":
+            current.append(l)
+            used[l["person"]] += c
+        elif dec["decision"] in ("conflict", "blackout"):
+            s = suggest(team, current, l)
+            if s:
+                dec["suggestion"] = "%s to %s" % (s["start"].strftime("%a %d %b"), s["end"].strftime("%a %d %b"))
+            elif dec["decision"] == "blackout":
+                t = trimmed(team, current, l)
+                if t:
+                    dec["suggestion"] = "shorten to %s - %s (%d workday(s), back before the blackout)" % (
+                        t["start"].strftime("%a %d %b"), t["end"].strftime("%a %d %b"), len(leave_days(team, t)))
+        decisions.append(dec)
+
+    approved_peak = defaultdict(int)
+    for l in current:
+        approved_peak[l["person"]] += len(set(leave_days(team, l)) & team["peak"])
+    for dec in decisions:
+        l = dec["leave"]
+        p = team["people"][l["person"]]
+        if dec["decision"] != "approve" and p.get("worked_peak_last_year") and set(leave_days(team, l)) & team["peak"]:
+            lucky = [n for n, k in approved_peak.items() if k and not team["people"][n].get("worked_peak_last_year")]
+            add("medium", "LV05", "%s worked the peak last year but this request is %s while %s get peak days off; "
+                "consider swapping." % (l["person"], dec["decision"], ", ".join(sorted(lucky)) or "nobody"))
+
+    g_final = gaps(team, current)
+    allowance = []
+    for n, p in team["people"].items():
+        planned_req = sum(dec["charge"] for dec in decisions if dec["leave"]["person"] == n and dec["decision"] == "approve")
+        appr = used[n] - planned_req
+        left = p["allowance"] - p["taken"] - used[n] if p["allowance"] else None
+        allowance.append({"person": n, "allowance": p["allowance"], "taken_before": p["taken"], "approved": appr,
+                          "recommended": planned_req, "left": left, "peak_days_off": approved_peak.get(n, 0)})
+        if p["allowance"] and p["taken"] + appr > p["allowance"] + 1e-9:
+            add("high", "LV02", "%s's approved leave exceeds the allowance by %g days (%g + %g taken of %g); "
+                "confirm carry-over or unpaid leave with HR." % (n, p["taken"] + appr - p["allowance"], p["taken"],
+                                                               appr, p["allowance"]))
+        cm = p.get("carryover_max")
+        if left is not None and cm is not None and left > float(cm):
+            add("low", "LV06", "%s will still have %g days left (carry-over limit %g); %g day(s) are lost unless booked."
+                % (n, left, float(cm), left - float(cm)))
+
+    for role, k in sorted(team["coverage"].items()):
+        if role == "any":
+            continue
+        holders = [n for n, p in team["people"].items() if role in p["roles"]]
+        if len(holders) <= k:
+            add("medium", "LV03", "Only %d people can cover %s (minimum %d): any absence by %s breaks coverage; "
+                "cross-train a backup." % (len(holders), role, k, ", ".join(holders)))
+        elif len(holders) == k + 1:
+            add("low", "LV03", "%s has one spare person (%s for a minimum of %d); two absences at once break it."
+                % (role, ", ".join(holders), k))
+    for day, s in g_final.items():
+        if day not in g_approved:
+            add("high", "LV01", "%s still short after decisions: %s" % (day, s))
+    for dec in decisions:
+        if dec["decision"] in ("conflict", "blackout"):
+            l = dec["leave"]
+            add("medium", "LV04", "%s %s-%s: %s (%s)%s" % (
+                l["person"], l["start"].strftime("%d %b"), l["end"].strftime("%d %b"), dec["decision"], dec["reason"],
+                ("; offer " + dec["suggestion"]) if dec["suggestion"] else "; no gap-free alternative within 15 days"))
+        elif dec["decision"] == "over allowance":
+            l = dec["leave"]
+            add("medium", "LV02", "%s %s-%s: %s; approve a shorter trip or agree unpaid days" % (
+                l["person"], l["start"].strftime("%d %b"), l["end"].strftime("%d %b"), dec["reason"]))
+    thin = []
+    off = off_map(team, current)
+    for day in team["days"]:
+        if not is_workday(team, day):
+            continue
+        working = [n for n, p in team["people"].items() if n not in off.get(day, set()) and person_works(team, p, day)]
+        if len(working) == need_for(team, day).get("any", 0):
+            thin.append(day)
+    if thin:
+        add("info", "LV07", "No slack on %d day(s) (%s): one sick day breaks coverage; line up a backup." % (
+            len(thin), ", ".join(x.strftime("%d %b") for x in thin)))
+    order = {"high": 0, "medium": 1, "low": 2, "info": 3}
+    findings.sort(key=lambda f: (order[f["severity"]], f["code"]))
+    return {"team": team.get("team", "Team"), "period": team["period"], "gaps_approved": g_approved,
+            "gaps_final": g_final, "decisions": decisions, "allowance": allowance, "findings": findings,
+            "current": current, "thin": thin}
+
+
+# ----------------------------------------------------------------------------- report
+def grid(team, leaves_final, all_leaves):
+    days = [x for x in team["days"] if x.weekday() < 5 or DAYS[x.weekday()] in team["workdays"]]
+    final_ids = {l["id"] for l in leaves_final}
+    cell = defaultdict(dict)
+    for l in all_leaves:
+        if l["status"] == "declined":
+            continue
+        for day in leave_days(team, l):
+            if l["id"] in final_ids:
+                c = TYPE_CODE[l["type"]] if l["status"] == "approved" else TYPE_CODE[l["type"]].lower()
+            else:
+                c = "x"
+            if l["half"]:
+                c = "h" if c != "x" else "x"
+            cell[l["person"]][day] = c
+    width = max([len(n) for n in team["people"]] + [len("cover " + r) for r in team["coverage"]]) + 2
+    months = " " * width + "".join(x.strftime("%b")[0] if i == 0 or x.month != days[i - 1].month
+                                   else " " for i, x in enumerate(days))
+    L = [months, " " * width + "".join(str(x.day // 10) for x in days),
+         " " * width + "".join(str(x.day % 10) for x in days),
+         " " * width + "".join(DAYS[x.weekday()][0].upper() for x in days)]
+    for n, p in team["people"].items():
+        row = []
+        for x in days:
+            if x in team["holidays"]:
+                row.append("H")
+            elif not person_works(team, p, x):
+                row.append("-")
+            else:
+                row.append(cell[n].get(x, "."))
+        L.append(n.ljust(width) + "".join(row))
+    off = off_map(team, leaves_final)
+    for role in sorted(team["coverage"]):
+        row = []
+        for x in days:
+            if not is_workday(team, x):
+                row.append(" ")
+                continue
+            s = shortfall(team, x, off.get(x, set()))
+            row.append("!" if role in s else "+")
+        L.append(("cover " + role).ljust(width) + "".join(row))
+    return L
+
+
+def report(team, leaves, r):
+    L = ["# Leave coverage plan: %s (%s)" % (r["team"], r["period"].replace("..", " to ")), ""]
+    need = ", ".join("%s %d" % (k, v) for k, v in sorted(team["coverage"].items()))
+    L.append("Minimum cover per workday: %s.  Holidays (closed): %s." % (
+        need, ", ".join(x.strftime("%d %b") for x in sorted(team["holidays"])) or "none"))
+    n_appr = sum(1 for dec in r["decisions"] if dec["decision"] == "approve")
+    verdict = ("approved leave already breaks coverage" if r["gaps_approved"] else
+               "over allowance on approved leave" if any(f["code"] == "LV02" and f["severity"] == "high" for f in r["findings"])
+               else "covered")
+    L += ["", "**Verdict: %s** - %d of %d open requests can be approved without a gap; %d need a decision." % (
+        verdict, n_appr, len(r["decisions"]), len(r["decisions"]) - n_appr), ""]
+    L += ["## Requests (in decision order: worked peak last year first, then first come first served)", "",
+          "| # | Person | Dates | Workdays | Type | Submitted | Decision | Why | Alternative |",
+          "|---|---|---|---|---|---|---|---|---|"]
+    for i, dec in enumerate(r["decisions"], 1):
+        l = dec["leave"]
+        L.append("| %d | %s | %s - %s%s | %s | %s | %s | %s | %s | %s |" % (
+            i, l["person"], l["start"].strftime("%a %d %b"), l["end"].strftime("%a %d %b"), " (half)" if l["half"] else "",
+            ("%g" % (0.5 * dec["workdays"])) if l["half"] else dec["workdays"], l["type"], l["submitted"][:10],
+            dec["decision"], dec["reason"] or "-", dec["suggestion"] or "-"))
+    L += ["", "## Calendar (approved + recommended)", "", "'''"] + grid(team, r["current"], leaves) + [
+        "'''", "V/T/S/P/U/O approved vacation/training/sick/parental/unpaid/other, lowercase = request recommended "
+        "for approval, h = half day, x = request not approved, H = holiday, - = not a working day, "
+        "+ / ! = role covered / short.", ""]
+    L += ["## Allowance (days)", "", "| Person | Allowance | Taken before | Approved here | Recommended | Left | Peak days off |",
+          "|---|---|---|---|---|---|---|"]
+    for a in r["allowance"]:
+        L.append("| %s | %g | %g | %g | %g | %s | %d |" % (a["person"], a["allowance"], a["taken_before"], a["approved"],
+                                                          a["recommended"], "-" if a["left"] is None else "%g" % a["left"],
+                                                          a["peak_days_off"]))
+    L += ["", "## Findings", ""]
+    if not r["findings"]:
+        L.append("- none")
+    for f in r["findings"]:
+        L.append("- **%s %s** %s" % (f["severity"].upper(), f["code"], f["message"]))
+    return "\n".join(L) + "\n"
+
+
+# ----------------------------------------------------------------------------- self-test
+def self_test():
+    import os
+    import tempfile
+    cases = []
+
+    def ok(name, cond, detail=""):
+        cases.append((name, bool(cond), detail))
+
+    base = {"team": "T", "period": "2026-12-14..2026-12-25", "holidays": ["2026-12-25"], "peak_days": "2026-12-21..2026-12-24",
+            "coverage": {"lead": 1, "dev": 1, "any": 2},
+            "people": [{"name": "A", "roles": ["lead", "dev"], "allowance": 10, "taken": 0},
+                       {"name": "B", "roles": ["dev"], "allowance": 10, "taken": 9},
+                       {"name": "C", "roles": ["lead"], "allowance": 10, "taken": 0, "worked_peak_last_year": True},
+                       {"name": "D", "roles": ["dev"], "days": ["mon", "tue"], "allowance": 5, "taken": 0}]}
+    t = load_team(base)
+    ok("weekends and holidays are not workdays", not is_workday(t, d("2026-12-19")) and not is_workday(t, d("2026-12-25")))
+    sf = shortfall(t, d("2026-12-16"), {"B", "C", "D"})
+    ok("one person fills one slot (A cannot be lead and dev)", sf.get("any") == 1 and sf.get("lead", 0) + sf.get("dev", 0) == 1, sf)
+    ok("matching finds A=dev, C=lead", shortfall(t, d("2026-12-16"), {"B", "D"}) == {})
+    ok("part-timer only counts on own days", shortfall(t, d("2026-12-17"), {"A", "B"}) == {"dev": 1, "any": 1}, shortfall(t, d("2026-12-17"), {"A", "B"}))
+    lv = {"id": 1, "person": "D", "start": d("2026-12-14"), "end": d("2026-12-20"), "type": "vacation",
+          "status": "requested", "submitted": "2026-11-01", "half": False, "notes": ""}
+    ok("leave days skip non-working days", len(leave_days(t, lv)) == 2)
+    ok("half day charges 0.5", charge(t, dict(lv, half=True)) == 1.0)
+
+    d0 = tempfile.mkdtemp()
+    csvp = os.path.join(d0, "l.csv")
+    with open(csvp, "w") as f:
+        f.write("person,start,end,type,status,submitted,half_day,notes\n"
+                "A,2026-12-21,2026-12-22,vacation,approved,2026-10-01,,\n"
+                "C,2026-12-21,2026-12-21,vacation,requested,2026-11-10,,\n"
+                "B,2026-12-14,2026-12-16,vacation,requested,2026-10-05,,\n"
+                "D,2026-12-15,2026-12-15,training,requested,2026-11-01,,\n")
+    leaves = load_leave(csvp, t)
+    r = plan(t, leaves)
+    by = {(dec["leave"]["person"]): dec for dec in r["decisions"]}
+    ok("C conflicts with A's approved leave (no lead)", by["C"]["decision"] == "conflict", by["C"])
+    ok("conflict gets an alternative date", by["C"]["suggestion"] is not None, by["C"])
+    ok("B over allowance (3 days, 1 left)", by["B"]["decision"] == "over allowance", by["B"])
+    ok("D training approved", by["D"]["decision"] == "approve", by["D"])
+    ok("worked-peak person decided first", r["decisions"][0]["leave"]["person"] == "C", [x["leave"]["person"] for x in r["decisions"]])
+    codes = {f["code"] for f in r["findings"]}
+    ok("LV03 single point of failure for lead", "LV03" in codes, codes)
+    ok("LV05 fairness flag for C", "LV05" in codes, codes)
+    ok("no gaps from approved leave", not r["gaps_approved"])
+    with open(csvp, "a") as f:
+        f.write("C,2026-12-21,2026-12-21,sick,approved,2026-12-01,,\n")
+    r2 = plan(t, load_leave(csvp, t))
+    ok("LV01 gap in approved leave", any(f["code"] == "LV01" and f["severity"] == "high" for f in r2["findings"]))
+    t2 = load_team(dict(base, blackout=[{"dates": "2026-12-16", "reason": "release"}]))
+    r3 = plan(t2, load_leave(csvp, t2))
+    ok("blackout precedes coverage", any(x["decision"] == "blackout" for x in r3["decisions"]) or
+       all(x["leave"]["person"] != "B" or x["decision"] == "over allowance" for x in r3["decisions"]))
+    lvb = dict(lv, person="A", start=d("2026-12-16"), end=d("2026-12-16"))
+    ok("blackout_hit detects overlap", blackout_hit(t2, lvb)[0] == [d("2026-12-16")])
+    try:
+        load_team(dict(base, coverage={"qa": 1}))
+        ok("unknown coverage role rejected", False)
+    except InputError:
+        ok("unknown coverage role rejected", True)
+    rep = report(t, leaves, r)
+    ok("report has grid and verdict", "Verdict" in rep and "cover lead" in rep)
+
+    for name, good, detail in cases:
+        print("%s  %s%s" % ("PASS" if good else "FAIL", name, "" if good else "  -> %r" % (detail,)))
+    passed = sum(1 for _, g, _ in cases if g)
+    print("%d/%d passed" % (passed, len(cases)))
+    return 0 if passed == len(cases) else 1
+
+
+def to_json(r):
+    def conv(o):
+        if isinstance(o, dt.date):
+            return o.isoformat()
+        if isinstance(o, dict):
+            return {(k.isoformat() if isinstance(k, dt.date) else k): conv(v) for k, v in o.items()}
+        if isinstance(o, (list, tuple)):
+            return [conv(x) for x in o]
+        return o
+    return json.dumps(conv(r), indent=2)
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Plan team leave against minimum coverage.")
+    ap.add_argument("team", nargs="?")
+    ap.add_argument("leave", nargs="?")
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args(argv)
+    if a.self_test:
+        return self_test()
+    if not (a.team and a.leave):
+        ap.print_usage(sys.stderr)
+        return 2
+    try:
+        with open(a.team, encoding="utf-8") as f:
+            team = load_team(json.load(f))
+        leaves = load_leave(a.leave, team)
+        r = plan(team, leaves)
+    except (InputError, OSError, json.JSONDecodeError, KeyError) as e:
+        print("error: %s" % e, file=sys.stderr)
+        return 2
+    print(to_json(r) if a.json else report(team, leaves, r), end="\n" if a.json else "")
+    bad = r["gaps_approved"] or any(f["code"] == "LV02" and f["severity"] == "high" for f in r["findings"])
+    return 1 if bad else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+```
+
+</details>
+
 <details><summary><b>土豆严厉批评者</b></summary>
 
 ```text
@@ -3976,6 +4818,649 @@ ${main_folder}/
 
 </details>
 
+<details><summary><b>跨时区会议时间查找器</b> · 机器翻译</summary>
+
+```text
+---
+name: time-zone-meeting-slot-finder
+description: 为分布式团队寻找公平的会议时间。输入每位参与者的 IANA 时区、工作日和工作时间、他们愿意延长的时长、节假日和占用时间，然后以每个人的本地时间列出日期范围内的所有可用时段，处理在不同周末切换的夏令时，并挑选轮换的系列会议，避免总是让同一批人承担早会或晚会。包含一个仅使用标准库的 Python zoneinfo 脚本，支持 --self-test。
+---
+
+# Time Zone Meeting Slot Finder
+
+你帮助分布式团队挑选对所有必需参与者都可行、且长期公平的会议时间。你按每个人自己的本地时间和实际日期来计算（绝不使用"洛杉矶比柏林晚 9 小时"这类经验法则，因为每年春季和秋季都有数周这条规则是错的），公开展示取舍，并轮换不方便的时段，而不是总把它们安排给同样的人。
+
+## Files in this skill
+
+- `scripts/slot_finder.py` - 读取团队 CSV 和可选的占用时间 CSV，在日期范围内按网格以每位参与者的本地时间（Python zoneinfo）评估每个时段，按缺席者和所需延长时间对时段排序，报告范围内的夏令时变化，并可挑选公平的轮换系列（仅需 Python 3.9+ 标准库）
+- `references/dst-and-time-zone-pitfalls.md` - 各地区的夏令时日期、不实行夏令时的时区、半小时时区、周末不是周六至周日的情况、应避免的缩写，以及日历邀请在切换期间的表现
+- `references/fairness-and-rotation.md` - 痛点模型、轮换如何选择、何时应拆分会议或改用异步方式，以及如何向团队解释该选择
+- `templates/slot-proposal.md` - 发送给团队的提案
+- `examples/team.csv` - 位于洛杉矶、纽约、柏林、伊斯坦布尔和加尔各答的五个人（其中一人为可选）
+- `examples/blocked.csv` - 一个公共假日、一次牙医预约、一次董事会评审和一天休假
+
+## Workflow
+
+### 1. Collect the facts
+对每位参与者：姓名、IANA 时区（基于城市，例如 `America/Los_Angeles`，绝不用 "PST"）、工作日（周一至周五，或中东许多地区的周日至周四）、工作时间、愿意提前开始或延后结束多少小时，以及是否必需。另外还需要日期范围、会议时长、重复频率、已知的节假日和占用时间（以该参与者的本地时间表示）。如果一个城市对应多个时区（例如团队成员在"墨西哥"），要询问而不是猜测。
+
+### 2. Run the finder
+'''
+python3 scripts/slot_finder.py --team examples/team.csv --blocked examples/blocked.csv --start 2026-10-26 --end 2026-11-20 --days Tue,Wed,Thu --series 4
+python3 scripts/slot_finder.py --team team.csv --start 2026-11-02 --end 2026-11-06 --duration 30 --step 15 --top 5
+python3 scripts/slot_finder.py --team team.csv --start 2026-11-02 --end 2026-11-27 --series 8 --every day --ref-zone Europe/Berlin --json
+python3 scripts/slot_finder.py --self-test
+'''
+日期（`--start`、`--end`、`--days`）按 `--ref-zone`（默认 UTC）解读。退出码 0 表示找到了时段，1 表示没有对所有必需人员都可行的时段，2 表示输入有误（未知时区、时间格式错误、缺少列）。
+
+### 3. Read the result
+- **范围内的夏令时变化**最先显示：如果任何时区在范围内发生切换，那么相同的 UTC 时间之后对这些人来说会提前或推后一小时。应按时间段提出时段，而不是整个范围用同一个 UTC 时间。
+- **最佳时段**的排序依据：缺席的可选人员数，然后是最不利的单个人的延长时间，然后是总延长时间。
+- **轮换系列**每周（或每天）挑选一次会议，使累计的最大不便程度尽量低，然后再将其分摊。摘要显示每个人在工作时间内、延长时间内参会或缺席的次数。
+- 如果没有可用时段，要说明原因（谁与谁冲突），并提供选项：志愿者多延长一些、缩短会议、让某人改为可选、召开两场区域会议，或改用异步更新。
+
+### 4. Deliver
+填写 `templates/slot-proposal.md`：推荐方案（含每个人的本地时间和星期几）、夏令时说明、轮换表、备选方案和待确认问题。使用带有真实时区（组织者的 IANA 时区）的日历发送邀请，除非团队已同意，否则不要用 "UTC"，并说明该系列以哪个时区为准。
+
+## Example result
+五个人，2026-10-26 至 2026-11-20，周二至周四，60 分钟，4 次每周会议的系列。欧洲于 10 月 25 日结束夏令时，美国于 11 月 1 日结束，所以在 10 月 26 日这一周，纽约只比柏林晚 5 小时，而不是 6 小时。第 1 周：13:30 UTC（Ana 在洛杉矶 06:30，需延长；Priya 在加尔各答 19:00，需延长；其他人都在工作时间内）。美国切换之后，两周安排在 16:00 UTC（Ana 08:00 在工作时间内，Eva 17:00-18:00 需延长，Bilal 19:00-20:00 需延长），一周安排在 14:30 UTC（Ana 再次需要延长）。Bilal 在 10 月 29 日（共和国日）不可用。Priya（可选，+05:30）只能在美国切换之前参加；提案为她增加了录制的摘要，并建议每月安排一次对亚洲友好的时段。
+
+## Rules
+
+- 始终使用 IANA 时区名称，并按日期计算本地时间；绝不在夏令时边界两侧套用固定偏移。
+- 对每个提案都显示每位参与者的本地时间和星期几，因为日期可能不同（加尔各答是晚上，洛杉矶是早上）。
+- 不要把任何人安排在其同意的延长范围之外；在假定某人会接受 06:00 或 22:00 的会议之前要先询问。
+- 轮换不便之处并显示统计；如果总是同一个人吃亏，要明说，并建议结构性的解决办法（拆分、异步、轮换会议主持人）。
+- 尊重参与者自己日历和时区中的周末、公共假日和占用时间。
+- 推荐方案要简短；完整表格放在附录中。
+FILE:references/dst-and-time-zone-pitfalls.md
+# DST and time zone pitfalls
+
+## Use IANA zone names
+- `America/New_York`、`Europe/Berlin`、`Asia/Kolkata`、`Australia/Sydney`。它们包含该地区完整的历史和未来规则。
+- 避免使用缩写："EST"、"CST"、"IST" 和 "BST" 有歧义（IST = 印度、爱尔兰或以色列；CST = 美国中部、中国或古巴），而且 zoneinfo 中名为 EST 或 MST 的条目是没有夏令时的固定偏移。脚本会对不含 "/" 的名称发出警告。
+- 避免对人使用 UTC+1 这类固定偏移：许多地方的偏移每年会变化两次。
+- 选择与此人遵循相同规则的城市：亚利桑那（`America/Phoenix`）没有夏令时；墨西哥大部分地区在 2022 年取消了夏令时；`America/Sao_Paulo` 在 2019 年取消了夏令时。
+- 保持时区数据库为最新（`tzdata`）；各国政府有时只提前几周通知就会更改规则。
+
+## DST dates (2026, check each year)
+| 地区 | 夏令时开始 | 结束 | 备注 |
+|---|---|---|---|
+| 美国和加拿大（大部分） | 3 月第 2 个星期日（2026-03-08） | 11 月第 1 个星期日（2026-11-01） | 当地时间 02:00 |
+| 欧盟、英国 | 3 月最后一个星期日（2026-03-29） | 10 月最后一个星期日（2026-10-25） | 01:00 UTC，同时切换 |
+| 澳大利亚（东南部）、新西兰 | 10 月第一个星期日 / 9 月最后一个星期日 | 4 月第一个星期日 | 南半球：季节相反 |
+| 无夏令时 | 土耳其（UTC+3）、印度（+05:30）、中国、日本、新加坡、阿联酋、非洲大部分地区、亚利桑那 | | |
+
+因此每年有两段"间隙"期，美欧时差比平时小一小时：3 月约 3 周，以及 10 月底 / 11 月初约 1 周。以某一地区为基准的周期性会议，在这些周内对另一地区的人会偏移一小时。
+
+## Offsets that are not whole hours
+- 印度 +05:30，伊朗 +03:30，尼泊尔 +05:45，纽芬兰 -03:30（夏季 -02:30），南澳大利亚 +09:30/+10:30，查塔姆群岛 +12:45。UTC 整点的网格对这些人来说会落在 :30 或 :45；脚本以 5 分钟为单位评估，因此这些情况是精确的。
+
+## Weekends and working days
+- 周日至周四工作的一周：例如以色列；若干海湾国家周末为周五至周六，而阿联酋在 2022 年改为周一至周五（周五为半天）。要询问每个人。
+- 公共假日因国家和地区而异（巴伐利亚与柏林、美国各州）。请以本地日期将它们加入占用时间文件。
+- 洛杉矶周一 08:00 的时段，在印度是周一晚上，而在悉尼或奥克兰已经是周二早上。始终显示每个人的星期几。
+
+## DST on the switch day itself
+- 春季前拨：当地时间 02:00 至 03:00 之间（美国）的时间不存在；秋季回拨：01:00-02:00 会出现两次。在切换日避免安排在这些时段；脚本基于 UTC 时刻工作，因此永远不会产生无效时间，但读到那天 "01:30" 的人可能会感到困惑。
+
+## Calendar invites across a switch
+- 周期性邀请以组织者的时区为准。纽约每周 10:00 的会议在纽约一直是 10:00，而在间隙周内对柏林来说会移动。
+- 如果该系列对双方都必须公平，应有意以 UTC 为基准并告知所有人，或明确规划间隙周。
+- 创建邀请后检查其时区（有些工具默认使用设备时区或"浮动"时间）。
+FILE:references/fairness-and-rotation.md
+# Fairness and rotation
+
+## Pain-point model used by the script
+| 一个人在一次会议中的情形 | 分数 |
+|---|---|
+| 完全在其工作时间内 | 0 |
+| 部分或全部处于其延长窗口（工作前或工作后，在其同意的范围内） | 每小时延长 2 分，按比例计算（30 分钟 = 1） |
+| 超出延长窗口、在非工作日或占用时间内 | 无法参加（如果该人是必需的，则该时段无效） |
+| 无法参加的可选人员（仅计入轮换统计） | 3 |
+
+单个时段的排序：缺席的可选人员最少，然后是最不利者的分数最低，然后是总分最低。
+
+轮换（`--series N`）：贪心地逐次添加一场会议，每个 ISO 周最多一场（`--every week`，默认）或每个日期最多一场（`--every day`），选择使最高累计分数最低的时段，其次是累计分数平方和最小（这会分摊痛苦而不是集中），再其次是缺席人数更少。摘要表显示每个人：工作时间内的会议数、延长的会议数、缺席数、总分。
+
+这些权重只是一个模型，并非真理。请与团队一起调整：对有孩子的人来说，早起可能比晚下班代价更高，22:00 的会议比 18:30 的代价更高。按每个人实际能接受的情况修改其延长窗口。
+
+## Make the trade-offs visible
+- 为每个选项显示每个人的本地时间和星期几。
+- 显示轮换统计，让"Bilal 在 4 次中有 3 次需要延长"成为一个可见的决定，而不是意外。
+- 请大家设置自己的延长窗口；不要因为某人做过一次就假定他们会接受 06:30 的会议。
+
+## When no fair slot exists
+- 缩短会议：30 分钟常常能放得下 60 分钟放不下的时段。
+- 让一些人改为可选，并用书面记录和决策日志记录会议。
+- 按地区拆分（美洲 + 欧洲、欧洲 + 亚洲），由一人负责衔接，并轮换衔接人。
+- 每周交替使用两个时段（例如 14:00 UTC 和 07:00 UTC），让双方各有一半时间享受方便的时段。
+- 改用异步：书面更新、录制的演示，以及在文档中做决策并以每个人的本地时间标明截止时间。
+
+## Checklist before sending
+- 系列中的每次会议，每位必需人员都在工作时间内或其同意的延长范围内。
+- 各国的节假日和休假都已列入占用时间文件。
+- 范围内的夏令时变化已被点明，且系列已将其考虑在内。
+- 邀请是在约定的基准时区创建的；消息中的时间按每个人分别给出。
+- 设有复审日期（例如下一次夏令时变化之后），以便再次轮换。
+FILE:templates/slot-proposal.md
+# Meeting time proposal: <meeting name>
+
+**Who:** <Ana (Los Angeles), Dana (New York), Eva (Berlin), Bilal (Istanbul), Priya (Kolkata, optional)>
+**Length / cadence:** <60 min weekly, Tue-Thu>   **Range checked:** <2026-10-26 to 2026-11-20>
+**Anchor zone for the invite:** <UTC / organizer's zone>
+
+## Recommendation
+| Week | Start (UTC) | Ana | Dana | Eva | Bilal | Priya |
+|---|---|---|---|---|---|---|
+| <Oct 26> | <Tue 13:30> | <Tue 06:30 (stretch)> | <09:30> | <14:30> | <16:30> | <19:00 (stretch)> |
+| <Nov 2> | <Wed 16:00> | <08:00> | <11:00> | <17:00 (stretch)> | <19:00 (stretch)> | <cannot (21:30)> |
+
+## Daylight saving
+- <Europe left summer time on Oct 25, the US on Nov 1: during the week of Oct 26 New York is 5 h behind Berlin instead of 6, so the slot moves by an hour from Nov 2>
+
+## Fairness over the series
+| Name | In hours | Stretch | Missed | Points |
+|---|---|---|---|---|
+| <Ana> | <2> | <2> | <0> | <4> |
+
+<One sentence on who carries the most and what we do about it (e.g. Priya: recorded summary + an Asia-friendly slot monthly).>
+
+## Alternatives
+1. <30-minute version at 15:00 UTC: everyone in hours except ...>
+2. <alternate two slots week by week>
+
+## Blocked dates taken into account
+- <Oct 29: Republic Day, Turkey (Bilal)>
+
+## Please confirm
+- <your stretch window is still right>
+- <holidays or leave in this range we missed>
+FILE:examples/team.csv
+name,zone,work_start,work_end,days,flex_before,flex_after,required
+Ana,America/Los_Angeles,08:00,16:30,Mon-Fri,1.5,1,yes
+Dana,America/New_York,08:30,17:00,Mon-Fri,1,1,yes
+Eva,Europe/Berlin,09:00,17:30,Mon-Fri,1,1.5,yes
+Bilal,Europe/Istanbul,09:00,18:00,Mon-Fri,0,2,yes
+Priya,Asia/Kolkata,10:00,18:30,Mon-Fri,0,2,no
+FILE:examples/blocked.csv
+name,date,start,end,reason
+Bilal,2026-10-29,,,Republic Day (public holiday in Turkey)
+Dana,2026-11-03,10:00,11:30,dentist
+Eva,2026-11-05,15:30,17:30,quarterly board review
+Priya,2026-11-06,,,leave
+FILE:scripts/slot_finder.py
+#!/usr/bin/env python3
+"""时区会议时段查找器（Python 3.9+ 标准库：zoneinfo）。
+
+给定带有 IANA 时区、工作日和工作时间（以及每个人愿意在工作前后延长多少）的参与者，
+在日期范围内查找会议时段，按公平性对其排序，并可挑选轮换系列，避免同样的人
+每次都承担早会或晚会。每个时段都按每位参与者在该日期的本地时间来评估，
+因此范围内的夏令时切换（欧洲和美国在不同的周末切换）会被自动处理并报告。
+
+每位参与者每次会议的痛点分数：工作时间内为 0，工作前后延长（"flex"）窗口内每小时 2 分，
+超出该范围、在非工作日或占用时间内则不可用。在轮换统计中，缺少一位可选参与者
+会让其记 3 分痛点。
+
+Usage:
+  python3 slot_finder.py --team team.csv --start 2026-10-26 --end 2026-11-06
+        [--duration 60] [--step 30] [--blocked blocked.csv] [--days Tue,Wed,Thu]
+        [--ref-zone UTC] [--top 10] [--series N [--every week|day]] [--json]
+  python3 slot_finder.py --self-test
+team.csv columns: name, zone, work_start, work_end, days (Mon-Fri or Sun-Thu or
+Mon,Wed,Fri), flex_before, flex_after (hours, optional), required (yes/no, optional).
+work_end 早于 work_start 表示跨越午夜的班次。
+blocked.csv columns: name, date (参与者的本地日期), start, end (留空 = 全天), reason.
+退出码：0 = 找到时段，1 = 没有所有必需参与者都能参加的时段，
+2 = 输入有误（未知时区、时间格式错误、缺少文件或列）。
+"""
+import argparse, csv, datetime as dt, io, json, sys
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+
+DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+CHUNK = 5  # 分钟；对 +05:30 和 +05:45 时区足够精细
+FLEX_PAIN_PER_HOUR = 2
+MISSED_PAIN = 3
+
+
+class InputError(Exception):
+    pass
+
+
+def parse_days(s):
+    s = (s or "Mon-Fri").strip()
+    out = set()
+    for part in s.replace(" ", "").split(","):
+        if not part:
+            continue
+        if "-" in part:
+            a, b = part.split("-", 1)
+            i, j = day_index(a), day_index(b)
+            k = i
+            while True:
+                out.add(k)
+                if k == j:
+                    break
+                k = (k + 1) % 7
+        else:
+            out.add(day_index(part))
+    return out
+
+
+def day_index(name):
+    n = name.strip()[:3].title()
+    if n not in DAY_NAMES:
+        raise InputError(f"unknown day '{name}' (use Mon..Sun)")
+    return DAY_NAMES.index(n)
+
+
+def parse_hm(s, what):
+    try:
+        h, m = s.strip().split(":")
+        h, m = int(h), int(m)
+        if not (0 <= h <= 24 and 0 <= m < 60) or (h == 24 and m):
+            raise ValueError
+        return h * 60 + m
+    except (ValueError, AttributeError):
+        raise InputError(f"bad time '{s}' for {what} (use HH:MM, 24-hour)")
+
+
+def load_zone(name, who, warnings):
+    name = (name or "").strip()
+    try:
+        z = ZoneInfo(name)
+    except (ZoneInfoNotFoundError, ValueError):
+        raise InputError(f"unknown time zone '{name}' for {who}: use an IANA name such as America/New_York, Europe/Berlin, Asia/Kolkata (pip install tzdata if the system has no zone database)")
+    if "/" not in name and name not in ("UTC", "Etc/UTC"):
+        warnings.append(f"{who}: '{name}' is an abbreviation or legacy zone with fixed rules; use the city-based IANA name (e.g. America/New_York, not EST) so daylight saving is right")
+    return z
+
+
+def read_team(text, warnings):
+    rows = list(csv.DictReader(io.StringIO(text.lstrip("\ufeff"))))
+    if not rows:
+        raise InputError("team file has no rows")
+    for col in ("name", "zone", "work_start", "work_end"):
+        if col not in rows[0]:
+            raise InputError(f"team file is missing column '{col}'")
+    team = []
+    for r in rows:
+        who = (r.get("name") or "").strip()
+        if not who:
+            continue
+        p = {"name": who, "zone_name": r["zone"].strip(), "zone": load_zone(r["zone"], who, warnings),
+             "start": parse_hm(r["work_start"], who + " work_start"), "end": parse_hm(r["work_end"], who + " work_end"),
+             "days": parse_days(r.get("days")),
+             "flex_before": int(round(float(r.get("flex_before") or 0) * 60)),
+             "flex_after": int(round(float(r.get("flex_after") or 0) * 60)),
+             "required": (r.get("required") or "yes").strip().lower() not in ("no", "n", "false", "0", "optional"),
+             "blocked": []}
+        if p["start"] == p["end"]:
+            raise InputError(f"{who}: work_start equals work_end")
+        team.append(p)
+    names = [p["name"] for p in team]
+    if len(set(names)) != len(names):
+        raise InputError("duplicate participant names in team file")
+    return team
+
+
+def read_blocked(text, team):
+    byname = {p["name"].lower(): p for p in team}
+    for r in csv.DictReader(io.StringIO(text.lstrip("\ufeff"))):
+        who = (r.get("name") or "").strip()
+        if not who:
+            continue
+        p = byname.get(who.lower())
+        if not p:
+            raise InputError(f"blocked time for unknown participant '{who}'")
+        try:
+            d = dt.date.fromisoformat(r["date"].strip())
+        except (ValueError, KeyError):
+            raise InputError(f"bad date in blocked file for {who}: {r.get('date')}")
+        s, e = (r.get("start") or "").strip(), (r.get("end") or "").strip()
+        a = dt.datetime.combine(d, dt.time()) + dt.timedelta(minutes=parse_hm(s, who + " blocked start") if s else 0)
+        b = dt.datetime.combine(d, dt.time()) + dt.timedelta(minutes=parse_hm(e, who + " blocked end") if e else 1440)
+        p["blocked"].append((a, b, (r.get("reason") or "").strip()))
+
+
+def classify(p, local):
+    """local：不带时区的本地 datetime。返回 'core'、'flex' 或 None（不可用）。"""
+    best = None
+    for back in (0, 1):
+        d = local.date() - dt.timedelta(days=back)
+        if d.weekday() not in p["days"]:
+            continue
+        base = dt.datetime.combine(d, dt.time())
+        cs = base + dt.timedelta(minutes=p["start"])
+        ce = base + dt.timedelta(minutes=p["end"] + (1440 if p["end"] <= p["start"] else 0))
+        if cs <= local < ce:
+            return "core"
+        if cs - dt.timedelta(minutes=p["flex_before"]) <= local < ce + dt.timedelta(minutes=p["flex_after"]):
+            best = "flex"
+    return best
+
+
+def evaluate(p, start_utc, minutes):
+    """返回 (status, pain, local_start, local_end, reason)。status 取值为 core、flex、out。"""
+    flex_min = 0
+    reason = ""
+    for k in range(0, minutes, CHUNK):
+        t = (start_utc + dt.timedelta(minutes=k)).astimezone(p["zone"]).replace(tzinfo=None)
+        c = classify(p, t)
+        if c is None:
+            reason = "outside hours" if t.date().weekday() in p["days"] or classify_day_any(p, t) else "day off"
+            return "out", 0.0, *local_span(p, start_utc, minutes), reason
+        for a, b, why in p["blocked"]:
+            if a <= t < b:
+                return "out", 0.0, *local_span(p, start_utc, minutes), f"blocked: {why}" if why else "blocked"
+        if c == "flex":
+            flex_min += CHUNK
+    pain = round(flex_min / 60 * FLEX_PAIN_PER_HOUR, 2)
+    return ("flex" if flex_min else "core"), pain, *local_span(p, start_utc, minutes), ""
+
+
+def classify_day_any(p, t):
+    return (t.date() - dt.timedelta(days=1)).weekday() in p["days"] and p["end"] <= p["start"]
+
+
+def local_span(p, start_utc, minutes):
+    a = start_utc.astimezone(p["zone"])
+    b = (start_utc + dt.timedelta(minutes=minutes)).astimezone(p["zone"])
+    return a, b
+
+
+def dst_changes(team, start, end):
+    out = []
+    seen = set()
+    for p in team:
+        if p["zone_name"] in seen:
+            continue
+        seen.add(p["zone_name"])
+        z = p["zone"]
+        t = dt.datetime.combine(start - dt.timedelta(days=1), dt.time(), tzinfo=dt.timezone.utc)
+        stop = dt.datetime.combine(end + dt.timedelta(days=2), dt.time(), tzinfo=dt.timezone.utc)
+        prev = t.astimezone(z).utcoffset()
+        while t < stop:
+            t2 = t + dt.timedelta(minutes=30)
+            off = t2.astimezone(z).utcoffset()
+            if off != prev:
+                loc = t2.astimezone(z)
+                out.append({"zone": p["zone_name"], "utc": t2.strftime("%Y-%m-%d %H:%M UTC"),
+                            "local": loc.strftime("%Y-%m-%d %H:%M %Z"), "from": fmt_off(prev), "to": fmt_off(off)})
+                prev = off
+            t = t2
+    return out
+
+
+def fmt_off(td):
+    m = int(td.total_seconds() // 60)
+    s = "+" if m >= 0 else "-"
+    m = abs(m)
+    return f"UTC{s}{m // 60:02d}:{m % 60:02d}"
+
+
+def find_slots(team, start, end, duration, step, ref_zone, only_days=None):
+    """start/end：ref_zone 中的日期（含首尾）。返回时段字典的列表。"""
+    slots = []
+    t = dt.datetime.combine(start, dt.time(), tzinfo=ref_zone).astimezone(dt.timezone.utc)
+    stop = dt.datetime.combine(end + dt.timedelta(days=1), dt.time(), tzinfo=ref_zone).astimezone(dt.timezone.utc)
+    t = t.replace(minute=(t.minute // step) * step if step < 60 else 0, second=0, microsecond=0)
+    while t + dt.timedelta(minutes=duration) <= stop:
+        ref_local = t.astimezone(ref_zone)
+        if only_days is None or ref_local.weekday() in only_days:
+            per, ok = {}, True
+            for p in team:
+                st, pain, a, b, why = evaluate(p, t, duration)
+                per[p["name"]] = {"status": st, "pain": pain, "local_start": a, "local_end": b, "reason": why}
+                if st == "out" and p["required"]:
+                    ok = False
+                    break
+            if ok:
+                missing = [p["name"] for p in team if per[p["name"]]["status"] == "out"]
+                pains = [per[p["name"]]["pain"] for p in team]
+                slots.append({"utc": t, "per": per, "missing": missing, "total_pain": round(sum(pains), 2),
+                              "max_pain": max(pains)})
+        t += dt.timedelta(minutes=step)
+    return slots
+
+
+def rank(slots):
+    return sorted(slots, key=lambda s: (len(s["missing"]), s["max_pain"], s["total_pain"], s["utc"]))
+
+
+def period_key(s, ref_zone, every):
+    d = s["utc"].astimezone(ref_zone).date()
+    return d.isocalendar()[:2] if every == "week" else d
+
+
+def pick_series(slots, team, n, ref_zone, every="week"):
+    """贪心公平轮换：n 个时段，每个 ref-zone ISO 周最多一个（every="week"）或每个日期最多一个
+    （every="day"），使累计最大痛点最小，其次是累计痛点平方和最小，再其次是缺席人数最少。"""
+    cum = {p["name"]: 0.0 for p in team}
+    chosen, used_dates = [], set()
+    for _ in range(n):
+        best, best_key = None, None
+        for s in slots:
+            d = period_key(s, ref_zone, every)
+            if d in used_dates:
+                continue
+            new = {k: cum[k] + (MISSED_PAIN if s["per"][k]["status"] == "out" else s["per"][k]["pain"]) for k in cum}
+            key = (round(max(new.values()), 2), round(sum(v * v for v in new.values()), 2), len(s["missing"]), s["total_pain"], s["utc"])
+            if best_key is None or key < best_key:
+                best, best_key = s, key
+        if best is None:
+            break
+        chosen.append(best)
+        used_dates.add(period_key(best, ref_zone, every))
+        for k in cum:
+            cum[k] += MISSED_PAIN if best["per"][k]["status"] == "out" else best["per"][k]["pain"]
+    chosen.sort(key=lambda s: s["utc"])
+    return chosen, cum
+
+
+def cell(info):
+    a, b = info["local_start"], info["local_end"]
+    txt = f"{DAY_NAMES[a.weekday()]} {a:%H:%M}-{b:%H:%M}"
+    if info["status"] == "flex":
+        txt += f" (stretch, {info['pain']:g})"
+    elif info["status"] == "out":
+        txt += f" (cannot: {info['reason']})"
+    return txt
+
+
+def table(slots, team, ref_zone):
+    head = ["#", f"Start ({ref_zone.key})"] + [f"{p['name']} ({p['zone_name']})" for p in team] + ["Pain total/max", "Missing"]
+    out = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
+    for i, s in enumerate(slots, 1):
+        r = s["utc"].astimezone(ref_zone)
+        row = [str(i), f"{DAY_NAMES[r.weekday()]} {r:%Y-%m-%d %H:%M}"] + [cell(s["per"][p["name"]]) for p in team] + \
+              [f"{s['total_pain']:g}/{s['max_pain']:g}", ", ".join(s["missing"]) or "-"]
+        out.append("| " + " | ".join(row) + " |")
+    return out
+
+
+def report(team, slots, args, ref_zone, warnings, changes, series=None, cum=None):
+    out = [f"# Meeting slots {args['start']} to {args['end']} ({args['duration']} min, dates in {ref_zone.key})", ""]
+    for w in warnings:
+        out.append(f"> WARNING: {w}")
+    if warnings:
+        out.append("")
+    out.append("## Participants")
+    out.append("| Name | Zone | Hours (local) | Days | Stretch before/after | Required |")
+    out.append("|---|---|---|---|---|---|")
+    for p in team:
+        days = ",".join(DAY_NAMES[d] for d in sorted(p["days"]))
+        out.append(f"| {p['name']} | {p['zone_name']} | {p['start'] // 60:02d}:{p['start'] % 60:02d}-{p['end'] // 60:02d}:{p['end'] % 60:02d} | {days} | {p['flex_before'] / 60:g}h / {p['flex_after'] / 60:g}h | {'yes' if p['required'] else 'no'} |")
+    out += ["", "## Daylight saving changes in range"]
+    if changes:
+        for c in changes:
+            out.append(f"- {c['zone']}: {c['from']} -> {c['to']} at {c['local']} ({c['utc']}); the same UTC time moves by an hour locally after this")
+    else:
+        out.append("- none")
+    out.append("")
+    if not slots:
+        out.append("No slot found where every required participant is available. Options: allow more stretch hours, make someone optional, shorten the meeting, split into two regional meetings, or go async.")
+        return "\n".join(out)
+    if series:
+        out += [f"## Rotating series ({len(series)} meetings, fairest combination found by greedy rotation)", ""] + table(series, team, ref_zone)
+        out += ["", "| Name | In hours | Stretch | Missed | Pain total |", "|---|---|---|---|---|"]
+        for p in team:
+            st = [s["per"][p["name"]]["status"] for s in series]
+            out.append(f"| {p['name']} | {st.count('core')} | {st.count('flex')} | {st.count('out')} | {cum[p['name']]:g} |")
+        out.append("")
+    top = rank(slots)[:args["top"]]
+    out += [f"## Best {len(top)} of {len(slots)} possible slots", ""] + table(top, team, ref_zone)
+    out += ["", f"Pain: 0 inside working hours, {FLEX_PAIN_PER_HOUR} per hour of stretch, {MISSED_PAIN} for an optional person who cannot attend (rotation only)."]
+    return "\n".join(out)
+
+
+def to_json(team, slots, series, cum, changes, warnings, ref_zone, top):
+    def enc(s):
+        return {"start_utc": s["utc"].strftime("%Y-%m-%dT%H:%MZ"), "start_ref": s["utc"].astimezone(ref_zone).isoformat(),
+                "total_pain": s["total_pain"], "max_pain": s["max_pain"], "missing": s["missing"],
+                "participants": {k: {"status": v["status"], "pain": v["pain"], "local_start": v["local_start"].isoformat(),
+                                     "local_end": v["local_end"].isoformat(), "reason": v["reason"]} for k, v in s["per"].items()}}
+    return {"warnings": warnings, "dst_changes": changes, "slot_count": len(slots),
+            "best": [enc(s) for s in rank(slots)[:top]], "series": [enc(s) for s in series or []], "series_pain": cum or {}}
+
+
+def run(team_text, start, end, duration=60, step=30, blocked_text=None, ref="UTC", top=10, series=0, only_days=None, every="week"):
+    warnings = []
+    team = read_team(team_text, warnings)
+    if blocked_text:
+        read_blocked(blocked_text, team)
+    ref_zone = load_zone(ref, "--ref-zone", warnings)
+    if end < start:
+        raise InputError("--end is before --start")
+    if duration % CHUNK or step % CHUNK or duration <= 0 or step <= 0:
+        raise InputError(f"--duration and --step must be positive multiples of {CHUNK} minutes")
+    slots = find_slots(team, start, end, duration, step, ref_zone, only_days)
+    chosen, cum = pick_series(slots, team, series, ref_zone, every) if series else (None, None)
+    changes = dst_changes(team, start, end)
+    return team, slots, chosen, cum, changes, warnings, ref_zone
+
+
+def self_test():
+    T = "name,zone,work_start,work_end,days,flex_before,flex_after,required\n"
+    D = dt.date
+    passed, total = 0, 0
+
+    def check(name, cond):
+        nonlocal passed, total
+        total += 1
+        passed += bool(cond)
+        print(("PASS " if cond else "FAIL ") + name)
+
+    team, slots, *_ = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\nB,Europe/London,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 2), D(2026, 11, 2))
+    check("Berlin+London overlap is 09:00-16:00 UTC (13 one-hour starts on the 30-min grid)", len(slots) == 13 and slots[0]["utc"].hour == 9 and slots[-1]["utc"].hour == 15)
+    check("all in-hours slots have zero pain", all(s["total_pain"] == 0 for s in slots))
+    team, slots, *_ = run(T + "A,America/Los_Angeles,09:00,17:00,Mon-Fri,0,0,yes\nB,Asia/Kolkata,09:00,18:00,Mon-Fri,0,0,yes\n", D(2026, 11, 2), D(2026, 11, 6))
+    check("LA and Kolkata without stretch: no slot", not slots)
+    team, slots, *_ = run(T + "A,America/Los_Angeles,09:00,17:00,Mon-Fri,2,0,yes\nB,Asia/Kolkata,09:00,18:00,Mon-Fri,0,3,yes\n", D(2026, 11, 2), D(2026, 11, 6), duration=30)
+    check("with 2h/3h stretch: only 30-min slots (15:00 UTC) exist and all carry pain", slots and all(s["total_pain"] > 0 for s in slots))
+    s0 = rank(slots)[0]
+    check("half-hour zone: Kolkata local minutes end in :30", s0["per"]["B"]["local_start"].minute == 30)
+    team, slots, *_ = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\nB,America/New_York,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 10, 26), D(2026, 10, 26))
+    first = slots[0]["utc"]
+    check("Berlin-NY in the gap week (EU back on CET, US still EDT): overlap 13:00-16:00 UTC", first.hour == 13 and slots[-1]["utc"].hour == 15)
+    team, slots2, *_ = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\nB,America/New_York,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 2), D(2026, 11, 2))
+    check("after US DST end: overlap starts 14:00 UTC", slots2[0]["utc"].hour == 14)
+    *_, changes, w, rz = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\nB,America/New_York,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 10, 24), D(2026, 11, 3))
+    zones = {c["zone"]: c for c in changes}
+    check("DST changes found: Berlin 2026-10-25 and New York 2026-11-01", "2026-10-25" in zones.get("Europe/Berlin", {}).get("local", "") and "2026-11-01" in zones.get("America/New_York", {}).get("local", ""))
+    team, slots, *_ = run(T + "A,Asia/Dubai,09:00,17:00,Sun-Thu,0,0,yes\nB,Europe/London,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 6), D(2026, 11, 8))
+    check("Sun-Thu vs Mon-Fri: no Fri/Sat/Sun slot", not slots)
+    team, slots, *_ = run(T + "A,Asia/Dubai,09:00,17:00,Sun-Thu,0,0,yes\nB,Europe/London,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 9), D(2026, 11, 9))
+    check("Sun-Thu vs Mon-Fri: Monday works", bool(slots))
+    team, slots, *_ = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\nB,Europe/Paris,09:00,17:00,Mon-Fri,0,0,no\n", D(2026, 11, 2), D(2026, 11, 2),
+                          blocked_text="name,date,start,end,reason\nB,2026-11-02,,,holiday\n")
+    check("optional person blocked all day: slots still found, B missing", slots and all(s["missing"] == ["B"] for s in slots))
+    check("blocked reason shown", slots and "holiday" in slots[0]["per"]["B"]["reason"])
+    team, slots, *_ = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\nB,Europe/Paris,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 2), D(2026, 11, 2),
+                          blocked_text="name,date,start,end,reason\nB,2026-11-02,10:00,12:00,dentist\n")
+    check("required person blocked 10-12 local: no slot overlaps 09:00-11:00 UTC", slots and not any(dt.time(8, 30) < s["utc"].time() < dt.time(11, 0) for s in slots))
+    team, slots, *_ = run(T + "N,Europe/Berlin,22:00,06:00,Mon-Fri,0,0,yes\n", D(2026, 11, 3), D(2026, 11, 3))
+    hours = sorted({s["utc"].hour for s in slots})
+    check("overnight shift 22:00-06:00 Berlin (UTC+1): starts 00:00-04:00 and 21:00-23:00 UTC", hours == [0, 1, 2, 3, 4, 21, 22, 23])
+    w = []
+    load_zone("EST", "X", w)
+    check("abbreviation zone gives a warning", w and "abbreviation" in w[0])
+    try:
+        load_zone("Mars/Olympus", "X", [])
+        ok = False
+    except InputError as e:
+        ok = "unknown time zone" in str(e)
+    check("unknown zone is an input error", ok)
+    try:
+        parse_hm("9am", "x")
+        ok = False
+    except InputError:
+        ok = True
+    check("bad time is an input error", ok)
+    check("day ranges wrap: Fri-Mon", parse_days("Fri-Mon") == {4, 5, 6, 0})
+    team3 = T + "A,America/Los_Angeles,09:00,17:00,Mon-Fri,2,0,yes\nB,Europe/Istanbul,09:00,18:00,Mon-Fri,0,2,yes\n"
+    team, slots, chosen, cum, *_ = run(team3, D(2026, 11, 2), D(2026, 11, 6), series=4, every="day")
+    st = {k: sum(1 for s in chosen if s["per"][k]["status"] == "flex") for k in ("A", "B")}
+    check("series of 4 on 4 different dates", len(chosen) == 4 and len({s["utc"].date() for s in chosen}) == 4)
+    check("rotation shares the stretch: both A and B stretch at least once", st["A"] >= 1 and st["B"] >= 1)
+    check("rotation pain is balanced (difference <= 2 points)", abs(cum["A"] - cum["B"]) <= 2)
+    team, slots, chosen, cum, *_ = run(team3, D(2026, 10, 26), D(2026, 11, 20), series=4)
+    check("weekly series: one meeting in each of 4 ISO weeks", len({s["utc"].isocalendar()[1] for s in chosen}) == 4)
+    team, slots, *_ = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 2), D(2026, 11, 6), only_days={1, 3})
+    check("--days Tue,Thu filters candidate days", slots and {s["utc"].weekday() for s in slots} == {1, 3})
+    team, slots, ch, cum, changes, w, rz = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 2), D(2026, 11, 2))
+    text = report(team, slots, {"start": "2026-11-02", "end": "2026-11-02", "duration": 60, "top": 3}, rz, w, changes)
+    check("report renders table", "| 1 | Mon 2026-11-02 08:00 |" in text and "Daylight saving" in text)
+    j = to_json(team, slots, None, None, changes, w, rz, 3)
+    check("json output has best slots", len(j["best"]) == 3 and j["best"][0]["start_utc"] == "2026-11-02T08:00Z")
+    print(f"{passed}/{total} passed")
+    return 0 if passed == total else 1
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Find fair meeting slots across time zones")
+    ap.add_argument("--team")
+    ap.add_argument("--blocked")
+    ap.add_argument("--start")
+    ap.add_argument("--end")
+    ap.add_argument("--duration", type=int, default=60)
+    ap.add_argument("--step", type=int, default=30)
+    ap.add_argument("--days", help="only these weekdays in --ref-zone, e.g. Tue,Wed,Thu")
+    ap.add_argument("--ref-zone", default="UTC")
+    ap.add_argument("--top", type=int, default=10)
+    ap.add_argument("--series", type=int, default=0, help="pick N meetings with rotating inconvenience")
+    ap.add_argument("--every", default="week", choices=["week", "day"], help="series spacing: one meeting per ISO week (default) or per day")
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args(argv)
+    if a.self_test:
+        return self_test()
+    if not (a.team and a.start and a.end):
+        ap.print_usage(sys.stderr)
+        print("error: --team, --start and --end are required", file=sys.stderr)
+        return 2
+    try:
+        start, end = dt.date.fromisoformat(a.start), dt.date.fromisoformat(a.end)
+        team_text = open(a.team, encoding="utf-8").read()
+        blocked_text = open(a.blocked, encoding="utf-8").read() if a.blocked else None
+        only = parse_days(a.days) if a.days else None
+        team, slots, chosen, cum, changes, warnings, rz = run(team_text, start, end, a.duration, a.step, blocked_text, a.ref_zone, a.top, a.series, only, a.every)
+    except (InputError, OSError, ValueError) as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 2
+    if a.json:
+        print(json.dumps(to_json(team, slots, chosen, cum, changes, warnings, rz, a.top), indent=2))
+    else:
+        print(report(team, slots, {"start": a.start, "end": a.end, "duration": a.duration, "top": a.top}, rz, warnings, changes, chosen, cum))
+    return 0 if slots else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+```
+
+</details>
+
 <details><summary><b>通用助手系统提示词</b></summary>
 
 ```text
@@ -4026,6 +5511,756 @@ ${main_folder}/
 
 | Topic | Summary | Action Items | Follow-Up Suggestions |
 | :--- | :--- | :--- | :--- |
+```
+
+</details>
+
+<details><summary><b>阅读计划与每日页数规划</b> · 机器翻译</summary>
+
+```text
+---
+name: reading-plan-and-page-pace-planner
+description: 按天规划你的阅读，让你在每本书的读书会、课程或考试日期之前读完——依据页数或字数（或有声书时长）、你的阅读速度、工作日每天可用的分钟数、出行和忙碌的日子。均匀分配页数，在每个截止日期前留出缓冲日并每周设置补读日，在章节末尾停下，当截止日期无法达成时发出警告，并从你当前的进度重新规划。内含一个仅用标准库的 Python 规划器。
+---
+
+# 阅读计划与页数节奏规划器
+
+你帮助读者不再在读书会前一晚突击 200 页。人们大致知道自己有多少时间（工作日半小时，周末更多），却不知道这意味着什么：两周内要读完一本 245 页的小说、一本艰深的工作用书，以及同一个月里一部 880 页的经典名著，各自每天要读多少页。你把书、阅读速度和空闲分钟数转化为具体的每日计划（“周二：第 1-27 页”），为现实生活留出余量，并在截止日期无法达成时尽早、坦率地说明，以及怎样才能补救。
+
+## 本技能中的文件
+
+- `scripts/reading_plan.py` - 读取一份计划 JSON（书籍及其页数、字数或有声书分钟数、起始页、难度、截止日期、章节起始页；阅读速度以每分钟字数或每小时页数表示；每个工作日的分钟数；出行和例外情况；补读的星期几；缓冲天数）；按截止日期从早到晚排期，均匀分摊负荷（或尽早完成），将每日停读位置对齐到章节末尾，并输出书籍摘要、发现项 RP01-RP06、带页码范围的逐日表格、每周检查点和补读建议；`--from` + `--at "Title=page"` 可在中途重新规划（仅使用 Python 3.8+ 标准库）
+- `references/reading-speed-and-estimates.md` - 测量你的速度、按书籍类型的每页字数、难度系数、有声书
+- `references/pacing-and-catch-up.md` - 缓冲、补读日，落后或截止日期不可能达成时怎么办
+- `templates/reading-plan.md` - 交还给用户的计划（便于放入日历）
+- `examples/book-club.json` - 11 月至 12 月：一本用于周四读书会的小说、一本已读到第 23 页的工作用书、用于经典读书会的《米德尔马契》、一本没有截止日期的有声书、周日补读日、一次周末出行和两个特殊日子
+- `examples/book-club-plan.md` - 规划器在该文件上的真实输出
+
+## 工作流程
+
+### 1. 收集输入
+询问：每本书的页数（或字数；版本很重要）、目前读到哪里、截止日期及其性质（聚会、考试）、是轻松读物还是艰深读物；他们的阅读速度（或按 `references/reading-speed-and-estimates.md` 做一次 10 分钟计时测试）；现实的而非理想的每个工作日分钟数；已知的出行、晚班和空闲日；哪个星期几应保留为补读日；以及他们希望在每次聚会前提前几天读完（缓冲，默认 1-2 天）。
+
+### 2. 运行规划器
+'''
+python3 scripts/reading_plan.py examples/book-club.json
+python3 scripts/reading_plan.py examples/book-club.json --mode asap
+python3 scripts/reading_plan.py examples/book-club.json --from 2026-11-20 --at "Thinking in Systems=110"
+python3 scripts/reading_plan.py plan.json --json
+python3 scripts/reading_plan.py --self-test
+'''
+退出码 0 = 所有截止日期都能达成，1 = 至少有一本书无法按时读完，2 = 输入有误。如果没有 shell：所需分钟数 = 页数 x 每页字数 / 每分钟字数 x 难度；将其与截至每个读完日期（截止日期减去缓冲，不含补读日）的可用分钟数比较，按截止日期从早到晚处理。
+
+### 3. 解读结果
+- RP01（高）：某本书在截止日期前读不完。信息中给出缺口页数，以及要弥补缺口每个阅读日需额外增加的分钟数。当计划不可行时，规划器在此之前以满负荷阅读，因此较早的书会提前读完，以腾出时间。
+- RP02 / RP04（中）：计划只有侵占缓冲才能成立，或在最繁忙的阶段用掉了你超过 90% 的时间——一个糟糕的星期就会让计划崩掉。
+- RP03（低）：有些日子的时长超过最长单次阅读时长——请拆分。RP05/RP06（提示）：已读完的书、临近的截止日期、有声书。
+- 检查逐日表格中是否有周末负担过重的日子，并通过每周检查点了解“到周日我应该读到哪里”。
+
+### 4. 修复不可能的计划
+按以下顺序提出方案：立即并行开始读那本长书（把它的截止日期逻辑提前）、在某些日子增加 10-20 分钟、利用补读日、把一部分改用有声书在通勤时听、略读或跳过明确标出的章节，或者接受只读到一半就去参加聚会并如实说明。每次修改后重新运行。参见 `references/pacing-and-catch-up.md`。
+
+### 5. 交付
+填写 `templates/reading-plan.md`：每本书的摘要、逐周计划（日期和页码范围，可直接放入日历或书签便条）、补读规则，以及重新规划的命令。每当用户报告自己当前的页码时，主动提出快速重新规划。
+
+## 示例结果
+在 `examples/book-club.json` 上（240 字/分钟，每天 20-60 分钟，周日留作补读日，2 天缓冲），《长日留痕》（*The Remains of the Day*）在 11 月 12 日读完，赶上 11 月 19 日的读书会，并在章节末尾停读；《系统之美》（*Thinking in Systems*，艰深，系数 1.3，从第 23 页开始）在 11 月 27 日读完，赶上 12 月 1 日的小组。《米德尔马契》（*Middlemarch*，316,000 字，约 22 小时）无法在 12 月 17 日的经典读书会前读完：约差 452 页，预计 1 月 11 日读完（RP01，高）。解决办法：在 42 个阅读日里每天增加约 17 分钟，或者现在就与另外两本并行开始读。120 分钟的清闲周六被标记为两次阅读（RP03），而《皮拉内西》（*Piranesi*）有声书（6 小时 40 分，1.25 倍速）排在《米德尔马契》之后。
+
+## 规则
+
+- 按人们真正拥有的时间来规划，并且在每次聚会之前至少保留一个缓冲日。
+- 绝不悄悄把某些日子排得过满：如果排不下，就说明哪个截止日期无法达成、差多少页，以及怎样才能补救。
+- 使用该版本的页数；只知道字数时，说明页数是估算的。
+- 补读日在计划中保持空白——它们是为落后时准备的，而不是用来多读的。
+- 阅读应当保持愉悦：先建议跳读或更换形式，再考虑建议每天 2 小时的阅读。
+- 只要读者落后或超前，就从当前页码重新规划；不要让他们去“追赶”旧的日程。
+FILE:references/reading-speed-and-estimates.md
+# 阅读速度与估算
+
+## 测量你的速度（10 分钟）
+1. 选定实际要读的书（或类似的一本），从某一章的开头开始，设定 10 分钟计时器，正常阅读。
+2. 数出三个整行的字数，除以 3 = 每行字数；数出一整页的行数 = 每页行数。
+3. 每页字数 = 每行字数 x 每页行数；每分钟字数 = 已读页数 x 每页字数 / 10。
+或者直接给几页计时，改用 `"pages_per_hour"` 代替每分钟字数。
+
+## 典型数值
+| 读者 / 材料 | 每分钟字数 |
+|---|---|
+| 仔细阅读、艰深的非虚构类、第二语言 | 150-200 |
+| 普通成年人，小说 | 200-260 |
+| 快速的休闲读者 | 300-400 |
+略读不等于阅读：不要按高于 450 的速度来规划。
+
+| 书籍类型 | 每页字数 |
+|---|---|
+| 大众平装本 | 300-350 |
+| 小说类精装平装本（trade paperback） | 250-300 |
+| 带注释的精装非虚构类 | 350-450 |
+| 大字本、儿童章节书 | 150-200 |
+| 电子书 | 使用字数（商店页面或显示字数的工具），并采用默认的每页 275 字 |
+
+## 难度系数
+`"difficulty"` 用于乘以阅读时间：1.0 为轻松的小说，1.2-1.4 为艰深的非虚构类、长句式的经典作品、带图表的技术书，1.5 以上为需要做笔记的教科书、诗歌、第二语言阅读。
+
+## 页数与字数
+- 使用读者手中那一版的页数；同一本书的不同版本可能相差 30%。
+- 同时提供 `"pages"` 和 `"words"` 时，规划器会推算出该版本的每页字数（《米德尔马契》316,000 / 880 = 359）。
+- 只有字数时，页数是估算值（字数 / 每页字数）；请在计划中说明这一点。
+
+## 有声书
+- `"audio_minutes"` 是总时长，`"speed"` 是播放速度：所需时间 = 时长 / 速度（400 分钟在 1.25 倍速下 = 320 分钟）。
+- 有声书适合通勤、做家务和散步时听：请说明这些分钟是额外的，还是已经计入每日分钟数。
+- 位置以有声书的 h:mm 显示。
+FILE:references/pacing-and-catch-up.md
+# 节奏与补读
+
+## 规划器如何排期
+- 截止日期最早者优先：读完日期（截止日期减去缓冲天数）最近的书最先读；没有截止日期的书排在最后。
+- 均匀模式（默认）：对于最紧迫截止日期之前的每个阶段，它使用你每日分钟数中仍能按时读完的最小等份，所以有富余时，30 分钟的日子可能变成 20 分钟。过了那个截止日期后，下一阶段会重新计算。
+- ASAP 模式：每天用满所有分钟；书籍尽可能早读完。
+- 如果即使满负荷也无法满足某个截止日期，则在它之前的每一天都按满负荷规划，并将该书标记为 RP01。
+- 当某个章节末尾距离当天停读位置在 `chapter_snap_pages`（默认 8）以内，且在当天页数的四分之一以内时，每日停读位置会移到该章节末尾。
+
+## 缓冲与补读日
+- 缓冲日（`buffer_days`，默认 1）位于计划读完日与聚会之间：用来重读笔记或应对糟糕的一周。
+- 补读星期几（`catch_up_days`，如周日）不安排阅读。只有在落后时才使用；如果进度正常，它们就是空闲时间。
+- 例外情况（出行、晚班、清闲的周六）会覆盖这些日期的工作日分钟数。
+
+## 落后时怎么办
+1. 漏了一天：在下一个补读日读完那天的页数，或者把其中三分之一加到之后三天中的每一天。
+2. 落后超过两天：用 `--from <today> --at "<Title>=<current page>"` 从今天起重新规划，而不是去追旧计划。
+3. 仍然来不及（RP01）：选一个办法——现在就并行开始读那本长书、在几天里增加 10-20 分钟、通勤时听有声书、略读标记出的部分（序言、附录、注释），或者决定只读到一半就赴会并告知小组。
+
+## 计划过紧的迹象
+- RP04：某一阶段用掉了超过 90% 的时间；任何一场病或一个忙碌的星期都会让它崩掉。
+- RP02：这本书只有动用缓冲日才读得完。
+- 许多日子标有“2 sessions”（RP03）：考虑有意把阅读分散到早晨和晚上。
+
+## 读书会小贴士
+- 如果小组讨论的不是整本书，请记下要讨论的页码或章节，并以此作为该书的 `pages`。
+- 对于长篇经典，问问读书会这次聚会是否只涵盖前半部分；规划两个截止日期。
+- 在书里放一张便利贴，写上计划中的每周检查点。
+FILE:templates/reading-plan.md
+# 阅读计划：<name>（<start> 至 <last deadline>）
+
+**速度：** <wpm> 字/分钟，30 分钟的一次阅读约 <pages> 页
+**时间：** <minutes per weekday>；补读日：<day>；缓冲：每次聚会前 <n> 天
+**结论：** <所有截止日期都能达成 | BOOK 无法在 DATE 前读完——见方案>
+
+## 书籍
+| 书名 | 剩余页数 | 所需时间 | 聚会 / 截止日期 | 读完日期 | 计划读完 |
+|---|---|---|---|---|---|
+| <title> | <pp> | <h:mm> | <date - event> | <date> | <date> |
+
+## 逐周计划
+### <Mon date> 所在周
+- 周一：<Book p. a-b>
+- 周二：<...>
+- 周日：补读 / 空闲
+**周日晚检查点：** <Book p. X>
+
+## 如果截止日期来不及
+- 缺口：<book> 在 <date> 前差 <pages> 页
+- 方案：<阅读日增加 N 分钟 | 现在并行开始 | 通勤听有声书 | 略读 x-y 章 | 读到一半赴会>
+- 选择：<...>
+
+## 落后时
+- 漏了一天？使用 <catch-up day>，或把 <n> 页加到之后三天。
+- 落后超过两天：从今天起重新规划（`--from <date> --at "<title>=<page>"`）。
+FILE:examples/book-club.json
+{
+  "name": "Reading plan: Nov-Dec 2026 (two book clubs and a work book)",
+  "start": "2026-11-03",
+  "reader": {"words_per_minute": 240, "words_per_page": 280},
+  "minutes": {"mon": 30, "tue": 30, "wed": 20, "thu": 30, "fri": 25, "sat": 60, "sun": 45},
+  "catch_up_days": ["sun"],
+  "buffer_days": 2,
+  "max_session_minutes": 60,
+  "chapter_snap_pages": 8,
+  "exceptions": [
+    {"dates": "2026-11-13..2026-11-15", "minutes": 0, "note": "weekend trip"},
+    {"dates": "2026-11-26", "minutes": 15, "note": "late shift"},
+    {"dates": "2026-12-05", "minutes": 120, "note": "quiet Saturday"}
+  ],
+  "books": [
+    {"title": "The Remains of the Day", "pages": 245, "words_per_page": 265, "deadline": "2026-11-19", "event": "Thursday book club",
+     "chapters": [1, 9, 45, 101, 125, 165, 212, 239]},
+    {"title": "Thinking in Systems", "pages": 218, "start_page": 23, "difficulty": 1.3, "deadline": "2026-12-01", "event": "team reading group"},
+    {"title": "Middlemarch", "words": 316000, "pages": 880, "deadline": "2026-12-17", "event": "classics club"},
+    {"title": "Piranesi (audiobook)", "audio_minutes": 400, "speed": 1.25}
+  ]
+}
+FILE:examples/book-club-plan.md
+# Reading plan: Nov-Dec 2026 (two book clubs and a work book)
+
+Start 2026-11-03, even mode, 2 buffer day(s) before each deadline, catch-up days: sun. Planned reading: 36 h 44 min over 81 days.
+
+**Verdict: 1 book(s) cannot be finished by their deadline - change the plan**
+
+## Books
+
+| Book | Left | Est. time | Deadline | Finish by | Planned finish | Days spare | Avg per reading day |
+|---|---|---|---|---|---|---|---|
+| The Remains of the Day | 245 pp | 4:31 h | 2026-11-19 (Thursday book club) | 2026-11-17 | 2026-11-12 | 7 | 27 pp |
+| Thinking in Systems | 196 pp | 4:57 h | 2026-12-01 (team reading group) | 2026-11-29 | 2026-11-27 | 4 | 16 pp |
+| Middlemarch | 880 pp | 21:57 h | 2026-12-17 (classics club) | 2026-12-15 | 2027-01-11 | -25 | 23 pp |
+| Piranesi (audiobook) | 6:40 audio | 5:20 h | - | - | 2027-01-22 | - | 0:36 |
+
+## Findings
+
+- **HIGH RP01** Middlemarch cannot be finished by 2026-12-17 (classics club): about 452 pages short at your pace; projected finish 2027-01-11. Options: +17 min on each of the 42 reading days until then, read faster, skim or skip about 452 pages, or start it earlier
+- **LOW RP03** 1 day(s) plan more than 60 minutes (e.g. 2026-12-05: 120 min) - split into two sessions
+- **INFO RP06** Piranesi (audiobook) is an audiobook: the plan counts listening time at 1.25x speed; commutes and chores can cover it
+
+## Day by day
+
+| Date | Day | Minutes | Read | Note |
+|---|---|---|---|---|
+| 2026-11-03 | Tue | 30 | The Remains of the Day p. 1-27 (27 pp) |  |
+| 2026-11-04 | Wed | 19 | The Remains of the Day p. 28-44 (17 pp) |  |
+| 2026-11-05 | Thu | 30 | The Remains of the Day p. 45-71 (27 pp) |  |
+| 2026-11-06 | Fri | 25 | The Remains of the Day p. 72-94 (23 pp) |  |
+| 2026-11-07 | Sat | 60 | The Remains of the Day p. 95-148 (54 pp) |  |
+| 2026-11-08 | Sun | - | - | catch-up / spare (45 min available) |
+| 2026-11-09 | Mon | 30 | The Remains of the Day p. 149-175 (27 pp) |  |
+| 2026-11-10 | Tue | 30 | The Remains of the Day p. 176-202 (27 pp) |  |
+| 2026-11-11 | Wed | 20 | The Remains of the Day p. 203-221 (19 pp) |  |
+| 2026-11-12 | Thu | 30 | The Remains of the Day p. 222-245 (24 pp); Thinking in Systems p. 23-24 (2 pp) |  |
+| 2026-11-13 | Fri | - | - | weekend trip |
+| 2026-11-14 | Sat | - | - | weekend trip |
+| 2026-11-15 | Sun | - | - | weekend trip |
+| 2026-11-16 | Mon | 30 | Thinking in Systems p. 25-44 (20 pp) |  |
+| 2026-11-17 | Tue | 30 | Thinking in Systems p. 45-64 (20 pp) | finish-by The Remains of the Day |
+| 2026-11-18 | Wed | 20 | Thinking in Systems p. 65-77 (13 pp) |  |
+| 2026-11-19 | Thu | 30 | Thinking in Systems p. 78-97 (20 pp) | DEADLINE The Remains of the Day - Thursday book club |
+| 2026-11-20 | Fri | 25 | Thinking in Systems p. 98-113 (16 pp) |  |
+| 2026-11-21 | Sat | 60 | Thinking in Systems p. 114-153 (40 pp) |  |
+| 2026-11-22 | Sun | - | - | catch-up / spare (45 min available) |
+| 2026-11-23 | Mon | 30 | Thinking in Systems p. 154-172 (19 pp) |  |
+| 2026-11-24 | Tue | 30 | Thinking in Systems p. 173-192 (20 pp) |  |
+| 2026-11-25 | Wed | 20 | Thinking in Systems p. 193-205 (13 pp) |  |
+| 2026-11-26 | Thu | 15 | Thinking in Systems p. 206-215 (10 pp) | late shift |
+| 2026-11-27 | Fri | 25 | Thinking in Systems p. 216-218 (3 pp); Middlemarch p. 1-14 (14 pp) |  |
+| 2026-11-28 | Sat | 60 | Middlemarch p. 15-54 (40 pp) |  |
+| 2026-11-29 | Sun | - | - | catch-up / spare (45 min available); finish-by Thinking in Systems |
+| 2026-11-30 | Mon | 30 | Middlemarch p. 55-74 (20 pp) |  |
+| 2026-12-01 | Tue | 30 | Middlemarch p. 75-94 (20 pp) | DEADLINE Thinking in Systems - team reading group |
+| 2026-12-02 | Wed | 20 | Middlemarch p. 95-107 (13 pp) |  |
+| 2026-12-03 | Thu | 30 | Middlemarch p. 108-128 (21 pp) |  |
+| 2026-12-04 | Fri | 25 | Middlemarch p. 129-144 (16 pp) |  |
+| 2026-12-05 | Sat | 120 | Middlemarch p. 145-224 (80 pp) | quiet Saturday; 2 sessions |
+| 2026-12-06 | Sun | - | - | catch-up / spare (45 min available) |
+| 2026-12-07 | Mon | 30 | Middlemarch p. 225-244 (20 pp) |  |
+| 2026-12-08 | Tue | 30 | Middlemarch p. 245-265 (21 pp) |  |
+| 2026-12-09 | Wed | 20 | Middlemarch p. 266-278 (13 pp) |  |
+| 2026-12-10 | Thu | 30 | Middlemarch p. 279-298 (20 pp) |  |
+| 2026-12-11 | Fri | 25 | Middlemarch p. 299-315 (17 pp) |  |
+| 2026-12-12 | Sat | 60 | Middlemarch p. 316-355 (40 pp) |  |
+| 2026-12-13 | Sun | - | - | catch-up / spare (45 min available) |
+| 2026-12-14 | Mon | 30 | Middlemarch p. 356-375 (20 pp) |  |
+| 2026-12-15 | Tue | 30 | Middlemarch p. 376-395 (20 pp) | finish-by Middlemarch |
+| 2026-12-16 | Wed | 20 | Middlemarch p. 396-408 (13 pp) |  |
+| 2026-12-17 | Thu | 30 | Middlemarch p. 409-428 (20 pp) | DEADLINE Middlemarch - classics club |
+| 2026-12-18 | Fri | 25 | Middlemarch p. 429-445 (17 pp) |  |
+| 2026-12-19 | Sat | 60 | Middlemarch p. 446-485 (40 pp) |  |
+| 2026-12-20 | Sun | - | - | catch-up / spare (45 min available) |
+| 2026-12-21 | Mon | 30 | Middlemarch p. 486-505 (20 pp) |  |
+| 2026-12-22 | Tue | 30 | Middlemarch p. 506-525 (20 pp) |  |
+| 2026-12-23 | Wed | 20 | Middlemarch p. 526-539 (14 pp) |  |
+| 2026-12-24 | Thu | 30 | Middlemarch p. 540-559 (20 pp) |  |
+| 2026-12-25 | Fri | 25 | Middlemarch p. 560-575 (16 pp) |  |
+| 2026-12-26 | Sat | 60 | Middlemarch p. 576-615 (40 pp) |  |
+| 2026-12-27 | Sun | - | - | catch-up / spare (45 min available) |
+| 2026-12-28 | Mon | 30 | Middlemarch p. 616-635 (20 pp) |  |
+| 2026-12-29 | Tue | 30 | Middlemarch p. 636-656 (21 pp) |  |
+| 2026-12-30 | Wed | 20 | Middlemarch p. 657-669 (13 pp) |  |
+| 2026-12-31 | Thu | 30 | Middlemarch p. 670-689 (20 pp) |  |
+| 2027-01-01 | Fri | 25 | Middlemarch p. 690-706 (17 pp) |  |
+| 2027-01-02 | Sat | 60 | Middlemarch p. 707-746 (40 pp) |  |
+| 2027-01-03 | Sun | - | - | catch-up / spare (45 min available) |
+| 2027-01-04 | Mon | 30 | Middlemarch p. 747-766 (20 pp) |  |
+| 2027-01-05 | Tue | 30 | Middlemarch p. 767-786 (20 pp) |  |
+| 2027-01-06 | Wed | 20 | Middlemarch p. 787-799 (13 pp) |  |
+| 2027-01-07 | Thu | 30 | Middlemarch p. 800-819 (20 pp) |  |
+| 2027-01-08 | Fri | 25 | Middlemarch p. 820-836 (17 pp) |  |
+| 2027-01-09 | Sat | 60 | Middlemarch p. 837-876 (40 pp) |  |
+| 2027-01-10 | Sun | - | - | catch-up / spare (45 min available) |
+| 2027-01-11 | Mon | 30 | Middlemarch p. 877-880 (4 pp); Piranesi (audiobook) 0:00-0:30 |  |
+| 2027-01-12 | Tue | 30 | Piranesi (audiobook) 0:30-1:08 |  |
+| 2027-01-13 | Wed | 20 | Piranesi (audiobook) 1:08-1:33 |  |
+| 2027-01-14 | Thu | 30 | Piranesi (audiobook) 1:33-2:10 |  |
+| 2027-01-15 | Fri | 25 | Piranesi (audiobook) 2:10-2:41 |  |
+| 2027-01-16 | Sat | 60 | Piranesi (audiobook) 2:41-3:56 |  |
+| 2027-01-17 | Sun | - | - | catch-up / spare (45 min available) |
+| 2027-01-18 | Mon | 30 | Piranesi (audiobook) 3:56-4:34 |  |
+| 2027-01-19 | Tue | 30 | Piranesi (audiobook) 4:34-5:11 |  |
+| 2027-01-20 | Wed | 20 | Piranesi (audiobook) 5:11-5:36 |  |
+| 2027-01-21 | Thu | 30 | Piranesi (audiobook) 5:36-6:14 |  |
+| 2027-01-22 | Fri | 21 | Piranesi (audiobook) 6:14-6:40 |  |
+
+## Weekly checkpoints (where you should be by Sunday night)
+
+- 2026-11-08: The Remains of the Day p. 148
+- 2026-11-15: Thinking in Systems p. 24
+- 2026-11-22: Thinking in Systems p. 153
+- 2026-11-29: Middlemarch p. 54
+- 2026-12-06: Middlemarch p. 224
+- 2026-12-13: Middlemarch p. 355
+- 2026-12-20: Middlemarch p. 485
+- 2026-12-27: Middlemarch p. 615
+- 2027-01-03: Middlemarch p. 746
+- 2027-01-10: Middlemarch p. 876
+- 2027-01-17: Piranesi (audiobook) 3:56
+
+## If you fall behind
+
+- The Remains of the Day: a missed day costs about 27 pages. Make them up on the spare day(s) 2026-11-08, or add 10 pages to each of the next 3 reading days. Re-plan any time with `--from <date> --at "The Remains of the Day=<page>"`.
+- Thinking in Systems: a missed day costs about 16 pages. Make them up on the spare day(s) 2026-11-22, 2026-11-29, or add 6 pages to each of the next 3 reading days. Re-plan any time with `--from <date> --at "Thinking in Systems=<page>"`.
+- Middlemarch: a missed day costs about 23 pages. Make them up on the spare day(s) 2026-11-29, 2026-12-06, 2026-12-13, or add 8 pages to each of the next 3 reading days. Re-plan any time with `--from <date> --at "Middlemarch=<page>"`.
+
+FILE:scripts/reading_plan.py
+#!/usr/bin/env python3
+"""Reading plan and page pace planner (stdlib only, Python 3.8+).
+
+Turns a list of books (pages, word counts or audiobook length), your reading speed and the
+minutes you have each day into a day-by-day plan with page ranges that meets every deadline
+(book club, course, exam), keeps buffer days before each deadline and catch-up days in the
+week, spreads the load evenly and tells you what to do if you fall behind.
+
+Usage:
+  reading_plan.py PLAN.json [--mode even|asap] [--from YYYY-MM-DD] [--at "Title=page"]... [--json]
+  reading_plan.py --self-test
+Exit: 0 = every deadline is met, 1 = at least one book cannot be finished by its deadline,
+2 = bad input.
+"""
+import argparse, datetime, json, math, re, sys
+
+DAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+SEV = {"high": 0, "medium": 1, "low": 2, "info": 3}
+
+
+class InputError(Exception):
+    pass
+
+
+def pdate(s, what):
+    try:
+        return datetime.date.fromisoformat(str(s))
+    except ValueError:
+        raise InputError("%s must be YYYY-MM-DD, got %r" % (what, s))
+
+
+def expand_dates(spec):
+    spec = str(spec)
+    if ".." in spec:
+        a, b = spec.split("..", 1)
+        a, b = pdate(a.strip(), "date range"), pdate(b.strip(), "date range")
+        if b < a:
+            raise InputError("date range %s ends before it starts" % spec)
+        return [a + datetime.timedelta(days=i) for i in range((b - a).days + 1)]
+    return [pdate(spec.strip(), "date")]
+
+
+# ---------------------------------------------------------------- model
+def load(cfg, start_override=None, at=None):
+    if not isinstance(cfg, dict) or not isinstance(cfg.get("books"), list) or not cfg["books"]:
+        raise InputError("plan needs a non-empty 'books' list")
+    reader = cfg.get("reader") or {}
+    wpm = float(reader.get("words_per_minute", 230))
+    wpp_default = float(reader.get("words_per_page", 275))
+    pph = reader.get("pages_per_hour")
+    if wpm <= 0 or wpp_default <= 0:
+        raise InputError("words_per_minute and words_per_page must be positive")
+    start = pdate(start_override or cfg.get("start") or datetime.date.today().isoformat(), "start")
+    mins = cfg.get("minutes")
+    if isinstance(mins, (int, float)):
+        mins = {d: mins for d in DAYS}
+    if not isinstance(mins, dict):
+        raise InputError("'minutes' must be a number or {mon: .., tue: ..}")
+    mins = {k.lower()[:3]: float(v) for k, v in mins.items()}
+    bad = set(mins) - set(DAYS)
+    if bad:
+        raise InputError("unknown weekday key(s) in minutes: %s" % ", ".join(sorted(bad)))
+    catch = {d.lower()[:3] for d in cfg.get("catch_up_days", [])}
+    exc = {}
+    for e in cfg.get("exceptions", []):
+        for d in expand_dates(e.get("dates") or e.get("date")):
+            exc[d] = (float(e.get("minutes", 0)), e.get("note", ""))
+    books = []
+    at = at or {}
+    for i, b in enumerate(cfg["books"], 1):
+        t = b.get("title") or "Book %d" % i
+        if "audio_minutes" in b:
+            speed = float(b.get("speed", 1.0))
+            total = float(b["audio_minutes"])
+            unit_min = 1.0 / speed            # minutes of your time per minute of audio
+            units, kind = total, "audio"
+            done = float(at.get(t, b.get("start_minute", 0)))
+        else:
+            wpp = float(b.get("words_per_page") or (float(b["words"]) / float(b["pages"]) if b.get("words") and b.get("pages") else wpp_default))
+            pages = float(b["pages"]) if b.get("pages") else (float(b["words"]) / wpp if b.get("words") else None)
+            if not pages or pages <= 0:
+                raise InputError("book %r needs pages, words or audio_minutes" % t)
+            diff = float(b.get("difficulty", 1.0))
+            if pph and not b.get("words"):
+                unit_min = 60.0 / float(pph) * diff
+            else:
+                unit_min = wpp / wpm * diff
+            units, kind = round(pages), "pages"
+            sp = at.get(t, b.get("start_page", 1))
+            done = max(0.0, float(sp) - 1)
+        dl = pdate(b["deadline"], "deadline of %r" % t) if b.get("deadline") else None
+        chapters = sorted(int(c) for c in b.get("chapters", []))
+        books.append({"title": t, "units": float(units), "kind": kind, "unit_min": unit_min, "done": min(done, float(units)),
+                      "deadline": dl, "event": b.get("event", ""), "chapters": chapters, "order": i})
+    buf = int(cfg.get("buffer_days", 1))
+    return {"start": start, "mins": mins, "catch": catch, "exc": exc, "books": books, "buffer": buf,
+            "max_session": float(cfg.get("max_session_minutes", 0) or 0), "snap": int(cfg.get("chapter_snap_pages", 8)),
+            "name": cfg.get("name", "Reading plan"), "wpm": wpm}
+
+
+def capacity(m, d):
+    """(planned minutes, available minutes incl. catch-up, note)."""
+    if d in m["exc"]:
+        v, note = m["exc"][d]
+        return v, v, note or ("no reading" if v == 0 else "")
+    wd = DAYS[d.weekday()]
+    v = m["mins"].get(wd, 0.0)
+    if wd in m["catch"]:
+        return 0.0, v, "catch-up day"
+    return v, v, ""
+
+
+def plan(m, mode="even"):
+    F = []
+    books = [b for b in m["books"]]
+    for b in books:
+        b["need"] = (b["units"] - b["done"]) * b["unit_min"]
+        if b["need"] <= 0:
+            F.append(("info", "RP05", "%s is already finished - left out" % b["title"]))
+        b["target"] = None
+        if b["deadline"] and b["deadline"] < m["start"]:
+            if b["need"] > 0:
+                F.append(("medium", "RP05", "%s: deadline %s has already passed - planned without a deadline" % (b["title"], b["deadline"])))
+            b["deadline"] = None
+        if b["deadline"]:
+            b["target"] = b["deadline"] - datetime.timedelta(days=m["buffer"])
+            if b["target"] < m["start"]:
+                b["target"] = m["start"]
+                F.append(("medium", "RP05", "%s: deadline %s is too close for %d buffer day(s) - planning to the deadline" % (b["title"], b["deadline"], m["buffer"])))
+    todo = [b for b in books if b["need"] > 0]
+    dated = sorted([b for b in todo if b["target"]], key=lambda b: (b["target"], b["order"]))
+    undated = [b for b in todo if not b["target"]]
+    seq = dated + undated
+    last = max([b["deadline"] for b in dated] or [m["start"]])
+    # horizon: enough days for everything at full capacity, plus slack
+    weekly = sum(m["mins"].get(d, 0) for d in DAYS if d not in m["catch"]) or 1
+    total_need = sum(b["need"] for b in seq)
+    horizon_end = max(last, m["start"]) + datetime.timedelta(days=int(total_need / weekly * 7) + 60)
+    days, d = [], m["start"]
+    while d <= horizon_end:
+        p, a, note = capacity(m, d)
+        days.append({"date": d, "cap": p, "avail": a, "note": note, "planned": 0.0, "items": []})
+        d += datetime.timedelta(days=1)
+    idx = {x["date"]: i for i, x in enumerate(days)}
+    # load factor per segment (even mode): smallest uniform share of capacity that meets every target
+    load = [1.0] * len(days)
+    if mode == "even" and dated:
+        seg_start, k0 = 0, 0
+        while k0 < len(dated):
+            best, bk = 0.0, k0
+            cum = 0.0
+            for k in range(k0, len(dated)):
+                cum += dated[k]["need"]
+                ti = idx[dated[k]["target"]]
+                cap = sum(x["cap"] for x in days[seg_start:ti + 1])
+                r = cum / cap if cap > 0 else float("inf")
+                if r >= best:
+                    best, bk = r, k
+            L = min(best * 1.03, 1.0)  # 3% headroom for chapter-end stops and rounding
+            end = idx[dated[bk]["target"]]
+            for i in range(seg_start, end + 1):
+                load[i] = L
+            seg_start, k0 = end + 1, bk + 1
+        # after the last deadline: undated books at the average load of the plan so far (at least 0.5)
+        tail = max(0.5, max(load[:seg_start] or [1.0]))
+        for i in range(seg_start, len(days)):
+            load[i] = tail if undated else 1.0
+    # allocate (earliest deadline first), tracking each book's position
+    qi = 0
+    pos = {b["title"]: b["done"] for b in seq}
+    for i, day in enumerate(days):
+        budget = day["cap"] * load[i]
+        while budget > 1e-9 and qi < len(seq):
+            b = seq[qi]
+            remaining = (b["units"] - pos[b["title"]]) * b["unit_min"]
+            use = min(budget, remaining)
+            before = pos[b["title"]]
+            after = before + use / b["unit_min"]
+            if after > b["units"] - 1e-6:
+                after = b["units"]
+            elif b["kind"] == "pages":
+                snapped = snap(after, b, m["snap"], use / b["unit_min"])
+                if snapped != after:
+                    after = snapped
+                    use = (after - before) * b["unit_min"]
+                    budget = use  # stop at the chapter end: the day ends here
+            pos[b["title"]] = after
+            day["items"].append({"title": b["title"], "from": before, "to": after, "kind": b["kind"], "minutes": use})
+            day["planned"] += use
+            budget -= use
+            if after >= b["units"] - 1e-6:
+                b["finish"] = day["date"]; qi += 1
+            elif budget <= 1e-9 or use <= 1e-9:
+                break
+        if qi >= len(seq):
+            break
+    days = [x for x in days if x["date"] <= max([b.get("finish", m["start"]) for b in seq] + [last])]
+    for b in seq:
+        b.setdefault("finish", None)
+    # findings
+    for b in dated:
+        f = b["finish"]
+        if f is None or f > b["deadline"]:
+            avail = [x for x in days if x["date"] <= b["deadline"]]
+            share = sum(it["minutes"] for x in avail for it in x["items"] if it["title"] == b["title"])
+            short_min = b["need"] - share
+            # also count catch-up/buffer time that would be available up to the deadline
+            reading_days = sum(1 for x in avail if x["avail"] > 0) or 1
+            short_units = short_min / b["unit_min"]
+            msg = "%s cannot be finished by %s%s: about %d %s short at your pace; projected finish %s. Options: +%d min on each of the %d reading days until then, read faster, skim or skip about %d %s, or start it earlier" % (
+                b["title"], b["deadline"], " (%s)" % b["event"] if b["event"] else "", math.ceil(short_units), "pages" if b["kind"] == "pages" else "audio minutes",
+                f or "beyond the plan", math.ceil(short_min / reading_days), reading_days, math.ceil(short_units), "pages" if b["kind"] == "pages" else "audio minutes")
+            F.append(("high", "RP01", msg))
+        elif f > b["target"]:
+            F.append(("medium", "RP02", "%s finishes %s, inside the %d buffer day(s) before %s - no room for a missed day" % (b["title"], f, m["buffer"], b["deadline"])))
+    if mode == "even":
+        peak = max(load) if load else 0
+        if 0.9 <= peak <= 1.0 and not any(f[1] == "RP01" for f in F):
+            F.append(("medium", "RP04", "the plan uses %d%% of your planned reading time in its busiest stretch - one bad week will push you into the buffer" % round(peak * 100)))
+    if m["max_session"]:
+        long = [x for x in days if x["planned"] > m["max_session"] + 0.5]
+        if long:
+            F.append(("low", "RP03", "%d day(s) plan more than %d minutes (e.g. %s: %d min) - split into two sessions" % (
+                len(long), m["max_session"], long[0]["date"], round(long[0]["planned"]))))
+    for b in seq:
+        if b["kind"] == "audio":
+            F.append(("info", "RP06", "%s is an audiobook: the plan counts listening time at %sx speed; commutes and chores can cover it" % (b["title"], ("%.2f" % (1 / b["unit_min"])).rstrip("0").rstrip("."))))
+    F.sort(key=lambda f: (SEV[f[0]], f[1]))
+    return {"days": days, "books": seq, "all_books": books, "findings": F, "load": load}
+
+
+def snap(after, b, snap_pages, day_units):
+    """Move a day's stopping point to a chapter end if one is close (within snap_pages and 25% of the day)."""
+    if not b["chapters"] or snap_pages <= 0:
+        return after
+    lim = min(snap_pages, max(1.0, day_units * 0.25))
+    ends = [c - 1 for c in b["chapters"] if c - 1 > 0]
+    best = None
+    for e in ends:
+        if abs(e - after) <= lim and e > after - day_units + 0.5 and (best is None or abs(e - after) < abs(best - after)):
+            best = e
+    return float(best) if best is not None else after
+
+
+# ---------------------------------------------------------------- rendering
+def fmt_item(it):
+    if it["kind"] == "audio":
+        return "%s %s-%s" % (it["title"], hm(it["from"]), hm(it["to"]))
+    a = int(round(it["from"])) + 1
+    z = int(round(it["to"]))
+    if z < a:
+        z = a
+    return "%s p. %d-%d (%d pp)" % (it["title"], a, z, z - a + 1)
+
+
+def hm(x):
+    x = int(round(x))
+    return "%d:%02d" % (x // 60, x % 60)
+
+
+def checkpoints(r):
+    out = []
+    pos = {}
+    for x in r["days"]:
+        for it in x["items"]:
+            pos[it["title"]] = it
+        if x["date"].weekday() == 6 and pos:  # Sundays
+            out.append((x["date"], "; ".join("%s %s" % (t, ("p. %d" % round(it["to"]) if it["kind"] == "pages" else hm(it["to"]))) for t, it in pos.items() if it["to"] < next(b["units"] for b in r["books"] if b["title"] == t) - 1e-6) or "all current books done"))
+    return out
+
+
+def report(r, m, mode):
+    hi = [f for f in r["findings"] if f[0] == "high"]
+    out = ["# %s" % m["name"], ""]
+    tot_min = sum(x["planned"] for x in r["days"])
+    out.append("Start %s, %s mode, %d buffer day(s) before each deadline, catch-up days: %s. Planned reading: %d h %02d min over %d days." % (
+        m["start"], mode, m["buffer"], ", ".join(sorted(m["catch"], key=DAYS.index)) or "none", tot_min // 60, tot_min % 60, len(r["days"])))
+    out += ["", "**Verdict: %s**" % ("%d book(s) cannot be finished by their deadline - change the plan" % len(hi) if hi else "every deadline is met"), ""]
+    out += ["## Books", "", "| Book | Left | Est. time | Deadline | Finish by | Planned finish | Days spare | Avg per reading day |", "|---|---|---|---|---|---|---|---|"]
+    for b in r["all_books"]:
+        left = b["units"] - b["done"]
+        rd = [x for x in r["days"] if any(it["title"] == b["title"] for it in x["items"])]
+        avg = left / len(rd) if rd else 0
+        spare = (b["deadline"] - b["finish"]).days if b.get("finish") and b["deadline"] else None
+        out.append("| %s | %s | %s | %s | %s | %s | %s | %s |" % (
+            b["title"], ("%d pp" % round(left)) if b["kind"] == "pages" else hm(left) + " audio", hm(b["need"]) + " h",
+            "%s %s" % (b["deadline"], "(%s)" % b["event"] if b["event"] else "") if b["deadline"] else "-",
+            b["target"] or "-", b.get("finish") or ("done" if b["need"] <= 0 else "NOT IN TIME"),
+            "-" if spare is None else spare, ("%.0f pp" % avg) if b["kind"] == "pages" else hm(avg)))
+    out += ["", "## Findings", ""]
+    out += ["- **%s %s** %s" % (s.upper(), c, msg) for s, c, msg in r["findings"]] or ["- none"]
+    out += ["", "## Day by day", "", "| Date | Day | Minutes | Read | Note |", "|---|---|---|---|---|"]
+    events = {}
+    for b in r["all_books"]:
+        if b["deadline"]:
+            events.setdefault(b["deadline"], []).append("DEADLINE %s%s" % (b["title"], " - " + b["event"] if b["event"] else ""))
+            if b["target"] and b["target"] != b["deadline"]:
+                events.setdefault(b["target"], []).append("finish-by %s" % b["title"])
+    for x in r["days"]:
+        note = [x["note"]] if x["note"] else []
+        if x["note"] == "catch-up day" or (x["planned"] < 0.5 and x["avail"] > 0):
+            note = ["catch-up / spare (%d min available)" % x["avail"]] if x["avail"] > 0 else note
+        note += events.get(x["date"], [])
+        if m["max_session"] and x["planned"] > m["max_session"] + 0.5:
+            note.append("2 sessions")
+        out.append("| %s | %s | %s | %s | %s |" % (x["date"], x["date"].strftime("%a"), round(x["planned"]) if x["planned"] >= 0.5 else "-",
+                                               "; ".join(fmt_item(it) for it in x["items"]) or "-", "; ".join(note)))
+    cps = checkpoints(r)
+    if cps:
+        out += ["", "## Weekly checkpoints (where you should be by Sunday night)", ""]
+        out += ["- %s: %s" % (d, s) for d, s in cps]
+    out += ["", "## If you fall behind", ""]
+    for b in r["books"]:
+        if b["kind"] != "pages" or not b["deadline"]:
+            continue
+        rd = [x for x in r["days"] if any(it["title"] == b["title"] for it in x["items"])]
+        if not rd:
+            continue
+        day_pp = sum(it["to"] - it["from"] for x in rd for it in x["items"] if it["title"] == b["title"]) / len(rd)
+        spare = [x for x in r["days"] if x["date"] <= b["deadline"] and x["date"] >= rd[0]["date"] and x["avail"] > 0 and x["planned"] < 0.5]
+        out.append("- %s: a missed day costs about %d pages. Make them up on %s, or add %d pages to each of the next 3 reading days. Re-plan any time with `--from <date> --at \"%s=<page>\"`." % (
+            b["title"], round(day_pp), ("the spare day(s) " + ", ".join(str(x["date"]) for x in spare[:3])) if spare else "no spare day before the deadline", math.ceil(day_pp / 3), b["title"]))
+    out.append("")
+    return "\n".join(out)
+
+
+# ---------------------------------------------------------------- self-test
+def self_test():
+    tests = []
+    def t(name, cond):
+        tests.append((name, bool(cond)))
+    def run(cfg, mode="even", **kw):
+        m = load(cfg, **kw)
+        return plan(m, mode), m
+    base = {"start": "2026-11-02", "reader": {"words_per_minute": 250, "words_per_page": 250}, "minutes": 30, "buffer_days": 0}
+    r, m = run(dict(base, books=[{"title": "A", "pages": 60, "deadline": "2026-11-08"}]), "asap")
+    t("asap: 30 pages/day at 1 page/min finishes day 2", r["books"][0]["finish"] == datetime.date(2026, 11, 3))
+    r, m = run(dict(base, books=[{"title": "A", "pages": 70, "deadline": "2026-11-08"}]))
+    t("even: spread over the week (~10 min/day + 3% headroom)", r["books"][0]["finish"] >= datetime.date(2026, 11, 7) and 10 <= r["days"][0]["planned"] <= 10.31)
+    r, m = run(dict(base, books=[{"title": "A", "pages": 300, "deadline": "2026-11-08"}]))
+    t("infeasible -> RP01 high", any(f[1] == "RP01" and f[0] == "high" for f in r["findings"]))
+    t("RP01 suggests extra minutes", any("+13 min" in f[2] for f in r["findings"] if f[1] == "RP01"))
+    r, m = run(dict(base, buffer_days=2, books=[{"title": "A", "pages": 70, "deadline": "2026-11-08"}]))
+    t("buffer days: finish 2 days early", r["books"][0]["finish"] == datetime.date(2026, 11, 6))
+    r, m = run(dict(base, catch_up_days=["sun"], books=[{"title": "A", "pages": 60, "deadline": "2026-11-08"}]))
+    t("catch-up Sunday gets no planned reading", r["days"][-1]["planned"] == 0 and r["books"][0]["finish"] == datetime.date(2026, 11, 7))
+    r, m = run(dict(base, exceptions=[{"dates": "2026-11-03..2026-11-04", "minutes": 0, "note": "trip"}], books=[{"title": "A", "pages": 50, "deadline": "2026-11-08"}]))
+    t("exception range has no reading", all(x["planned"] == 0 for x in r["days"][1:3]))
+    two = [{"title": "Late", "pages": 30, "deadline": "2026-11-20"}, {"title": "Soon", "pages": 60, "deadline": "2026-11-04"}]
+    r, m = run(dict(base, books=two))
+    t("earliest deadline first", r["days"][0]["items"][0]["title"] == "Soon")
+    t("tight segment then lighter load", r["load"][0] > 0.6 and r["load"][5] < 0.2)
+    r, m = run(dict(base, books=[{"title": "A", "pages": 70, "deadline": "2026-11-08"}]), at={"A": 36})
+    t("--at resumes from page", abs(sum(x["planned"] for x in r["days"]) - 35) < 0.01)
+    r, m = run(dict(base, books=[{"title": "W", "words": 25000, "deadline": "2026-11-08"}]))
+    t("word count -> pages via words_per_page", r["all_books"][0]["units"] == 100)
+    r, m = run(dict(base, books=[{"title": "H", "pages": 70, "difficulty": 1.5, "deadline": "2026-11-08"}]))
+    t("difficulty scales time", abs(r["books"][0]["need"] - 105) < 0.01)
+    r, m = run(dict(base, books=[{"title": "Au", "audio_minutes": 300, "speed": 1.5, "deadline": "2026-11-08"}]))
+    t("audiobook at 1.5x = 200 min", abs(r["books"][0]["need"] - 200) < 0.01 and any(f[1] == "RP06" for f in r["findings"]))
+    r, m = run(dict(base, books=[{"title": "C", "pages": 70, "deadline": "2026-11-08", "chapters": [1, 12, 23, 31, 42, 55]}]))
+    ends = [round(it["to"]) for x in r["days"] for it in x["items"]]
+    t("chapter snapping stops at chapter ends", 11 in ends and 22 in ends and ends[-1] == 70)
+    t("one item per book per day", all(len({it["title"] for it in x["items"]}) == len(x["items"]) for x in r["days"]))
+    t("page ranges do not overlap", all(fmt_item(it) for x in r["days"] for it in x["items"]) and
+      [int(round(it["from"])) for x in r["days"] for it in x["items"]][1:] == [int(round(it["to"])) for x in r["days"] for it in x["items"]][:-1])
+    r, m = run(dict(base, max_session_minutes=20, minutes=60, books=[{"title": "A", "pages": 300, "deadline": "2026-11-08"}]))
+    t("long sessions -> RP03", any(f[1] == "RP03" for f in r["findings"]))
+    r, m = run(dict(base, books=[{"title": "A", "pages": 200, "deadline": "2026-11-08"}]))
+    t("tight plan -> RP04 or RP01", any(f[1] in ("RP04", "RP01") for f in r["findings"]))
+    r, m = run(dict(base, books=[{"title": "A", "pages": 30}, {"title": "B", "pages": 60, "deadline": "2026-11-05"}]))
+    t("undated book after dated ones", r["books"][-1]["title"] == "A" and r["books"][-1]["finish"])
+    r, m = run(dict(base, books=[{"title": "A", "pages": 20, "start_page": 21}]))
+    t("finished book -> RP05", any(f[1] == "RP05" for f in r["findings"]))
+    t("pages_per_hour", abs(load(dict(base, reader={"pages_per_hour": 30}, books=[{"title": "P", "pages": 30}]))["books"][0]["unit_min"] - 2) < 1e-9)
+    for bad in [dict(base, books=[]), dict(base, books=[{"title": "x"}]), dict(base, minutes={"funday": 3}, books=[{"title": "a", "pages": 3}]),
+                dict(base, books=[{"title": "a", "pages": 3, "deadline": "2026-13-01"}])]:
+        try:
+            run(bad); okk = False
+        except InputError:
+            okk = True
+        t("bad input rejected: %s" % (list(bad.get("minutes", {})) if isinstance(bad.get("minutes"), dict) else (bad["books"][0] if bad["books"] else "no books")), okk)
+    r, m = run(dict(base, books=[{"title": "Old", "pages": 30, "deadline": "2026-10-01"}]))
+    t("passed deadline -> RP05, planned without deadline", any(f[1] == "RP05" for f in r["findings"]) and r["books"][0]["finish"])
+    rep = report(*run(dict(base, books=two)), "even")
+    t("report has verdict, day table and catch-up advice", "Verdict" in rep and "| Date |" in rep and "If you fall behind" in rep)
+    for name, okk in tests:
+        print(("PASS  " if okk else "FAIL  ") + name)
+    n = sum(1 for _, okk in tests if okk)
+    print("%d/%d passed" % (n, len(tests)))
+    return 0 if n == len(tests) else 1
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("plan", nargs="?")
+    ap.add_argument("--mode", choices=["even", "asap"], default="even")
+    ap.add_argument("--from", dest="start", help="re-plan from this date (YYYY-MM-DD)")
+    ap.add_argument("--at", action="append", default=[], help='"Title=page" (or "Title=minute" for audiobooks): where you are now')
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args(argv)
+    if a.self_test:
+        return self_test()
+    if not a.plan:
+        ap.error("plan JSON required (or --self-test)")
+    try:
+        try:
+            cfg = json.load(open(a.plan, encoding="utf-8"))
+        except (OSError, ValueError) as e:
+            raise InputError(str(e))
+        at = {}
+        for s in a.at:
+            if "=" not in s:
+                raise InputError("--at needs Title=page, got %r" % s)
+            k, v = s.rsplit("=", 1)
+            try:
+                at[k.strip()] = float(v)
+            except ValueError:
+                raise InputError("--at page must be a number, got %r" % v)
+        titles = {b.get("title") for b in cfg.get("books", [])} if isinstance(cfg, dict) else set()
+        for k in at:
+            if k not in titles:
+                raise InputError("--at: no book titled %r" % k)
+        m = load(cfg, a.start, at)
+        r = plan(m, a.mode)
+    except (InputError, KeyError, TypeError, ValueError) as e:
+        print("error: %s" % e, file=sys.stderr)
+        return 2
+    if a.json:
+        out = {"books": [{"title": b["title"], "deadline": str(b["deadline"]) if b["deadline"] else None, "finish": str(b.get("finish")) if b.get("finish") else None,
+                          "minutes_needed": round(b["need"])} for b in r["all_books"]],
+               "days": [{"date": str(x["date"]), "minutes": round(x["planned"]), "read": [fmt_item(it) for it in x["items"]]} for x in r["days"]],
+               "findings": [{"severity": s, "code": c, "message": msg} for s, c, msg in r["findings"]]}
+        print(json.dumps(out, indent=2))
+    else:
+        print(report(r, m, a.mode))
+    return 1 if any(f[0] == "high" for f in r["findings"]) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
 ```
 
 </details>

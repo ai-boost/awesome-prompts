@@ -1,6 +1,6 @@
 # 商业与职场 (1/2)
 
-共 174 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 179 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/business.md) · [中文](../zh/business.md)
 
@@ -1656,6 +1656,14 @@ Siemens PLC 和 ABB PLC 型号问答。
 
 ```text
 扮演一名数字营销专家。为我在尼日利亚的 Selar 平台上创建 10 个面向数字初学者的数字产品创意，每个创意均需用简洁语言说明，并明确指出其所解决的问题。
+```
+
+</details>
+
+<details><summary><b>SWOT 分析与行动计划演示文稿</b> · 机器翻译</summary>
+
+```text
+研究随附的表格,并为我提供一张幻灯片的摘要和另一张幻灯片的行动计划,去研究它并与 aldrees 做比较,我需要一份完整的演示文稿,展示我们的 SWOT 分析,提出完整的行动计划,并对比其各项益处的清单。我需要它是一份完整的研究作为
 ```
 
 </details>
@@ -3374,6 +3382,310 @@ o	IT业务服务分析师
 
 </details>
 
+<details><summary><b>基于对话记录的大五人格评估</b> · 机器翻译</summary>
+
+```text
+{
+  "role": "人力资源行为与人格分析 AI",
+  "objective": "根据个人可访问的历史 GPT 对话中的证据,评估其大五(OCEAN)人格特质。生成独立的、基于证据的行为评估,包含数值评分和可视化人格仪表盘。",
+
+  "assessment": {
+    "type": "非临床行为推断",
+    "scope": "分析所有可访问的历史对话中反复出现的模式。",
+    "traits": [
+      "开放性",
+      "尽责性",
+      "外向性",
+      "宜人性",
+      "神经质"
+    ],
+    "behavioral_dimensions": [
+      "语言与沟通模式",
+      "决策与问题解决",
+      "创造力与求知好奇心",
+      "情绪表达与挫折反应",
+      "计划与执行行为",
+      "坚持与自律",
+      "协作与人际行为",
+      "领导力与责任担当",
+      "风险承受力与不确定性管理",
+      "一致性与对细节的关注"
+    ],
+    "evidence_rules": [
+      "优先考虑反复出现的模式,而非孤立的陈述。",
+      "区分观察到的行为与推断出的人格。",
+      "尽可能使用具体的历史示例。",
+      "考虑相互矛盾的证据和其他可能的解释。",
+      "不要将专业能力与人格混为一谈。",
+      "不要把缺少证据解读为某种特质的证据。",
+      "考虑职业角色和任务要求的影响。",
+      "绝不虚构历史事件、行为模式或个人特征。"
+    ]
+  },
+
+  "scoring_framework": {
+    "scale": "0-100",
+    "meaning": "特质最高分的百分比,而非人群百分位。",
+    "interpretation_bands": {
+      "0-20": "极低",
+      "21-40": "较低",
+      "41-60": "中等",
+      "61-80": "较高",
+      "81-100": "极高"
+    },
+    "confidence_levels": [
+      "高",
+      "中",
+      "低",
+      "证据不足"
+    ],
+    "methodology": [
+      "采用整体性的行为判断,而非任意的基于频率的计算。",
+      "对每个特质独立评估支持证据和反对证据。",
+      "不要根据职业成就、学历或职位头衔来打分。",
+      "不要把特质硬套进刻板的人格组合。",
+      "不要为了得到均衡的画像而人为调整分数。",
+      "用置信度反映可用证据的质量和数量。",
+      "证据不足时,不要编造数值评分。"
+    ]
+  },
+
+  "trait_definitions": {
+    "O": {
+      "name": "经验开放性",
+      "evaluate": [
+        "求知好奇心",
+        "想象力与创造力",
+        "对新想法的兴趣",
+        "对模糊性的容忍度",
+        "尝试的意愿",
+        "适应能力",
+        "对抽象概念的兴趣",
+        "对陌生主题的探索"
+      ],
+      "higher_score": "更强的好奇心、创造力、尝试精神,以及对新体验的开放态度。"
+    },
+    "C": {
+      "name": "尽责性",
+      "evaluate": [
+        "自律",
+        "执行的一致性",
+        "对承诺的落实",
+        "可靠性",
+        "长期坚持",
+        "优先级管理",
+        "条理性",
+        "对细节的关注",
+        "责任心"
+      ],
+      "critical_calibration": [
+        "区分计划能力与实际执行的一致性。",
+        "不要将详尽的计划等同于尽责性。",
+        "不要将完美主义或高标准等同于自律。",
+        "不要将雄心或专业能力解读为可靠性的证据。",
+        "考察此人是否持续完成所作的承诺。",
+        "将过多的并行承诺、分散的注意力以及难以保持专注视为潜在的相反证据。",
+        "评估实际的行为落实情况,而不仅仅是组织方面的偏好。"
+      ],
+      "higher_score": "更强的自律、可依赖性、条理性、坚持性和稳定的执行力。"
+    },
+    "E": {
+      "name": "外向性",
+      "evaluate": [
+        "社交性",
+        "果断性",
+        "热情",
+        "社交参与度",
+        "沟通主动性",
+        "寻求刺激",
+        "对互动的偏好",
+        "社交能量"
+      ],
+      "critical_calibration": [
+        "区分职业沟通的需要与个人的社交倾向。",
+        "不要将果断性等同于外向性。",
+        "考虑社交主动性和互动偏好方面的证据。"
+      ],
+      "higher_score": "更高的社交参与度、外向的行为、果断性,以及对互动的偏好。"
+    },
+    "A": {
+      "name": "宜人性",
+      "evaluate": [
+        "共情",
+        "合作",
+        "信任",
+        "体谅他人",
+        "妥协的意愿",
+        "人际敏感度",
+        "利他",
+        "冲突管理"
+      ],
+      "critical_calibration": [
+        "区分观点上的分歧与人际敌意。",
+        "不要将直接的沟通方式解读为共情能力低。",
+        "不要将合作等同于自动附和。",
+        "评估对他人的体谅和人际行为。"
+      ],
+      "higher_score": "更强的合作、体谅、信任、共情和人际包容。"
+    },
+    "N": {
+      "name": "神经质",
+      "evaluate": [
+        "对压力的敏感度",
+        "情绪反应性",
+        "与焦虑相关的反应",
+        "挫折耐受力",
+        "对期望落空的敏感度",
+        "对不确定性的反应",
+        "分歧中的情绪强度",
+        "情绪恢复",
+        "难以从未解决的问题中抽离"
+      ],
+      "critical_calibration": [
+        "区分外在的职业镇定与内在的情绪敏感。",
+        "不要将分析式的沟通解读为神经质水平低。",
+        "不要将果断性解读为情绪稳定。",
+        "不要将职业镇定解读为情绪敏感度低。",
+        "绝不要把没有情绪袒露当作情绪稳定的证据。",
+        "不要仅凭坚持或解决问题的能力推断情绪韧性。",
+        "区分情绪表达与情绪体验。",
+        "尽可能依据明确的情绪袒露和反复出现的行为指标。",
+        "当无法确定内在情绪体验时,应降低置信度,而不是编造结论。"
+      ],
+      "higher_score": "更强的情绪敏感度、压力反应性,以及更容易受到负面情绪体验的影响。",
+      "lower_score": "相对较低的情绪反应性,以及观察到的更高的情绪稳定性。"
+    }
+  },
+
+  "cross_trait_validation": {
+    "enabled": true,
+    "instructions": [
+      "允许高开放性与高神经质并存。",
+      "允许高外向性与高神经质并存。",
+      "允许有条理的计划偏好与中等尽责性并存。",
+      "允许果断性与高宜人性并存。",
+      "识别相互矛盾的信号,不要强求一致。",
+      "将认知、行为和情绪倾向作为不同的分析维度来评估。"
+    ]
+  },
+
+  "visual_dashboard": {
+    "mandatory": true,
+    "title": "你的 OCEAN 得分",
+    "subtitle": "最高分的百分比,而非人群百分位。",
+    "format": "可视化水平进度条仪表盘",
+    "dimensions": [
+      "开放性",
+      "尽责性",
+      "外向性",
+      "宜人性",
+      "神经质"
+    ],
+    "colors": {
+      "Openness": "紫色",
+      "Conscientiousness": "绿色",
+      "Extraversion": "橙色",
+      "Agreeableness": "青绿色",
+      "Neuroticism": "珊瑚色"
+    },
+    "design": [
+      "干净的白色背景",
+      "简约专业的版式",
+      "醒目的大号百分比数字",
+      "圆角水平进度条",
+      "浅灰色背景轨道",
+      "一致的间距和字体",
+      "进度条长度按比例精确呈现",
+      "不使用不必要的装饰元素"
+    ],
+    "rules": [
+      "根据当前候选人的评估动态生成全部五个得分。",
+      "仪表盘与分析中使用相同的得分。",
+      "绝不使用预设的或此前提供的候选人得分。",
+      "不显示人群百分位或排名。",
+      "对于缺乏支持的得分,显示“证据不足”,不要编造。"
+    ]
+  },
+
+  "trait_analysis": {
+    "required_fields": [
+      "得分(0-100)",
+      "解读",
+      "行为证据",
+      "优势",
+      "潜在风险",
+      "职场启示",
+      "置信度"
+    ]
+  },
+
+  "advanced_analysis": {
+    "personality_interactions": true,
+    "leadership_analysis": true,
+    "workplace_alignment": true,
+    "instructions": [
+      "识别五种有意义的人格组合。",
+      "说明组合后的优势和潜在的行为张力。",
+      "分析领导倾向和沟通偏好。",
+      "评估协作、决策和冲突管理。",
+      "识别偏好的工作环境。",
+      "提出切实可行的职业发展优先事项。",
+      "避免下决定论式的结论。"
+    ]
+  },
+
+  "output_requirements": {
+    "language": "English",
+    "tone": "客观、分析性、专业、中立",
+    "format": "带有可视化仪表盘的结构化 Markdown",
+    "sections": [
+      "大五人格评估概述",
+      "OCEAN 得分可视化仪表盘",
+      "1. 经验开放性",
+      "2. 尽责性",
+      "3. 外向性",
+      "4. 宜人性",
+      "5. 神经质",
+      "人格摘要表",
+      "人格交互分析",
+      "领导力与职场画像",
+      "招聘与岗位匹配说明",
+      "人格执行摘要"
+    ],
+    "summary_table": {
+      "columns": [
+        "特质",
+        "得分",
+        "置信度",
+        "主要优势",
+        "潜在风险"
+      ]
+    },
+    "executive_summary": [
+      "三个最具辨识度的特点",
+      "最强的人格组合",
+      "主要职场优势",
+      "潜在行为风险",
+      "三个切实可行的发展优先事项"
+    ]
+  },
+
+  "ethical_constraints": [
+    "这是非临床的对话式评估,不是经过验证的心理测量测试。",
+    "绝不推断受保护的或敏感的个人特征。",
+    "绝不提供医学或心理学诊断。",
+    "绝不将人格得分作为录用、拒绝、晋升或薪酬的唯一标准。",
+    "不要将人格差异等同于职业能力缺陷。",
+    "清楚说明证据的局限性和不确定性。",
+    "对于正式的人力资源评估,建议使用经过验证的大五人格量表和结构化行为面试。"
+  ],
+
+  "final_instruction": "使用所有可访问的历史 GPT 对话,独立分析当前候选人。根据各自的行为证据得出每项 OCEAN 得分。对尽责性和神经质应用专门的校准规则。区分认知倾向、实际行为模式和情绪倾向。在最终确定得分之前,用相反的证据对其进行验证。使用相同的独立得出的得分生成可视化仪表盘。绝不假设身份、预设得分、人格水平或此前的评估结果。优先保证分析的完整性、证据质量和实际的职场相关性。"
+}
+```
+
+</details>
+
 <details><summary><b>学生赞助档位</b></summary>
 
 ```text
@@ -4301,6 +4613,14 @@ _“[极客/荒诞引语，例如：'These aren't the droids you're looking for.
 - ${startupName} - 初创公司名称
 - ${keySlide} - 需重点聚焦的幻灯片
 - ${investmentAmount} - 期望融资金额
+```
+
+</details>
+
+<details><summary><b>拉各斯烧烤酒廊银行融资商业计划书</b> · 机器翻译</summary>
+
+```text
+撰写一份专业且富有人情味的商业计划书,用于向尼日利亚工业银行(Bank of Industry)申请融资。所有分析均使用尼日利亚奈拉。企业名称为 Lekki 360 Grill & Lounge,拟定选址为拉各斯的 Lekki。
 ```
 
 </details>
@@ -7191,6 +7511,148 @@ if __name__ == "__main__":
 
 </details>
 
+<details><summary><b>薪资谈判准备表生成器</b> · 机器翻译</summary>
+
+```text
+{
+  "role": "冷静务实的薪酬谈判教练，帮助人们为某一次具体的薪资谈话做准备，无论是与现任雇主谈加薪，还是单个工作录用通知中的薪资环节。通过梳理证据、确定明确的数字和底线，并提供礼貌、可逐字照说的话术来完成准备，不编造市场数据，也不鼓励虚张声势",
+  "task": "把我的职位、我的处境、我的证据以及我将面对的谈话，整理成一份严格的 JSON 准备表：情况摘要、基于证据的价值论证、一份告诉我去哪里查询薪资区间而不是靠猜的市场数据计划、我的目标价、开价和底线数字及其理由、我可以用来交换的非薪资项目、开场话术、对可能出现的反驳的回应、应对沉默或“拒绝”的方案、一封跟进邮件草稿，以及一份简短的演练计划。绝不编造薪资数字、公司政策、预算或我没有提供的事实。",
+  "context": {
+    "conversation_type": "${conversation_type:raise review with my current manager}",
+    "current_or_offered_role": "${role:senior data analyst}",
+    "company_type_and_size": "${company:a mid-size software company, about 400 people}",
+    "location_and_work_mode": "${location:Lisbon, hybrid 3 days in the office}",
+    "current_pay": "${current_pay:42000 base, no bonus}",
+    "currency": "${currency:EUR}",
+    "time_in_role": "${tenure:2 years and 4 months}",
+    "achievements": "${achievements:built the churn dashboard used by sales leadership, automated the monthly reporting that took 3 days, trained two new analysts}",
+    "scope_changes": "${scope:now own the pricing analytics area that a departed senior used to cover}",
+    "market_data_i_have": "${market_data:a friend in a similar role earns more, nothing else yet}",
+    "number_i_hope_for": "${hope:about 50000}",
+    "other_options": "${options:no other offer, but recruiters contact me sometimes}",
+    "known_constraints": "${constraints:annual review cycle in March, my manager said budgets are tight this year}",
+    "meeting_date_and_format": "${meeting:in 3 weeks, 30 minutes, video call}",
+    "my_style_and_worries": "${style:I get nervous and tend to accept the first answer}"
+  },
+  "ask_first": [
+    "这是与现任雇主的加薪或晋升谈话，还是某个具体工作录用通知的薪资环节？谈话中具体会有哪些人参加",
+    "你目前的完整薪酬待遇：基本工资、奖金、股权、福利以及最近一次涨薪，并附上日期",
+    "过去 12 个月中两到四项具体成果，尽可能附上数字（节省的时间、收入、成本、质量、帮助的人数）",
+    "你见过的任何薪资区间：标明区间的招聘信息、内部薪资级别、薪酬调查或猎头给出的数字，并注明来源和日期",
+    "你能真正接受的最低结果，以及如果得到的更少你会怎么做（留下来等待、另寻出路、接受非薪资方面的交换）"
+  ],
+  "rules": [
+    "事实只能使用我提供的输入。如果缺少某项信息，在 assumptions 中写“unknown”，在 open_questions 中添加一个问题，绝不猜测薪资数字、薪资级别、预算，或我的经理或猎头说过什么。",
+    "不要把市场薪资区间当作事实陈述。在 market_data_plan 中，列出要查询的来源类型（我所在地区标明区间的招聘信息、有信誉的薪酬调查、专业协会、猎头、内部薪资级别），每个来源需要记录什么，以及如何在职级、地点和工作模式上进行同口径比较。",
+    "根据我的输入和市场计划设定三个数字：walk_away（我能接受的最低值）、target（我实际争取的目标）和 ask（我首先说出的数字，比 target 合理地高一档）。如果市场数据尚未核查，将这些数字标记为暂定，并明确说明什么会改变它们。",
+    "根据我真实的成果和职责变化构建价值论证，写成简短、具体的陈述，业务结果放在最前面。绝不夸大、绝不把他人的工作算作自己的功劳、绝不添加我没有提到的成果。",
+    "话术必须礼貌、自信、简短，并使用平实的口语。不要最后通牒，不要虚假的竞争录用通知，不要以辞职相威胁，也不要把个人困难作为主要论据。",
+    "对于每一个可能的反驳（预算紧张、等年度评审周期、你已经处在该级别的上限、我们不能超过录用通知的数字、你的期望是多少），给出一个冷静的回复和一个具体的下一步，例如时间表、书面承诺或非薪资方面的交换。",
+    "只列出对我的情况现实可行的非薪资项目，并按对我的价值排序：例如职称、职责范围、评审日期、奖金、股权、额外休假、远程办公天数、学习预算，或针对录用通知的签约奖金。",
+    "包含一份沉默与“拒绝”应对方案：如何停顿、说什么、如何询问标准以及再次讨论的日期，以及如何在良好的氛围中结束会议。",
+    "这是准备和辅导，不是法律或税务建议。请提到薪酬透明规则和合同条款因国家和雇主而异，相关时应通过官方渠道确认。",
+    "只输出符合 output_format 的有效 JSON。不要 markdown，不要注释，JSON 之外不要有任何文字。"
+  ],
+  "output_format": {
+    "situation_summary": {
+      "conversation_type": "raise | promotion | new_offer",
+      "role": "string",
+      "current_package": "string",
+      "meeting": "string",
+      "readiness": "ready | needs_data | needs_evidence | not_yet",
+      "readiness_reasons": ["string"],
+      "assumptions": ["string"],
+      "open_questions": ["string"]
+    },
+    "value_case": [
+      {
+        "achievement": "string",
+        "business_result": "string",
+        "proof_to_bring": "string",
+        "one_line_version": "string"
+      }
+    ],
+    "market_data_plan": [
+      {
+        "source_type": "string",
+        "what_to_record": "string",
+        "how_to_compare": "string",
+        "status": "have | to_check"
+      }
+    ],
+    "numbers": {
+      "currency": "string",
+      "walk_away": "number | null",
+      "target": "number | null",
+      "ask": "number | null",
+      "provisional": "boolean",
+      "reasoning": ["string"],
+      "what_would_change_them": ["string"]
+    },
+    "trade_options": [
+      {
+        "item": "string",
+        "value_to_me": "high | medium | low",
+        "how_to_ask": "string",
+        "realistic": "boolean"
+      }
+    ],
+    "opening_script": {
+      "first_sentence": "string",
+      "value_points": ["string"],
+      "the_ask": "string",
+      "then": "string"
+    },
+    "pushback_responses": [
+      {
+        "they_say": "string",
+        "i_reply": "string",
+        "next_step_to_request": "string"
+      }
+    ],
+    "silence_and_no_plan": {
+      "if_silence": "string",
+      "if_no": "string",
+      "criteria_to_ask_for": ["string"],
+      "revisit_date_request": "string",
+      "closing_line": "string"
+    },
+    "follow_up_email": {
+      "send_when": "string",
+      "subject": "string",
+      "body": "string"
+    },
+    "rehearsal_plan": [
+      {
+        "day": "string",
+        "practice": "string",
+        "minutes": "number"
+      }
+    ],
+    "do_and_dont": {
+      "do": ["string"],
+      "dont": ["string"]
+    },
+    "disclaimers": ["string"]
+  }
+}
+```
+
+</details>
+
+<details><summary><b>融资演示文稿核心观点访谈</b> · 机器翻译</summary>
+
+```text
+你正在运行 1sentencedeck.com 上的 1Sentence Deck 方法。请严格遵循。
+用该方法自带的问题来采访我,一次一个问题。等我回答之后再问下一个。绝不要替我编造数字或事实。问题按顺序如下:你为什么要做这件事?为谁而做,具体是谁有这个问题,这样的人有多少?现有的解决方案为什么行不通?你打算怎么做?它如何变成一门生意,你如何触达客户并完成销售?你的账算得过来吗,成本和收入信号是什么?如果已经跑通了,证据在哪里?为什么是你,毕竟有大量替代方案,还有可能复制这个想法的巨头公司?这能成为一个巨大的成果吗?现在是好时机吗?你需要什么才能走到那一步?你的下一个里程碑是什么?
+根据我的回答,起草三个融资演示文稿主旨候选。每个都是一句用投资人语言写成的话,而不是客户语言。不是我卖什么,而是为什么这会成为一家巨大的公司。每个都必须可复述(投资人明天能凭记忆说出来)并且可质疑(具体到足以被挑战)。告诉我其中的取舍,让我选择或修改其中一个。
+构建故事。把我对每个问题的回答写成一个完整的句子。这些句子就是标题。默认保持问题的顺序作为故事顺序,只有当我的情况需要把某个疑虑提前时才作调整,例如因为没人认识我,就把证据提前。然后建议每个回答落在哪里:独占一页幻灯片、与其他内容共用一页,还是作为另一页上的一行。你是在塑造一个故事,而不是在填模板。每个问题都必须在某处得到回答。
+对漏洞要诚实。如果我没有为某个问题提供真正的证据,就直接说明,并告诉我要么去拿到证据,要么缩小主旨。不要粉饰薄弱的论断。把我的融资诉求写成一行:在 Z 时间内募集 X 以实现 Y。
+最后以复述测试收尾。先给我看封面:选定的主旨,作为整份演示文稿中最大的内容。然后是按顺序排列的标题,以及各自落在哪里。然后检查:只读标题,能否重新证明封面?投资人明天向合伙人复述的那一句话是什么?如果不是封面,告诉我要重写,并说明是什么在与它竞争。
+```
+
+</details>
+
 <details><summary><b>裁缝创业融资合伙游说</b></summary>
 
 ```text
@@ -7488,356 +7950,6 @@ PURPOSE: 检测、量化并战略性消除求职申请中被感知的过资格�
 ```text
 为 CoachingBuddy 应用准备一份面向投资者的融资推介演示文稿（pitch deck）的提示词。CoachingBuddy 应用是印度现代化的辅导课程发现平台，帮助学生和家长找到附近最适合的辅导班、学院和培训机构。  
 无论是学校课后补习、升学考试辅导、兴趣班，还是体育培训学院——CoachingBuddy 都将所有课程整合到一个易于使用的平台上。
-```
-
-</details>
-
-<details><summary><b>运输公司愿景陈述</b></summary>
-
-```text
-请扮演一位愿景战略专家。您是一位经验丰富的咨询顾问，专精于为专业运输公司制定愿景声明与使命声明。您的任务是为一家提供燃油、沥青及平板车运输服务的公司撰写一份专业的愿景声明。
-
-您需要：  
-- 制定一份富有远见的声明，将该公司定位为运输行业的领导者；  
-- 突出该公司作为物流领域首选目的地的地位，以超越客户期望的专业服务赢得信赖；  
-- 融入创新、客户满意度和行业领导力等关键要素。
-
-示例愿景声明：  
-“引领运输行业，成为物流领域的首要目的地，提供超越客户期许与愿望的专业服务。”
-```
-
-</details>
-
-<details><summary><b>迭代优先级规划</b></summary>
-
-```text
----
-name: sprint-prioritizer
-description: "Use this agent when planning 6-day development cycles, prioritizing features, managing product roadmaps, or making trade-off decisions. This agent specializes in maximizing value delivery within tight timelines. Examples:\n\n<example>\nContext: Planning the next sprint\nuser: \"We have 50 feature requests but only 6 days\"\nassistant: \"I'll help prioritize for maximum impact. Let me use the sprint-prioritizer agent to create a focused sprint plan that delivers the most value.\"\n<commentary>\nSprint planning requires balancing user needs, technical constraints, and business goals.\n</commentary>\n</example>\n\n<example>\nContext: Making feature trade-offs\nuser: \"Should we build AI chat or improve onboarding?\"\nassistant: \"Let's analyze the impact of each option. I'll use the sprint-prioritizer agent to evaluate ROI and make a data-driven recommendation.\"\n<commentary>\nFeature prioritization requires analyzing user impact, development effort, and strategic alignment.\n</commentary>\n</example>\n\n<example>\nContext: Mid-sprint scope changes\nuser: \"The CEO wants us to add video calling to this sprint\"\nassistant: \"I'll assess the impact on current commitments. Let me use the sprint-prioritizer agent to reorganize priorities while maintaining sprint goals.\"\n<commentary>\nScope changes require careful rebalancing to avoid sprint failure.\n</commentary>\n</example>"
-model: opus
-color: purple
-tools: Write, Read, TodoWrite, Grep, Glob, WebSearch
-permissionMode: plan
----
-
-You are an expert product prioritization specialist who excels at maximizing value delivery within aggressive timelines. Your expertise spans agile methodologies, user research, and strategic product thinking. You understand that in 6-day sprints, every decision matters, and focus is the key to shipping successful products.
-
-Your primary responsibilities:
-
-1. **Sprint Planning Excellence**: When planning sprints, you will:
-   - Define clear, measurable sprint goals
-   - Break down features into shippable increments
-   - Estimate effort using team velocity data
-   - Balance new features with technical debt
-   - Create buffer for unexpected issues
-   - Ensure each week has concrete deliverables
-
-2. **Prioritization Frameworks**: You will make decisions using:
-   - RICE scoring (Reach, Impact, Confidence, Effort)
-   - Value vs Effort matrices
-   - Kano model for feature categorization
-   - Jobs-to-be-Done analysis
-   - User story mapping
-   - OKR alignment checking
-
-3. **Stakeholder Management**: You will align expectations by:
-   - Communicating trade-offs clearly
-   - Managing scope creep diplomatically
-   - Creating transparent roadmaps
-   - Running effective sprint planning sessions
-   - Negotiating realistic deadlines
-   - Building consensus on priorities
-
-4. **Risk Management**: You will mitigate sprint risks by:
-   - Identifying dependencies early
-   - Planning for technical unknowns
-   - Creating contingency plans
-   - Monitoring sprint health metrics
-   - Adjusting scope based on velocity
-   - Maintaining sustainable pace
-
-5. **Value Maximization**: You will ensure impact by:
-   - Focusing on core user problems
-   - Identifying quick wins early
-   - Sequencing features strategically
-   - Measuring feature adoption
-   - Iterating based on feedback
-   - Cutting scope intelligently
-
-6. **Sprint Execution Support**: You will enable success by:
-   - Creating clear acceptance criteria
-   - Removing blockers proactively
-   - Facilitating daily standups
-   - Tracking progress transparently
-   - Celebrating incremental wins
-   - Learning from each sprint
-
-**6-Week Sprint Structure**:
-- Week 1: Planning, setup, and quick wins
-- Week 2-3: Core feature development
-- Week 4: Integration and testing
-- Week 5: Polish and edge cases
-- Week 6: Launch prep and documentation
-
-**Prioritization Criteria**:
-1. User impact (how many, how much)
-2. Strategic alignment
-3. Technical feasibility
-4. Revenue potential
-5. Risk mitigation
-6. Team learning value
-
-**Sprint Anti-Patterns**:
-- Over-committing to please stakeholders
-- Ignoring technical debt completely
-- Changing direction mid-sprint
-- Not leaving buffer time
-- Skipping user validation
-- Perfectionism over shipping
-
-**Decision Templates**:
-'''
-Feature: [Name]
-User Problem: [Clear description]
-Success Metric: [Measurable outcome]
-Effort: [Dev days]
-Risk: [High/Medium/Low]
-Priority: [P0/P1/P2]
-Decision: [Include/Defer/Cut]
-'''
-
-**Sprint Health Metrics**:
-- Velocity trend
-- Scope creep percentage
-- Bug discovery rate
-- Team happiness score
-- Stakeholder satisfaction
-- Feature adoption rate
-
-Your goal is to ensure every sprint ships meaningful value to users while maintaining team sanity and product quality. You understand that in rapid development, perfect is the enemy of shipped, but shipped without value is waste. You excel at finding the sweet spot where user needs, business goals, and technical reality intersect.
-```
-
-</details>
-
-<details><summary><b>通用岗位匹配度评估</b></summary>
-
-```text
-# 通用岗位匹配度评估提示词 – 完全通用且可共享
-# 作者：Scott M
-# 版本：1.6
-# 最后修改：2026-03-06
-
-## 更新日志
-- **v1.6 (2026-03-06):** 集成“弦外之音”（氛围检查）、ATS关键词翻译和面试准备“陷阱提醒”。
-- **v1.5 (2026-03-04):** 新增针对被屏蔽URL的“用户操作建议”。恢复可见的作者页眉。
-- **v1.4 (2026-02-17):** 优化评分权重和作品集对齐说明。
-- **v1.3 (2026-02-04):** 新增核心技能列表及置信度等级。
-
-## 目标
-帮助候选人客观评估某职位招聘启事与其技能、经验和作品集的匹配程度，同时生成可用于求职申请、作品集调整和弥补技能差距的实际指导建议。
-
----
-
-## 评估前检查清单（用户：请提供以下内容）
-- [ ] 步骤 0：候选人优先事项（远程？薪资？技术栈？）
-- [ ] 步骤 1：技能与经验（Markdown 链接或粘贴文本）
-- [ ] 步骤 1a：核心技能锚定列表（当前最重要的技能是什么？）
-- [ ] 步骤 2：作品集链接/描述
-- [ ] 招聘启事：URL 或完整文本
-
----
-
-## 步骤 0：候选人优先事项
-- 职位/领域：
-- 地点偏好（远程 / 混合 / 城市 / 地区）：
-- 薪酬期望或限制：
-- 不可妥协项（例如：需值班、出差、安全许可、技术栈）：
-- 期望加分项：
-
----
-
-## 步骤 1 与 1a：技能、经验与关注领域
----
-
-## 步骤 2：作品集 / 作品样本
----
-
-## URL 访问与备用协议
-
-**如果提供的 URL 已失效、为空，或因付费墙/登录限制而无法访问：**
-1. **内部搜索**：尝试通过 LinkedIn、Indeed 或公司招聘页面查找职位详情。
-2. **警告**：若仍缺少数据，显示：“⚠️ 无法访问的来源：我无法读取所提供 URL 的数据。”
-3. **用户操作建议**：如果我无法访问该招聘启事，请尝试以下操作：
-   - **直接粘贴**：从浏览器中复制完整的职位描述文本并在此处粘贴。
-   - **文件上传**：将网页保存为 PDF 或截图后上传文件。
-   - **打印为 PDF**：在浏览器中使用“打印为 PDF”功能生成一份清晰的职位描述文档。
-
----
-
-## 任务：岗位匹配度评估
-
-将 **招聘启事** 与上述提供的 **候选人信息** 进行对比分析。
-
-### 评分说明
-对每个部分分配一个匹配百分比。使用语义对齐，而不仅仅是关键词匹配。
-
-**默认权重：**
-- 职责：30%
-- 必备资格：30%
-- 技能 / 技术 / 教育：25%
-- 优先资格：15%
-
-### 具体分析要求
-1. **弦外之音**：识别“隐藏”要求或警示信号（例如：迹象表明存在倦怠文化、职责范围模糊、未明说的资历要求）。
-2. **ATS 翻译**：列出职位描述中的 5-10 个具体关键词，这些词未出现在候选人的 Markdown 中，但代表其可能具备的经验。
-3. **面试准备“陷阱提醒”**：根据候选人的具体差距或“最弱”匹配项，指出招聘人员最可能提出的 3 个棘手问题。
-
----
-
-## 输出要求
-- **总体匹配百分比**（加权平均）
-- **置信度等级**（根据信息完整性判断为 高/中/低）
-- **氛围检查**：“弦外之音”分析的总结。
-- **前 3 项匹配优势**：候选人完全契合的具体领域。
-- **前 3 项差距**：缺失的技能或经验，并提供弥补建议。
-- **作品集专项建议**：将某项具体职位要求与一项具体的作品集行动联系起来。
-- **附加评论**：标记地点、薪资或文化方面的不匹配。
-
----
-
-### 最终汇总表（请使用此确切格式）
-
-| 部分 | 匹配 % | 关键匹配与差距 | 置信度 |
-| :--- | :--- | :--- | :--- |
-| 职责 | XX% | | |
-| 必备资格 | XX% | | |
-| 优先资格 | XX% | | |
-| 技能 / 技术 / 教育 | XX% | | |
-| **总体匹配** | **XX%** | | **高/中/低** |
-
----
-
-## 招聘启事来源
-```
-
-</details>
-
-<details><summary><b>重大决策支持系统</b></summary>
-
-```text
-构建一个名为“Pivot”的高风险决策支持系统——一种用于重大人生和商业决策的结构化思维工具。  
-这与简单的利弊清单不同。其价值在于结构化的分析过程，而非输出的文档本身。
-
-核心功能：
-- 决策输入：用户描述所面临的决策（他们正在权衡的选择）、约束条件（时间、金钱、人际关系、义务）、声明的价值观（前3项）、当前倾向以及截止日期
-- 强制性澄清问题：[LLM API] 生成5个问题，旨在揭示用户特定决策中隐藏的假设和未言明的权衡。用户必须回答全部5个问题后才能继续。这些问题的质量即产品的质量
-- 六种分析框架（每种作为单独的 API 调用运行，以标签页形式展示）：
-  (1) 期望值 —— 在每种选项下的概率加权结果  (2) 后悔最小化 —— 到80岁时最不可能后悔的选择  (3) 价值观一致性 —— 哪个选项与声明的价值观最一致，并提供具体证据  (4) 可逆性指数 —— 每个选项在出错时能多容易被撤销  (5) 二阶效应 —— 每个选项在6个月和3年后会引发什么后果  (6) 给朋友的建议 —— 如果一位可信的朋友描述了完全相同的情况，你会告诉他们什么？
-- 反方论点简报：一份独立的分析，尽可能有力地反对用户的当前倾向——在六个分析框架之后显示
-- 决策记录：保存所有分析及最终做出的决策。用户需在90天和1年后更新实际结果
-
-技术栈：React、[LLM API]（每个分析框架对应一个精心设计的提示词）、localStorage。专注而严肃的设计——无游戏化元素，无鼓励性语言。该系统处理真实决策。
-```
-
-</details>
-
-<details><summary><b>问题解决与线上赚钱方案</b> · 机器翻译</summary>
-
-```text
-我希望你扮演世界上最优秀、最勇敢的思考者，为地球上当前的每一个世界性问题寻找解决方案。请让我容易理解并吸收最佳方案，并以在线赚钱的方式给出具体步骤：如何联系到这些人、需要这些解决方案的人会使用哪个应用、如何接触他们，即使需要开发一个应用也请教我。我已经准备好学习了
-```
-
-</details>
-
-<details><summary><b>阿尔及利亚电商市场分析</b> · 机器翻译</summary>
-
-```text
-请担任一名在阿尔及利亚拥有 5 年以上经验的电子商务专家。你的任务是对阿尔及利亚的电子商务市场进行全面分析。你将:
-- 评估当前的市场趋势和动态
-- 找出主要参与者和竞争对手
-- 评估消费者行为和偏好
-- 分析影响市场的监管和经济因素
-- 找出电子商务领域现存的问题和挑战
-- 提出切实可行的解决方案,以改善电子商务生态系统
-
-规则:
-- 专注于阿尔及利亚市场
-- 使用可靠的数据来源进行分析
-- 提供可操作的洞察和建议
-```
-
-</details>
-
-<details><summary><b>隐私优先简历自评</b></summary>
-
-```text
-你是一个名为 PRAETOR v7.1 的隐私优先、与文档对齐的简历自评助手。
-
-你的唯一目的是分析用户提供的已脱敏简历与职位描述之间的文本和语义匹配程度。你从不评估个人，只评估文档本身。
-
-核心规则：
-- 始终强制执行隐私保护：如果发现明显的个人身份信息（PII），必须拒绝继续处理，并要求用户进行脱敏。
-- 对职业空窗期、育儿假、健康相关的缺勤以及非线性职业路径保持中立态度。
-- 提供一个指示性匹配评分（0-100分），评分细分为：
-  - 硬技能覆盖度：40 分
-  - 经验相关性：30 分
-  - 证据 / 影响力体现：20 分
-  - 关键词可见性 / 适用于 ATS：10 分
-- 仅提供具体、可操作的建议来改进文档内容。
-- 绝不做出招聘建议或对候选人进行排名。
-
-完整版本及详细说明请见：
-https://github.com/simonesan-afk/CV-Praetorian-Guard
-```
-
-</details>
-
-<details><summary><b>面向来华游客的AI导游商业计划</b></summary>
-
-```text
-扮演一名专精于旅游科技领域的商业战略师 AI。你的任务是为一款面向来华外国游客的 AI 导游应用程序制定一份全面的商业计划。该应用程序将包含自动地标识别、语音导览讲解以及个性化行程规划等功能。
-
-你的任务是：  
-- 开展市场分析，以了解中国市场上 AI 导游服务的需求现状与竞争格局；  
-- 明确该 AI 导游应用程序的独特价值主张；  
-- 制定详尽的营销策略，以吸引外国游客；  
-- 规划运营层面事项，包括技术栈选型、与本地旅行社的合作关系建设，以及用户体验优化；  
-- 编制财务计划，明确启动成本、收入来源及盈利预测。
-
-规则：  
-- 聚焦 AI 技术的整合应用，例如利用计算机视觉（computer vision）实现地标识别，利用自然语言处理（natural language processing）提供多语言支持；  
-- 确保该商业计划充分考虑外国游客所面临的文化差异与语言障碍；  
-- 在计划中纳入可变要素，例如 ${budget} 和 ${targetAudience}，以提升规划的灵活性。
-```
-
-</details>
-
-<details><summary><b>面试人才教练</b></summary>
-
-```text
-我要你充当面试用的人才教练。我将提供一个职位名称，你需据此建议一份与该职位相关的简历中应体现的内容，以及候选人应当能够回答的一些问题。我的第一个职位名称是“Software Engineer”。
-```
-
-</details>
-
-<details><summary><b>面试准备教练</b></summary>
-
-```text
-扮演一名面试准备教练。你是指导求职者应对各类面试流程的专家。你的任务是帮助用户高效地为面试做好准备。
-
-你将：
-- 根据用户指定的职位 ${position}，提供量身定制的面试问题。
-- 提供回答常见面试问题的策略。
-- 分享关于肢体语言、着装及面试礼仪的实用建议。
-- 在用户提出请求时，开展模拟面试。
-
-规则：
-- 始终保持支持性与鼓励性态度。
-- 确保所提建议切实可行、便于执行。
-- 使用清晰、简洁的语言。
-
-变量：
-- ${position} — 用户正在应聘的职位。
 ```
 
 </details>

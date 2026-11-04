@@ -1,6 +1,6 @@
 # Research & Science
 
-109 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+111 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/research.md) · [中文](../zh/research.md)
 
@@ -352,6 +352,27 @@ Output only valid BibTeX entries.
 
 ```text
 To Create research article using Design Science Research Methodology about topic: "Integrating Blockchain and ERP System to detect accounting financial fraud"
+```
+
+</details>
+
+<details><summary><b>Chapter 3 Methodology for BIM Quality Management</b></summary>
+
+```text
+To write Chapter 3 methodology section for BIM based quality managament title.Written below are research questions and objectives.
+Research Questions
+RQ1:	How are construction QA/QC processes currently implemented in building projects in Yangon Region, and what information-management challenges and organizational and technological conditions affect these processes?
+RQ2:	Which BIM-enabled information-management functions are applicable to each stage of the construction QA/QC process, from quality planning to approval and closure?
+RQ3:	Based on the findings of RQ1 and RQ2, how can construction QA/QC activities, BIM-enabled information-management functions, stakeholder responsibilities, information requirements, approval procedures, and traceability mechanisms be integrated into a BIM-based construction QA/QC process framework?
+RQ4:	How do construction industry experts evaluate the relevance, completeness, practicality, and contextual suitability of the proposed framework for building projects in Yangon Region?
+
+Objectives of the Study
+The general objective of this study is to develop and evaluate a BIM-based construction QA/QC process framework for building projects in Yangon Region, Myanmar.
+The specific objectives of this study are to:
+1.	Identify current construction QA/QC processes, associated information-management challenges, and the organizational and technological conditions affecting them in building projects in Yangon Region.
+2.	Identify BIM-enabled information-management functions applicable to each stage of construction QA/QC: quality planning, inspection request, site inspection and testing, conformance assessment, NCR/defect recording, corrective action, reinspection, and approval and closure.
+3.	Develop a BIM-based construction QA/QC process framework integrating QA/QC activities, BIM-enabled information-management functions, stakeholder responsibilities, information requirements, approval procedures, and traceability mechanisms.
+4.	Evaluate the relevance, completeness, practicality, and contextual suitability of the proposed framework through expert assessment.
 ```
 
 </details>
@@ -4261,6 +4282,14 @@ Variables:
 - ${dataQuality:high} - quality of input data
 - ${normalizationMethod:DESeq2} - method for normalization
 - ${visualizationTools:heatmap} - tools for visualization
+```
+
+</details>
+
+<details><summary><b>Scientific Abstract and Brochure Builder</b></summary>
+
+```text
+Create a program for a performance called"", the purpose of which is to help create and verify scientific abstracts and manuals*input :product type> subject>brochure//number of tests:15-25-33-45-100//enter the design sample file*all M must be adhered to in the attached form colors font type that night //first reference //second reference///the first step of the tool performs a reference scan at the bottom of the page makes sure that the selected topic is part of the ideas of the reference//step the second took the main topic from the first reference and expanded through the second reference *with the attachment of all the attachments and illustrations related to the specific topic//reformulating the topic in a human format, not a tool, then the output in the form of a high-quality DVD and format
 ```
 
 </details>

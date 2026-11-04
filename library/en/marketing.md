@@ -1,8 +1,102 @@
 # Marketing & Sales
 
-118 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+125 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/marketing.md) · [中文](../zh/marketing.md)
+
+<details><summary><b>10 Second Vertical App Ad</b></summary>
+
+```text
+Build a 10-second vertical motion design ad (1080x1920, 30 fps) for my app ${app_name}, which ${what_it_does_in_one_sentence}.
+Build it as one HTML page with a single animation timeline, so I can export it as an MP4.
+
+Look: very clean and friendly, bright background, rounded cards, one accent colour ${hex}, large type that is easy to read on a phone.
+
+Scene 1 (0 to 2.4 s): the hook "[HOOK, max 6 words]" builds word by word in the upper third. Each word rises with a soft overshoot.
+Scene 2 (2.4 to 5.5 s): a phone screen slides up. It shows the main step of the app: [MAIN STEP, e.g. a receipt is read and split into names].
+Scene 3 (5.5 to 8 s): the result pops in as small cards, one after another: ${result}.
+Scene 4 (8 to 10 s): app icon, name and "${call_to_action}".
+
+Rules: keep all text inside the safe area (no text in the top 250 px or bottom 350 px). The camera keeps moving gently. One object carries the story from start to end.
+```
+
+</details>
+
+<details><summary><b>11 Second Premium AI Tool Product Film</b></summary>
+
+```text
+Build an 11-second motion design product film in 16:9 (1920x1080, 30 fps) for my AI tool ${name}, which ${what_it_does}.
+Build it as one HTML page with one animation timeline, so I can export it as an MP4.
+
+Look: soft grey-green background, cream paper sheets, a dark green app panel, and gold as the only signal colour, used like a highlighter pen.
+
+Text builds word by word: "${problem}" / "${name} [does step 1], [step 2], and [step 3]." / "${claim}."
+Scene 1: a stack of paper sheets with the problem line on top.
+Scene 2: one line on a sheet gets marked in gold and lifts off as a strip.
+Scene 3: one camera move to the app panel. The strip lands there as a card.
+Scene 4: the card opens and shows the better version: ${result}.
+Scene 5: a gold marker stroke draws the logo. Name and claim appear.
+
+Rules: one object carries the story from start to end. Only one camera travel. Every move is eased.
+```
+
+</details>
+
+<details><summary><b>11 Second Warm Map Style Product Film</b></summary>
+
+```text
+Build an 11-second motion design product film in 16:9 (1920x1080, 30 fps) for my product ${name}, which ${what_it_does}.
+Build it as one HTML page with HTML, CSS and inline SVG only (no photos), on one animation timeline, so I can export it as an MP4.
+
+Look: a warm map seen from above. Sand-coloured ground with soft contour lines, dark brown type, and ONE signal colour ${hex} for small things only.
+
+Text builds word by word: "${problem_in_one_sentence}" / "${name} ${what_it_does_in_one_sentence}." / "${claim}."
+Scene 1: low, angled view of the map while the problem appears.
+Scene 2: the camera rises to a top view in the same place. Areas light up one after another.
+Scene 3: one camera move to a second place. A dark panel shows the result: ${result}.
+Scene 4: one area turns into the logo. Name and claim appear.
+
+Rules: only one camera travel in the whole film. Words grow up from their baseline. Nothing moves linearly.
+```
+
+</details>
+
+<details><summary><b>12 Second SaaS Product Film</b></summary>
+
+```text
+Build a 12-second motion design product film in 16:9 (1920x1080, 30 fps) for my software product ${name}, which ${what_it_does_in_one_sentence}.
+Build it as one HTML page with a single animation timeline, so I can export it as an MP4.
+
+Look: light background, one accent colour ${hex}, one clean sans-serif font, soft shadows, lots of white space.
+
+Scene 1 (0 to 2.4 s): the headline "${headline}" builds word by word. Each word rises 18 px with a soft overshoot. Only the key word is in the accent colour.
+Scene 2 (2.4 to 6 s): a small product card appears. Data rows from different tools slide in one after another.
+Scene 3 (6 to 9.5 s): the rows merge into one clean table. One number counts up to ${result}.
+Scene 4 (9.5 to 12 s): end card with logo, name and the line "${call_to_action}".
+
+Rules: the camera never stands still and moves on one continuous path. One object carries the story from the first second to the end card. Every movement is eased, nothing moves linearly.
+```
+
+</details>
+
+<details><summary><b>14 Second Invoicing App Product Film</b></summary>
+
+```text
+Build a 14-second motion design product film in 16:9 (1920x1080, 30 fps) for my app ${name}, which ${what_it_does}.
+Build it as one HTML page with one animation timeline, so I can export it as an MP4.
+
+Look: light grey-green background with a soft grid, white cards with thin borders, one brand colour ${hex}, one clean sans-serif font.
+
+The text builds word by word: "${hook_question}" / "${name} ${step_1}, ${step_2}, and ${step_3} for you." / "${result}."
+Scene 1: the hook question, big and centred.
+Scenes 2 to 4: one card shows each step. The card from one step becomes the object of the next step.
+Scene 5: the result with a small "done" stamp.
+Scene 6: logo, name and "${tagline}".
+
+Rules: the camera never stands still. Every move is eased. Key words are in the brand colour, the rest stays dark.
+```
+
+</details>
 
 <details><summary><b>30 Tweet Crypto Content Strategy</b></summary>
 
@@ -55,6 +149,23 @@ Generate exactly 30 options in a clean list format. Do not explain the strategy.
 2. ${tweet_text} (Char Count: X/250)
 ...
 30. ${tweet_text} (Char Count: X/250)
+```
+
+</details>
+
+<details><summary><b>3D Brand Film as One Endless Zoom</b></summary>
+
+```text
+Build a 13-second vertical 3D film (1080x1920, 30 fps) for ${brand}, which ${what_it_does_in_one_sentence}.
+Build it as one web page with real-time 3D and a single animation timeline, so I can export it as an MP4.
+
+Idea: one single camera flight with no cuts. Every world sits inside an object of the world before.
+World 1 (0 to 4 s): a desk in a warm retro look. The camera moves slowly towards a monitor.
+World 2 (4 to 8 s): the camera flies through the monitor screen and lands in a small room built from ${product_detail}.
+World 3 (8 to 11.5 s): the camera dives into one object in that room and finds the result: ${result}.
+End (11.5 to 13 s): the logo of ${brand} as a 3D object, with the line "${call_to_action}".
+
+Rules: the camera never stops and never cuts. Soft depth of field, light film grain. Simple, clear shapes that are easy to recognise.
 ```
 
 </details>
@@ -1075,7 +1186,7 @@ Please output the complete brand strategy plan inside the <brand-strategy> tags.
 <details><summary><b>Captivating Short Video Creator</b></summary>
 
 ```text
-I want you to act like an expert who is fill with wisdom and extraordinary in his work making everything easy to understand,captivating and the best in the world.making each question I ask to stand out perfect that will calture the mind of people and they will like to follow me on tiktok and all social medial handle  I will be using
+Cinematic close-up of a mysterious bartender pouring a glowing green liquid into a glass, heavy smoke rising, dark cocktail bar background, 4k, hyper-realistic, slow motion.
 ```
 
 </details>
@@ -1217,15 +1328,7 @@ Variables:
 <details><summary><b>Combat Footage Caption Writer</b></summary>
 
 ```text
-I want you to act as a professional Social Media Manager and military history archivist specializing in modern defense, armor, and combat aviation. Your goal is to help me write engaging, fast-paced, and highly descriptive video captions for my combat footage channel. 
-
-You must strictly follow these rules:
-1. Maintain a completely objective, neutral, and informative tone—do not glorify or romanticize violence, and focus entirely on the hardware and tactical context.
-2. Use precise military terminology (accurately identifying vehicle variants like T-80BVM, Bradley M2A2, or F-16 Block 50 instead of generic terms like "tank" or "jet").
-3. Do not include excessive filler or conversational preambles. Start the output directly with the caption text.
-4. Conclude every caption with relevant technical and military history hashtags.
-
-My first request is: Help me write a short, punchy paragraph description for a video clip showing: ${video_details}
+I want you to act as a social media manager. You will be responsible for developing and executing campaigns across all relevant platforms, engage with the audience by responding to questions and comments, monitor conversations through community management tools, use analytics to measure success, create engaging content and update regularly. My first suggestion request is "I need help managing the presence of an organization on Twitter in order to increase brand awareness."
 ```
 
 </details>
@@ -2197,6 +2300,34 @@ Your task is to convert strategy into a concrete GTM plan.
 
 </details>
 
+<details><summary><b>Google Ads Search Terms Audit</b></summary>
+
+```text
+You are a senior Google Ads specialist auditing a search terms report.
+
+Business context:
+${business_context:What the company sells, to whom, in which countries, and what it does not sell}
+
+Search terms report (term, campaign, clicks, cost, conversions):
+${search_terms}
+
+Classify every search term as KEEP or EXCLUDE. There is no third category.
+
+Rules:
+1. Judge what the person wants, not the words they typed. A clumsy phrasing can still come from a buyer.
+2. EXCLUDE only when you are 100% certain the term can never become a customer: wrong product, wrong country, job seekers, free-only intent, an existing customer looking for support.
+3. Any doubt means KEEP. A wasted click costs a few euros; a negative keyword on a real buyer costs every future sale on that term.
+4. A term that already converted stays KEEP.
+5. Do not invent context. If the business context does not settle it, the term stays KEEP.
+
+Output:
+1. A table: term | decision | intent you read | reason in one sentence.
+2. The shortest list of negative keywords that covers every EXCLUDE term, each with its match type (phrase or exact) and one KEEP term it must not block.
+3. The total cost of the EXCLUDE terms, calculated from the report.
+```
+
+</details>
+
 <details><summary><b>Google Ads Title Copywriter</b></summary>
 
 ```text
@@ -2966,6 +3097,14 @@ ${company_name}
 - The tone must remain **professional, concise, and personalized**.  
 - Automatically adapt the message to the **HR** or **Sales** context based on the PDF content.  
 - Ensure consistency across multiple profiles when generating messages in bulk.
+```
+
+</details>
+
+<details><summary><b>Luxury Pimple Patch Brand Design and Strategy</b></summary>
+
+```text
+Creat this 3  design better then this , and describe why your design is best , the is for the brand to look real luxury. Why the people will chose my brand what the difference I should make for my brand to be  best Seller in Amazon I am new with zero experience but other companies have much experience, design your best write every thing that important for luxury brand and chose the size of text every thing that important for a luxury brand
 ```
 
 </details>
@@ -6280,14 +6419,6 @@ Enjoy sooner than you think.
 
 ```text
 I want you to act as a social media influencer. You will create content for various platforms such as Instagram, Twitter or YouTube and engage with followers in order to increase brand awareness and promote products or services. My first suggestion request is "I need help creating an engaging campaign on Instagram to promote a new line of athleisure clothing."
-```
-
-</details>
-
-<details><summary><b>Social Media Manager</b></summary>
-
-```text
-I want you to act as a social media manager. You will be responsible for developing and executing campaigns across all relevant platforms, engage with the audience by responding to questions and comments, monitor conversations through community management tools, use analytics to measure success, create engaging content and update regularly. My first suggestion request is [platform and campaign goal]
 ```
 
 </details>

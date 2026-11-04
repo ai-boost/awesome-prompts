@@ -1,10 +1,18 @@
-# Image & Design (1/4)
+# Image & Design (1/5)
 
-743 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+808 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
-Pages: **1** · [2](image-2.md) · [3](image-3.md) · [4](image-4.md)
+Pages: **1** · [2](image-2.md) · [3](image-3.md) · [4](image-4.md) · [5](image-5.md)
+
+<details><summary><b>16-Bit Pixel Art Cozy Bookshop</b></summary>
+
+```text
+A 16-bit pixel art scene of a cozy little bookshop on a rainy autumn night, square 1:1, crisp retro game art with a limited, moody palette. The shop fills the right two thirds of the frame: a small dark-green wooden storefront with a dark tiled roof scattered with orange leaves and a green-and-cream striped scalloped awning, water drops dripping from its edge. A big multi-pane front window glows warm yellow, showing wooden shelves and stacks of books inside, green ivy hanging down behind the glass, a small potted fern, and a ginger cat curled up asleep on the inside window sill. On the right, a green door with a small four-pane glass window and a brass knob sits above two stone steps, with climbing ivy on the brick corner of the building. Outside the window stand a blank chalkboard A-frame sign, potted plants in terracotta pots, and a big pile of orange autumn leaves. On the left, an ornate black street lamp with a glowing lantern lights the scene. Wet dark cobblestones shine with golden reflections and scattered leaves, diagonal rain streaks fall across a dark blue cloudy sky and dark trees. Warm light against cool night blues, calm and inviting mood. No people, no text, no logos.
+```
+
+</details>
 
 <details><summary><b>1950s Diner Photo Transformation</b></summary>
 
@@ -485,6 +493,14 @@ City name: İSTANBUL
 
 </details>
 
+<details><summary><b>3D Stop-Motion Character Design Template</b></summary>
+
+```text
+A highly detailed 3D stop-motion animated movie character design of [character], [age], [cultural background], featuring [body proportions], [distinctive facial features], [hairstyle], [facial expression], wearing [outfit] with [fabric textures and details], [footwear], standing in [pose] with a charming, expressive personality, stylized cartoon facial proportions combined with realistic anatomy, distinctive character silhouette, slightly exaggerated features, playful imperfections, intricate fabric fibers, realistic material wear, rich tactile textures, handcrafted puppet aesthetic, sophisticated material layering, original animated film character design, cinematic 3D rendering, soft studio lighting, full-body composition, clean white background
+```
+
+</details>
+
 <details><summary><b>3D to 2D Floor Plan Converter</b></summary>
 
 ```text
@@ -703,6 +719,70 @@ Full-body black and white fashion editorial portrait of a young woman with an ho
 
 ```text
 add black glasses on my picture that suits on me that cover my eyes also make it realistic
+```
+
+</details>
+
+<details><summary><b>Aegean Cliffside Village at Sunset</b></summary>
+
+```text
+A whitewashed Aegean cliffside village at sunset, with white cube houses and blue doors cascading down a steep volcanic cliff, a blue-domed chapel, a winding stone stairway with magenta bougainvillea, and a calm deep blue sea with a small white ferry, wide landscape 16:9. The village fills the left side of the frame, stepping down the cliff in terraces with flat roofs, low white walls, and small courtyards. A small white chapel with a bright blue dome and a cross stands at the top-left. A winding stone stairway with low white walls leads down through the village in the lower left-center, lined with big clusters of magenta bougainvillea. A few windows, doorways, and wall lamps glow warm. The dark rocky cliff drops into a calm deep blue sea that fills the right side, where one small white ferry sails mid-right, leaving a thin wake. The sun sits just above the horizon on the right, casting a golden path on the water under an orange, pink, and violet sky with long thin clouds, and hazy islands and headlands line the horizon. Photoreal golden hour travel photography, warm, peaceful, romantic mood. No people, no text, no logos.
+```
+
+</details>
+
+<details><summary><b>Aegean Cliffside Village Scene Brief Builder</b></summary>
+
+```text
+Act as a cinematic travel scene designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of a whitewashed Aegean cliffside village at sunset: white cube houses with blue doors cascading down a steep volcanic cliff, a blue-domed chapel at the top, a winding stone stairway with magenta bougainvillea, and a calm deep blue sea with a small ferry under an orange and pink sky. The shot will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move naturally (the ferry gliding and leaving a wake, sunlight glittering on the sea, lamps and windows lighting up, soft clouds drifting, bougainvillea stirring in a light breeze, a slow camera move toward the stairway) while keeping the composition calm, balanced, readable, and easy to animate.
+
+My starting idea: ${idea:a quiet summer evening in a whitewashed village on a Greek island cliff, with the sun touching the horizon and a small ferry crossing the sea below}
+
+My starting choices:
+- Village: ${village:white cube houses with flat roofs, blue doors, and small terraces stacked down a steep cliff on the left side of the frame}
+- Chapel: ${chapel:a small white chapel with a bright blue dome and a cross at the top-left}
+- Stairway: ${stairway:a winding stone stairway with low white walls leading down through the village in the lower left-center}
+- Flowers: ${flowers:big clusters of magenta bougainvillea along the walls and the stairway}
+- Sea and boat: ${sea:a calm deep blue sea filling the right side, with one small white ferry mid-right leaving a thin wake}
+- Distance: ${distance:dark volcanic cliffs curving away and hazy islands and headlands on the horizon}
+- Sky and sun: ${sky:the sun just above the horizon on the right, an orange, pink, and violet sky with long thin clouds}
+- Lights: ${lights:a few windows and wall lanterns already glowing warm in the village}
+- Visual style: ${style:photoreal travel photography, golden hour, natural but rich colors}
+- Mood words: ${mood:warm, peaceful, romantic, timeless, summer evening}
+
+First ask me, in one short message, for anything missing: the camera height and position (on a terrace, on the stairway, or above the village), how much of the frame the village and the sea should take, how many boats I want and where, how low the sun should be, how many lights should be on, whether the camera should push in toward the stairway or stay still in the video, where the camera move should end (for example a lit doorway with lanterns), and anything to avoid (people, faces, text, signs with words, logos, brand names, cars, crowds, or copying a specific real hotel, photograph, or named place).
+
+Then produce the brief with these sections:
+
+1. **Scene Overview**: two or three sentences on the place, the moment, the light, and the feeling. Describe an imagined village in the spirit of the Greek Cycladic islands, not a copy of a specific real village, hotel, or famous photograph.
+
+2. **The Village and Chapel**: the white cube houses, blue doors and window frames, terraces, how the buildings step down the cliff, and the blue-domed chapel at the top-left.
+
+3. **Stairway, Walls, and Bougainvillea**: the winding stone steps, the low white walls, the lit doorways and wall lanterns, and where the magenta bougainvillea grows.
+
+4. **Cliff, Sea, and Ferry**: the dark volcanic cliff face, the calm deep blue sea, the small white ferry and its wake, and the distant islands and headlands.
+
+5. **Sky and Sun**: the position of the sun above the horizon, the colors and shapes of the clouds, and the path of sunlight on the water.
+
+6. **Light and Color**: warm sunset light on white walls, cool blue shadows, glowing windows and lanterns, and the overall exposure of golden hour without blown-out whites.
+
+7. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (camera position, village on the left, chapel top-left, stairway lower left-center, bougainvillea clusters, sea on the right, ferry mid-right, sun position, horizon line, framing).
+
+8. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the ferry gliding to the right with its wake, sunlight glittering on the sea, lamps and windows glowing brighter, clouds drifting, bougainvillea stirring, and the camera move. Keep total motion subtle and physically plausible.
+
+9. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the whitewashed cliffside village, the blue-domed chapel, the stone stairway with bougainvillea, and the sea with the ferry at sunset in the first sentence, ending with: no people, no text, no logos.
+
+10. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes a slow, smooth camera push-in for about 6 seconds toward the village and the stone stairway that ends close on a lit doorway with wall lanterns and bougainvillea, the ferry gliding slowly to the right, sunlight glittering on the sea, more lamps glowing warm, and says to keep the houses, chapel, stairway, cliff, and colors exactly as in the image with no people.
+
+Rules: no people, faces, text, signs with words, or logos; no cars, crowds, or modern brand objects; no fast camera moves or cuts; and no motion that breaks physics (the houses, chapel, stairway, and cliff never move or change shape, the ferry moves forward smoothly in one direction and its wake trails behind it, the sun stays near the horizon, lamps glow steadily and do not flicker like fire, flowers stir only gently). Use short paragraphs and lists.
+```
+
+</details>
+
+<details><summary><b>Aegean Village Sunset Animation</b></summary>
+
+```text
+Start from the step 2 image "Whitewashed Aegean Cliffside Village with a Blue-Domed Chapel at Sunset" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the white cube houses with blue doors on the left, the blue-domed chapel at the top-left, the winding stone stairway with magenta bougainvillea, the dark cliff, the calm deep blue sea, the sun just above the horizon, the colors, and the style exactly as in the image. The camera makes a slow, smooth push-in and gentle drift toward the village and the stone stairway, ending close on a lit doorway with warm wall lanterns and bougainvillea beside the steps. The small white ferry glides slowly to the right across the sea, leaving its thin wake. Sunlight glitters on the water, the clouds drift slightly, and more windows and lamps begin to glow warm in the village. The shot ends warm, peaceful, and romantic in the golden evening light. Natural, realistic motion, no people, no cuts, no text. Soft sound of gentle waves, a light sea breeze, and distant evening calm.
 ```
 
 </details>
@@ -1667,6 +1747,53 @@ Create a professional program to create a booklet cover in different colors with
 
 </details>
 
+<details><summary><b>Autumn Covered Bridge Scene Brief Builder</b></summary>
+
+```text
+Act as a cinematic landscape designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of a red wooden covered bridge over a calm, misty river in peak autumn foliage at sunrise. The shot will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move naturally (low mist drifting over the water, a few leaves falling and floating, soft ripples, light shimmering on the reflection, branches swaying slightly) while keeping the composition calm, balanced, readable, and easy to animate.
+
+My starting idea: ${idea:a classic red covered bridge over a still river at sunrise, with low mist on the water and blazing autumn trees on both banks}
+
+My starting choices:
+- Bridge: ${bridge:a long red wooden covered bridge with a dark grey shingled roof, an open entrance with white trim on the left end, resting on stone abutments}
+- Position: ${position:spanning the river slightly right of center, seen from the water level a little downstream}
+- River: ${river:a calm, mirror-still river filling the lower half of the frame, reflecting the bridge and the trees}
+- Mist: ${mist:a thin low layer of mist drifting over the water and under the bridge}
+- Trees: ${trees:dense orange, red, and yellow maples and birches on both banks, brighter and sunlit on the left, deeper red on the right}
+- Leaves on the water: ${leaves:many small fallen leaves floating in the foreground}
+- Time and light: ${time:just after sunrise, soft golden light from the left and a clear pale blue sky with warm haze}
+- Visual style: ${style:photoreal landscape and travel photography, natural colors}
+- Mood words: ${mood:quiet, crisp, warm, nostalgic, peaceful}
+
+First ask me, in one short message, for anything missing: the camera height (just above the water, bank level, or slightly raised), how much of the frame the bridge should take, how thick the mist should be, how many floating leaves I want, whether I want overhanging branches at the top edge to frame the shot, whether the video should include a few leaves falling onto the water and making ripples, and anything to avoid (people, cars, animals, boats, text, signs, logos, or copying a specific real bridge, photograph, or named landmark).
+
+Then produce the brief with these sections:
+
+1. **Scene Overview**: two or three sentences on the place, the moment, the light, and the feeling. Describe an imagined rural covered bridge in a classic countryside spirit, not a copy of a specific real bridge or a famous photograph.
+
+2. **The Covered Bridge**: its length and position in the frame, the red board siding, the shingled roof, the open entrance and its trim, the stone abutments, and how the morning light falls on it.
+
+3. **The River and Reflection**: the water surface, how still it is, how clearly it mirrors the bridge and trees, where it catches warm light, and the floating leaves in the foreground.
+
+4. **Mist**: how thick it is, where it lies (on the water, under the bridge, along the far bank), which way it drifts, and how it should read as soft morning river mist rather than smoke or fog filling the whole frame.
+
+5. **Autumn Trees and Sky**: the colors and density of the foliage on each bank, where the sunlight hits, the edge of the woods against the sky, and the pale blue sky with warm golden haze.
+
+6. **Light and Color**: the direction and warmth of the sunrise light, the cool shadows, the balance of red, orange, and yellow against blue, and how soft the contrast is.
+
+7. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (bridge position and length, roof line, entrance on the left end, stone abutments, both tree lines, river edges, reflection, camera position, framing, overall mist zone).
+
+8. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the mist, a few leaves falling and landing on the water, the floating leaves, the ripples they make, the shimmer on the reflection, a slight sway of branches, and the camera move. Keep total motion subtle and physically plausible, with one gentle air direction.
+
+9. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the red covered bridge, the misty river, and the peak autumn trees at sunrise in the first sentence, ending with: no people, no text, no logos.
+
+10. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes a slow gentle push-in toward the bridge for about 6 seconds, mist drifting over the water and under the bridge, a few red and orange maple leaves fluttering down and landing on the water with soft spreading ripples, and the reflection shimmering, and says to keep the bridge, banks, trees, river, and framing exactly as in the image with no new objects.
+
+Rules: no people, cars, boats, or animals; no text, signs, or logos; no fast camera moves or cuts; and no motion that breaks physics (the bridge, stone abutments, and banks never move, the water stays calm and flows gently in one direction, leaves fall slowly and float on the surface, ripples spread outward in circles and fade, mist drifts and does not pour or swirl violently, the light does not flicker or jump). Use short paragraphs and lists.
+```
+
+</details>
+
 <details><summary><b>Autumn Pumpkin Patch Portrait</b></summary>
 
 ```text
@@ -1918,6 +2045,69 @@ An ultra-realistic 8K cinematic studio portrait framed from mid-thigh up, featur
 
 ```text
 A detailed vector illustration of a traditional Balinese Barong Ket mask with a fierce expression, bulging eyes, and prominent tusks. Constructed with smooth Bezier curves and Gestalt principles of symmetry. The style fusions Balinese wood-carving aesthetics with modern flat-design minimalism. Colors include crimson, gold, and obsidian black. Verified: Scalable SVG, clean paths, no text, no trademarks
+```
+
+</details>
+
+<details><summary><b>Bamboo Footpath With Fireflies at Dusk</b></summary>
+
+```text
+A quiet stepping-stone footpath runs straight ahead through a tall bamboo forest at dusk, lit by hundreds of glowing fireflies, toward a small arched wooden footbridge in the middle distance, seen from a low, centered viewpoint at the start of the path, in a wide landscape 16:9 frame. Large flat grey stepping stones lead from the bottom center of the frame toward the bridge, with a shallow stream trickling down the middle of the path over small stones, flowing out from under the bridge and catching faint blue light. Dense walls of tall, slender green bamboo with visible nodes rise on both sides and lean slightly inward, their leafy tops framing a narrow gap of deep blue twilight sky with soft clouds at the top center. The small wooden bridge has a gentle arch and simple railings, with a pale opening beneath it. Low white mist hangs around the bridge and drifts over the path and the undergrowth. Many tiny yellow-green fireflies glow scattered through the air, among the bamboo, and over the ferns, grasses, and mossy rocks along both edges of the path. Cool blue twilight ambience with warm green-yellow firefly accents, photoreal night landscape photography, natural colors, calm and magical mood. No people, no text, no logos.
+```
+
+</details>
+
+<details><summary><b>Bamboo Forest Fireflies Image to Video</b></summary>
+
+```text
+Start from the step 2 image "Bamboo Forest Footpath with Fireflies and a Wooden Footbridge at Dusk" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the stepping-stone path, the shallow stream running down its center, the small arched wooden footbridge in the middle distance, the tall bamboo walls on both sides, the gap of deep blue twilight sky, the mist around the bridge, and the composition exactly as in the image. The camera makes a very slow, smooth dolly forward along the path toward the bridge. The yellow-green fireflies drift gently through the air and blink softly on and off at different times. The bamboo stems and leaves sway slightly in a light breeze, all in the same direction. Low mist rolls slowly over the path and around the bridge, and the stream glints and ripples as it flows toward the camera. The cool blue twilight light stays steady. Natural, realistic motion, no cuts, no people, no animals, no new objects, no text. Soft sound of trickling water, rustling bamboo leaves, and evening insects.
+```
+
+</details>
+
+<details><summary><b>Bamboo Forest Firefly Path Brief Builder</b></summary>
+
+```text
+Act as a cinematic landscape designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of a quiet footpath through a tall bamboo forest at dusk, lit by fireflies. The shot will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move naturally (fireflies drifting and blinking, bamboo stems and leaves swaying, low mist rolling over the ground, a shallow stream glinting, the last blue light of twilight) while keeping the composition calm, symmetrical, readable, and easy to animate.
+
+My starting idea: ${idea:a stone path between tall bamboo at dusk, with fireflies and a little wooden bridge}
+
+My starting choices:
+- Path: ${path:an old stepping-stone path running straight away from the camera toward the center of the frame}
+- Bamboo: ${bamboo:tall, dense green bamboo stems rising on both sides, their tops closing into a canopy with a gap of sky in the middle}
+- Water: ${water:a shallow stream trickling down the middle of the path over stones}
+- Focal point: ${focal:a small arched wooden footbridge with railings crossing in the middle distance}
+- Fireflies: ${fireflies:many small glowing yellow-green fireflies scattered through the air and the undergrowth}
+- Atmosphere: ${atmosphere:low mist hanging around the bridge and over the path}
+- Time and light: ${time:deep blue twilight just after sunset, a few clouds in the sky gap}
+- Visual style: ${style:photoreal night landscape photography, natural colors}
+- Mood words: ${mood:calm, magical, hushed, inviting}
+
+First ask me, in one short message, for anything missing: the camera height (low near the stones, standing eye level, or slightly raised), how centered and symmetrical I want the path, how bright and how many fireflies, how much mist, whether the bridge should be close or far, and anything to avoid (people, animals, lanterns, buildings, text, logos, or copying a specific real photograph or a named landmark).
+
+Then produce the brief with these sections:
+
+1. **Scene Overview**: two or three sentences on the place, the moment, the light, and the feeling. Describe an imagined bamboo forest in an East Asian spirit, not a copy of a specific photograph or a famous real grove.
+
+2. **Path and Stream**: the shape and line of the stepping stones toward the vanishing point, the stone texture and moss, how the shallow stream runs down the path from under the bridge, and where the water catches light.
+
+3. **Bamboo Walls and Canopy**: stem thickness, spacing, and nodes on each side, how they rise and lean inward, the leaf canopy, the gap of sky, and the ferns and grasses at their feet.
+
+4. **The Footbridge**: size in the frame, shape of the arch, the wooden railings, the darker opening under it, and how mist gathers around it.
+
+5. **Fireflies**: density, size, color, how they are spread through the air, the undergrowth, and the depth layers, and how their glow should read against the dark bamboo without looking like stars or bokeh dust.
+
+6. **Light, Sky, and Mist**: the twilight sky gradient in the canopy gap, the cool blue ambient light, the warm-green firefly accents, the layers of mist, and how soft the shadows are.
+
+7. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (path line, stream position, bridge position and shape, bamboo walls on both sides, sky gap shape, mist zones, camera position, framing, overall firefly distribution).
+
+8. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the fireflies (drift and blink), the bamboo stems and leaves, the mist, the stream, the light, and the camera move. Keep total motion subtle and physically plausible, with one breeze direction.
+
+9. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the bamboo path, the fireflies, and the footbridge at dusk in the first sentence, ending with: no people, no text, no logos.
+
+10. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes the fireflies drifting and blinking, the bamboo swaying gently, the mist rolling low, the stream glinting, one very slow dolly forward along the path toward the bridge for about 6 seconds, and says to keep the path, bamboo, bridge, sky, and framing exactly as in the image with no new objects.
+
+Rules: no people, animals, lanterns, or buildings; no text, signs, or logos; no fast camera moves or cuts; and no motion that breaks physics (bamboo bends from the base and does not stretch, the bridge and stones never move, fireflies drift slowly and do not streak, the light does not jump). Use short paragraphs and lists.
 ```
 
 </details>
@@ -2347,6 +2537,14 @@ ultra realistic photo of a 25-year-old woman taking a full-body mirror selfie in
     ]
   }
 }
+```
+
+</details>
+
+<details><summary><b>Biker Salute First-Person Helmet Video</b></summary>
+
+```text
+First-person POV cinematic video from inside a motorcycle helmet. Riding a modern sport motorcycle on an asphalt highway during sunset. Another biker approaches from the opposite direction. The rider lowers their left hand, making the classic two-finger biker salute (V sign) toward the ground. Hyper-realistic, 4k, photorealistic textures, motion blur, anamorphic lens flare, cinematic lighting.
 ```
 
 </details>
@@ -3279,6 +3477,14 @@ Hyper realistic 4K cinematic scene from ancient Egypt during the construction of
 
 </details>
 
+<details><summary><b>Bull Moose in a Misty Mountain Lake</b></summary>
+
+```text
+A photorealistic wildlife photograph of a large bull moose wading knee-deep in a glassy mountain lake at autumn sunrise, wide landscape 16:9. The dark-brown moose stands left of center in side profile, body facing right, head turned slightly toward the camera, crowned with wide palmate antlers with many tines; drops of water fall from its muzzle and small ripples ring its legs. A thin layer of low white mist hangs over the still water. The far shoreline is a band of dark spruce and fir trees mixed with bright golden-yellow aspens and birches, with more gold on the right side. Behind them rise jagged snow-capped mountain peaks lit soft pink and peach by the first sun, under a pale, clear sky. The calm lake mirrors everything below the shoreline: the moose, its antlers, the golden trees, and the glowing peaks, in an almost perfect reflection. Telephoto lens look with gentle compression and a sharp subject, warm soft sunrise light with cool shadows, rich natural autumn colors, quiet and majestic mood. No people, no text, no logos.
+```
+
+</details>
+
 <details><summary><b>Butterfly Metamorphosis Video</b></summary>
 
 ```text
@@ -3792,6 +3998,14 @@ All views must remain perfectly consistent with each other and with the referenc
 
 ```text
 Draw the character from the image—(Your name)—in a free, spontaneous sketching style. Against a bright white background, freely arrange full-body drawings, close-ups of the face, small doodles, full-body sketches, and chibi or stylized versions, so that the page conveys the character's humor and personality. Do not create an organized character sheet; instead, make it look like a sketchbook page filled with spontaneously drawn details.
+```
+
+</details>
+
+<details><summary><b>Charcoal Drawing of a Jazz Trio</b></summary>
+
+```text
+A charcoal drawing of a jazz trio playing in a smoky club, landscape 4:3, on warm off-white textured drawing paper. On the left, a pianist in a dark jacket sits on a bench at a grand piano with its lid raised, bent over the keys. In the center, an upright bass player stands with his double bass, plucking the strings, lit from above by a single hanging pendant lamp with a dark shade that casts a soft cone of light. On the right, a drummer sits behind a small drum kit with a bass drum, snare, toms, and two cymbals on stands, sticks in motion. Thick swirling smoke and haze fill the dark background, smudged and blended with the side of the charcoal. Loose, gestural, scribbled lines, cross-hatching on the floor, deep blacks against the glowing center, visible paper grain, moody and intimate late-night atmosphere. Faces in soft shadow with no detailed features, no text, no logos.
 ```
 
 </details>
@@ -4696,6 +4910,14 @@ Include no other text, words, or signage anywhere else in the scene. Only sculpt
 
 ```text
 Four cheerful clay frogs play tiny instruments on giant lily pads in a pond at dusk: one strums a little banjo, one plays an upright bass made from a hollow reed, one taps drums made of acorn caps, and one blows a curled snail-shell horn. Handmade stop-motion claymation set with visible fingerprints and soft tool marks in the plasticine. Paper lanterns glow on short bent-wire posts around the pond, and fireflies made of tiny warm LEDs drift between cattails and pink water lilies. The water is glossy blue resin with gentle ripples and reflections of the lanterns. Background of felt hills, cotton-wool mist, and a painted twilight sky in peach and lavender with a few early stars. Shallow depth of field like a real miniature set photographed with a macro lens, warm key light and cool blue rim light. Playful, cozy, storybook mood with rich saturated colors. Wide landscape 16:9. No people, no hands, no text, no letters, no logos.
+```
+
+</details>
+
+<details><summary><b>Claymation Ramen Stall on a Rainy Night</b></summary>
+
+```text
+A cozy claymation stop-motion diorama of a tiny ramen stall on a rainy night, in a square 1:1 frame, everything sculpted from plasticine with visible fingerprints and soft handmade textures. A small wooden street stall stands in the center-left with a roof of chunky dark grey clay tiles and a red fabric awning glistening with raindrops along its scalloped edge. Behind the wooden counter, a smiling clay chef with rosy cheeks, short dark hair, a white headband, and a white cook's jacket ladles broth into a large orange bowl of noodles, with a soft curl of steam rising beside him. Two round little clay customers sit with their backs to us on wooden stools at the counter, one in a green hooded jacket and one in a puffy yellow jacket, with an empty stool on the left. A glowing orange paper lantern hangs from the right corner of the awning, a small warm lamp lights the inside of the stall, and a little window on the stall's left side glows amber. On the left stands a terracotta pot with a green leafy plant; on the right a small brown clay bicycle with a woven front basket is parked by clumps of green moss. The wet, muddy clay ground in the foreground is full of puddles reflecting the orange lantern and lamp light. Thin streaks of rain fall against a dark blue night with soft dark green bushes behind. Warm orange light against cool blue darkness, shallow depth of field, miniature tilt-shift feel, charming and heartwarming mood. No readable text, no signs, no logos.
 ```
 
 </details>
@@ -6075,6 +6297,14 @@ A museum-quality photograph of a deep wooden shadow box hanging on a pale grey g
 
 </details>
 
+<details><summary><b>Cute 3D Cartoon Elephant in a Jungle</b></summary>
+
+```text
+A cute big gray elephant with huge ears and a small trunk standing happily in a beautiful green jungle, colorful trees and flowers, warm sunlight, friendly expression, 3D cartoon animation style, Pixar-like quality, cinematic lighting, vibrant colors, detailed, 16:9
+```
+
+</details>
+
 <details><summary><b>Cute 3D Periodic Table Characters</b></summary>
 
 ```text
@@ -6331,399 +6561,10 @@ A vertical medium shot casual photograph of a young woman in her late teens with
 
 </details>
 
-<details><summary><b>Dental Clinic Portrait</b></summary>
+<details><summary><b>Delft Blue Tile Panel of Ship and Tulip Fields</b></summary>
 
 ```text
-Use the uploaded photo of the person as the main subject. Keep the face, hair and identity identical.
-
-Place the person sitting slightly reclined in a modern dentist chair, in a clean, bright dental clinic with soft white lighting. Add a light blue disposable dentist bib/apron on the person’s chest, clipped around the neck. Surround them with subtle dental details: overhead examination light, small side table with dental tools, and blurred shelves or cabinets in the background.
-
-Keep the original camera angle and approximate framing from the uploaded photo. Do not change the person’s facial features or expression, only adjust the body pose, outfit details and environment to match a realistic dentist visit scene.
-```
-
-</details>
-
-<details><summary><b>Desert Caravanserai Concept Brief Builder</b></summary>
-
-```text
-Act as a cinematic environment designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of an old desert caravanserai at dusk with a camel caravan arriving, which will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move naturally (camels walking with steady strides, flickering lantern light, palm fronds swaying, fine sand drifting over dune ripples, stars appearing as the sky darkens) while keeping the composition calm, readable, and easy to animate.
-
-My starting choices:
-- Desert setting: ${setting:wide sand desert with low rolling dunes and rippled sand}
-- Time and sky: ${time:dusk turning to night, orange glow on the horizon fading up into violet with the first stars}
-- Caravanserai look: ${building:square sandstone fortress with crenellated walls, round corner towers, and one tall arched gateway}
-- Caravan: ${caravan:a line of five camels with riders arriving toward the gate}
-- Visual style: ${style:photoreal cinematic travel photography}
-- Mood words: ${mood:calm, timeless, welcoming, quiet}
-
-First ask me, in one short message, for anything missing: the camera viewpoint I prefer (low and wide from the sand, from a dune slightly above, or level with the gate), which side the caravan should enter from and which way it walks, how much of the sky versus sand should show, and anything to avoid (close-up faces, text, signs, logos, modern vehicles, power lines, a specific real building or place).
-
-Then produce the brief with these sections:
-
-1. **Scene Overview**: two or three sentences describing the place, the time, the light, and the feeling of the moment. Describe an imagined caravanserai, not a copy of a real, named one.
-
-2. **Caravanserai Architecture**: its position in the frame, wall color and texture, the corner towers, crenellations, small windows, the shape of the gateway (pointed or horseshoe arch), what is visible through it (inner arches, warm courtyard light), and where the lanterns hang.
-
-3. **Caravan and Movement Line**: the number of camels and riders, their spacing, which side of the frame they occupy, the direction they walk, the path they follow toward the gate, saddle cloths and colors, and their shadows on the sand. State that every camel faces the direction it walks.
-
-4. **Desert and Vegetation**: dune shapes near and far, sand ripples in the foreground, sparse dry shrubs near the walls, and palm trees (how many, where, and how tall), with depth layers from foreground to background.
-
-5. **Light and Atmosphere**: where the last glow sits on the horizon, the sky gradient, the stars, the warm lantern light at the gate against the cool dusk, wispy clouds, and any low haze.
-
-6. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (fortress position and size, gate position, tower count, lantern positions, camel count and direction, palm count and position, horizon glow side, camera position, framing).
-
-7. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the camels' walk, the lantern flicker, palms, drifting sand, stars, and the camera move. Keep total motion subtle and physically plausible, with one wind direction for palms and sand.
-
-8. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the caravanserai, the camel caravan, and the dusk sky in the first sentence, ending with: no close-up faces, no text, no signs, no logos.
-
-9. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes the camels walking steadily in the direction they face, the lantern and palm motion, one slow camera move for about 6 seconds, and says to keep the fortress, towers, palms, and framing exactly as in the image with no new objects.
-
-Rules: people only as small riders, never the main subject; no text, signs, or logos; no fast camera moves or cuts; and no motion that breaks physics (camels walk forward only in the direction they face with natural leg movement, riders stay seated, shadows follow the camels, the building never changes shape). Use short paragraphs and lists.
-```
-
-</details>
-
-<details><summary><b>Desert Caravanserai Image to Video</b></summary>
-
-```text
-Start from the step 2 image "Sandstone Caravanserai with a Camel Caravan in the Desert at Dusk" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the square sandstone caravanserai with its two round crenellated towers and tall arched gateway in the center-right, the three palm trees beside the right tower, the low dunes, the orange-to-violet sky, and the framing exactly as in the image. The line of five camels with seated riders on the left walks slowly and steadily to the right toward the glowing gateway, their legs moving naturally and their shadows following them across the rippled sand; every camel keeps facing right and the riders stay seated. The two lanterns beside the gate flicker softly and the warm courtyard light glows steadily. A light breeze sways the palm fronds on the right, and fine sand drifts low across the dune ripples in the same direction. The orange glow on the left horizon fades a little and a few more stars appear in the violet sky. The camera makes one slow, smooth push-in toward the gateway. Natural, realistic motion, no cuts, no new objects, no text. Quiet desert wind and soft camel footsteps.
-```
-
-</details>
-
-<details><summary><b>Design a Military Uniform</b></summary>
-
-```text
-Act as a Stylist. You are an expert in fashion and design, specializing in military attire.
-Your task is to help visualize or design a military uniform for a ${projectType:movie} or ${characterRole:soldier}.
-You will:
-- Consider the historical period or futuristic setting
-- Choose appropriate colors, materials, and insignia
-- Provide sketches or detailed descriptions
-Rules:
-- Maintain authenticity and practicality
-- Consider the context and environment of use
-```
-
-</details>
-
-<details><summary><b>Dewy Fox Eye Selfie</b></summary>
-
-```text
-Do not change the face, maintain 100% facial resemblance.
-Casual front-camera selfie, taken in a close-up at face level, a casual live selfie at home during the daytime — a natural beauty frame with a radiant, dewy skin effect.
-In the photo, a woman with long, hip-length, wavy hair with a voluminous side part — her hair is full and falls freely over her shoulder and cheek, partially covering one side of her face with thick strands. Her head is tilted to the side and almost touches her shoulder, her gaze is directed straight at the camera from underneath her brows. Makeup, thick extended eyelashes with a fox-eye effect, a defined eyeliner wing, full lips covered with transparent glossy lip gloss with a plumping effect. Her skin is slightly tanned. Gold stud earrings with a square stone. She is wearing an oversized dark gray T-shirt with a partially visible yellow brand logo on the chest.
-The frame is vertical, the head is slightly tilted and the cheek is pressed against the shoulder. The background is barely visible — darkened.
-The lighting is natural and bright, directed from the side and front — a direct, hard light source.
-The background must remain clearly visible and strictly in focus, without blur.
-Shot on iPhone 17.
-Aspect ratio: 3:4.
-```
-
-</details>
-
-<details><summary><b>Director Variation Grid</b></summary>
-
-```text
-Create a single 3x3 grid image (square, 2048x2048, high detail).
-The center tile (row 2, col 2) must be the exact uploaded reference film still, unchanged. Do not reinterpret, repaint, relight, recolor, crop, reframe, stylize, sharpen, blur, or transform it in any way. It must remain exactly as provided.
-
-Director detection rule
-If the director of the uploaded film still is one of the 8 directors listed below, then the tile for that same director must be an exact duplicate of the ORIGINAL center tile, with no changes at all (same image content, same framing, same colors, same lighting, same texture). Only apply the label.
-All other tiles follow the normal re-shoot rules.
-
-Grid rules
-9 equal tiles in a clean 3x3 layout, thin uniform gutters between tiles.
-Each tile has a simple, readable label in the top-left corner, consistent font and size, high contrast, no warping.
-Center tile label: ORIGINAL
-Other tiles labels exactly:
-Alfred Hitchcock
-Akira Kurosawa
-Federico Fellini
-Andrei Tarkovsky
-Ingmar Bergman
-Jean-Luc Godard
-Agnès Varda
-Sergio Leone
-No other text, logos, subtitles, or watermarks.
-Keep the 3x3 alignment perfectly straight and clean.
-
-IDENTITY + GENDER LOCK (applies to ALL non-ORIGINAL tiles)
-- Use the ORIGINAL center tile as the single source of truth for every person’s identity.
-- Preserve the exact number of people and their roles/positions (no swapping who is who).
-- Do NOT change any person’s gender or gender presentation. No gender swap, no sex change, no cross-casting.
-- Keep each person’s key identity traits consistent: face structure, hairstyle length/type, facial hair (must NOT appear/disappear), makeup level (must NOT appear/disappear), body proportions, age range, skin tone, and distinctive features (moles/scars/glasses).
-- Do not turn one person into a different person. Do not merge faces. Do not split one person into two. Do not duplicate the same face across different people.
-- If any identity attribute is ambiguous, default to matching the ORIGINAL exactly.
-- Allowed changes are ONLY cinematic treatment per director: framing, lens feel, camera height, DOF, lighting, palette, contrast curve, texture, mood, and set emphasis. Identities must remain locked.
-NEGATIVE: gender swap, femininize/masculinize, add/remove beard, add/remove lipstick, change hair length drastically, face replacement, identity drift.
-
-CAST ANCHORING
-- Person A = left-most person in ORIGINAL, Person B = right-most person in ORIGINAL, Person C = center/back person in ORIGINAL, etc.
-- Each tile must keep Person A/B/C as the same individuals (same gender presentation and identity), only reshot cinematically.
-
-Content rules (for non-duplicate tiles)
-Maintain recognizable continuity across all tiles (who/where/what). Do not change identities into different people.
-Vary per director: framing, lens feel, camera height, depth of field, lighting, color palette, contrast curve, texture, production design emphasis, mood.
-Ultra-sharp cinematic stills (except where diffusion is specified), coherent lighting, correct anatomy, no duplicated faces, no mangled hands, no broken perspective, no glitch artifacts, and perfectly readable labels.
-
-Director-specific style and color grading (apply strongly per tile, unless the duplicate rule applies)
-
-Alfred Hitchcock
-Palette: muted neutrals, cool grays, sickly greens, deep blacks, occasional saturated red accent.
-Contrast: high contrast with crisp, suspenseful shadows.
-Texture: classic 35mm cleanliness with tense atmosphere.
-Lens/DOF: 35–50mm, controlled depth, precise geometry.
-Lighting/Blocking: noir-influenced practicals, hard key, voyeuristic framing, psychological tension.
-
-Akira Kurosawa
-Palette: earthy desaturated browns/greens; restrained primaries if color.
-Contrast: bold tonal separation, punchy blacks.
-Texture: gritty film grain, tactile elements (mud, rain, wind).
-Lens/DOF: 24–50mm with deep focus; dynamic staging and strong geometry.
-Lighting/Atmosphere: dramatic natural light, weather as design (fog, rain streaks, backlight).
-
-Federico Fellini
-Palette: warm ambers, carnival reds, creamy highlights, pastel accents.
-Contrast: medium contrast, dreamy glow and gentle bloom.
-Texture: soft diffusion, theatrical surreal polish.
-Lens/DOF: normal to wide, staged tableaux, rich background set dressing.
-Lighting: expressive, stage-like, whimsical yet melancholic mood.
-
-Andrei Tarkovsky
-Palette: subdued sepia/olive, cold cyan-gray, low saturation, weathered tones.
-Contrast: low-to-medium, soft highlight roll-off.
-Texture: organic grain, misty air, water stains, aged surfaces.
-Lens/DOF: 50–85mm, contemplative framing, naturalistic DOF.
-Lighting/Atmosphere: window light, overcast feel, poetic elements (fog, rain, smoke), quiet intensity.
-
-Ingmar Bergman
-Palette: near-monochrome restraint, cold grays, pale skin tones, minimal color distractions.
-Contrast: high contrast, sculpted faces, deep shadows.
-Texture: clean, intimate, psychologically focused.
-Lens/DOF: 50–85mm, tighter framing, shallow-to-medium DOF.
-Lighting: strong key with dramatic falloff, emotionally intense portraits.
-
-Jean-Luc Godard
-Palette: bold primaries (red/blue/yellow) punctuating neutrals, or intentionally flat natural colors.
-Contrast: medium contrast, occasional slightly overexposed highlights.
-Texture: raw 16mm/35mm energy, imperfect and alive.
-Lens/DOF: wider lenses, spontaneous off-center composition.
-Lighting: available light feel, street/neon/practicals, documentary new-wave immediacy.
-
-Agnès Varda
-Palette: warm natural daylight, gentle pastels, honest skin tones, subtle complementary colors.
-Contrast: medium, soft and inviting.
-Texture: tactile lived-in realism, subtle film grain.
-Lens/DOF: 28–50mm, environmental portrait framing with context.
-Lighting: naturalistic, human-first, intimate but open atmosphere.
-
-Sergio Leone
-Palette: sunbaked golds, dusty oranges, sepia browns, deep shadows, occasional turquoise sky tones.
-Contrast: high contrast, harsh sun, strong silhouettes.
-Texture: gritty dust, sweat, leather, weathered surfaces, pronounced grain.
-Lens/DOF: extreme wide (24–35mm) and extreme close-up language; shallow DOF for eyes/details.
-Lighting/Mood: hard sunlight, rim light, operatic tension, iconic dramatic shadow shapes.
-
-Output: a single final 3x3 grid image only.
-```
-
-</details>
-
-<details><summary><b>Doctor Guiding Students Up a Staircase of Books</b></summary>
-
-```text
-Create a program for a doctor who paves the way for university students through scientific books in the form of thresholds one by one to illuminate the path to success for them .. In the other, the word success appears to fascinate the world
-```
-
-</details>
-
-<details><summary><b>Dogs Playing Golf Video</b></summary>
-
-```text
-A cinematic 9:16 vertical video in a Pixar-style tone of a joyful group of cartoonish dogs playing golf on a bright, colorful golf course. One main dog is centered, standing upright with exaggerated proportions, mid-swing with a golf club and a big excited smile, while his dog friends react with expressive faces—cheering, gasping, or holding tiny golf accessories. The camera is positioned at a slightly low angle facing the main character. Smooth, playful character animation with subtle squash-and-stretch. Warm, vibrant lighting, soft shadows, and rich saturated colors. Background slightly blurred with stylized trees and clouds. Smooth slow zoom in. No text overlay, no humans — focus only on the dogs and their fun, heartwarming golf moment, crisp details, expressive eyes, and a lighthearted Pixar-like charm. Duration: 10 seconds.
-```
-
-</details>
-
-<details><summary><b>Double Exposure Portrait</b></summary>
-
-```text
-A double exposure portrait set in a ${name:sunny forest}. A left-facing profile silhouette showing the person’s head and shoulders. The interior of the silhouette is completely filled with the forest scenery, with rich depth. Deep inside this scene, among the natural elements, the same person appears again as a full-body figure integrated into the environment. The outer background is a bright, overexposed white light. The light subtly bleeds inward from the silhouette’s edges, creating a dramatic glow and high-contrast effect. High resolution, cinematic, soft light, realistic texture, crisp details.
-```
-
-</details>
-
-<details><summary><b>Dreamy Ethereal Blonde Portrait</b></summary>
-
-```text
-A blonde woman in a dreamy, ethereal photographic scene with light effects and surreal elements.
-```
-
-</details>
-
-<details><summary><b>Dreamy Meadow Portrait</b></summary>
-
-```text
-{
-  "colors": {
-    "color_temperature": "warm",
-    "contrast_level": "medium",
-    "dominant_palette": [
-      "deep red",
-      "olive green",
-      "cream",
-      "pale yellow"
-    ]
-  },
-  "composition": {
-    "camera_angle": "eye-level shot",
-    "depth_of_field": "shallow",
-    "focus": "A young woman in a red dress",
-    "framing": "The woman is framed slightly off-center, walking across the scene in profile. The background exhibits a strong swirling bokeh, which naturally frames and isolates the subject."
-  },
-  "description_short": "A young woman in a short red dress and white sneakers walks in profile through a field of flowers, with a distinct swirling blur effect in the background.",
-  "environment": {
-    "location_type": "outdoor",
-    "setting_details": "A lush green field or garden densely populated with white and yellow wildflowers, likely daisies. The entire background is heavily out of focus, creating an abstract, swirling pattern.",
-    "time_of_day": "afternoon",
-    "weather": "cloudy"
-  },
-  "lighting": {
-    "intensity": "moderate",
-    "source_direction": "front",
-    "type": "natural"
-  },
-  "mood": {
-    "atmosphere": "Dreamy and nostalgic",
-    "emotional_tone": "melancholic"
-  },
-  "narrative_elements": {
-    "character_interactions": "The woman is solitary, appearing lost in thought.",
-    "environmental_storytelling": "The ethereal, swirling floral background suggests a dreamscape or a memory, emphasizing the subject's introspective state. Her vibrant red dress contrasts sharply with the muted green surroundings, highlighting her as the emotional center of the scene.",
-    "implied_action": "The woman is walking from one place to another, suggesting a journey, a moment of contemplation, or an escape into nature."
-  },
-  "objects": [
-    "woman",
-    "red dress",
-    "white sneakers",
-    "flowers",
-    "grass"
-  ],
-  "people": {
-    "ages": [
-      "young adult"
-    ],
-    "clothing_style": "Bohemian romantic; a short, flowing red dress with ruffled details, paired with casual white sneakers.",
-    "count": "1",
-    "genders": [
-      "female"
-    ]
-  },
-  "prompt": "A dreamy, artistic photograph of a young woman with brown, wind-swept hair, walking in profile through a meadow of daisies. She wears a vibrant short red dress and white sneakers. The image has a very shallow depth of field, creating a signature swirling bokeh effect in the background that frames her. The lighting is soft and natural, with a warm, vintage color grade. The mood is pensive and melancholic, capturing a fleeting moment of introspection.",
-  "style": {
-    "art_style": "cinematic",
-    "influences": [
-      "impressionism",
-      "fine art photography"
-    ],
-    "medium": "photography"
-  },
-  "technical_tags": [
-    "shallow depth of field",
-    "bokeh",
-    "swirl bokeh",
-    "Petzval lens",
-    "profile shot",
-    "vintage filter",
-    "motion blur",
-    "natural light"
-  ],
-  "use_case": "Artistic stock photography, editorial fashion, book covers, or datasets for specialized lens effects.",
-  "uuid": "0fce3d8f-9de2-4a75-8d3f-6398eea47e24"
-}
-```
-
-</details>
-
-<details><summary><b>Dreamy Slow Shutter Fashion Portrait</b></summary>
-
-```text
-Made with Nano Banana 2.1
-
-Prompt:
-
-Vertical 9:16 candid fashion portrait of a 
-beautiful East Asian girl wearing a fitted long-sleeve orange turtleneck and a black mini skirt, with long, messy, loose black hair. She spins rapidly while looking back at the camera, arms spread wide and hair flying. VERY SLOW SHUTTER SPEED 1/8–1/15 sec, extreme realistic motion blur, long ghost trails on arms and hair, blurred body, softly recognizable face, horizontal background streaks, camera shake, double-exposure effect, heavy 35mm film grain, dreamy, moody, underexposed, photorealistic. No CGI, no frozen motion, no sharp arms or hair.
-```
-
-</details>
-
-<details><summary><b>Dutch Golden Age Breakfast Still Life</b></summary>
-
-```text
-A Dutch Golden Age breakfast still life oil painting in the manner of the 1630s Haarlem masters, showing a quiet laid table against a deep brown-black background. A rumpled dark green velvet cloth covers the table. On the left, three opened oysters glisten on a round pewter plate. In front of them, a half-peeled lemon sits with its long spiral of yellow rind curling down over the front edge of the table. In the center, a tall ornate silver goblet lies tipped on its side, its polished bowl reflecting the room, beside a crusty golden bread roll and a small scatter of hazelnuts. On the right stands a clear glass roemer with a prunted, textured bowl on a slender knopped stem, filled with pale white wine, and next to it a crumpled white linen napkin with a lace edge spills over the corner of the table. Soft single window light from the upper left, rich transparent glazes, crisp highlights on the metal, glass, and oyster shells, deep shadows, and a fine craquelure across the varnish. Museum quality, calm and contemplative mood, wide landscape 16:9. No text, no signature, no people.
-```
-
-</details>
-
-<details><summary><b>Echoes of the Rust Age</b></summary>
-
-```text
-You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness. Place Subject 1 (male) and Subject 2 (female) as post-apocalyptic wanderers in a desert of junk. They are traversing a massive canyon formed by centuries of rusted debris. The image must be photorealistic, featuring cinematic lighting, highly detailed skin textures and environmental grit, shot on Arri Alexa with a shallow depth of field to isolate them from the chaotic background.
-```
-
-</details>
-
-<details><summary><b>Edgy Monochrome Studio Portrait</b></summary>
-
-```text
-A stunning black and white studio portrait photograph of a beautiful young woman with long wavy hair with subtle highlights, delicate facial features, defined eyebrows, natural lips, and an intense direct gaze at the camera. She is sitting on a wooden stool against a solid dark black background. Her pose: right leg bent upward with foot resting on the stool seat, left arm resting on her raised knee, right hand gently touching her hair near her head. She is wearing a black lace crop top bralette and light-colored distressed ripped jeans with frayed holes at the knees. Professional studio lighting with soft directional light from the front-side creating subtle Rembrandt-style shadows. Shot with a professional DSLR camera, 85mm portrait lens, f/1.8 aperture, medium depth of field. Editorial high-fashion photography style, artistic black and white portrait, full body to three-quarter composition, slightly low camera angle. Ultra-detailed, high resolution, photorealistic, sharp focus on face and eyes, natural skin texture, cinematic contrast.
-```
-
-</details>
-
-<details><summary><b>Editorial Beauty Analysis Board East Asian Model</b></summary>
-
-```text
-{
-  "prompt": "A minimalist editorial beauty analysis board featuring an East Asian female model with a slim oval face and soft V-line jaw. Neutral gray background, clean studio lighting, high realism.\n\nTop section: front-facing barefaced portrait, natural skin texture, no makeup, hair pulled back, neutral expression. A thin blue outline tracing the face shape.\n\nRight side graphic text layout titled 'FACE' with small bullet points describing facial features: slim oval face shape, high cheekbones, soft jawline, small chin, refined nose bridge.\n\nMiddle section: two studio portraits labeled 'barefaced', one straight-on view and one three-quarter profile, minimal styling, soft lighting.\n\nBottom section: two mirror selfie style images labeled 'with makeup', glossy skin, soft glam makeup, blush-heavy cheeks, nude glossy lips, subtle eyeliner, voluminous layered hair, modern fashion styling.\n\nFashion magazine editorial layout, clean typography, balanced spacing, muted tones, professional beauty photography, high resolution, realistic skin details.",
-  "negative_prompt": "exaggerated makeup, heavy contour, harsh shadows, cartoon style, anime, distorted face, low resolution, oversaturated colors, messy layout, watermark, logo, text artifacts, duplicated faces, extra limbs",
-  "style": "editorial beauty photography",
-  "quality": "high",
-  "lighting": "soft studio lighting",
-  "background": "neutral gray"
-}
-```
-
-</details>
-
-<details><summary><b>Editorial Beauty Analysis Board European Model</b></summary>
-
-```text
-{
-  "prompt": "A minimalist editorial beauty analysis board featuring a European female model with a balanced oval-to-heart face shape and a softly defined jawline. Subtle Central–Northern European facial characteristics with refined symmetry and elegant proportions. Neutral gray background, clean studio lighting, high realism.\n\nTop section: front-facing barefaced portrait, natural skin texture with neutral-to-cool undertones, no makeup, hair pulled back, calm neutral expression. A thin blue outline tracing the face shape.\n\nRight side graphic text layout titled 'FACE' with small bullet points describing facial features: balanced oval face shape, softly pronounced cheekbones, feminine and delicate jawline, slightly tapered natural chin, straight to softly contoured nose bridge, clear almond-to-rounded eyes with a soft gaze.\n\nMiddle section: two studio portraits labeled 'barefaced', one straight-on view and one three-quarter profile, minimal European editorial styling, soft diffused lighting, realistic skin texture and fine facial details.\n\nBottom section: two mirror selfie style images labeled 'with makeup', fresh luminous skin with a natural satin finish, modern European soft glam makeup, gentle blush tones, nude pink or soft rose glossy lips, subtle eyeliner with softly lifted outer corners, natural lashes, softly styled layered hair, contemporary European fashion styling inspired by Paris and Milan street elegance.\n\nFashion magazine editorial layout, clean modern typography, balanced spacing, muted neutral tones, professional beauty photography, high resolution, realistic skin texture and natural proportions.",
-  "negative_prompt": "exaggerated makeup, heavy contour, harsh shadows, cartoon style, anime, distorted facial proportions, overly sharp jawline, low resolution, oversaturated colors, messy layout, watermark, logo, text artifacts, duplicated faces, extra limbs",
-  "style": "editorial beauty photography",
-  "quality": "high",
-  "lighting": "soft studio lighting",
-  "background": "neutral gray"
-}
-```
-
-</details>
-
-<details><summary><b>Editorial Beauty Analysis Board Turkish Model</b></summary>
-
-```text
-{
-  "prompt": "A minimalist editorial beauty analysis board featuring a Turkish female model with a balanced oval-to-heart face shape and softly defined jawline. Subtle Mediterranean–Anatolian facial characteristics. Neutral gray background, clean studio lighting, high realism.\n\nTop section: front-facing barefaced portrait, natural skin texture with slight warmth, no makeup, hair pulled back, neutral expression. A thin blue outline tracing the face shape.\n\nRight side graphic text layout titled 'FACE' with small bullet points describing facial features: balanced oval face shape, softly pronounced cheekbones, feminine jawline, slightly pointed but natural chin, straight to softly arched nose bridge, expressive almond-shaped eyes.\n\nMiddle section: two studio portraits labeled 'barefaced', one straight-on view and one three-quarter profile, minimal styling, soft diffused lighting, realistic skin details.\n\nBottom section: two mirror selfie style images labeled 'with makeup', luminous but natural skin, soft glam makeup inspired by modern Turkish beauty trends, warm blush tones, nude or rose glossy lips, subtle eyeliner with lifted outer corners, voluminous layered hair, contemporary Istanbul fashion styling.\n\nFashion magazine editorial layout, clean modern typography, balanced spacing, muted neutral tones, professional beauty photography, high resolution, realistic skin texture and proportions.",
-  "negative_prompt": "exaggerated makeup, heavy contour, harsh shadows, cartoon style, anime, distorted facial proportions, overly sharp jawline, low resolution, oversaturated colors, messy layout, watermark, logo, text artifacts, duplicated faces, extra limbs",
-  "style": "editorial beauty photography",
-  "quality": "high",
-  "lighting": "soft studio lighting",
-  "background": "neutral gray"
-}
+A hand-painted Delft blue tile panel showing a three-masted sailing ship on choppy waves beside a shore of tulip fields and a small Dutch village, wide landscape 16:9. The panel is a grid of 6 by 4 square glazed tiles with thin grout lines, each tile edge decorated with small cobalt corner ornaments, and larger curling flourishes in the four outer corners. On the left, a tall wooden three-masted ship with billowing square sails, rigging lines, and small pennants on the mastheads sails through rolling, white-capped waves that fill the whole bottom row of tiles. On the right, a flat shoreline stretches across the middle of the panel with long, straight rows of tulip fields leading toward a village of gabled houses and trees with a single slender church spire. Puffy, softly shaded clouds float across a pale sky, with a few seagulls gliding between them. Painted only in cobalt blue on milky white glaze, with soft brush washes, fine line detail, and a delicate crackle in the glaze, traditional Dutch pottery look. No text, no lettering, no logos.
 ```
 
 </details>

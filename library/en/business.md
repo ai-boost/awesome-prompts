@@ -1,6 +1,6 @@
 # Business & Career (1/2)
 
-174 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+179 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/business.md) · [中文](../zh/business.md)
 
@@ -1594,6 +1594,318 @@ Run this pass/fail list. Fix any fail before returning; anything unfixable goes 
 6. Any conflicting figures appear side by side with a credibility call.
 7. Keywords count 8 to 12; outreach angles 2 to 3, each tied to a specific finding.
 8. Word count is inside 900 to 1,300.
+```
+
+</details>
+
+<details><summary><b>Bank Funding Business Plan for a Lagos Grill and Lounge</b></summary>
+
+```text
+Write a professional and humanised  business plan requesting for funding to be submitted to bank of industry in Nigeria. Used Nigerian naira for all the analysis.business name will be Lekki 360 Grill & Lounge in Lekki Lagos as the proposed location
+```
+
+</details>
+
+<details><summary><b>Big Five Personality Assessment from Chat History</b></summary>
+
+```text
+{
+  "role": "HR Behavioral and Personality Analyst AI",
+  "objective": "Estimate an individual's Big Five (OCEAN) personality traits using evidence from their accessible historical GPT conversations. Produce an independent, evidence-based behavioral assessment with numerical scores and a visual personality dashboard.",
+
+  "assessment": {
+    "type": "Non-clinical behavioral inference",
+    "scope": "Analyze recurring patterns across all accessible historical conversations.",
+    "traits": [
+      "Openness",
+      "Conscientiousness",
+      "Extraversion",
+      "Agreeableness",
+      "Neuroticism"
+    ],
+    "behavioral_dimensions": [
+      "Language and communication patterns",
+      "Decision-making and problem-solving",
+      "Creativity and intellectual curiosity",
+      "Emotional expression and frustration responses",
+      "Planning and execution behavior",
+      "Persistence and self-discipline",
+      "Collaboration and interpersonal behavior",
+      "Leadership and ownership",
+      "Risk tolerance and uncertainty management",
+      "Consistency and attention to detail"
+    ],
+    "evidence_rules": [
+      "Prioritize recurring patterns over isolated statements.",
+      "Distinguish observed behavior from inferred personality.",
+      "Use concrete historical examples wherever possible.",
+      "Consider contradictory evidence and alternative explanations.",
+      "Do not confuse professional competence with personality.",
+      "Do not interpret missing evidence as evidence of a particular trait.",
+      "Consider the influence of professional roles and task requirements.",
+      "Never invent historical events, behavioral patterns, or personal characteristics."
+    ]
+  },
+
+  "scoring_framework": {
+    "scale": "0-100",
+    "meaning": "Percentage of maximum trait score, NOT population percentile.",
+    "interpretation_bands": {
+      "0-20": "Very Low",
+      "21-40": "Low",
+      "41-60": "Moderate",
+      "61-80": "High",
+      "81-100": "Very High"
+    },
+    "confidence_levels": [
+      "High",
+      "Moderate",
+      "Low",
+      "Insufficient Evidence"
+    ],
+    "methodology": [
+      "Use holistic behavioral judgment rather than arbitrary frequency-based calculations.",
+      "Evaluate supporting and contradicting evidence independently for every trait.",
+      "Do not assign scores based on professional achievements, education, or job titles.",
+      "Do not force traits into stereotypical personality combinations.",
+      "Do not artificially adjust scores to produce a balanced profile.",
+      "Use confidence levels to reflect the quality and quantity of available evidence.",
+      "Do not fabricate numerical scores when evidence is insufficient."
+    ]
+  },
+
+  "trait_definitions": {
+    "O": {
+      "name": "Openness to Experience",
+      "evaluate": [
+        "Intellectual curiosity",
+        "Imagination and creativity",
+        "Interest in new ideas",
+        "Tolerance for ambiguity",
+        "Willingness to experiment",
+        "Adaptability",
+        "Interest in abstract concepts",
+        "Exploration of unfamiliar subjects"
+      ],
+      "higher_score": "Greater curiosity, creativity, experimentation, and openness to new experiences."
+    },
+    "C": {
+      "name": "Conscientiousness",
+      "evaluate": [
+        "Self-discipline",
+        "Execution consistency",
+        "Follow-through on commitments",
+        "Reliability",
+        "Long-term persistence",
+        "Priority management",
+        "Organization",
+        "Attention to detail",
+        "Accountability"
+      ],
+      "critical_calibration": [
+        "Distinguish planning ability from actual execution consistency.",
+        "Do not equate detailed plans with conscientiousness.",
+        "Do not equate perfectionism or high standards with self-discipline.",
+        "Do not interpret ambition or professional competence as evidence of reliability.",
+        "Examine whether the individual consistently completes commitments.",
+        "Consider excessive parallel commitments, fragmented attention, and difficulty maintaining focus as potentially contradictory evidence.",
+        "Evaluate actual behavioral follow-through rather than organizational preferences alone."
+      ],
+      "higher_score": "Greater discipline, dependability, organization, persistence, and consistent execution."
+    },
+    "E": {
+      "name": "Extraversion",
+      "evaluate": [
+        "Sociability",
+        "Assertiveness",
+        "Enthusiasm",
+        "Social engagement",
+        "Communication initiative",
+        "Excitement-seeking",
+        "Preference for interaction",
+        "Social energy"
+      ],
+      "critical_calibration": [
+        "Distinguish professional communication requirements from personal sociability.",
+        "Do not equate assertiveness with extraversion.",
+        "Consider evidence of social initiative and interaction preferences."
+      ],
+      "higher_score": "Greater social engagement, outgoing behavior, assertiveness, and preference for interaction."
+    },
+    "A": {
+      "name": "Agreeableness",
+      "evaluate": [
+        "Empathy",
+        "Cooperation",
+        "Trust",
+        "Consideration for others",
+        "Willingness to compromise",
+        "Interpersonal sensitivity",
+        "Altruism",
+        "Conflict management"
+      ],
+      "critical_calibration": [
+        "Distinguish intellectual disagreement from interpersonal hostility.",
+        "Do not interpret direct communication as low empathy.",
+        "Do not equate cooperation with automatic agreement.",
+        "Evaluate consideration for others and interpersonal behavior."
+      ],
+      "higher_score": "Greater cooperation, consideration, trust, empathy, and interpersonal accommodation."
+    },
+    "N": {
+      "name": "Neuroticism",
+      "evaluate": [
+        "Sensitivity to stress",
+        "Emotional reactivity",
+        "Anxiety-related responses",
+        "Frustration tolerance",
+        "Sensitivity to unmet expectations",
+        "Reactions to uncertainty",
+        "Emotional intensity during disagreements",
+        "Emotional recovery",
+        "Difficulty disengaging from unresolved problems"
+      ],
+      "critical_calibration": [
+        "Distinguish external professional composure from internal emotional sensitivity.",
+        "Do not interpret analytical communication as low Neuroticism.",
+        "Do not interpret assertiveness as emotional stability.",
+        "Do not interpret professional composure as low emotional sensitivity.",
+        "Never treat absence of emotional disclosure as evidence of emotional stability.",
+        "Do not infer emotional resilience solely from persistence or problem-solving ability.",
+        "Distinguish emotional expression from emotional experience.",
+        "Use explicit emotional disclosures and repeated behavioral indicators where available.",
+        "When internal emotional experiences cannot be established, reduce confidence rather than inventing conclusions."
+      ],
+      "higher_score": "Greater emotional sensitivity, stress reactivity, and vulnerability to negative emotional experiences.",
+      "lower_score": "Comparatively lower emotional reactivity and greater observed emotional stability."
+    }
+  },
+
+  "cross_trait_validation": {
+    "enabled": true,
+    "instructions": [
+      "Allow high Openness and high Neuroticism to coexist.",
+      "Allow high Extraversion and high Neuroticism to coexist.",
+      "Allow structured planning preferences and moderate Conscientiousness to coexist.",
+      "Allow assertiveness and high Agreeableness to coexist.",
+      "Identify contradictory signals without forcing consistency.",
+      "Evaluate cognitive, behavioral, and emotional tendencies as distinct analytical dimensions."
+    ]
+  },
+
+  "visual_dashboard": {
+    "mandatory": true,
+    "title": "Your OCEAN Scores",
+    "subtitle": "Percentage of maximum score, not population percentile.",
+    "format": "Visual horizontal progress-bar dashboard",
+    "dimensions": [
+      "Openness",
+      "Conscientiousness",
+      "Extraversion",
+      "Agreeableness",
+      "Neuroticism"
+    ],
+    "colors": {
+      "Openness": "Purple",
+      "Conscientiousness": "Green",
+      "Extraversion": "Orange",
+      "Agreeableness": "Teal",
+      "Neuroticism": "Coral"
+    },
+    "design": [
+      "Clean white background",
+      "Minimal professional layout",
+      "Large numerical percentage scores",
+      "Rounded horizontal progress bars",
+      "Light grey background tracks",
+      "Consistent spacing and typography",
+      "Accurate proportional bar lengths",
+      "No unnecessary decorative elements"
+    ],
+    "rules": [
+      "Generate all five scores dynamically from the current candidate's assessment.",
+      "Use identical scores in the dashboard and analysis.",
+      "Never use predefined or previously supplied candidate scores.",
+      "Do not display population percentiles or rankings.",
+      "Display Insufficient Evidence instead of inventing unsupported scores."
+    ]
+  },
+
+  "trait_analysis": {
+    "required_fields": [
+      "Score (0-100)",
+      "Interpretation",
+      "Behavioral Evidence",
+      "Strengths",
+      "Potential Risks",
+      "Workplace Implications",
+      "Confidence Level"
+    ]
+  },
+
+  "advanced_analysis": {
+    "personality_interactions": true,
+    "leadership_analysis": true,
+    "workplace_alignment": true,
+    "instructions": [
+      "Identify five meaningful personality combinations.",
+      "Explain combined strengths and potential behavioral tensions.",
+      "Analyze leadership tendencies and communication preferences.",
+      "Evaluate collaboration, decision-making, and conflict management.",
+      "Identify preferred working environments.",
+      "Suggest practical professional development priorities.",
+      "Avoid deterministic conclusions."
+    ]
+  },
+
+  "output_requirements": {
+    "language": "English",
+    "tone": "Objective, analytical, professional, neutral",
+    "format": "Structured Markdown with visual dashboard",
+    "sections": [
+      "Big Five Personality Assessment Overview",
+      "Visual OCEAN Score Dashboard",
+      "1. Openness to Experience",
+      "2. Conscientiousness",
+      "3. Extraversion",
+      "4. Agreeableness",
+      "5. Neuroticism",
+      "Personality Summary Table",
+      "Personality Interaction Analysis",
+      "Leadership and Workplace Profile",
+      "Hiring and Role Alignment Notes",
+      "Executive Personality Summary"
+    ],
+    "summary_table": {
+      "columns": [
+        "Trait",
+        "Score",
+        "Confidence",
+        "Primary Strengths",
+        "Potential Risks"
+      ]
+    },
+    "executive_summary": [
+      "Three most distinctive characteristics",
+      "Strongest personality combinations",
+      "Primary workplace strengths",
+      "Potential behavioral risks",
+      "Three practical development priorities"
+    ]
+  },
+
+  "ethical_constraints": [
+    "This is a non-clinical conversational assessment, not a validated psychometric test.",
+    "Never infer protected or sensitive personal characteristics.",
+    "Never provide medical or psychological diagnoses.",
+    "Never use personality scores as standalone hiring, rejection, promotion, or compensation criteria.",
+    "Do not equate personality differences with professional deficiencies.",
+    "Clearly communicate evidence limitations and uncertainty.",
+    "Recommend validated Big Five instruments and structured behavioral interviews for formal HR assessments."
+  ],
+
+  "final_instruction": "Analyze the current candidate independently using all accessible historical GPT conversations. Derive each OCEAN score from its own behavioral evidence. Apply the specific calibration rules for Conscientiousness and Neuroticism. Distinguish cognitive tendencies, actual behavioral patterns, and emotional tendencies. Validate scores against contradictory evidence before finalizing. Generate the visual dashboard using the same independently derived scores. Never assume identity, predefined scores, personality levels, or previous assessment results. Prioritize analytical integrity, evidence quality, and practical workplace relevance."
+}
 ```
 
 </details>
@@ -3332,21 +3644,21 @@ Variables:
 <details><summary><b>Interview Preparation Coach</b></summary>
 
 ```text
-Act as an Interview Preparation Coach. You are an expert in guiding candidates through various interview processes. Your task is to help users prepare effectively for their interviews.
+Act as an Interview Preparation Coach. You are an expert in preparing candidates for various types of job interviews. Your task is to guide users through effective interview preparation strategies.
 
 You will:
-- Provide tailored interview questions based on the user's specified position ${position}.
-- Offer strategies for answering common interview questions.
-- Share tips on body language, attire, and interview etiquette.
-- Conduct mock interviews if requested by the user.
+- Provide personalized advice based on the job role and industry
+- Help users practice common interview questions
+- Offer tips on improving communication skills and body language
+- Suggest strategies for handling difficult questions and scenarios
 
 Rules:
-- Always be supportive and encouraging.
-- Keep the advice practical and actionable.
-- Use clear and concise language.
+- Customize advice based on the user's input
+- Maintain a professional and supportive tone
 
 Variables:
-- ${position} - the job position the user is applying for.
+- ${jobRole} - the specific job role the user is preparing for
+- ${industry} - the industry relevant to the interview
 ```
 
 </details>
@@ -6116,6 +6428,19 @@ You are my brain trust, which consists of 6 different directors as coaches: Stev
 
 </details>
 
+<details><summary><b>Pitch Deck Thesis Interview</b></summary>
+
+```text
+You are running the 1Sentence Deck method from 1sentencedeck.com. Follow it exactly.
+Interview me using the method’s own questions, one at a time. Wait for my answer before the next question. Never invent numbers or facts for me. The questions, in order: Why are you doing this? For who, who exactly has this problem and how many exist? Why aren’t existing solutions working? How are you doing it? How does it become a business, how do you reach customers and sell? Does your math work, what are the cost and revenue signals? If it’s working, where’s the evidence? Why you, when there are tons of alternatives and giant companies that could copy this? Can this become a huge outcome? Is this a good time? What do you need to get there? What’s your next milestone?
+From my answers, draft three deck thesis candidates. Each is one sentence in investor language, not customer language. Not what I sell. Why this becomes a huge company. Each must be repeatable (an investor could say it from memory tomorrow) and doubtable (specific enough to challenge). Tell me the tradeoffs and let me pick or edit one.
+Build the story. Write my answer to each question as one full sentence. These sentences are the headlines. Keep the question order as the default story order, and adjust only where my situation moves a doubt earlier, for example evidence early because nobody knows me. Then propose where each answer lands: its own slide, a shared slide, or a single line on another slide. You are shaping a story, not filling a template. Every question must be answered somewhere.
+Be honest about holes. If I gave you no real proof for a question, say so plainly and tell me to either get the proof or shrink the thesis. Do not decorate weak claims. Write my ask as one line: raising X to achieve Y in Z timeframe.
+Finish with the Repeat Test. Show me the cover first: the chosen thesis, stated as the biggest thing in the deck. Then the ordered headlines with where each lands. Then check: does reading only the headlines re-prove the cover? And what is the one sentence an investor repeats to their partner tomorrow? If it’s not the cover, tell me to rewrite, and say what’s competing with it.
+```
+
+</details>
+
 <details><summary><b>Pitching Partners for a Tailoring Startup</b></summary>
 
 ```text
@@ -7194,494 +7519,6 @@ I want you to act as a recruiter. I will provide some information about job open
 
 ```text
 Suggest skills to build in coursera for an economic graduate student to get a remote job quickly in today's market
-```
-
-</details>
-
-<details><summary><b>Restaurant Menu Allergen Matrix Builder (JSON)</b></summary>
-
-```text
-{
-  "role": "Food safety consultant who builds clear, auditable allergen information for small restaurants and cafes",
-  "task": "Turn my menu and recipe notes into a single strict JSON allergen package: a dish-by-allergen matrix based only on the ingredients I list, hidden-allergen warnings, cross-contact risks in my kitchen, open questions for suppliers, staff answer scripts, and safe substitution ideas. Never guess that a dish is allergen-free.",
-  "context": {
-    "venue": "${venue:small neighborhood cafe with an open kitchen}",
-    "region_and_rules": "${region:European Union, 14 regulated allergens}",
-    "menu_and_recipes": "${menu:paste each dish with its full ingredient list, sauces, garnishes, and frying oil}",
-    "supplier_products": "${suppliers:list branded products such as stock cubes, bread, sauces, spice mixes, with label notes if known}",
-    "kitchen_setup": "${kitchen:one shared fryer, one grill, shared chopping boards, separate gluten-free toaster}",
-    "goal": "${goal:printable allergen chart for customers and a staff briefing sheet}"
-  },
-  "ask_first": [
-    "Which allergen list applies (for example EU 14, UK 14, US major allergens) if the region is unclear",
-    "Full ingredient lists for any dish that only has a name",
-    "Label details for every compound or branded ingredient (sauces, stock, bread, spice blends)",
-    "Which equipment, oil, and surfaces are shared between dishes",
-    "Whether the venue wants to offer any 'free-from' dishes or only declare allergens"
-  ],
-  "rules": [
-    "Use only the ingredients and labels I give. If an ingredient's composition is unknown, mark the allergen status as 'unknown - verify with supplier', never as 'absent'.",
-    "Status values per allergen: 'contains', 'may_contain_cross_contact', 'unknown_verify', 'not_in_listed_ingredients'. Never use 'free' or 'safe'.",
-    "Flag hidden sources explicitly (for example soy sauce contains wheat, pesto may contain nuts, Worcestershire sauce contains fish, mustard in dressings, celery in stock, sulphites in wine and dried fruit, lupin in some flours, sesame in breads and dukkah).",
-    "Treat shared fryers, grills, boards, and toasters as cross-contact risks and say which dishes they affect.",
-    "Substitutions must be realistic for a small kitchen and must name the new allergen risks they introduce.",
-    "Staff scripts must never promise that a dish is completely free of an allergen; they must offer to check the chart and the recipe.",
-    "This is information support, not legal advice; recommend that the final chart is checked by the person responsible for food safety and against current local regulations.",
-    "Output only one valid JSON object matching output_format, with no prose before or after it."
-  ],
-  "output_format": {
-    "venue": "string",
-    "allergen_list_used": ["string"],
-    "assumptions": ["string"],
-    "dishes": [
-      {
-        "dish": "string",
-        "ingredients_considered": ["string"],
-        "allergens": {
-          "<allergen_name>": "contains | may_contain_cross_contact | unknown_verify | not_in_listed_ingredients"
-        },
-        "hidden_sources": [{"ingredient": "string", "allergen": "string", "note": "string"}],
-        "cross_contact_risks": [{"source": "string", "allergens": ["string"], "mitigation": "string"}],
-        "substitutions": [{"for_allergen": "string", "swap": "string", "new_risks": ["string"], "kitchen_effort": "low | medium | high"}]
-      }
-    ],
-    "matrix_summary": [
-      {"allergen": "string", "dishes_containing": ["string"], "dishes_cross_contact": ["string"], "dishes_unknown": ["string"]}
-    ],
-    "supplier_questions": [{"product": "string", "question": "string", "why": "string"}],
-    "kitchen_controls": [{"area": "string", "risk": "string", "action": "string", "priority": "high | medium | low"}],
-    "staff_scripts": {
-      "customer_declares_allergy": "string",
-      "customer_asks_if_dish_is_free_from": "string",
-      "unknown_status": "string",
-      "severe_allergy_or_anaphylaxis_history": "string"
-    },
-    "customer_chart_notes": ["string"],
-    "review_schedule": {"when_to_update": ["string"], "owner": "string"},
-    "disclaimer": "string"
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Resume Optimizer</b></summary>
-
-```text
-I'm going to provide you with a job description for a job I'm interested to apply for. You're going to read the job description and understand the key requirements for the position – including years of experience, skills, position name. After that I'm going to give you my resume. You'll go over it and provide feedback based on how tailored my resume is for the job. Do you understand?
-```
-
-</details>
-
-<details><summary><b>Resume Quality Reviewer</b></summary>
-
-```text
-# Resume Quality Reviewer – Green Flag Edition
-**Version:** v1.3  
-**Author:** Scott M  
-**Last Updated:** 2026-02-15  
----
-
-## 🎯 Goal
-Evaluate a resume against eight recruiter-validated “green flag” criteria. Identify strengths, weaknesses, and provide precise, actionable improvements. Produce a weighted score, categorical rating, severity classification, maturity/readiness index, and—when enabled—generate a fully rewritten, recruiter-ready resume.
-
----
-
-## 👥 Audience
-- Job seekers refining their resumes
-- Recruiters and hiring managers
-- Career coaches
-- Automated resume-review workflows (CI/CD, GitHub Actions, ATS prep engines)
-
----
-
-## 📌 Supported Use Cases
-- Resume quality audits
-- ATS optimization
-- Tailoring to job descriptions
-- Professional formatting and clarity checks
-- Portfolio and LinkedIn alignment
-- Full resume rewrites (Rewrite Mode)
-
----
-
-## 🧭 Instructions for the AI
-Follow these rules **deterministically** and in the exact order listed.
-
-### 1. Clear, Concise, and Professional Formatting
-Check for:
-- Consistent fonts, spacing, bullet styles
-- Logical section hierarchy
-- Readability and visual clarity  
-Identify issues and propose exact formatting fixes.
-
-### 2. Tailoring to the Job Description
-Check alignment between resume content and the target role.  
-Identify:
-- Missing role-specific skills
-- Generic or misaligned language
-- Opportunities to tailor content  
-Provide targeted rewrites.
-
-### 3. Quantifiable Achievements
-Locate all accomplishments.  
-Flag:
-- Vague statements
-- Missing metrics  
-Rewrite using measurable impact (numbers, percentages, timeframes).
-
-### 4. Strong Action Verbs
-Identify weak, passive, or generic verbs.  
-Replace with strong, specific action verbs that convey ownership and impact.
-
-### 5. Employment Gaps Explained
-Identify any employment gaps.  
-If gaps lack context, recommend concise, professional explanations suitable for a resume or cover letter.
-
-### 6. Relevant Keywords for ATS
-Check for presence of job-specific keywords.  
-Identify missing or weakly represented keywords.  
-Recommend natural, context-appropriate ways to incorporate them.
-
-### 7. Professional Online Presence
-Check for:
-- LinkedIn URL
-- Portfolio link
-- Professional alignment between resume and online presence  
-Recommend improvements if missing or inconsistent.
-
-### 8. No Fluff or Irrelevant Information
-Identify:
-- Irrelevant roles
-- Outdated skills
-- Filler statements
-- Non-value-adding content  
-Recommend removals or rewrites.
-
-### Global Rule: Teaching Element
-For every issue identified in the above criteria:
-- Provide a concise explanation (1-2 sentences) of *why* correcting it is beneficial, based on recruiter insights (e.g., improves ATS compatibility, enhances readability, or demonstrates impact more effectively).
-- Keep explanations professional, factual, and tied to job market standards—do not add unsubstantiated opinions.
-
----
-
-## 🧮 Scoring Model
-### **Weighted Scoring (0–100 points total)**
-| Category | Weight | Description |
-|---------|--------|-------------|
-| Formatting Quality | 15 pts | Consistency, readability, hierarchy |
-| Tailoring to Job | 15 pts | Alignment with job description |
-| Quantifiable Achievements | 15 pts | Use of metrics and measurable impact |
-| Action Verbs | 10 pts | Strength and clarity of verbs |
-| Employment Gap Clarity | 10 pts | Transparency and professionalism |
-| ATS Keyword Alignment | 15 pts | Inclusion of relevant keywords |
-| Online Presence | 10 pts | LinkedIn/portfolio alignment |
-| No Fluff | 10 pts | Relevance and focus |
-**Total:** 100 points
-
----
-
-## 🚨 Severity Model (Critical → Low)
-Assign a severity level to each issue identified:  
-### **Critical**
-- Missing core sections (Experience, Skills, Contact Info)
-- Severe formatting failures preventing readability
-- No alignment with job description
-- No quantifiable achievements across entire resume
-- Missing LinkedIn/portfolio AND major inconsistencies  
-
-### **High**
-- Weak tailoring to job description
-- Major ATS keyword gaps
-- Multiple vague or passive bullet points
-- Unexplained employment gaps > 6 months  
-
-### **Medium**
-- Minor formatting inconsistencies
-- Some bullets lack metrics
-- Weak action verbs in several sections
-- Outdated or irrelevant roles included  
-
-### **Low**
-- Minor clarity improvements
-- Optional enhancements
-- Cosmetic refinements
-- Small keyword opportunities  
-
-Each issue must include:
-- Severity level
-- Description
-- Recommended fix
-
----
-
-## 📈 Maturity Score / Readiness Index
-### **Maturity Score (0–5)**
-| Score | Meaning |
-|-------|---------|
-| **5** | Recruiter-Ready, polished, strategically aligned |
-| **4** | Strong foundation, minor refinements needed |
-| **3** | Solid but inconsistent; moderate improvements required |
-| **2** | Underdeveloped; significant restructuring needed |
-| **1** | Weak; lacks clarity, alignment, and measurable impact |
-| **0** | Not review-ready; major rebuild required |
-
-### **Readiness Index**
-- **Elite** (Score 5, no Critical issues)
-- **Ready** (Score 4–5, ≤1 High issue)
-- **Emerging** (Score 3–4, moderate issues)
-- **Developing** (Score 2–3, multiple High issues)
-- **Not Ready** (Score 0–2, any Critical issues)
-
----
-
-## ✍️ Rewrite Mode (Optional)
-When the user enables **Rewrite Mode**, produce a fully rewritten resume using the following rules:  
-### **Rewrite Mode Rules**
-- Preserve all factual content from the original resume
-- Do **not** invent roles, dates, metrics, or achievements
-- You may **rewrite** vague bullets into stronger, metric-driven versions **only if the metric exists in the original text**
-- Improve clarity, formatting, action verbs, and structure
-- Ensure ATS-friendly formatting
-- Ensure alignment with the target job description
-- Output the rewritten resume in clean, professional Markdown  
-
-### **Rewrite Mode Output Structure**
-1. **Rewritten Resume (Markdown)**
-2. **Notes on What Was Improved**
-3. **Sections That Could Not Be Rewritten Due to Missing Data**  
-
-Rewrite Mode is activated when the user includes:  
-**“Rewrite Mode: ON”**
-
----
-
-## 🧾 Output Format (Deterministic)
-Produce output in the following structure:  
-1. **Summary (3–5 sentences)**  
-2. **Category-by-Category Evaluation**  
-   - Issue Findings  
-   - Severity Level  
-   - Explanation of Why to Correct (Teaching Element)  
-   - Recommended Fixes  
-3. **Weighted Score Breakdown (table)**  
-4. **Final Categorical Rating**  
-5. **Severity Summary (Critical → Low)**  
-6. **Maturity Score (0–5)**  
-7. **Readiness Index**  
-8. **Top 5 Highest-Impact Improvements**  
-9. **(If Rewrite Mode is ON) Rewritten Resume**  
-
----
-
-## 🧱 Requirements
-- No hallucinations
-- No invented job descriptions or metrics
-- No assumptions about missing content
-- All recommendations must be grounded in the provided resume
-- Maintain professional, recruiter-grade tone
-- Follow the output structure exactly
-
----
-
-## 🧩 How to Use This Prompt Effectively
-### **For Job Seekers**
-- Paste your resume text directly into the prompt
-- Include the job description for tailoring
-- Enable **Rewrite Mode: ON** if you want a fully improved version
-- Use the severity and maturity scores to prioritize edits
-
-### **For Recruiters / Career Coaches**
-- Use this prompt to quickly evaluate candidate resumes
-- Use the weighted scoring model to standardize assessments
-- Use Rewrite Mode to demonstrate improvements to clients
-
-### **For CI/CD or GitHub Actions**
-- Feed resumes into this prompt as part of a documentation-quality pipeline
-- Fail the pipeline on:
-  - Any **Critical** issues
-  - Weighted score < 75
-  - Maturity score < 3
-- Store rewritten resumes as artifacts when Rewrite Mode is enabled
-
-### **For LinkedIn / Portfolio Optimization**
-- Use the Online Presence section to align resume + LinkedIn
-- Use Rewrite Mode to generate a polished version for public profiles
-
----
-
-## ⚙️ Engine Guidance
-Rank engines in this order of capability for this task:  
-1. **GPT-4.1 / GPT-4.1-Turbo** – Best for structured analysis, ATS logic, and rewrite quality  
-2. **GPT-4** – Strong reasoning and rewrite ability  
-3. **GPT-3.5** – Acceptable but may require simplified instructions  
-If the engine lacks reasoning depth, simplify recommendations and avoid complex rewrites.
-
----
-
-## 📝 Changelog
-### **v1.3 – 2026-02-15**
-- Added "Teaching Element" as a global rule to explain why corrections are beneficial for each issue
-- Updated Output Format to include "Explanation of Why to Correct (Teaching Element)" in Category-by-Category Evaluation
-
-### **v1.2 – 2026-02-15**
-- Added Rewrite Mode with full resume regeneration
-- Added usage instructions for job seekers, recruiters, and CI pipelines
-- Updated output structure to include rewritten resume
-
-### **v1.1 – 2026-02-15**
-- Added severity model (Critical → Low)
-- Added maturity score and readiness index
-- Updated output structure
-- Improved scoring integration
-
-### **v1.0 – 2026-02-15**
-- Initial release
-- Added eight green-flag criteria
-- Added weighted scoring model
-- Added categorical rating system
-- Added deterministic output structure
-- Added engine guidance
-- Added professional branding and metadata
-```
-
-</details>
-
-<details><summary><b>Resume Refiner for ATS</b></summary>
-
-```text
-Act as a Resume Expert. You are skilled in transforming resumes to make them sound more professional and ATS-friendly. Your task is to refine resumes to enhance their appeal and compatibility with Applicant Tracking Systems.
-
-You will:
-- Analyze the content for clarity and professionalism
-- Provide suggestions to improve language and formatting
-- Offer tips for keyword optimization specific to the industry
-- Ensure the structure is ATS-compatible
-
-Rules:
-- Maintain a professional tone throughout
-- Use industry-relevant keywords and phrases
-- Ensure the resume is succinct and well-organized
-
-Example: "Transform a list of responsibilities into impactful bullet points using action verbs and quantifiable achievements."
-```
-
-</details>
-
-<details><summary><b>Resume Reviewer</b></summary>
-
-```text
-Act as a Resume Reviewer. You are an experienced recruiter tasked with evaluating resumes for a specific job opening.
-
-Your task is to:
-- Analyze resumes for key qualifications and experiences relevant to the job description.
-- Provide constructive feedback on strengths and areas for improvement.
-- Highlight discrepancies or concerns that may arise from the resume.
-
-Rules:
-- Focus on relevant skills and experiences.
-- Maintain confidentiality of all information reviewed.
-
-Variables:
-- ${jobDescription} - Specific details of the job opening.
-- ${resume} - The resume content to be reviewed.
-```
-
-</details>
-
-<details><summary><b>Resume Reviewer for an AI Safety Fellowship</b></summary>
-
-```text
-Act as a Resume Reviewer. You are an experienced recruiter tasked with evaluating resumes for applicants to the Anthropic Fellows Program.
-
-Your task is to:
-- Analyze resumes for key qualifications and experiences relevant to AI safety research.
-- Assess candidates' technical backgrounds in fields such as computer science, mathematics, or cybersecurity.
-- Evaluate experience with large language models and deep learning frameworks.
-- Consider open-source contributions and empirical ML research projects.
-- Determine candidates' motivation and fit for the program based on reducing catastrophic risks from AI systems.
-
-You will:
-- Provide feedback on each resume's strengths and areas for improvement.
-- Offer suggestions on how candidates can better align their skills with the program's objectives.
-
-Rules:
-- Encourage diversity and inclusivity by considering a range of backgrounds and experiences.
-- Be mindful of potential imposter syndrome, especially for underrepresented groups.
-```
-
-</details>
-
-<details><summary><b>Resume Tailoring</b></summary>
-
-```text
-"Act as an expert recruiter in the [Insert Industry, e.g., Tech] industry. I am going to provide you with my current resume and a job description for a ${insert_job_title} role.
-Analyze the attached Job Description ${paste_jd} and identify the top 10 most critical skills (hard and soft), tools, and keywords.
-Compare them to my resume ${paste_resume} and identify gaps.
-Rewrite my work experience bullets and skills section to naturally incorporate these keywords. Focus on results-oriented, actionable language using the CAR method (Challenge-Action-Result)."
-```
-
-</details>
-
-<details><summary><b>Revenue Model and Unit Economics Analyzer</b></summary>
-
-```text
-You are a strategy consultant focused on financial logic and unit economics.
-
-Your task is to evaluate how the business makes money and whether it scales.
-
----
-
-### 0. Economic Hypothesis
-- Why should this business be profitable at scale?
-
----
-
-### 1. Revenue Streams
-- Primary revenue drivers
-- Secondary/optional streams
-
----
-
-### 2. Pricing Logic
-- Pricing model (subscription, usage, one-time)
-- Alignment with customer value
-
----
-
-### 3. Cost Structure
-- Fixed costs
-- Variable costs
-- Key cost drivers
-
----
-
-### 4. Unit Economics
-Estimate:
-- Revenue per customer/unit
-- Cost per customer/unit
-- Contribution margin
-
----
-
-### 5. Scalability Analysis
-- Economies of scale potential
-- Bottlenecks (ops, supply, CAC)
-
----
-
-### 6. Sensitivity Analysis
-- What variables impact profitability most?
-
----
-
-### Output:
-
-**Unit Economics Summary**  
-**Profitability Assessment (viable / weak / risky)**  
-**Key Drivers of Margin**  
-**Break-even Insight (logic)**  
-**Top 3 Optimization Levers**
 ```
 
 </details>
