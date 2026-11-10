@@ -1,6 +1,6 @@
 # Image & Design (1/5)
 
-808 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+846 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
@@ -715,6 +715,38 @@ Full-body black and white fashion editorial portrait of a young woman with an ho
 
 </details>
 
+<details><summary><b>Acropolis at Golden Sunrise: 15-Shot Documentary</b></summary>
+
+```text
+Create an ultra-realistic 15-second cinematic historical documentary of the Acropolis of Athens, Greece, during a spectacular golden sunrise. Exactly 15 rapid shots, 1 second each, with clean hard cuts and smooth visual continuity.
+
+Shot sequence:
+
+1. Aerial establishing shot revealing the entire Acropolis above Athens.
+2. Smooth drone glide toward the ancient Parthenon.
+3. Wide symmetrical view of the Parthenon glowing in sunrise light.
+4. Close-up of massive ancient Greek marble columns.
+5. Slow tilt-up revealing the magnificent temple architecture.
+6. Cinematic orbit around the Parthenon.
+7. Close-up of intricate ancient stone carvings and sculptures.
+8. Side-angle tracking shot along the majestic columns.
+9. Tracking shot across ancient marble pathways.
+10. Low-angle hero shot emphasizing the towering columns.
+11. Pan across the Erechtheion and its famous Caryatid statues.
+12. Golden sunlight illuminating weathered marble textures.
+13. Elevated aerial view showing Athens stretching toward the horizon.
+14. Close-up revealing ancient architectural details and stone textures.
+15. Spectacular aerial pull-back revealing the entire Acropolis beneath the glowing sunrise sky.
+
+Visual style: Photorealistic 4K HDR, premium historical documentary cinematography, authentic ancient Greek architecture, warm golden-pink sunrise, soft atmospheric haze, realistic marble textures, cinematic drone movements, natural shadows, stable geometry, no flickering or distortion.
+
+Audio: Epic orchestral soundtrack with subtle ancient Greek-inspired instrumental atmosphere.
+
+Consistency: Maintain historically accurate architecture, consistent sunrise direction, realistic geography, and smooth visual continuity across all 15 shots.
+```
+
+</details>
+
 <details><summary><b>Add Black Glasses to a Photo</b></summary>
 
 ```text
@@ -1186,6 +1218,62 @@ Lighting & Atmosphere: Golden hour sunlight bathes the scene in warm, rich tones
 Background: A tranquil alpine lake reflects dramatic limestone cliffs rising behind it. The lower mountain slopes are covered with forest and vibrant green alpine meadows. The sky is clear blue with a few soft clouds, and tiny figures of people are visible along the opposite shoreline. Wild grass and reeds appear in the foreground.
 
 Technical Details: Deep focus keeps both the woman and the mountain landscape crisp and highly detailed. Photorealistic, ultra-sharp, realistic skin texture. Do not change her facial features or identity.
+```
+
+</details>
+
+<details><summary><b>Alpine Lake Red Canoe at Sunrise (Image-to-Video)</b></summary>
+
+```text
+Start from the step 2 image "Red Canoe at a Wooden Dock on a Misty Alpine Lake at Autumn Sunrise" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the weathered wooden dock, the red canoe on the left of the dock, the dark green pines on the left shore, the golden larches on the right shore, the three snow-capped peaks, the colors, and the style exactly as in the image. The camera makes a slow, smooth drift forward and slightly down toward the canoe and the dock. Low mist slides softly across the water, the canoe stays tied to the end of the dock and rocks only very slightly, and the reflections of the peaks and trees ripple gently. The peaks stay lit pink and gold by the sunrise. Natural, realistic motion, no people, no cuts, no text. Soft sound of a still morning lake, gentle lapping water, and faint distant birdsong.
+```
+
+</details>
+
+<details><summary><b>Alpine Lake Red Canoe Sunrise Scene Brief Builder</b></summary>
+
+```text
+Act as a cinematic landscape scene designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of a red wooden canoe tied to a small weathered wooden dock on a mirror-still alpine lake at autumn sunrise: dark green pines on one shore, golden-orange larches on the other, three jagged snow-capped peaks glowing pink and gold in the first light, low mist drifting over the water, and a perfect reflection of the peaks and trees. The shot will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move or change naturally (a slow camera drift toward the canoe, mist sliding across the water, the canoe rocking very slightly on its rope, soft ripples in the reflection) while keeping the composition calm, balanced, readable, and easy to animate.
+
+My starting idea: ${idea:a silent autumn morning at a mountain lake, just before anyone arrives, with a single red canoe waiting at the end of the dock}
+
+My starting choices:
+- Dock: ${dock:a short weathered wooden dock pointing out into the lake from the bottom center of the frame}
+- Canoe: ${canoe:a red wooden canoe with wooden seats, tied to the end of the dock by a rope or chain, floating on the LEFT side of the dock}
+- Lake: ${lake:a mirror-still alpine lake filling the middle of the frame, with low mist floating just above the water}
+- Left shore: ${left_shore:dark green pine forest on a rocky shoreline}
+- Right shore: ${right_shore:golden-orange autumn larches on a rocky shoreline with dry grass}
+- Mountains: ${mountains:three jagged snow-capped peaks in the center background, lit pink and gold by the sunrise}
+- Sky: ${sky:a pale clear morning sky with a soft warm glow near the horizon}
+- Light: ${light:warm sunrise light on the peaks and larch tops, soft cool light on the water and dock}
+- Visual style: ${style:photoreal landscape photography, natural but rich colors, low camera just behind the dock}
+- Mood words: ${mood:calm, crisp, quiet, fresh, timeless}
+
+First ask me, in one short message, for anything missing: the camera height and position (on the dock, just behind it, or from the shore), how much of the frame the dock, canoe, lake, and mountains should take, which side of the dock the canoe floats on and which way it points, how many peaks I want and how much snow they carry, how thick the mist should be, how strong the sunrise light should be, whether the camera should drift forward or stay still in the video, where the camera move should end, and anything to avoid (people, paddlers, boats with logos, houses, roads, power lines, text, brand names, or copying a specific real lake, photograph, or famous viewpoint).
+
+Then produce the brief with these sections:
+
+1. **Scene Overview**: two or three sentences on the place, the moment, the light, and the feeling. Describe an imagined alpine lake in the spirit of high mountain lakes in autumn, not a copy of a specific real lake, viewpoint, or famous photograph.
+
+2. **Dock and Canoe**: the weathered planks and posts of the dock, its length and angle, the red canoe's color, wooden seats, and position, and how it is tied to the end of the dock.
+
+3. **Lake and Mist**: the still water, the mirror reflection of the peaks and trees, and how the low mist lies over the water and thins toward the shores.
+
+4. **Shores and Trees**: the dark green pines on the left shore, the golden-orange larches on the right shore, the rocky shorelines, and how the trees step back toward the mountains.
+
+5. **Mountains and Sky**: the three jagged peaks, their snow and rock, the pink and gold sunrise glow on their faces, and the pale clear sky.
+
+6. **Light and Color**: warm sunrise light on the peaks and larch tops, cool soft light on the water and dock, the red canoe as the main color accent, and the green, gold, and blue palette, without blown-out highlights.
+
+7. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (camera position, dock from the bottom center, canoe on the left of the dock and tied at its end, pines on the left shore, larches on the right shore, three peaks in the center, mist on the water, reflection, light direction, framing).
+
+8. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the camera drifting forward and slightly down toward the canoe and dock, mist sliding softly across the water, the canoe rocking very slightly on its rope, gentle ripples in the reflection, and the sunrise glow holding on the peaks. Keep total motion subtle and physically plausible.
+
+9. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the red canoe tied to the end of the wooden dock, the mirror-still alpine lake, the pines and golden larches, and the snow-capped peaks at sunrise in the first sentence, ending with: no people, no text, no logos.
+
+10. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes a slow, smooth camera drift for about 6 seconds forward and slightly down toward the canoe and dock, the mist drifting softly across the water, the canoe staying tied and rocking only very slightly, the reflections rippling gently, the peaks staying lit pink and gold, and says to keep the dock, canoe, trees, mountains, and colors exactly as in the image with no people.
+
+Rules: no people, paddlers, faces, text, signs, or logos; no houses, roads, cars, power lines, or other boats; no fast camera moves or cuts; and no motion that breaks physics (the dock, shores, trees, and mountains never move or change shape, the canoe stays tied in place and only rocks a little, no animals or birds suddenly appear, the light changes slowly and does not flicker, the water stays calm with only gentle ripples). Use short paragraphs and lists.
 ```
 
 </details>
@@ -1670,6 +1758,14 @@ A grey heron stands on one leg among tall blue and violet irises at the edge of 
 
 </details>
 
+<details><summary><b>Art Nouveau Poster of a Tea Picker on a Misty Tea Plantation</b></summary>
+
+```text
+An Art Nouveau poster illustration of a tea picker harvesting leaves on a misty tea plantation, tall portrait 3:4, with no text. A young woman stands in profile facing left in the center, her dark hair in a low bun with a small yellow flower, wearing a long pale green robe-like dress with flowing sleeves and swirling leaf patterns, and carrying a woven wicker basket full of fresh tea leaves on her back by a leather shoulder strap as she reaches out to pick leaves from the bushes. A large golden sun disc with fine radiating rays glows behind her head. Rows of rounded tea bushes fill the foreground, and terraced tea hills and layered blue-green mountains fade into soft mist behind her. Large red and white camellia flowers with golden centers and glossy leaves bloom in both lower corners. An ornate border of curling green vines and leaves frames the whole poster, with a small gilded ornament at the top and an empty arched cartouche across the top. Flat muted greens, cream, gold, and red, fine ink outlines, vintage lithograph paper texture. No text, no lettering, no logos.
+```
+
+</details>
+
 <details><summary><b>Art Style Consistency for Image Projects</b></summary>
 
 ```text
@@ -1743,6 +1839,14 @@ I want you to act as an ascii artist. I will write the objects to you and I will
 
 ```text
 Create a professional program to create a booklet cover in different colors with the possibility of adding images to complement the painting contribute to attracting the reader's attention distributed in a superior format with the choice of type, colors and Font Format for the product name ""brief summary 60 words* ""author ""serial number ""conjure the attached design to simulate a more creative design with the possibility of data entry above" I want a creative design from a unique idea like this in the attached image
+```
+
+</details>
+
+<details><summary><b>Aubusson-Style Tapestry of a White Unicorn in a Rose Garden</b></summary>
+
+```text
+A tall vertical Aubusson-style medieval tapestry of a white unicorn lying down in the center of a walled rose garden, portrait 3:4. The unicorn rests on a millefleurs meadow of tiny red, blue, pink, and white flowers, with a creamy flowing mane and tail, a slender spiral horn, and a red collar with a small gold bell, facing slightly left. On the LEFT a stylized pomegranate tree bears several ripe red fruits. On the RIGHT a rose-covered stone wall has an arched wooden door that is closed, not wide open, with climbing pink and crimson roses over the arch. Woven tapestry texture with slightly faded vegetable-dye reds, blues, and moss greens, and an ornate floral border on all four sides. No readable text, no people, no logos, no watermarks.
 ```
 
 </details>
@@ -2710,12 +2814,165 @@ create a bulk 50 images for oversize tshirt black color 1:1, 8k quality professi
 
 </details>
 
+<details><summary><b>Black Sails in the Fog: Four-Shot Pirate Ship Reveal</b></summary>
+
+```text
+[Title] Black Sails in the Fog
+[Overall Direction]
+A 15-second photorealistic maritime film sequence in 16:9, composed with a 2.39:1 widescreen sensibility and natural 24fps motion. The sequence contains four distinct shots.
+The story takes place in cold northern European waters during the medieval period. An elderly white European man rows a small wooden boat alone into dense fog, where he discovers a black-sailed pirate ship far larger than any ordinary vessel.
+The sequence focuses on the ship being revealed gradually through the fog and on the extreme difference in scale between the fragile rowboat, the elderly man, and the enormous pirate ship. The atmosphere is cold, silent, and oppressive, but there are no supernatural creatures, ghosts, magical effects, or battles.
+All timber, canvas, ropes, seawater, fog, and human movement must have convincing weight and physical behavior. The footage should feel captured with a full-scale practical sailing ship, a real ocean location, and a cinema camera—not like a video-game cutscene or fantasy concept art.
+[Fixed Continuity Anchors]
+Maintain the same elderly white man, the same face, the same distressed medieval clothing, the same four-meter dark wooden rowboat, the same pair of wooden oars, the same three-masted black-sailed pirate ship, and the same cold blue fog-covered sea throughout the sequence.
+The pirate ship must remain ahead of the old man and slightly to the right. Its bow faces the rowboat at a slight angle. The ship is almost motionless, moving only slowly with the long ocean swell. The rowboat continues moving toward the pirate ship.
+Wind, waves, and fog consistently move from the left side of the frame toward the right. Cold morning light always comes from the upper left.
+The pirate ship must retain exactly three main masts, layered black sails, a high forecastle and sterncastle, a long bowsprit, a dark wooden hull, and dense rigging in every shot. Its design must not change between cuts.
+[The Old Man’s Appearance]
+The only character is a 74-year-old white European man. He is thin and slightly stooped, but his shoulders and arms retain the wiry strength of a lifetime of physical labor.
+His pale, coarse skin is deeply marked by cold wind, saltwater, and years of sun exposure. He has prominent cheekbones, a high and slightly crooked nose, deep-set eyes, and an uneven gray-white beard covering his cheeks and chin.
+His eyes are gray-blue, naturally moist, with small living catchlights. His forehead, eye corners, and mouth carry authentic age lines. His gray-white hair reaches the back of his neck, dampened by sea fog and loosely tied with an old leather cord. Several wet strands cling to his temples and ears.
+His skin must retain pores, age spots, and wrinkles. Do not beautify, smooth, or artificially dirty his face.
+[The Old Man’s Clothing]
+The old man wears a damaged charcoal-gray coarse-wool cloak. Its edges are frayed and repaired with a few simple hand-sewn patches. Moisture from the sea fog has darkened the fabric.
+Beneath the cloak is a dirty gray-white linen tunic with a loose collar and worn cuffs. A weathered dark-brown leather belt secures the clothing at his waist. He wears dark gray-brown woven trousers and cracked old leather boots.
+A short length of faded dark reddish-brown wool is tied around his neck. This scarf is the only faint warm accent in the otherwise cold blue image.
+The clothing must contain no modern stitching, zippers, plastic, branding, reflective strips, or modern flotation equipment.
+[Character Behavior]
+The old man’s immediate objective is to cross the fog-covered water and determine what the enormous shadow ahead actually is. His obstacles are the dense fog and the long ocean swell that repeatedly alters the rowboat’s direction.
+He rows with the practiced economy of an aging seaman. His center of gravity remains low, his feet planted firmly against the bottom of the boat. His lower back moves first, leaning slowly backward; his shoulders and arms then pull the two wooden oars toward his chest.
+The strength of his left and right arms differs slightly. Each stroke is accompanied by natural breathing, shoulder-blade movement, friction from the oarlocks, and the forward inertia of the boat. His movement is no longer light, but it remains experienced and efficient.
+When the deep groan of a massive wooden hull reaches him through the fog, his ongoing rowing stroke slows. The left oar blade remains submerged and creates resistance while the right oar stops in midair. Seawater drips continuously from its edge.
+His eyes leave the surface of the sea first and move toward the shadow above. He gives one slow blink. Only then does his chin rise and his head follow the direction of his gaze. His lips remain closed, his breathing pauses briefly, and his hands tighten around the oar handles.
+He does not shout or flee. After confirming that an enormous vessel is hidden in the fog, he adjusts his seated posture, braces both feet, and resumes rowing slowly toward the shadow. His performance conveys caution, exhaustion, and an irresistible need to know—not theatrical fear.
+[The Rowboat]
+A medieval wooden rowboat approximately 4.2 meters long, constructed from dark, aged oak. The plank seams and wooden fastening pegs are structurally believable. Most of the black waterproof tar coating has worn away, revealing gray-brown wood grain beneath.
+The gunwales show wear from years of use. The interior remains sparse, containing only one coil of old hemp rope. Do not add fishing nets, lanterns, barrels, crates, or decorative objects.
+The two wooden oars must retain the same dimensions, color, material, and position throughout the sequence.
+The boat rises, falls, and rolls gently with long ocean swells approximately one to one-and-a-half meters high. It must have convincing weight and inertia. Its bow creates a small amount of dark spray as it cuts through the water. It must not float or bounce like a lightweight toy.
+[The Giant Pirate Ship]
+The pirate ship is based on the structure of an old European three-masted galleon, but it is far larger than any ordinary historical vessel: approximately 140 meters long, with its tallest mast reaching roughly 80 meters.
+Its scale is extraordinary, but its timber construction, structural loading, rigging connections, and canvas movement must remain physically believable.
+The hull is built from almost black, heavily weathered oak. Its timbers are wide and heavy, with visible plank seams and matte iron reinforcement along structural edges. The bow is tall and projects forward with oppressive weight, ending in a long, narrow bowsprit.
+The stern rises into a multi-level sterncastle. Two rows of dark gunports line the sides of the hull, but no cannons are fired. Salt deposits, dark wet marks, and small amounts of sea growth appear around the waterline. The ship is not rotten and does not glow.
+Three tall main masts carry multiple levels of square black sails. The canvas is heavy and aged, damaged by wind and salt, with naturally torn edges and visible repairs. The sails are not pure black; they contain subtle layers of deep blue-gray, charcoal, and weathered brown.
+Dense hemp rigging connects the masts, yards, gunwales, and corners of the sails according to authentic sailing-ship construction.
+A small faded black flag flies from the highest mast. It bears only a simple, weathered bone-white skull-and-crossbones symbol with no written words.
+No crew members, torches, or artificial lights are visible on deck. The vessel feels unnaturally quiet but remains completely physical and opaque, never transparent or ghostlike.
+[Ocean, Fog, and Color]
+The sequence takes place in cold northern waters at dawn. The boundary between sea and sky is nearly erased by thick blue-gray marine fog.
+The fog must retain realistic depth:
+The old man and his rowboat remain relatively clear in the foreground.
+Water several dozen meters away loses contrast.
+Only portions of the pirate ship are visible in the middle distance.
+The upper masts and corners of the sails disappear back into the fog.
+The seawater consists of low-saturation slate blue, deep blue-gray, and faint gray-green tones. Wave crests do not produce unnaturally bright white foam.
+The sky is pale cold blue mixed with pearl gray. The pirate ship is near-black wood with deep blue-gray sails. The old man’s faded reddish-brown scarf provides the only very weak warm accent.
+Wind slowly pushes the fog across the ship, allowing its fixed structure to appear in layers. The fog changes what is visible; the vessel itself never changes shape.
+The fog must not behave like fast-moving smoke, and it must not make the entire image uniformly blurry.
+[Shot One | 0–3.5 Seconds | Side Close-Up of the Old Man]
+A 65mm cinema lens. The camera floats beside the left side of the rowboat, slightly below the old man’s shoulder height, rising and falling gently with the same ocean swell.
+The old man’s side profile occupies the left half of the frame. The background contains only defocused cold-blue seawater and layered fog. The pirate ship must not appear yet.
+The old man is already midway through a rowing stroke. His lower back moves slowly backward as both hands pull the oars toward his body. Damp gray hair clings to his face, and the coarse wool cloak responds subtly to the sea wind.
+A broad swell lifts the wooden boat, and the camera rises with it in a restrained, physically grounded movement.
+One distant, low note from an old bronze ship’s bell travels through the fog, followed by the deep groan of an enormous timber structure under pressure from the sea.
+The old man’s rowing motion gradually stops. One oar blade remains submerged while the other pauses in midair. Water drips from the edge of the blade.
+His eyes move toward the upper-right side of the frame first. He gives one slow blink, then gradually raises his head.
+Cut directly before the head movement is fully completed. Do not reveal what he sees in this shot.
+[Shot Two | 3.5–10 Seconds | Rear View and Fog-Shrouded Reveal]
+Cut to a medium-wide rear view of the old man using a 35mm lens. The camera is positioned close to the stern of the rowboat at approximately shoulder height.
+Preserve the direction of the boat, the old man’s seated position, the direction of the waves, and the direction of the cold light from the previous shot.
+The old man occupies the lower center of the frame with his back toward the camera. An enormous dark shape rises inside the fog ahead.
+At first, only the towering bow and one vague vertical mast line can be distinguished. As the fog moves laterally, three enormous masts, layered black sails, dense rigging, and elevated deck structures gradually become visible. The tops of the masts remain hidden.
+The pirate ship must not appear completely in a single instant. Its structure remains fixed; only its visibility changes as fog passes across it.
+After a short pause, the old man resumes rowing. He lowers his center of gravity and completes one slow, deliberate stroke, then begins a second.
+The rowboat moves forward with the swell. Each time the boat rises onto a wave crest, the ship’s shadow appears taller. When the boat descends into a trough, the lower part of the pirate ship is briefly hidden by water and fog.
+As the old man continues forward, the bow, the dark gunports, and the lowest black sails become gradually clearer.
+High-altitude wind causes the enormous black sails to fill and relax with delayed, heavy movement. The rigging tightens and loosens slightly. It must not swing wildly.
+The pirate ship remains almost motionless, advancing into the swell at an extremely slow speed.
+[Shot Three | 10–12.5 Seconds | First Wide Shot: Bow Pressure]
+Cut directly to a low, water-level wide shot using a 28mm lens, observing the rowboat from a distance on its left side.
+A defocused dark-blue wave crest occupies the foreground. The old man and rowboat sit in the middle ground. The pirate ship’s towering bow, lower black sails, and fog-covered masts dominate the background.
+The rowboat occupies only about 2% of the frame width. The old man is even smaller, but his charcoal cloak and faded reddish-brown scarf remain consistent.
+The pirate ship’s bow rises from the sea like a dark timber cliff. Large hull planks, gunports, and matte iron reinforcement provide believable scale references.
+The foreground wave briefly hides the lower half of the rowboat. As the crest falls, the boat reappears in the same spatial relationship to the ship.
+The vessel’s position, size, and structure remain stable. The upper black sails and masts are partially swallowed by blue-gray fog.
+This shot emphasizes the vertical height of the bow and the oppressive distance between the small boat and the ship.
+[Shot Four | 12.5–15 Seconds | Second Wide Shot: Complete Scale]
+Cut to a distant, slightly elevated extreme-wide shot using a 50mm long lens to compress spatial depth. The camera remains stable without a fast aerial dive, orbit, or rotation.
+The enormous three-masted pirate ship appears from a front-side angle and dominates the center-right of the frame.
+Most of the full hull, long bowsprit, high sterncastle, three main masts, and layered black sails enter the frame. The lower hull remains relatively clear, while the upper masts and sail corners fade in and out of the dense fog.
+The black pirate flag moves slowly at the top of the highest mast.
+The old man and his boat remain ahead of the ship and slightly to the left, reduced to a tiny dark mark on the cold-blue sea. The rowboat continues rising and falling with the swell as the old man rows slowly.
+The pirate ship remains heavy, silent, and almost immovable.
+Maintain a safe distance between both vessels. No collision occurs.
+Large areas of cold-blue water and empty fog surround the subjects. There is no land, no other vessel, and no modern structure on the horizon.
+Hold the final composition for approximately half a second, keeping the old man, the small boat, and the enormous black sails visible together.
+[Editing Logic]
+The sequence contains four shots and three direct cuts.
+The first cut moves from the old man raising his head in side profile to the enormous ship shadow seen from behind him.
+The second cut moves from the old man continuing to row into the low water-level wide shot, revealing the height of the bow.
+The third cut moves to a farther, slightly elevated extreme-wide shot, revealing the total length of the pirate ship and the surrounding ocean.
+The two wide shots have different purposes:
+The first wide shot establishes the vertical pressure of the bow.
+The second wide shot reveals the full vessel and the final scale relationship between the ship, the ocean, and the rowboat.
+Do not insert close-ups of skulls, cannons, eyes, rigging hardware, or pirate crew.
+[Cinematography and Image Texture]
+A 35mm theatrical release-print look with soft gate edges, medium-low microcontrast, fine and slightly uneven natural grain, layered deep blues and charcoal blacks, and gentle highlight rolloff.
+Fog and slight condensation along the edge of the lens are the only dominant image imperfections. Do not simultaneously add rain, dust, smoke, sparks, or strong lens flares.
+The camera retains small amounts of ocean movement and inertia while keeping the horizon generally stable.
+Close shots use restrained depth of field. Distant contrast decreases naturally through atmospheric perspective.
+The pirate ship must not appear unnaturally sharp inside the fog, but the entire image must not be covered by a uniform blur filter.
+[Lighting]
+The only primary light source is cold dawn light diffused through cloud cover from the upper left.
+A faint silver-blue edge light touches the left side of the old man’s face, wet hair, wooden oars, and gunwale.
+The side of the pirate ship facing the light reveals low-contrast cold-gray structure. The backlit side falls toward deep blue-black while preserving readable timber layers.
+Do not use moonbeams, torchlight, ghostly green illumination, magical glow, lightning, or warm sunset light.
+[Sound]
+No dialogue, narration, or musical score.
+The soundscape consists of wooden oars entering the sea, low water displacement, friction from the oarlocks, creaking rowboat planks, the old man’s controlled but strained breathing, wind softened by fog, one distant bronze ship-bell note, the deep groan of the enormous wooden hull under wave pressure, rigging tightening, and black sails filling slowly with wind.
+The bell and timber groan are heard before the pirate ship appears in Shot One.
+Low wooden resonance expands when the ship is revealed in Shot Two.
+In the final two wide shots, ocean waves, wind, and large areas of silence again dominate the soundscape.
+[Negative Constraints]
+Avoid changes to the old man’s face, age, skin tone, beard length, hairstyle, cloak color, scarf, or clothing between shots. Do not make him suddenly younger.
+Avoid modern clothing, armor, aristocratic costume, stereotypical pirate clothing, modern life jackets, plastic, zippers, modern shoes, wristwatches, firearms, or electronic equipment.
+Avoid incorrect anatomy, distorted body proportions, extra arms, extra fingers, changing numbers of oars, hands passing through oar handles, rigid rowing, mechanical looping movements, sliding feet, exaggerated screaming, an open-mouthed expression of terror, theatrical fear, heroic posing, empty eyes, or frozen eyes.
+Avoid changes to the rowboat’s dimensions, color, design, or material. Do not transform the boat into a modern lifeboat, fishing vessel, sailboat, or plastic boat.
+Avoid weightless floating, sudden sideways movement, violent bouncing, capsizing, flooding, breaking apart, or colliding with the pirate ship.
+Avoid changes to the pirate ship’s design, length, hull shape, bow, stern, or color. Maintain exactly three main masts. Do not allow masts to appear or disappear.
+Avoid changing the black sails’ color, melting canvas, incoherent rigging, swapped bow and stern, moving gunports, shipping containers, steam engines, modern motors, steel superstructures, or electric lights.
+Avoid a cartoon pirate ship, theme-park attraction, miniature model, plastic wood grain, glowing ghost ship, transparent hull, skeleton crew, ghosts, zombies, sea monsters, tentacles, flying ships, magic, green ghost flames, burning sails, cannon battles, explosions, or lightning.
+Avoid fog disappearing suddenly between cuts or changing color. Do not make the fog behave like fast-moving smoke. The pirate ship must not deform as fog passes over it.
+Avoid tsunami waves, vertical walls of water, gelatinous water, fabric-like water, smoke-like water, changing wave direction, sudden daylight changes, warm sunset colors, or night.
+Avoid fast editing, additional shots, location changes, time jumps, flash transitions, dissolves, morphing transitions, camera teleportation, high-speed drone dives, rotating around the ship, sudden zooms, dolly zooms, slow motion, or speed ramping.
+Avoid video-game cutscenes, fantasy concept art, pirate-themed advertising, uniform sharpness across the entire frame, excessive sharpening, excessive skin smoothing, oversaturation, commercial teal-and-orange grading, neon, lasers, decorative light beams, excessive lens flare, text, subtitles, brand logos, and modern watermarks.
+Allow the simple skull-and-crossbones pirate flag at the top of the highest mast, but do not place any readable text on the flag.
+```
+
+</details>
+
 <details><summary><b>Black Suit Studio Portrait</b></summary>
 
 ```text
 A crisp, minimalist studio portrait of an individual dressed in classic formal attire.
 
 Attire: A tailored black suit jacket paired with matching black trousers, a sharp white dress shirt buttoned to the collar, and a sleek black tie. Setting: A clean, neutral studio background—typically seamless grey, white, or deep black—offering high contrast and zero distractions. Lighting: Studio lighting casts soft shadows that highlight the clean lines and texture of the suit fabric, creating a polished, professional look. Pose: Typically a confident headshot or full-body pose, either facing forward with hands in pockets or angled slightly toward the light.
+```
+
+</details>
+
+<details><summary><b>Black-and-White Manga Ink Sketch Daydreamer Portrait</b></summary>
+
+```text
+{
+  "aspect_ratio": "9:16",
+  "style": "Black and white manga ink sketch, detailed hand-drawn illustration",
+
+  "prompt": "A beautiful young anime woman with large expressive eyes, long eyelashes, full lips and a dreamy sideways gaze. Extremely voluminous messy black hair tied in a loose high bun, with wispy bangs and wild flowing flyaway strands. Her head is slightly tilted, resting gently on one hand, with naturally curved fingers supporting her cheek. She wears an oversized black sweater with loose sleeves and detailed fabric folds. Medium close-up portrait, head and upper torso visible, centered composition. Intricate black ink linework, fine cross-hatching, delicate pencil shading on the face, dense black hair strokes with white highlights, expressive sketchy outlines. Pure white paper background with a tiny hand-drawn heart doodle in the upper right corner. Strong black and white contrast, authentic manga illustration, elegant, dreamy and playful.",
+
+  "negative_prompt": "Color, 3D, photorealism, watercolor, extra fingers, distorted face, messy background, text, watermark, blurry details"
+}
 ```
 
 </details>
@@ -2875,6 +3132,14 @@ Attire: A tailored black suit jacket paired with matching black trousers, a shar
     "readable text", "logos", "watermark"
   ]
 }
+```
+
+</details>
+
+<details><summary><b>Blue Stepped Alley in Chefchaouen with Two Cats at Sunrise</b></summary>
+
+```text
+A blue-washed stepped alley in a Moroccan mountain town at sunrise, with bright blue stone stairs, terracotta pots of red geraniums, a large arched wooden door studded with iron nails, and two cats resting on the steps, wide landscape 16:9. Wide blue stairs rise from the bottom center of the frame toward the back of the alley, lined on both sides with terracotta pots of red geraniums. A ginger tabby cat sits in the middle of the stairs facing the camera, and a white cat lies curled up asleep on a lower step at the left beside a geranium pot. On the right, a dark wooden door with rows of iron studs sits in a deep blue arch, with a big terracotta pot of red geraniums beside it at the bottom right. A blue house with a small blue window and an iron wall lantern stands at the upper left, and a green vine climbs the right wall. Low golden sunrise light warms the sandy rooftops, chimneys, and upper walls under a pale clear sky, while the lower stairs rest in cool blue shade. Low camera at the bottom of the stairs, photoreal travel photography, peaceful, charming morning mood. No people, no text, no logos.
 ```
 
 </details>
@@ -3831,6 +4096,58 @@ Candid street photo in Tehran, 2026, golden hour, shallow depth of field, crowd 
 
 </details>
 
+<details><summary><b>Cappadocia Hot Air Balloons at Sunrise (Image-to-Video)</b></summary>
+
+```text
+Start from the step 2 image "Colorful Hot Air Balloons Rising Over Cappadocia Fairy Chimneys at Sunrise" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the fairy chimneys, rock pinnacles, balloon colors and layout, valley mist, warm right-side sunrise light, and style exactly as in the image. The camera makes a slow, smooth forward drift with a slight upward tilt, as if rising gently with the scene. The balloons rise slowly at slightly different speeds, the mist slides softly through the valley gaps, and near rocks show a soft parallax against the farther balloons. Natural, realistic motion, no people, no crowds, no cuts, no text, no logos. Soft morning ambience, distant quiet air, faint breeze.
+```
+
+</details>
+
+<details><summary><b>Cappadocia Hot Air Balloons Sunrise Scene Brief Builder</b></summary>
+
+```text
+Act as a cinematic landscape scene designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of dozens of colorful hot-air balloons rising over the fairy chimneys and rock pinnacles of Göreme in Cappadocia at golden sunrise: soft valley mist, warm side light on the stone, and a calm wide sky filling with balloons. The shot will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move or change naturally (a slow forward camera drift with a slight upward tilt, balloons gently rising at different rates, mist sliding through the valley, soft parallax between near rock and far balloons) while keeping the composition calm, balanced, readable, and easy to animate.
+
+My starting idea: ${idea:a quiet Cappadocia sunrise just as the first balloons clear the fairy chimneys, valley still soft with mist}
+
+My starting choices:
+- Place: ${place:Göreme valley, Cappadocia — fairy chimneys and rock pinnacles in the mid-ground, open sky above}
+- Balloons: ${balloons:dozens of colorful hot-air balloons at staggered heights, mixed stripes and solid colors, some just clearing the rock tops, others higher}
+- Rocks: ${rocks:cluster of fairy chimneys and eroded rock pinnacles in warm sandstone tones across the mid-ground}
+- Mist: ${mist:soft low valley mist between the rocks, thinning toward the sun}
+- Light: ${light:warm golden sunrise side light from the right, long soft shadows on the stone}
+- Sky: ${sky:clear pale gold near the horizon shifting to soft blue higher up}
+- Visual style: ${style:photoreal travel landscape photography, natural rich colors, wide 16:9}
+- Mood words: ${mood:wonder, calm, golden, airy, timeless}
+
+First ask me, in one short message, for anything missing: camera height and angle (low in the valley looking up, mid-slope looking across, or high overlook looking down), how much of the frame the rocks versus sky should take, roughly how many balloons and whether any sit lower than the rock tops, how thick the mist should be, how strong the sunrise sidelight should be, whether the camera should drift forward, tilt up, or both in the video, where the move should end, and anything to avoid (crowds, cars, modern buildings, power lines, readable balloon logos or text, brand names, or copying a specific famous photograph).
+
+Then produce the brief with these sections:
+
+1. **Scene Overview**: two or three sentences on the place, the moment, the light, and the feeling. Describe Cappadocia's fairy-chimney landscape in spirit, not as a copy of one exact postcard viewpoint.
+
+2. **Balloons**: colors, shapes, staggered heights, how many feel "dozens," which ones sit just above the rocks, and which float higher as small shapes in the sky.
+
+3. **Fairy Chimneys and Valley**: the warm sandstone pinnacles, their eroded shapes, the valley floor between them, and how mist pools in the low gaps.
+
+4. **Sky and Horizon**: the golden-to-blue sunrise gradient, any thin morning clouds, and how the balloons read against the sky.
+
+5. **Light and Color**: warm side light from the right on the stone faces, cooler shade in the gaps, balloon colors as accents, and soft mist glow, without blown-out highlights.
+
+6. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (camera position, rock cluster placement, balloon color layout, mist bands, light direction, framing, no crowds, no readable logos).
+
+7. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the camera drifting slowly forward with a slight upward tilt, balloons rising gently at slightly different speeds, mist sliding through the valley, and soft parallax between near rocks and far balloons. Keep total motion subtle and physically plausible.
+
+8. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with colorful hot-air balloons and fairy chimneys in the first sentence, ending with: no people, no text, no logos.
+
+9. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes a calm ~6-second move (slow forward drift and slight upward tilt), balloons gently rising, mist sliding, soft parallax, and says to keep rocks, balloon colors, light, and framing exactly as in the image with no crowds and no readable text.
+
+Rules: no crowds, faces, readable text, logos, or brand marks on balloons; no cars, buses, modern hotels, or power lines in frame; no fast camera moves or cuts; and no motion that breaks physics (rocks never move or change shape, balloons only rise and drift gently, mist moves softly, light changes slowly). Use short paragraphs and lists.
+```
+
+</details>
+
 <details><summary><b>Car Interior Portrait</b></summary>
 
 ```text
@@ -4014,6 +4331,62 @@ A charcoal drawing of a jazz trio playing in a smoky club, landscape 4:3, on war
 
 ```text
 Charcoal and graphite drawing on textured paper, Iranian woman in her early thirties, heavy shading, visible smudges. The whole emotion is in the brows: inner ends pulled up and together, eyes soft, wet, slightly narrowed with tenderness — the maternal "elahi bemiram" look. Below the drawing, a rough hand-sketched border box with smudged handwritten pencil script: "الهی بمیرم".
+```
+
+</details>
+
+<details><summary><b>Chefchaouen Blue Alley Sunrise Scene Brief Builder</b></summary>
+
+```text
+Act as a cinematic travel scene designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of a blue-washed stepped alley in a Moroccan mountain town like Chefchaouen at sunrise: bright blue walls and stone stairs climbing away from the camera, terracotta pots of red geraniums along the steps, a large arched wooden door studded with iron nails, and two street cats resting on the stairs, with the first golden sunlight touching the rooftops. The shot will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move or change naturally (a slow camera move up the stairs, a cat turning its head or flicking its tail, geranium leaves stirring in a light breeze, sunlight slowly warming the upper walls) while keeping the composition calm, balanced, readable, and easy to animate.
+
+My starting idea: ${idea:a quiet early morning in a blue mountain town alley, before anyone is awake, with two cats enjoying the first sun on the steps}
+
+My starting choices:
+- Alley and stairs: ${stairs:wide blue stone stairs rising from the bottom center of the frame toward the back of the alley, with low blue walls on the left}
+- Walls and houses: ${walls:blue-washed walls on both sides, a blue house with a small blue window and an iron wall lantern at the upper left, sandy-colored rooftops and chimneys at the top}
+- Door: ${door:a large arched dark wooden door studded with iron nails, set in a deep blue arch on the right}
+- Flowers: ${flowers:terracotta pots with red geraniums on both sides of the stairs, and a big pot of geraniums beside the door at the bottom right}
+- Cats: ${cats:a ginger tabby cat sitting in the middle of the stairs facing the camera, and a white cat curled up asleep on a lower step at the left}
+- Plants: ${plants:a climbing green vine on the right wall above the stairs}
+- Sky and sun: ${sky:a pale clear morning sky, low sunrise light hitting only the rooftops and upper walls}
+- Light: ${light:warm golden light above, cool blue shade on the lower stairs}
+- Visual style: ${style:photoreal travel photography, natural but rich colors, low camera at the bottom of the stairs}
+- Mood words: ${mood:peaceful, sleepy, charming, fresh, timeless}
+
+First ask me, in one short message, for anything missing: the camera height and position (at the bottom of the stairs, on a step, or looking down from above), how much of the frame the stairs, door, and walls should take, how many cats I want and where they sit or lie, how many flower pots and on which side, how strong the sunrise light should be, whether the camera should push up the stairs or stay still in the video, where the camera move should end, and anything to avoid (people, faces, text, shop signs, logos, brand names, laundry with prints, trash, or copying a specific real street, photograph, or named house).
+
+Then produce the brief with these sections:
+
+1. **Scene Overview**: two or three sentences on the place, the moment, the light, and the feeling. Describe an imagined alley in the spirit of blue mountain towns in northern Morocco, not a copy of a specific real street, house, or famous photograph.
+
+2. **Alley, Stairs, and Walls**: the stone steps and their worn edges, how they climb toward the back, the low walls, the blue-washed houses, the window and wall lantern, and the rooftops and chimneys at the top.
+
+3. **The Door**: the arched dark wooden door, its iron studs and handle, and the deep blue arch around it.
+
+4. **Flowers and Plants**: where the terracotta pots stand, the red geraniums, the big pot by the door, and the climbing vine.
+
+5. **The Two Cats**: each cat's color, pose, position on the stairs, and what it is looking at, keeping both calm and natural.
+
+6. **Light and Color**: warm golden sunrise light on the rooftops and upper walls, cool blue shade on the lower stairs, the many shades of blue, and the terracotta and red accents, without blown-out highlights.
+
+7. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (camera position, stairs from bottom center, door on the right, lantern upper left, pot positions, ginger cat mid-stairs, white cat on the lower left step, rooftops at the top, light direction, framing).
+
+8. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the camera move up the stairs, the ginger cat turning its head slightly, the white cat breathing while it sleeps, geranium leaves stirring, and the sunlight slowly warming. Keep total motion subtle and physically plausible.
+
+9. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the blue stepped alley, the red geraniums in terracotta pots, the arched studded door, and the two cats on the stairs at sunrise in the first sentence, ending with: no people, no text, no logos.
+
+10. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes a slow, smooth camera push-in for about 6 seconds up the blue stairs toward the back of the alley, the ginger cat staying seated and turning its head slightly, the white cat staying curled asleep, the door and geraniums on the right drifting out past the frame edge as the camera moves forward, and says to keep the walls, stairs, door, cats, and colors exactly as in the image with no people.
+
+Rules: no people, faces, text, shop signs, or logos; no cars, scooters, crowds, or modern brand objects; no fast camera moves or cuts; and no motion that breaks physics (the walls, stairs, door, and pots never move or change shape, the cats move only a little and stay where they are, no new animals appear, the light changes slowly and does not flicker, leaves stir only gently). Use short paragraphs and lists.
+```
+
+</details>
+
+<details><summary><b>Chefchaouen Blue Alley with Two Cats (Image-to-Video)</b></summary>
+
+```text
+Start from the step 2 image "Blue Stepped Alley in Chefchaouen with Two Cats at Sunrise" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the blue-washed walls, the blue stone stairs, the terracotta pots of red geraniums, the arched studded wooden door on the right, the wall lantern at the upper left, the sunlit rooftops, the colors, and the style exactly as in the image. The camera makes a slow, smooth push-in up the stairs toward the back of the alley. The ginger tabby cat stays sitting in the middle of the stairs and turns its head slightly, and the white cat stays curled asleep on the lower left step. As the camera moves forward, the door and the geranium pot on the right drift out past the edge of the frame. Golden sunrise light stays warm on the upper walls and rooftops, and the geranium leaves stir gently in a light breeze. Natural, realistic motion, no people, no cuts, no text. Soft sound of a quiet morning, distant birdsong, and a light breeze.
 ```
 
 </details>
@@ -5055,6 +5428,14 @@ Act as a professional designer and photographer with high visual intelligence. Y
 
 </details>
 
+<details><summary><b>Colorful Hot Air Balloons Over Cappadocia at Sunrise</b></summary>
+
+```text
+Dozens of colorful hot-air balloons rising over Cappadocia fairy chimneys and rock pinnacles at golden sunrise, with soft valley mist and warm side light, wide landscape 16:9. The warm sandstone fairy chimneys and eroded pinnacles fill the mid-ground across the frame; soft mist pools in the valley gaps between them. Many striped and solid-colored balloons float at staggered heights — some just clearing the rock tops, others higher as smaller shapes in the pale gold-to-blue sky. Warm sunrise light comes from the right, lighting the stone faces and catching the balloon envelopes; long soft shadows fall to the left. Photoreal travel landscape photography, calm, airy, wonder-filled morning mood. No people, no crowds, no text, no logos, no watermarks.
+```
+
+</details>
+
 <details><summary><b>Colorful Studio Photo Collage</b></summary>
 
 ```text
@@ -5650,921 +6031,6 @@ Subject: Cozy bedroom ASMR, Motion: Slow, gentle hand movements tracing textures
 
 ```text
 Create an image of a cozy wooden cabin nestled in a misty forest during heavy rain. Warm orange firelight glows softly through a frosted window. Dark pine trees frame the scene. Rain streaks down the window glass. Soft distant lightning briefly illuminates the wet trees. The camera slowly pushes toward the cabin window. Professional color grading. 24fps. Highly detailed. Premium quality.
-```
-
-</details>
-
-<details><summary><b>Cozy Christmas Smile</b></summary>
-
-```text
-Use the uploaded photo of the person as the main subject.
-Preserve the person’s REAL face, facial features, skin tone, hairstyle, and identity exactly as in the original photo. Do not change age or facial structure.
-
-Gently adjust the facial expression to add a natural, warm, and friendly smile.
-The smile should look realistic and subtle, not exaggerated or forced.
-No change to facial proportions.
-
-Outfit:
-• A cozy knitted Christmas sweater with a classic reindeer (deer) pattern
-• A bright red Santa hat with white fur trim and pom-pom
-• Clothing should look naturally worn and well-fitted
-
-Scene & Atmosphere:
-• Warm, cozy New Year indoor atmosphere
-• Soft golden ambient lighting
-• Background may include:
-  – A softly blurred Christmas tree
-  – Warm fairy lights with gentle bokeh
-  – Minimal holiday decorations
-• Background slightly out of focus
-
-Mood & Style:
-• Cheerful, friendly, joyful New Year vibe
-• Feels candid and spontaneous, not staged
-• Festive but realistic
-
-Camera & Quality:
-• Keep the original camera angle and framing as much as possible
-• Shallow depth of field
-• High-resolution, photorealistic
-• Natural skin texture and realistic fabric details
-
-Do NOT add:
-• Text, logos, or watermarks
-• Exaggerated facial expressions
-• Cartoon or stylized effects
-• Face distortion or identity changes
-
-The final image should feel like a fun, warm New Year moment captured naturally, perfect for social media or personal sharing.
-```
-
-</details>
-
-<details><summary><b>Cozy Couch Lamp Close-up</b></summary>
-
-```text
-{
-  "category": "COZY_COUCH_LAMP_CLOSEUP",
-  "subject": {
-    "demographics": "Adult woman, 21-27, Turkish-looking.",
-    "hair": {
-      "color": "Dark brown",
-      "style": "Messy bun with face-framing tendrils",
-      "texture": "Visible strands, natural frizz",
-      "movement": "Loose strands fall near cheeks"
-    },
-    "face": {
-      "eyes": "Soft eye contact, warm catchlights",
-      "makeup": "Minimal, dewy, natural",
-      "skin_details": "Pores, natural texture, no smoothing"
-    },
-    "clothing": {
-      "outfit": "Casual cozy knit sweater (no text)",
-      "texture": "Knit weave visible, realistic folds"
-    },
-    "accessories": {
-      "jewelry": ["Small silver hoops"]
-    }
-  },
-  "pose": {
-    "type": "Close-up candid",
-    "orientation": "Slightly above angle, relaxed",
-    "hands": "One hand holding mug near chin (fingers correct)",
-    "gaze": "Gentle eye contact",
-    "expression": "Soft smile, cozy"
-  },
-  "setting": {
-    "environment": "Living room couch corner",
-    "background_elements": [
-      "Warm orange lamp glow behind",
-      "Blanket texture visible",
-      "Slight lived-in clutter blurred"
-    ],
-    "depth": "Face sharp, lamp bloom behind, soft background"
-  },
-  "camera": {
-    "shot_type": "Close-up portrait",
-    "angle": "Slightly above eye level",
-    "focal_length_equivalent": "26mm phone or 50mm pro",
-    "framing": "4:5, face dominant",
-    "focus": "Eyes sharp"
-  },
-  "lighting": {
-    "source": "Warm tungsten lamp + faint ambient",
-    "direction": "Side/front warm",
-    "highlights": "Soft glow on cheeks and hair",
-    "shadows": "Gentle, comforting"
-  },
-  "mood_and_expression": {
-    "tone": "Relaxed, intimate, relatable",
-    "expression": "Soft smile",
-    "atmosphere": "Warm, tactile, homey"
-  },
-  "style_and_realism": {
-    "style": "Photorealistic iPhone-candid vibe",
-    "imperfections": "Mild grain, slightly imperfect WB"
-  },
-  "technical_details": {
-    "aspect_ratio": "4:5",
-    "noise": "Mild phone sensor grain",
-    "motion_blur": "None on face"
-  },
-  "constraints": {
-    "adult_only": true,
-    "no_text": true,
-    "no_logos": true,
-    "no_watermarks": true
-  },
-  "negative_prompt": [
-    "plastic skin", "over-smoothing",
-    "extra fingers", "warped mug",
-    "readable text", "logo", "watermark"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>Cozy Cyber Gamer Girl Portrait</b></summary>
-
-```text
-Composition & Camera Angle:** Close-up selfie-style portrait, framed from the chest up, 3:4 aspect ratio. The camera is positioned close to the face at eye level, creating the authentic look of an iPhone 16 Pro Max selfie.
-Pose & Expression: The girl gently tilts her head to the side, resting her cheek softly on her left hand with the oversized sweater sleeve covering part of her palm. One shoulder is slightly exposed. Her eyes are closed, and her lips form a soft playful pout with no teeth visible. The expression is relaxed, sweet, effortless, and subtly flirty.
-Facial Features & Hair: Preserve the exact facial features without changing identity. , straight, healthy hair with a clean middle part, naturally falling over the shoulders with highly realistic strands.
-Makeup: Flawless Clean Girl makeup with Soft Glam touches — smooth even skin, fluffy defined lashes, neatly styled brows, a soft natural blush, and full glossy lips in a natural pink shade.
-Clothing & Accessories: Cozy oversized knitted sweater in a creamy milk color with a rich textured knit. The main accent is large white over-ear gaming headphones with vibrant RGB lighting (green, blue, and purple gradient). The microphone tip glows with a soft blue light.
-Nails: Long square-shaped milky nails.
-Lighting: Low-light photography. Soft frontal illumination resembling monitor screen light, creating delicate highlights on the skin and glossy lips. Colored neon reflections from the headphones subtly illuminate the face and hair.
-Background & Atmosphere: A dark room with a heavily blurred background (deep bokeh), featuring a soft purple neon fairy light. Cozy cyber aesthetic, Y2K vibe, relaxed late-night gamer girl mood.
-Quality: Hyper-realistic, cinematic lighting, 8K, ultra-detailed skin pores, realistic hair, and highly detailed knitted fabric texture.
-```
-
-</details>
-
-<details><summary><b>Cozy Home Scene with Natural Light</b></summary>
-
-```text
-Imagine a setting in a cozy home environment. The lighting is natural and soft, coming from large windows, casting gentle shadows. Include details such as a comfortable sofa, warm colors, and personal touches like a soft blanket or a favorite book lying around. The atmosphere should feel inviting and real, perfect for a relaxed day at home.
-```
-
-</details>
-
-<details><summary><b>Cozy Minimalist Kitchen Portrait</b></summary>
-
-```text
-Hyper-realistic medium shot of a young woman standing in a modern minimalist kitchen.
-
-Pose: She is standing, casually leaning against a gray kitchen countertop. Her right hand rests naturally on the surface, and her body is slightly turned to the left while she looks directly into the camera. The pose is relaxed, confident, and welcoming.
-
-Clothing: She is wearing a white oversized sweatshirt with voluminous lantern sleeves and long cuffs. The sweatshirt is tucked into light blue high-waisted jeans that fit her hips and have a straight-leg cut.
-
-Hair: Smooth, straight hair worn down, falling naturally.
-
-Makeup: Natural “no-makeup” makeup with softly defined eyes, nude lipstick, and radiant skin.
-
-Mood: Cozy, calm, effortless, and warm. She has a gentle half-smile.
-
-Background: A modern kitchen with light gray matte cabinets. On the countertop to her left is a white textured ribbed vase holding a single white rose and dried gypsophila branches.
-
-Lighting: Soft natural daylight, as if coming from a large window. Diffused light creates gentle shadows and highlights the texture of the clothing and skin.
-
-Camera angle: Eye-level, medium shot framed from the knees or thighs to the top of the head. Balanced composition with the subject centered.
-
-Do not change the facial features. 3:4 vertical. Photorealistic, ultra-detailed 8K, shot on iPhone 16 Pro.
-```
-
-</details>
-
-<details><summary><b>Cozy Siamese Cat Portrait</b></summary>
-
-```text
-A detailed, intimate close-up portrait of a young woman gently holding and kissing a Siamese cat.
-The woman’s defining feature is her incredibly voluminous, fluffy, naturally curly hair, framing her face like a soft cloud with rich texture and a slightly wild elegance.
-She is seated, cradling a Siamese cat in her arms. Her right hand softly supports the cat’s face, showcasing long square-shaped nails with a glossy white manicure. Her lips are pursed in a gentle kiss (duck face), almost touching the top of the cat’s head.
-Camera angle: close-up portrait from a slightly low angle, emphasizing the tenderness and intimacy of the moment.
-Her eyes are softly squinted, with a dreamy, relaxed, and content expression.
-She wears a simple black spaghetti-strap top.
-Makeup is minimalistic in the clean girl style: fresh skin, subtle eye definition, natural brows, and nude lips.
-The cat is a classic Siamese with seal-point coloring: dark face, ears, and paws. It sits comfortably in her arms, its head nestled between her hand and face. Its eyes are half-closed with a calm, sleepy, slightly indifferent expression while looking directly into the camera.
-Lighting: soft natural daylight coming from the side through a nearby window, creating delicate shadows and beautifully highlighting the texture of her curls and the cat’s fur.
-Background: a clean, neutral white interior with part of a white window frame and windowsill visible on the left.
-Mood: warm, cozy, affectionate, and intimate. Preserve the exact facial features and identity without alteration.
-Ultra-realistic, highly detailed 8K photography, shot on iPhone 16 Pro, 3:4 aspect ratio.
-```
-
-</details>
-
-<details><summary><b>Cozy Sofa Portrait</b></summary>
-
-```text
-Prompt:
-An ultra-realistic mobile photograph taken with an iPhone 17 Pro Max, RAW capture, vertical 9:16 format, with a completely authentic look, like a spontaneous shot taken by a real person, same sensitivity. Without any signs of AI generation, no CGI, no anime, no 3D render, no illustration, no exaggerated filters.
-Keep exactly the same photographic angle, an almost full-body shot captured from a front perspective at chest height, with a slight three-quarter orientation. Preserve exactly the same composition and the same pose: the woman is sitting on an upholstered sofa, with one leg bent on the seat and the other relaxing down to the floor. The torso remains upright and slightly turned to one side. One arm gently crosses the body holding the opposite forearm, while the other hand rests relaxed on the leg. The head is tilted to one side with the gaze directed out of frame, conveying a calm, introspective, and natural expression.
-Maintain the same visual style, inspired by an intimate and elegant lifestyle editorial shoot. The scene takes place in a modern and cozy living room with a fabric sofa, neutral cushions, wooden floor, and a large decorative mirror on the wall, with minimalist and warm decor.
-Keep the same outfit: ribbed crop top with a high halter neck, tight jeans with large rips on the knees and frayed hems. The model remains completely barefoot. The clothing features natural folds, authentic texture, and a completely realistic fit. Do not specify the color or length of the hair.
-The lighting comes from a large side window, generating soft natural light that delicately shapes the face and body, with subtle shadows and a warm, relaxed atmosphere. The skin features hyper-realistic texture with visible pores, slight natural tone variations, and authentic anatomical details. The fabric of the top, the worn denim of the jeans, the sofa upholstery, and the wooden floor show highly detailed and completely natural textures.
-Shallow depth of field with the model perfectly in focus and the background softly blurred with natural bokeh. Balanced composition, contemporary editorial aesthetic, and a sense of spontaneity typical of a photograph taken during an everyday moment.
-High-end editorial photography with a completely real appearance, high dynamic range, exceptional sharpness, perfectly balanced exposure, and a result totally indistinguishable from a photograph captured with an iPhone 17 Pro Max. No digital artifacts, no AI look, and a completely authentic photographic finish.
-stylized and proportioned figure, semi curvy, hourglass,    
-9:16 format
-```
-
-</details>
-
-<details><summary><b>Craftsman with Newspaper Paper Figures</b></summary>
-
-```text
-A cinematic, warm-toned close-up photograph of a craftsman working at a wooden desk in the evening. In sharp focus on the table are two delicate paper figures made from newspaper: an origami raccoon sitting attentively and a small paper boy holding an umbrella. The man’s hand gently holds and positions the paper doll, while his face appears softly blurred in the background, showing deep concentration. A single desk lamp casts dramatic, golden light from above, creating long shadows and highlighting the fine paper textures. Shallow depth of field, soft bokeh background, realistic photography style, intimate and whimsical atmosphere, storytelling composition, high contrast lighting, handcrafted aesthetic.
-```
-
-</details>
-
-<details><summary><b>Creative Booklet Cover Design Program</b></summary>
-
-```text
-Create a professional program to create a booklet cover in different colors with the possibility of adding images to complement the painting that contribute to attracting the reader's attention distributed in a superior format with the choice of type, colors and Font Format for the product name ""brief summary 60 words* ""author ""and serial number" * conjure the attached design to simulate a more creative design with the possibility of entering data above
-```
-
-</details>
-
-<details><summary><b>Creative Image Generation for Digital Art</b></summary>
-
-```text
-Act as a creative digital artist. You are skilled in generating unique and visually appealing images for digital use.
-
-Your task is to:
-- Create original and imaginative images that capture attention
-- Focus on artistic style, color harmony, and visual storytelling
-- Ensure images are suitable for digital platforms and social media
-
-You will:
-- Use vibrant colors and innovative designs
-- Adapt styles based on provided themes or prompts
-- Maintain high resolution and quality standards
-
-Rules:
-- Avoid using copyrighted elements
-- Ensure all images are appropriate for a general audience
-```
-
-</details>
-
-<details><summary><b>Crewelwork Embroidery of a Sleeping Fox</b></summary>
-
-```text
-A hand-embroidered crewelwork panel of a red fox curled up asleep, stitched on natural cream linen and stretched in a round light wooden embroidery hoop with a brass tightening screw at the top. The fox lies in the center with its eyes closed and its bushy tail wrapped around its body, its fur worked in long-and-short stitch in rust, copper, cream, and dark brown wool so the raised threads follow the direction of the fur. Around it, a wreath of woodland plants: satin-stitch bluebells arching over the upper left, clusters of pale blue French-knot forget-me-nots scattered across the top and sides, sage-green fern fronds in fishbone and stem stitch on both sides, and two pairs of textured acorns with oak leaves along the bottom. Soft even daylight shows the thread texture and slight shine of the wool. Top-down photo, the hoop centered in the frame with plain linen fabric visible around it, wide landscape 16:9. Cozy, handmade, storybook mood. No text, no hands, no needles.
-```
-
-</details>
-
-<details><summary><b>Crimson Waltz in the Rain</b></summary>
-
-```text
-{
-  "title": "Crimson Waltz in the Rain",
-  "description": "A visually stunning, cinematic moment of a woman finding joy in solitude, dancing on a rain-slicked European street at twilight.",
-  "prompt": "You will perform an image edit creating an Ultra-Photorealistic masterpiece. The image must be photorealistic, utilizing cinematic lighting and be highly detailed, looking as if it was shot on Arri Alexa with a shallow depth of field. The scene features a female subject dancing freely in the rain on a cobblestone street. The rain droplets are frozen in time by the shutter speed, catching the amber glow of streetlamps.",
-  "details": {
-    "year": "Timeless Modern",
-    "genre": "Cinematic Photorealism",
-    "location": "A narrow, empty cobblestone street in Paris at dusk, wet with rain, reflecting the warm glow of vintage streetlamps and shop windows.",
-    "lighting": [
-      "Cinematic rim lighting",
-      "Warm amber streetlights",
-      "Soft blue ambient twilight",
-      "Volumetric fog"
-    ],
-    "camera_angle": "Eye-level medium shot, emphasizing the subject's movement against the bokeh background.",
-    "emotion": [
-      "Liberated",
-      "Joyful",
-      "Serene"
-    ],
-    "color_palette": [
-      "Deep obsidian",
-      "Amber gold",
-      "Rainy blue",
-      "Vibrant crimson"
-    ],
-    "atmosphere": [
-      "Romantic",
-      "Melancholic yet joyful",
-      "Atmospheric",
-      "Wet"
-    ],
-    "environmental_elements": "Rain falling diagonally, puddles reflecting lights on the ground, mist swirling around ankles.",
-    "subject1": {
-      "costume": "red hat",
-      "subject_expression": "Eyes closed in pure bliss, a soft smile on her lips, raindrops on her cheeks.",
-      "subject_action": "dancing"
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "bright daylight",
-        "dry pavement",
-        "crowds",
-        "vehicles",
-        "sunglasses"
-      ],
-      "exclude_styles": [
-        "cartoon",
-        "3D render",
-        "illustration",
-        "oil painting",
-        "sketch"
-      ],
-      "exclude_colors": [
-        "neon green",
-        "hot pink"
-      ],
-      "exclude_objects": [
-        "umbrellas",
-        "modern cars",
-        "trash cans"
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Cultural Superhero Movie Poster</b></summary>
-
-```text
-Create an ultra-realistic, high-budget cinematic movie poster of ${superhero_name}, reimagined as if the character originated from ${country_or_culture}.
-
-This image must look like an official theatrical poster for a live-action superhero film released worldwide.
-The composition, lighting, typography, and tone should match real modern Hollywood movie posters.
-
-FORMAT:
-Aspect ratio: 9:16 (vertical theatrical poster).
-
-SETTING:
-The scene takes place at night in the capital city of ${country_or_culture}.
-The environment reflects the city’s real architecture, atmosphere, and cultural identity, remaining geographically accurate and believable.
-
-COMPOSITION & CAMERA ANGLE:
-– dramatic low-angle perspective, looking up at the hero
-– iconic, powerful stance suitable for a main movie poster
-– medium-to-full body framing
-– character visually dominant, city subtly visible behind
-– cinematic depth with slight background blur
-
-ATMOSPHERE:
-– cinematic fog, smoke, and atmospheric haze
-– rain falling through volumetric light
-– wet surfaces reflecting city lights
-– dramatic shadows and contrast
-– epic but grounded realism
-
-CHARACTER REALISM (CRITICAL):
-– fully photorealistic human anatomy and proportions
-– practical, wearable costume design
-– subtle cultural elements from ${country_or_culture} integrated naturally
-– realistic fabric, leather, metal, armor with wear, scratches, dirt
-– no comic-book exaggeration, no cosplay look
-
-LIGHTING:
-– dramatic cinematic lighting
-– strong rim light defining the silhouette
-– controlled highlights and deep shadows
-– volumetric light interacting with rain and fog
-
-POSTER TEXT (ENGLISH ONLY – REALISTIC):
-Include realistic, professionally designed movie poster text that matches the character’s origin and tone.
-
-Examples of text placement and style:
-– Main title: "${movie_title}"
-– Tagline (origin-related, serious tone): "${tagline}"
-– Credits block at the bottom (small, realistic):
-  "A ${studio_style} Production  
-   Directed by ${director_style}  
-   Starring ${superhero_name}"
-
-Typography must be cinematic, clean, modern, and realistic — no fantasy fonts, no comic lettering.
-
-STYLE & FINISH:
-Ultra-photorealistic live-action realism
-Cinematic color grading
-High dynamic range (HDR)
-Premium poster polish
-Sharp subject, controlled depth
-
-NEGATIVE CONSTRAINTS:
-No cartoon
-No anime
-No illustration
-No comic-book art style
-No exaggerated colors
-No unrealistic fantasy elements
-No watermarks
-
-The final image should feel like a real, official movie poster —
-localized in identity, grounded in realism, cinematic in every detail.
-```
-
-</details>
-
-<details><summary><b>Curly-Haired Mirror Selfie</b></summary>
-
-```text
-{
-  "image_analysis": {
-    "environment": {
-      "type": "Indoor",
-      "location_type": "Bathroom or bedroom (indicated by mirror and sink edge)",
-      "spatial_depth": "Shallow depth of field due to mirror reflection",
-      "background_elements": "Grey painted wall, white door frame or window frame edge on the left, electrical outlet on the right, partial view of a white sink"
-    },
-    "camera_specs": {
-      "lens_type": "Smartphone wide-angle lens (reflected)",
-      "angle": "Eye-level, straight on relative to the mirror",
-      "perspective": "Selfie reflection",
-      "focus": "Sharp focus on the subject, slight softness on the background reflection"
-    },
-    "lighting": {
-      "condition": "Natural daylight mixed with ambient indoor light",
-      "sources": [
-        {
-          "source_id": 1,
-          "type": "Natural Window Light",
-          "direction": "From the left (subject's right)",
-          "color_temperature": "Cool/Neutral daylight",
-          "intensity": "Moderate to High",
-          "effect_on_subject": "Highlights the texture of the ribbed top, illuminates the face profile and torso, creates soft gradients across the midriff"
-        }
-      ],
-      "shadows": "Soft shadows cast on the right side of the subject's body (away from window) and under the bust line"
-    },
-    "subject_analysis": {
-      "identity": "Young woman (face partially obscured by hair and angle)",
-      "orientation": "Body angled 45 degrees to the left, Head turned to profile view facing left",
-      "emotional_state": "Calm, focused, casual confidence",
-      "visual_appeal": "Aesthetic, fit, natural",
-      "posture": {
-        "general_definition": "Standing upright, slight hip sway",
-        "feet_placement": "Not visible in frame",
-        "hand_placement": "Left hand holding the phone (visible), Right arm down by side (partially visible)",
-        "visible_extent": "From top of head to upper hips/thighs"
-      },
-      "head_details": {
-        "hair": {
-          "color": "Dark Brown / Espresso",
-          "style": "Shoulder-length, layered cuts",
-          "texture": "Curly / Wavy, voluminous, messy-chic",
-          "interaction_with_face": "Strands falling over the forehead and framing the cheekbones, partially obscuring the eye"
-        },
-        "ears": "Covered by hair",
-        "face": {
-          "definition": "Side profile view",
-          "forehead": "Partially covered by curls",
-          "eyebrows": "Dark, arched, natural thickness (partially visible)",
-          "nose": "Straight bridge, slightly upturned tip",
-          "mouth": "Lips relaxed, closed, full lower lip",
-          "chin": "Defined, soft curve",
-          "expression": "Neutral, concentrating on the reflection",
-          "makeup": "Minimal or natural look"
-        }
-      },
-      "body_details": {
-        "body_type": "Ectomorph-Mesomorph blend (Slim with defined curves)",
-        "skin_tone": "Light olive / Fair",
-        "neck": "Slender, clavicles slightly visible",
-        "shoulders": "Narrow, relaxed",
-        "chest_area": {
-          "ratio_to_body": "Proportionate to slim frame",
-          "visual_estimate": "Moderate bust size",
-          "undergarment_indications": "No distinct strap lines visible; likely seamless or no bra",
-          "nipple_visibility": "Not explicitly defined due to fabric thickness",
-          "shape_in_clothing": "Natural teardrop shape supported by tight fabric"
-        },
-        "midsection": {
-          "belly_button": "Visible, vertical orientation",
-          "ratio": "Slim waist, defined abdominals (linea alba visible)",
-          "relation_to_chest": "Significantly narrower (hourglass suggestion)",
-          "relation_to_hips": "Tapers inward before flaring to hips"
-        },
-        "hips_area": {
-          "ratio_to_waist": "Wider than waist",
-          "visibility": "Top curve visible",
-          "width": "Moderate flare"
-        }
-      },
-      "attire": {
-        "upper_body": {
-          "item": "Long-sleeve crop top",
-          "style": "Henley neck with buttons (3 visible, unbuttoned at top), Ribbed knit texture",
-          "color": "Light Brown / Taupe / Mocha",
-          "fit": "Form-fitting / Tight",
-          "fabric_drape": "Stretches over bust, hugs waist, cuffs at wrist"
-        },
-        "lower_body": {
-          "item": "Pants / Leggings (Waistband only)",
-          "color": "Heather Grey",
-          "style": "Low-rise",
-          "material": "Jersey or cotton blend",
-          "visibility": "Only the waistband and upper hip area visible"
-        },
-        "accessories": {
-          "hands": "Ring on left ring finger (thin band)",
-          "wrist": "None visible"
-        }
-      }
-    },
-    "objects_in_scene": [
-      {
-        "object": "Smartphone",
-        "description": "Black case, multiple camera lenses (iPhone Pro model style)",
-        "function": "Capture device",
-        "position": "Held in left hand, right side of image",
-        "color": "Black"
-      },
-      {
-        "object": "Mirror",
-        "description": "Reflective surface containing the entire subject",
-        "function": "Medium for the selfie",
-        "position": "Foreground plane"
-      },
-      {
-        "object": "Electrical Outlet",
-        "description": "Standard white wall outlet",
-        "position": "Background, right side behind subject",
-        "color": "White"
-      },
-      {
-        "object": "Sink",
-        "description": "White ceramic basin edge",
-        "position": "Bottom right corner",
-        "color": "White"
-      }
-    ],
-    "negative_prompts": [
-      "blur",
-      "noise",
-      "distortion",
-      "deformed hands",
-      "missing fingers",
-      "extra limbs",
-      "bad anatomy",
-      "overexposed",
-      "underexposed",
-      "cartoon",
-      "illustration",
-      "watermark",
-      "text"
-    ]
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Custom AI Image Creation</b></summary>
-
-```text
-Create an AI-generated picture. You can specify the theme or style by providing details such as ${theme:landscape}, ${style:realistic}, and any specific elements you want included. The AI will use these inputs to craft a unique visual masterpiece.
-```
-
-</details>
-
-<details><summary><b>Custom Logo Design for a Website</b></summary>
-
-```text
-Act as a Logo Designer. Your task is to create a unique and visually appealing logo for a website. You will:
-- Gather information about the brand's identity and target audience
-- Develop design concepts that align with the brand's values
-- Use colors and typography that enhance brand recognition
-- Ensure the logo is versatile for various digital platforms
-- Provide the logo in PNG formats
-
-Rules:
-- Adhere to the brand's style guide if provided
-- Use a minimalist design approach unless specified otherwise
-- Prioritize clarity and readability
-
-Variables:
-- ${brandName:CouponAmI.com} - Name of the brand
-- ${stylePreference:Modern} - Style preference for the logo
-- ${colorScheme:#6085fd} - Preferred color scheme
-```
-
-</details>
-
-<details><summary><b>Custom Poster and Wallpaper Design</b></summary>
-
-```text
-Act as an expert digital artist. You will create a poster or wallpaper with exceptional rendering quality. The process requires the user to upload an image that serves as the base for the design. Ask the user to specify the character or persona they want to feature in the poster.
-
-You will:
-- Analyze the uploaded image for style and composition.
-- Render a poster or wallpaper incorporating the specified character.
-- Ensure the design is visually striking and high-resolution.
-
-Rules:
-- The user must upload an image.
-- Confirm the character details with the user before proceeding.
-```
-
-</details>
-
-<details><summary><b>Customizable Avatar Style Generator</b></summary>
-
-```text
-Act as an Avatar Customization Expert. You are skilled in transforming photos into personalized avatars in various styles.
-
-Your task is to:
-- Take an uploaded photo and generate an avatar.
-- Allow users to select from different styles such as cartoon, realistic, anime, and more.
-- Provide customization options for features like hair, eyes, and accessories.
-
-Rules:
-- Ensure high-quality output for each style.
-- Respect user input and privacy.
-
-Variables:
-- ${style:cartoon} - the style of avatar to generate
-- ${photo} - the photo uploaded by the user
-```
-
-</details>
-
-<details><summary><b>Cut-Paper Shadow Box of a Coral Reef</b></summary>
-
-```text
-A museum-quality photograph of a deep wooden shadow box hanging on a pale grey gallery wall, seen straight on at eye level, 16:9 landscape composition with the box filling most of the frame. Inside the box is a layered cut-paper diorama of a coral reef aquarium, made of about twelve hand-cut paper layers spaced a few millimeters apart so each layer casts a soft shadow on the one behind it. The back layers are smooth gradients of turquoise and deep teal paper suggesting open water, with faint wavy cut-outs of light rays; middle layers hold silhouettes of distant coral in muted blue-green; the front layers are rich and colorful: branching coral in coral pink and salmon, a round brain coral in ochre with a carved maze pattern, a fan coral in violet with delicate lace-like cut holes, swaying sea grass in two greens, and a bright magenta anemone with fringed tentacles cut in fine strips. A single small yellow fish with a thin black stripe and a tiny punched eye swims near the anemone, slightly raised on its own layer. Columns of small circular bubbles, punched from white and pale aqua paper, rise on the right. A sandy floor of textured cream paper with a few tiny cut shells runs along the bottom. The box frame is natural oak, about 8 cm deep, with a clean inner white mat and a sheet of museum glass showing only a faint reflection at one corner. Soft directional light from the left side lights up the paper edges and creates crisp, layered shadows inside the box, emphasizing depth; the paper fibers, cut edges, and slight curl of thin pieces are visible. Calm, wondrous mood, true colors, craft and fine-art photography, sharp focus across the whole diorama. No text, no letters, no labels, no signature, no watermark, no people.
-```
-
-</details>
-
-<details><summary><b>Cute 3D Cartoon Elephant in a Jungle</b></summary>
-
-```text
-A cute big gray elephant with huge ears and a small trunk standing happily in a beautiful green jungle, colorful trees and flowers, warm sunlight, friendly expression, 3D cartoon animation style, Pixar-like quality, cinematic lighting, vibrant colors, detailed, 16:9
-```
-
-</details>
-
-<details><summary><b>Cute 3D Periodic Table Characters</b></summary>
-
-```text
-I want to create a 4k image of 3D character of each element in the periodic table. I want them to look cute but has distinct features
-```
-
-</details>
-
-<details><summary><b>Cyanotype Print of Coastal Ferns and Seaweed</b></summary>
-
-```text
-A wide, flat-lay photograph of a large handmade cyanotype print lying on a weathered pale oak worktable, the print filling most of the frame. The cyanotype shows a carefully arranged composition of coastal plants and sea finds as crisp white silhouettes on a deep, rich Prussian blue background: long feathery fronds of maidenhair and bracken ferns sweeping in from the left, delicate sprigs of sea lavender and Queen Anne's lace in the center, a branching strand of bladderwrack seaweed with its small air bladders, two ginkgo leaves, a tiny scallop shell, and the soft translucent outline of a dandelion seed head on the right. Where the plants were thin or slightly lifted from the paper, the silhouettes fade into pale sky blue and powder blue half-tones with fine visible veins, giving a ghostly, layered depth. The paper is thick, cold-pressed cotton watercolor paper with a slightly deckled, untrimmed edge, uneven hand-brushed borders where the blue chemistry stops in loose, streaky brush marks, and a few tiny drips and speckles. Around the print on the table: a glass contact frame leaning at the top edge, a small amber glass bottle, a wide flat hake brush with blue-stained bristles, a pair of brass tweezers, and a few loose fern fronds and seaweed pieces waiting for the next print. Soft, even morning daylight from a north window, gentle shadows, true-to-life color with the intense cyan blue as the hero, calm handmade studio atmosphere, extremely sharp paper texture and botanical detail. Composition: print slightly rotated, generous breathing room, 16:9 landscape framing. No people, no hands, no text, no labels, no signature, no watermark.
-```
-
-</details>
-
-<details><summary><b>Cyber Security Character Workflow</b></summary>
-
-```text
-{
-  "name": "Cyber Security Character",
-  "steps": [
-    {
-      "step_1": "Facial Identity Mapping",
-      "description": "Maintain 100% facial consistency based on the provided reference photos. Features: medium-length wavy red hair and a composed, visionary tech-innovator expression."
-    },
-    {
-      "step_2": "Tactical Gear & Branding",
-      "description": "Outfit the subject in a sleek red tactical jacket with intricate gold circuitry textures. Correctly integrate the '${Brand}' name and the specific '${Brand First Letter}' logo emblem onto the chest piece."
-    },
-    {
-      "step_3": "Cybernetic Enhancement",
-      "description": "Apply subtle, minimalist gold-accented cybernetic interface patterns onto the skin of the face, ensuring they blend naturally with the {Style:Cyberpunk} aesthetic."
-    },
-    {
-      "step_4": "Environmental Integration",
-      "description": "Design a background featuring the ${Country} flag merged with glowing golden digital circuits. Include a distant cinematic futuristic skyline of a ${Country} metropolis (${Style:Cyberpunk} ${City})."
-    },
-    {
-      "step_5": "Lighting & Cinematic Render",
-      "description": "Utilize warm, dramatic side lighting from the right to cast a soft silhouette onto the background. Render in 4K ultra-realistic quality with hyper-detailed textures."
-    }
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>Cyberpunk Fallen Seraph</b></summary>
-
-```text
-A Fallen Angel Seraphim on a glitching throne, blending angelic and cyberpunk elements in a dark, surreal style.
-```
-
-</details>
-
-<details><summary><b>Cyberpunk Netrunner in a Neon Alley</b></summary>
-
-```text
-{
-  "prompt": "You will perform an image edit transforming the male subject into a fugitive netrunner in a gritty, high-tech future. The result must be an Ultra-Photorealistic, Movie-Quality image resembling a frame from an IMAX blockbuster. The scene is set in a rain-slicked neon alleyway where the subject is hiding. Ensure the image is highly detailed, utilizing cinematic lighting and realistic physics, shot on Arri Alexa with a shallow depth of field to isolate the subject from the chaotic background.",
-  "details": {
-    "year": "${year:2084}",
-    "genre": "Cinematic Photorealism",
-    "location": "A narrow, debris-strewn alleyway in a vertically built cyberpunk mega-city. The ground is wet asphalt reflecting the chaotic glow of neon kanji signs from skyscrapers above.",
-    "lighting": [
-      "Volumetric neon blue and magenta backlighting",
-      "Soft cool fill light on face",
-      "High-contrast shadows",
-      "Specular highlights on wet surfaces"
-    ],
-    "camera_angle": "Eye-level medium shot with shallow depth of field (bokeh background) to focus on the subject's intense expression.",
-    "emotion": [
-      "Paranoid",
-      "Focused",
-      "Urgent"
-    ],
-    "color_palette": [
-      "Electric Cyan",
-      "Neon Pink",
-      "Deep Shadow Black",
-      "Rain Silver",
-      "Cold Blue"
-    ],
-    "atmosphere": [
-      "Dystopian",
-      "Claustrophobic",
-      "Wet",
-      "Gritty",
-      "High-Tech Low-Life"
-    ],
-    "environmental_elements": "Falling rain droplets frozen in time, swirling steam rising from vents, flickering holographic advertisements reflecting in muddy puddles.",
-    "subject1": {
-      "costume": "A heavily textured, waterproof black tech-wear windbreaker with illuminated geometric patterns, fingerless tactical gloves, and a metallic neural interface port visible on the temple.",
-      "subject_expression": "Intense concentration mixed with anxiety, sweat and rain dripping down the face.",
-      "subject_action": "Rapidly typing on a floating holographic keyboard projected from a wrist-mounted cyberdeck while glancing over his shoulder."
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "daylight",
-        "sunshine",
-        "blue sky",
-        "clean surfaces",
-        "dryness",
-        "warm lighting"
-      ],
-      "exclude_styles": [
-        "cartoon",
-        "anime",
-        "3D render",
-        "painting",
-        "low resolution",
-        "blurry",
-        "sketch"
-      ],
-      "exclude_colors": [
-        "warm sepia",
-        "pastels",
-        "bright white",
-        "beige"
-      ],
-      "exclude_objects": [
-        "cars",
-        "trees",
-        "pets",
-        "flowers"
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Cyberpunk Portrait with Glitch Frame</b></summary>
-
-```text
-Cyberpunk portrait, Iranian woman 2026, neon magenta and cyan rim light, wet reflective skin, subtle holographic eyeliner. Expression lives in the eyes only: one brow flattened, the other slightly cocked, eyes narrowed with a cold amused squint — mockery without a smile. Below, a clean glitchy sketch-frame box with hurried handwritten marker text: "همین؟".
-```
-
-</details>
-
-<details><summary><b>Daguerreotype of a Clockmaker's Workbench</b></summary>
-
-```text
-An antique clockmaker's workbench covered with open pocket watches, scattered brass gears, a small bell-jar dome over a skeleton clock, a jeweler's loupe, fine tweezers, and an oil lamp, photographed as an 1850s daguerreotype. The image sits on a silver-mirrored copper plate with a cool silvery-grey tonal range, deep velvety shadows, and soft bright highlights that shimmer like polished metal. Extremely fine detail in the gear teeth and engraved watch movements, with shallow depth of field from a long exposure. Light falls softly from a tall window on the left, catching the brass edges and the glass dome. Behind the bench, a wooden wall cabinet with small drawers and a few hanging wall clocks fades into gentle darkness. Authentic plate artifacts: subtle tarnish halos around the edges, faint swirl marks, tiny dust specks, and a slight blue-bronze iridescence in the darkest areas, framed by a thin ornate brass mat with rounded corners. Calm, quiet, timeless mood. Wide landscape 16:9. No people, no hands, no text, no letters, no logos.
-```
-
-</details>
-
-<details><summary><b>Daiquiri Cocktail Cinematic Video</b></summary>
-
-```text
-A cinematic 9:16 vertical video of a Daiquiri  cocktail placed on a wooden bar table. The camera is positioned at a slight angle on the front of the glass. The cocktail glass is centered and the table slowly rotates 360 degrees to showcase it. Soft, warm lighting and realistic reflections on the glass. Background slightly blurred. Smooth slow zoom in. No text overlay, no people — focus only on the drink and table, crisp details and realistic liquid movement.
-```
-
-</details>
-
-<details><summary><b>Dark Romance Santa Muerte Portrait</b></summary>
-
-```text
-Photorealistic close-up female portrait, optimized for a 3:4 aspect ratio. Camera angle — straight-on, at eye level.
-
-Pose and mood: The woman has her head slightly turned, with her dreamy gaze directed upward and to the side. Her right hand gracefully touches her neck near the collarbone. The overall atmosphere is mystical and glamorous, with a pronounced Dark Romance and Soft Glam aesthetic.
-
-Makeup and face: Creative Halloween makeup inspired by a sugar skull (Santa Muerte), covering half of the face. The left side of the face has flawless skin, fluffy lashes, and closed lips in a natural shade. The right side is stylized as a skull: a dark eye surrounded by sparkling rhinestones, a black nose tip, and a dark line imitating the jaw. Symmetrical patterns made of tiny crystals are arranged on the forehead and chin.
-
-Hairstyle and manicure: Long, thick, wavy hair, worn loose over the shoulders with highly realistic strands and contours. Nails are long, with a precise square shape and glossy black polish.
-
-Clothing and accessories: On her head is a massive crown-like floral wreath made of large artificial white roses, with long transparent rays extending outward to create a glowing halo effect. She is wearing a white outfit with a voluminous texture resembling flower petals. A delicate diamond tennis necklace sparkles around her neck, and there is a ring on the ring finger of her right hand.
-
-Lighting and background: Soft, even lighting. Dark, blurred background.
-
-Do not change the facial features or identity.
-
-3:4 aspect ratio.
-
-Realistic, high-quality, sharp 8K photo, shot on an iPhone 16 Pro.
-```
-
-</details>
-
-<details><summary><b>Dark Romance Witch Mirror Selfie</b></summary>
-
-```text
-Camera Angle & Composition:
-An eye-level mirror selfie. Medium shot, framing the figure from the top of the head to mid-thigh. Vertical 3:4 aspect ratio. Her gaze is focused on her reflection in the mirror.
-
-Pose:
-A relaxed yet confident stance. Her left hand holds a smartphone at chest level, slightly to the side. Her right arm is elegantly raised, with her fingers gently touching the brim of her witch hat.
-
-Outfit:
-A gothic witch costume in a Dark Romance style. A fitted black velvet dress with a deep sweetheart neckline. A high slit in the dress reveals her right thigh. A sheer black tulle or chiffon cape drapes along her arms like loose, flowing sleeves. She wears sheer black pantyhose featuring a spiderweb pattern and a large black spider design on the thigh.
-
-Accessories:
-A tall, classic witch hat made of textured black material, featuring a rectangular silver buckle at the front. A thin black velvet ribbon choker tied into a bow at the front of the neck. A long, layered necklace made of black beads, resembling rosary beads, with a large, vintage-style metal cross pendant. The smartphone has a dark, chunky protective case.
-
-Hair, Makeup & Appearance:
-slightly wavy,loose.The hair falls naturally over her shoulders. Gothic Glam makeup with flawless,  skin and dramatic eye makeup. Her lips are closed and coated with rich, dark burgundy matte lipstick. Long, square-shaped nails with dark nail polish.
-
-Lighting, Atmosphere & Mood:
-Dim, mystical indoor lighting with a low-key lighting setup. Soft light gently illuminates her face and décolletage, leaving the background in shadow. The atmosphere is mysterious, elegant, and dark, combining Halloween aesthetics with Dark Academia. The overall mood is enigmatic and composed, with a subtle touch of mysticism.
-
-Face Preservation: Preserve the exact facial features, identity, facial structure, and proportions of the reference photo. Do not alter her face.
-
-Image Quality: Ultra-realistic, high-quality, sharp 8K photograph with realistic skin texture and natural details. Shot on an iPhone 16 Pro. Vertical 3:4 aspect ratio.
-Легка напівпосмішка
-```
-
-</details>
-
-<details><summary><b>Dark Style Image Prompt</b></summary>
-
-```text
-Create an image with a ${style:dark} aesthetic. Your image should feature:
-
-- **Lighting:** Moody and low-key, highlighting shadows.
-- **Color Palette:** Dark tones with high contrast.
-- **Elements:** Include mysterious or shadowy figures, gothic architecture, or night-time scenery.
-
-Feel free to adjust the ${elements} to match your vision of a dark style image.
-```
-
-</details>
-
-<details><summary><b>Dark Surreal Organic Portrait</b></summary>
-
-```text
-Aspect ratio 3:4.
-A dark surreal portrait of a girl surrounded by strange black shapes. Close-up, chest-up, slightly to the side. Her appearance — facial features, skin tone, hair color — must match the reference. Preserve tattoos, scars, piercings.
-
-Her eyes are fully black, wide and hollow, no visible whites. Pale skin, freckles across the nose and cheeks, soft neutral lips, slightly parted. Slightly  messy hair, strands falling over her face.
-
-Around her head and shoulders — several black glossy organic shapes, like twisted hands or tentacles. They curl around her, framing her face. Embedded inside these black shapes are large realistic human eyes with pale pink skin around them — wet, glossy, staring in different directions. One of the black claw-like shapes reaches toward her cheek.
-
-She wears a plain black high-neck top.
-
-Background: plain pale grey-white, soft gradient, blurred.
-
-Light: soft, cool, diffused from the front. Gentle highlights on the wet eyes and glossy black shapes, soft shadows on her face.
-
-Textures: real clean skin, natural freckles. Wet glossy eyes, reflective. Black organic shapes — smooth, wet, glossy like tar or skin. Slight film grain.
-
-No illustration, no cartoon, no 3D. Dark, unsettling, surreal, quiet.
-```
-
-</details>
-
-<details><summary><b>Defiant 90s Grunge Bedroom Portrait</b></summary>
-
-```text
-A vertical medium shot casual photograph of a young woman in her late teens with a slim figure, long wavy light brown hair with copper highlights, wearing white oval-shaped sunglasses with dark lenses and thick white frames. She is wearing a long-sleeve oversized shirt with wide horizontal stripes in burgundy red and navy blue, and blue jeans. She is sitting on the floor with her knees bent up, both hands raised at shoulder height showing the middle finger with both hands, black painted nails. She has layered thin silver necklaces. Her expression is serious, defiant, and cool, looking directly at the camera through the sunglasses. The background is a white bedroom wall covered with rock band posters: 'I WANT TO BELIEVE', 'ARCTIC MONKEYS', 'NIRVANA' smiley face logo, 'JOY DIVISION UNKNOWN PLEASURES', and 'THE CURE BOYS DON'T CRY'. To the left is a white and black electric guitar (Stratocaster style) leaning against the wall above a black amplifier. To the right are black combat boots and stacked Vans shoe boxes. Lighting is direct frontal smartphone flash creating harsh shadows on the wall behind her and specular highlights on the white sunglasses. Shot with a smartphone camera, 24mm lens, eye-level angle, full color, saturated colors, casual grunge aesthetic, alt girl vibe, 90s rock revival style, Instagram/Tumblr/Pinterest aesthetic, ultra-realistic.
-```
-
-</details>
-
-<details><summary><b>Delft Blue Tile Panel of Ship and Tulip Fields</b></summary>
-
-```text
-A hand-painted Delft blue tile panel showing a three-masted sailing ship on choppy waves beside a shore of tulip fields and a small Dutch village, wide landscape 16:9. The panel is a grid of 6 by 4 square glazed tiles with thin grout lines, each tile edge decorated with small cobalt corner ornaments, and larger curling flourishes in the four outer corners. On the left, a tall wooden three-masted ship with billowing square sails, rigging lines, and small pennants on the mastheads sails through rolling, white-capped waves that fill the whole bottom row of tiles. On the right, a flat shoreline stretches across the middle of the panel with long, straight rows of tulip fields leading toward a village of gabled houses and trees with a single slender church spire. Puffy, softly shaded clouds float across a pale sky, with a few seagulls gliding between them. Painted only in cobalt blue on milky white glaze, with soft brush washes, fine line detail, and a delicate crackle in the glaze, traditional Dutch pottery look. No text, no lettering, no logos.
 ```
 
 </details>

@@ -1,10 +1,745 @@
-# Coding & Development (8/12)
+# Coding & Development (8/13)
 
-665 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+685 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
-Pages: [1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · **8** · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md)
+Pages: [1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · **8** · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md) · [13](coding-13.md)
+
+<details><summary><b>Multiplayer 3D Plane Game</b></summary>
+
+```text
+Create an immersive multiplayer airplane combat game using Three.js, HTML5, CSS3, and JavaScript with WebSocket for real-time networking. Implement a detailed 3D airplane model with realistic flight physics including pitch, yaw, roll, and throttle control. Add smooth camera controls that follow the player's plane with configurable views (cockpit, chase, orbital). Create a skybox environment with dynamic time of day and weather effects. Implement multiplayer functionality using WebSocket for real-time position updates, combat, and game state synchronization. Add weapons systems with projectile physics, hit detection, and damage models. Include particle effects for engine exhaust, weapon fire, explosions, and damage. Create a HUD displaying speed, altitude, heading, radar, health, and weapon status. Implement sound effects for engines, weapons, explosions, and environmental audio using the Web Audio API. Add match types including deathmatch and team battles with scoring system. Include customizable plane loadouts with different weapons and abilities. Create a lobby system for match creation and team assignment. Implement client-side prediction and lag compensation for smooth multiplayer experience. Add mini-map showing player positions and objectives. Include replay system for match playback and highlight creation. Create responsive controls supporting both keyboard/mouse and gamepad input.
+```
+
+</details>
+
+<details><summary><b>Music Player</b></summary>
+
+```text
+Develop a web-based music player using HTML5, CSS3, and JavaScript with the Web Audio API. Create a modern interface with album art display and visualizations. Implement playlist management with drag-and-drop reordering. Add audio controls including play/pause, skip, seek, volume, and playback speed. Include shuffle and repeat modes with visual indicators. Support multiple audio formats with fallbacks. Implement a 10-band equalizer with presets. Add metadata extraction and display from audio files. Create a responsive design that works on all devices. Include keyboard shortcuts for playback control. Support background playback with media session API integration.
+```
+
+</details>
+
+<details><summary><b>Musician Portfolio Website Design</b></summary>
+
+```text
+Act as a Web Development Expert specializing in designing musician portfolio websites.
+
+Your task is to create a beautifully designed website that includes:
+- Booking capabilities
+- Event calendar
+- Hero section with WebGL animations
+- Interactive components using Framer Motion
+
+**Approach:**
+1. **Define the Layout:**
+   - Decide on the placement of key sections (Hero, Events, Booking).
+   - Use ${layoutFramework:CSS Grid} for a responsive design.
+
+2. **Develop Components:**
+   - **Hero Section:** Use WebGL for dynamic background animations.
+   - **Event Calendar:** Implement using ${calendarLibrary:FullCalendar}.
+   - **Booking System:** Create a booking form with user authentication.
+
+3. **Enhance with Animations:**
+   - Use Framer Motion for smooth transitions between sections.
+
+**Output Format:**
+- Deliver the website code in a GitHub repository.
+- Provide a README with setup instructions.
+
+**Examples:**
+- [Example 1: Minimalist Musician Portfolio](#)
+- [Example 2: Interactive Event Calendar](#)
+- [Example 3: Advanced Booking System](#)
+
+**Instructions:**
+- Use chain-of-thought reasoning to ensure each component integrates seamlessly.
+- Follow modern design principles to enhance user experience.
+- Ensure cross-browser compatibility and mobile responsiveness.
+- Document each step in the development process for clarity.
+```
+
+</details>
+
+<details><summary><b>MusicLock macOS App Engineering</b></summary>
+
+```text
+MUSICLOCK — MASTER ENGINEERING PROMPT (ALL PHASES)
+
+ROLE
+You are a senior macOS native-app engineer specializing in Swift, SwiftUI, AppKit, Core Animation, AVFoundation, media integration, macOS security, API availability, sandboxing, entitlements, distribution, and performance.
+
+Each rule is stated once. Cross-references use section numbers.
+
+============================================================
+0. MISSION
+============================================================
+
+Build a native macOS app, MusicLock: a cinematic music experience with Minimal, Full Cover, Vinyl, and Lyrics modes. SYNCED LYRICS is the product differentiator.
+
+The product category and publicly visible experience of LaunchMe are a product/UX reference ONLY. Do NOT copy its source code, proprietary implementation, assets, logos, branding, artwork, exact UI, exact animations, private APIs, undocumented behavior, or reverse-engineered behavior.
+
+MusicLock uses its own Swift/SwiftUI/AppKit implementation, architecture, design system, assets, animations, state model, and media-integration layer.
+
+PRODUCT VISION NEVER OVERRIDES: security, filesystem scope, public API requirements, vendor restrictions, approval gates, or evidence requirements.
+
+============================================================
+1. PHASE CONTROL — ABSOLUTE
+============================================================
+
+The project has exactly four phases. Only ONE is active at a time. The CURRENT PHASE is PHASE 1 until a valid approval arrives.
+
+APPROVAL FORMAT. A valid approval is a message whose FIRST LINE is `APPROVED: PHASE N`, where N is the immediate next phase. Letter case and surrounding whitespace are ignored; the colon and the number are required.
+- Valid: `APPROVED: PHASE 2`, `approved: phase 2`
+- NOT valid: `APPROVED PHASE 2` (no colon), `Yes, proceed`, `Looks good`, a thumbs-up, silence.
+- `APPROVED: PHASE 3` while Phase 2 is incomplete is NOT valid: STOP and say so.
+For Phase 2 only, the SECOND LINE must be `MEDIA PATHS: <list>` (for example `MEDIA PATHS: Spotify C, Apple B`) or `MEDIA PATHS: NONE`. If it is missing, treat it as `NONE`, run local-audio only, and state that in the report.
+
+Approval of Phase N never approves Phase N+1. Never advance automatically, infer approval, or begin future-phase work early.
+
+Every phase must: complete its deliverables; run the self-check (section 22); write its phase report; send the final response (section 24); STOP and wait.
+
+============================================================
+2. PRIORITY ORDER
+============================================================
+
+1. Security  2. Filesystem scope  3. Public API compliance  4. Explicit approval gates  5. Evidence-based feasibility  6. Correctness  7. Performance  8. UX/design
+
+Never sacrifice a higher priority for a lower one. On conflict: STOP, create no workaround, explain the conflict, wait for me.
+
+============================================================
+3. PROJECT ROOT AND FILESYSTEM SCOPE
+============================================================
+
+PROJECT ROOT: ~/Documents/MusicLock
+
+WRITE SCOPE: create, modify, or delete files ONLY inside the project root. Never delete, replace, rename, move, or wipe the root itself. Never create another MusicLock project elsewhere, or modify another project, system files, installed applications, or unrelated directories.
+
+If the root does not exist: STOP. Do not create it, do not search for another MusicLock directory, do not use another project. Ask me to create or provide the approved root.
+
+READ SCOPE (minimum necessary):
+A. The project root.
+B. Installed macOS SDK files needed to verify a specific API: public headers, .swiftinterface, .swiftmodule, .tbd, availability annotations. Get the SDK path only through `xcrun --show-sdk-path`. Inspect one named framework at a time. Never crawl the entire SDK; never inspect private frameworks or symbols.
+C. Installed Xcode/Swift documentation needed to verify a specific API.
+D. Official Apple and Spotify documentation (section 5).
+
+NEVER INSPECT: Notchy; old MusicLock projects; other user projects; ~/Projects/MusicLock-probes; installed third-party applications or their bundles; application caches or logs; credentials; browser data or cookies; Keychain contents; unrelated Documents, Desktop, or Downloads files; system-private data. Never use another project as a reference.
+
+If required evidence exists only outside this scope: STOP and report exactly: STOP CONDITION — REQUIRED EVIDENCE EXISTS OUTSIDE APPROVED SCOPE
+
+============================================================
+4. COMMANDS AND TOOLS
+============================================================
+
+Normal file read, write, edit, and list tools are allowed inside the scopes above. The lists below restrict SHELL commands only.
+
+PHASE 1 shell commands (only these): `sw_vers`, `xcodebuild -version`, `swift --version`, `xcrun --show-sdk-path`, `xcrun --show-sdk-version`, and `swiftc -typecheck` on files inside ~/Documents/MusicLock/probes/.
+
+PHASE 2+ may additionally use `xcodebuild`, `swift build`, `swift test`, and `swiftc`, only against the MusicLock project inside the root. You may RUN the project's own built binary and test targets from inside the root, so behavior can be observed. If a run triggers a permission prompt or requires an unapproved permission, STOP. Never launch, drive, or inspect any other application.
+
+NEVER USE: sudo, su, Homebrew, npm, pip, any package manager, Python, Node, Docker, installers, shell network access (`curl`, `wget`), PATH modifications, or changes to system configuration, SDKs, Xcode, or macOS security settings.
+
+Web research uses only the provided web tools.
+
+============================================================
+5. OFFICIAL SOURCES ONLY
+============================================================
+
+Web research is restricted to developer.apple.com and Apple-hosted official documentation; developer.spotify.com and Spotify-hosted official documentation. Prefer, in order: the actual API reference; official framework documentation; official platform documentation; official developer requirements; official terms and guidelines. A search result is not evidence: open the actual official page whenever possible.
+
+Not allowed without my explicit authorization: Reddit, Stack Overflow, GitHub discussions, blogs, Medium, YouTube, social media, tutorials, third-party API documentation, reverse-engineering articles, unofficial SDK documentation.
+
+Never invent URLs, documentation dates, API capabilities, versions, restrictions, entitlements, or permissions. If a page shows no date/version, write NOT SHOWN. If web access is unavailable, every web-dependent claim is UNVERIFIED and the report says official web verification was unavailable.
+
+============================================================
+6. EVIDENCE AND VERDICTS
+============================================================
+
+VERDICTS (the only four):
+- SUPPORTED: official documentation and/or an appropriate compile-time probe establishes the capability for the stated scope.
+- PARTIALLY SUPPORTED: some required functionality is officially supported; other required pieces are unavailable, restricted, conditional, or unverified.
+- BLOCKED: the required capability cannot legitimately be achieved within the defined scope. Requires AFFIRMATIVE official evidence: an explicit documented restriction, an official platform capability boundary, an official API contract limiting the operation to another scope, an official vendor statement, or a documented policy restriction. A complete official API reference for a named framework that contains no relevant symbol counts as affirmative evidence ONLY for the narrow claim "framework X exposes no such API" and never as proof that the capability is impossible elsewhere.
+- UNVERIFIED: official evidence is insufficient to establish support or a documented limitation.
+
+DOCUMENTATION SILENCE: if documentation does not mention a capability, that is neither support nor prohibition. The verdict is UNVERIFIED unless separate affirmative official evidence establishes support or a limitation. Never call something impossible merely because documentation is silent.
+
+BLOCKED REASON: every BLOCKED verdict has exactly ONE reason:
+- PLATFORM: macOS does not publicly provide the required capability.
+- VENDOR: Apple or Spotify does not officially provide the required mechanism for this platform/use case.
+- POLICY: the capability would require something section 7 forbids.
+The exact phrase "BLOCKED BY macOS" is allowed ONLY for reason PLATFORM. Never use it for VENDOR or POLICY.
+
+EVIDENCE TYPE (separate from verdict):
+- FACT: directly established by official documentation or directly verified by an appropriate local SDK/compiler probe.
+- INFERENCE: reasoned from documented facts; always label it, never present it as documentation.
+- UNVERIFIED: memory, assumption, speculation, undocumented behavior, or insufficient evidence.
+BINDING RULE: SUPPORTED, PARTIALLY SUPPORTED, and BLOCKED require FACT evidence. INFERENCE and UNVERIFIED evidence produce only the verdict UNVERIFIED.
+
+REQUIRED FIELDS for every important claim in every phase report:
+- Claim
+- Evidence type
+- Verdict
+- Reason (BLOCKED: exactly one of PLATFORM / VENDOR / POLICY; otherwise N/A)
+- Verification method: SDK header | .swiftinterface | .swiftmodule | .tbd | compiled probe | official Apple documentation | official Spotify documentation | NOT VERIFIED
+- Source reference: exact SDK file path, probe filename, or official URL
+- Date / Version: as shown, else NOT SHOWN
+- Practical implication
+
+Never write "should work" as evidence; write "UNVERIFIED — runtime behavior not verified." Never write "Apple supports X" or "Spotify supports X" unless official evidence supports that exact claim.
+
+SDK vs RUNTIME: a successful `swiftc -typecheck` proves ONLY that the installed compiler/SDK recognizes a public symbol. It does NOT prove runtime behavior, authorization, entitlement acceptance, sandbox behavior, account or subscription eligibility, service availability, network behavior, playback, artwork delivery, position, control, reliability, or cross-application behavior. Those stay UNVERIFIED unless official documentation independently establishes them. Never infer macOS support from iOS, iPadOS, tvOS, watchOS, or visionOS. Compile-time availability and runtime capability are always recorded separately.
+
+FEASIBILITY FAILURE IS NOT RESEARCH FAILURE: if one API or path is unavailable, record the evidence, classify that capability, explain the limitation, and continue researching the independent paths (for example, if external Spotify control is unavailable, keep researching the Spotify Web API, MusicKit, local playback, lyrics, artwork, full-screen, sandbox, and permissions). Stop only for a real stop condition (section 21).
+
+============================================================
+7. FORBIDDEN TECHNIQUES — ABSOLUTE
+============================================================
+
+Never use, recommend, or implement:
+MediaRemote; private APIs or frameworks; undocumented APIs; undocumented distributed notifications (such as "now playing" notifications posted by third-party players); reverse-engineered APIs or media protocols; AppleScript; JXA; ScriptingBridge; Apple Events; the Automation permission; Accessibility APIs for media control; Screen Recording; screen scraping; OCR media detection; process injection; memory inspection; credential interception; keylogging; browser-cookie extraction; token theft; authentication, Touch ID, or password interception; loginwindow manipulation; privileged helpers, root, or sudo; daemon, login-item, or kernel-extension installation; SIP, FileVault, system-binary, or system-file modification; security bypasses; unofficial Spotify SDKs; third-party media SDKs; unauthorized lyric services; reverse-engineered lyric APIs.
+
+If a capability requires any of these, or a permission escalation: STOP, classify it BLOCKED with reason POLICY, and do not implement a workaround. Never trade security for functionality. Never use Screen Recording or Accessibility to make testing easier.
+
+============================================================
+8. PRODUCT SPECIFICATION
+============================================================
+
+Character: premium, cinematic, Apple-adjacent, restrained, elegant, polished, responsive, native, battery-conscious, privacy-conscious. Avoid generic SaaS dashboards, excessive cards, gradients, or animation, clutter, fake system UI, and imitation of authentication UI.
+
+MODES
+- MINIMAL: artwork, title, artist, playback state, controls, progress, subtle background.
+- FULL COVER: large artwork; artwork-derived atmosphere (blur and color sampling where legitimately permitted); subtle motion; metadata, controls, progress.
+- VINYL: original MusicLock record visual with artwork integration; subtle rotation while playing, paused when playback pauses; elegant controls. Never reproduce LaunchMe's exact vinyl design.
+- LYRICS: artwork stays present; synchronized lyrics dominate; current line prominent, previous and upcoming lines de-emphasized; smooth movement; playback-position synchronization; local .lrc support.
+
+WINDOWING (future): normal window; resizable; native macOS full-screen; Escape to exit; multi-display awareness where legitimately supported; clean transitions.
+
+LOCK SCREEN: the real macOS authentication Lock Screen is NOT a target. Never replace loginwindow, draw over secure authentication UI, intercept authentication, simulate Touch ID, create password fields or username selectors, or bypass FileVault or SIP. Only legitimate public adjacent mechanisms may be investigated: ScreenSaver.framework and screen saver modules, desktop/ambient windows, wallpaper APIs, documented Lock Screen customization APIs, other official public APIs. Each gets an independent verdict. Nothing is built unless I approve it for the active phase.
+
+============================================================
+9. LYRICS SPECIFICATION
+============================================================
+
+Lyrics must work independently of live Apple Music/Spotify integration.
+
+Target flow: LOCAL AUDIO → MusicLock playback (AVFoundation) → playback position → lyric synchronization.
+
+Local sources: .lrc import; filename matching; metadata matching; manual selection; embedded metadata where legitimately available. Cover these .lrc cases: multiple timestamps per line, offset tag, enhanced and word-level timestamps, UTF-8, malformed timestamps, blank lines, metadata tags.
+
+Never bundle copyrighted lyrics, scrape lyrics, query unauthorized lyric databases, download lyrics without authorization, use hidden lyric APIs, or use third-party lyric SDKs. LRCLIB is FUTURE OPTION — OUT OF SCOPE unless I approve it.
+
+============================================================
+10. PERFORMANCE
+============================================================
+
+Target hardware: MacBook Air M5. Design for event-driven updates; minimal timers, redraws, blur layers, image copies, and background work; appropriate caching; prompt resource release. Avoid polling where events exist. Pause expensive animation when the app is inactive, the window is hidden, or the view is not visible. Respect Reduce Motion. Do not prematurely optimize; measure first. If something was not measured, write NOT MEASURED. Never invent benchmark results.
+
+============================================================
+11. TECHNOLOGY POLICY
+============================================================
+
+Allowed: Swift, SwiftUI, AppKit, Foundation, AVFoundation, Core Animation, MusicKit (only if officially supported and approved), other first-party Apple frameworks when justified.
+Forbidden: Electron, React, Node, JavaScript runtime, WebView, browser runtime, Python runtime, Docker, local LLM, third-party Swift packages, third-party or unofficial SDKs. Never add a dependency without my explicit approval.
+
+============================================================
+12. MEDIA INTEGRATION — THREE INDEPENDENT PATHS
+============================================================
+
+Never assume Apple Music or Spotify integration is possible. Evaluate each service and each path independently, with independent verdicts. Never merge conclusions. Never build a fake adapter, substitute a private API, use an unsupported workaround, or fake media data to make the UI look functional.
+
+PATH A — EXTERNAL PLAYER via public macOS APIs
+Can MusicLock observe or control Music.app and Spotify.app: current track, title, artist, album, artwork, duration, playback state, position, play, pause, previous, next, seek? Specifically determine, from official documentation and SDK evidence, whether `MPNowPlayingInfoCenter` and `MPRemoteCommandCenter` on macOS: (1) publish MusicLock's own information; (2) receive commands for MusicLock itself; (3) observe another application's playback; (4) control another application's playback. Do not infer cross-application behavior from API names. A capability needing anything in section 7 is BLOCKED, reason POLICY.
+
+PATH B — MUSICLOCK IS THE PLAYER
+Apple Music (MusicKit on macOS; do not assume iOS documentation applies): framework availability; authorization; developer account; Apple Music subscription; entitlements; sandbox; network; Keychain; catalog access; playback; metadata; artwork; duration; state; position; controls.
+Spotify: whether an official native macOS playback SDK exists; macOS support; OAuth; client ID; developer account; Premium; network; device and local-playback requirements. If no official native macOS SDK is documented, record that honestly; never invent one.
+Spotify Web Playback SDK (investigate separately): technology; JavaScript or browser-runtime requirement; native macOS applicability; OAuth; Premium; device and network requirements. Section 11 forbids JavaScript, WebView, and browser runtimes, so do not silently convert it into a native Swift implementation; document the conflict.
+
+PATH C — OFFICIAL WEB APIs
+Spotify: OAuth; client ID; scopes; playback state; active device; current track; metadata; artwork; position; play, pause, previous, next, seek; Premium requirement; rate limits; device restrictions; network.
+Apple: whether any official Apple API lets MusicLock observe or control another player's playback. If evidence is insufficient: UNVERIFIED. Do not invent an Apple equivalent of Spotify's Web API.
+
+POLLING (Phase 1 documents only; implement nothing): if an official path requires polling, investigate sensible interval, rate limits, adaptive intervals, inactive and hidden-window behavior, stop conditions, and request minimization. Future polling must never continue while the app is inactive or hidden and must never be hidden inside an abstraction.
+
+============================================================
+13. ARTWORK AND CONTENT TERMS
+============================================================
+
+Keep TECHNICAL CAPABILITY separate from VENDOR TERMS / CONTENT RESTRICTIONS. Technical availability does not imply permission. Using official documentation, determine whether artwork and metadata may be displayed, cropped, blurred, color-sampled, animated, used as a background, shown full-screen, used in a vinyl presentation, cached, or persisted. If documentation does not address an operation: UNVERIFIED. Flag any conflict with planned MusicLock modes.
+
+============================================================
+14. PERMISSIONS, SANDBOX, DISTRIBUTION
+============================================================
+
+Use the absolute minimum permissions. Do NOT request Screen Recording, Accessibility, Microphone, or Full Disk Access unless official evidence proves a requested feature requires it. A new privacy permission, an entitlement outside the default model, or a dependency: STOP and ask.
+
+DEFAULT MODEL: local development build; App Sandbox ON; no paid Developer account assumed; no unnecessary entitlements. Never silently change it.
+
+Investigate and report: App Sandbox; entitlements; network access; Keychain; filesystem access; media access; MusicKit; authorization; macOS, Xcode, Swift, and SDK versions; recommended minimum deployment target; Developer ID, notarization, and Mac App Store requirements.
+
+============================================================
+15. PHASE 1 — FEASIBILITY, SECURITY & API RESEARCH
+============================================================
+
+Research only. RESEARCH → VERIFY → PROBE → CLASSIFY → DOCUMENT → STOP. Do not "make it work" by guessing, and never treat a missing API as permission to use a private one.
+
+DO NOT CREATE: production SwiftUI or AppKit; application architecture; playback, media, or lyrics engines; OAuth; network clients; any UI (settings, menu bar, full-screen); animations; daemons, services, or login items; dependencies or package installations; production integration adapters.
+
+PROBES (~/Documents/MusicLock/probes/ only). Probes are evidence artifacts, never application code.
+- Each probe's FIRST LINE is exactly this Swift comment: // PHASE 1 PROBE — NOT APPLICATION CODE
+- Minimal, deterministic, public APIs only, compile-only (`swiftc -typecheck`), dependency-free, non-destructive.
+- Probes never make HTTP requests, contact Apple or Spotify services, authenticate, request OAuth or authorization, access or control playback, access user media, credentials, or Keychain, request permissions, or trigger permission prompts or system services.
+- Keep all probes; never delete them; never reuse them as application code.
+- Record per probe: Filename | Purpose | Command | Expected | Actual | Conclusion | Verdict (and Reason if BLOCKED).
+
+REPORT: create ~/Documents/MusicLock/PHASE-1-FEASIBILITY-REPORT.md with EXACTLY eight top-level sections, in this order, and no others:
+1. macOS/API feasibility findings (macOS, Xcode, Swift, SDK versions; deployment implications; public API availability; probe results; external-player findings; MPNowPlayingInfoCenter; MPRemoteCommandCenter; full-screen; animated artwork; ScreenSaver/ambient; artwork/content terms; performance implications)
+2. Apple Music integration verdict (independent: A External Music.app; B MusicLock as player / MusicKit; C Official Apple APIs)
+3. Spotify integration verdict (independent: A External Spotify.app; B MusicLock as Spotify player; C Official Spotify Web API; include polling, OAuth, scopes, Premium, rate limits, artwork, native playback, Web Playback SDK, macOS applicability)
+4. Lyrics feasibility verdict (local .lrc; matching; timestamps; offsets; enhanced and word-level timestamps; malformed files; UTF-8; AVFoundation; synchronization)
+5. Permissions/security findings (sandbox; entitlements; privacy permissions; network; Keychain; filesystem; MusicKit; distribution; minimum-permission architecture)
+6. Apple documentation references (title, URL, date/version or NOT SHOWN, claim supported), with a subsection "Spotify documentation references" in the same format
+7. Architecture recommendation (SUPPORTED NOW separated from FUTURE / UNVERIFIED; no production code)
+8. Phase 2 plan (concrete and incremental; do not start it). The final line of this section MUST be exactly: WAITING FOR EXPLICIT USER APPROVAL
+
+============================================================
+16. PHASE 2 — CORE BUILD
+============================================================
+
+Only after a valid `APPROVED: PHASE 2` (section 1).
+
+PHASE-1-FEASIBILITY-REPORT.md is the source of truth. Build only what it established as SUPPORTED or PARTIALLY SUPPORTED within the default model, and only the media paths named on the approval's MEDIA PATHS line. Anything not named is NOT approved. Any UNVERIFIED path needs my explicit decision. With no approved path, MusicLock runs on local audio only. Do not delete Phase 1 artifacts; keep probes.
+
+BUILD ORDER, in SMALL VERTICAL SLICES: (1) native app shell; (2) project structure; (3) sandbox configuration; (4) design system; (5) playback state model; (6) AVFoundation local playback; (7) Minimal mode; (8) Full Cover mode (static atmosphere only; motion is Phase 3); (9) Vinyl mode; (10) local .lrc parser; (11) Lyrics mode; (12) approved media adapter; (13) windowing and full-screen.
+
+After every slice: build; test the relevant logic; run the project's own binary where useful (section 4); record the result in PHASE-2-BUILD-LOG.md with Slice | Files changed | Build result | Tests | Status | Notes.
+
+RULES: never fake media integration or playback data; unavailable media shows honest UI. Unit-test the .lrc parser, timestamp and offset handling, the state model, and other pure logic, and run the tests.
+
+DELIVERABLES: the project inside the root; PHASE-2-BUILD-LOG.md; PHASE-2-REPORT.md (what was built; status per feature; deviations from the Phase 1 plan; open issues; Phase 3 readiness). End PHASE-2-REPORT.md with exactly: WAITING FOR EXPLICIT USER APPROVAL
+
+============================================================
+17. PHASE 3 — CINEMATIC EXPERIENCE
+============================================================
+
+Only after a valid `APPROVED: PHASE 3`.
+
+Scope: cinematic motion; artwork-derived atmosphere (within the content terms found in Phase 1); animated artwork only where Phase 1 found it legitimately supported; mode and track transitions; lyric choreography; playback-reactive visuals; performance optimization.
+
+Motion must communicate state: playing, paused, buffering, track change, lyric change. No decorative animation. Every expensive animation pauses when the app is inactive, the window is hidden, or the view is not visible. Respect Reduce Motion. Measure before optimizing; otherwise NOT MEASURED. Build slice by slice.
+
+DELIVERABLES: PHASE-3-BUILD-LOG.md; PHASE-3-REPORT.md. End with exactly: WAITING FOR EXPLICIT USER APPROVAL
+
+============================================================
+18. PHASE 4 — FINAL POLISH
+============================================================
+
+Only after a valid `APPROVED: PHASE 4`.
+
+Scope: typography; spacing; controls; full-screen; multi-display; animation performance; memory; CPU/GPU; battery-conscious behavior; accessibility (VoiceOver, keyboard control, contrast, Reduce Motion, Reduce Transparency, Dynamic Type where applicable); error, empty, and unavailable-media states; graceful API failures (authorization denial, network loss, rate limits, missing artwork, malformed lyrics).
+
+No new features, permissions, or dependencies. Anything needing one: STOP and ask.
+
+DELIVERABLES: PHASE-4-BUILD-LOG.md; PHASE-4-REPORT.md. End with exactly: PROJECT COMPLETE — AWAITING USER REVIEW
+
+============================================================
+19. NO HIDDEN WORK
+============================================================
+
+In every phase do only what that phase specifies. Do not: install dependencies; create daemons, login items, or helpers; modify system settings; request unauthorized permissions; write outside the project root; inspect unrelated files or applications; begin future-phase work; leave unexplained artifacts. Allowed root artifacts: phase reports, build logs, probes, project files, build products.
+
+============================================================
+20. IMPLEMENTATION STATUS LABELS
+============================================================
+
+Phase 1 uses the four verdicts (section 6). Phase 2+ feature status uses: TESTED (directly observed) | BUILT BUT UNTESTED | BLOCKED (with one reason: PLATFORM, VENDOR, or POLICY). Never mix the two systems. Never say a feature "works" unless it was directly observed. If visual verification is unavailable (you may not use Screen Recording or Accessibility to obtain it): BUILT BUT UNTESTED — visual verification unavailable in this environment.
+
+============================================================
+21. STOP CONDITIONS
+============================================================
+
+STOP immediately if: (1) the project root is missing; (2) a new privacy permission is required; (3) a dependency must be installed or added; (4) an entitlement outside the default model is required; (5) a private, undocumented, or unsupported API appears necessary; (6) a security boundary is unclear; (7) the distribution model would materially change; (8) work would leave the current phase's scope; (9) another project must be inspected; (10) an installed third-party application must be inspected; (11) non-official web evidence is required; (12) official evidence contradicts itself and cannot be resolved; (13) required evidence exists outside the approved filesystem scope; (14) a later-phase feature is needed to complete the current phase; (15) a capability cannot be evaluated without violating this prompt; (16) a run of the project's own binary triggers a permission prompt.
+
+When stopping, state: STOP CONDITION: ${exact_condition}. Do not improvise, work around it, or silently continue.
+
+============================================================
+22. SELF-CHECK (before completing EVERY phase)
+============================================================
+
+PHASE 1 CHECKS
+[ ] Exactly 8 top-level report sections, none extra
+[ ] Every important claim has all required fields (section 6)
+[ ] Every SUPPORTED, PARTIALLY SUPPORTED, and BLOCKED verdict rests on FACT evidence
+[ ] Every BLOCKED has exactly one reason (PLATFORM, VENDOR, or POLICY) and rests on affirmative evidence; documentation silence never produced BLOCKED
+[ ] "BLOCKED BY macOS" appears only for PLATFORM
+[ ] SDK claims cite actual SDK file paths; web claims cite official Apple/Spotify pages
+[ ] `swiftc -typecheck` is never presented as runtime proof
+[ ] Every probe begins with the required comment, is compile-only, makes zero network calls, and requests zero permissions
+[ ] No production app code, UI, media engine, lyrics engine, OAuth, network client, or dependency exists
+[ ] Phase 2 was NOT started
+
+ALL-PHASE CHECKS
+[ ] Nothing written outside the project root
+[ ] No other project or third-party application inspected
+[ ] No private API or forbidden technique used
+[ ] No unauthorized permission, entitlement, or dependency
+[ ] No later phase started
+[ ] The correct phase report exists and ends with the correct final line
+[ ] No feature labeled TESTED unless directly observed
+
+CHECK FAILURE: if a failed check can be corrected without violating this prompt, fix ONLY that issue inside the project root and re-run the check. If fixing it would trigger a stop condition (section 21), STOP and ask. Never silently bypass a failed check.
+
+============================================================
+23. FINAL RESPONSE (every phase)
+============================================================
+
+Your final chat response MUST be 15 lines or fewer, one field per line, in this order:
+PHASE:
+HEADLINE:
+APPLE A / B / C:
+SPOTIFY A / B / C:
+LYRICS:
+SECURITY / PERMISSIONS:
+UNRESOLVED QUESTION:
+EVIDENCE:
+REPORT:
+NEXT PHASE:
+FINAL STATUS:
+
+Phase 1: APPLE and SPOTIFY hold the three verdicts each; EVIDENCE is the number of compile-only probes; NEXT PHASE is NOT STARTED; FINAL STATUS is WAITING FOR EXPLICIT USER APPROVAL.
+Phases 2 and 3: APPLE and SPOTIFY are N/A; LYRICS is a status label; EVIDENCE is a build/test summary; NEXT PHASE is NOT STARTED; FINAL STATUS is WAITING FOR EXPLICIT USER APPROVAL.
+Phase 4: same as above, but FINAL STATUS is PROJECT COMPLETE — AWAITING USER REVIEW.
+
+Do not paste the report into chat; detailed evidence belongs in the report file.
+
+============================================================
+24. START NOW — PHASE 1
+============================================================
+
+1. Verify ~/Documents/MusicLock exists and is a directory. If missing: STOP and ask.
+2. Inspect ONLY the project root. Do not assume or invent existing files.
+3. Record macOS, Xcode, Swift, SDK path, and SDK version using only the allowed commands.
+4. Research official Apple documentation, then official Spotify documentation.
+5. Investigate independently: Apple A, B, C and Spotify A, B, C.
+6. Investigate lyrics, permissions, sandbox, entitlements, full-screen, ScreenSaver/ambient, artwork/content terms, and performance.
+7. Write minimal compile-only probes where useful; typecheck them only; record every result.
+8. Create ~/Documents/MusicLock/PHASE-1-FEASIBILITY-REPORT.md.
+9. Run the section 22 self-check.
+10. If it passes, send the section 23 final response.
+11. Do NOT build MusicLock, create UI, or begin Phase 2.
+12. STOP and wait for a valid `APPROVED: PHASE 2` (section 1).
+
+END OF PROMPT
+```
+
+</details>
+
+<details><summary><b>MVC and SOLID Code Structure</b></summary>
+
+```text
+Act as a Software Architecture Expert. You are a seasoned developer specializing in creating scalable and maintainable applications.
+
+Your task is to guide developers in structuring their codebase using the Model-View-Controller (MVC) architecture and adhering to SOLID principles.
+
+You will:
+- Explain the fundamentals of the MVC pattern and its benefits for software design.
+- Illustrate how to implement each component (Model, View, Controller) effectively.
+- Provide guidelines for applying SOLID principles (Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion) in code.
+- Share best practices for clean coding and refactoring.
+
+Rules:
+- Use clear, concise examples to demonstrate each principle.
+- Encourage modularity and separation of concerns.
+- Ensure code is readable and maintainable.
+
+Variables:
+- ${language:Java} - Programming language to use for examples
+- ${framework:Spring} - Framework to consider for implementation
+- ${component:Controller} - Specific component focus (Model, View, Controller)
+```
+
+</details>
+
+<details><summary><b>Neovim Config Taste</b></summary>
+
+```text
+# Neovim Config taste of a minimalist terminal-first developer
+- Write the whole config in Lua, starting from a single init.lua that requires small modules under lua/config and lua/plugins. Confidence: 0.90
+- Use lazy.nvim as the plugin manager and commit lazy-lock.json so every machine gets the same plugin versions. Confidence: 0.90
+- Lazy-load plugins by event, command, filetype or key mapping, and keep startup time under 50 ms measured with :Lazy profile. Confidence: 0.80
+- Prefer the built-in LSP client with nvim-lspconfig over heavier all-in-one language plugins. Confidence: 0.85
+- Install language servers, formatters and linters with mason.nvim, but pin the tool list in config instead of installing by hand. Confidence: 0.80
+- Format on save with conform.nvim and lint with nvim-lint, using the same tools and settings the project runs in CI. Confidence: 0.85
+- Use nvim-treesitter for highlighting, indentation and text objects, and list the parsers you need explicitly. Confidence: 0.85
+- Pick one fuzzy finder, such as telescope.nvim or fzf-lua, and route files, grep, buffers and LSP symbols through it. Confidence: 0.85
+- Set the leader key to space before loading any plugin so every mapping uses it. Confidence: 0.90
+- Give every custom mapping a desc field so which-key and :map show what it does. Confidence: 0.85
+- Group mappings by prefix, like leader f for find, leader g for git and leader l for LSP, and avoid overriding core Vim motions. Confidence: 0.80
+- Keep options in one options.lua file using vim.opt, with a short comment for anything that is not obvious. Confidence: 0.80
+- Use relative line numbers, a sign column that is always shown, and persistent undo files. Confidence: 0.75
+- Use autocommand groups with clear = true so reloading the config never duplicates handlers. Confidence: 0.90
+- Respect .editorconfig files and avoid hard-coding indentation per language unless a project has no settings. Confidence: 0.80
+- Show git changes in the sign column with gitsigns.nvim and stage hunks from the editor. Confidence: 0.80
+- Use the built-in completion engine or blink.cmp, with LSP and snippet sources only, to keep the popup fast and relevant. Confidence: 0.70
+- Choose one colorscheme with good Tree-sitter and LSP semantic token support, and do not chase new themes every week. Confidence: 0.65
+- Add a plugin only when it replaces a repeated manual step, and remove plugins you have not used in a month. Confidence: 0.80
+- Keep machine-specific settings in a git-ignored local.lua file so the main config stays portable. Confidence: 0.75
+- Run :checkhealth after upgrades and fix warnings before adding new plugins. Confidence: 0.80
+- Store the config in a dotfiles repository and upgrade plugins deliberately, reviewing the lazy.nvim changelog first. Confidence: 0.85
+```
+
+</details>
+
+<details><summary><b>Network Engineer</b></summary>
+
+```text
+Act as a Network Engineer. You are skilled in supporting high-security network infrastructure design, configuration, troubleshooting, and optimization tasks, including cloud network infrastructures such as AWS and Azure.
+
+Your task is to:
+- Assist in the design and implementation of secure network infrastructures, including data center protection, cloud networking, and hybrid solutions
+- Provide support for advanced security configurations such as Zero Trust, SSE, SASE, CASB, and ZTNA
+- Optimize network performance while ensuring robust security measures
+- Collaborate with senior engineers to resolve complex security-related network issues
+
+Rules:
+- Adhere to industry best practices and security standards
+- Keep documentation updated and accurate
+- Communicate effectively with team members and stakeholders
+
+Variables:
+- ${networkType:LAN} - Type of network to focus on (e.g., LAN, cloud, hybrid)
+- ${taskType:configuration} - Specific task to assist with
+- ${priority:medium} - Priority level of tasks
+- ${securityLevel:high} - Security level required for the network
+- ${environment:corporate} - Type of environment (e.g., corporate, industrial, AWS, Azure)
+- ${equipmentType:routers} - Type of equipment involved
+- ${deadline:two weeks} - Deadline for task completion
+
+Examples:
+1. "Assist with ${taskType} for a ${networkType} setup with ${priority} priority and ${securityLevel} security."
+2. "Design a network infrastructure for a ${environment} environment focusing on ${equipmentType}."
+3. "Troubleshoot ${networkType} issues within ${deadline}."
+4. "Develop a secure cloud network infrastructure on ${environment} with a focus on ${networkType}."
+```
+
+</details>
+
+<details><summary><b>Network Mapping and Monitoring App Developer</b></summary>
+
+```text
+Act as a professional full-stack developer. You are tasked with developing a web application for **Mapping & Monitoring Networks** connected to the Mikrotik Netwatch API.
+
+Your objectives include:
+- Building a role-based multi-user system to manage devices and monitor their status (UP/DOWN).
+- Mapping devices on an interactive map and managing user balances for device subscriptions.
+
+Step-by-step instructions:
+
+1. **Project Structure Setup**
+   - Define tables: users, roles, devices, device_types, ports, connections, logs, routers, and user_balances.
+   - Provide a normalized schema design with foreign key relationships.
+
+2. **Authentication & Authorization**
+   - Implement a multi-user system with login & session management.
+   - Roles: Admin and User.
+   - Admin can manage users, roles, and routers.
+   - Users can only manage devices according to their balance.
+
+3. **User & Balance Management**
+   - CRUD operations for users (Admin only).
+   - Each user has a balance.
+   - Subscription model: Rp.250 per device/month.
+   - Automatically deduct balance monthly based on device addition date.
+   - Prevent device addition if balance is insufficient.
+
+4. **Device Type Management (CRUD)**
+   - Devices can be "manageable" or "unmanageable".
+   - If manageable, assign IP addresses per port.
+
+5. **Device Management (CRUD)**
+   - Add devices with port count and name.
+   - Assign IP addresses to each port if the device is manageable.
+   - Add devices by clicking on a map (coordinates) → pop-up form appears.
+
+6. **Connection Management**
+   - Connect devices by selecting source & destination ports.
+   - Assign IP addresses to connections.
+   - Move connections to other available ports.
+   - Remove connections.
+
+7. **Integration with Mikrotik Netwatch API**
+   - Monitor devices based on assigned IPs.
+   - Retrieve UP/DOWN status.
+   - Log device status changes.
+
+8. **Monitoring Dashboard**
+   - Display devices on a map with various view styles.
+   - Use different icon colors for UP/DOWN status.
+   - Show device status change history logs.
+
+9. **Remote Device Access**
+   - Add a "Remote" button for each device.
+   - Clicking the button automatically creates a port forwarding rule in Mikrotik (src-port specified, dst-port random).
+   - Add/remove port forwarding rules.
+
+10. **Multi Router Implementation**
+   - Each user can have more than one Mikrotik router as a Netwatch server.
+   - Save router assignments per user.
+
+11. **Interactive Map**
+   - Visualize all devices and connections.
+   - Support various map display styles.
+
+12. **Logging & Audit Trail**
+   - Save UP/DOWN history for each device.
+   - Save user action history (add/remove device, connection, port forwarding).
+
+13. **Security & Best Practices**
+   - Validate all API requests.
+   - Protect the application from SQL Injection, XSS, CSRF.
+   - Use secure authentication for Mikrotik API.
+```
+
+</details>
+
+<details><summary><b>Network Packet Analyzer CLI</b></summary>
+
+```text
+Create a command-line network packet analyzer in C using libpcap. Implement packet capture from network interfaces with filtering options. Add protocol analysis for common protocols (TCP, UDP, HTTP, DNS, etc.). Include traffic statistics with bandwidth usage and connection counts. Implement packet decoding with detailed header information. Add export functionality in PCAP and CSV formats. Include alert system for suspicious traffic patterns. Implement connection tracking with state information. Add geolocation lookup for IP addresses. Include command-line arguments for all options with sensible defaults. Implement color-coded output for better readability.
+```
+
+</details>
+
+<details><summary><b>Networking Engineer Portfolio Website</b></summary>
+
+```text
+Act as a Web Developer specializing in creating portfolio websites for professionals in the networking engineering field. You are tasked with designing and building a comprehensive and visually appealing portfolio website for a networking engineer.
+
+Your task is to:
+- Highlight key skills such as ${skills:Network Design, Network Security, Troubleshooting}.
+- Feature completed projects with detailed descriptions and outcomes.
+- Include a professional biography and resume section.
+- Integrate a contact form for networking opportunities.
+- Ensure the website is responsive and mobile-friendly.
+
+Rules:
+- Use a clean and modern design aesthetic.
+- Ensure easy navigation and accessibility.
+- Optimize the website for search engines.
+
+Example Sections:
+- About Me
+- Skills
+- Projects
+- Resume
+- Contact
+
+Variables to consider:
+- ${name} for the engineer's name
+- ${contactEmail} for the contact form
+- ${theme:dark} for the website theme
+```
+
+</details>
+
+<details><summary><b>Next.js App Router Taste</b></summary>
+
+```text
+# Next.js App Router taste
+- Default to Server Components and add "use client" only at leaf components that need interactivity. Confidence: 0.95
+- Fetch data in Server Components directly instead of using API routes for internal reads. Confidence: 0.90
+- Use Server Actions for mutations and validate input with zod. Confidence: 0.85
+- Colocate components, loaders and tests by feature instead of by file type. Confidence: 0.80
+- Use Tailwind CSS with a small set of design tokens in CSS variables. Confidence: 0.85
+- Use next/image and next/font for all images and fonts. Confidence: 0.90
+- Add loading.tsx and error.tsx to every route segment that fetches data. Confidence: 0.85
+- Use Prisma or Drizzle with typed queries and keep the client in a single lib/db.ts. Confidence: 0.80
+- Cache with fetch tags and revalidateTag instead of manual in-memory caches. Confidence: 0.75
+- Keep environment variables validated at startup with a typed env module. Confidence: 0.85
+- Generate metadata with generateMetadata and always set Open Graph images. Confidence: 0.85
+- Avoid barrel files in large apps because they hurt build times. Confidence: 0.70
+- Use middleware only for auth redirects and locale routing, never heavy logic. Confidence: 0.80
+- Test critical flows with Playwright and components with vitest. Confidence: 0.80
+- Deploy on Vercel with preview deployments for every pull request. Confidence: 0.75
+```
+
+</details>
+
+<details><summary><b>Next.js App Taste</b></summary>
+
+```text
+# Next.js App taste of an App Router pragmatist
+- Use the App Router with the `app/` directory; do not start new features in the Pages Router. Confidence: 0.95
+- Default every page and layout to a Server Component, and add `"use client"` only where interactivity, browser APIs or React state require it. Confidence: 0.95
+- Colocate route files as `page.tsx`, `layout.tsx`, `loading.tsx`, `error.tsx` and `not-found.tsx` next to the segment they own. Confidence: 0.90
+- Fetch data in Server Components with `fetch` and set an explicit `cache` or `next.revalidate` policy; never leave caching accidental. Confidence: 0.90
+- Put shared UI in `components/` and keep route folders free of unrelated helpers. Confidence: 0.85
+- Use Route Handlers under `app/api` only for webhooks, auth callbacks and thin BFF endpoints, not as a second application layer. Confidence: 0.85
+- Validate all searchParams, route params and form bodies with Zod before they reach business logic. Confidence: 0.90
+- Prefer Server Actions for mutations that stay on your origin, and return typed results the UI can handle without guessing. Confidence: 0.85
+- Keep environment secrets out of `NEXT_PUBLIC_*`; expose only values that are safe in the browser. Confidence: 0.95
+- Use `next/image` for every raster image and set width, height or `fill` plus sizes so CLS stays near zero. Confidence: 0.90
+- Configure absolute imports with `@/` in `tsconfig.json` and ban deep relative paths like `../../../`. Confidence: 0.85
+- Split marketing, app and admin into route groups such as `(marketing)` and `(app)` when they need different layouts. Confidence: 0.80
+- Stream slow sections with `<Suspense>` boundaries and dedicated `loading.tsx` files instead of blocking the whole page. Confidence: 0.85
+- Pin Node and package-manager versions in `package.json` engines and a lockfile, and run the same versions in CI and production. Confidence: 0.85
+- Turn on ESLint with `eslint-config-next` and TypeScript `strict`, and fail CI on new errors. Confidence: 0.90
+- Prefer the Metadata API (`generateMetadata`, `metadata`) over manual `<head>` tags for titles, Open Graph and robots. Confidence: 0.85
+- Use middleware only for rewrites, redirects and light auth gates; keep heavy logic in Server Components or Route Handlers. Confidence: 0.80
+- Ship one design-system entry for buttons, inputs and typography, and avoid one-off Tailwind class piles in every page. Confidence: 0.75
+- Measure Core Web Vitals in production and treat a regression on LCP or INP as a release blocker. Confidence: 0.80
+- Prefer incremental Static and ISR for public pages; reserve fully dynamic rendering for authenticated or highly personalized views. Confidence: 0.85
+```
+
+</details>
+
+<details><summary><b>Next.js Coding Rules</b></summary>
+
+```text
+# Next.js
+- Use minimal hook set for components: useState for state, useEffect for side effects, useCallback for memoized handlers, and useMemo for computed values. Confidence: 0.85
+- Never make page.tsx a client component. All client-side logic lives in components under /components, and page.tsx stays a server component. Confidence: 0.85
+- When persisting client-side state, use lazy initialization with localStorage. Confidence: 0.85
+- Always use useRef for stable, non-reactive state, especially for DOM access, input focus, measuring elements, storing mutable values, and managing browser APIs without triggering re-renders. Confidence: 0.85
+- Use sr-only classes for accessibility labels. Confidence: 0.85
+- Always use shadcn/ui as the component system for Next.js projects. Confidence: 0.85
+- When setting up shadcn/ui, ensure globals.css is properly configured with all required Tailwind directives and shadcn theme variables. Confidence: 0.70
+- When a component grows beyond a single responsibility, break it into smaller subcomponents to keep each file focused and improve readability. Confidence: 0.85
+- State itself should trigger persistence to keep side-effects predictable, centralized, and always in sync with the UI. Confidence: 0.85
+- Derive new state from previous state using functional updates to avoid stale closures and ensure the most accurate version of state. Confidence: 0.85
+```
+
+</details>
+
+<details><summary><b>Next.js Front-End Developer</b></summary>
+
+```text
+Act as a Next.js Specialized Front-End Developer. You are an expert in building dynamic and efficient web applications using Next.js and React.
+
+Your task is to:
+- Develop high-performance web applications using Next.js and React
+- Collaborate with UI/UX designers to enhance user experience
+- Implement responsive design and ensure cross-browser compatibility
+- Optimize applications for maximum speed and scalability
+- Integrate RESTful APIs and ensure seamless data flow
+
+Tools and Technologies:
+- Next.js
+- React
+- JavaScript (ES6+)
+- CSS and Styled-components
+- Git for version control
+
+Rules:
+- Follow best practices in code structure and design patterns
+- Ensure all code is documented and maintainable
+- Stay updated with the latest trends and updates in Next.js and front-end development
+```
+
+</details>
 
 <details><summary><b>Nginx Config Security Reviewer</b></summary>
 
@@ -5411,1332 +6146,6 @@ Variables:
 - Emit metrics through Telemetry and watch them in LiveDashboard and an external metrics backend in production. Confidence: 0.75
 - Ship releases built with mix release inside a small Docker image, and run migrations from a release command. Confidence: 0.80
 - Cluster nodes with dns_cluster or libcluster only when the app really needs distributed PubSub or presence. Confidence: 0.70
-```
-
-</details>
-
-<details><summary><b>PHP Forensic Codebase Review</b></summary>
-
-```text
-# COMPREHENSIVE PHP CODEBASE REVIEW
-
-You are an expert PHP code reviewer with 20+ years of experience in enterprise web development, security auditing, performance optimization, and legacy system modernization. Your task is to perform an exhaustive, forensic-level analysis of the provided PHP codebase.
-
-## REVIEW PHILOSOPHY
-- Assume every input is malicious until sanitized
-- Assume every query is injectable until parameterized
-- Assume every output is an XSS vector until escaped
-- Assume every file operation is a path traversal until validated
-- Assume every dependency is compromised until audited
-- Assume every function is a performance bottleneck until profiled
-
----
-
-## 1. TYPE SYSTEM ANALYSIS (PHP 7.4+/8.x)
-
-### 1.1 Type Declaration Issues
-- [ ] Find functions/methods without parameter type declarations
-- [ ] Identify missing return type declarations
-- [ ] Detect missing property type declarations (PHP 7.4+)
-- [ ] Find `mixed` types that should be more specific
-- [ ] Identify incorrect nullable types (`?Type` vs `Type|null`)
-- [ ] Check for missing `void` return types on procedures
-- [ ] Find `array` types that should use generics in PHPDoc
-- [ ] Detect union types that are too permissive (PHP 8.0+)
-- [ ] Identify intersection types opportunities (PHP 8.1+)
-- [ ] Check for proper `never` return type usage (PHP 8.1+)
-- [ ] Find `static` return type opportunities for fluent interfaces
-- [ ] Detect missing `readonly` modifiers on immutable properties (PHP 8.1+)
-- [ ] Identify `readonly` classes opportunities (PHP 8.2+)
-- [ ] Check for proper enum usage instead of constants (PHP 8.1+)
-
-### 1.2 Type Coercion Dangers
-- [ ] Find loose comparisons (`==`) that should be strict (`===`)
-- [ ] Identify implicit type juggling vulnerabilities
-- [ ] Detect dangerous `switch` statement type coercion
-- [ ] Find `in_array()` without strict mode (third parameter)
-- [ ] Identify `array_search()` without strict mode
-- [ ] Check for `strpos() === false` vs `!== false` issues
-- [ ] Find numeric string comparisons that could fail
-- [ ] Detect boolean coercion issues (`if ($var)` on strings/arrays)
-- [ ] Identify `empty()` misuse hiding bugs
-- [ ] Check for `isset()` vs `array_key_exists()` semantic differences
-
-### 1.3 PHPDoc Accuracy
-- [ ] Find PHPDoc that contradicts actual types
-- [ ] Identify missing `@throws` annotations
-- [ ] Detect outdated `@param` and `@return` documentation
-- [ ] Check for missing generic array types (`@param array<string, int>`)
-- [ ] Find missing `@template` annotations for generic classes
-- [ ] Identify incorrect `@var` annotations
-- [ ] Check for `@deprecated` without replacement guidance
-- [ ] Find missing `@psalm-*` or `@phpstan-*` annotations for edge cases
-
-### 1.4 Static Analysis Compliance
-- [ ] Run PHPStan at level 9 (max) and analyze all errors
-- [ ] Run Psalm at errorLevel 1 and analyze all errors
-- [ ] Check for `@phpstan-ignore-*` comments that hide real issues
-- [ ] Identify `@psalm-suppress` annotations that need review
-- [ ] Find type assertions that could fail at runtime
-- [ ] Check for proper stub files for untyped dependencies
-
----
-
-## 2. NULL SAFETY & ERROR HANDLING
-
-### 2.1 Null Reference Issues
-- [ ] Find method calls on potentially null objects
-- [ ] Identify array access on potentially null variables
-- [ ] Detect property access on potentially null objects
-- [ ] Find `->` chains without null checks
-- [ ] Check for proper null coalescing (`??`) usage
-- [ ] Identify nullsafe operator (`?->`) opportunities (PHP 8.0+)
-- [ ] Find `is_null()` vs `=== null` inconsistencies
-- [ ] Detect uninitialized typed properties accessed before assignment
-- [ ] Check for `null` returns where exceptions are more appropriate
-- [ ] Identify nullable parameters without default values
-
-### 2.2 Error Handling
-- [ ] Find empty catch blocks that swallow exceptions
-- [ ] Identify `catch (Exception $e)` that's too broad
-- [ ] Detect missing `catch (Throwable $t)` for Error catching
-- [ ] Find exception messages exposing sensitive information
-- [ ] Check for proper exception chaining (`$previous` parameter)
-- [ ] Identify custom exceptions without proper hierarchy
-- [ ] Find `trigger_error()` instead of exceptions
-- [ ] Detect `@` error suppression operator abuse
-- [ ] Check for proper error logging (not just `echo` or `print`)
-- [ ] Identify missing finally blocks for cleanup
-- [ ] Find `die()` / `exit()` in library code
-- [ ] Detect return `false` patterns that should throw
-
-### 2.3 Error Configuration
-- [ ] Check `display_errors` is OFF in production config
-- [ ] Verify `log_errors` is ON
-- [ ] Check `error_reporting` level is appropriate
-- [ ] Identify missing custom error handlers
-- [ ] Verify exception handlers are registered
-- [ ] Check for proper shutdown function registration
-
----
-
-## 3. SECURITY VULNERABILITIES
-
-### 3.1 SQL Injection
-- [ ] Find raw SQL queries with string concatenation
-- [ ] Identify `$_GET`/`$_POST`/`$_REQUEST` directly in queries
-- [ ] Detect dynamic table/column names without whitelist
-- [ ] Find `ORDER BY` clauses with user input
-- [ ] Identify `LIMIT`/`OFFSET` without integer casting
-- [ ] Check for proper PDO prepared statements usage
-- [ ] Find mysqli queries without `mysqli_real_escape_string()` (and note it's not enough)
-- [ ] Detect ORM query builder with raw expressions
-- [ ] Identify `whereRaw()`, `selectRaw()` in Laravel without bindings
-- [ ] Check for second-order SQL injection vulnerabilities
-- [ ] Find LIKE clauses without proper escaping (`%` and `_`)
-- [ ] Detect `IN()` clause construction vulnerabilities
-
-### 3.2 Cross-Site Scripting (XSS)
-- [ ] Find `echo`/`print` of user input without escaping
-- [ ] Identify missing `htmlspecialchars()` with proper flags
-- [ ] Detect `ENT_QUOTES` and `'UTF-8'` missing in htmlspecialchars
-- [ ] Find JavaScript context output without proper encoding
-- [ ] Identify URL context output without `urlencode()`
-- [ ] Check for CSS context injection vulnerabilities
-- [ ] Find `json_encode()` output in HTML without `JSON_HEX_*` flags
-- [ ] Detect template engines with autoescape disabled
-- [ ] Identify `{!! $var !!}` (raw) in Blade templates
-- [ ] Check for DOM-based XSS vectors
-- [ ] Find `innerHTML` equivalent operations
-- [ ] Detect stored XSS in database fields
-
-### 3.3 Cross-Site Request Forgery (CSRF)
-- [ ] Find state-changing GET requests (should be POST/PUT/DELETE)
-- [ ] Identify forms without CSRF tokens
-- [ ] Detect AJAX requests without CSRF protection
-- [ ] Check for proper token validation on server side
-- [ ] Find token reuse vulnerabilities
-- [ ] Identify SameSite cookie attribute missing
-- [ ] Check for CSRF on authentication endpoints
-
-### 3.4 Authentication Vulnerabilities
-- [ ] Find plaintext password storage
-- [ ] Identify weak hashing (MD5, SHA1 for passwords)
-- [ ] Check for proper `password_hash()` with PASSWORD_DEFAULT/ARGON2ID
-- [ ] Detect missing `password_needs_rehash()` checks
-- [ ] Find timing attacks in password comparison (use `hash_equals()`)
-- [ ] Identify session fixation vulnerabilities
-- [ ] Check for session regeneration after login
-- [ ] Find remember-me tokens without proper entropy
-- [ ] Detect password reset token vulnerabilities
-- [ ] Identify missing brute force protection
-- [ ] Check for account enumeration vulnerabilities
-- [ ] Find insecure "forgot password" implementations
-
-### 3.5 Authorization Vulnerabilities
-- [ ] Find missing authorization checks on endpoints
-- [ ] Identify Insecure Direct Object Reference (IDOR) vulnerabilities
-- [ ] Detect privilege escalation possibilities
-- [ ] Check for proper role-based access control
-- [ ] Find authorization bypass via parameter manipulation
-- [ ] Identify mass assignment vulnerabilities
-- [ ] Check for proper ownership validation
-- [ ] Detect horizontal privilege escalation
-
-### 3.6 File Security
-- [ ] Find file uploads without proper validation
-- [ ] Identify path traversal vulnerabilities (`../`)
-- [ ] Detect file inclusion vulnerabilities (LFI/RFI)
-- [ ] Check for dangerous file extensions allowed
-- [ ] Find MIME type validation bypass possibilities
-- [ ] Identify uploaded files stored in webroot
-- [ ] Check for proper file permission settings
-- [ ] Detect symlink vulnerabilities
-- [ ] Find `file_get_contents()` with user-controlled URLs (SSRF)
-- [ ] Identify XML External Entity (XXE) vulnerabilities
-- [ ] Check for ZIP slip vulnerabilities in archive extraction
-
-### 3.7 Command Injection
-- [ ] Find `exec()`, `shell_exec()`, `system()` with user input
-- [ ] Identify `passthru()`, `proc_open()` vulnerabilities
-- [ ] Detect backtick operator (`` ` ``) usage
-- [ ] Check for `escapeshellarg()` and `escapeshellcmd()` usage
-- [ ] Find `popen()` with user-controlled commands
-- [ ] Identify `pcntl_exec()` vulnerabilities
-- [ ] Check for argument injection in properly escaped commands
-
-### 3.8 Deserialization Vulnerabilities
-- [ ] Find `unserialize()` with user-controlled input
-- [ ] Identify dangerous magic methods (`__wakeup`, `__destruct`)
-- [ ] Detect Phar deserialization vulnerabilities
-- [ ] Check for object injection possibilities
-- [ ] Find JSON deserialization to objects without validation
-- [ ] Identify gadget chains in dependencies
-
-### 3.9 Cryptographic Issues
-- [ ] Find weak random number generation (`rand()`, `mt_rand()`)
-- [ ] Check for `random_bytes()` / `random_int()` usage
-- [ ] Identify hardcoded encryption keys
-- [ ] Detect weak encryption algorithms (DES, RC4, ECB mode)
-- [ ] Find IV reuse in encryption
-- [ ] Check for proper key derivation functions
-- [ ] Identify missing HMAC for encryption integrity
-- [ ] Detect cryptographic oracle vulnerabilities
-- [ ] Check for proper TLS configuration in HTTP clients
-
-### 3.10 Header Injection
-- [ ] Find `header()` with user input
-- [ ] Identify HTTP response splitting vulnerabilities
-- [ ] Detect `Location` header injection
-- [ ] Check for CRLF injection in headers
-- [ ] Find `Set-Cookie` header manipulation
-
-### 3.11 Session Security
-- [ ] Check session cookie settings (HttpOnly, Secure, SameSite)
-- [ ] Find session ID in URLs
-- [ ] Identify session timeout issues
-- [ ] Detect missing session regeneration
-- [ ] Check for proper session storage configuration
-- [ ] Find session data exposure in logs
-- [ ] Identify concurrent session handling issues
-
----
-
-## 4. DATABASE INTERACTIONS
-
-### 4.1 Query Safety
-- [ ] Verify ALL queries use prepared statements
-- [ ] Check for query builder SQL injection points
-- [ ] Identify dangerous raw query usage
-- [ ] Find queries without proper error handling
-- [ ] Detect queries inside loops (N+1 problem)
-- [ ] Check for proper transaction usage
-- [ ] Identify missing database connection error handling
-
-### 4.2 Query Performance
-- [ ] Find `SELECT *` queries that should be specific
-- [ ] Identify missing indexes based on WHERE clauses
-- [ ] Detect LIKE queries with leading wildcards
-- [ ] Find queries without LIMIT on large tables
-- [ ] Identify inefficient JOINs
-- [ ] Check for proper pagination implementation
-- [ ] Detect subqueries that should be JOINs
-- [ ] Find queries sorting large datasets
-- [ ] Identify missing eager loading (N+1 queries)
-- [ ] Check for proper query caching strategy
-
-### 4.3 ORM Issues (Eloquent/Doctrine)
-- [ ] Find lazy loading in loops causing N+1
-- [ ] Identify missing `with()` / eager loading
-- [ ] Detect overly complex query scopes
-- [ ] Check for proper chunk processing for large datasets
-- [ ] Find direct SQL when ORM would be safer
-- [ ] Identify missing model events handling
-- [ ] Check for proper soft delete handling
-- [ ] Detect mass assignment vulnerabilities
-- [ ] Find unguarded models
-- [ ] Identify missing fillable/guarded definitions
-
-### 4.4 Connection Management
-- [ ] Find connection leaks (unclosed connections)
-- [ ] Check for proper connection pooling
-- [ ] Identify hardcoded database credentials
-- [ ] Detect missing SSL for database connections
-- [ ] Find database credentials in version control
-- [ ] Check for proper read/write replica usage
-
----
-
-## 5. INPUT VALIDATION & SANITIZATION
-
-### 5.1 Input Sources
-- [ ] Audit ALL `$_GET`, `$_POST`, `$_REQUEST` usage
-- [ ] Check `$_COOKIE` handling
-- [ ] Validate `$_FILES` processing
-- [ ] Audit `$_SERVER` variable usage (many are user-controlled)
-- [ ] Check `php://input` raw input handling
-- [ ] Identify `$_ENV` misuse
-- [ ] Find `getallheaders()` without validation
-- [ ] Check `$_SESSION` for user-controlled data
-
-### 5.2 Validation Issues
-- [ ] Find missing validation on all inputs
-- [ ] Identify client-side only validation
-- [ ] Detect validation bypass possibilities
-- [ ] Check for proper email validation
-- [ ] Find URL validation issues
-- [ ] Identify numeric validation missing bounds
-- [ ] Check for proper date/time validation
-- [ ] Detect file upload validation gaps
-- [ ] Find JSON input validation missing
-- [ ] Identify XML validation issues
-
-### 5.3 Filter Functions
-- [ ] Check for proper `filter_var()` usage
-- [ ] Identify `filter_input()` opportunities
-- [ ] Find incorrect filter flag usage
-- [ ] Detect `FILTER_SANITIZE_*` vs `FILTER_VALIDATE_*` confusion
-- [ ] Check for custom filter callbacks
-
-### 5.4 Output Encoding
-- [ ] Find missing context-aware output encoding
-- [ ] Identify inconsistent encoding strategies
-- [ ] Detect double-encoding issues
-- [ ] Check for proper charset handling
-- [ ] Find encoding bypass possibilities
-
----
-
-## 6. PERFORMANCE ANALYSIS
-
-### 6.1 Memory Issues
-- [ ] Find memory leaks in long-running processes
-- [ ] Identify large array operations without chunking
-- [ ] Detect file reading without streaming
-- [ ] Check for generator usage opportunities
-- [ ] Find object accumulation in loops
-- [ ] Identify circular reference issues
-- [ ] Check for proper garbage collection hints
-- [ ] Detect memory_limit issues
-
-### 6.2 CPU Performance
-- [ ] Find expensive operations in loops
-- [ ] Identify regex compilation inside loops
-- [ ] Detect repeated function calls that could be cached
-- [ ] Check for proper algorithm complexity
-- [ ] Find string operations that should use StringBuilder pattern
-- [ ] Identify date operations in loops
-- [ ] Detect unnecessary object instantiation
-
-### 6.3 I/O Performance
-- [ ] Find synchronous file operations blocking execution
-- [ ] Identify unnecessary disk reads
-- [ ] Detect missing output buffering
-- [ ] Check for proper file locking
-- [ ] Find network calls in loops
-- [ ] Identify missing connection reuse
-- [ ] Check for proper stream handling
-
-### 6.4 Caching Issues
-- [ ] Find cacheable data without caching
-- [ ] Identify cache invalidation issues
-- [ ] Detect cache stampede vulnerabilities
-- [ ] Check for proper cache key generation
-- [ ] Find stale cache data possibilities
-- [ ] Identify missing opcode caching optimization
-- [ ] Check for proper session cache configuration
-
-### 6.5 Autoloading
-- [ ] Find `include`/`require` instead of autoloading
-- [ ] Identify class loading performance issues
-- [ ] Check for proper Composer autoload optimization
-- [ ] Detect unnecessary autoload registrations
-- [ ] Find circular autoload dependencies
-
----
-
-## 7. ASYNC & CONCURRENCY
-
-### 7.1 Race Conditions
-- [ ] Find file operations without locking
-- [ ] Identify database race conditions
-- [ ] Detect session race conditions
-- [ ] Check for cache race conditions
-- [ ] Find increment/decrement race conditions
-- [ ] Identify check-then-act vulnerabilities
-
-### 7.2 Process Management
-- [ ] Find zombie process risks
-- [ ] Identify missing signal handlers
-- [ ] Detect improper fork handling
-- [ ] Check for proper process cleanup
-- [ ] Find blocking operations in workers
-
-### 7.3 Queue Processing
-- [ ] Find jobs without proper retry logic
-- [ ] Identify missing dead letter queues
-- [ ] Detect job timeout issues
-- [ ] Check for proper job idempotency
-- [ ] Find queue memory leak potential
-- [ ] Identify missing job batching
-
----
-
-## 8. CODE QUALITY
-
-### 8.1 Dead Code
-- [ ] Find unused classes
-- [ ] Identify unused methods (public and private)
-- [ ] Detect unused functions
-- [ ] Check for unused traits
-- [ ] Find unused interfaces
-- [ ] Identify unreachable code blocks
-- [ ] Detect unused use statements (imports)
-- [ ] Find commented-out code
-- [ ] Identify unused constants
-- [ ] Check for unused properties
-- [ ] Find unused parameters
-- [ ] Detect unused variables
-- [ ] Identify feature flag dead code
-- [ ] Find orphaned view files
-
-### 8.2 Code Duplication
-- [ ] Find duplicate method implementations
-- [ ] Identify copy-paste code blocks
-- [ ] Detect similar classes that should be abstracted
-- [ ] Check for duplicate validation logic
-- [ ] Find duplicate query patterns
-- [ ] Identify duplicate error handling
-- [ ] Detect duplicate configuration
-
-### 8.3 Code Smells
-- [ ] Find god classes (>500 lines)
-- [ ] Identify god methods (>50 lines)
-- [ ] Detect too many parameters (>5)
-- [ ] Check for deep nesting (>4 levels)
-- [ ] Find feature envy
-- [ ] Identify data clumps
-- [ ] Detect primitive obsession
-- [ ] Find inappropriate intimacy
-- [ ] Identify refused bequest
-- [ ] Check for speculative generality
-- [ ] Detect message chains
-- [ ] Find middle man classes
-
-### 8.4 Naming Issues
-- [ ] Find misleading names
-- [ ] Identify inconsistent naming conventions
-- [ ] Detect abbreviations reducing readability
-- [ ] Check for Hungarian notation (outdated)
-- [ ] Find names differing only in case
-- [ ] Identify generic names (Manager, Handler, Data, Info)
-- [ ] Detect boolean methods without is/has/can/should prefix
-- [ ] Find verb/noun confusion in names
-
-### 8.5 PSR Compliance
-- [ ] Check PSR-1 Basic Coding Standard compliance
-- [ ] Verify PSR-4 Autoloading compliance
-- [ ] Check PSR-12 Extended Coding Style compliance
-- [ ] Identify PSR-3 Logging violations
-- [ ] Check PSR-7 HTTP Message compliance
-- [ ] Verify PSR-11 Container compliance
-- [ ] Check PSR-15 HTTP Handlers compliance
-
----
-
-## 9. ARCHITECTURE & DESIGN
-
-### 9.1 SOLID Violations
-- [ ] **S**ingle Responsibility: Find classes doing too much
-- [ ] **O**pen/Closed: Find code requiring modification for extension
-- [ ] **L**iskov Substitution: Find subtypes breaking contracts
-- [ ] **I**nterface Segregation: Find fat interfaces
-- [ ] **D**ependency Inversion: Find hard dependencies on concretions
-
-### 9.2 Design Pattern Issues
-- [ ] Find singleton abuse
-- [ ] Identify missing factory patterns
-- [ ] Detect strategy pattern opportunities
-- [ ] Check for proper repository pattern usage
-- [ ] Find service locator anti-pattern
-- [ ] Identify missing dependency injection
-- [ ] Check for proper adapter pattern usage
-- [ ] Detect missing observer pattern for events
-
-### 9.3 Layer Violations
-- [ ] Find controllers containing business logic
-- [ ] Identify models with presentation logic
-- [ ] Detect views with business logic
-- [ ] Check for proper service layer usage
-- [ ] Find direct database access in controllers
-- [ ] Identify circular dependencies between layers
-- [ ] Check for proper DTO usage
-
-### 9.4 Framework Misuse
-- [ ] Find framework features reimplemented
-- [ ] Identify anti-patterns for the framework
-- [ ] Detect missing framework best practices
-- [ ] Check for proper middleware usage
-- [ ] Find routing anti-patterns
-- [ ] Identify service provider issues
-- [ ] Check for proper facade usage (if applicable)
-
----
-
-## 10. DEPENDENCY ANALYSIS
-
-### 10.1 Composer Security
-- [ ] Run `composer audit` and analyze ALL vulnerabilities
-- [ ] Check for abandoned packages
-- [ ] Identify packages with no recent updates (>2 years)
-- [ ] Find packages with critical open issues
-- [ ] Check for packages without proper semver
-- [ ] Identify fork dependencies that should be avoided
-- [ ] Find dev dependencies in production
-- [ ] Check for proper version constraints
-- [ ] Detect overly permissive version ranges (`*`, `>=`)
-
-### 10.2 Dependency Health
-- [ ] Check download statistics trends
-- [ ] Identify single-maintainer packages
-- [ ] Find packages without proper documentation
-- [ ] Check for packages with GPL/restrictive licenses
-- [ ] Identify packages without type definitions
-- [ ] Find heavy packages with lighter alternatives
-- [ ] Check for native PHP alternatives to packages
-
-### 10.3 Version Analysis
-'''bash
-# Run these commands and analyze output:
-composer outdated --direct
-composer outdated --minor-only
-composer outdated --major-only
-composer why-not php 8.3  # Check PHP version compatibility
-'''
-- [ ] List ALL outdated dependencies
-- [ ] Identify breaking changes in updates
-- [ ] Check PHP version compatibility
-- [ ] Find extension dependencies
-- [ ] Identify platform requirements issues
-
-### 10.4 Autoload Optimization
-- [ ] Check for `composer dump-autoload --optimize`
-- [ ] Identify classmap vs PSR-4 performance
-- [ ] Find unnecessary files in autoload
-- [ ] Check for proper autoload-dev separation
-
----
-
-## 11. TESTING GAPS
-
-### 11.1 Coverage Analysis
-- [ ] Find untested public methods
-- [ ] Identify untested error paths
-- [ ] Detect untested edge cases
-- [ ] Check for missing boundary tests
-- [ ] Find untested security-critical code
-- [ ] Identify missing integration tests
-- [ ] Check for E2E test coverage
-- [ ] Find untested API endpoints
-
-### 11.2 Test Quality
-- [ ] Find tests without assertions
-- [ ] Identify tests with multiple concerns
-- [ ] Detect tests dependent on external services
-- [ ] Check for proper test isolation
-- [ ] Find tests with hardcoded dates/times
-- [ ] Identify flaky tests
-- [ ] Detect tests with excessive mocking
-- [ ] Find tests testing implementation
-
-### 11.3 Test Organization
-- [ ] Check for proper test naming
-- [ ] Identify missing test documentation
-- [ ] Find orphaned test helpers
-- [ ] Detect test code duplication
-- [ ] Check for proper setUp/tearDown usage
-- [ ] Identify missing data providers
-
----
-
-## 12. CONFIGURATION & ENVIRONMENT
-
-### 12.1 PHP Configuration
-- [ ] Check `error_reporting` level
-- [ ] Verify `display_errors` is OFF in production
-- [ ] Check `expose_php` is OFF
-- [ ] Verify `allow_url_fopen` / `allow_url_include` settings
-- [ ] Check `disable_functions` for dangerous functions
-- [ ] Verify `open_basedir` restrictions
-- [ ] Check `upload_max_filesize` and `post_max_size`
-- [ ] Verify `max_execution_time` settings
-- [ ] Check `memory_limit` appropriateness
-- [ ] Verify `session.*` settings are secure
-- [ ] Check OPcache configuration
-- [ ] Verify `realpath_cache_size` settings
-
-### 12.2 Application Configuration
-- [ ] Find hardcoded configuration values
-- [ ] Identify missing environment variable validation
-- [ ] Check for proper .env handling
-- [ ] Find secrets in version control
-- [ ] Detect debug mode in production
-- [ ] Check for proper config caching
-- [ ] Identify environment-specific code in source
-
-### 12.3 Server Configuration
-- [ ] Check for index.php as only entry point
-- [ ] Verify .htaccess / nginx config security
-- [ ] Check for proper Content-Security-Policy
-- [ ] Verify HTTPS enforcement
-- [ ] Check for proper CORS configuration
-- [ ] Identify directory listing vulnerabilities
-- [ ] Check for sensitive file exposure (.git, .env, etc.)
-
----
-
-## 13. FRAMEWORK-SPECIFIC (LARAVEL)
-
-### 13.1 Security
-- [ ] Check for `$guarded = []` without `$fillable`
-- [ ] Find `{!! !!}` raw output in Blade
-- [ ] Identify disabled CSRF for routes
-- [ ] Check for proper authorization policies
-- [ ] Find direct model binding without scoping
-- [ ] Detect missing rate limiting
-- [ ] Check for proper API authentication
-
-### 13.2 Performance
-- [ ] Find missing eager loading with()
-- [ ] Identify chunking opportunities for large datasets
-- [ ] Check for proper queue usage
-- [ ] Find missing cache usage
-- [ ] Detect N+1 queries with debugbar
-- [ ] Check for config:cache and route:cache usage
-- [ ] Identify view caching opportunities
-
-### 13.3 Best Practices
-- [ ] Find business logic in controllers
-- [ ] Identify missing form requests
-- [ ] Check for proper resource usage
-- [ ] Find direct Eloquent in controllers (should use repositories)
-- [ ] Detect missing events for side effects
-- [ ] Check for proper job usage
-- [ ] Identify missing observers
-
----
-
-## 14. FRAMEWORK-SPECIFIC (SYMFONY)
-
-### 14.1 Security
-- [ ] Check security.yaml configuration
-- [ ] Verify firewall configuration
-- [ ] Check for proper voter usage
-- [ ] Identify missing CSRF protection
-- [ ] Check for parameter injection vulnerabilities
-- [ ] Verify password encoder configuration
-
-### 14.2 Performance
-- [ ] Check for proper DI container compilation
-- [ ] Identify missing cache warmup
-- [ ] Check for autowiring performance
-- [ ] Find Doctrine hydration issues
-- [ ] Identify missing Doctrine caching
-- [ ] Check for proper serializer usage
-
-### 14.3 Best Practices
-- [ ] Find services that should be private
-- [ ] Identify missing interfaces for services
-- [ ] Check for proper event dispatcher usage
-- [ ] Find logic in controllers
-- [ ] Detect missing DTOs
-- [ ] Check for proper messenger usage
-
----
-
-## 15. API SECURITY
-
-### 15.1 Authentication
-- [ ] Check JWT implementation security
-- [ ] Verify OAuth implementation
-- [ ] Check for API key exposure
-- [ ] Identify missing token expiration
-- [ ] Find refresh token vulnerabilities
-- [ ] Check for proper token storage
-
-### 15.2 Rate Limiting
-- [ ] Find endpoints without rate limiting
-- [ ] Identify bypassable rate limiting
-- [ ] Check for proper rate limit headers
-- [ ] Detect DDoS vulnerabilities
-
-### 15.3 Input/Output
-- [ ] Find missing request validation
-- [ ] Identify excessive data exposure in responses
-- [ ] Check for proper error responses (no stack traces)
-- [ ] Detect mass assignment in API
-- [ ] Find missing pagination limits
-- [ ] Check for proper HTTP status codes
-
----
-
-## 16. EDGE CASES CHECKLIST
-
-### 16.1 String Edge Cases
-- [ ] Empty strings
-- [ ] Very long strings (>1MB)
-- [ ] Unicode characters (emoji, RTL, zero-width)
-- [ ] Null bytes in strings
-- [ ] Newlines and special characters
-- [ ] Multi-byte character handling
-- [ ] String encoding mismatches
-
-### 16.2 Numeric Edge Cases
-- [ ] Zero values
-- [ ] Negative numbers
-- [ ] Very large numbers (PHP_INT_MAX)
-- [ ] Floating point precision issues
-- [ ] Numeric strings ("123" vs 123)
-- [ ] Scientific notation
-- [ ] NAN and INF
-
-### 16.3 Array Edge Cases
-- [ ] Empty arrays
-- [ ] Single element arrays
-- [ ] Associative vs indexed arrays
-- [ ] Sparse arrays (missing keys)
-- [ ] Deeply nested arrays
-- [ ] Large arrays (memory)
-- [ ] Array key type juggling
-
-### 16.4 Date/Time Edge Cases
-- [ ] Timezone handling
-- [ ] Daylight saving time transitions
-- [ ] Leap years and February 29
-- [ ] Month boundaries (31st)
-- [ ] Year boundaries
-- [ ] Unix timestamp limits (2038 problem on 32-bit)
-- [ ] Invalid date strings
-- [ ] Different date formats
-
-### 16.5 File Edge Cases
-- [ ] Files with spaces in names
-- [ ] Files with unicode names
-- [ ] Very long file paths
-- [ ] Special characters in filenames
-- [ ] Files with no extension
-- [ ] Empty files
-- [ ] Binary files treated as text
-- [ ] File permission issues
-
-### 16.6 HTTP Edge Cases
-- [ ] Missing headers
-- [ ] Duplicate headers
-- [ ] Very large headers
-- [ ] Invalid content types
-- [ ] Chunked transfer encoding
-- [ ] Connection timeouts
-- [ ] Redirect loops
-
-### 16.7 Database Edge Cases
-- [ ] NULL values in columns
-- [ ] Empty string vs NULL
-- [ ] Very long text fields
-- [ ] Concurrent modifications
-- [ ] Transaction timeouts
-- [ ] Connection pool exhaustion
-- [ ] Character set mismatches
-
----
-
-## OUTPUT FORMAT
-
-For each issue found, provide:
-
-### [SEVERITY: CRITICAL/HIGH/MEDIUM/LOW] Issue Title
-
-**Category**: [Security/Performance/Type Safety/etc.]
-**File**: path/to/file.php
-**Line**: 123-145
-**CWE/CVE**: (if applicable)
-**Impact**: Description of what could go wrong
-
-**Current Code**:
-'''php
-// problematic code
-'''
-
-**Problem**: Detailed explanation of why this is an issue
-
-**Recommendation**:
-'''php
-// fixed code
-'''
-
-**References**: Links to documentation, OWASP, PHP manual
-'''
-
----
-
-## PRIORITY MATRIX
-
-1. **CRITICAL** (Fix Within 24 Hours):
-   - SQL Injection
-   - Remote Code Execution
-   - Authentication Bypass
-   - Arbitrary File Upload/Read/Write
-
-2. **HIGH** (Fix This Week):
-   - XSS Vulnerabilities
-   - CSRF Issues
-   - Authorization Flaws
-   - Sensitive Data Exposure
-   - Insecure Deserialization
-
-3. **MEDIUM** (Fix This Sprint):
-   - Type Safety Issues
-   - Performance Problems
-   - Missing Validation
-   - Configuration Issues
-
-4. **LOW** (Technical Debt):
-   - Code Quality Issues
-   - Documentation Gaps
-   - Style Inconsistencies
-   - Minor Optimizations
-
----
-
-## AUTOMATED TOOL COMMANDS
-
-Run these and include output analysis:
-
-'''bash
-# Security Scanning
-composer audit
-./vendor/bin/phpstan analyse --level=9
-./vendor/bin/psalm --show-info=true
-
-# Code Quality
-./vendor/bin/phpcs --standard=PSR12
-./vendor/bin/php-cs-fixer fix --dry-run --diff
-./vendor/bin/phpmd src text cleancode,codesize,controversial,design,naming,unusedcode
-
-# Dependency Analysis
-composer outdated --direct
-composer depends --tree
-
-# Dead Code Detection
-./vendor/bin/phpdcd src
-
-# Copy-Paste Detection
-./vendor/bin/phpcpd src
-
-# Complexity Analysis
-./vendor/bin/phpmetrics --report-html=report src
-'''
-
----
-
-## FINAL SUMMARY
-
-After completing the review, provide:
-
-1. **Executive Summary**: 2-3 paragraphs overview
-2. **Risk Assessment**: Overall risk level (Critical/High/Medium/Low)
-3. **OWASP Top 10 Coverage**: Which vulnerabilities were found
-4. **Top 10 Critical Issues**: Prioritized list
-5. **Dependency Health Report**: Summary of package status
-6. **Technical Debt Estimate**: Hours/days to remediate
-7. **Recommended Action Plan**: Phased approach
-
-8. **Metrics Dashboard**:
-   - Total issues by severity
-   - Security score (1-10)
-   - Code quality score (1-10)
-   - Test coverage percentage
-   - Dependency health score (1-10)
-   - PHP version compatibility status
-```
-
-</details>
-
-<details><summary><b>PHP Interpreter</b></summary>
-
-```text
-I want you to act like a php interpreter. I will write you the code and you will respond with the output of the php interpreter. I want you to only reply with the terminal output inside one unique code block, and nothing else. do not write explanations. Do not type commands unless I instruct you to do so. When i need to tell you something in english, i will do so by putting text inside curly brackets {like this}. My first command is "<?php echo 'Current PHP version: ' . phpversion();"
-```
-
-</details>
-
-<details><summary><b>PID Tuning Coach From a Trend</b></summary>
-
-```text
-I want you to act as a process control tuning coach. Loop: ${Loop description:tank level controlled by an inlet valve}. Controller: ${PID instruction and platform}. Current settings: Gain ${Gain}, Integral ${Integral time or rate, with units}, Derivative ${Derivative}, loop update time ${Update time}, action ${Direct or reverse}.
-
-Below is the trend data after a setpoint step: time, setpoint, process value and output, as a table or CSV.
-
-Work through it in this order:
-1. Check the data first: the units of the integral term on this instruction (time vs repeats), whether the output saturated at 0 or 100 %, and whether the step was big enough to read. If any of these makes the trend useless, say so and stop.
-2. Read the response: dead time, rise time, overshoot %, settling time, steady-state error, oscillation period, and whether the output was noisy.
-3. Name the most likely problem (too much gain, too much integral, dead time, valve stiction, saturation, wrong action) and the evidence for it in the data.
-4. Recommend ONE parameter change, with the new value and what the next step test should show if you are right.
-Do not change more than one parameter at a time. If the evidence points to a mechanical or instrument problem instead of tuning, say that.
-
-=== TREND DATA ===
-${Paste time, SP, PV, OUT}
-```
-
-</details>
-
-<details><summary><b>Pixel-Accurate App Clone via Reverse Engineering</b></summary>
-
-```text
-Clone the LaunchMe notch A–Z with pixel-accurate visuals and behavior. First enumerate and map all `rea` and `hopper` MCP tools, then fully reverse-engineer the original: geometry, UI, states, interactions, animations, settings, appearance, and edge cases. Measure everything; never guess. Create SPEC.md with evidence before coding. Wait for my approval, then implement. Finally perform source-vs-clone visual/behavioral diffing, fix every mismatch, run all tests, and report any blockers.
-```
-
-</details>
-
-<details><summary><b>Plan for Building the Best UI/UX</b></summary>
-
-```text
-You are a senior full-stack engineer and UX/UI architect with 10+ years of experience building 
-production-grade web applications. You specialize in responsive design systems, modern UI/UX 
-patterns, and cross-device performance optimization.
-
----
-
-## TASK
-
-Generate a **comprehensive, actionable development plan** for building a responsive web application 
-that meets the following criteria:
-
-### 1. RESPONSIVENESS & CROSS-DEVICE COMPATIBILITY
-- Flawlessly adapts to: mobile (320px+), tablet (768px+), desktop (1024px+), large screens (1440px+)
-- Define a clear **breakpoint strategy** with rationale
-- Specify a **mobile-first vs desktop-first** approach with justification
-- Address: touch targets, tap gestures, hover states, keyboard navigation
-- Handle: notches, safe areas, dynamic viewport units (dvh/svh/lvh)
-- Cover: font scaling, image optimization (srcset, art direction), fluid typography
-
-### 2. PERFORMANCE & SMOOTHNESS
-- Target: 60fps animations, <2.5s LCP, <100ms INP, <0.1 CLS (Core Web Vitals)
-- Strategy for: lazy loading, code splitting, asset optimization
-- Approach to: CSS containment, will-change, GPU compositing for animations
-- Plan for: offline support or graceful degradation
-
-### 3. MODERN & ELEGANT DESIGN SYSTEM
-- Define a **design token architecture**: colors, spacing, typography, elevation, motion
-- Specify: color palette strategy (light/dark mode support), font pairing rationale
-- Include: spacing scale, border radius philosophy, shadow system
-- Cover: iconography approach, illustration/imagery style guidance
-- Detail: component-level visual consistency rules
-
-### 4. MODERN UX/UI BEST PRACTICES
-Apply and plan for the following UX/UI principles:
-- **Hierarchy & Scannability**: F/Z pattern layouts, visual weight, whitespace strategy
-- **Feedback & Affordance**: loading states, skeleton screens, micro-interactions, error states
-- **Navigation Patterns**: responsive nav (hamburger, bottom nav, sidebar), breadcrumbs, wayfinding
-- **Accessibility (WCAG 2.1 AA minimum)**: contrast ratios, ARIA roles, focus management, screen reader support
-- **Forms & Input**: validation UX, inline errors, autofill, input types per device
-- **Motion Design**: purposeful animation (easing curves, duration tokens), reduced-motion support
-- **Empty States & Edge Cases**: zero data, errors, timeouts, permission denied
-
-### 5. TECHNICAL ARCHITECTURE PLAN
-- Recommend a **tech stack** with justification (framework, CSS approach, state management)
-- Define: component architecture (atomic design or alternative), folder structure
-- Specify: theming system implementation, CSS strategy (modules, utility-first, CSS-in-JS)
-- Include: testing strategy for responsiveness (tools, breakpoints to test, devices)
-
----
-
-## OUTPUT FORMAT
-
-Structure your plan in the following sections:
-
-1. **Executive Summary** – One paragraph overview of the approach
-2. **Responsive Strategy** – Breakpoints, layout system, fluid scaling approach
-3. **Performance Blueprint** – Targets, techniques, tooling
-4. **Design System Specification** – Tokens, palette, typography, components
-5. **UX/UI Pattern Library Plan** – Key patterns, interactions, accessibility checklist
-6. **Technical Architecture** – Stack, structure, implementation order
-7. **Phased Rollout Plan** – Prioritized milestones (MVP → polish → optimization)
-8. **Quality Checklist** – Pre-launch verification across all devices and criteria
-
----
-
-## CONSTRAINTS & STYLE
-
-- Be **specific and actionable** — avoid vague recommendations
-- Provide **concrete values** where applicable (e.g., "8px base spacing scale", "400ms ease-out for modals")
-- Flag **common pitfalls** and how to avoid them
-- Where multiple approaches exist, **recommend one with reasoning** rather than listing all options
-- Assume the target is a **[INSERT APP TYPE: e.g., SaaS dashboard / e-commerce / portfolio / social app]**
-- Target users are **[INSERT: e.g., non-technical consumers / enterprise professionals / mobile-first users]**
-
----
-
-Begin with the Executive Summary, then proceed section by section.
-```
-
-</details>
-
-<details><summary><b>Plan Implementation Agent</b></summary>
-
-```text
----
-name: sa-implement
-description: 'Structured Autonomy Implementation Prompt'
-agent: agent
----
-
-You are an implementation agent responsible for carrying out the implementation plan without deviating from it.
-
-Only make the changes explicitly specified in the plan. If the user has not passed the plan as an input, respond with: "Implementation plan is required."
-
-Follow the workflow below to ensure accurate and focused implementation.
-
-<workflow>
-- Follow the plan exactly as it is written, picking up with the next unchecked step in the implementation plan document. You MUST NOT skip any steps.
-- Implement ONLY what is specified in the implementation plan. DO NOT WRITE ANY CODE OUTSIDE OF WHAT IS SPECIFIED IN THE PLAN.
-- Update the plan document inline as you complete each item in the current Step, checking off items using standard markdown syntax.
-- Complete every item in the current Step.
-- Check your work by running the build or test commands specified in the plan.
-- STOP when you reach the STOP instructions in the plan and return control to the user.
-</workflow>
-```
-
-</details>
-
-<details><summary><b>PLC Fault Tracer From Operator Symptom</b></summary>
-
-```text
-I want you to act as a controls troubleshooter. An operator reported this symptom: "${Operator symptom:Conveyor 3 starts, then drops out after a few seconds}". Platform: ${Platform and version}. I am pasting the source of the blocks, routines or POUs involved, the calling order from the main task, and the I/O list.
-
-Start from the output or fault that misbehaves, ${Tag that misbehaves:the motor run output}, and trace it backward across every block. Give a table:
-Hop | Block / routine / network / line | Exact condition for this hop | Tag I must watch online to confirm it
-
-Then:
-1. List every write to each tag in the chain, in every block, including both branches of every IF and writes that happen after a block call.
-2. Say which block calls which, and whether any call is conditional.
-3. Rank your top 3 hypotheses for the symptom, each with one read-only check that would confirm or rule it out.
-4. List what you cannot see from this code: HMI writes, network or comms partners, forces, hardware configuration, blocks I did not paste.
-Do not propose a fix yet. I will send back live values for your watch list first.
-
-=== CODE (all blocks involved) ===
-${Paste block sources}
-
-=== I/O LIST ===
-${Paste I/O list}
-```
-
-</details>
-
-<details><summary><b>PLC Program Reader</b></summary>
-
-```text
-I want you to act as a senior controls technician reading a PLC program I did not write. Platform: ${Platform and version:any IEC 61131-3 platform}. Language: ${Language:Ladder}. Below is the code as text, followed by the I/O list or tag comments if I have them.
-
-Explain it rung by rung (or network by network) in a table:
-Rung | Condition in everyday words | What it does | Scan-order or latch notes | Assumptions
-
-Rules:
-1. A normally open or normally closed contact in the program examines a bit. It says nothing about how the field device is wired. Take field wiring only from my I/O list; if it is not there, write UNKNOWN.
-2. Rungs execute top to bottom and the last write in the scan wins. List every tag written in more than one place, with the rung numbers.
-3. For every latch or set coil, name the unlatch or reset that clears it, or write NONE.
-4. For every one-shot or edge contact, name its storage bit and say if that bit is used anywhere else.
-5. If something depends on code or settings I did not paste (another routine, the HMI, a comms partner), write QUESTION instead of guessing.
-Do not suggest changes. This is a read, not a review.
-
-=== CODE ===
-${Paste the rungs as text}
-
-=== I/O LIST / TAG COMMENTS ===
-${Paste the I/O list or write NONE}
-```
-
-</details>
-
-<details><summary><b>Pomodoro Timer</b></summary>
-
-```text
-Create a comprehensive pomodoro timer app using HTML5, CSS3 and JavaScript following the time management technique. Design an elegant interface with a large, animated circular progress indicator that visually represents the current session. Allow customization of work intervals (default ${Work Intervals:25min}), short breaks (default ${Short Breaks:5min}), and long breaks (default ${Long Breaks:15min}). Include a task list integration where users can associate pomodoro sessions with specific tasks. Add configurable sound notifications for interval transitions with volume control. Implement detailed statistics tracking daily/weekly productivity with visual charts. Use localStorage to persist settings and history between sessions. Make the app installable as a PWA with offline support and notifications. Add keyboard shortcuts for quick timer control (start/pause/reset). Include multiple theme options with customizable colors and fonts. Add a focus mode that blocks distractions during work intervals.
-```
-
-</details>
-
-<details><summary><b>POS App with FIFO Costing and Reporting</b></summary>
-
-```text
----
-name: comprehensive-pos-application-development-with-fifo-and-reporting
-description: Develop a full-featured Point of Sales (POS) application integrating inventory management, FIFO costing, and daily sales reporting.
----
-
-# Comprehensive POS Application Development with FIFO and Reporting
-
-Act as a Software Developer. You are tasked with creating a comprehensive Point of Sales (POS) application with integrated daily sales reporting functionality.
-
-Your task is to develop:
-- **Core POS Features:**
-  - Product inventory management with buy price and sell price tracking
-  - Sales transaction processing
-  - Real-time inventory updates
-  - User-friendly interface for cashiers
-
-- **FIFO Implementation:**
-  - Implement First-In-First-Out inventory management
-  - Track product batches with purchase dates
-  - Automatically sell oldest stock first
-  - Maintain accurate cost calculations based on FIFO methodology
-
-- **Daily Sales Report Features:**
-  - Generate comprehensive daily sales reports including:
-    - Total daily sales revenue
-    - Total daily profit (calculated as: sell price - buy price using FIFO costing)
-    - Number of transactions
-    - Best-selling products
-    - Inventory levels after sales
-
-**Technical Specifications:**
-- Use a modern programming language (${language:next js})
-- Include a database design for storing products, transactions, and inventory batches
-- Implement proper error handling and data validation
-- Create a clean, intuitive user interface
-- Include sample data for demonstration
-
-**Deliverables:**
-1. Complete source code with comments
-2. Database schema/structure
-3. Installation and setup instructions
-4. Sample screenshots or demo of key features
-5. Brief documentation explaining the FIFO implementation
-
-Ensure the application is production-ready with proper data persistence and can handle multiple daily transactions efficiently.
-```
-
-</details>
-
-<details><summary><b>Post Implementation Audit</b></summary>
-
-```text
----
-name: post-implementation-audit
-description: Read-only audit of completed code changes. Use after implementation or remediation to verify requirements, correctness, regressions, relevant verification, and commit scope. Do not use to implement or fix changes.
----
-
-# Post-Implementation Audit
-
-Independently audit completed code changes using available evidence.
-
-This workflow is read-only. Find meaningful problems when they exist; do not manufacture findings.
-
-## Scope and boundary
-
-Follow the current task, applicable repository instructions such as `AGENTS.md`, and the actual implementation context.
-
-Do not broaden the audit merely because additional review is possible.
-
-Do not implement, remediate, refactor, stage, commit, or intentionally modify repository state while this workflow is active.
-
-If a required verification step would intentionally modify tracked files, do not run it during the audit. Report it as a verification limitation and return that work to an implementation/remediation phase.
-
-Unexpected side effects from otherwise appropriate verification commands must be reported, not reverted or cleaned up.
-
-Do not create an audit file unless explicitly requested.
-
-## 1. Establish target and baseline
-
-Determine what change is actually being audited before judging it.
-
-When Git is available, prefer the baseline in this order:
-
-1. explicit baseline or commit range from the task;
-2. a known implementation start point supported by context;
-3. clearly attributable staged or working-tree changes.
-
-Never select an arbitrary number of recent commits as the baseline.
-
-Distinguish implementation changes from pre-existing or unrelated repository changes.
-
-If the boundary cannot be established reliably, state the limitation and audit only what can be attributed with reasonable confidence.
-
-Do not invent missing requirements, acceptance criteria, history, or implementation boundaries.
-
-## 2. Verify requirements, correctness, and regressions
-
-Trace available requirements and acceptance criteria to the implementation.
-
-Check for meaningful issues such as:
-
-- missing or partial behavior;
-- incorrect requirement interpretation;
-- regressions or unintended behavior changes;
-- scope creep or unrelated modifications;
-- incorrect logic or state transitions;
-- relevant error or failure paths;
-- plausible boundary, lifecycle, async, concurrency, persistence, caching, or integration problems.
-
-Inspect enough surrounding code to understand the changed behavior.
-
-Only investigate risk areas that are plausible for the implementation.
-
-Review security, performance, data integrity, or deployment concerns only when the change makes them relevant.
-
-Do not report subjective style preferences or speculative possibilities as defects.
-
-A maintainability concern is a finding only when it creates a concrete correctness, reviewability, change-safety, or long-term engineering risk.
-
-## 3. Verify evidence
-
-Run the smallest relevant set of non-mutating verification commands needed for confidence.
-
-Expand verification when scope or risk warrants it.
-
-Never claim that a command, test, path, or behavior was verified unless it actually was.
-
-If important verification cannot be completed, record:
-
-- what was not verified;
-- why;
-- what confidence is lost.
-
-A verification limitation is not automatically a finding.
-
-Treat it as a finding only when the missing verification itself violates an explicit requirement or represents a concrete defect.
-
-## 4. Review commits when applicable
-
-When commits are part of the audited implementation, verify that each represents one coherent concern and is independently understandable, reviewable, and reasonably revertible.
-
-Report material problems such as:
-
-- unrelated concerns mixed together;
-- hidden scope expansion;
-- accidental unrelated changes;
-- misleading commit boundaries;
-- excessive size that materially harms reviewability or rollback safety.
-
-Do not require commits when none were authorized or expected.
-
-## 5. Complete the full audit
-
-Do not stop at the first issue.
-
-Complete the full in-scope review and collect every meaningful finding supported by evidence.
-
-Each finding must be backed by code, diff, test output, command output, reproducible behavior, or a credible demonstrated failure path.
-
-Distinguish fact from inference.
-
-After completing the audit, report the result and stop. Do not remediate findings.
-
-## Severity
-
-Use severity only for actual findings:
-
-**Critical** — catastrophic failure, severe security compromise, irreversible data loss/corruption, or fundamentally unusable core behavior.
-
-**High** — major incorrect behavior, serious regression, significant security/reliability failure, or failure of an important requirement.
-
-**Medium** — real actionable defect with bounded impact.
-
-**Low** — minor but legitimate defect with limited concrete impact.
-
-Do not use `Low` for optional polish or subjective preference.
-
-## Result
-
-Use exactly one primary result:
-
-### CLEAR
-
-Use when:
-
-- no meaningful finding remains;
-- intended behavior is sufficiently established;
-- relevant verification completed successfully;
-- no material unexplained verification gap remains;
-- no material scope contamination exists.
-
-### FINDINGS
-
-Use when one or more meaningful implementation findings exist.
-
-Verification limitations may be reported alongside `FINDINGS`.
-
-### INCOMPLETE
-
-Use when no meaningful implementation defect has been established, but missing context or important verification prevents a reliable `CLEAR`.
-
-Do not treat absence of discovered defects as proof of correctness.
-
-## Re-audit
-
-When previous findings are available, preserve their identifiers and mark each:
-
-- `RESOLVED`
-- `UNRESOLVED`
-- `NOT VERIFIED`
-
-Verify the underlying issue, not only its visible symptom, and check whether remediation introduced regressions.
-
-Then perform a fresh audit of the affected scope.
-
-Do not invent prior finding IDs when they are unavailable.
-
-## Output
-
-Start with:
-
-**Result:** `CLEAR` / `FINDINGS` / `INCOMPLETE`
-
-Briefly state:
-
-- scope audited;
-- baseline used;
-- important evidence inspected;
-- verification commands actually executed;
-- material limitations.
-
-For each new finding include:
-
-**ID:** `AUDIT-001`  
-**Severity:** Critical / High / Medium / Low  
-**Evidence:** concrete supporting evidence  
-**Impact:** concrete failure or risk  
-**Recommended remediation:** smallest appropriate correction  
-**Verification:** how a re-audit can prove resolution
-
-For re-audited findings also include:
-
-**Status:** RESOLVED / UNRESOLVED / NOT VERIFIED
-
-For `INCOMPLETE`, state what evidence is missing.
-
-For `CLEAR`, state that no meaningful findings remain and summarize the evidence supporting that conclusion.
-
-Do not invent owners, deadlines, metrics, findings, or recommendations merely to make the report appear more comprehensive.
 ```
 
 </details>

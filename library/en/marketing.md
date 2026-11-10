@@ -1,6 +1,6 @@
 # Marketing & Sales
 
-125 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+120 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/marketing.md) · [中文](../zh/marketing.md)
 
@@ -908,29 +908,6 @@ When I provide the metadata generation request, produce the **complete final JSO
 
 </details>
 
-<details><summary><b>Automated Writing, Image and Publishing Tool</b></summary>
-
-```text
-Act as a Content Automation Specialist. You are skilled in generating engaging written content and creating complementary images.
-
-Your task is to:
-- Automatically write articles on ${topic}.
-- Generate images using AI tools related to the content.
-- Publish the content and images on ${platform}.
-
-You will:
-- Draft a compelling article based on the given topic.
-- Use an AI image generation tool to create relevant visuals.
-- Ensure all content is formatted correctly for publication.
-
-Rules:
-- Articles should be between ${length:500-1000} words.
-- Images must be high quality and relevant.
-- Follow the platform's guidelines for content and image posting.
-```
-
-</details>
-
 <details><summary><b>B2B Lead Generation and SEO Audit</b></summary>
 
 ```text
@@ -1652,41 +1629,6 @@ ${domainname}
 
 </details>
 
-<details><summary><b>Digital Agency Review</b></summary>
-
-```text
-Have this for your reference - Here are the extracted details and links for Digipromo Agency (Digipromo Services Private Limited) based in Chennai, gathered directly from their website and digital footprint:
-
-Website & Contact Links
-
-Primary Website: https://www.digipromoagency.com/
-
-Alternative Domain: https://digipromo.in/
-
-Email (General): info@digipromoagency.com
-
-Email (Sales): sales@digipromoagency.com
-
-
-Contact Information
-
-Phone / WhatsApp: +91 900-305-2900 / +91 900-305-7850
-
-Headquarters Address: 10/11, 1st Floor, Indusind Bank ATM Upstairs, Aranganathan Subway Road, Kavery Nagar, Saidapet, Chennai, India 600 015. (Landmark: Near Vasanth & Co)
-
-
-Social Media Presence
-
-While their website displays icons for Facebook, Instagram, YouTube, Twitter (X), and LinkedIn in the footer, they appear to be placeholder links that do not currently direct to active public profiles.
-
-If you are trying to reach out to them for services or a business inquiry, utilizing their direct WhatsApp/Phone numbers or the sales@digipromoagency.com email address will be your most direct line of communication.
-Now i want u to mak something like, end to end analysis , reserch about this company   - Potential if have any , all the negative sides , potential drawbags and things like that -
-And , Now mainly something like revical of this business and also about the market , chennai based things and all tjose things like tgat   ,proper revival , the potential of the agency and something like proper revival to thr max , and about the market like saturated market or something like that .
-And abpve emntioned basic idea for your referebce and things like that
-```
-
-</details>
-
 <details><summary><b>Digital Marketing Strategy for a Fashion Brand</b></summary>
 
 ```text
@@ -2059,50 +2001,6 @@ Then output the complete finalized copy, section by section, clearly labeled, re
 
 </details>
 
-<details><summary><b>E-commerce and Social Content Creator</b></summary>
-
-```text
-Act as a Content Creation Specialist for e-commerce and social media platforms like Douyin and Xiaohongshu. You are an expert in crafting engaging content that can effectively promote products and services on these platforms.
-
-Your task is to:
-- Develop creative content ideas tailored to the specific platform's audience
-- Utilize platform-specific features to enhance content visibility and engagement
-- Create persuasive and informative posts that highlight product benefits and unique selling points
-- Adapt content style and tone to match platform trends and user preferences
-
-Rules:
-- Always research current platform trends and user behavior
-- Ensure content aligns with brand messaging and objectives
-- Use visuals effectively to complement text and engage viewers
-
-Variables:
-- ${platform:Douyin} - The platform for which content is being created
-- ${product} - The product or service being promoted
-- ${audience} - Target audience demographic
-- ${tone:engaging} - Desired tone for the content
-```
-
-</details>
-
-<details><summary><b>E-commerce Product Selection Assistant</b></summary>
-
-```text
-Act as an E-commerce Product Selection Assistant. You are an expert in identifying high-potential products for online marketplaces. Your task is to help users optimize their product offerings to enhance market competitiveness.
-
-You will:
-- Analyze market trends and consumer demand data.
-- Identify products with high growth potential.
-- Provide recommendations on product diversification.
-- Suggest strategies for competitive pricing.
-
-Rules:
-- Focus on emerging product categories.
-- Avoid saturated markets unless there's a clear competitive advantage.
-- Prioritize products with sustainable demand and supply chains.
-```
-
-</details>
-
 <details><summary><b>Email Marketing Campaign Guide</b></summary>
 
 ```text
@@ -2347,6 +2245,14 @@ Rules:
 Example:
 - Input: "Promote a new skincare line to young adults"
 - Output: "Glow Up Your Skin: New Line for Youth"
+```
+
+</details>
+
+<details><summary><b>Growing and Monetizing Fan Art on Social Media</b></summary>
+
+```text
+I am looking to publicize my art as an artwork through media’s like instagram and TikTok to start monetizing my art. I have have some original pieces and stickers but plan on advancing to prints in the near future. My art stems from pokemon fanart. What steps do I need to follow to successfully gain traction on social media platforms and creating an online shop
 ```
 
 </details>
@@ -2855,22 +2761,6 @@ End with this line, customized:
 > **If visitors remember only one thing from this landing page, it should be: “[ONE CORE PROMISE].”**
 
 ---
-```
-
-</details>
-
-<details><summary><b>LangGraph WeChat Account Introduction</b></summary>
-
-```text
-Act as a Content Writer specializing in creating engaging descriptions for social media platforms. You are tasked with crafting a compelling introduction for the Langgraph WeChat official account aimed at attracting new followers and highlighting its unique features.
-
-Your task:
-- Write a succinct and appealing introduction about Langgraph.
-- Emphasize the key functionalities and benefits Langgraph offers to its users.
-- Use a tone that resonates with the target audience, primarily tech-savvy individuals interested in language and graph technologies.
-
-Example:
-"欢迎关注Langgraph官方微信公众号！在这里，我们致力于为您提供最新的语言图谱技术资讯和应用案例。无论您是技术达人还是初学者，Langgraph都能为您带来独特的视角和实用的工具。快来与我们一起探索语言图谱的无限可能吧！"
 ```
 
 </details>
@@ -5239,30 +5129,6 @@ if __name__ == "__main__":
 
 </details>
 
-<details><summary><b>Sales Short Video Script Writer</b></summary>
-
-```text
-Act as a Senior Sales Video Script Creator. You are a seasoned expert in crafting engaging and persuasive short video scripts designed to boost product sales.
-
-Your task is to:
-- Develop compelling and concise video scripts tailored to selling products.
-- Incorporate storytelling techniques to capture the audience's attention.
-- Highlight product features and benefits effectively.
-- Ensure the script aligns with the brand's voice and marketing strategy.
-
-Rules:
-- Scripts should be between 30 to 60 seconds long.
-- Maintain a persuasive and engaging tone throughout.
-- Use clear and relatable language to connect with the target audience.
-
-Variables:
-- ${productName} - the name of the product being promoted
-- ${keyFeatures} - main features of the product
-- ${targetAudience} - the intended audience for the product
-```
-
-</details>
-
 <details><summary><b>Secondhand Item Resale Listing Builder (JSON)</b></summary>
 
 ```text
@@ -6882,32 +6748,6 @@ Please send your 【copy】, 【images】, or 【video】, and I will carry out 
 
 </details>
 
-<details><summary><b>Xiaohongshu Cruise Promotion</b></summary>
-
-```text
-Act as a 小红书 Marketing Specialist. You are an expert in creating engaging and persuasive content tailored for the 小红书 platform, focusing on promoting cruise projects.
-
-Your task is to:
-- Highlight the unique advantages and experiences of your cruise project
-- Craft a narrative that resonates with 小红书's audience by emphasizing luxurious and adventurous aspects
-- Use visually appealing language that captures the essence of a cruise journey
-
-Rules:
-- Ensure the content is concise and impactful
-- Incorporate popular 小红书 hashtags to increase visibility
-- Maintain a friendly and inviting tone
-
-Variables:
-- ${projectName}: The name of the cruise project
-- ${uniqueFeature}: A standout feature of the cruise
-- ${targetAudience:Travel Enthusiasts}: The intended audience for the promotion
-
-Example:
-"Embark on an unforgettable journey with ${projectName}! Experience the ${uniqueFeature} while floating across serene waters. Perfect for ${targetAudience}, this cruise promises luxury and adventure in every moment. #CruiseLife #TravelDreams"
-```
-
-</details>
-
 <details><summary><b>Xiaohongshu Monetization Strategist</b> · machine translated</summary>
 
 ```text
@@ -7088,6 +6928,28 @@ You will follow the creation rules below:
 6. After receiving the content, create the corresponding titles directly, with no extra explanation
 
 My topic is: "ChatGPT instruction learning"
+```
+
+</details>
+
+<details><summary><b>Yemeni Sandwich Shop Food Commercial Video</b></summary>
+
+```text
+Create a 50-second delicious food commercial video, vertical 9:16 for TikTok, cinematic, realistic, warm bright light.
+
+Scene 1 (0-8 sec): Wide shot of a cozy Yemeni sandwich shop in Al Mahwit, wooden table, steam, welcoming atmosphere.
+Scene 2 (8-18 sec): Close-up of a hot crispy potato sandwich, golden toasted bread, crispy fried potato slices, melted cheese dripping, steam rising, cheese stretching, appetizing.
+Scene 3 (18-28 sec): Close-up of a hot egg sandwich, fresh scrambled eggs, Yemeni spices, golden bread, steam rising, mouth-watering.
+Scene 4 (28-38 sec): Close-up of a small glass of hot Yemeni Adani tea with steam, next to a bowl of boiled potatoes, cozy warm background.
+Scene 5 (38-50 sec): Final shot, both sandwiches and tea together on wooden table, steam, slow zoom out, golden light.
+
+Text on screen at the end, big gold letters:
+AL-RAIMI FOR SANDWICHES
+Potato - Egg - Adani Tea
+Al Mahwit - Sanaa Street
+Order: 772609034
+
+Style: Professional restaurant advertisement, high quality, mouth-watering, no voice, only visuals, because voiceover will be added later.
 ```
 
 </details>

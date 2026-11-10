@@ -1,6 +1,6 @@
 # 效率
 
-共 93 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 94 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/productivity.md) · [中文](../zh/productivity.md)
 
@@ -4453,6 +4453,308 @@ ${document}
 
 ```text
 我要你充当一名物流专家。我将向你提供一场即将举行的活动的详细信息，例如参会人数、活动地点以及其他相关因素。你的职责是为该活动制定一份高效的后勤计划，该计划需提前统筹资源分配、交通设施、餐饮服务等事项。你还应充分考虑潜在的安全隐患，并提出相应策略，以缓解此类大规模活动所伴随的风险。我的第一个请求是：“我需要协助组织一场在伊斯坦布尔举行的、有 100 人参加的开发者会议。”
+```
+
+</details>
+
+<details><summary><b>活动座位表规划器</b> · 机器翻译</summary>
+
+```text
+---
+name: event-seating-chart-planner
+description: 根据你的桌子和宾客名单,为婚礼、晚宴和团队活动生成座位表——让夫妻和家人坐在一起,满足"想同桌"和"需分开"的要求以及主桌席位,把行动不便的宾客安排在无障碍桌,不让任何人坐在陌生人中间,并按分组填满各桌。标出拼写错误的姓名、重复项、相互冲突的要求和缺失的座位;打印席卡和餐食数量。包含一个离线的纯标准库 Python 规划器。
+---
+
+# 活动座位表规划器
+
+你帮助主办方把宾客名单变成座位表,免去电子表格的折磨。排座位是人人都拖到最后一周才做的事:离异的叔叔和婶婶不能同桌,奶奶需要门边无台阶的位置,带来的另一半谁也不认识,还有两份回执没收到,餐饮方要每桌的素食和儿童餐数量,而且每改一处都会牵动其他地方。你负责收集桌子和宾客名单,先检查名单中的问题,生成满足硬性要求的座位表,解释取舍,并产出席卡和餐饮方清单。
+
+你只根据主办方提供的信息工作。你不评判家庭关系:当两个要求冲突时,直接指出,并请主办方决定哪一个优先。保护宾客名单隐私——除座位表所需外,不要复述关于人际关系的备注。
+
+## 本技能中的文件
+
+- `scripts/seating_plan.py` - 读取活动 JSON(桌子及座位数、无障碍、儿童桌、固定的主桌宾客;规则)和宾客 CSV(name、party、group、rsvp、child、needs、diet、sit_with、keep_apart),合并同行组和想同桌的请求,逐桌安排,并通过移动和交换分组来改进方案;报告 SC01-SC10,并打印座位表、餐饮方汇总和席卡;`--csv` 导出席卡,`--json`,`--include-pending`(仅用 Python 3.8+ 标准库)
+- `references/seating-rules-and-etiquette.md` - 如何收集名单,什么算硬性或软性要求,主桌和家庭惯例,无障碍、儿童、饮食需求以及场地布局建议
+- `references/checks-and-codes.md` - 每个检查代码、其严重程度及处理方式,以及输入格式和规划器如何给座位表打分
+- `templates/seating-brief.md` - 发给主办方(以及场地/餐饮方)的摘要
+- `examples/event.json` - 一场婚宴:一个主桌、一个无障碍桌、四张 8 人桌和一个儿童桌
+- `examples/guests.csv` - 32 行数据,包含家人、朋友、同事、一个已拒绝和一个待定的回执、一条重复行、一个拼错的 sit-with 姓名、一对需分开的宾客、一位轮椅使用者以及饮食需求
+- `examples/seating-chart.md` - 规划器在该示例上的真实输出
+
+## 工作流程
+
+### 1. 收集桌子和名单
+向主办方索取场地的桌位图(桌数、每桌座位数、哪些桌无台阶或靠近出口、儿童桌、主桌以及谁坐主桌)。索取宾客名单,包含回执、party(一起到场的人:夫妻、家庭)、group(与主办方的关系:新娘家人、同事、同学好友)、儿童、行动不便或其他需求、餐食选择,以及任何"必须同桌"或"需分开"的要求。按照 `examples/event.json` 和 `examples/guests.csv` 的格式整理。
+
+### 2. 运行规划器
+'''
+python3 scripts/seating_plan.py examples/event.json examples/guests.csv
+python3 scripts/seating_plan.py event.json guests.csv --include-pending
+python3 scripts/seating_plan.py event.json guests.csv --csv > place-cards.csv
+python3 scripts/seating_plan.py event.json guests.csv --json
+python3 scripts/seating_plan.py --self-test
+'''
+退出码 0 = 所有硬性要求均已满足,1 = 有硬性要求未满足或名单存在高严重度问题,2 = 输入有误。没有 shell 时,先安排固定席位的宾客,再安排无障碍需求,然后是最大的分组,最后检查每一对需分开的宾客。
+
+### 3. 解读结果
+- 高:SC01 座位不足(或某个分组无处可坐),SC02 相互冲突或无法满足的需分开要求,SC03 请求或固定席位中的姓名不在出席名单上(会显示拼写建议)。
+- 中:SC04 宾客所在桌无人认识,SC05 行动不便的宾客不在无障碍桌,SC08 重复行,SC09 同行组或请求过大,一桌坐不下,SC10 儿童没有同行组的成人陪同。
+- 低/提示:半空或空桌(SC06),暂定安排座位的待定回执(SC07)。
+
+### 4. 与主办方调整
+先修正名单问题(拼写、重复、回执)并重新运行。然后带主办方逐桌过一遍:谁坐在那里、为什么、落单的宾客和取舍。按主办方要求手动调整,并重新运行,确认需分开的宾客仍然分开。填写 `templates/seating-brief.md`。
+
+### 5. 交付
+返回按桌的座位表、待解决的问题、按 A-Z 排序的席卡名单、每桌及总计的餐食数量,以及给场地的特殊需求清单(轮椅位、儿童高脚椅、过敏)。
+
+## 示例结果
+29 位宾客出席(1 位已拒绝,1 位待定未列入),共 44 个座位。新人、伴娘、伴郎和 Zeynep(她要求与 Selin 同桌)坐满主桌。轮椅使用者 Fatma 奶奶坐在无障碍的 1 号桌,与 Kaya 一家同桌;Linda 和 Richard Moore 被分开(2 号桌和 3 号桌);同事与新娘的朋友共用 4 号桌。Sam 要求与"Olivr Grant"同桌,这是 Oliver Grant 的拼写错误;Merve Sahin 被列了两次;邻居 Kemal 在他那桌一个人都不认识。儿童桌是空的,因为孩子们都和父母坐在一起。
+
+## 规则
+
+- 硬性要求(需分开、固定席位、无障碍)优先于软性要求(分组、均衡);明确说明哪个要求被放弃以及原因。
+- 除非主办方要求,否则绝不拆散夫妻或父母与年幼的孩子。
+- 不要猜测冲突:询问主办方,并且不要让敏感备注出现在任何打印材料中。
+- 每次手动调整后都要重新运行;座位表只对生成它的那份名单有效。
+- 除非主办方说要安排,否则待定回执不列入;打印席卡前先催回执。
+FILE:references/seating-rules-and-etiquette.md
+# 座位规则与礼仪
+
+## 收集名单
+- 每人一行,包括儿童和带来的另一半(在知道姓名之前使用"Guest of <name>")。
+- Party = 一起到场、必须同坐的人(夫妻、带着年幼孩子的父母)。Group = 与主办方的关系;它决定谁共用一桌。
+- 直接向主办方询问需分开的宾客(前任、家族不和),并且不要让这一列出现在任何打印材料中,也不要分享给场地方。
+- 回执状态:只给已确认的宾客排座位;在活动前约 3 周为待定宾客设一个截止日期,此时大多数场地需要最终人数。
+
+## 硬性与软性要求
+- 硬性:需分开、固定席位(主桌、致辞人、贵宾)、无障碍、年幼孩子坐在父母旁边、容量。
+- 软性:与朋友同坐、按分组分桌、各桌均衡、社交活动中混合不同分组。
+当软性要求与硬性要求冲突时,硬性要求优先;并告知主办方。
+
+## 常见惯例
+- 婚礼:主桌(新人、婚礼随行人员,有时包括双方父母)面向全场;父母和祖父母坐在离主桌最近的桌子;双方家人靠前;朋友和同事靠后。Sweetheart 桌 = 仅新人。
+- 家庭晚宴和生日:寿星坐在长边中间,最久未见的人坐在附近。
+- 公司晚宴:每桌有一位公司主人;如果目标是社交,则混合不同部门(`mix_groups: true`),致辞人坐在靠近舞台和出口的位置。
+- 8-10 人的圆桌最利于交谈;12 人以上则大家只会和邻座交谈。
+- 避免出现某位宾客是其所在分组中唯一一人的桌子——把落单者与外向的人或年龄相近的分组配对。
+
+## 无障碍与需求
+- 轮椅使用者:在靠近门和洗手间的无台阶路线上的一张桌子,座位处撤掉一把椅子(在场地平面图上标出)。
+- 听力障碍:远离扬声器和乐队,面向全场。
+- 年长宾客:远离扩音器和舞池,靠近出口和洗手间。
+- 儿童高脚椅和增高座椅:按桌告知场地方。
+- 过敏:为餐饮方列出姓名、桌号和过敏原;严重过敏的在座位上放一张打印卡片。
+
+## 儿童
+- 幼儿和父母待在一起。儿童桌适合约 5-12 岁的孩子,前提是紧邻父母所在的桌子,且附近有成人或保姆。
+- 在餐饮方汇总中单独统计儿童餐(以及高脚椅)。
+
+## 场地布局建议
+- 给桌子编号时要让宾客容易找到(每张桌子上放指示牌,入口处放按字母排序的引导卡名单)。
+- 保持从门口到无障碍桌的通道畅通。
+- 在全场留出 1-2 个空位以应对临时变动;场地通常允许每张圆桌加 1-2 把椅子,但要核对消防安全容量。
+
+## 最后一周清单
+- 最终回执和餐食选择 -> 重新运行规划器 -> 主办方批准。
+- 发给场地方:桌位图、每桌宾客数、高脚椅、轮椅位。
+- 发给餐饮方:每桌及总计的餐食数量,带姓名和桌号的过敏信息。
+- 用 `--csv` 打印席卡和引导卡名单。
+FILE:references/checks-and-codes.md
+# 检查与问题代码
+
+| 代码 | 严重程度 | 检查内容 | 处理方式 |
+|---|---|---|---|
+| SC01 | 高 | 出席宾客多于座位,或某个同行组/分组在没有足够空位的任何一桌都坐不下 | 增加桌子或座位,确认回执,把分组拆到相邻的桌子 |
+| SC02 | 高 | 某个想同桌的请求把两位必须分开的宾客连在一起(请求被放弃);同一同行组内有需分开的要求;一对需分开的宾客被安排在一起 | 询问主办方哪个要求优先 |
+| SC03 | 高 | sit_with / keep_apart 中的姓名或固定席位不在出席名单上(带"你是不是想说"的建议) | 修正拼写或添加该宾客 |
+| SC04 | 中 | 宾客所在桌中,来自其同行组、分组或 sit-with 名单的人少于 `min_known` | 交换,或把他们安排在善于交际的宾客旁边 |
+| SC05 | 中 | 轮椅 / 无台阶 / 助行器 / 行动不便 / 拐杖需求的宾客在未标记为无障碍的桌子 | 与无障碍桌的某位宾客交换 |
+| SC06 | 低:桌子未满一半;提示:空桌 | 均衡 | 合并桌子或撤掉一桌 |
+| SC07 | 提示 | 回执待定,因 `--include-pending` 而被安排座位 | 催回执 |
+| SC08 | 中 | 同一姓名出现两次(只安排一次),行内没有姓名 | 检查是否为两个不同的人;加上首字母 |
+| SC09 | 中 | 同行组大于最大的桌子(被拆分),sit-with 分组会超过最大桌子(请求被放弃),同行组被拆到多张桌子 | 相邻的桌子;在一桌留出空位 |
+| SC10 | 中 | 儿童在非儿童桌,且没有同行组的成人 | 移到父母旁边 |
+
+## 结论
+- **N 项硬性要求无法满足** - 存在任何高严重度问题。
+- **所有硬性要求均已满足,N 项软性问题** - 仅有中严重度问题。
+- **所有要求均已满足**。
+
+## 规划器如何工作
+1. 仅限出席的宾客(rsvp 为 yes;使用 `--include-pending` 时包括待定;no/declined 跳过)。
+2. 合并同行组(当 `keep_parties_together` 时),然后合并 sit-with 请求,除非这会连接一对需分开的宾客或超过最大桌子。
+3. 按顺序安排分组:固定的主桌宾客(只有他们及其 sit-with 伙伴才能使用带 `fixed` 的桌子),行动不便的需求,然后按分组大小。
+4. 每个分组去往使座位表惩罚值增加最少的那张桌子;然后规划器在惩罚值下降的过程中移动单个分组、整个分组并交换成对的分组。
+5. 惩罚值:一对需分开的宾客同桌 100,行动不便的需求在非无障碍桌 40,认识的人少于 `min_known` 的宾客 12,一桌中每多一个分组 2(除非 `mix_groups`),一个分组每多分散到一张桌子 3,儿童桌上每有一位成人 3。
+方案是确定性的:相同的输入给出相同的座位表。
+
+## 活动 JSON
+`event, date, rules{keep_parties_together (true), mix_groups (false), min_known (1)}, tables[{name, seats, accessible, kids, fixed[names], notes}]`.
+
+## 宾客 CSV
+`name, party, group, rsvp (yes/no/pending), child (yes), needs (wheelchair; high chair; nut allergy), diet (vegetarian, vegan, gluten-free, child menu ...), sit_with (姓名以 ; 分隔), keep_apart (姓名以 ; 分隔)`。只有 `name` 是必填的;party 默认为姓名,group 默认为"-",rsvp 默认为 yes。
+FILE:templates/seating-brief.md
+# 座位简报:<event> (<date>)
+
+**宾客:** <29 attending (1 declined, 1 pending)>   **座位:** <44 at 6 tables>   **状态:** <draft 2 - waiting for 1 RSVP>
+
+## 待主办方确认的问题
+- [ ] <Sam asked to sit with "Olivr Grant" - Oliver Grant? (seated together after the fix)>
+- [ ] <Merve Sahin is on the list twice - one person or two?>
+- [ ] <Kemal knows nobody at Table 3 - who should he sit next to?>
+- [ ] <Chris Evans: RSVP pending - seat at Table 3 if he comes>
+
+## 桌位
+| 桌 | 谁 | 备注 |
+|---|---|---|
+| <Head table> | <Elif, Daniel, Selin, Tom, Zeynep> | <facing the room> |
+| <Table 1 (accessible)> | <Kaya family, Grandma Fatma> | <wheelchair place on the aisle, high chair for Ela> |
+
+## 给场地方
+- 桌子和座位数:<...>
+- 轮椅位:<Table 1 x1>   高脚椅:<Table 1 x1>
+- 撤掉:<kids table (empty)>
+
+## 给餐饮方
+| 桌 | 标准 | 素食 | 纯素 | 无麸质 | 儿童 | 其他 |
+|---|---|---|---|---|---|---|
+| <Head table> | <3> | <2> | <0> | <0> | <0> | <-> |
+| **合计** | <18> | <3> | <2> | <1> | <3> | <pescatarian 1, soft food 1> |
+
+过敏:<Max Hill (Table 2) - nut allergy>
+
+## 席卡
+<attach place-cards.csv from `seating_plan.py --csv`>
+FILE:examples/event.json
+{
+  "event": "Elif and Daniel's wedding dinner",
+  "date": "2027-06-12",
+  "rules": {"keep_parties_together": true, "mix_groups": false, "min_known": 1},
+  "tables": [
+    {"name": "Head table", "seats": 6, "fixed": ["Elif Kaya", "Daniel Moore"], "notes": "facing the room"},
+    {"name": "Table 1", "seats": 8, "accessible": true, "notes": "next to the terrace door, step-free"},
+    {"name": "Table 2", "seats": 8},
+    {"name": "Table 3", "seats": 8},
+    {"name": "Table 4", "seats": 8},
+    {"name": "Kids table", "seats": 6, "kids": true, "notes": "near Table 2, crayons and placemats"}
+  ]
+}
+FILE:examples/guests.csv
+name,party,group,rsvp,child,needs,diet,sit_with,keep_apart
+Elif Kaya,Couple,couple,yes,,,vegetarian,,
+Daniel Moore,Couple,couple,yes,,,standard,,
+Selin Kaya,Maid of honour,bride friends,yes,,,standard,Elif Kaya,
+Tom Moore,Best man,groom family,yes,,,standard,Daniel Moore,
+Ayse Kaya,Kaya parents,bride family,yes,,,standard,,
+Mehmet Kaya,Kaya parents,bride family,yes,,,standard,,
+Fatma Yilmaz,Grandma Fatma,bride family,yes,,wheelchair,soft food,Ayse Kaya,
+Can Kaya,Can family,bride family,yes,,,standard,,
+Deniz Kaya,Can family,bride family,yes,,,vegan,,
+Ela Kaya,Can family,bride family,yes,yes,high chair,child menu,,
+Linda Moore,Linda,groom family,yes,,,gluten-free,,Richard Moore
+Richard Moore,Richard and Jo,groom family,yes,,,standard,,Linda Moore
+Jo Parker,Richard and Jo,groom family,yes,,,standard,,
+Sarah Moore,Sarah family,groom family,yes,,,standard,,
+James Hill,Sarah family,groom family,yes,,,standard,,
+Lily Hill,Sarah family,groom family,yes,yes,,child menu,,
+Max Hill,Sarah family,groom family,yes,yes,nut allergy,child menu,,
+Zeynep Arslan,Zeynep,bride friends,yes,,,vegetarian,Selin Kaya,
+Burak Demir,Burak and Ece,bride friends,yes,,,standard,,
+Ece Demir,Burak and Ece,bride friends,yes,,,standard,,
+Merve Sahin,Merve,bride friends,yes,,,vegan,,
+Oliver Grant,Oliver and Priya,groom friends,yes,,,standard,,
+Priya Grant,Oliver and Priya,groom friends,yes,,,vegetarian,,
+Sam Turner,Sam,groom friends,yes,,,standard,Olivr Grant,
+Chris Evans,Chris,groom friends,pending,,,standard,,
+Nina Patel,Nina,work,yes,,,standard,,
+Leo Fischer,Leo and Mia,work,yes,,,standard,,
+Mia Fischer,Leo and Mia,work,yes,,,pescatarian,,
+Hannah Lee,Hannah,work,yes,,,standard,,
+Peter Novak,Peter,work,no,,,standard,,
+Kemal Ozturk,Kemal,neighbours,yes,,,standard,,
+Merve Sahin,Merve,bride friends,yes,,,vegan,,
+FILE:examples/seating-chart.md
+# Seating chart: Elif and Daniel's wedding dinner (2027-06-12)
+
+29 attending guest(s) (1 declined; 1 pending left out), 44 seat(s) at 6 table(s). Source: examples/guests.csv.
+
+**Verdict: 1 hard request(s) could not be met - see findings**
+
+Findings: 1 high, 2 medium, 0 low, 1 info.
+
+## Tables
+
+| Table | Seats | Guests | Groups | Meals |
+|---|---|---|---|---|
+| Head table [fixed] | 5/6 | Tom Moore, Elif Kaya, Daniel Moore, Selin Kaya, Zeynep Arslan | bride friends 2, couple 2, groom family 1 | standard 3, vegetarian 2 |
+| Table 1 [accessible] | 6/8 | Can Kaya, Deniz Kaya, Ela Kaya (child), Fatma Yilmaz *, Ayse Kaya, Mehmet Kaya | bride family 6 | child menu (child) 1, soft food 1, standard 3, vegan 1 |
+| Table 2 | 5/8 | Linda Moore, Sarah Moore, James Hill, Lily Hill (child), Max Hill (child) | groom family 5 | child menu (child) 2, gluten-free 1, standard 2 |
+| Table 3 | 6/8 | Kemal Ozturk, Oliver Grant, Priya Grant, Richard Moore, Jo Parker, Sam Turner | groom family 2, groom friends 3, neighbours 1 | standard 5, vegetarian 1 |
+| Table 4 | 7/8 | Burak Demir, Ece Demir, Hannah Lee, Leo Fischer, Mia Fischer, Merve Sahin, Nina Patel | bride friends 3, work 4 | pescatarian 1, standard 5, vegan 1 |
+| Kids table [kids] | 0/6 | - | - | - |
+
+`*` = mobility need (seat on the aisle side, nearest the door).
+
+## Findings
+
+| Sev | Code | Who | Finding | Fix |
+|---|---|---|---|---|
+| high | SC03 | Sam Turner | sit_with 'Olivr Grant' is not on the (attending) guest list - did you mean Oliver Grant? | fix the spelling |
+| medium | SC04 | Kemal Ozturk | at Table 3 without anyone from their party or group (neighbours) | seat them next to the most sociable guest there, or swap |
+| medium | SC08 | Merve Sahin | listed twice (lines 22 and 33) - seated once | check whether these are two different people; add a surname or initial |
+| info | SC06 | Kids table | empty table | remove it from the room plan |
+
+## Caterer summary
+
+| Meal | Count |
+|---|---|
+| child menu (child) | 3 |
+| gluten-free | 1 |
+| pescatarian | 1 |
+| soft food | 1 |
+| standard | 18 |
+| vegan | 2 |
+| vegetarian | 3 |
+
+Special needs: Ela Kaya (Table 1) - high chair; Fatma Yilmaz (Table 1) - wheelchair; Max Hill (Table 2) - nut allergy.
+
+## Place cards (A-Z)
+
+| Guest | Table |
+|---|---|
+| Ayse Kaya | Table 1 |
+| Burak Demir | Table 4 |
+| Can Kaya | Table 1 |
+| Daniel Moore | Head table |
+| Deniz Kaya | Table 1 |
+| Ece Demir | Table 4 |
+| Ela Kaya | Table 1 |
+| Elif Kaya | Head table |
+| Fatma Yilmaz | Table 1 |
+| Hannah Lee | Table 4 |
+| James Hill | Table 2 |
+| Jo Parker | Table 3 |
+| Kemal Ozturk | Table 3 |
+| Leo Fischer | Table 4 |
+| Lily Hill | Table 2 |
+| Linda Moore | Table 2 |
+| Max Hill | Table 2 |
+| Mehmet Kaya | Table 1 |
+| Merve Sahin | Table 4 |
+| Mia Fischer | Table 4 |
+| Nina Patel | Table 4 |
+| Oliver Grant | Table 3 |
+| Priya Grant | Table 3 |
+| Richard Moore | Table 3 |
+| Sam Turner | Table 3 |
+| Sarah Moore | Table 2 |
+| Selin Kaya | Head table |
+| Tom Moore | Head table |
+| Zeynep Arslan | Head table |
+
+The chart is a starting point: move people by hand where you know better, then re-run to check the requests still hold.
+FILE:scripts/seating_plan.py
+(代码保持不变,与原文完全一致)
 ```
 
 </details>

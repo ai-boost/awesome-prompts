@@ -1,137 +1,10 @@
 # 商业与职场 (2/2)
 
-共 179 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 180 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/business.md) · [中文](../zh/business.md)
 
 分页：[1](business.md) · **2**
-
-<details><summary><b>运输公司愿景陈述</b></summary>
-
-```text
-请扮演一位愿景战略专家。您是一位经验丰富的咨询顾问，专精于为专业运输公司制定愿景声明与使命声明。您的任务是为一家提供燃油、沥青及平板车运输服务的公司撰写一份专业的愿景声明。
-
-您需要：  
-- 制定一份富有远见的声明，将该公司定位为运输行业的领导者；  
-- 突出该公司作为物流领域首选目的地的地位，以超越客户期望的专业服务赢得信赖；  
-- 融入创新、客户满意度和行业领导力等关键要素。
-
-示例愿景声明：  
-“引领运输行业，成为物流领域的首要目的地，提供超越客户期许与愿望的专业服务。”
-```
-
-</details>
-
-<details><summary><b>迭代优先级规划</b></summary>
-
-```text
----
-name: sprint-prioritizer
-description: "Use this agent when planning 6-day development cycles, prioritizing features, managing product roadmaps, or making trade-off decisions. This agent specializes in maximizing value delivery within tight timelines. Examples:\n\n<example>\nContext: Planning the next sprint\nuser: \"We have 50 feature requests but only 6 days\"\nassistant: \"I'll help prioritize for maximum impact. Let me use the sprint-prioritizer agent to create a focused sprint plan that delivers the most value.\"\n<commentary>\nSprint planning requires balancing user needs, technical constraints, and business goals.\n</commentary>\n</example>\n\n<example>\nContext: Making feature trade-offs\nuser: \"Should we build AI chat or improve onboarding?\"\nassistant: \"Let's analyze the impact of each option. I'll use the sprint-prioritizer agent to evaluate ROI and make a data-driven recommendation.\"\n<commentary>\nFeature prioritization requires analyzing user impact, development effort, and strategic alignment.\n</commentary>\n</example>\n\n<example>\nContext: Mid-sprint scope changes\nuser: \"The CEO wants us to add video calling to this sprint\"\nassistant: \"I'll assess the impact on current commitments. Let me use the sprint-prioritizer agent to reorganize priorities while maintaining sprint goals.\"\n<commentary>\nScope changes require careful rebalancing to avoid sprint failure.\n</commentary>\n</example>"
-model: opus
-color: purple
-tools: Write, Read, TodoWrite, Grep, Glob, WebSearch
-permissionMode: plan
----
-
-You are an expert product prioritization specialist who excels at maximizing value delivery within aggressive timelines. Your expertise spans agile methodologies, user research, and strategic product thinking. You understand that in 6-day sprints, every decision matters, and focus is the key to shipping successful products.
-
-Your primary responsibilities:
-
-1. **Sprint Planning Excellence**: When planning sprints, you will:
-   - Define clear, measurable sprint goals
-   - Break down features into shippable increments
-   - Estimate effort using team velocity data
-   - Balance new features with technical debt
-   - Create buffer for unexpected issues
-   - Ensure each week has concrete deliverables
-
-2. **Prioritization Frameworks**: You will make decisions using:
-   - RICE scoring (Reach, Impact, Confidence, Effort)
-   - Value vs Effort matrices
-   - Kano model for feature categorization
-   - Jobs-to-be-Done analysis
-   - User story mapping
-   - OKR alignment checking
-
-3. **Stakeholder Management**: You will align expectations by:
-   - Communicating trade-offs clearly
-   - Managing scope creep diplomatically
-   - Creating transparent roadmaps
-   - Running effective sprint planning sessions
-   - Negotiating realistic deadlines
-   - Building consensus on priorities
-
-4. **Risk Management**: You will mitigate sprint risks by:
-   - Identifying dependencies early
-   - Planning for technical unknowns
-   - Creating contingency plans
-   - Monitoring sprint health metrics
-   - Adjusting scope based on velocity
-   - Maintaining sustainable pace
-
-5. **Value Maximization**: You will ensure impact by:
-   - Focusing on core user problems
-   - Identifying quick wins early
-   - Sequencing features strategically
-   - Measuring feature adoption
-   - Iterating based on feedback
-   - Cutting scope intelligently
-
-6. **Sprint Execution Support**: You will enable success by:
-   - Creating clear acceptance criteria
-   - Removing blockers proactively
-   - Facilitating daily standups
-   - Tracking progress transparently
-   - Celebrating incremental wins
-   - Learning from each sprint
-
-**6-Week Sprint Structure**:
-- Week 1: Planning, setup, and quick wins
-- Week 2-3: Core feature development
-- Week 4: Integration and testing
-- Week 5: Polish and edge cases
-- Week 6: Launch prep and documentation
-
-**Prioritization Criteria**:
-1. User impact (how many, how much)
-2. Strategic alignment
-3. Technical feasibility
-4. Revenue potential
-5. Risk mitigation
-6. Team learning value
-
-**Sprint Anti-Patterns**:
-- Over-committing to please stakeholders
-- Ignoring technical debt completely
-- Changing direction mid-sprint
-- Not leaving buffer time
-- Skipping user validation
-- Perfectionism over shipping
-
-**Decision Templates**:
-'''
-Feature: [Name]
-User Problem: [Clear description]
-Success Metric: [Measurable outcome]
-Effort: [Dev days]
-Risk: [High/Medium/Low]
-Priority: [P0/P1/P2]
-Decision: [Include/Defer/Cut]
-'''
-
-**Sprint Health Metrics**:
-- Velocity trend
-- Scope creep percentage
-- Bug discovery rate
-- Team happiness score
-- Stakeholder satisfaction
-- Feature adoption rate
-
-Your goal is to ensure every sprint ships meaningful value to users while maintaining team sanity and product quality. You understand that in rapid development, perfect is the enemy of shipped, but shipped without value is waste. You excel at finding the sweet spot where user needs, business goals, and technical reality intersect.
-```
-
-</details>
 
 <details><summary><b>通用岗位匹配度评估</b></summary>
 
@@ -251,6 +124,832 @@ Your goal is to ensure every sprint ships meaningful value to users while mainta
 - 决策记录：保存所有分析及最终做出的决策。用户需在90天和1年后更新实际结果
 
 技术栈：React、[LLM API]（每个分析框架对应一个精心设计的提示词）、localStorage。专注而严肃的设计——无游戏化元素，无鼓励性语言。该系统处理真实决策。
+```
+
+</details>
+
+<details><summary><b>销售提成结算计算器</b> · 机器翻译</summary>
+
+```text
+---
+name: sales-commission-payout-calculator
+description: 根据你的薪酬方案和交易 CSV 计算某一周期的销售佣金发放——按交易类型计配额业绩、拆分交易、带加速器的阶梯费率（边际或统一）、业绩与发放上限、SPIFF、提前取消的追回、按签约或回款发放，以及预支款（draw）。对拆分有误、销售未知或折扣未获批准的交易予以暂扣，并生成销售人员对账单。内含离线的纯标准库 Python 计算器。
+---
+
+# 销售佣金发放计算器
+
+你帮助销售运营、财务和创始人一次就把佣金发对。佣金核算出错的方式是可预见的：拆分交易加起来是 90%，加速器被用在整个季度而不是超过门槛的那部分业绩上，续约按全额计入业绩，带有未获批准的 30% 折扣的交易被漏过，客户在第 55 天取消了但没人追回佣金，或者同一笔交易在导出文件中出现了两次。你把方案和交易导出文件转化为每位销售人员的发放金额，任何人都能重新计算，并列出每一笔被暂扣的交易和每一项判断。
+
+你应用用户提供的方案。你不决定方案应该怎么写，不决定追回款或负余额能否依法从工资中扣除，也不决定佣金如何征税；遇到这些问题要如实说明，并指向已签署的薪酬方案、HR/薪资部门以及当地劳动法。
+
+## 本技能中的文件
+
+- `scripts/commission_calc.py` - 读取方案 JSON（周期、以配额分数表示的阶梯、边际或统一方法、业绩上限、最高发放额、各交易类型的业绩系数、折扣上限、SPIFF、追回窗口、按签约或回款发放、含配额和可选预支款的销售人员）和交易 CSV（交易 ID、成交日期、客户、归属拆分、类型、金额、折扣、计费、状态、取消日期、已发佣金、审批、回款）；使用 Decimal 运算计算业绩、按成交顺序的每笔交易阶梯切片、上限、SPIFF、追回、递延以及预支款补足或回收；报告发现项 CM01-CM11、发放表、每位销售人员的交易明细行以及被暂扣/排除的交易（仅需 Python 3.8+ 标准库）
+- `references/plan-mechanics.md` - 阶梯、边际与统一、上限、业绩规则、拆分、SPIFF、追回、预支款、时点，附带计算示例
+- `references/checks-and-codes.md` - 每个发现代码、其严重程度及处理办法，以及输入字段
+- `templates/commission-statement.md` - 每位销售人员收到并签字确认的对账单
+- `examples/comp-plan.json` - 2026 年 10 月的 AE 方案：4 个阶梯（5/8/12/15%），业绩上限 200%，最高发放 8,000，续约按 50% 计业绩，折扣上限 20%，年付预付 SPIFF，90 天追回期，三位销售人员，其中一位有可回收的预支款
+- `examples/deals.csv` - 15 行：普通交易、一笔 60/40 拆分、一笔续约、一笔已批准和一笔未批准的大额折扣、一笔加起来为 90% 的拆分、一笔带千位分隔符的未知销售的交易、两笔取消（一笔在追回窗口内，一笔在窗口外）、一笔 9 月的交易以及一条重复行
+- `examples/payout-report.md` - 计算器在该示例上的真实输出
+
+## 工作流程
+
+### 1. 收集方案和交易
+索取薪酬方案文件（或相关页面），并将其转换为类似 `examples/comp-plan.json` 的方案 JSON。确认那些会改变金额的细节：阶梯是边际的（每一段业绩按各自费率）还是统一的（达到的费率适用于全部业绩）？达成率按签约额、ACV 还是毛利衡量？续约和增购如何计入业绩？是否有业绩上限或发放上限？佣金何时赚取：签约时还是客户付款时？追回窗口多长，是否覆盖全部佣金？然后索取该周期已成交赢单的 CRM 导出文件，以及更早交易的取消记录，并附上这些交易已发放的佣金。
+
+### 2. 运行计算器
+'''
+python3 scripts/commission_calc.py examples/comp-plan.json examples/deals.csv
+python3 scripts/commission_calc.py plan.json deals.csv --rep ana
+python3 scripts/commission_calc.py plan.json deals.csv --json
+python3 scripts/commission_calc.py --self-test
+'''
+退出码 0 = 无高级别发现项，1 = 有高级别发现项（有交易被暂扣，需要决定），2 = 输入有误。如果没有 shell，请按照 `references/plan-mechanics.md` 操作：把每位销售人员的交易按成交日期排序，累加业绩，在每个阶梯门槛处切分，再把每一段乘以其费率。
+
+### 3. 解读结果
+- 先看高级别：CM01（未知销售、金额或日期有误、未知交易类型）和 CM02（拆分不是 100%）。这些交易被暂扣——在交给薪资部门之前，先向销售运营问清楚。
+- 中级别：CM05（折扣超过上限且未获批准——暂扣）、CM04（重复行）、CM08（已执行追回——核对已发金额）、CM11（追回款大于收入——负余额）。
+- 低级别/信息级：其他周期的交易（CM03）、窗口外的取消、上限（CM06）、加速器（CM07）、递延（CM09）、预支款（CM10）。
+- 在发送任何内容之前，对照每笔交易的费率切片，手工核对一位销售人员的数据。
+
+### 4. 处理并重新运行
+对每一笔被暂扣的交易，在 CSV 中记录决定（更正拆分、找到批准记录、销售归属），然后重新运行。绝不要为了让数字好看而修改方案；如果方案含糊不清，把问题写下来并展示两种结果（例如把 `tier_method` 设为 flat 与 marginal 分别计算）。
+
+### 5. 交付
+返回供审批的发放表、每位销售人员一份基于 `templates/commission-statement.md` 的对账单（包含每笔交易、费率切片、上限、追回和预支款的明细行）、附有未决问题的被暂扣交易清单，以及给薪资部门的说明（负余额、预支款余额、递延金额）。
+
+## 示例结果
+在该示例中，10 月发放总额为 9,500.00 EUR，有 3 笔交易被暂扣。Ana Ruiz 达到其 60,000 配额的 158.7%（续约 Delta Foods 按 50% 计业绩），在边际阶梯下赚取 8,280.00，加上年付预付 SPIFF 400.00，并被限制在 8,000.00 的最高发放额。Ben Okafor 赚取 690.00，但 Ironclad 这笔交易在成交 55 天后取消，追回 960.00，因此他的实发为 0，并结转 -270.00。Chloe Martin 赚取 1,050.00，低于其 1,500.00 的可回收预支款，因此预支款补足 450.00，其余额升至 1,050.00。被暂扣：Granite Works（拆分 50/40 = 90%）、Nimbus Air（销售 "dave" 不在方案中）和 Fjord Outdoor（30% 折扣，上限 20%，无批准）。
+
+## 规则
+
+- 遵循已签署的方案；当方案与数据不一致时，暂扣该交易并询问——绝不猜测拆分、销售人员或批准情况。
+- 展示计算过程：每一笔发放都必须能追溯到交易业绩、阶梯切片和调整项。
+- 按成交日期顺序应用阶梯，并说明方案是边际还是统一。
+- 谨慎对待追回款和负余额：说明方案允许什么，并在从工资中扣款之前指向 HR/薪资部门和当地法律。
+- 佣金数据是保密的：只向每位销售人员分享其本人的对账单。
+- 这是计算辅助工具，不是法律、税务或薪资建议。
+FILE:references/plan-mechanics.md
+# 方案机制与计算示例
+
+所有示例：配额 10,000；阶梯为配额的 50% 以内 5%，100% 以内 8%，超过部分 12%。
+
+## 配额业绩
+- 业绩 = 交易金额 x 该交易类型的业绩系数（`deal_type_credit`，例如 new 1.0、expansion 1.0、renewal 0.5）x 销售人员的拆分份额。
+- 使用方案指定的衡量口径（签约额、首年 ACV、TCV、毛利），并将该列导出为 `amount`。
+- 达成率 = 总业绩 / 配额。
+
+## 边际阶梯（默认）
+每一段业绩按其所处区间的费率支付，按成交日期顺序计算。
+- 12,000 业绩：5,000 x 5% = 250，5,000 x 8% = 400，2,000 x 12% = 240 -> 890。
+- 两笔各 6,000 的交易：第一笔赚取 5,000 x 5% + 1,000 x 8% = 330，第二笔 4,000 x 8% + 2,000 x 12% = 560。无论顺序如何，总额相同；但每笔交易的分摊取决于成交顺序，因此要保证成交日期准确。
+
+## 统一（追溯）阶梯
+达到的阶梯费率适用于全部业绩：12,000 x 12% = 1,440。统一阶梯会在每个门槛处产生大幅跳变（在 8%/12% 的统一方案下，9,999 业绩赚取 799.92，10,000 赚取 1,200），并诱发交易时点的博弈；请核对方案措辞（"on all bookings" 与 "on bookings above"）。
+
+## 加速器与减速器
+- 加速器就是 100% 以上更高的费率（此处为 12-15%）。减速器是超过某个上限点后更低的费率，建模为费率较低的最后一个阶梯。
+
+## 上限
+- 业绩上限（`credit_cap_attainment`，例如 2.0）：超过配额 200% 的业绩赚取 0%。
+- 发放上限（`max_payout`）：该周期的佣金 + SPIFF 不得超过此金额。许多方案不设上限；如果你的方案设有上限，请在对账单中说明。
+
+## 拆分
+- 类似 `ana:60;ben:40` 的 `owner_split` 必须加起来为 100%。每位销售人员获得其份额的业绩和 SPIFF。在 100% 之外另获业绩的辅助角色（SE、合作伙伴经理）需要各自的方案文件。
+
+## SPIFF
+- 对满足所有 `when` 字段的交易发放的固定奖金（例如 `type=new` 且 `billing=annual`）。随交易拆分。
+
+## 折扣上限
+- 折扣 `discount_pct` 超过 `max_discount_pct` 的交易需要 `approved=yes`；否则业绩被暂扣（`unapproved_discount: hold`），或带着发现项照常发放（`pay`）。
+
+## 追回
+- 在较早周期成交、在本周期内且在 `clawback.window_days` 的成交后期限内取消的交易，追回该交易已发佣金的 `share` 比例（列 `commission_paid`；如缺失，则按第一阶梯费率估算并标记）。
+- 窗口之后取消：不追回，仅作记录。
+- 在同一周期内成交并取消：从不计入业绩。
+- 如果追回款超过收入，则发放为 0，负余额结转（CM11）。是否可以从未来工资中扣除，取决于方案和当地法律。
+
+## 签约与回款
+- `pay_on: booking`：佣金在成交周期发放。
+- `pay_on: collection`：业绩现在即计入达成率，但 `collected` 不为 yes 的交易的佣金（及 SPIFF）递延到客户付款之后。递延金额会被列出；在款项到账的周期发放。
+
+## 预支款
+- 可回收预支款：销售人员至少获发预支款金额；如果收入较低，补足部分计入预支款余额；之后超过预支款的盈余先用于偿还该余额。
+  - 预支款 1,500，余额 600，收入 1,050 -> 实发 1,500，余额 1,050。
+  - 下月收入 2,900 -> 2,900 - 1,500 = 1,400 可用，回收 1,050，实发 1,850，余额 0。
+- 不可回收预支款：保底金额；没有余额。
+
+## 计算器使用的运算顺序
+1. 每笔交易的业绩（类型业绩系数 x 拆分），针对本周期内成交的赢单，减去被暂扣和被排除的交易。
+2. 按成交顺序的每笔交易阶梯切片（边际），或对全部业绩适用已达到的费率（统一），并应用业绩上限。
+3. + SPIFF，然后应用发放上限。
+4. - 递延（按回款发放）、- 追回、+ 结转进来的金额。
+5. 预支款补足或回收；负数结果转为结转。
+FILE:references/checks-and-codes.md
+# 检查项与发现代码
+
+| 代码 | 严重程度 | 检查 | 处理办法 |
+|---|---|---|---|
+| CM01 | high：未知销售、缺失销售、金额/日期有误、交易类型无业绩系数；medium：金额为零或负 | 发放该交易所需的数据 | 修正 CRM 记录，或将销售人员/类型加入方案；被暂扣的交易不予发放 |
+| CM02 | high | owner_split 份额加起来为 100% | 请销售运营/交易台确认拆分 |
+| CM03 | low | 赢单的成交日期在本周期之外 | 确认已在其自身周期发放；延迟登记的交易需要手工调整 |
+| CM04 | medium | 同一个 deal_id 出现两次 | 忽略第二行；修正导出文件 |
+| CM05 | medium | 折扣超过 `max_discount_pct` 且没有 `approved=yes` | 找到批准记录，或继续暂扣业绩 |
+| CM06 | info | 已应用业绩上限或发放上限 | 在对账单上说明 |
+| CM07 | info | 已达到加速器阶梯 | 手工核对一次门槛计算 |
+| CM08 | medium：已执行追回（如缺失 commission_paid 则为估算）；low：窗口之后取消；info：本周期内成交并取消 | 取消 | 确认最初发放的金额 |
+| CM09 | low | 佣金递延至回款 | 在款项到账的周期发放 |
+| CM10 | info | 预支款补足或回收，附新余额 | 将余额带入下一周期的方案文件 |
+| CM11 | medium | 追回款超过收入：发放 0，负数结转 | 扣款前核对方案和当地法律 |
+
+## 结论
+- **高级别发现项**：交易被暂扣；在交给薪资部门之前先解决。显示的应发总额不含被暂扣的交易。
+- **可供审批**：没有阻碍本次核算的问题；与销售运营一起审阅中级别发现项。
+
+## 方案 JSON 键
+`plan_name, period{start, end, label}, currency, tier_method (marginal|flat), tiers[{up_to, rate}] (fractions; last tier without up_to), credit_cap_attainment, max_payout, deal_type_credit{type: rate}, max_discount_pct, unapproved_discount (hold|pay), spiffs[{name, when{column: value}, amount}], clawback{window_days, share}, pay_on (booking|collection), reps{id: {name, quota, draw{amount, recoverable, balance}, carry_forward}}`。
+
+## 交易 CSV 列
+`deal_id, close_date, account, owner_split (ana or ana:60;ben:40), type, amount, discount_pct, billing, status (won|cancelled), cancel_date, commission_paid, approved (yes/no), collected (yes/no)`。接受千位分隔符（12,500）和小数逗号（1.234,50）。额外的列可用于 SPIFF 的 `when` 条件。
+FILE:templates/commission-statement.md
+# 佣金对账单：<rep name>
+
+**周期：** <October 2026>   **方案：** <plan name, version/date signed>   **配额：** <60,000.00 EUR>
+**编制人：** <name, sales ops>   **日期：** <YYYY-MM-DD>
+
+## 摘要
+| | 金额 |
+|---|---|
+| 配额业绩 | <95,200.00> (<158.7%> of quota) |
+| 佣金（阶梯） | <8,280.00> |
+| SPIFF | <400.00> |
+| 上限 | <-680.00> (max payout <8,000.00>) |
+| 追回 | <-0.00> |
+| 递延至回款 | <0.00> |
+| 预支款补足 / 回收 | <0.00> |
+| **本期发放** | **<8,000.00>** |
+| 结转余额 | <0.00> |
+
+## 交易
+| 交易 | 客户 | 成交日期 | 类型 | 业绩 | 费率切片 | 佣金 | SPIFF |
+|---|---|---|---|---|---|---|---|
+| <D-1001> | <Acme Logistics> | <2026-10-03> | <new> | <18,000.00> | <18,000.00 x 5.0%> | <900.00> | <200.00> |
+
+## 调整项
+- <Clawback D-0950 cancelled 55 days after close: -960.00>
+- <Held: D-1006 Fjord Outdoor, discount 30% awaiting approval - will be paid in the period it is approved>
+
+## 计算方式
+<Marginal tiers 5% to 50% of quota, 8% to 100%, 12% to 150%, 15% above, applied in close-date order; renewals credited at 50%; credit cap 200%; max payout 8,000.>
+
+请在 <date> 之前审阅。疑问或异议请联系：<contact>。异议必须指明具体的交易和行。
+
+*根据上述方案和 CRM 数据计算得出。以已签署的薪酬方案为准；本对账单不构成税务或法律建议。*
+FILE:examples/comp-plan.json
+{
+  "plan_name": "Northlake Software AE plan FY2026",
+  "period": {"start": "2026-10-01", "end": "2026-10-31", "label": "October 2026"},
+  "currency": "EUR",
+  "tier_method": "marginal",
+  "tiers": [
+    {"up_to": 0.5, "rate": 0.05},
+    {"up_to": 1.0, "rate": 0.08},
+    {"up_to": 1.5, "rate": 0.12},
+    {"rate": 0.15}
+  ],
+  "credit_cap_attainment": 2.0,
+  "max_payout": 8000,
+  "deal_type_credit": {"new": 1.0, "expansion": 1.0, "renewal": 0.5},
+  "max_discount_pct": 20,
+  "unapproved_discount": "hold",
+  "spiffs": [
+    {"name": "Annual prepay on new logo", "when": {"type": "new", "billing": "annual"}, "amount": 200}
+  ],
+  "clawback": {"window_days": 90, "share": 1.0},
+  "pay_on": "booking",
+  "reps": {
+    "ana": {"name": "Ana Ruiz", "quota": 60000},
+    "ben": {"name": "Ben Okafor", "quota": 50000},
+    "chloe": {"name": "Chloe Martin", "quota": 40000, "draw": {"amount": 1500, "recoverable": true, "balance": 600}}
+  }
+}
+FILE:examples/deals.csv
+deal_id,close_date,account,owner_split,type,amount,discount_pct,billing,status,cancel_date,commission_paid,approved,collected
+D-1001,2026-10-03,Acme Logistics,ana,new,18000,10,annual,won,,,,yes
+D-1002,2026-10-08,Brightwave Media,ana:60;ben:40,expansion,12000,0,monthly,won,,,,yes
+D-1003,2026-10-14,Corvid Health,ana,new,30000,15,annual,won,,,,no
+D-1004,2026-10-21,Delta Foods,ana,renewal,24000,5,annual,won,,,,yes
+D-1005,2026-10-28,Evergreen Bank,ana,new,28000,25,monthly,won,,,yes,no
+D-1006,2026-10-10,Fjord Outdoor,ben,new,22000,30,annual,won,,,,yes
+D-1007,2026-10-17,Granite Works,ben:50;chloe:40,new,15000,10,monthly,won,,,,yes
+D-1008,2026-10-24,Harbor Clinics,ben,expansion,9000,0,monthly,won,,,,yes
+D-0950,2026-08-12,Ironclad Security,ben,new,16000,10,annual,cancelled,2026-10-06,960,,
+D-0871,2026-05-20,Juniper Retail,ben,new,14000,5,monthly,cancelled,2026-10-15,700,,
+D-1009,2026-10-09,Kestrel Labs,chloe,new,11000,10,annual,won,,,,yes
+D-1010,2026-10-30,Lumen Studio,chloe,new,6000,0,monthly,won,,,,no
+D-0990,2026-09-29,Meridian Travel,chloe,new,8000,5,monthly,won,,,,yes
+D-1009,2026-10-09,Kestrel Labs,chloe,new,11000,10,annual,won,,,,yes
+D-1012,2026-10-19,Nimbus Air,dave,new,"12,500",10,annual,won,,,,yes
+FILE:examples/payout-report.md
+# 佣金发放：Northlake Software AE plan FY2026，October 2026
+
+周期 2026-10-01 至 2026-10-31，边际阶梯（配额的 50.0% 以内 5.0%，100.0% 以内 8.0%，150.0% 以内 12.0%，超过部分 15.0%），按签约发放，业绩上限为配额的 200.0%，最高发放 8,000.00。来源：examples/deals.csv。
+
+**结论：2 项高级别发现，3 笔交易被暂扣——请在交给薪资部门之前解决；当前应发总额 9,500.00 EUR**
+
+发现项：2 项高级别，4 项中级别，2 项低级别，3 项信息级。数字依据你提供的方案文件；如有出入，以已签署的薪酬方案和当地薪资法律为准。
+
+## 发放
+
+| 销售 | 配额 | 业绩 | 达成率 | 阶梯 | 佣金 | SPIFF | 上限 | 追回 | 递延 | 预支款 | 发放 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Ana Ruiz | 60,000.00 | 95,200.00 | 158.7% | 4 | 8,280.00 | 400.00 | -680.00 |  |  |  | **8,000.00** |
+| Ben Okafor | 50,000.00 | 13,800.00 | 27.6% | 1 | 690.00 | 0.00 |  | -960.00 |  |  | **0.00** |
+| Chloe Martin | 40,000.00 | 17,000.00 | 42.5% | 1 | 850.00 | 200.00 |  |  |  | +450.00 | **1,500.00** |
+| **合计** | | | | | | | | | | | **9,500.00** |
+
+## Ana Ruiz
+
+| 交易 | 客户 | 成交日期 | 类型 | 金额 | 份额 | 业绩 | 之后达成率 | 费率切片 | 佣金 | SPIFF |
+|---|---|---|---|---|---|---|---|---|---|---|
+| D-1001 | Acme Logistics | 2026-10-03 | new | 18,000.00 | 100% | 18,000.00 | 30.0% | 18,000.00 x 5.0% | 900.00 | 200.00 |
+| D-1002 | Brightwave Media | 2026-10-08 | expansion | 12,000.00 | 60% | 7,200.00 | 42.0% | 7,200.00 x 5.0% | 360.00 |  |
+| D-1003 | Corvid Health | 2026-10-14 | new | 30,000.00 | 100% | 30,000.00 | 92.0% | 4,800.00 x 5.0%; 25,200.00 x 8.0% | 2,256.00 | 200.00 |
+| D-1004 | Delta Foods | 2026-10-21 | renewal | 24,000.00 | 100% | 12,000.00 | 112.0% | 4,800.00 x 8.0%; 7,200.00 x 12.0% | 1,248.00 |  |
+| D-1005 | Evergreen Bank | 2026-10-28 | new | 28,000.00 | 100% | 28,000.00 | 158.7% | 22,800.00 x 12.0%; 5,200.00 x 15.0% | 3,516.00 |  |
+
+## Ben Okafor
+
+| 交易 | 客户 | 成交日期 | 类型 | 金额 | 份额 | 业绩 | 之后达成率 | 费率切片 | 佣金 | SPIFF |
+|---|---|---|---|---|---|---|---|---|---|---|
+| D-1002 | Brightwave Media | 2026-10-08 | expansion | 12,000.00 | 40% | 4,800.00 | 9.6% | 4,800.00 x 5.0% | 240.00 |  |
+| D-1008 | Harbor Clinics | 2026-10-24 | expansion | 9,000.00 | 100% | 9,000.00 | 27.6% | 9,000.00 x 5.0% | 450.00 |  |
+
+- 追回 D-0950（Ironclad Security，成交后 55 天取消）：-960.00
+- 结转的负余额：-270.00
+
+## Chloe Martin
+
+| 交易 | 客户 | 成交日期 | 类型 | 金额 | 份额 | 业绩 | 之后达成率 | 费率切片 | 佣金 | SPIFF |
+|---|---|---|---|---|---|---|---|---|---|---|
+| D-1009 | Kestrel Labs | 2026-10-09 | new | 11,000.00 | 100% | 11,000.00 | 27.5% | 11,000.00 x 5.0% | 550.00 | 200.00 |
+| D-1010 | Lumen Studio | 2026-10-30 | new | 6,000.00 | 100% | 6,000.00 | 42.5% | 6,000.00 x 5.0% | 300.00 |  |
+
+- 预支款：补足 450.00，已回收 0.00，未偿余额 1,050.00
+
+## 被暂扣的交易（需要决定）
+
+| 交易 | 客户 | 原因 |
+|---|---|---|
+| D-1006 | Fjord Outdoor | 折扣 30% 未获批准 |
+| D-1007 | Granite Works | 拆分 90% |
+| D-1012 | Nimbus Air | 未知销售 dave |
+
+## 本期不计入
+
+| 交易 | 客户 | 原因 |
+|---|---|---|
+| D-0871 | Juniper Retail | 在追回窗口之后取消 |
+| D-0990 | Meridian Travel | 成交于 2026-09-29 |
+| D-1009 | Kestrel Labs | 重复行 |
+
+## 发现项
+
+- **HIGH CM01** D-1012：owner_split 中有未知销售 dave——交易被暂扣
+- **HIGH CM02** D-1007：拆分份额加起来为 90%，而不是 100%——交易被暂扣，直到销售运营确认拆分
+- **MEDIUM CM04** D-1009 在第 15 行再次出现（首次在第 12 行）——忽略第二行
+- **MEDIUM CM05** D-1006：折扣 30% 超过 20% 的上限且未获批准——业绩被暂扣
+- **MEDIUM CM08** D-0950 在成交后 55 天取消（窗口 90 天）：追回 960.00
+- **MEDIUM CM11** Ben Okafor：追回款超过收入 270.00——发放 0，负余额结转至下一周期（扣款前请核对你的方案和当地薪资法律）
+- **LOW CM03** D-0990 成交于 2026-09-29，在 October 2026 之外——此处不计入（请确认已在其自身周期发放）
+- **LOW CM08** D-0871 在成交后 148 天取消（窗口 90 天）——不追回
+- **INFO CM06** Ana Ruiz：佣金 + SPIFF 8,680.00 被限制在 max_payout 8,000.00（-680.00）
+- **INFO CM07** Ana Ruiz 达到配额的 158.7%——对超过每个门槛的业绩已达到第 4 阶梯（15.0%）
+- **INFO CM10** Chloe Martin：收入 1,050.00 低于 1,500.00 的预支款——预支款补足 450.00（可回收：余额现为 1,050.00）
+
+复核检查：每笔交易的佣金 = 各阶梯区间内的业绩 x 阶梯费率之和；发放 = 佣金 + SPIFF - 上限 - 递延 - 追回 + 结转进来的金额，然后适用预支款规则。付款前请让销售运营和薪资部门批准。
+FILE:scripts/commission_calc.py
+#!/usr/bin/env python3
+"""销售佣金发放计算器（仅标准库，Python 3.8+）。
+
+读取薪酬方案（JSON）和交易导出文件（CSV），计算每位销售人员在一个周期内的发放金额：
+按交易类型计配额业绩、交易拆分、带加速器的阶梯费率（边际或统一/追溯）、业绩与发放上限、SPIFF、
+对在追回窗口内取消的交易的追回、按签约或按回款发放，以及可回收或不可回收的预支款。
+有问题的交易（拆分有误、销售未知、折扣超过上限且未获批准、重复、周期有误）会被暂扣或排除，
+并列出发现代码。
+
+用法：
+  commission_calc.py PLAN.json DEALS.csv [--rep ID]... [--json]
+  commission_calc.py --self-test
+退出码：0 = 无高级别发现项，1 = 有高级别发现项（有交易被暂扣，需要决定），2 = 输入有误。
+"""
+import argparse, csv, datetime, io, json, sys
+from collections import OrderedDict
+from decimal import Decimal, ROUND_HALF_UP
+
+SEV = {"high": 0, "medium": 1, "low": 2, "info": 3}
+CENT = Decimal("0.01")
+PLAN_KEYS = {"plan_name", "period", "currency", "tier_method", "tiers", "credit_cap_attainment", "max_payout",
+             "deal_type_credit", "max_discount_pct", "unapproved_discount", "spiffs", "clawback", "pay_on", "reps"}
+
+
+class InputError(Exception):
+    pass
+
+
+def D(x, what="number"):
+    if isinstance(x, Decimal):
+        return x
+    s = str(x).strip().replace(" ", "")
+    if s == "":
+        raise InputError("empty %s" % what)
+    if "," in s and "." in s:
+        s = s.replace(",", "") if s.rfind(".") > s.rfind(",") else s.replace(".", "").replace(",", ".")
+    elif "," in s:
+        s = s.replace(",", "") if len(s.split(",")[-1]) == 3 else s.replace(",", ".")
+    try:
+        return Decimal(s)
+    except Exception:
+        raise InputError("%s is not a number: %r" % (what, x))
+
+
+def pdate(s, what):
+    try:
+        return datetime.date.fromisoformat(str(s).strip())
+    except ValueError:
+        raise InputError("%s must be YYYY-MM-DD, got %r" % (what, s))
+
+
+def money(x):
+    return Decimal(x).quantize(CENT, rounding=ROUND_HALF_UP)
+
+
+def fm(x):
+    x = money(x)
+    return "{:,.2f}".format(x)
+
+
+def num(x):
+    return "{:f}".format(Decimal(x).normalize())
+
+
+def pct(x):
+    return "%.1f%%" % (float(x) * 100)
+
+
+# ---------------------------------------------------------------- plan
+def load_plan(cfg):
+    if not isinstance(cfg, dict):
+        raise InputError("plan must be a JSON object")
+    bad = set(cfg) - PLAN_KEYS
+    if bad:
+        raise InputError("unknown plan key(s): %s" % ", ".join(sorted(bad)))
+    per = cfg.get("period") or {}
+    p = {"name": cfg.get("plan_name", "Commission plan"), "currency": cfg.get("currency", ""),
+         "start": pdate(per.get("start"), "period.start"), "end": pdate(per.get("end"), "period.end"),
+         "label": per.get("label") or "%s..%s" % (per.get("start"), per.get("end")),
+         "method": cfg.get("tier_method", "marginal"), "pay_on": cfg.get("pay_on", "booking"),
+         "cap_att": D(cfg["credit_cap_attainment"]) if cfg.get("credit_cap_attainment") is not None else None,
+         "max_payout": D(cfg["max_payout"]) if cfg.get("max_payout") is not None else None,
+         "type_credit": {k.lower(): D(v) for k, v in (cfg.get("deal_type_credit") or {"new": 1}).items()},
+         "max_disc": D(cfg["max_discount_pct"]) if cfg.get("max_discount_pct") is not None else None,
+         "unapproved": cfg.get("unapproved_discount", "hold"),
+         "spiffs": cfg.get("spiffs", []),
+         "claw_days": int((cfg.get("clawback") or {}).get("window_days", 0)),
+         "claw_share": D((cfg.get("clawback") or {}).get("share", 1)),
+         "reps": OrderedDict()}
+    if p["end"] < p["start"]:
+        raise InputError("period ends before it starts")
+    if p["method"] not in ("marginal", "flat"):
+        raise InputError("tier_method must be 'marginal' or 'flat'")
+    if p["pay_on"] not in ("booking", "collection"):
+        raise InputError("pay_on must be 'booking' or 'collection'")
+    if p["unapproved"] not in ("hold", "pay"):
+        raise InputError("unapproved_discount must be 'hold' or 'pay'")
+    tiers, prev = [], Decimal(0)
+    for i, t in enumerate(cfg.get("tiers") or []):
+        up = D(t["up_to"], "tier up_to") if t.get("up_to") is not None else None
+        if up is not None and up <= prev:
+            raise InputError("tier %d: up_to must increase (attainment as a fraction, e.g. 1.0 = 100%%)" % (i + 1))
+        if up is None and i != len(cfg["tiers"]) - 1:
+            raise InputError("only the last tier may omit up_to")
+        tiers.append((prev, up, D(t["rate"], "tier rate")))
+        prev = up if up is not None else prev
+    if not tiers:
+        raise InputError("plan needs at least one tier")
+    if any(r > 1 for _, _, r in tiers):
+        raise InputError("tier rates are fractions (0.08 = 8%)")
+    p["tiers"] = tiers
+    for rid, r in (cfg.get("reps") or {}).items():
+        dr = r.get("draw")
+        p["reps"][rid.lower()] = {"id": rid.lower(), "name": r.get("name", rid), "quota": D(r["quota"], "quota of %s" % rid),
+                                  "draw": D(dr["amount"]) if dr else Decimal(0), "recoverable": bool(dr and dr.get("recoverable", True)),
+                                  "balance": D(dr.get("balance", 0)) if dr else Decimal(0),
+                                  "carry": D(r.get("carry_forward", 0))}
+        if p["reps"][rid.lower()]["quota"] <= 0:
+            raise InputError("quota of %s must be positive" % rid)
+    if not p["reps"]:
+        raise InputError("plan needs at least one rep")
+    return p
+
+
+def rate_at(p, att):
+    for lo, up, r in p["tiers"]:
+        if up is None or att < up:
+            return r
+    return p["tiers"][-1][2]
+
+
+def tier_name(p, att):
+    for i, (lo, up, r) in enumerate(p["tiers"], 1):
+        if up is None or att < up:
+            return i
+    return len(p["tiers"])
+
+
+# ---------------------------------------------------------------- deals
+def parse_split(s, default):
+    s = (s or "").strip()
+    if not s:
+        return OrderedDict([(default, Decimal(100))]) if default else None
+    out = OrderedDict()
+    for part in s.replace("|", ";").split(";"):
+        part = part.strip()
+        if not part:
+            continue
+        if ":" in part:
+            who, share = part.split(":", 1)
+            out[who.strip().lower()] = out.get(who.strip().lower(), Decimal(0)) + D(share.strip().rstrip("%"), "split share")
+        else:
+            out[part.lower()] = Decimal(100)
+    return out
+
+
+def yes(v):
+    return str(v or "").strip().lower() in ("yes", "y", "true", "1", "x")
+
+
+def compute(p, deals_text, only=None):
+    F = []
+    rows = list(csv.DictReader(io.StringIO(deals_text)))
+    if not rows:
+        raise InputError("deals CSV has no rows")
+    need = {"deal_id", "close_date", "amount"}
+    if not need <= set(rows[0]):
+        raise InputError("deals CSV needs columns %s (has %s)" % (", ".join(sorted(need)), ", ".join(rows[0])))
+    credited = {rid: [] for rid in p["reps"]}
+    held, excluded, claws, seen = [], [], [], {}
+    for n, r in enumerate(rows, 2):
+        did = (r.get("deal_id") or "").strip() or "row %d" % n
+        acct = r.get("account", "")
+        try:
+            close = pdate(r.get("close_date"), "close_date")
+            amount = D(r.get("amount"), "amount")
+            disc = D(r.get("discount_pct") or 0, "discount_pct")
+        except InputError as e:
+            F.append(("high", "CM01", "%s (row %d): %s - deal not counted" % (did, n, e), did)); held.append((did, acct, "bad data")); continue
+        key = did.lower()
+        if key in seen:
+            F.append(("medium", "CM04", "%s appears again on row %d (first on row %d) - second row ignored" % (did, n, seen[key]), did)); excluded.append((did, acct, "duplicate row")); continue
+        seen[key] = n
+        status = (r.get("status") or "won").strip().lower()
+        split = parse_split(r.get("owner_split") or r.get("rep"), None)
+        if not split:
+            F.append(("high", "CM01", "%s: no rep / owner_split - deal not counted" % did, did)); held.append((did, acct, "no rep")); continue
+        unknown = [w for w in split if w not in p["reps"]]
+        if status == "cancelled":
+            cdate = r.get("cancel_date")
+            try:
+                cdate = pdate(cdate, "cancel_date") if cdate else None
+            except InputError as e:
+                F.append(("high", "CM01", "%s: %s" % (did, e), did)); continue
+            if not cdate or not (p["start"] <= cdate <= p["end"]):
+                excluded.append((did, acct, "cancelled outside this period")); continue
+            if p["start"] <= close <= p["end"]:
+                F.append(("info", "CM08", "%s closed and was cancelled in this period - not credited" % did, did)); excluded.append((did, acct, "cancelled in period")); continue
+            age = (cdate - close).days
+            if age > p["claw_days"]:
+                F.append(("low", "CM08", "%s cancelled %d days after close (window %d) - no clawback" % (did, age, p["claw_days"]), did)); excluded.append((did, acct, "cancelled after clawback window")); continue
+            paid = r.get("commission_paid")
+            if paid and str(paid).strip():
+                base = D(paid, "commission_paid"); est = False
+            else:
+                tc = p["type_credit"].get((r.get("type") or "new").strip().lower(), Decimal(1))
+                base = amount * tc * p["tiers"][0][2]; est = True
+            for who, share in split.items():
+                if who in p["reps"]:
+                    amt = money(base * p["claw_share"] * share / 100)
+                    claws.append({"rep": who, "deal": did, "account": acct, "amount": amt, "age": age, "estimated": est})
+            F.append(("medium", "CM08", "%s cancelled %d days after close (window %d): clawback %s%s" % (did, age, p["claw_days"], fm(base * p["claw_share"]), " (estimated at the first tier rate - commission_paid missing)" if est else ""), did))
+            continue
+        if status not in ("won", "closed_won", "closed won"):
+            excluded.append((did, acct, "status %s" % status)); continue
+        if not (p["start"] <= close <= p["end"]):
+            F.append(("low", "CM03", "%s closed %s, outside %s - not counted here (check it was paid in its own period)" % (did, close, p["label"]), did)); excluded.append((did, acct, "closed %s" % close)); continue
+        if unknown:
+            F.append(("high", "CM01", "%s: unknown rep(s) %s in owner_split - deal held" % (did, ", ".join(unknown)), did)); held.append((did, acct, "unknown rep %s" % ", ".join(unknown))); continue
+        total = sum(split.values())
+        if total != 100:
+            F.append(("high", "CM02", "%s: split shares add up to %s%%, not 100%% - deal held until sales ops confirms the split" % (did, num(total)), did)); held.append((did, acct, "split %s%%" % num(total))); continue
+        dtype = (r.get("type") or "new").strip().lower()
+        if dtype not in p["type_credit"]:
+            F.append(("high", "CM01", "%s: deal type '%s' has no credit rate in the plan - deal held" % (did, dtype), did)); held.append((did, acct, "unknown type %s" % dtype)); continue
+        if amount <= 0:
+            F.append(("medium", "CM01", "%s: amount %s is not positive - not counted (use a cancellation for reversals)" % (did, amount), did)); excluded.append((did, acct, "amount <= 0")); continue
+        if p["max_disc"] is not None and disc > p["max_disc"] and not yes(r.get("approved")):
+            if p["unapproved"] == "hold":
+                F.append(("medium", "CM05", "%s: discount %s%% over the %s%% limit without approval - credit held" % (did, num(disc), num(p["max_disc"])), did)); held.append((did, acct, "discount %s%% not approved" % num(disc))); continue
+            F.append(("medium", "CM05", "%s: discount %s%% over the %s%% limit without approval - paid anyway (unapproved_discount=pay)" % (did, num(disc), num(p["max_disc"])), did))
+        credit_total = amount * p["type_credit"][dtype]
+        deferred = p["pay_on"] == "collection" and not yes(r.get("collected"))
+        for who, share in split.items():
+            spiff = Decimal(0)
+            for s in p["spiffs"]:
+                if all(str(r.get(k, "")).strip().lower() == str(v).lower() for k, v in (s.get("when") or {}).items()):
+                    spiff += D(s["amount"]) * share / 100
+            credited[who].append({"deal": did, "account": acct, "close": close, "type": dtype, "amount": amount, "share": share,
+                                  "credit": credit_total * share / 100, "spiff": spiff, "deferred": deferred})
+    # per rep
+    reps = []
+    for rid, rep in p["reps"].items():
+        if only and rid not in only:
+            continue
+        ds = sorted(credited[rid], key=lambda d: (d["close"], d["deal"]))
+        q = rep["quota"]
+        cap_credit = q * p["cap_att"] if p["cap_att"] is not None else None
+        cum = Decimal(0)
+        total_credit = sum((d["credit"] for d in ds), Decimal(0))
+        att = total_credit / q
+        flat_rate = rate_at(p, min(att, p["cap_att"]) if p["cap_att"] is not None else att)
+        for d in ds:
+            a, b = cum, cum + d["credit"]
+            cum = b
+            comm, slices = Decimal(0), []
+            if p["method"] == "flat":
+                eligible = b if cap_credit is None else min(b, cap_credit)
+                part = max(Decimal(0), eligible - a)
+                comm = part * flat_rate
+                slices.append("%s x %s" % (fm(part), pct(flat_rate)))
+                if part < d["credit"]:
+                    slices.append("%s over the credit cap x 0%%" % fm(d["credit"] - part))
+            else:
+                for lo, up, rate in p["tiers"]:
+                    lo_c, up_c = lo * q, (up * q if up is not None else None)
+                    if cap_credit is not None:
+                        up_c = cap_credit if up_c is None else min(up_c, cap_credit)
+                        if lo_c >= cap_credit:
+                            continue
+                    x0, x1 = max(a, lo_c), (b if up_c is None else min(b, up_c))
+                    if x1 > x0:
+                        comm += (x1 - x0) * rate
+                        slices.append("%s x %s" % (fm(x1 - x0), pct(rate)))
+                if cap_credit is not None and b > cap_credit:
+                    slices.append("%s over the credit cap x 0%%" % fm(b - max(a, cap_credit)))
+            d["commission"] = money(comm)
+            d["slices"] = slices
+            d["att_after"] = b / q
+        commission = sum((d["commission"] for d in ds), Decimal(0))
+        spiffs = money(sum((d["spiff"] for d in ds), Decimal(0)))
+        earned = commission + spiffs
+        capped = Decimal(0)
+        if p["max_payout"] is not None and earned > p["max_payout"]:
+            capped = earned - p["max_payout"]
+            F.append(("info", "CM06", "%s: commission + SPIFFs %s capped at max_payout %s (-%s)" % (rep["name"], fm(earned), fm(p["max_payout"]), fm(capped)), rid))
+            earned = p["max_payout"]
+        if cap_credit is not None and total_credit > cap_credit:
+            F.append(("info", "CM06", "%s: credit above %s of quota (%s) earns no commission" % (rep["name"], pct(p["cap_att"]), fm(total_credit - cap_credit)), rid))
+        if att >= 1:
+            F.append(("info", "CM07", "%s at %s of quota - tier %d (%s) reached%s" % (rep["name"], pct(att), tier_name(p, att), pct(rate_at(p, att)), " and applied to all credit (flat method)" if p["method"] == "flat" else " for the credit above each threshold"), rid))
+        deferred = money(sum((d["commission"] + d["spiff"] for d in ds if d["deferred"]), Decimal(0)))
+        if deferred and capped:
+            deferred = money(deferred * earned / (earned + capped))
+        if deferred:
+            F.append(("low", "CM09", "%s: %s deferred until the customer pays (pay_on collection)" % (rep["name"], fm(deferred)), rid))
+        claw = sum((c["amount"] for c in claws if c["rep"] == rid), Decimal(0))
+        payable = earned - deferred - claw + rep["carry"]
+        draw_paid, recovered, bal = Decimal(0), Decimal(0), rep["balance"]
+        if rep["draw"]:
+            if payable < rep["draw"]:
+                draw_paid = rep["draw"] - max(payable, Decimal(0))
+                if rep["recoverable"]:
+                    bal += draw_paid
+                F.append(("info", "CM10", "%s: earned %s is below the %s draw - draw tops up %s%s" % (rep["name"], fm(max(payable, Decimal(0))), fm(rep["draw"]), fm(draw_paid), (" (recoverable: balance now %s)" % fm(bal)) if rep["recoverable"] else " (non-recoverable)"), rid))
+                payout = rep["draw"]
+                if payable < 0:
+                    bal += -payable if rep["recoverable"] else 0
+            else:
+                recovered = min(bal, payable - rep["draw"]) if rep["recoverable"] else Decimal(0)
+                bal -= recovered
+                payout = payable - recovered
+                if recovered:
+                    F.append(("info", "CM10", "%s: %s of the outstanding draw recovered (balance now %s)" % (rep["name"], fm(recovered), fm(bal)), rid))
+        else:
+            payout = payable
+        carry_out = Decimal(0)
+        if payout < 0:
+            carry_out = payout
+            F.append(("medium", "CM11", "%s: clawbacks exceed earnings by %s - payout 0, negative balance carried to next period (check your plan and local pay law before deducting)" % (rep["name"], fm(-payout)), rid))
+            payout = Decimal(0)
+        reps.append({"id": rid, "name": rep["name"], "quota": q, "credit": total_credit, "attainment": att,
+                     "tier": tier_name(p, att), "commission": commission, "spiffs": spiffs, "capped": capped,
+                     "clawbacks": claw, "deferred": deferred, "carry_in": rep["carry"], "draw_topup": draw_paid,
+                     "draw_recovered": recovered, "draw_balance": bal, "carry_out": carry_out, "payout": money(payout), "deals": ds})
+    F.sort(key=lambda f: (SEV[f[0]], f[1], str(f[3])))
+    return {"plan": p, "reps": reps, "held": held, "excluded": excluded, "clawbacks": claws, "findings": F}
+
+
+# ---------------------------------------------------------------- report
+def report(res, title):
+    p, F = res["plan"], res["findings"]
+    c = {s: sum(1 for f in F if f[0] == s) for s in SEV}
+    cur = (" " + p["currency"]) if p["currency"] else ""
+    total = sum((r["payout"] for r in res["reps"]), Decimal(0))
+    L = ["# Commission payouts: %s, %s" % (p["name"], p["label"]), ""]
+    L.append("Period %s to %s, %s tiers (%s), pay on %s%s%s. Source: %s." % (
+        p["start"], p["end"], p["method"], ", ".join("%s%s" % (pct(r), (" up to %s of quota" % pct(u)) if u is not None else " above") for _, u, r in p["tiers"]),
+        p["pay_on"], (", credit cap %s of quota" % pct(p["cap_att"])) if p["cap_att"] is not None else "",
+        (", max payout %s" % fm(p["max_payout"])) if p["max_payout"] is not None else "", title))
+    L.append("")
+    if c["high"]:
+        L.append("**Verdict: %d high finding(s), %d deal(s) held - resolve them before payroll; total payable now %s%s**" % (c["high"], len(res["held"]), fm(total), cur))
+    else:
+        L.append("**Verdict: ready for approval - total payable %s%s%s**" % (fm(total), cur, " (medium findings to review)" if c["medium"] else ""))
+    L.append("")
+    L.append("Findings: %d high, %d medium, %d low, %d info. Figures follow the plan file you provided; the signed comp plan and local pay law win if they differ." % (c["high"], c["medium"], c["low"], c["info"]))
+    L += ["", "## Payouts", "", "| Rep | Quota | Credit | Attainment | Tier | Commission | SPIFFs | Cap | Clawbacks | Deferred | Draw | Payout |", "|---|---|---|---|---|---|---|---|---|---|---|---|"]
+    for r in res["reps"]:
+        draw = ("+%s" % fm(r["draw_topup"])) if r["draw_topup"] else (("-%s recovered" % fm(r["draw_recovered"])) if r["draw_recovered"] else "")
+        L.append("| %s | %s | %s | %s | %d | %s | %s | %s | %s | %s | %s | **%s** |" % (
+            r["name"], fm(r["quota"]), fm(r["credit"]), pct(r["attainment"]), r["tier"], fm(r["commission"]), fm(r["spiffs"]),
+            ("-" + fm(r["capped"])) if r["capped"] else "", ("-" + fm(r["clawbacks"])) if r["clawbacks"] else "",
+            fm(r["deferred"]) if r["deferred"] else "", draw, fm(r["payout"])))
+    L.append("| **Total** | | | | | | | | | | | **%s** |" % fm(total))
+    for r in res["reps"]:
+        L += ["", "## %s" % r["name"], ""]
+        if not r["deals"]:
+            L.append("No credited deals this period.")
+        else:
+            L += ["| Deal | Account | Closed | Type | Amount | Share | Credit | Attainment after | Rate slices | Commission | SPIFF |", "|---|---|---|---|---|---|---|---|---|---|---|"]
+            for d in r["deals"]:
+                L.append("| %s | %s | %s | %s | %s | %s%% | %s | %s | %s | %s | %s |" % (
+                    d["deal"], d["account"], d["close"], d["type"], fm(d["amount"]), num(d["share"]), fm(d["credit"]),
+                    pct(d["att_after"]), "; ".join(d["slices"]) or "-", fm(d["commission"]) + (" (deferred)" if d["deferred"] else ""), fm(d["spiff"]) if d["spiff"] else ""))
+        extra = []
+        for cl in [x for x in res["clawbacks"] if x["rep"] == r["id"]]:
+            extra.append("- Clawback %s (%s, cancelled %d days after close): -%s%s" % (cl["deal"], cl["account"], cl["age"], fm(cl["amount"]), " (estimated)" if cl["estimated"] else ""))
+        if r["carry_in"]:
+            extra.append("- Carried in from last period: %s" % fm(r["carry_in"]))
+        if r["draw_topup"] or r["draw_recovered"] or r["draw_balance"]:
+            extra.append("- Draw: top-up %s, recovered %s, outstanding balance %s" % (fm(r["draw_topup"]), fm(r["draw_recovered"]), fm(r["draw_balance"])))
+        if r["carry_out"]:
+            extra.append("- Negative balance carried forward: %s" % fm(r["carry_out"]))
+        L += [""] + extra if extra else []
+    if res["held"]:
+        L += ["", "## Held deals (need a decision)", "", "| Deal | Account | Reason |", "|---|---|---|"]
+        L += ["| %s | %s | %s |" % h for h in res["held"]]
+    if res["excluded"]:
+        L += ["", "## Not counted this period", "", "| Deal | Account | Reason |", "|---|---|---|"]
+        L += ["| %s | %s | %s |" % h for h in res["excluded"]]
+    L += ["", "## Findings", ""]
+    L += ["- **%s %s** %s" % (s.upper(), code, m) for s, code, m, _ in F] or ["- none"]
+    L += ["", "Recompute check: commission per deal = sum of (credit in each tier band x tier rate); payout = commission + SPIFFs - cap - deferred - clawbacks + carry-in, then draw rules. Have sales ops and payroll approve before paying."]
+    return "\n".join(L) + "\n"
+
+
+def to_json(res):
+    def j(x):
+        if isinstance(x, Decimal):
+            return float(money(x))
+        if isinstance(x, datetime.date):
+            return x.isoformat()
+        if isinstance(x, dict):
+            return {k: j(v) for k, v in x.items()}
+        if isinstance(x, (list, tuple)):
+            return [j(v) for v in x]
+        return x
+    out = {"period": res["plan"]["label"], "reps": [], "held": [list(h) for h in res["held"]], "excluded": [list(h) for h in res["excluded"]],
+           "clawbacks": j(res["clawbacks"]), "findings": [{"severity": s, "code": c, "message": m} for s, c, m, _ in res["findings"]]}
+    for r in res["reps"]:
+        rr = {k: v for k, v in r.items() if k != "deals"}
+        rr["attainment"] = round(float(r["attainment"]), 4)
+        rr = j(rr)
+        rr["deals"] = [j({k: v for k, v in d.items() if k not in ("att_after",)}) for d in r["deals"]]
+        out["reps"].append(rr)
+    return out
+
+
+# ---------------------------------------------------------------- self-test
+def self_test():
+    tests = []
+    def t(name, cond):
+        tests.append((name, bool(cond)))
+    base = {"period": {"start": "2026-10-01", "end": "2026-10-31"}, "tiers": [{"up_to": 0.5, "rate": 0.05}, {"up_to": 1.0, "rate": 0.08}, {"rate": 0.12}],
+            "reps": {"a": {"quota": 10000}, "b": {"quota": 10000}}}
+    H = "deal_id,close_date,owner_split,type,amount,discount_pct,billing,status,cancel_date,commission_paid,approved,collected\n"
+    def run(rows, **over):
+        cfg = dict(base); cfg.update(over)
+        return compute(load_plan(cfg), H + rows)
+    def rep(res, rid):
+        return next(r for r in res["reps"] if r["id"] == rid)
+    def codes(res):
+        return [(f[0], f[1]) for f in res["findings"]]
+    r = run("1,2026-10-05,a,new,4000,,,won,,,,\n")
+    t("below first threshold: 4000 x 5% = 200", rep(r, "a")["commission"] == Decimal("200.00"))
+    r = run("1,2026-10-05,a,new,12000,,,won,,,,\n")
+    t("marginal: 5000x5% + 5000x8% + 2000x12% = 890", rep(r, "a")["commission"] == Decimal("890.00"))
+    r = run("1,2026-10-05,a,new,12000,,,won,,,,\n", tier_method="flat")
+    t("flat: 12000 x 12% = 1440", rep(r, "a")["commission"] == Decimal("1440.00"))
+    r = run("1,2026-10-05,a,new,6000,,,won,,,,\n2,2026-10-20,a,new,6000,,,won,,,,\n")
+    t("tiers follow close order across deals", [d["commission"] for d in rep(r, "a")["deals"]] == [Decimal("330.00"), Decimal("560.00")])
+    t("accelerator reached -> CM07", ("info", "CM07") in codes(r))
+    r = run("1,2026-10-05,a,new,30000,,,won,,,,\n", credit_cap_attainment=2.0)
+    t("credit cap at 200%: 250+400+1200 = 1850", rep(r, "a")["commission"] == Decimal("1850.00") and ("info", "CM06") in codes(r))
+    r = run("1,2026-10-05,a,new,30000,,,won,,,,\n", max_payout=1000)
+    t("max_payout caps the payout", rep(r, "a")["payout"] == Decimal("1000.00"))
+    r = run("1,2026-10-05,a,renewal,10000,,,won,,,,\n", deal_type_credit={"new": 1, "renewal": 0.5})
+    t("renewal credited at 50%", rep(r, "a")["credit"] == Decimal("5000") and rep(r, "a")["commission"] == Decimal("250.00"))
+    r = run("1,2026-10-05,a:60;b:40,new,10000,,,won,,,,\n")
+    t("split 60/40 credits both reps", rep(r, "a")["credit"] == Decimal("6000") and rep(r, "b")["credit"] == Decimal("4000"))
+    r = run("1,2026-10-05,a:60;b:30,new,10000,,,won,,,,\n")
+    t("split not 100% -> CM02 high, held", ("high", "CM02") in codes(r) and rep(r, "a")["credit"] == 0 and r["held"])
+    r = run("1,2026-10-05,zed,new,10000,,,won,,,,\n")
+    t("unknown rep -> CM01 high", ("high", "CM01") in codes(r))
+    r = run("1,2026-10-05,a,new,10000,30,,won,,,,\n", max_discount_pct=20)
+    t("discount over limit unapproved -> CM05 held", ("medium", "CM05") in codes(r) and rep(r, "a")["credit"] == 0)
+    r = run("1,2026-10-05,a,new,10000,30,,won,,,yes,\n", max_discount_pct=20)
+    t("approved discount is paid", rep(r, "a")["credit"] == Decimal("10000"))
+    r = run("1,2026-09-28,a,new,10000,,,won,,,,\n")
+    t("closed outside period -> CM03, not counted", ("low", "CM03") in codes(r) and rep(r, "a")["credit"] == 0)
+    r = run("1,2026-10-05,a,new,4000,,,won,,,,\n1,2026-10-05,a,new,4000,,,won,,,,\n")
+    t("duplicate deal id -> CM04, counted once", ("medium", "CM04") in codes(r) and rep(r, "a")["credit"] == Decimal("4000"))
+    r = run("1,2026-10-05,a,new,4000,,,won,,,,\n9,2026-08-20,a,new,8000,,,cancelled,2026-10-10,400,,\n", clawback={"window_days": 90})
+    t("cancelled within window -> clawback of paid commission", rep(r, "a")["clawbacks"] == Decimal("400.00") and rep(r, "a")["payout"] == 0 and rep(r, "a")["carry_out"] == Decimal("-200.00") and ("medium", "CM11") in codes(r))
+    r = run("9,2026-05-01,a,new,8000,,,cancelled,2026-10-10,400,,\n", clawback={"window_days": 90})
+    t("cancelled after window -> no clawback", rep(r, "a")["clawbacks"] == 0 and ("low", "CM08") in codes(r))
+    r = run("9,2026-09-20,a,new,8000,,,cancelled,2026-10-10,,,\n", clawback={"window_days": 90})
+    t("missing commission_paid -> estimated at first tier", rep(r, "a")["clawbacks"] == Decimal("400.00"))
+    r = run("1,2026-10-05,a,new,4000,,annual,won,,,,\n", spiffs=[{"name": "Annual", "when": {"billing": "annual"}, "amount": 150}])
+    t("SPIFF added", rep(r, "a")["spiffs"] == Decimal("150.00") and rep(r, "a")["payout"] == Decimal("350.00"))
+    r = run("1,2026-10-05,a,new,4000,,,won,,,,no\n", pay_on="collection")
+    t("pay on collection defers unpaid deals", rep(r, "a")["deferred"] == Decimal("200.00") and rep(r, "a")["payout"] == 0)
+    cfg = dict(base, reps={"a": {"quota": 10000, "draw": {"amount": 500, "recoverable": True, "balance": 0}}})
+    res = compute(load_plan(cfg), H + "1,2026-10-05,a,new,4000,,,won,,,,\n")
+    t("recoverable draw tops up and builds balance", rep(res, "a")["payout"] == Decimal("500.00") and rep(res, "a")["draw_balance"] == Decimal("300"))
+    cfg = dict(base, reps={"a": {"quota": 10000, "draw": {"amount": 500, "recoverable": True, "balance": 300}}})
+    res = compute(load_plan(cfg), H + "1,2026-10-05,a,new,12000,,,won,,,,\n")
+    t("surplus recovers draw balance", rep(res, "a")["draw_recovered"] == Decimal("300") and rep(res, "a")["payout"] == Decimal("590.00"))
+    cfg = dict(base, reps={"a": {"quota": 10000, "draw": {"amount": 500, "recoverable": False}}})
+    res = compute(load_plan(cfg), H + "1,2026-10-05,a,new,4000,,,won,,,,\n")
+    t("non-recoverable draw: no balance", rep(res, "a")["payout"] == Decimal("500.00") and rep(res, "a")["draw_balance"] == 0)
+    t("thousands separator parsed", D("12,000") == Decimal("12000") and D("1.234,50") == Decimal("1234.50"))
+    for label, bad in [("tiers out of order", dict(base, tiers=[{"up_to": 1, "rate": 0.05}, {"up_to": 0.5, "rate": 0.08}])),
+                       ("rate as percent", dict(base, tiers=[{"rate": 8}])), ("unknown key", dict(base, quotas=1))]:
+        try:
+            load_plan(bad); ok = False
+        except InputError:
+            ok = True
+        t("bad plan rejected: " + label, ok)
+    rr = run("1,2026-10-05,a,new,4000,,,won,,,,\n")
+    t("report has verdict and payouts table", "**Verdict:" in report(rr, "t") and "## Payouts" in report(rr, "t"))
+    for name, ok in tests:
+        print(("PASS  " if ok else "FAIL  ") + name)
+    passed = sum(ok for _, ok in tests)
+    print("%d/%d passed" % (passed, len(tests)))
+    return 0 if passed == len(tests) else 1
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Calculate sales commission payouts for one period.")
+    ap.add_argument("plan", nargs="?")
+    ap.add_argument("deals", nargs="?")
+    ap.add_argument("--rep", action="append", default=[], help="only show this rep id (repeatable)")
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args(argv)
+    if a.self_test:
+        return self_test()
+    if not a.plan or not a.deals:
+        ap.print_usage(sys.stderr)
+        return 2
+    try:
+        try:
+            cfg = json.load(open(a.plan, encoding="utf-8"))
+        except json.JSONDecodeError as e:
+            raise InputError("plan is not valid JSON: %s" % e)
+        p = load_plan(cfg)
+        res = compute(p, open(a.deals, encoding="utf-8-sig").read(), [x.lower() for x in a.rep] or None)
+    except (OSError, InputError, KeyError) as e:
+        print("error: %s" % (("missing field %s" % e) if isinstance(e, KeyError) else e), file=sys.stderr)
+        return 2
+    if a.json:
+        print(json.dumps(to_json(res), indent=2))
+    else:
+        sys.stdout.write(report(res, a.deals))
+    return 1 if any(f[0] == "high" for f in res["findings"]) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
 ```
 
 </details>
@@ -1032,6 +1731,14 @@ RULES FOR GENERATION:
 
 ```text
 我希望你扮演一家假设公司的首席执行官（Chief Executive Officer）。你将负责制定战略决策、管理公司的财务绩效，并代表公司面向外部利益相关方。你将收到一系列情景与挑战以供回应，应运用你最佳的判断力与领导技能提出解决方案。请始终秉持专业精神，并做出符合公司及其员工最大利益的决策。你的首个挑战是应对一场潜在危机——某款产品必须召回。你将如何处理这一情况？又将采取哪些步骤来缓解其对公司造成的任何负面影响？
+```
+
+</details>
+
+<details><summary><b>香皂消毒剂护发霜中型生产商业计划</b> · 机器翻译</summary>
+
+```text
+扮演一位拥有25年销售、品牌和营销经验的创业专家。为这个创业项目及其持续可持续发展提供一份中等规模的商业计划书。突出必要的要点,以便更好地理解。以段落形式呈现你的事实,少量使用图表统计数据。要务实、有商业头脑,并致力于盈利。
 ```
 
 </details>

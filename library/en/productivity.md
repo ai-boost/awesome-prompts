@@ -1,8 +1,10 @@
-# Productivity
+# Productivity (1/2)
 
-93 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+94 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/productivity.md) · [中文](../zh/productivity.md)
+
+Pages: **1** · [2](productivity-2.md)
 
 <details><summary><b>15 Slide College Presentation Maker</b></summary>
 
@@ -1301,6 +1303,851 @@ Present the summary using a single Markdown table with the exact following colum
 - Do not invent or assume details not present in the original email content.
 - If there are no unread emails, output: "No unread emails found."
 - Ensure column alignment and formatting remain consistent across all entries.
+```
+
+</details>
+
+<details><summary><b>Event Seating Chart Planner</b></summary>
+
+```text
+---
+name: event-seating-chart-planner
+description: Builds a seating chart for weddings, dinners and team events from your tables and guest list - keeps couples and families together, honours sit-with and keep-apart requests and head-table seats, puts mobility needs at accessible tables, seats nobody among strangers and fills tables by group. Flags misspelled names, duplicates, conflicting requests and missing seats; prints place cards and meal counts. Includes an offline stdlib Python planner.
+---
+
+# Event Seating Chart Planner
+
+You help hosts turn a guest list into a seating chart without the spreadsheet agony. Seating is the job everyone leaves until the last week: the divorced uncle and aunt must not share a table, grandma needs a step-free spot by the door, the plus-one knows nobody, two RSVPs are still missing, the caterer wants vegan and child meals per table, and every change breaks something else. You collect the tables and the guest list, check the list for problems first, build a chart that meets the hard requests, explain the trade-offs and produce place cards and a caterer sheet.
+
+You work only from the information the host gives you. You do not judge family politics: when two requests conflict, say so and ask the host which one wins. Keep the guest list private - do not repeat notes about relationships beyond what the chart needs.
+
+## Files in this skill
+
+- `scripts/seating_plan.py` - reads an event JSON (tables with seats, accessible, kids, fixed head-table guests; rules) and a guest CSV (name, party, group, rsvp, child, needs, diet, sit_with, keep_apart), merges parties and sit-with requests, places them table by table and improves the plan by moving and swapping groups; reports SC01-SC10 and prints the chart, a caterer summary and place cards; `--csv` place-card export, `--json`, `--include-pending` (Python 3.8+ standard library only)
+- `references/seating-rules-and-etiquette.md` - how to collect the list, what counts as a hard or soft request, head table and family conventions, accessibility, children, dietary needs and room layout tips
+- `references/checks-and-codes.md` - every finding code, its severity and what to do, plus the input format and how the planner scores a chart
+- `templates/seating-brief.md` - the summary to send the host (and the venue / caterer)
+- `examples/event.json` - a wedding dinner with a head table, an accessible table, four tables of 8 and a kids table
+- `examples/guests.csv` - 32 rows with families, friends, work colleagues, a declined and a pending RSVP, a duplicate row, a misspelled sit-with name, a keep-apart pair, a wheelchair user and dietary needs
+- `examples/seating-chart.md` - the real planner output on the example
+
+## Workflow
+
+### 1. Collect the tables and the list
+Ask for the venue's table plan (number of tables, seats per table, which are step-free or near the exit, a kids table, the head table and who sits there). Ask for the guest list with RSVP, party (people who arrive together: couple, family), group (how they know the hosts: bride family, work, school friends), children, mobility or other needs, meal choice, and any "must sit with" or "keep apart" requests. Put them in `examples/event.json` and `examples/guests.csv` form.
+
+### 2. Run the planner
+'''
+python3 scripts/seating_plan.py examples/event.json examples/guests.csv
+python3 scripts/seating_plan.py event.json guests.csv --include-pending
+python3 scripts/seating_plan.py event.json guests.csv --csv > place-cards.csv
+python3 scripts/seating_plan.py event.json guests.csv --json
+python3 scripts/seating_plan.py --self-test
+'''
+Exit 0 = all hard requests met, 1 = a hard request failed or the list has a high finding, 2 = bad input. Without a shell, seat fixed guests first, then the accessibility needs, then the largest groups, and check every keep-apart pair at the end.
+
+### 3. Read the result
+- High: SC01 not enough seats (or a group that fits nowhere), SC02 conflicting or broken keep-apart requests, SC03 names in requests or fixed seats that are not on the attending list (spelling suggestions shown).
+- Medium: SC04 a guest at a table with nobody they know, SC05 a mobility need at a non-accessible table, SC08 duplicate rows, SC09 parties or requests too big for one table, SC10 a child without an adult from their party.
+- Low/info: half-empty or empty tables (SC06), pending RSVPs seated provisionally (SC07).
+
+### 4. Adjust with the host
+Fix the list problems first (spelling, duplicates, RSVPs) and re-run. Then walk the host through each table: who is there and why, the lonely guests and the trade-offs. Make manual moves the host asks for and re-run to confirm the keep-apart pairs still hold. Fill `templates/seating-brief.md`.
+
+### 5. Deliver
+Return the chart per table, the open questions, the place-card list A-Z, the meal counts per table and in total, and the special needs list for the venue (wheelchair space, high chairs, allergies).
+
+## Example result
+29 guests attend (1 declined, 1 pending left out) for 44 seats. The couple, maid of honour, best man and Zeynep (who asked to sit with Selin) fill the head table. Grandma Fatma (wheelchair) sits at accessible Table 1 with the Kaya family; Linda and Richard Moore are kept apart (Tables 2 and 3); the work colleagues share Table 4 with the bride's friends. Sam's request to sit with "Olivr Grant" is a typo of Oliver Grant, Merve Sahin is listed twice, and neighbour Kemal knows nobody at his table. The kids table is empty because children stay with their parents.
+
+## Rules
+
+- Hard requests (keep apart, fixed seats, accessibility) beat soft ones (groups, balance); say clearly which request was dropped and why.
+- Never split a couple or a parent and a young child unless the host asks.
+- Do not guess at conflicts: ask the host, and keep sensitive notes out of anything printed.
+- Re-run after every manual change; the chart is only valid for the list it was made from.
+- Pending RSVPs are left out unless the host says to seat them; chase them before printing place cards.
+FILE:references/seating-rules-and-etiquette.md
+# Seating rules and etiquette
+
+## Collecting the list
+- One row per person, including children and plus-ones (use "Guest of <name>" until you have a name).
+- Party = who arrives together and must sit together (couple, parent with young children). Group = how they know the hosts; it decides who shares a table.
+- Ask the hosts directly for keep-apart pairs (exes, family feuds) and keep this column out of anything printed or shared with the venue.
+- RSVP status: seat only confirmed guests; set a deadline for pending ones about 3 weeks before the event, when most venues need final numbers.
+
+## Hard vs soft requests
+- Hard: keep apart, fixed seats (head table, speakers, VIPs), accessibility, a young child next to a parent, capacity.
+- Soft: sit with friends, tables by group, balanced tables, mixing groups at networking events.
+When a soft request breaks a hard one, the hard one wins; tell the host.
+
+## Common conventions
+- Weddings: the head table (couple, wedding party, sometimes parents) faces the room; parents and grandparents at the tables closest to it; families of both sides near the front; friends and colleagues further back. Sweetheart table = couple only.
+- Family dinners and birthdays: the guest of honour in the middle of the long side, with the people they see least often nearby.
+- Corporate dinners: a host from the company at every table; mix departments if networking is the goal (`mix_groups: true`), seat speakers near the stage and the exit.
+- Round tables of 8-10 work best for conversation; 12+ means people only talk to their neighbours.
+- Avoid a table where one guest is the only one from their group - pair singles with someone outgoing or a similar-age group.
+
+## Accessibility and needs
+- Wheelchair users: a table on a step-free route near the door and the toilets, with a chair removed at the place (mark it on the room plan).
+- Hearing impairment: away from speakers and the band, facing the room.
+- Older guests: away from loudspeakers and the dance floor, near the exit and toilets.
+- High chairs and booster seats: tell the venue per table.
+- Allergies: list name, table and allergen for the caterer; a printed card at the place for severe allergies.
+
+## Children
+- Toddlers stay with their parents. A kids table works for ages about 5-12 when it is next to the parents' tables and has an adult or sitter nearby.
+- Count child meals separately (and high chairs) in the caterer summary.
+
+## Room layout tips
+- Number tables in a way guests can find (signs on every table, an alphabetical escort-card list at the entrance).
+- Keep the path from the door to the accessible table clear.
+- Leave 1-2 empty seats across the room for late changes; venues usually allow 1-2 extra chairs per round table, but check the fire-safety capacity.
+
+## Final week checklist
+- Final RSVPs and meal choices -> re-run the planner -> host approval.
+- Send the venue: table plan, guest count per table, high chairs, wheelchair spaces.
+- Send the caterer: meals per table and in total, allergies with names and tables.
+- Print place cards and the escort-card list from `--csv`.
+FILE:references/checks-and-codes.md
+# Checks and finding codes
+
+| Code | Severity | Check | What to do |
+|---|---|---|---|
+| SC01 | high | more attending guests than seats, or a party/group that fits at no table with enough free seats | add a table or seats, confirm RSVPs, split the group over neighbouring tables |
+| SC02 | high | a sit-with request joins two guests who must be kept apart (request dropped); keep-apart inside one party; a keep-apart pair seated together | ask the host which request wins |
+| SC03 | high | a name in sit_with / keep_apart or a fixed seat is not on the attending list (did-you-mean suggestion) | fix the spelling or add the guest |
+| SC04 | medium | guest at a table with fewer than `min_known` people from their party, group or sit-with list | swap, or seat them next to a sociable guest |
+| SC05 | medium | wheelchair / step-free / walker / mobility / crutches need at a table not marked accessible | swap with someone at an accessible table |
+| SC06 | low: table under half full; info: empty table | balance | merge tables or remove one |
+| SC07 | info | RSVP pending, seated because of `--include-pending` | chase the RSVP |
+| SC08 | medium | the same name twice (seated once), row without a name | check if two different people; add an initial |
+| SC09 | medium | a party larger than the largest table (split), a sit-with group that would exceed the largest table (request dropped), a party split over tables | neighbouring tables; free seats at one table |
+| SC10 | medium | child at a non-kids table without an adult from their party | move next to their parents |
+
+## Verdict
+- **N hard request(s) could not be met** - any high finding.
+- **all hard requests met, N soft issue(s)** - medium findings only.
+- **all requests met**.
+
+## How the planner works
+1. Attending guests only (rsvp yes; pending with `--include-pending`; no/declined skipped).
+2. Parties are merged (when `keep_parties_together`), then sit-with requests, unless that joins a keep-apart pair or exceeds the largest table.
+3. Groups are placed in order: fixed head-table guests (only they and their sit-with partners use a table with `fixed`), mobility needs, then by group size.
+4. Each group goes to the table where the chart's penalty rises least; then the planner moves single groups, whole groups and swaps pairs while the penalty falls.
+5. Penalty: keep-apart pair at one table 100, mobility need at a non-accessible table 40, a guest who knows fewer than `min_known` people 12, each extra group at a table 2 (unless `mix_groups`), each extra table a group is spread over 3, an adult at the kids table 3.
+The plan is deterministic: the same input gives the same chart.
+
+## Event JSON
+`event, date, rules{keep_parties_together (true), mix_groups (false), min_known (1)}, tables[{name, seats, accessible, kids, fixed[names], notes}]`.
+
+## Guest CSV
+`name, party, group, rsvp (yes/no/pending), child (yes), needs (wheelchair; high chair; nut allergy), diet (vegetarian, vegan, gluten-free, child menu ...), sit_with (names separated by ;), keep_apart (names separated by ;)`. Only `name` is required; party defaults to the name, group to "-", rsvp to yes.
+FILE:templates/seating-brief.md
+# Seating brief: <event> (<date>)
+
+**Guests:** <29 attending (1 declined, 1 pending)>   **Seats:** <44 at 6 tables>   **Status:** <draft 2 - waiting for 1 RSVP>
+
+## Open questions for the host
+- [ ] <Sam asked to sit with "Olivr Grant" - Oliver Grant? (seated together after the fix)>
+- [ ] <Merve Sahin is on the list twice - one person or two?>
+- [ ] <Kemal knows nobody at Table 3 - who should he sit next to?>
+- [ ] <Chris Evans: RSVP pending - seat at Table 3 if he comes>
+
+## Tables
+| Table | Who | Notes |
+|---|---|---|
+| <Head table> | <Elif, Daniel, Selin, Tom, Zeynep> | <facing the room> |
+| <Table 1 (accessible)> | <Kaya family, Grandma Fatma> | <wheelchair place on the aisle, high chair for Ela> |
+
+## For the venue
+- Tables and seat counts: <...>
+- Wheelchair places: <Table 1 x1>   High chairs: <Table 1 x1>
+- Remove: <kids table (empty)>
+
+## For the caterer
+| Table | Standard | Vegetarian | Vegan | Gluten-free | Child | Other |
+|---|---|---|---|---|---|---|
+| <Head table> | <3> | <2> | <0> | <0> | <0> | <-> |
+| **Total** | <18> | <3> | <2> | <1> | <3> | <pescatarian 1, soft food 1> |
+
+Allergies: <Max Hill (Table 2) - nut allergy>
+
+## Place cards
+<attach place-cards.csv from `seating_plan.py --csv`>
+FILE:examples/event.json
+{
+  "event": "Elif and Daniel's wedding dinner",
+  "date": "2027-06-12",
+  "rules": {"keep_parties_together": true, "mix_groups": false, "min_known": 1},
+  "tables": [
+    {"name": "Head table", "seats": 6, "fixed": ["Elif Kaya", "Daniel Moore"], "notes": "facing the room"},
+    {"name": "Table 1", "seats": 8, "accessible": true, "notes": "next to the terrace door, step-free"},
+    {"name": "Table 2", "seats": 8},
+    {"name": "Table 3", "seats": 8},
+    {"name": "Table 4", "seats": 8},
+    {"name": "Kids table", "seats": 6, "kids": true, "notes": "near Table 2, crayons and placemats"}
+  ]
+}
+FILE:examples/guests.csv
+name,party,group,rsvp,child,needs,diet,sit_with,keep_apart
+Elif Kaya,Couple,couple,yes,,,vegetarian,,
+Daniel Moore,Couple,couple,yes,,,standard,,
+Selin Kaya,Maid of honour,bride friends,yes,,,standard,Elif Kaya,
+Tom Moore,Best man,groom family,yes,,,standard,Daniel Moore,
+Ayse Kaya,Kaya parents,bride family,yes,,,standard,,
+Mehmet Kaya,Kaya parents,bride family,yes,,,standard,,
+Fatma Yilmaz,Grandma Fatma,bride family,yes,,wheelchair,soft food,Ayse Kaya,
+Can Kaya,Can family,bride family,yes,,,standard,,
+Deniz Kaya,Can family,bride family,yes,,,vegan,,
+Ela Kaya,Can family,bride family,yes,yes,high chair,child menu,,
+Linda Moore,Linda,groom family,yes,,,gluten-free,,Richard Moore
+Richard Moore,Richard and Jo,groom family,yes,,,standard,,Linda Moore
+Jo Parker,Richard and Jo,groom family,yes,,,standard,,
+Sarah Moore,Sarah family,groom family,yes,,,standard,,
+James Hill,Sarah family,groom family,yes,,,standard,,
+Lily Hill,Sarah family,groom family,yes,yes,,child menu,,
+Max Hill,Sarah family,groom family,yes,yes,nut allergy,child menu,,
+Zeynep Arslan,Zeynep,bride friends,yes,,,vegetarian,Selin Kaya,
+Burak Demir,Burak and Ece,bride friends,yes,,,standard,,
+Ece Demir,Burak and Ece,bride friends,yes,,,standard,,
+Merve Sahin,Merve,bride friends,yes,,,vegan,,
+Oliver Grant,Oliver and Priya,groom friends,yes,,,standard,,
+Priya Grant,Oliver and Priya,groom friends,yes,,,vegetarian,,
+Sam Turner,Sam,groom friends,yes,,,standard,Olivr Grant,
+Chris Evans,Chris,groom friends,pending,,,standard,,
+Nina Patel,Nina,work,yes,,,standard,,
+Leo Fischer,Leo and Mia,work,yes,,,standard,,
+Mia Fischer,Leo and Mia,work,yes,,,pescatarian,,
+Hannah Lee,Hannah,work,yes,,,standard,,
+Peter Novak,Peter,work,no,,,standard,,
+Kemal Ozturk,Kemal,neighbours,yes,,,standard,,
+Merve Sahin,Merve,bride friends,yes,,,vegan,,
+FILE:examples/seating-chart.md
+# Seating chart: Elif and Daniel's wedding dinner (2027-06-12)
+
+29 attending guest(s) (1 declined; 1 pending left out), 44 seat(s) at 6 table(s). Source: examples/guests.csv.
+
+**Verdict: 1 hard request(s) could not be met - see findings**
+
+Findings: 1 high, 2 medium, 0 low, 1 info.
+
+## Tables
+
+| Table | Seats | Guests | Groups | Meals |
+|---|---|---|---|---|
+| Head table [fixed] | 5/6 | Tom Moore, Elif Kaya, Daniel Moore, Selin Kaya, Zeynep Arslan | bride friends 2, couple 2, groom family 1 | standard 3, vegetarian 2 |
+| Table 1 [accessible] | 6/8 | Can Kaya, Deniz Kaya, Ela Kaya (child), Fatma Yilmaz *, Ayse Kaya, Mehmet Kaya | bride family 6 | child menu (child) 1, soft food 1, standard 3, vegan 1 |
+| Table 2 | 5/8 | Linda Moore, Sarah Moore, James Hill, Lily Hill (child), Max Hill (child) | groom family 5 | child menu (child) 2, gluten-free 1, standard 2 |
+| Table 3 | 6/8 | Kemal Ozturk, Oliver Grant, Priya Grant, Richard Moore, Jo Parker, Sam Turner | groom family 2, groom friends 3, neighbours 1 | standard 5, vegetarian 1 |
+| Table 4 | 7/8 | Burak Demir, Ece Demir, Hannah Lee, Leo Fischer, Mia Fischer, Merve Sahin, Nina Patel | bride friends 3, work 4 | pescatarian 1, standard 5, vegan 1 |
+| Kids table [kids] | 0/6 | - | - | - |
+
+`*` = mobility need (seat on the aisle side, nearest the door).
+
+## Findings
+
+| Sev | Code | Who | Finding | Fix |
+|---|---|---|---|---|
+| high | SC03 | Sam Turner | sit_with 'Olivr Grant' is not on the (attending) guest list - did you mean Oliver Grant? | fix the spelling |
+| medium | SC04 | Kemal Ozturk | at Table 3 without anyone from their party or group (neighbours) | seat them next to the most sociable guest there, or swap |
+| medium | SC08 | Merve Sahin | listed twice (lines 22 and 33) - seated once | check whether these are two different people; add a surname or initial |
+| info | SC06 | Kids table | empty table | remove it from the room plan |
+
+## Caterer summary
+
+| Meal | Count |
+|---|---|
+| child menu (child) | 3 |
+| gluten-free | 1 |
+| pescatarian | 1 |
+| soft food | 1 |
+| standard | 18 |
+| vegan | 2 |
+| vegetarian | 3 |
+
+Special needs: Ela Kaya (Table 1) - high chair; Fatma Yilmaz (Table 1) - wheelchair; Max Hill (Table 2) - nut allergy.
+
+## Place cards (A-Z)
+
+| Guest | Table |
+|---|---|
+| Ayse Kaya | Table 1 |
+| Burak Demir | Table 4 |
+| Can Kaya | Table 1 |
+| Daniel Moore | Head table |
+| Deniz Kaya | Table 1 |
+| Ece Demir | Table 4 |
+| Ela Kaya | Table 1 |
+| Elif Kaya | Head table |
+| Fatma Yilmaz | Table 1 |
+| Hannah Lee | Table 4 |
+| James Hill | Table 2 |
+| Jo Parker | Table 3 |
+| Kemal Ozturk | Table 3 |
+| Leo Fischer | Table 4 |
+| Lily Hill | Table 2 |
+| Linda Moore | Table 2 |
+| Max Hill | Table 2 |
+| Mehmet Kaya | Table 1 |
+| Merve Sahin | Table 4 |
+| Mia Fischer | Table 4 |
+| Nina Patel | Table 4 |
+| Oliver Grant | Table 3 |
+| Priya Grant | Table 3 |
+| Richard Moore | Table 3 |
+| Sam Turner | Table 3 |
+| Sarah Moore | Table 2 |
+| Selin Kaya | Head table |
+| Tom Moore | Head table |
+| Zeynep Arslan | Head table |
+
+The chart is a starting point: move people by hand where you know better, then re-run to check the requests still hold.
+FILE:scripts/seating_plan.py
+#!/usr/bin/env python3
+"""Event seating chart planner (stdlib only, Python 3.8+).
+
+Reads an event file (tables with seat counts, accessible / kids / fixed head-table seats, rules)
+and a guest list CSV (name, party, group, RSVP, child, needs, diet, sit_with, keep_apart) and
+builds a seating chart: parties stay together, "sit with" requests share a table, "keep apart"
+pairs never share one, guests with mobility needs go to accessible tables, nobody is seated
+without someone they know, and tables are filled by group where possible. Checks the list first
+(unknown or misspelled names, duplicates, impossible or conflicting requests, not enough seats)
+and prints the chart, place cards and a per-table meal count for the caterer.
+
+Usage:
+  seating_plan.py EVENT.json GUESTS.csv [--include-pending] [--csv] [--json]
+  seating_plan.py --self-test
+Exit: 0 = all hard requests met, 1 = a hard request could not be met (or a high finding), 2 = bad input.
+"""
+import argparse, csv, difflib, io, json, sys
+
+SEV = {"high": 0, "medium": 1, "low": 2, "info": 3}
+EVENT_KEYS = {"event", "date", "tables", "rules"}
+TABLE_KEYS = {"name", "seats", "accessible", "kids", "fixed", "notes"}
+RULE_KEYS = {"keep_parties_together", "mix_groups", "min_known"}
+MOBILITY = ("wheelchair", "step-free", "walker", "mobility", "crutches")
+W_APART, W_ACCESS, W_LONELY, W_GROUP, W_SPREAD = 100, 40, 12, 2, 3
+
+
+class InputError(Exception):
+    pass
+
+
+def norm(s):
+    return " ".join(str(s or "").split()).lower()
+
+
+def split_list(s):
+    return [x.strip() for x in str(s or "").replace(",", ";").split(";") if x.strip()]
+
+
+# ---------------------------------------------------------------- load
+def load_event(cfg):
+    if not isinstance(cfg, dict) or not isinstance(cfg.get("tables"), list) or not cfg["tables"]:
+        raise InputError("event file must be a JSON object with a non-empty \"tables\" list")
+    bad = set(cfg) - EVENT_KEYS
+    if bad:
+        raise InputError("unknown key(s) in event file: %s" % ", ".join(sorted(bad)))
+    rules = cfg.get("rules") or {}
+    badr = set(rules) - RULE_KEYS
+    if badr:
+        raise InputError("unknown rule(s): %s" % ", ".join(sorted(badr)))
+    tables, names = [], set()
+    for i, t in enumerate(cfg["tables"], 1):
+        badt = set(t) - TABLE_KEYS
+        if badt:
+            raise InputError("table #%d: unknown key(s) %s" % (i, ", ".join(sorted(badt))))
+        name = str(t.get("name") or "Table %d" % i)
+        if name in names:
+            raise InputError("table name %r used twice" % name)
+        names.add(name)
+        seats = t.get("seats")
+        if not isinstance(seats, int) or seats < 1:
+            raise InputError("table %s: seats must be a positive whole number, got %r" % (name, seats))
+        tables.append({"name": name, "seats": seats, "accessible": bool(t.get("accessible")), "kids": bool(t.get("kids")),
+                       "fixed": [str(x) for x in t.get("fixed") or []], "notes": t.get("notes", "")})
+    return {"event": cfg.get("event", "Event"), "date": cfg.get("date", ""), "tables": tables,
+            "together": rules.get("keep_parties_together", True), "mix": bool(rules.get("mix_groups", False)),
+            "min_known": int(rules.get("min_known", 1))}
+
+
+def load_guests(text, include_pending=False):
+    rows = list(csv.DictReader(io.StringIO(text)))
+    if not rows:
+        raise InputError("guest list is empty")
+    cols = {c.strip().lower() for c in rows[0].keys() if c}
+    if "name" not in cols:
+        raise InputError("guest list needs a 'name' column")
+    guests, skipped, F, seen = [], {"no": 0, "pending": 0}, [], {}
+    for ln, r in enumerate(rows, 2):
+        r = {(k or "").strip().lower(): (v or "").strip() for k, v in r.items()}
+        name = " ".join(r.get("name", "").split())
+        if not name:
+            F.append(("medium", "SC08", "line %d" % ln, "row without a name skipped", "fill in the name or delete the row"))
+            continue
+        rsvp = norm(r.get("rsvp") or "yes")
+        if rsvp in ("no", "declined", "n"):
+            skipped["no"] += 1
+            continue
+        if rsvp in ("pending", "maybe", "?", "invited", ""):
+            if not include_pending:
+                skipped["pending"] += 1
+                continue
+        if norm(name) in seen:
+            F.append(("medium", "SC08", name, "listed twice (lines %d and %d) - seated once" % (seen[norm(name)], ln), "check whether these are two different people; add a surname or initial"))
+            continue
+        seen[norm(name)] = ln
+        needs = [norm(x) for x in split_list(r.get("needs"))]
+        guests.append({"name": name, "party": r.get("party") or name, "group": r.get("group") or "-",
+                       "child": norm(r.get("child")) in ("yes", "y", "true", "1", "child"),
+                       "needs": needs, "mobility": any(any(m in n for m in MOBILITY) for n in needs),
+                       "diet": norm(r.get("diet")) or "standard", "sit_with": split_list(r.get("sit_with")),
+                       "keep_apart": split_list(r.get("keep_apart")), "line": ln, "pending": rsvp != "yes" and rsvp not in ("y", "accepted")})
+    return guests, skipped, F
+
+
+# ---------------------------------------------------------------- plan
+class DSU:
+    def __init__(self, n):
+        self.p = list(range(n))
+    def find(self, a):
+        while self.p[a] != a:
+            self.p[a] = self.p[self.p[a]]
+            a = self.p[a]
+        return a
+    def union(self, a, b):
+        self.p[self.find(a)] = self.find(b)
+
+
+def plan(ev, guests, F=None):
+    F = list(F or [])
+    add = lambda sev, code, who, msg, fix: F.append((sev, code, who, msg, fix))
+    idx = {norm(g["name"]): i for i, g in enumerate(guests)}
+    allnames = [g["name"] for g in guests]
+    def resolve(who, ref, kind):
+        j = idx.get(norm(ref))
+        if j is None:
+            close = difflib.get_close_matches(ref, allnames, 1, 0.7)
+            add("high", "SC03", who, "%s %r is not on the (attending) guest list%s" % (kind, ref, " - did you mean %s?" % close[0] if close else ""),
+                "fix the spelling" if close else "add the guest or remove the request")
+        return j
+    n = len(guests)
+    seats = sum(t["seats"] for t in ev["tables"])
+    maxt = max(t["seats"] for t in ev["tables"])
+    if n > seats:
+        add("high", "SC01", "-", "%d guests but only %d seats (%d short)" % (n, seats, n - seats), "add a table or seats, or confirm the RSVPs")
+    dsu = DSU(n)
+    party_of = {}
+    for i, g in enumerate(guests):
+        party_of.setdefault(norm(g["party"]), []).append(i)
+    if ev["together"]:
+        for p, mem in party_of.items():
+            if len(mem) > maxt:
+                add("medium", "SC09", guests[mem[0]]["party"], "party of %d is larger than the largest table (%d) - it is split" % (len(mem), maxt), "seat the party on neighbouring tables")
+                for a, b in zip(mem, mem[1:]):
+                    if (mem.index(b)) % maxt:
+                        dsu.union(a, b)
+            else:
+                for a, b in zip(mem, mem[1:]):
+                    dsu.union(a, b)
+    apart = set()
+    for i, g in enumerate(guests):
+        for ref in g["keep_apart"]:
+            j = resolve(g["name"], ref, "keep_apart")
+            if j is not None and j != i:
+                apart.add(tuple(sorted((i, j))))
+    # sit_with links, refusing those that would exceed the largest table or join a keep-apart pair
+    for i, g in enumerate(guests):
+        for ref in g["sit_with"]:
+            j = resolve(g["name"], ref, "sit_with")
+            if j is None or j == i:
+                continue
+            a, b = dsu.find(i), dsu.find(j)
+            if a == b:
+                continue
+            size = sum(1 for k in range(n) if dsu.find(k) in (a, b))
+            clash = [p for p in apart if {dsu.find(p[0]), dsu.find(p[1])} == {a, b}]
+            if clash:
+                x, y = clash[0]
+                add("high", "SC02", g["name"], "asks to sit with %s, but %s and %s must be kept apart - the request is dropped" % (guests[j]["name"], guests[x]["name"], guests[y]["name"]),
+                    "ask the host which request wins")
+                continue
+            if size > maxt:
+                add("medium", "SC09", g["name"], "sitting with %s would make a group of %d (largest table %d) - request dropped" % (guests[j]["name"], size, maxt), "seat them on neighbouring tables")
+                continue
+            dsu.union(i, j)
+    for x, y in sorted(apart):
+        if dsu.find(x) == dsu.find(y):
+            add("high", "SC02", guests[x]["name"], "must be kept apart from %s but they are in the same party - cannot be met" % guests[y]["name"], "change the party or the request")
+    links = set()
+    for i, g in enumerate(guests):
+        for ref in g["sit_with"]:
+            j = idx.get(norm(ref))
+            if j is not None:
+                links.add((i, j)); links.add((j, i))
+    def knows(a, b):
+        ga, gb = guests[a], guests[b]
+        return (norm(ga["party"]) == norm(gb["party"]) or (ga["group"] == gb["group"] and ga["group"] != "-") or (a, b) in links)
+    clusters = {}
+    for i in range(n):
+        clusters.setdefault(dsu.find(i), []).append(i)
+    cl = list(clusters.values())
+    T = ev["tables"]
+    fixed_at = {}
+    for ti, t in enumerate(T):
+        for nm in t["fixed"]:
+            j = idx.get(norm(nm))
+            if j is None:
+                close = difflib.get_close_matches(nm, allnames, 1, 0.7)
+                add("high", "SC03", t["name"], "fixed seat for %r who is not on the attending list%s" % (nm, " - did you mean %s?" % close[0] if close else ""), "fix the name in the event file")
+            else:
+                fixed_at[j] = ti
+    assign = {}
+    load = [0] * len(T)
+    reserved = {ti for ti, t in enumerate(T) if t["fixed"]}
+    def pen_table(ti, members):
+        p = 0
+        mem = set(members)
+        for x, y in apart:
+            if x in mem and y in mem:
+                p += W_APART
+        groups = {}
+        for m in members:
+            g = guests[m]
+            if g["mobility"] and not T[ti]["accessible"]:
+                p += W_ACCESS
+            groups[g["group"]] = groups.get(g["group"], 0) + 1
+        if not ev["mix"]:
+            p += W_GROUP * max(0, len(groups) - 1)
+        for m in members:
+            g = guests[m]
+            known = sum(1 for o in members if o != m and knows(m, o))
+            if known < ev["min_known"]:
+                p += W_LONELY
+        if T[ti]["kids"]:
+            p += sum(3 for m in members if not guests[m]["child"])
+        return p
+    def members_of(ti):
+        return [m for c, t in assign.items() if t == ti for m in cl[c]]
+    def total():
+        p = sum(pen_table(ti, members_of(ti)) for ti in range(len(T)))
+        spread = {}
+        for c, ti in assign.items():
+            for m in cl[c]:
+                if guests[m]["group"] != "-":
+                    spread.setdefault(guests[m]["group"], set()).add(ti)
+        return p + W_SPREAD * sum(len(v) - 1 for v in spread.values())
+    gsize = {}
+    for g in guests:
+        gsize[g["group"]] = gsize.get(g["group"], 0) + 1
+    order = sorted(range(len(cl)), key=lambda c: (-any(i in fixed_at for i in cl[c]), -any(guests[i]["mobility"] for i in cl[c]),
+                                                  -gsize[guests[cl[c][0]]["group"]], guests[cl[c][0]]["group"], -len(cl[c]), cl[c][0]))
+    unseated = []
+    for c in order:
+        size = len(cl[c])
+        fx = [fixed_at[i] for i in cl[c] if i in fixed_at]
+        cands = [fx[0]] if fx else range(len(T))
+        best = None
+        for ti in cands:
+            if load[ti] + size > T[ti]["seats"] or (T[ti]["fixed"] and not fx and ti in reserved):
+                continue
+            assign[c] = ti
+            delta = total()
+            del assign[c]
+            key = (delta, -(load[ti] > 0), ti)
+            if best is None or key < best[0]:
+                best = (key, ti)
+        if best is None:
+            unseated.append(c)
+            continue
+        assign[c] = best[1]
+        load[best[1]] += size
+    # local search: move or swap clusters while it lowers the penalty (deterministic)
+    fixed_cl = {c for c in assign if any(i in fixed_at for i in cl[c])}
+    improved, rounds = True, 0
+    while improved and rounds < 50:
+        improved, rounds = False, rounds + 1
+        cur = total()
+        for c in sorted(assign):
+            if c in fixed_cl:
+                continue
+            for ti in range(len(T)):
+                if ti == assign[c] or load[ti] + len(cl[c]) > T[ti]["seats"] or ti in reserved:
+                    continue
+                old = assign[c]
+                assign[c] = ti
+                new = total()
+                if new < cur:
+                    load[old] -= len(cl[c]); load[ti] += len(cl[c]); cur = new; improved = True
+                else:
+                    assign[c] = old
+        # move every cluster of one group (from all tables) to one table
+        for gname in sorted({guests[cl[c][0]]["group"] for c in assign if c not in fixed_cl}):
+            block = [c for c in assign if c not in fixed_cl and guests[cl[c][0]]["group"] == gname]
+            for b in range(len(T)):
+                if b in reserved:
+                    continue
+                old = {c: assign[c] for c in block}
+                moving = sum(len(cl[c]) for c in block if old[c] != b)
+                if not moving or load[b] + moving > T[b]["seats"]:
+                    continue
+                for c in block:
+                    assign[c] = b
+                new = total()
+                if new < cur:
+                    for c in block:
+                        if old[c] != b:
+                            load[old[c]] -= len(cl[c]); load[b] += len(cl[c])
+                    cur = new; improved = True
+                    break
+                for c in block:
+                    assign[c] = old[c]
+        # move a whole group block (all clusters of one group at one table) to another table
+        for a in range(len(T)):
+            groups_here = sorted({guests[cl[c][0]]["group"] for c, x in assign.items() if x == a and c not in fixed_cl})
+            for gname in groups_here:
+                block = [c for c, x in assign.items() if x == a and c not in fixed_cl and guests[cl[c][0]]["group"] == gname]
+                bsize = sum(len(cl[c]) for c in block)
+                for b in range(len(T)):
+                    if b == a or b in reserved or load[b] + bsize > T[b]["seats"]:
+                        continue
+                    for c in block:
+                        assign[c] = b
+                    new = total()
+                    if new < cur:
+                        load[a] -= bsize; load[b] += bsize; cur = new; improved = True
+                        break
+                    for c in block:
+                        assign[c] = a
+        for c in sorted(assign):
+            for d in sorted(assign):
+                if d <= c or c in fixed_cl or d in fixed_cl or assign[c] == assign[d] or assign[c] in reserved or assign[d] in reserved:
+                    continue
+                a, b = assign[c], assign[d]
+                if load[a] - len(cl[c]) + len(cl[d]) > T[a]["seats"] or load[b] - len(cl[d]) + len(cl[c]) > T[b]["seats"]:
+                    continue
+                assign[c], assign[d] = b, a
+                new = total()
+                if new < cur:
+                    load[a] += len(cl[d]) - len(cl[c]); load[b] += len(cl[c]) - len(cl[d]); cur = new; improved = True
+                else:
+                    assign[c], assign[d] = a, b
+    seat = {}
+    for c, ti in assign.items():
+        for i in cl[c]:
+            seat[i] = ti
+    for c in unseated:
+        add("high", "SC01", ", ".join(guests[i]["name"] for i in cl[c]), "no table with %d free seats together - not seated" % len(cl[c]), "add seats or split the group across neighbouring tables")
+    # findings on the result
+    for x, y in sorted(apart):
+        if x in seat and y in seat and seat[x] == seat[y]:
+            add("high", "SC02", guests[x]["name"], "seated at %s together with %s although they must be kept apart" % (T[seat[x]]["name"], guests[y]["name"]), "move one of them by hand")
+    for i, g in enumerate(guests):
+        if i not in seat:
+            continue
+        ti = seat[i]
+        if g["mobility"] and not T[ti]["accessible"]:
+            add("medium", "SC05", g["name"], "needs %s but %s is not marked accessible" % ("/".join(g["needs"]), T[ti]["name"]), "swap with a guest at an accessible table")
+        mem = [m for m, t in seat.items() if t == ti and m != i]
+        known = [m for m in mem if knows(i, m)]
+        if len(known) < ev["min_known"]:
+            add("medium", "SC04", g["name"], "at %s without anyone from their party or group (%s)" % (T[ti]["name"], g["group"]), "seat them next to the most sociable guest there, or swap")
+        if g["child"] and not T[ti]["kids"] and not any(norm(guests[m]["party"]) == norm(g["party"]) and not guests[m]["child"] for m in mem):
+            add("medium", "SC10", g["name"], "child seated without an adult from their party", "move next to their parents or to the kids table")
+        if g["pending"]:
+            add("info", "SC07", g["name"], "RSVP still pending - seated provisionally", "chase the RSVP before printing place cards")
+    for ti, t in enumerate(T):
+        used = sum(1 for i in seat if seat[i] == ti)
+        if 0 < used < t["seats"] / 2:
+            add("low", "SC06", t["name"], "only %d of %d seats used" % (used, t["seats"]), "merge with another table or take it out")
+        if used == 0:
+            add("info", "SC06", t["name"], "empty table", "remove it from the room plan")
+    for p, mem in party_of.items():
+        ts = {seat[i] for i in mem if i in seat}
+        if len(ts) > 1 and len(mem) <= maxt:
+            add("medium", "SC09", guests[mem[0]]["party"], "party split over %s" % ", ".join(T[x]["name"] for x in sorted(ts)), "free seats at one table and move them together")
+    F.sort(key=lambda x: (SEV[x[0]], x[1], x[2]))
+    return {"seat": seat, "tables": T, "guests": guests, "findings": F, "penalty": total(), "seats": seats}
+
+
+# ---------------------------------------------------------------- output
+def report(ev, r, skipped, src):
+    G, T, seat = r["guests"], r["tables"], r["seat"]
+    c = {s: 0 for s in SEV}
+    for f in r["findings"]:
+        c[f[0]] += 1
+    hard = [f for f in r["findings"] if f[0] == "high"]
+    out = ["# Seating chart: %s%s" % (ev["event"], (" (%s)" % ev["date"]) if ev["date"] else ""), "",
+           "%d attending guest(s) (%d declined; %s), %d seat(s) at %d table(s). Source: %s." % (
+               len(G), skipped["no"], ("%d pending seated provisionally" % sum(1 for g in G if g["pending"])) if any(g["pending"] for g in G)
+               else "%d pending left out" % skipped["pending"], r["seats"], len(T), src), ""]
+    v = ("%d hard request(s) could not be met - see findings" % len(hard)) if hard else ("all hard requests met, %d soft issue(s) to look at" % c["medium"] if c["medium"] else "all requests met")
+    out += ["**Verdict: %s**" % v, "", "Findings: %d high, %d medium, %d low, %d info." % (c["high"], c["medium"], c["low"], c["info"]), ""]
+    out += ["## Tables", "", "| Table | Seats | Guests | Groups | Meals |", "|---|---|---|---|---|"]
+    for ti, t in enumerate(T):
+        mem = sorted((i for i in seat if seat[i] == ti), key=lambda i: (norm(G[i]["party"]), G[i]["child"], G[i]["line"]))
+        tags = [x for x in ("accessible" if t["accessible"] else "", "kids" if t["kids"] else "", "fixed" if t["fixed"] else "") if x]
+        names = ", ".join(G[i]["name"] + (" (child)" if G[i]["child"] else "") + (" *" if G[i]["mobility"] else "") for i in mem) or "-"
+        groups = {}
+        meals = {}
+        for i in mem:
+            groups[G[i]["group"]] = groups.get(G[i]["group"], 0) + 1
+            k = G[i]["diet"] + (" (child)" if G[i]["child"] else "")
+            meals[k] = meals.get(k, 0) + 1
+        out.append("| %s%s | %d/%d | %s | %s | %s |" % (t["name"], " [%s]" % ", ".join(tags) if tags else "", len(mem), t["seats"], names,
+                                                     ", ".join("%s %d" % kv for kv in sorted(groups.items())) or "-", ", ".join("%s %d" % kv for kv in sorted(meals.items())) or "-"))
+    out += ["", "`*` = mobility need (seat on the aisle side, nearest the door).", ""]
+    out += ["## Findings", "", "| Sev | Code | Who | Finding | Fix |", "|---|---|---|---|---|"]
+    for s, code, who, msg, fix in r["findings"]:
+        out.append("| %s | %s | %s | %s | %s |" % (s, code, who, msg.replace("|", "\\|"), fix.replace("|", "\\|")))
+    meals = {}
+    for i in seat:
+        k = G[i]["diet"] + (" (child)" if G[i]["child"] else "")
+        meals[k] = meals.get(k, 0) + 1
+    out += ["", "## Caterer summary", "", "| Meal | Count |", "|---|---|"]
+    for k, v_ in sorted(meals.items()):
+        out.append("| %s | %d |" % (k, v_))
+    notes = [(G[i]["name"], T[seat[i]]["name"], ", ".join(x for x in G[i]["needs"])) for i in sorted(seat, key=lambda i: G[i]["name"]) if G[i]["needs"]]
+    if notes:
+        out += ["", "Special needs: " + "; ".join("%s (%s) - %s" % n for n in notes) + "."]
+    out += ["", "## Place cards (A-Z)", "", "| Guest | Table |", "|---|---|"]
+    for i in sorted(seat, key=lambda i: norm(G[i]["name"])):
+        out.append("| %s | %s |" % (G[i]["name"], T[seat[i]]["name"]))
+    out += ["", "The chart is a starting point: move people by hand where you know better, then re-run to check the requests still hold."]
+    return "\n".join(out) + "\n"
+
+
+def run(event_path, guests_path, include_pending=False):
+    try:
+        ev = load_event(json.load(open(event_path, encoding="utf-8")))
+        text = open(guests_path, encoding="utf-8-sig").read()
+    except (OSError, ValueError) as e:
+        raise InputError("cannot read input: %s" % e)
+    guests, skipped, F = load_guests(text, include_pending)
+    return ev, plan(ev, guests, F), skipped
+
+
+# ---------------------------------------------------------------- self-test
+def self_test():
+    tests = []
+    def t(name, cond):
+        tests.append((name, bool(cond)))
+    H = "name,party,group,rsvp,child,needs,diet,sit_with,keep_apart\n"
+    def P(tables, rows, pending=False, **rules):
+        ev = load_event({"tables": tables, "rules": rules})
+        g, sk, F = load_guests(H + rows, pending)
+        return plan(ev, g, F), g
+    def codes(r):
+        return [(f[0], f[1]) for f in r["findings"]]
+    def tab(r, g, name):
+        i = [k for k, x in enumerate(g) if x["name"] == name][0]
+        return r["seat"].get(i)
+    T2 = [{"name": "A", "seats": 4}, {"name": "B", "seats": 4}]
+    rows = "Ann,P1,work,yes\nBob,P1,work,yes\nCid,P2,family,yes\nDee,P2,family,yes\nEve,P3,work,yes\nFay,P4,family,yes\n"
+    r, g = P(T2, rows)
+    t("parties stay together", tab(r, g, "Ann") == tab(r, g, "Bob") and tab(r, g, "Cid") == tab(r, g, "Dee"))
+    t("groups fill tables", tab(r, g, "Eve") == tab(r, g, "Ann") and tab(r, g, "Fay") == tab(r, g, "Cid"))
+    t("clean plan has no high/medium", not [f for f in r["findings"] if f[0] in ("high", "medium")])
+    r, g = P(T2, "Ann,P1,work,yes,,,,,Bob\nBob,P2,work,yes\nCid,P3,work,yes\nDee,P4,work,yes\n")
+    t("keep_apart respected", tab(r, g, "Ann") != tab(r, g, "Bob") and ("high", "SC02") not in codes(r))
+    r, g = P(T2, "Ann,P1,work,yes,,,,Dee\nBob,P2,family,yes\nCid,P3,family,yes\nDee,P4,friends,yes\n")
+    t("sit_with respected", tab(r, g, "Ann") == tab(r, g, "Dee"))
+    r, g = P(T2, "Ann,P1,work,yes,,,,Bob,Bob\nBob,P2,work,yes\n")
+    t("sit_with vs keep_apart conflict -> SC02 high", ("high", "SC02") in codes(r))
+    r, g = P(T2, "Ann,P1,work,yes,,,,,Bob\nBob,P1,work,yes\n")
+    t("keep apart inside one party -> SC02", ("high", "SC02") in codes(r))
+    r, g = P(T2, "Ann,P1,work,yes,,,,Bobb\nBob,P2,work,yes\n")
+    t("misspelled name -> SC03 with suggestion", any(f[1] == "SC03" and "did you mean Bob" in f[3] for f in r["findings"]))
+    r, g = P([{"name": "A", "seats": 2}], "Ann,P1,w,yes\nBob,P2,w,yes\nCid,P3,w,yes\n")
+    t("not enough seats -> SC01 high", ("high", "SC01") in codes(r))
+    r, g = P(T2, "Ann,P1,w,yes\nAnn,P1,w,yes\nBob,P1,w,yes\n")
+    t("duplicate -> SC08 and seated once", ("medium", "SC08") in codes(r) and len(g) == 2)
+    r, g = P(T2, "Ann,P1,w,no\nBob,P2,w,pending\nCid,P3,w,yes\nDee,P3,w,yes\n")
+    t("declined and pending excluded", len(g) == 2)
+    r, g = P(T2, "Bob,P2,w,pending\nCid,P3,w,yes\n", pending=True)
+    t("--include-pending seats pending -> SC07", len(g) == 2 and ("info", "SC07") in codes(r))
+    r, g = P([{"name": "A", "seats": 4}, {"name": "B", "seats": 4, "accessible": True}], "Ann,P1,w,yes\nBob,P2,x,yes,,wheelchair\n")
+    t("wheelchair -> accessible table", tab(r, g, "Bob") == 1)
+    r, g = P([{"name": "A", "seats": 4}, {"name": "B", "seats": 4}], "Ann,P1,w,yes\nBob,P2,x,yes,,wheelchair\n")
+    t("no accessible table -> SC05", ("medium", "SC05") in codes(r))
+    r, g = P(T2, "Ann,P1,work,yes\nBob,P1,work,yes\nZed,P9,gym,yes\n")
+    t("lonely guest -> SC04", ("medium", "SC04") in codes(r))
+    r, g = P([{"name": "Head", "seats": 4, "fixed": ["Bride", "Groom"]}, {"name": "B", "seats": 4}], "Bride,C,couple,yes\nGroom,C,couple,yes\nBest,Best,groom family,yes,,,,Groom\n")
+    t("sit_with partner counts as someone they know", ("medium", "SC04") not in codes(r) and tab(r, g, "Best") == 0)
+    r, g = P([{"name": "A", "seats": 4}, {"name": "B", "seats": 4}, {"name": "C", "seats": 4}],
+             "A1,a1,fam,yes\nA2,a1,fam,yes\nA3,a1,fam,yes\nW1,w1,work,yes\nB1,b1,fam,yes\nB2,b1,fam,yes\nB3,b1,fam,yes\nW2,w2,work,yes\n")
+    t("group split by greedy is pulled together", tab(r, g, "W1") == tab(r, g, "W2"))
+    r, g = P([{"name": "A", "seats": 3}, {"name": "B", "seats": 3}], "A1,Big,w,yes\nA2,Big,w,yes\nA3,Big,w,yes\nA4,Big,w,yes\n")
+    t("party bigger than a table is split -> SC09", ("medium", "SC09") in codes(r) and len(r["seat"]) == 4)
+    r, g = P([{"name": "Head", "seats": 2, "fixed": ["Cid"]}, {"name": "B", "seats": 4}], "Ann,P1,w,yes\nBob,P1,w,yes\nCid,P3,w,yes\n")
+    t("fixed seat honoured", tab(r, g, "Cid") == 0)
+    r, g = P([{"name": "Head", "seats": 2, "fixed": ["Cyd"]}, {"name": "B", "seats": 4}], "Cid,P3,w,yes\n")
+    t("fixed seat typo -> SC03", ("high", "SC03") in codes(r))
+    r, g = P([{"name": "A", "seats": 10}, {"name": "B", "seats": 10}], "Ann,P1,w,yes\nBob,P1,w,yes\n")
+    t("half-empty and empty tables -> SC06", ("low", "SC06") in codes(r) and ("info", "SC06") in codes(r))
+    r, g = P([{"name": "A", "seats": 4}, {"name": "Kids", "seats": 4, "kids": True}], "Mum,F,fam,yes\nTim,F,fam,yes,yes\nLia,G,fam,yes,yes\nDad,G,fam,yes\n")
+    t("children stay with their party by default", tab(r, g, "Tim") == tab(r, g, "Mum"))
+    r, g = P(T2, "Ann,P1,w,yes,,,vegetarian\nBob,P1,w,yes,,,\n")
+    t("diet counted", "vegetarian 1" in report({"event": "x", "date": ""}, r, {"no": 0, "pending": 0}, "x"))
+    r, g = P([{"name": "A", "seats": 2}, {"name": "B", "seats": 2}], "Ann,P1,w,yes,,,,Bob;Cid\nBob,P2,w,yes\nCid,P3,w,yes\n")
+    t("sit_with group larger than any table -> SC09", ("medium", "SC09") in codes(r))
+    for bad, name in (({"tables": []}, "no tables"), ({"tables": [{"name": "A", "seats": 0}]}, "zero seats"),
+                      ({"tables": [{"name": "A", "seats": 4}, {"name": "A", "seats": 4}]}, "duplicate table"),
+                      ({"tables": [{"name": "A", "seats": 4, "colour": "red"}]}, "unknown table key")):
+        try:
+            load_event(bad); t("rejected: " + name, False)
+        except InputError:
+            t("rejected: " + name, True)
+    try:
+        load_guests("first,last\nA,B\n"); t("rejected: no name column", False)
+    except InputError:
+        t("rejected: no name column", True)
+    r, g = P(T2, rows)
+    rep = report({"event": "x", "date": ""}, r, {"no": 0, "pending": 0}, "x")
+    t("report has verdict, tables and place cards", "**Verdict:" in rep and "## Tables" in rep and "## Place cards" in rep)
+    for n, ok in tests:
+        print("%s  %s" % ("PASS" if ok else "FAIL", n))
+    p = sum(ok for _, ok in tests)
+    print("%d/%d passed" % (p, len(tests)))
+    return 0 if p == len(tests) else 1
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Build a seating chart from tables and a guest list.")
+    ap.add_argument("event", nargs="?")
+    ap.add_argument("guests", nargs="?")
+    ap.add_argument("--include-pending", action="store_true", help="seat guests whose RSVP is pending")
+    ap.add_argument("--csv", action="store_true", help="print name,table CSV (place cards)")
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args(argv)
+    if a.self_test:
+        return self_test()
+    if not a.event or not a.guests:
+        ap.error("give EVENT.json and GUESTS.csv")
+    try:
+        ev, r, skipped = run(a.event, a.guests, a.include_pending)
+    except InputError as e:
+        print("error: %s" % e, file=sys.stderr)
+        return 2
+    G, T = r["guests"], r["tables"]
+    if a.json:
+        print(json.dumps({"tables": [{"name": t["name"], "seats": t["seats"], "guests": [G[i]["name"] for i in sorted(r["seat"]) if r["seat"][i] == ti]} for ti, t in enumerate(T)],
+                          "unseated": [g["name"] for i, g in enumerate(G) if i not in r["seat"]],
+                          "findings": [dict(zip(("severity", "code", "who", "finding", "fix"), f)) for f in r["findings"]]}, indent=2))
+    elif a.csv:
+        w = csv.writer(sys.stdout, lineterminator="\n")
+        w.writerow(["name", "table", "diet"])
+        for i in sorted(r["seat"], key=lambda i: norm(G[i]["name"])):
+            w.writerow([G[i]["name"], T[r["seat"][i]]["name"], G[i]["diet"]])
+    else:
+        sys.stdout.write(report(ev, r, skipped, a.guests))
+    return 1 if any(f[0] == "high" for f in r["findings"]) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
 ```
 
 </details>
@@ -6043,1015 +6890,6 @@ Analyze:
 - Performance implications
 
 Provide a detailed technical assessment with recommendations.
-```
-
-</details>
-
-<details><summary><b>Time Zone Meeting Slot Finder</b></summary>
-
-```text
----
-name: time-zone-meeting-slot-finder
-description: Finds fair meeting times for distributed teams. Takes each participant's IANA time zone, working days and hours, how far they will stretch, holidays and blocked time, then lists every slot in a date range in each person's local time, handles daylight-saving switches that happen on different weekends, and picks a rotating series so the same people do not always take the early or late call. Includes a stdlib Python zoneinfo script with --self-test.
----
-
-# Time Zone Meeting Slot Finder
-
-You help distributed teams pick meeting times that are possible for everyone required and fair over time. You work in each person's own local time on the actual dates (never with "LA is 9 hours behind Berlin" rules of thumb, which are wrong for weeks every spring and autumn), show the trade-offs openly, and rotate the inconvenient slots instead of always putting them on the same people.
-
-## Files in this skill
-
-- `scripts/slot_finder.py` - reads a team CSV and optional blocked-time CSV, evaluates every slot on a grid over the date range in each participant's local time (Python zoneinfo), ranks slots by who is missing and how much stretch they need, reports DST changes in the range, and can pick a fair rotating series (Python 3.9+ standard library only)
-- `references/dst-and-time-zone-pitfalls.md` - DST dates by region, zones that do not switch, half-hour zones, weekends that are not Sat-Sun, abbreviations to avoid, and how calendar invites behave across a switch
-- `references/fairness-and-rotation.md` - the pain-point model, how the rotation chooses, when to split a meeting or go async instead, and how to explain the choice to the team
-- `templates/slot-proposal.md` - the proposal to send to the team
-- `examples/team.csv` - five people in Los Angeles, New York, Berlin, Istanbul and Kolkata (one optional)
-- `examples/blocked.csv` - a public holiday, a dentist appointment, a board review and a day of leave
-
-## Workflow
-
-### 1. Collect the facts
-For each participant: name, IANA zone (city based, e.g. `America/Los_Angeles`, never "PST"), working days (Mon-Fri, or Sun-Thu in much of the Middle East), working hours, how many hours they are willing to start earlier or finish later, and whether they are required. Also the date range, meeting length, how often it repeats, known holidays and blocked times (in that person's local time). Ask rather than guess zones from a city that has several (e.g. a "Mexico" team member).
-
-### 2. Run the finder
-'''
-python3 scripts/slot_finder.py --team examples/team.csv --blocked examples/blocked.csv --start 2026-10-26 --end 2026-11-20 --days Tue,Wed,Thu --series 4
-python3 scripts/slot_finder.py --team team.csv --start 2026-11-02 --end 2026-11-06 --duration 30 --step 15 --top 5
-python3 scripts/slot_finder.py --team team.csv --start 2026-11-02 --end 2026-11-27 --series 8 --every day --ref-zone Europe/Berlin --json
-python3 scripts/slot_finder.py --self-test
-'''
-Dates (`--start`, `--end`, `--days`) are read in `--ref-zone` (default UTC). Exit 0 means slots were found, 1 means no slot works for every required person, 2 means bad input (unknown zone, bad time, missing column).
-
-### 3. Read the result
-- **DST changes in range** come first: if any zone switches inside the range, the same UTC time lands an hour earlier or later for those people afterwards. Propose slots per period, not one UTC time for the whole range.
-- **Best slots** are ranked by: optional people missing, then the worst single person's stretch, then total stretch.
-- **Rotating series** picks one meeting per week (or per day) to keep the worst cumulative inconvenience as low as possible, then spreads it. The summary shows how often each person met in hours, stretched or missed.
-- If there is no slot, say why (who blocks whom) and offer options: more stretch from volunteers, a shorter meeting, making someone optional, two regional meetings, or async updates.
-
-### 4. Deliver
-Fill `templates/slot-proposal.md`: the recommendation with every person's local time and weekday, the DST note, the rotation table, alternatives, and the open questions. Send invites from a calendar with a real zone (the organizer's IANA zone), not "UTC" unless the team agreed, and say which zone anchors the series.
-
-## Example result
-Five people, 2026-10-26 to 2026-11-20, Tue-Thu, 60 minutes, series of 4 weekly meetings. Europe left summer time on 25 October and the US on 1 November, so in the week of 26 October New York is only 5 hours behind Berlin instead of 6. Week 1: 13:30 UTC (Ana 06:30 in Los Angeles, a stretch; Priya 19:00 in Kolkata, a stretch; everyone else in hours). After the US change, two weeks at 16:00 UTC (Ana 08:00 in hours, Eva 17:00-18:00 stretch, Bilal 19:00-20:00 stretch) and one at 14:30 UTC (Ana stretches again). Bilal is blocked on 29 October (Republic Day). Priya (optional, +05:30) can join only before the US change; the proposal adds a recorded summary for her and suggests an Asia-friendly slot once a month.
-
-## Rules
-
-- Always use IANA zone names and compute local times per date; never apply fixed offsets across a DST boundary.
-- Show every participant's local time and weekday for each proposal, since the date can differ (Kolkata evening, Los Angeles morning).
-- Nobody is scheduled outside the stretch they agreed to; ask before assuming someone will take a 06:00 or 22:00 call.
-- Rotate inconvenience and show the tally; if one person always loses, say so and suggest a structural fix (split, async, rotate the meeting owner).
-- Respect weekends, public holidays and blocked time in the person's own calendar and zone.
-- Keep the recommendation short; put the full table in an appendix.
-FILE:references/dst-and-time-zone-pitfalls.md
-# DST and time zone pitfalls
-
-## Use IANA zone names
-- `America/New_York`, `Europe/Berlin`, `Asia/Kolkata`, `Australia/Sydney`. They carry the full history and future rules of that region.
-- Avoid abbreviations: "EST", "CST", "IST" and "BST" are ambiguous (IST = India, Ireland or Israel; CST = US Central, China or Cuba) and the zoneinfo entries named EST or MST are fixed offsets with no DST. The script warns on names without a "/".
-- Avoid fixed offsets like UTC+1 for people: offsets change twice a year in many places.
-- Pick the city that shares the person's rules: Arizona (`America/Phoenix`) has no DST; most of Mexico dropped DST in 2022; `America/Sao_Paulo` dropped DST in 2019.
-- Keep the zone database current (`tzdata`); governments change rules with a few weeks' notice.
-
-## DST dates (2026, check each year)
-| Region | Summer time starts | Ends | Note |
-|---|---|---|---|
-| US and Canada (most) | 2nd Sunday of March (2026-03-08) | 1st Sunday of November (2026-11-01) | local 02:00 |
-| EU, UK | last Sunday of March (2026-03-29) | last Sunday of October (2026-10-25) | 01:00 UTC, all at once |
-| Australia (south-east), New Zealand | first Sunday of October / last Sunday of September | first Sunday of April | southern hemisphere: opposite season |
-| No DST | Turkey (UTC+3), India (+05:30), China, Japan, Singapore, UAE, most of Africa, Arizona | | |
-
-So there are two "gap" periods each year when the US-Europe difference is one hour smaller than usual: about 3 weeks in March and 1 week at the end of October / start of November. Recurring meetings anchored in one region move by an hour for the other during those weeks.
-
-## Offsets that are not whole hours
-- India +05:30, Iran +03:30, Nepal +05:45, Newfoundland -03:30 (-02:30 in summer), South Australia +09:30/+10:30, Chatham Islands +12:45. A grid on the hour in UTC lands on :30 or :45 for these people; the script evaluates in 5-minute chunks so these are exact.
-
-## Weekends and working days
-- Sun-Thu working weeks: e.g. Israel; Fri-Sat weekends in several Gulf countries, while the UAE moved to Mon-Fri (with a half Friday) in 2022. Ask each person.
-- Public holidays differ per country and per region (Bavaria vs Berlin, US states). Add them to the blocked file in local dates.
-- A Monday 08:00 slot in Los Angeles is Monday evening in India but already Tuesday morning in Sydney or Auckland. Always show the weekday per person.
-
-## DST on the switch day itself
-- Spring forward: local times between 02:00 and 03:00 (US) do not exist; autumn back: 01:00-02:00 happens twice. Avoid scheduling in those hours on switch days; the script works on UTC instants so it never produces an invalid time, but humans reading "01:30" on that day can be confused.
-
-## Calendar invites across a switch
-- A recurring invite is anchored to the organizer's zone. A 10:00 New York weekly meeting stays at 10:00 in New York and moves for Berlin during the gap weeks.
-- If the series must stay fair for both sides, anchor it in UTC deliberately and tell everyone, or plan the gap weeks explicitly.
-- Check the invite's zone after creating it (some tools default to the device zone or to "floating" time).
-FILE:references/fairness-and-rotation.md
-# Fairness and rotation
-
-## Pain-point model used by the script
-| Situation for one person in one meeting | Points |
-|---|---|
-| Entirely inside their working hours | 0 |
-| Partly or fully in their stretch window (before or after work, as much as they agreed to) | 2 per hour of stretch, pro rata (30 min = 1) |
-| Outside the stretch window, on a non-working day, or during blocked time | cannot attend (slot invalid if they are required) |
-| Optional person who cannot attend (rotation tally only) | 3 |
-
-Ranking of single slots: fewest optional people missing, then the lowest worst-off person, then the lowest total.
-
-Rotation (`--series N`): greedily adds one meeting at a time, at most one per ISO week (`--every week`, default) or per date (`--every day`), choosing the slot that keeps the highest cumulative score lowest, then the sum of squared cumulative scores (which spreads pain instead of concentrating it), then fewer people missing. The summary table shows per person: meetings in hours, stretched, missed, total points.
-
-The weights are a model, not a truth. Adjust them with the team: an early start may cost a parent more than a late finish, a 22:00 call costs more than 18:30. Change stretch windows per person to reflect what they actually accept.
-
-## Make the trade-offs visible
-- Show each person's local time and weekday for each option.
-- Show the rotation tally, so that "Bilal stretches 3 of 4 times" is a visible decision, not an accident.
-- Ask people to set their own stretch windows; never assume someone will take a 06:30 call because they did it once.
-
-## When no fair slot exists
-- Shorten the meeting: 30 minutes often fits where 60 does not.
-- Make people optional and record the meeting with written notes and a decision log.
-- Split by region (Americas + Europe, Europe + Asia) with one person bridging, and rotate the bridge.
-- Alternate two time slots week by week (e.g. 14:00 UTC and 07:00 UTC) so each side gets the convenient one half the time.
-- Go async: written updates, recorded demos, decisions in a doc with a deadline in everyone's local time.
-
-## Checklist before sending
-- Every required person is in hours or in their agreed stretch for every meeting in the series.
-- Holidays and leave in each country are in the blocked file.
-- DST changes in the range are named, and the series accounts for them.
-- The invite is created in the agreed anchor zone; times in the message are given per person.
-- There is a review date (e.g. after the next DST change) to rotate again.
-FILE:templates/slot-proposal.md
-# Meeting time proposal: <meeting name>
-
-**Who:** <Ana (Los Angeles), Dana (New York), Eva (Berlin), Bilal (Istanbul), Priya (Kolkata, optional)>
-**Length / cadence:** <60 min weekly, Tue-Thu>   **Range checked:** <2026-10-26 to 2026-11-20>
-**Anchor zone for the invite:** <UTC / organizer's zone>
-
-## Recommendation
-| Week | Start (UTC) | Ana | Dana | Eva | Bilal | Priya |
-|---|---|---|---|---|---|---|
-| <Oct 26> | <Tue 13:30> | <Tue 06:30 (stretch)> | <09:30> | <14:30> | <16:30> | <19:00 (stretch)> |
-| <Nov 2> | <Wed 16:00> | <08:00> | <11:00> | <17:00 (stretch)> | <19:00 (stretch)> | <cannot (21:30)> |
-
-## Daylight saving
-- <Europe left summer time on Oct 25, the US on Nov 1: during the week of Oct 26 New York is 5 h behind Berlin instead of 6, so the slot moves by an hour from Nov 2>
-
-## Fairness over the series
-| Name | In hours | Stretch | Missed | Points |
-|---|---|---|---|---|
-| <Ana> | <2> | <2> | <0> | <4> |
-
-<One sentence on who carries the most and what we do about it (e.g. Priya: recorded summary + an Asia-friendly slot monthly).>
-
-## Alternatives
-1. <30-minute version at 15:00 UTC: everyone in hours except ...>
-2. <alternate two slots week by week>
-
-## Blocked dates taken into account
-- <Oct 29: Republic Day, Turkey (Bilal)>
-
-## Please confirm
-- <your stretch window is still right>
-- <holidays or leave in this range we missed>
-FILE:examples/team.csv
-name,zone,work_start,work_end,days,flex_before,flex_after,required
-Ana,America/Los_Angeles,08:00,16:30,Mon-Fri,1.5,1,yes
-Dana,America/New_York,08:30,17:00,Mon-Fri,1,1,yes
-Eva,Europe/Berlin,09:00,17:30,Mon-Fri,1,1.5,yes
-Bilal,Europe/Istanbul,09:00,18:00,Mon-Fri,0,2,yes
-Priya,Asia/Kolkata,10:00,18:30,Mon-Fri,0,2,no
-FILE:examples/blocked.csv
-name,date,start,end,reason
-Bilal,2026-10-29,,,Republic Day (public holiday in Turkey)
-Dana,2026-11-03,10:00,11:30,dentist
-Eva,2026-11-05,15:30,17:30,quarterly board review
-Priya,2026-11-06,,,leave
-FILE:scripts/slot_finder.py
-#!/usr/bin/env python3
-"""Time zone meeting slot finder (Python 3.9+ standard library: zoneinfo).
-
-Given participants with IANA time zones, working days and hours (plus how far each one
-is willing to stretch before or after work), finds meeting slots over a date range,
-ranks them by fairness, and can pick a rotating series so the same people do not take
-the early or late call every time. Each slot is evaluated in every participant's own
-local time on that date, so daylight-saving transitions inside the range (Europe and
-the US switch on different weekends) are handled automatically and reported.
-
-Pain points per participant and meeting: 0 inside working hours, 2 per hour inside the
-stretch ("flex") window before or after work, unavailable beyond that, on non-working
-days or during blocked time. Missing an optional participant counts as 3 pain points
-for them in the rotation tally.
-
-Usage:
-  python3 slot_finder.py --team team.csv --start 2026-10-26 --end 2026-11-06
-        [--duration 60] [--step 30] [--blocked blocked.csv] [--days Tue,Wed,Thu]
-        [--ref-zone UTC] [--top 10] [--series N [--every week|day]] [--json]
-  python3 slot_finder.py --self-test
-team.csv columns: name, zone, work_start, work_end, days (Mon-Fri or Sun-Thu or
-Mon,Wed,Fri), flex_before, flex_after (hours, optional), required (yes/no, optional).
-work_end earlier than work_start means a shift that runs past midnight.
-blocked.csv columns: name, date (participant's local date), start, end (empty = all day), reason.
-Exit codes: 0 = slots found, 1 = no slot where all required participants can attend,
-2 = bad input (unknown time zone, bad time, missing file or column).
-"""
-import argparse, csv, datetime as dt, io, json, sys
-from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
-
-DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-CHUNK = 5  # minutes; fine enough for +05:30 and +05:45 zones
-FLEX_PAIN_PER_HOUR = 2
-MISSED_PAIN = 3
-
-
-class InputError(Exception):
-    pass
-
-
-def parse_days(s):
-    s = (s or "Mon-Fri").strip()
-    out = set()
-    for part in s.replace(" ", "").split(","):
-        if not part:
-            continue
-        if "-" in part:
-            a, b = part.split("-", 1)
-            i, j = day_index(a), day_index(b)
-            k = i
-            while True:
-                out.add(k)
-                if k == j:
-                    break
-                k = (k + 1) % 7
-        else:
-            out.add(day_index(part))
-    return out
-
-
-def day_index(name):
-    n = name.strip()[:3].title()
-    if n not in DAY_NAMES:
-        raise InputError(f"unknown day '{name}' (use Mon..Sun)")
-    return DAY_NAMES.index(n)
-
-
-def parse_hm(s, what):
-    try:
-        h, m = s.strip().split(":")
-        h, m = int(h), int(m)
-        if not (0 <= h <= 24 and 0 <= m < 60) or (h == 24 and m):
-            raise ValueError
-        return h * 60 + m
-    except (ValueError, AttributeError):
-        raise InputError(f"bad time '{s}' for {what} (use HH:MM, 24-hour)")
-
-
-def load_zone(name, who, warnings):
-    name = (name or "").strip()
-    try:
-        z = ZoneInfo(name)
-    except (ZoneInfoNotFoundError, ValueError):
-        raise InputError(f"unknown time zone '{name}' for {who}: use an IANA name such as America/New_York, Europe/Berlin, Asia/Kolkata (pip install tzdata if the system has no zone database)")
-    if "/" not in name and name not in ("UTC", "Etc/UTC"):
-        warnings.append(f"{who}: '{name}' is an abbreviation or legacy zone with fixed rules; use the city-based IANA name (e.g. America/New_York, not EST) so daylight saving is right")
-    return z
-
-
-def read_team(text, warnings):
-    rows = list(csv.DictReader(io.StringIO(text.lstrip("\ufeff"))))
-    if not rows:
-        raise InputError("team file has no rows")
-    for col in ("name", "zone", "work_start", "work_end"):
-        if col not in rows[0]:
-            raise InputError(f"team file is missing column '{col}'")
-    team = []
-    for r in rows:
-        who = (r.get("name") or "").strip()
-        if not who:
-            continue
-        p = {"name": who, "zone_name": r["zone"].strip(), "zone": load_zone(r["zone"], who, warnings),
-             "start": parse_hm(r["work_start"], who + " work_start"), "end": parse_hm(r["work_end"], who + " work_end"),
-             "days": parse_days(r.get("days")),
-             "flex_before": int(round(float(r.get("flex_before") or 0) * 60)),
-             "flex_after": int(round(float(r.get("flex_after") or 0) * 60)),
-             "required": (r.get("required") or "yes").strip().lower() not in ("no", "n", "false", "0", "optional"),
-             "blocked": []}
-        if p["start"] == p["end"]:
-            raise InputError(f"{who}: work_start equals work_end")
-        team.append(p)
-    names = [p["name"] for p in team]
-    if len(set(names)) != len(names):
-        raise InputError("duplicate participant names in team file")
-    return team
-
-
-def read_blocked(text, team):
-    byname = {p["name"].lower(): p for p in team}
-    for r in csv.DictReader(io.StringIO(text.lstrip("\ufeff"))):
-        who = (r.get("name") or "").strip()
-        if not who:
-            continue
-        p = byname.get(who.lower())
-        if not p:
-            raise InputError(f"blocked time for unknown participant '{who}'")
-        try:
-            d = dt.date.fromisoformat(r["date"].strip())
-        except (ValueError, KeyError):
-            raise InputError(f"bad date in blocked file for {who}: {r.get('date')}")
-        s, e = (r.get("start") or "").strip(), (r.get("end") or "").strip()
-        a = dt.datetime.combine(d, dt.time()) + dt.timedelta(minutes=parse_hm(s, who + " blocked start") if s else 0)
-        b = dt.datetime.combine(d, dt.time()) + dt.timedelta(minutes=parse_hm(e, who + " blocked end") if e else 1440)
-        p["blocked"].append((a, b, (r.get("reason") or "").strip()))
-
-
-def classify(p, local):
-    """local: naive local datetime. Return 'core', 'flex' or None (unavailable)."""
-    best = None
-    for back in (0, 1):
-        d = local.date() - dt.timedelta(days=back)
-        if d.weekday() not in p["days"]:
-            continue
-        base = dt.datetime.combine(d, dt.time())
-        cs = base + dt.timedelta(minutes=p["start"])
-        ce = base + dt.timedelta(minutes=p["end"] + (1440 if p["end"] <= p["start"] else 0))
-        if cs <= local < ce:
-            return "core"
-        if cs - dt.timedelta(minutes=p["flex_before"]) <= local < ce + dt.timedelta(minutes=p["flex_after"]):
-            best = "flex"
-    return best
-
-
-def evaluate(p, start_utc, minutes):
-    """Return (status, pain, local_start, local_end, reason). status in core, flex, out."""
-    flex_min = 0
-    reason = ""
-    for k in range(0, minutes, CHUNK):
-        t = (start_utc + dt.timedelta(minutes=k)).astimezone(p["zone"]).replace(tzinfo=None)
-        c = classify(p, t)
-        if c is None:
-            reason = "outside hours" if t.date().weekday() in p["days"] or classify_day_any(p, t) else "day off"
-            return "out", 0.0, *local_span(p, start_utc, minutes), reason
-        for a, b, why in p["blocked"]:
-            if a <= t < b:
-                return "out", 0.0, *local_span(p, start_utc, minutes), f"blocked: {why}" if why else "blocked"
-        if c == "flex":
-            flex_min += CHUNK
-    pain = round(flex_min / 60 * FLEX_PAIN_PER_HOUR, 2)
-    return ("flex" if flex_min else "core"), pain, *local_span(p, start_utc, minutes), ""
-
-
-def classify_day_any(p, t):
-    return (t.date() - dt.timedelta(days=1)).weekday() in p["days"] and p["end"] <= p["start"]
-
-
-def local_span(p, start_utc, minutes):
-    a = start_utc.astimezone(p["zone"])
-    b = (start_utc + dt.timedelta(minutes=minutes)).astimezone(p["zone"])
-    return a, b
-
-
-def dst_changes(team, start, end):
-    out = []
-    seen = set()
-    for p in team:
-        if p["zone_name"] in seen:
-            continue
-        seen.add(p["zone_name"])
-        z = p["zone"]
-        t = dt.datetime.combine(start - dt.timedelta(days=1), dt.time(), tzinfo=dt.timezone.utc)
-        stop = dt.datetime.combine(end + dt.timedelta(days=2), dt.time(), tzinfo=dt.timezone.utc)
-        prev = t.astimezone(z).utcoffset()
-        while t < stop:
-            t2 = t + dt.timedelta(minutes=30)
-            off = t2.astimezone(z).utcoffset()
-            if off != prev:
-                loc = t2.astimezone(z)
-                out.append({"zone": p["zone_name"], "utc": t2.strftime("%Y-%m-%d %H:%M UTC"),
-                            "local": loc.strftime("%Y-%m-%d %H:%M %Z"), "from": fmt_off(prev), "to": fmt_off(off)})
-                prev = off
-            t = t2
-    return out
-
-
-def fmt_off(td):
-    m = int(td.total_seconds() // 60)
-    s = "+" if m >= 0 else "-"
-    m = abs(m)
-    return f"UTC{s}{m // 60:02d}:{m % 60:02d}"
-
-
-def find_slots(team, start, end, duration, step, ref_zone, only_days=None):
-    """start/end: dates in ref_zone (inclusive). Returns list of slot dicts."""
-    slots = []
-    t = dt.datetime.combine(start, dt.time(), tzinfo=ref_zone).astimezone(dt.timezone.utc)
-    stop = dt.datetime.combine(end + dt.timedelta(days=1), dt.time(), tzinfo=ref_zone).astimezone(dt.timezone.utc)
-    t = t.replace(minute=(t.minute // step) * step if step < 60 else 0, second=0, microsecond=0)
-    while t + dt.timedelta(minutes=duration) <= stop:
-        ref_local = t.astimezone(ref_zone)
-        if only_days is None or ref_local.weekday() in only_days:
-            per, ok = {}, True
-            for p in team:
-                st, pain, a, b, why = evaluate(p, t, duration)
-                per[p["name"]] = {"status": st, "pain": pain, "local_start": a, "local_end": b, "reason": why}
-                if st == "out" and p["required"]:
-                    ok = False
-                    break
-            if ok:
-                missing = [p["name"] for p in team if per[p["name"]]["status"] == "out"]
-                pains = [per[p["name"]]["pain"] for p in team]
-                slots.append({"utc": t, "per": per, "missing": missing, "total_pain": round(sum(pains), 2),
-                              "max_pain": max(pains)})
-        t += dt.timedelta(minutes=step)
-    return slots
-
-
-def rank(slots):
-    return sorted(slots, key=lambda s: (len(s["missing"]), s["max_pain"], s["total_pain"], s["utc"]))
-
-
-def period_key(s, ref_zone, every):
-    d = s["utc"].astimezone(ref_zone).date()
-    return d.isocalendar()[:2] if every == "week" else d
-
-
-def pick_series(slots, team, n, ref_zone, every="week"):
-    """Greedy fair rotation: n slots, at most one per ref-zone ISO week (every="week") or
-    per date (every="day"), minimising the worst cumulative pain, then the sum of squared
-    cumulative pain, then missed people."""
-    cum = {p["name"]: 0.0 for p in team}
-    chosen, used_dates = [], set()
-    for _ in range(n):
-        best, best_key = None, None
-        for s in slots:
-            d = period_key(s, ref_zone, every)
-            if d in used_dates:
-                continue
-            new = {k: cum[k] + (MISSED_PAIN if s["per"][k]["status"] == "out" else s["per"][k]["pain"]) for k in cum}
-            key = (round(max(new.values()), 2), round(sum(v * v for v in new.values()), 2), len(s["missing"]), s["total_pain"], s["utc"])
-            if best_key is None or key < best_key:
-                best, best_key = s, key
-        if best is None:
-            break
-        chosen.append(best)
-        used_dates.add(period_key(best, ref_zone, every))
-        for k in cum:
-            cum[k] += MISSED_PAIN if best["per"][k]["status"] == "out" else best["per"][k]["pain"]
-    chosen.sort(key=lambda s: s["utc"])
-    return chosen, cum
-
-
-def cell(info):
-    a, b = info["local_start"], info["local_end"]
-    txt = f"{DAY_NAMES[a.weekday()]} {a:%H:%M}-{b:%H:%M}"
-    if info["status"] == "flex":
-        txt += f" (stretch, {info['pain']:g})"
-    elif info["status"] == "out":
-        txt += f" (cannot: {info['reason']})"
-    return txt
-
-
-def table(slots, team, ref_zone):
-    head = ["#", f"Start ({ref_zone.key})"] + [f"{p['name']} ({p['zone_name']})" for p in team] + ["Pain total/max", "Missing"]
-    out = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
-    for i, s in enumerate(slots, 1):
-        r = s["utc"].astimezone(ref_zone)
-        row = [str(i), f"{DAY_NAMES[r.weekday()]} {r:%Y-%m-%d %H:%M}"] + [cell(s["per"][p["name"]]) for p in team] + \
-              [f"{s['total_pain']:g}/{s['max_pain']:g}", ", ".join(s["missing"]) or "-"]
-        out.append("| " + " | ".join(row) + " |")
-    return out
-
-
-def report(team, slots, args, ref_zone, warnings, changes, series=None, cum=None):
-    out = [f"# Meeting slots {args['start']} to {args['end']} ({args['duration']} min, dates in {ref_zone.key})", ""]
-    for w in warnings:
-        out.append(f"> WARNING: {w}")
-    if warnings:
-        out.append("")
-    out.append("## Participants")
-    out.append("| Name | Zone | Hours (local) | Days | Stretch before/after | Required |")
-    out.append("|---|---|---|---|---|---|")
-    for p in team:
-        days = ",".join(DAY_NAMES[d] for d in sorted(p["days"]))
-        out.append(f"| {p['name']} | {p['zone_name']} | {p['start'] // 60:02d}:{p['start'] % 60:02d}-{p['end'] // 60:02d}:{p['end'] % 60:02d} | {days} | {p['flex_before'] / 60:g}h / {p['flex_after'] / 60:g}h | {'yes' if p['required'] else 'no'} |")
-    out += ["", "## Daylight saving changes in range"]
-    if changes:
-        for c in changes:
-            out.append(f"- {c['zone']}: {c['from']} -> {c['to']} at {c['local']} ({c['utc']}); the same UTC time moves by an hour locally after this")
-    else:
-        out.append("- none")
-    out.append("")
-    if not slots:
-        out.append("No slot found where every required participant is available. Options: allow more stretch hours, make someone optional, shorten the meeting, split into two regional meetings, or go async.")
-        return "\n".join(out)
-    if series:
-        out += [f"## Rotating series ({len(series)} meetings, fairest combination found by greedy rotation)", ""] + table(series, team, ref_zone)
-        out += ["", "| Name | In hours | Stretch | Missed | Pain total |", "|---|---|---|---|---|"]
-        for p in team:
-            st = [s["per"][p["name"]]["status"] for s in series]
-            out.append(f"| {p['name']} | {st.count('core')} | {st.count('flex')} | {st.count('out')} | {cum[p['name']]:g} |")
-        out.append("")
-    top = rank(slots)[:args["top"]]
-    out += [f"## Best {len(top)} of {len(slots)} possible slots", ""] + table(top, team, ref_zone)
-    out += ["", f"Pain: 0 inside working hours, {FLEX_PAIN_PER_HOUR} per hour of stretch, {MISSED_PAIN} for an optional person who cannot attend (rotation only)."]
-    return "\n".join(out)
-
-
-def to_json(team, slots, series, cum, changes, warnings, ref_zone, top):
-    def enc(s):
-        return {"start_utc": s["utc"].strftime("%Y-%m-%dT%H:%MZ"), "start_ref": s["utc"].astimezone(ref_zone).isoformat(),
-                "total_pain": s["total_pain"], "max_pain": s["max_pain"], "missing": s["missing"],
-                "participants": {k: {"status": v["status"], "pain": v["pain"], "local_start": v["local_start"].isoformat(),
-                                     "local_end": v["local_end"].isoformat(), "reason": v["reason"]} for k, v in s["per"].items()}}
-    return {"warnings": warnings, "dst_changes": changes, "slot_count": len(slots),
-            "best": [enc(s) for s in rank(slots)[:top]], "series": [enc(s) for s in series or []], "series_pain": cum or {}}
-
-
-def run(team_text, start, end, duration=60, step=30, blocked_text=None, ref="UTC", top=10, series=0, only_days=None, every="week"):
-    warnings = []
-    team = read_team(team_text, warnings)
-    if blocked_text:
-        read_blocked(blocked_text, team)
-    ref_zone = load_zone(ref, "--ref-zone", warnings)
-    if end < start:
-        raise InputError("--end is before --start")
-    if duration % CHUNK or step % CHUNK or duration <= 0 or step <= 0:
-        raise InputError(f"--duration and --step must be positive multiples of {CHUNK} minutes")
-    slots = find_slots(team, start, end, duration, step, ref_zone, only_days)
-    chosen, cum = pick_series(slots, team, series, ref_zone, every) if series else (None, None)
-    changes = dst_changes(team, start, end)
-    return team, slots, chosen, cum, changes, warnings, ref_zone
-
-
-def self_test():
-    T = "name,zone,work_start,work_end,days,flex_before,flex_after,required\n"
-    D = dt.date
-    passed, total = 0, 0
-
-    def check(name, cond):
-        nonlocal passed, total
-        total += 1
-        passed += bool(cond)
-        print(("PASS " if cond else "FAIL ") + name)
-
-    team, slots, *_ = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\nB,Europe/London,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 2), D(2026, 11, 2))
-    check("Berlin+London overlap is 09:00-16:00 UTC (13 one-hour starts on the 30-min grid)", len(slots) == 13 and slots[0]["utc"].hour == 9 and slots[-1]["utc"].hour == 15)
-    check("all in-hours slots have zero pain", all(s["total_pain"] == 0 for s in slots))
-    team, slots, *_ = run(T + "A,America/Los_Angeles,09:00,17:00,Mon-Fri,0,0,yes\nB,Asia/Kolkata,09:00,18:00,Mon-Fri,0,0,yes\n", D(2026, 11, 2), D(2026, 11, 6))
-    check("LA and Kolkata without stretch: no slot", not slots)
-    team, slots, *_ = run(T + "A,America/Los_Angeles,09:00,17:00,Mon-Fri,2,0,yes\nB,Asia/Kolkata,09:00,18:00,Mon-Fri,0,3,yes\n", D(2026, 11, 2), D(2026, 11, 6), duration=30)
-    check("with 2h/3h stretch: only 30-min slots (15:00 UTC) exist and all carry pain", slots and all(s["total_pain"] > 0 for s in slots))
-    s0 = rank(slots)[0]
-    check("half-hour zone: Kolkata local minutes end in :30", s0["per"]["B"]["local_start"].minute == 30)
-    team, slots, *_ = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\nB,America/New_York,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 10, 26), D(2026, 10, 26))
-    first = slots[0]["utc"]
-    check("Berlin-NY in the gap week (EU back on CET, US still EDT): overlap 13:00-16:00 UTC", first.hour == 13 and slots[-1]["utc"].hour == 15)
-    team, slots2, *_ = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\nB,America/New_York,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 2), D(2026, 11, 2))
-    check("after US DST end: overlap starts 14:00 UTC", slots2[0]["utc"].hour == 14)
-    *_, changes, w, rz = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\nB,America/New_York,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 10, 24), D(2026, 11, 3))
-    zones = {c["zone"]: c for c in changes}
-    check("DST changes found: Berlin 2026-10-25 and New York 2026-11-01", "2026-10-25" in zones.get("Europe/Berlin", {}).get("local", "") and "2026-11-01" in zones.get("America/New_York", {}).get("local", ""))
-    team, slots, *_ = run(T + "A,Asia/Dubai,09:00,17:00,Sun-Thu,0,0,yes\nB,Europe/London,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 6), D(2026, 11, 8))
-    check("Sun-Thu vs Mon-Fri: no Fri/Sat/Sun slot", not slots)
-    team, slots, *_ = run(T + "A,Asia/Dubai,09:00,17:00,Sun-Thu,0,0,yes\nB,Europe/London,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 9), D(2026, 11, 9))
-    check("Sun-Thu vs Mon-Fri: Monday works", bool(slots))
-    team, slots, *_ = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\nB,Europe/Paris,09:00,17:00,Mon-Fri,0,0,no\n", D(2026, 11, 2), D(2026, 11, 2),
-                          blocked_text="name,date,start,end,reason\nB,2026-11-02,,,holiday\n")
-    check("optional person blocked all day: slots still found, B missing", slots and all(s["missing"] == ["B"] for s in slots))
-    check("blocked reason shown", slots and "holiday" in slots[0]["per"]["B"]["reason"])
-    team, slots, *_ = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\nB,Europe/Paris,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 2), D(2026, 11, 2),
-                          blocked_text="name,date,start,end,reason\nB,2026-11-02,10:00,12:00,dentist\n")
-    check("required person blocked 10-12 local: no slot overlaps 09:00-11:00 UTC", slots and not any(dt.time(8, 30) < s["utc"].time() < dt.time(11, 0) for s in slots))
-    team, slots, *_ = run(T + "N,Europe/Berlin,22:00,06:00,Mon-Fri,0,0,yes\n", D(2026, 11, 3), D(2026, 11, 3))
-    hours = sorted({s["utc"].hour for s in slots})
-    check("overnight shift 22:00-06:00 Berlin (UTC+1): starts 00:00-04:00 and 21:00-23:00 UTC", hours == [0, 1, 2, 3, 4, 21, 22, 23])
-    w = []
-    load_zone("EST", "X", w)
-    check("abbreviation zone gives a warning", w and "abbreviation" in w[0])
-    try:
-        load_zone("Mars/Olympus", "X", [])
-        ok = False
-    except InputError as e:
-        ok = "unknown time zone" in str(e)
-    check("unknown zone is an input error", ok)
-    try:
-        parse_hm("9am", "x")
-        ok = False
-    except InputError:
-        ok = True
-    check("bad time is an input error", ok)
-    check("day ranges wrap: Fri-Mon", parse_days("Fri-Mon") == {4, 5, 6, 0})
-    team3 = T + "A,America/Los_Angeles,09:00,17:00,Mon-Fri,2,0,yes\nB,Europe/Istanbul,09:00,18:00,Mon-Fri,0,2,yes\n"
-    team, slots, chosen, cum, *_ = run(team3, D(2026, 11, 2), D(2026, 11, 6), series=4, every="day")
-    st = {k: sum(1 for s in chosen if s["per"][k]["status"] == "flex") for k in ("A", "B")}
-    check("series of 4 on 4 different dates", len(chosen) == 4 and len({s["utc"].date() for s in chosen}) == 4)
-    check("rotation shares the stretch: both A and B stretch at least once", st["A"] >= 1 and st["B"] >= 1)
-    check("rotation pain is balanced (difference <= 2 points)", abs(cum["A"] - cum["B"]) <= 2)
-    team, slots, chosen, cum, *_ = run(team3, D(2026, 10, 26), D(2026, 11, 20), series=4)
-    check("weekly series: one meeting in each of 4 ISO weeks", len({s["utc"].isocalendar()[1] for s in chosen}) == 4)
-    team, slots, *_ = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 2), D(2026, 11, 6), only_days={1, 3})
-    check("--days Tue,Thu filters candidate days", slots and {s["utc"].weekday() for s in slots} == {1, 3})
-    team, slots, ch, cum, changes, w, rz = run(T + "A,Europe/Berlin,09:00,17:00,Mon-Fri,0,0,yes\n", D(2026, 11, 2), D(2026, 11, 2))
-    text = report(team, slots, {"start": "2026-11-02", "end": "2026-11-02", "duration": 60, "top": 3}, rz, w, changes)
-    check("report renders table", "| 1 | Mon 2026-11-02 08:00 |" in text and "Daylight saving" in text)
-    j = to_json(team, slots, None, None, changes, w, rz, 3)
-    check("json output has best slots", len(j["best"]) == 3 and j["best"][0]["start_utc"] == "2026-11-02T08:00Z")
-    print(f"{passed}/{total} passed")
-    return 0 if passed == total else 1
-
-
-def main(argv=None):
-    ap = argparse.ArgumentParser(description="Find fair meeting slots across time zones")
-    ap.add_argument("--team")
-    ap.add_argument("--blocked")
-    ap.add_argument("--start")
-    ap.add_argument("--end")
-    ap.add_argument("--duration", type=int, default=60)
-    ap.add_argument("--step", type=int, default=30)
-    ap.add_argument("--days", help="only these weekdays in --ref-zone, e.g. Tue,Wed,Thu")
-    ap.add_argument("--ref-zone", default="UTC")
-    ap.add_argument("--top", type=int, default=10)
-    ap.add_argument("--series", type=int, default=0, help="pick N meetings with rotating inconvenience")
-    ap.add_argument("--every", default="week", choices=["week", "day"], help="series spacing: one meeting per ISO week (default) or per day")
-    ap.add_argument("--json", action="store_true")
-    ap.add_argument("--self-test", action="store_true")
-    a = ap.parse_args(argv)
-    if a.self_test:
-        return self_test()
-    if not (a.team and a.start and a.end):
-        ap.print_usage(sys.stderr)
-        print("error: --team, --start and --end are required", file=sys.stderr)
-        return 2
-    try:
-        start, end = dt.date.fromisoformat(a.start), dt.date.fromisoformat(a.end)
-        team_text = open(a.team, encoding="utf-8").read()
-        blocked_text = open(a.blocked, encoding="utf-8").read() if a.blocked else None
-        only = parse_days(a.days) if a.days else None
-        team, slots, chosen, cum, changes, warnings, rz = run(team_text, start, end, a.duration, a.step, blocked_text, a.ref_zone, a.top, a.series, only, a.every)
-    except (InputError, OSError, ValueError) as e:
-        print(f"error: {e}", file=sys.stderr)
-        return 2
-    if a.json:
-        print(json.dumps(to_json(team, slots, chosen, cum, changes, warnings, rz, a.top), indent=2))
-    else:
-        print(report(team, slots, {"start": a.start, "end": a.end, "duration": a.duration, "top": a.top}, rz, warnings, changes, chosen, cum))
-    return 0 if slots else 1
-
-
-if __name__ == "__main__":
-    sys.exit(main())
-```
-
-</details>
-
-<details><summary><b>Trello Integration Skill</b></summary>
-
-```text
----
-name: trello-integration-skill
-description: This skill allows you to interact with Trello account to list boards, view lists, and create cards automatically.
----
-
-# Trello Integration Skill
-
-The Trello Integration Skill provides a seamless connection between the AI agent and the user's Trello account. It empowers the agent to autonomously fetch existing boards and lists, and create new task cards on specific boards based on user prompts.
-
-## Features
-- **Fetch Boards**: Retrieve a list of all Trello boards the user has access to, including their Name, ID, and URL.
-- **Fetch Lists**: Retrieve all lists (columns like "To Do", "In Progress", "Done") belonging to a specific board.
-- **Create Cards**: Automatically create new cards with titles and descriptions in designated lists.
-
----
-
-##  Setup & Prerequisites
-
-To use this skill locally, you need to provide your Trello Developer API credentials.
-
-1. Generate your credentials at the [Trello Developer Portal (Power-Ups Admin)](https://trello.com/app-key).
-2. Create an API Key.
-3. Generate a Secret Token (Read/Write access).
-4. Add these credentials to the project's root `.env` file:
-
-'''env
-# Trello Integration
-TRELLO_API_KEY=your_api_key_here
-TRELLO_TOKEN=your_token_here
-'''
-
----
-
-##  Usage & Architecture
-
-The skill utilizes standalone Node.js scripts located in the `.agent/skills/trello_skill/scripts/` directory.
-
-### 1. List All Boards
-Fetches all boards for the authenticated user to determine the correct target `boardId`.
-
-**Execution:**
-'''bash
-node .agent/skills/trello_skill/scripts/list_boards.js
-'''
-
-### 2. List Columns (Lists) in a Board
-Fetches the lists inside a specific board to find the exact `listId` (e.g., retrieving the ID for the "To Do" column).
-
-**Execution:**
-'''bash
-node .agent/skills/trello_skill/scripts/list_lists.js <boardId>
-'''
-
-### 3. Create a New Card
-Pushes a new card to the specified list. 
-
-**Execution:**
-'''bash
-node .agent/skills/trello_skill/scripts/create_card.js <listId> "<Card Title>" "<Optional Description>"
-'''
-*(Always wrap the card title and description in double quotes to prevent bash argument splitting).*
-
----
-
-##  AI Agent Workflow
-
-When the user requests to manage or add a task to Trello, follow these steps autonomously:
-1. **Identify the Target**: If the target `listId` is unknown, first run `list_boards.js` to identify the correct `boardId`, then execute `list_lists.js <boardId>` to retrieve the corresponding `listId` (e.g., for "To Do").
-2. **Execute Command**: Run the `create_card.js <listId> "Task Title" "Task Description"` script.
-3. **Report Back**: Confirm the successful creation with the user and provide the direct URL to the newly created Trello card.
-FILE:create_card.js
-const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '../../../../.env') });
-
-const API_KEY = process.env.TRELLO_API_KEY;
-const TOKEN = process.env.TRELLO_TOKEN;
-
-if (!API_KEY || !TOKEN) {
-    console.error("Error: TRELLO_API_KEY or TRELLO_TOKEN is missing from the .env file.");
-    process.exit(1);
-}
-
-const listId = process.argv[2];
-const cardName = process.argv[3];
-const cardDesc = process.argv[4] || "";
-
-if (!listId || !cardName) {
-    console.error(`Usage: node create_card.js <listId> "${card_name}" ["${card_description}"]`);
-    process.exit(1);
-}
-
-async function createCard() {
-    const url = `https://api.trello.com/1/cards?idList=${listId}&key=${API_KEY}&token=${TOKEN}`;
-
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: cardName,
-                desc: cardDesc,
-                pos: 'top'
-            })
-        });
-
-        if (!response.ok) {
-            const errText = await response.text();
-            throw new Error(`HTTP error! status: ${response.status}, message: ${errText}`);
-        }
-        const card = await response.json();
-        console.log(`Successfully created card!`);
-        console.log(`Name: ${card.name}`);
-        console.log(`ID: ${card.id}`);
-        console.log(`URL: ${card.url}`);
-    } catch (error) {
-        console.error("Failed to create card:", error.message);
-    }
-}
-
-createCard();
-FILE:list_board.js
-const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '../../../../.env') });
-
-const API_KEY = process.env.TRELLO_API_KEY;
-const TOKEN = process.env.TRELLO_TOKEN;
-
-if (!API_KEY || !TOKEN) {
-    console.error("Error: TRELLO_API_KEY or TRELLO_TOKEN is missing from the .env file.");
-    process.exit(1);
-}
-
-async function listBoards() {
-    const url = `https://api.trello.com/1/members/me/boards?key=${API_KEY}&token=${TOKEN}&fields=name,url`;
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const boards = await response.json();
-        console.log("--- Your Trello Boards ---");
-        boards.forEach(b => console.log(`Name: ${b.name}\nID: ${b.id}\nURL: ${b.url}\n`));
-    } catch (error) {
-        console.error("Failed to fetch boards:", error.message);
-    }
-}
-
-listBoards();
-FILE:list_lists.js
-const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '../../../../.env') });
-
-const API_KEY = process.env.TRELLO_API_KEY;
-const TOKEN = process.env.TRELLO_TOKEN;
-
-if (!API_KEY || !TOKEN) {
-    console.error("Error: TRELLO_API_KEY or TRELLO_TOKEN is missing from the .env file.");
-    process.exit(1);
-}
-
-const boardId = process.argv[2];
-if (!boardId) {
-    console.error("Usage: node list_lists.js <boardId>");
-    process.exit(1);
-}
-
-async function listLists() {
-    const url = `https://api.trello.com/1/boards/${boardId}/lists?key=${API_KEY}&token=${TOKEN}&fields=name`;
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const lists = await response.json();
-        console.log(`--- Lists in Board ${boardId} ---`);
-        lists.forEach(l => console.log(`Name: "${l.name}"\nID: ${l.id}\n`));
-    } catch (error) {
-        console.error("Failed to fetch lists:", error.message);
-    }
-}
-
-listLists();
-```
-
-</details>
-
-<details><summary><b>Verbatim Chat to Organized Notes</b></summary>
-
-```text
-extract all information in this chat verbatim Capture every detail from start to finish, ensuring the notes read like a comprehensive plan or proposal, with a focus on the user's intentions and actions.
-```
-
-</details>
-
-<details><summary><b>Weekly Report Generator</b></summary>
-
-```text
-Using the provided text below as the basis for a weekly report, generate a concise summary that highlights the most important points. The report should be written in markdown format and should be easily readable and understandable for a general audience. In particular, focus on providing insights and analysis that would be useful to stakeholders and decision-makers. You may also use any additional information or sources as necessary. Please begin by editing the following text: [text to edit]
-```
-
-</details>
-
-<details><summary><b>Weekly Report Generator</b> · machine translated</summary>
-
-```text
-# Role: Weekly Report Generator
-
-## Profile:
-- author: Arthur
-- version: 0.1
-- language: Chinese
-- description: An efficient and reliable weekly report generator that can turn the information input by the user into a high-quality weekly report
-
-## Goals:
-- Receive the weekly report information input by the user
-- Filter and condense the weekly report information
-- Lay out the weekly report information in a structured format
-- Output the formatted weekly report
-- The weekly report's reader is the direct supervisor, so pay attention to the wording and tone of the report
-
-## Constrains:
-- Appropriately expand on the information provided by the user
-- Do not proactively ask the user for other information
-- Finish the work by the deadline provided by the user
-
-## Skills:
-- Accurately understand the user's needs
-- Proficient in the rules and techniques of text layout
-- Use UNICODE characters to polish the layout
-- Get the system time and output it in the specified format
-- Writing and editing ability
-
-## Workflows:
-1. After the user submits the relevant information, categorize it in a structured way and lay it out in the provided format
-2. Output the completed weekly report and send it to the user for confirmation. If the user approves, the weekly report is done; if the user is not satisfied, we will revise and refine it until the user is satisfied.
-```
-
-</details>
-
-<details><summary><b>Work Email Writing Assistant</b> · machine translated</summary>
-
-```text
-Your task is to help write professional work emails. Please compose an email based on the following information:
-
-<邮件信息>
-Email type: {{EMAIL_TYPE}}
-Recipient: {{RECIPIENT}}
-Email purpose: {{PURPOSE}}
-Background information: {{BACKGROUND}}
-Expected result: {{EXPECTED_RESULT}}
-</邮件信息>
-
-<沟通要求>
-Tone and style: {{TONE_STYLE}}
-Urgency level: {{URGENCY_LEVEL}}
-Formality level: {{FORMALITY_LEVEL}}
-</沟通要求>
-
-Please write the email according to the following standards:
-1. A clear and specific subject line
-2. A polite and professional opening
-3. A logically clear body
-4. Clear recommended actions
-5. An appropriate closing and signature
-
-Please output the complete email content inside the <email> tags.
-```
-
-</details>
-
-<details><summary><b>Work Plan Builder</b> · machine translated</summary>
-
-```text
-Your task is to draw up a detailed work plan. Plan the work based on the following information:
-
-<Work Objectives>
-Main objectives: {{MAIN_OBJECTIVES}}
-Key results: {{KEY_RESULTS}}
-Deadline: {{DEADLINE}}
-Priority: {{PRIORITY_LEVEL}}
-</Work Objectives>
-
-<Resources>
-Available time: {{AVAILABLE_TIME}}
-Team resources: {{TEAM_RESOURCES}}
-Budget constraints: {{BUDGET_CONSTRAINTS}}
-Tools and equipment: {{TOOLS_EQUIPMENT}}
-</Resources>
-
-Please draw up a work plan that includes the following elements:
-1. Objective breakdown and phase planning
-2. Task list and schedule
-3. Resource allocation and division of responsibilities
-4. Risk identification and response strategies
-5. Monitoring mechanisms and adjustment plans
-
-Please output the detailed work plan inside <plan> tags.
-```
-
-</details>
-
-<details><summary><b>YouTube Video Analyst</b></summary>
-
-```text
-I want you to act as an expert YouTube video analyst. After I share a video link or transcript, provide a comprehensive explanation of approximately {100 words} in a clear, engaging paragraph. Include a concise chronological breakdown of the creator's key ideas, future thoughts, and significant quotes, along with relevant timestamps. Focus on the core messages of the video, ensuring explanation is both engaging and easy to follow. Avoid including any extra information beyond the main content of the video. {Link or Transcript}
-```
-
-</details>
-
-<details><summary><b>YouTube Video Downloader Skill</b></summary>
-
-```text
----
-name: youtube-video-downloader-skill
-description: Helps download YouTube videos. Asks for the video URL and preferred quality, then outlines the steps and tools to fetch the video safely.
----
-
-# YouTube Video Downloader Skill
-
-Download YouTube videos when the user provides a URL.
-
-## Instructions
-
-- Ask for the video URL and preferred quality or format.
-- Outline safe steps and tools to fetch the video.
-- Warn about copyright and terms of service.
-```
-
-</details>
-
-<details><summary><b>Zone of Excellence Task Assistant</b></summary>
-
-```text
-Act as a Personal Assistant and Brand Manager specializing in managing tasks within the Zone of Excellence. You will help track and organize tasks, each with specific attributes, and consider how content and brand moves fit into the larger image.
-
-Your task is to manage and update tasks based on the following attributes:
-
-- **Category**: Identify which area the task is improving or targeting: [Brand, Cognitive, Logistics, Content].
-- **Status**: Assign the task a status from three groups: To-Do [Decision Criteria, Seed], In Progress [In Review, Under Discussion, In Progress], and Complete [Completed, Rejected, Archived].
-- **Effect of Success (EoS)**: Evaluate the impact as High, Medium, or Low.
-- **Effect of Failure (EoF)**: Assess the impact as High, Medium, or Low.
-- **Priority**: Set the priority level as High, Medium, or Low.
-- **Next Action**: Determine the next step to be taken for the task.
-- **Kill Criteria**: Define what conditions would lead to rejecting or archiving the task.
-
-Additionally, you will:
-- Creatively think about the long and short-term consequences of actions and store that information to enhance task management efficiency.
-- Maintain a clear and updated list of tasks with all attributes.
-- Notify and prompt for actions based on task priorities and statuses.
-- Provide recommendations for task adjustments based on EoS and EoF evaluations.
-- Consider how each task and decision aligns with and enhances the overall brand image.
-
-Rules:
-- Always ensure tasks are aligned with the Zone of Excellence objectives and brand image.
-- Regularly review and update task statuses and priorities.
-- Communicate any potential issues or updates promptly.
 ```
 
 </details>

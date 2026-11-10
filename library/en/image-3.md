@@ -1,10 +1,1156 @@
 # Image & Design (3/5)
 
-808 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+846 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
 Pages: [1](image.md) · [2](image-2.md) · **3** · [4](image-4.md) · [5](image-5.md)
+
+<details><summary><b>Icelandic Beach Church Concept Brief Builder</b></summary>
+
+```text
+Act as a cinematic landscape designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of a small white wooden church with a red roof standing on a grassy headland above an Icelandic black sand beach, with dark basalt sea stacks rising from the ocean at golden hour. The shot will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move naturally (surf lines rolling in and washing up the black sand, foam pulling back, sea spray bursting against the base of the stacks, clouds drifting slowly, the warm glow shifting a little, grass stirring in the wind) while keeping the composition calm, readable, and easy to animate.
+
+My starting choices:
+- Church: ${church:a small white wooden church with a red gabled roof and a short red steeple}
+- Headland: ${headland:a rounded grassy green headland that drops to the beach}
+- Beach: ${beach:a long curve of fine black volcanic sand}
+- Sea stacks: ${stacks:a few dark basalt sea stacks offshore, one tall and jagged, the others smaller spires and a low rounded rock}
+- Time and light: ${time:golden hour with a low sun near the horizon and scattered clouds lit orange, pink, and purple}
+- Visual style: ${style:photoreal landscape photography, natural colors}
+- Mood words: ${mood:remote, peaceful, dramatic, warm}
+
+First ask me, in one short message, for anything missing: the camera position I prefer (low on the beach at the waterline, slightly elevated from the dunes, or from a cliff path), which side of the frame the church and the sea stacks should sit on, where the sun should be, how rough the sea should be, and anything to avoid (people, cars, drones in the sky, birds that would have to fly convincingly, text, logos, or copying a specific real photograph).
+
+Then produce the brief with these sections:
+
+1. **Scene Overview**: two or three sentences describing the place, the time, the light, and the feeling of the moment. Describe an imagined Icelandic south coast scene in the spirit of the place, not a copy of a specific photograph or a named church.
+
+2. **Church and Headland**: the church's position and size in the frame, its white walls, red roof and steeple, windows and door, how the low sun lights it, and the shape of the grassy headland below it and where it meets the beach.
+
+3. **Beach and Surf**: the curve of the black sand from the foreground, the wet sand reflections, how many surf lines there are, the direction the waves roll in from, and how far the foam washes up.
+
+4. **Sea Stacks and Depth**: how many stacks, their shapes and heights, their positions from left to right, where spray hits them, and the depth layers from the foreground sand to the horizon.
+
+5. **Light and Sky**: the sun's position and height, the color gradient of the sky, the cloud shapes and how they are lit, long shadows on the headland and the sand, and any haze over the sea.
+
+6. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (church position and colors, steeple shape, headland outline, beach curve, number and order of the sea stacks, sun position, horizon line, cloud layout, camera position, framing).
+
+7. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the surf lines, the foam on the sand, spray at the stacks, the clouds, the grass, the light, and the camera move. Keep total motion subtle and physically plausible, with one wave direction and one wind direction.
+
+8. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the church on the headland, the black sand beach, and the sea stacks in the first sentence, ending with: no people, no text, no logos.
+
+9. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes the surf rolling in and washing up the sand, spray at the stacks, clouds drifting, one very slow camera move for about 6 seconds, and says to keep the church, headland, stacks, and framing exactly as in the image with no new objects.
+
+Rules: no people, animals, or vehicles as subjects; no text, signs, or logos; no fast camera moves or cuts; and no motion that breaks physics (waves always come from the sea and break toward the shore, foam slides back down the slope, rocks and the church never move or change shape, the sun does not jump). Use short paragraphs and lists.
+```
+
+</details>
+
+<details><summary><b>Icelandic Beach Church Image to Video</b></summary>
+
+```text
+Start from the step 2 image "White Church with a Red Roof Above a Black Sand Beach and Basalt Sea Stacks at Golden Hour" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the white church with its red roof and steeple on the grassy headland in the left third, the curve of black sand, the four basalt rocks and sea stacks on the right, the low sun at the far left, the horizon line, and the framing exactly as in the image. Long white surf lines roll in from the right toward the beach, wash up the black sand in thin sheets of foam, and slide back down, leaving a glossy wet shine. Around the middle of the shot, a burst of white sea spray breaks against the base of the tall jagged sea stack and falls back into the water. The orange, pink, and purple clouds drift slowly across the sky while the warm golden glow holds steady, and the grass on the headland stirs gently in the wind. The camera stays almost still, with only a very slight, slow push-in. Natural, realistic motion, no cuts, no people, no new objects, no text. Sound of rolling surf, wind, and distant waves.
+```
+
+</details>
+
+<details><summary><b>Icon Designer</b></summary>
+
+```text
+Act like an icon designer and give me ideas on representing an icon of the word [KEYWORD].
+
+The idea is to add to the main website page of the app an icon that represents the idea of [KEYIDEA] because the app's main goal is to offer [Function]
+
+More information:
+-The icon should be XXXX
+```
+
+</details>
+
+<details><summary><b>Identity Locked Image Transformation</b></summary>
+
+```text
+IDENTITY LOCK — FACIAL PRESERVATION MODE
+
+Reference Image(s) Provided: [attach 1–3 clear reference photos of the subject]
+
+CORE DIRECTIVE:
+You are performing a targeted visual transformation on the provided reference image(s). 
+The subject's facial identity is LOCKED and must not be altered, reconstructed, or averaged 
+under any circumstance. The face in the final output must be unmistakably recognizable as 
+the exact same individual shown in the reference image(s).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IDENTITY ELEMENTS — DO NOT CHANGE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- Overall face shape and skull structure
+- Eye shape, spacing, depth, and lid contour
+- Nose bridge width, tip shape, and nostrils
+- Lip contour, cupid's bow shape, fullness ratio (upper vs. lower lip)
+- Jawline definition and chin shape
+- Cheekbone placement and facial width
+- Forehead height and brow ridge
+- Skin texture, undertone, and ethnicity markers
+- Distinctive facial features: moles, freckles, dimples, scars, asymmetries
+- Inter-feature distances (eye-to-eye, nose-to-lip, lip-to-chin)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PERMITTED CHANGES (non-identity elements):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- Clothing, fabric, materials, and accessories
+- Environment, setting, and background
+- Lighting direction, color temperature, and intensity
+- Color grading and overall image tone
+- Camera angle, framing, and composition
+- Body pose, gesture, and stance
+- Artistic style or genre (e.g., cinematic, painterly, editorial) — IF requested
+- Subtle facial expression changes (slight smile, calm, thoughtful) 
+  ONLY as micro-adjustments ON THE EXISTING FACE STRUCTURE — not by rebuilding the face
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ABSOLUTE PROHIBITIONS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- Do NOT replace the face with an averaged, idealized, or generic face
+- Do NOT apply beauty enhancement that alters facial proportions
+- Do NOT make the subject appear younger, older, or a different gender
+- Do NOT change ethnicity or racial features
+- Do NOT smooth skin to the point of erasing texture and distinctiveness
+- Do NOT modify face shape under the guise of lighting, style, or genre change
+- Do NOT reconstruct the face from scratch for any reason
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+QUALITY TARGET:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Photorealistic output. Natural skin texture. Accurate subsurface scattering.
+Coherent lighting between subject and environment. The subject must pass 
+a "same person" recognition test when the output is placed side-by-side 
+with the reference image. Facial similarity takes priority over stylistic polish.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TRANSFORMATION REQUEST:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Describe your specific change here — e.g., "Place the subject in a candlelit medieval 
+tavern, wearing a worn leather coat. Keep lighting warm and moody. Photorealistic."]
+```
+
+</details>
+
+<details><summary><b>Illustrated Portrait on Stone Ledge</b></summary>
+
+```text
+A highly detailed digital illustration of the woman from the photo, sitting gracefully on a stone ledge, posing with one hand near her chin and her legs crossed. She wears round, vintage-inspired sunglasses, a white blouse with rolled-up sleeves, denim overalls, and sturdy lace-up combat boots. The subject is rendered in a desaturated, monochromatic pencil-sketch style featuring soft cross-hatching and charcoal textures. In the background, a large, vibrant, solid orange circl
+```
+
+</details>
+
+<details><summary><b>Illustrator Style Describer</b></summary>
+
+```text
+**“Analyze the provided images and extract ONLY the unified visual style.
+Although the image is composed of a grid of images, treat them as one cohesive style reference - do NOT describe or reference the characters individually, and do NOT mention the panel layout or that there are four sections.
+
+Focus exclusively on the global stylistic qualities, including:
+
+illustration style (flat, graphic, painterly, vector-like, etc.)
+
+contrast behavior
+
+Background style and color
+
+shapes, proportions, and stylization
+
+line quality and outline treatment
+
+shading/lighting approach
+
+texture use (if any)
+
+mood and visual tone
+
+pattern usage
+
+any recurring artistic conventions
+
+Hex colors and their use (skin tone, background, patterns, etc)
+
+
+Produce a clean, standalone style description that can be used to generate new images in the same style but with entirely new characters or scenes.
+DO NOT mention specific characters, poses, clothing, or objects from the original image—ONLY the style.
+
+Output this in two parts:
+
+STYLE DESCRIPTION (4–7 sentences):
+A detailed explanation of the unified artistic style.
+
+KEY STYLE TAGS (10–20 keywords):
+Short labels that summarize the style.
+Hex colors
+```
+
+</details>
+
+<details><summary><b>Image Quality Enhancement</b></summary>
+
+```text
+Act as an advanced image quality enhancer. Your task is to improve the quality of the uploaded images to Full HD resolution and apply sharpening techniques without altering any original details. You will:
+- Use advanced algorithms to enhance resolution to Full HD.
+- Apply sharpening to improve image clarity.
+- Maintain the integrity of the original image.
+- Ensure the enhanced image retains all original details aside from improved clarity and resolution.
+```
+
+</details>
+
+<details><summary><b>Image Style Imitation</b></summary>
+
+```text
+Upload your image to transform it by imitating a specified style. The image will be adjusted to match the chosen aesthetic, such as:
+
+- **Style Options:** Vintage sepia, modern abstract, watercolor painting, etc.
+- **Adjustments:** Color palette, texture, contrast, and other visual elements to achieve the desired look.
+
+Please specify the style you want to imitate to get the best results.
+```
+
+</details>
+
+<details><summary><b>Image to JSON Analysis Report</b></summary>
+
+```text
+{
+  "meta": {
+    "source_image": "user_provided_image",
+    "analysis_timestamp": "2024-07-30T12:00:00Z",
+    "analysis_model": "image_to_json_v1.0",
+    "overall_confidence": 0.99
+  },
+  "camera_and_exif": {
+    "camera_make": "unknown",
+    "camera_model": "unknown",
+    "lens_model": "unknown",
+    "focal_length_mm": 50,
+    "aperture_f_stop": 11.0,
+    "shutter_speed_s": 0.004,
+    "iso_value": 1600,
+    "white_balance_mode": "n/a (monochrome)",
+    "exposure_compensation_ev": 0,
+    "orientation": "portrait",
+    "resolution_px": "800x995",
+    "color_profile": "grayscale"
+  },
+  "scene_environment": {
+    "scene_type": "outdoor, open area, temporary event setup",
+    "time_of_day": "daytime",
+    "season": "unknown",
+    "weather_conditions": "overcast, diffused light",
+    "temperature_appearance": "neutral, slightly cool",
+    "environment_distance_depth": {
+      "foreground_depth_m": 2.0,
+      "midground_depth_m": 15,
+      "background_depth_m": 60
+    },
+    "environment_description": "large, empty, open-air paved area or auditorium floor with hundreds of dark folding chairs arranged in irregular rows, under even, diffused daylight. A solitary figure is seated in the foreground, facing the chairs.",
+    "ground_material": "rough concrete or asphalt",
+    "ambient_objects": [
+      {
+        "id": "env_obj_chair_array",
+        "type": "folding chairs (hundreds)",
+        "position_relative_to_subject": "in front, distant to far-distant",
+        "approx_distance_m": 5.0,
+        "height_m": 0.8,
+        "width_m": 0.45,
+        "material": "metal frame, dark plastic/vinyl seat and back",
+        "color_dominant": "#4A4A4A",
+        "texture": "smooth seat/back, metallic frame, slight sheen",
+        "occlusion": "partial due to overlapping rows from high angle perspective"
+      }
+    ],
+    "air_properties": {
+      "humidity_estimate": 0.6,
+      "haze_level": 0.15,
+      "fog_density": 0.0,
+      "color_tint": "n/a (monochrome)"
+    }
+  },
+  "spatial_geometry_and_distances": {
+    "camera_position": {
+      "x_m": 0,
+      "y_m": 25.0,
+      "z_m": -8.0
+    },
+    "camera_angle_degrees": {
+      "pitch": -75,
+      "yaw": 0,
+      "roll": 0
+    },
+    "subject_to_camera_distance_m": 26.2,
+    "object_to_object_distances": [
+      {
+        "object_a": "subject_01",
+        "object_b": "env_obj_chair_array_nearest_row",
+        "distance_m": 5.0
+      },
+      {
+        "object_a": "subject_01",
+        "object_b": "env_obj_chair_array_furthest_row",
+        "distance_m": 60.0
+      }
+    ],
+    "height_reference_scale": {
+      "known_reference": "person",
+      "height_m": 1.75,
+      "pixel_to_meter_ratio": 0.0109
+    }
+  },
+  "subjects_and_anatomy": {
+    "people_detected": 1,
+    "subjects": [
+      {
+        "id": "subject_01",
+        "category": "human",
+        "age_estimate": 40,
+        "gender_appearance": "male",
+        "body_posture": "seated, back to camera, looking forward",
+        "height_estimate_m": 1.75,
+        "shoulder_width_m": 0.48,
+        "body_proportions": {
+          "head_height_ratio": 0.125,
+          "torso_to_leg_ratio": 0.5
+        },
+        "facial_structure": {
+          "face_shape": "unknown",
+          "jawline_definition": "unknown",
+          "skin_tone": "n/a (monochrome)",
+          "facial_expression": "unknown",
+          "eye_color": "unknown",
+          "hair_color": "dark",
+          "hair_style": "short, neatly combed",
+          "facial_feature_asymmetry": "unknown"
+        },
+        "position_in_scene": {
+          "relative_position": "bottom-center frame",
+          "depth_layer": "foreground-midground transition",
+          "ground_contact": "seated on chair, chair legs on ground",
+          "orientation_to_camera": "180 degrees rotated away from camera (back to camera)"
+        },
+        "clothing": [
+          {
+            "item": "suit jacket",
+            "color": "#1A1A1A",
+            "material": "wool blend",
+            "fit": "tailored",
+            "pattern": "plain",
+            "texture": "smooth matte"
+          },
+          {
+            "item": "trousers",
+            "color": "#1A1A1A",
+            "material": "wool blend",
+            "fit": "tailored",
+            "pattern": "plain",
+            "texture": "smooth matte"
+          },
+          {
+            "item": "chair",
+            "color": "#333333",
+            "material": "metal frame, dark plastic/vinyl seat",
+            "fit": "standard folding chair",
+            "pattern": "none",
+            "texture": "smooth seat, metallic frame"
+          }
+        ]
+      }
+    ]
+  },
+  "lighting_analysis": {
+    "main_light_source": {
+      "type": "natural diffused light",
+      "direction": "overhead, omnidirectional",
+      "intensity_lux": 8000,
+      "softness": "extremely soft",
+      "color_temp_k": "n/a (monochrome)"
+    },
+    "secondary_lights": [],
+    "shadow_properties": {
+      "present": true,
+      "softness": "very soft, barely perceptible",
+      "direction_degrees": 180,
+      "tint_color": "n/a (monochrome)"
+    },
+    "reflections": {
+      "present": false
+    },
+    "mood_descriptor": "solemn, isolated, expectant, vast, minimalist, contemplative"
+  },
+  "color_texture_and_style": {
+    "dominant_palette": [
+      "#E6E6E6",
+      "#CCCCCC",
+      "#AAAAAA",
+      "#4A4A4A",
+      "#1A1A1A"
+    ],
+    "palette_description": "monochromatic palette with high contrast between deep blacks and bright whites, supported by a broad range of mid-grey tones. Overall impression is stark and graphic.",
+    "saturation_level": "n/a (monochrome)",
+    "contrast_level": "high",
+    "color_temperature_description": "n/a (monochrome)",
+    "texture_map": "visible high-frequency grain/noise across entire image",
+    "grain_quality": "fine, distinct, filmic",
+    "microtexture": "visible roughness on ground, subtle fabric texture on suit, smooth chairs",
+    "tone_balance": "strong blacks, bright whites, and rich mid-tones, contributing to a graphic, almost abstract quality."
+  },
+  "composition_and_geometry": {
+    "rule_of_thirds_alignment": false,
+    "symmetry_type": "asymmetrical balance, with a central figure anchored at the bottom contrasting against a vast, repeating, semi-symmetrical pattern of chairs above",
+    "leading_lines_present": true,
+    "framing_description": "high-angle, overhead shot, with the solitary subject placed in the bottom-center of the frame, facing upwards towards a seemingly endless array of empty chairs that fill the upper two-thirds of the image. The composition emphasizes scale, isolation, and anticipation.",
+    "depth_layers": [
+      "foreground (empty ground in front of subject)",
+      "midground (subject and nearest chairs)",
+      "background (distant rows of chairs, fading into atmospheric perspective)"
+    ],
+    "perspective_type": "high-angle orthogonal with slight linear perspective for depth",
+    "depth_of_field_strength": "deep depth of field, everything from foreground to background appears in sharp focus."
+  },
+  "environmental_relationships": {
+    "subject_environment_interaction": {
+      "stance": "subject is seated on a chair, positioned centrally at the bottom of the frame, facing the expansive, silent assembly of empty chairs.",
+      "shadow_cast_on": "ground directly beneath the subject and chair, very subtle and diffused.",
+      "proximity_to_objects": [
+        {
+          "object_id": "env_obj_chair_array_nearest_row",
+          "distance_m": 5.0,
+          "interaction_type": "visual confrontation, symbolic audience, point of focus"
+        }
+      ],
+      "environmental_scale_perception": "the individual subject appears small and isolated against the vast, repetitive pattern of empty chairs, creating a powerful sense of scale and potential significance."
+    },
+    "acoustic_environment_estimate": "silent, vast, potentially echoing if indoors or in a large open space, emphasizing quiet contemplation or anticipation.",
+    "temperature_feel": "mild to cool, neutral, due to the materials (concrete, metal) and diffused lighting."
+  },
+  "output_and_generation_parameters": {
+    "target_similarity": 0.99,
+    "schema_completeness": "all sections retained, missing data indicated as 'unknown' or 'n/a'",
+    "color_fidelity": "high priority for tonal accuracy in monochrome representation",
+    "distance_precision_m": 0.5,
+    "pose_accuracy": 0.05,
+    "facial_geometry_precision": 0.002
+  },
+  "privacy_and_safety": {
+    "face_blurring": false,
+    "pii_detected": false,
+    "notes": "no identifiable facial features or personal information are visible due to the subject's orientation (back to camera) and the nature of the image."
+  }
+}
+```
+
+</details>
+
+<details><summary><b>Impasto Oil Portrait of Held-In Rage</b></summary>
+
+```text
+Thick impasto oil-painting portrait of an Iranian woman, aggressive brushstrokes, crimson and ochre. Face nearly still, but the brows are pressed low and locked together, the eyes burning wide and unblinking, lower lid tensed — rage held under the skin. Beneath the canvas, a raw sketchy hand-drawn rectangle with shaky handwritten script: "خفه شدم از سکوت".
+```
+
+</details>
+
+<details><summary><b>Impressionist Parisian Cafe Terrace in the Rain</b></summary>
+
+```text
+An impressionist painting of a Parisian cafe terrace on a rainy evening, landscape 4:3, with thick, visible, textured brushstrokes like an oil or pastel painting. On the left, a cafe with a large red scalloped awning glows from within through tall amber windows, with two round potted green shrubs by the facade. Small round bistro tables with woven rattan chairs stand on the wet pavement in the foreground. In the center, an ornate black street lamp with a glowing lantern rises above the curb. On the right, a long wet cobblestone street recedes into a misty blue-violet distance between tall Haussmann-style buildings dotted with small warm lights. A person in a brown coat holding a dark umbrella walks away from the viewer down the street, with two more figures under umbrellas further back. Rain falls softly, and the glossy cobblestones are full of broken reflections of gold, amber, and red. Blue-violet dusk sky, warm light against cool shadows, romantic and quiet mood. No readable signs, no text, no logos.
+```
+
+</details>
+
+<details><summary><b>Impressionistic Urban Solitude</b></summary>
+
+```text
+{
+  "colors": {
+    "color_temperature": "warm",
+    "contrast_level": "medium",
+    "dominant_palette": [
+      "brown",
+      "orange",
+      "purple",
+      "yellow",
+      "grey"
+    ]
+  },
+  "composition": {
+    "camera_angle": "eye-level shot",
+    "depth_of_field": "medium",
+    "focus": "A person in a dark coat smoking",
+    "framing": "The main subject is placed off-center to the right, with strong leading lines from the tram tracks guiding the eye into the cityscape."
+  },
+  "description_short": "An impressionistic painting of a person in a dark coat smoking while standing by tram tracks in a city at dusk, with streetlights glowing in the distance.",
+  "environment": {
+    "location_type": "cityscape",
+    "setting_details": "A city street at dusk or dawn, featuring tram tracks that recede into the distance. The street is lined with glowing lampposts, and a tram and other figures are visible in the background.",
+    "time_of_day": "evening",
+    "weather": "clear"
+  },
+  "lighting": {
+    "intensity": "moderate",
+    "source_direction": "mixed",
+    "type": "mixed"
+  },
+  "mood": {
+    "atmosphere": "Solitary urban contemplation",
+    "emotional_tone": "melancholic"
+  },
+  "narrative_elements": {
+    "character_interactions": "The main character is solitary, observing the city scene. There are other distant figures, but no direct interaction is depicted.",
+    "environmental_storytelling": "The dusky city street, glowing lights, and tram tracks suggest a moment of waiting or transition, perhaps the end of a workday. The scene evokes a sense of urban anonymity and introspection.",
+    "implied_action": "The person is waiting, possibly for a tram. The act of smoking suggests a moment of pause or reflection before continuing on."
+  },
+  "objects": [
+    "person",
+    "overcoat",
+    "tram tracks",
+    "streetlights",
+    "smoke",
+    "tram",
+    "buildings"
+  ],
+  "people": {
+    "ages": [
+      "adult"
+    ],
+    "clothing_style": "heavy winter overcoat",
+    "count": "1",
+    "genders": [
+      "male"
+    ]
+  },
+  "prompt": "An impressionistic oil painting of a solitary figure in a dark, heavy overcoat, viewed from behind. The person stands beside tram tracks, exhaling a plume of smoke into the cool air. The scene is a city street at dusk, with the sky glowing with warm orange and yellow hues. Distant streetlights cast a soft, warm glow along the street, reflecting on the metal tracks. The style features thick, textured brushstrokes, creating a melancholic and contemplative mood.",
+  "style": {
+    "art_style": "impressionistic realism",
+    "influences": [
+      "realism",
+      "impressionism",
+      "urban landscape"
+    ],
+    "medium": "painting"
+  },
+  "technical_tags": [
+    "oil painting",
+    "impasto",
+    "impressionism",
+    "cityscape",
+    "dusk",
+    "chiaroscuro",
+    "leading lines",
+    "solitude",
+    "textured"
+  ],
+  "use_case": "Art history dataset, style transfer model training, analysis of impressionistic painting techniques.",
+  "uuid": "03c9a7a0-190f-4afa-bb32-1ed1c05cc818"
+}
+```
+
+</details>
+
+<details><summary><b>In-Flight Vacation Selfie</b></summary>
+
+```text
+{
+  "subject": {
+    "description": "A young woman with a natural, relaxed appearance, captured while sitting in her airplane seat during a flight. She has a confident yet casual vacation energy. Her skin is clean with no tattoos. She wears a light vacation hat and stylish sunglasses.",
+    "body": {
+      "type": "Curvy, feminine silhouette.",
+      "details": "Natural proportions, relaxed posture, comfortable seated position.",
+      "pose": "Seated in an airplane seat, subtly leaning back, with the framing suggesting the camera is held by one hand slightly above head level and angled downward, as if taking a casual front-camera selfie. The phone itself is not visible in the frame."
+    }
+  },
+  "wardrobe": {
+    "top": "Light summer vacation outfit such as a loose linen shirt, crop-length top, or airy blouse.",
+    "bottom": "High-waisted shorts, light fabric skirt, or relaxed summer trousers suitable for travel.",
+    "headwear": "Vacation hat or straw hat.",
+    "accessories": "Sunglasses, minimal jewelry, small necklace, wristwatch."
+  },
+  "scene": {
+    "location": "Inside a commercial airplane cabin.",
+    "background": "Rows of airplane seats and other passengers visible behind her, with faces clearly visible and natural, not blurred.",
+    "details": "Realistic in-flight atmosphere with subtle cabin textures, overhead bins, and window light."
+  },
+  "camera": {
+    "angle": "Front-facing camera perspective, held with one hand slightly above eye level and angled downward.",
+    "lens": "Wide-angle front camera selfie lens.",
+    "aspect_ratio": "9:16",
+    "depth_of_field": "Balanced depth of field, keeping both the subject and background passengers naturally visible."
+  },
+  "lighting": {
+    "type": "Soft ambient airplane cabin lighting combined with natural daylight from the window.",
+    "quality": "Even, natural lighting with gentle highlights and realistic shadows."
+  }
+}
+```
+
+</details>
+
+<details><summary><b>Indie Bar Night Scene</b></summary>
+
+```text
+Ultra-realistic Turkish indie-series night scene in a slightly alternative bar in Ankara’s hipster neighborhood, vertical frame like a phone story. Warm tungsten light bulbs hang from the ceiling, some bare, some inside mismatched shades. Walls are exposed brick covered with gig posters and old black-and-white Turkish rock photos. In the foreground, a 27-year-old Turkish-looking curvy blonde woman with a soft, slightly chubby figure sits sideways on a high bar stool at a wooden counter. She wears high-waisted jeans and a fitted black tank top under an oversized vintage denim jacket, unbuttoned, giving a casual but slightly sexy look, with messy wavy hair.
+
+On the counter in front of her is a tall slim pint glass and a brown bottle of **Bomonti Filtresiz 100% Malt** with the label turned halfway toward the camera, condensation visible. Nearby, a coaster and a smaller bottle of **Efes Malt** hint that she’s tried a couple of different beers. Behind the bar, shelves hold a mix of bottles, with several **Efes Draft barrel-shaped cans**, **Efes Özel Seri** and **Efes Dark** bottles standing alongside imported names like **Miller**, **Beck’s**, and **Corona**, labels visible but not perfectly front-facing, just real bar clutter.
+
+She is looking down at her phone, thumb mid-scroll, with a smirk as if she’s about to post a sarcastic “iyi geceler” or “evde oturuyorum diye yalan söyledim” tweet from the bar. The bluish glow of the screen illuminates her face and neckline while the rest of her body is warmer from the ambient light.
+
+Around her, the bar crowd is very Ankara-hipster: a small group in the background sits at a table playing tavla, craft beers and **Efes Haus** bottles on their table; a bearded guy in a beanie leans on the bar talking to the bartender; another girl with colored hair smokes at the open door. A small live music stage in the corner has a drum kit and amps, but no band at the moment.
+
+The handheld vertical composition is slightly skewed: the top of a neon **Efes Pilsen** sign is cut off at the top edge; the corner of the bar and one customer are cropped at the side. There is mild motion blur on people walking behind, visible digital noise in the shadowy corners, reflections on bottles, and realistic skin texture on the woman without smoothing. Colors are warm orange and amber with pops of Efes blue and green from some bottle labels. The whole scene feels like a genuine Ankara alt bar night shot on a phone, with Bomonti and Efes products naturally embedded.
+```
+
+</details>
+
+<details><summary><b>Ink Wash Karst Peaks and Empty Sampan</b></summary>
+
+```text
+Misty limestone karst peaks rising above a calm river with a single empty wooden sampan moored among reeds, painted as a traditional Chinese ink wash landscape on rice paper. Tall rounded peaks fade into layered mist from dark foreground ink to pale grey silhouettes in the distance. A twisted pine clings to the nearest cliff, its needles drawn in quick dry-brush strokes. The small sampan with a curved woven canopy rests near the lower left shore, reflected faintly in the still water. Generous empty paper space for sky and river, soft ink bleeds where wet washes meet, a few birds as tiny brush flicks far away. Monochrome black and grey ink with one faint touch of warm ochre on the boat canopy. Visible rice paper fiber texture, wide horizontal handscroll composition filling the entire frame edge to edge, quiet contemplative mood. No people, no text, no calligraphy, no seals, no signature.
+```
+
+</details>
+
+<details><summary><b>Ink-Burst Fox Spirit Transformation</b></summary>
+
+```text
+SCENE
+A visceral solo transformation test on a charcoal-gray studio stage. The camera pushes in on Yan as something wakes inside her, then cuts wide as she slams the floor in a big ink explosion and becomes a white fox: she crawls forward as her hands turn into paws, whips her human form off inside an ink vortex, and drives four paws into the floor for the largest burst. She holds a stalking stance and growls. Ink and paint carry all of the energy, building from strong to strongest.
+
+REFERENCES
+@Image 1 - Yan: adult woman, amber-brown eyes, untidy black hair with an uneven fringe, patched oatmeal wrap with faded green trim and a loose collar, brown waist tie, ragged dark sage skirt with a muddy hem, worn brown shoes, tied cloth bundle. Use it for her face, costume and painted finish. Her pose, gaze and every action come from this prompt.
+@Image 2 - the same character's completed form: slender white female fox, amber almond eyes, tall ears, long legs, one broad tail with a jade outer band and white center, large quiet painted fur masses with sparse silhouette tufts. Use it for design. Her stance and gaze come from this prompt.
+
+FIRST FRAME
+Full-body Yan from @Image 1, centered and facing the camera, already mid-stagger: hunched, one hand clutching the wrap over her chest, shoulders heaving, head bowed so her hair falls forward over her face. Her tied bundle lies on the floor beside her feet at picture-left. Charcoal-gray stage.
+
+FORMAT
+15 seconds, portrait 3:4. Two shots with one hard cut at 3.0s. C1 is short and the cut lands at 3.0s on her drop. Each shot runs continuously.
+
+CAMERA
+C1 (0.0-3.0s): 47° field of view, eye level. Starts on her full body and dollies straight in, fast and smooth, reaching a bust shot (head and shoulders) by 2.0s, then holds on her face.
+C2 (3.0-15.0s): wide shot, 47° field of view, camera slightly above her and looking a little down at the floor contacts. Constant distance. The camera pans slowly with her travel toward screen-right so her entire body and tail stay inside generous frame margins. A hard jolt on each impact, the biggest on the final one. During the slowdown (8.8-10.0s), one smooth arc of about 15 degrees, same side of the action, settling on a three-quarter front view of the fox facing screen-right. From 10.0s to the end, a very slow creep-in that keeps her whole body and tail in frame. Lens stays at 47° throughout.
+
+TIMELINE
+0.0s to 3.0s - CUT C1 - PUSH-IN
+The camera dollies in from full body to bust as Yan staggers to a stop, breath ragged, shoulders heaving. At about 2.0s she lifts her head and stares straight into the lens. Her brown irises turn fox amber and her pupils narrow to thin vertical slits; her upper lip lifts off clenched teeth. At 2.7s she drops sharply down out of the bottom of the frame.
+
+3.0s HARD CUT
+
+3.0s to 15.0s - CUT C2 - WIDE
+3.0-4.2s: FIRST IMPACT, already strong. Full-body Yan, left of center, lands in a deep crouch and drives both palms into the floor. A huge fan of black ink and jade paint explodes upward and outward from her hands, rising about twice her standing height and reaching both side edges of the frame, with jagged spikes and flying droplets. The stage behind her drops to near black for a split-second hit-stop so the ink reads at full contrast; her hair and sleeves blast upward. Release sharply. The ink rains down and leaves a wide splatter around her.
+4.2-6.5s: Ink still falling, she lifts her head, fox-amber eyes fixed toward screen-right, and crawls forward low and heavy, hand over hand, palms and knees always on the floor. Each hand plant stamps a black ink print. White fur floods down her forearms from under the sleeves and her fingers fuse into white forepaws with dark claws.
+6.5-8.0s: SECOND IMPACT, bigger: she whips her whole body in a violent shake from head to hips. A tight vortex of black and jade ink spins up around her, taller than she is, hiding her body for a beat. Inside the spin her clothes, shoes and hair dissolve into the swirling ink, her hair turns white into the neck ruff, her face lengthens into the fox muzzle and one broad jade-edged tail sweeps out. Every scrap of cloth becomes ink.
+8.0-8.5s: The vortex snaps inward and the complete fox stands inside it on four planted paws. She sinks her full weight down hard through all four legs into the floor.
+At 8.5s: THIRD AND LARGEST IMPACT, the biggest of all: a radial explosion of saturated magenta and jade paint, black ink, jagged white lightning strokes and a broad ground shockwave fills the entire frame, edge to edge, around the fox. Keep this strike sharp and full speed, followed by a hit-stop of about 0.3s. From 8.8-10.0s the paint keeps expanding at roughly 70 percent speed during the camera arc while she settles into her stance. Restore full speed by 10.0s.
+10.0-15.0s: The burst tears apart into falling ink droplets, and the floor around her paws is splattered magenta and jade. She holds a stalking stance: standing on all four long legs, belly held well clear of the floor, shoulders and head lowered to the same height, neck reaching forward, near forepaw extended forward, tail extended low behind her. Her amber eyes stay fixed off-screen right. At about 11.5s her ears pin back, the ruff bristles, her lip peels back from bared teeth and a low, rough growl builds, then pulses once harder. Small tense weight shifts keep her alive; she holds the standing stance through the final frame.
+
+PERFORMANCE
+Driven and predatory from the first frame: compressed anticipation, explosive release, heavy follow-through. Every effect is triggered by a body action: palms, shake, paws driven down. She is heavy and grounded the whole time; she travels only by crawling, and her weight stays pressed into the floor. Her face stays visible and active until the vortex, eyes always locked on a target: the lens in C1, screen-right in C2.
+
+PHYSICS
+One connected, opaque body with continuous ground contact through all of C2. Hands plant before they become paws. Cloth turns to liquid ink as it leaves her body; the ink spins, flies outward with weight and splashes on the floor. The fox's four paws stay planted from 8.0s to the end. The tied bundle stays at its floor position, unchanged. Ink fills the background and surroundings while her silhouette stays readable against it.
+
+LIGHTING
+Neutral top-front studio light on a charcoal-gray stage, 5600K, readable contrast. On each impact the stage behind her drops to near black for the hit-stop, a little deeper each time, and a hard white flash rims her silhouette. Her skin, clothes, eyes and fur carry only neutral light and shadow; her eyes are matte painted amber, lit like the rest of her face. All color in the frame comes from the ink and paint pigment. Readable white fur, amber eyes and jade tail markings return as the energy decays.
+
+AUDIO
+0.0s to 3.0s - CUT C1 - AUDIO
+SPOKEN DIALOGUE: NONE
+Ragged breathing, two heavy heartbeat thumps, a low rumble rising as the camera closes in, a sharp whoosh as she drops.
+3.0s to 15.0s - CUT C2 - AUDIO
+SPOKEN DIALOGUE: NONE
+Three bass impacts, each heavier than the last. Palm slap with a deep impact and a big wet ink explosion. Heavy padded contacts and wet ink stamps on the crawl. The shake: a ripping cloth tear swallowed by a spinning wet whoosh. The final burst: the heaviest impact, an electrical lightning crack and tearing brush-stroke whooshes, with the trailing rumble stretched through the slowdown. Then pattering ink droplets, a low rough breathy fox growl that pulses once harder, and tense breathing. Foley and impacts only; the growl is the only animal vocal.
+
+STYLE
+Graphic 2.5D painted animation. Broad gouache masses, matte hair and fur, shaped shadows and selective facial modeling. Worn cloth and repairs stay visible until the vortex. The fox has large quiet fur masses, minimal internal facets and sparse silhouette tufts. Thick calligraphic black ink, ragged jade and magenta paint fans, sharp motion smears. Brief posterized impact frames punctuate fluid follow-through; surface brushwork stays stable.
+
+FINAL STATE
+One complete white fox from @Image 2, fully visible in a three-quarter front view angled toward screen-right, standing in the stalking stance: four legs standing, near forepaw extended, head and shoulders low, tail extended low behind. Ears pinned back, lip curled off bared teeth, amber eyes fixed off-screen right. Ink droplets drift down; magenta and jade splatter marks the floor. The growl fades into tense breathing.
+
+LOCKS
+One character, one transformation, one fox with four legs and one tail at the end. One cut, at 3.0s. Whole body and entire tail inside the frame for all of C2. Effects escalate: strong at the palm strike, bigger in the vortex, largest at 8.5s. All four paws stay on the floor from 8.0s to the end. Light on her body is always neutral; magenta appears only as ink and paint. Clothing becomes ink entirely; the floor holds only ink splatter. The tied bundle stays on the floor where it started. Clean frame without text or logos.
+```
+
+</details>
+
+<details><summary><b>Insert Yourself into a Video with Top Athletes</b></summary>
+
+```text
+Act as a Sports Video Editor. You are skilled at editing videos to integrate users with top athletes in iconic scenes.
+Your task is to add the user into the uploaded video with a famous athlete, ensuring a seamless and engaging interaction.
+You will:
+- Maintain the context and action of the original video.
+- Ensure both the athlete and the user are focal points of the scene.
+Rules:
+- Do not alter the athlete's appearance.
+- Keep the scene authentic to the sport's environment.
+Inputs:
+- User’s uploaded video clip
+```
+
+</details>
+
+<details><summary><b>Instagram UI Torn Paper Reveal</b></summary>
+
+```text
+"Recreate this composition maintaining exactly the same style and visual structure, but replacing the specified elements:
+General Composition:
+Divide the image into two sections with a vertical torn paper effect in the center.
+Left side: Instagram profile interface with a circular profile picture at the top, username, stats (posts, followers, following), bio, links, action buttons, circular story highlights, and a post grid.
+Right side: Full-body figure of a standing person.
+Torn Paper Effect:
+Create an irregular torn paper edge separating both sections.
+The paper must have a realistic texture with shadows and depth.
+The person on the right side should appear 'emerging' through the tear.
+Elements to Replace:
+Background/UI Image (left side): Use the provided background image to recreate the Instagram interface, maintaining the same layout, typography, and structure.
+Person (right side): Use the provided face/model image to recreate the full-body figure, maintaining the pose of holding a cell phone and the standing position.
+Visual Style:
+Maintain a professional and modern aesthetic.
+Coherent colors between both sections.
+Natural and realistic lighting.
+Correct proportions and perspective."
+```
+
+</details>
+
+<details><summary><b>Interior Inpainting Reference Prompt</b></summary>
+
+```text
+A luxurious warm interior scene based on the provided reference image. Maintain exact composition, proportions, and camera angle.
+
+Kitchen bar:
+	•	Countertop must strictly use the provided marble reference image.
+	•	Match exact color, pattern, veining, and realistic scale relative to the bar.
+	•	Do not stylize, alter, or reinterpret the marble.
+	•	Marble should integrate naturally with bar edges, reflections, and ambient lighting.
+
+Bar base: warm natural wood.
+
+Accent wall: vertical strip cladding in light gray, fully rounded cylindrical profiles (round, not square, no sharp edges).
+
+Wall division:
+	•	Vertically:
+	•	Upper section: top 2/3 of wall height, strips 0.5 cm diameter
+	•	Lower section: bottom 1/3 of wall height, strips 1 cm diameter
+	•	Horizontally (along wall width):
+	•	Upper section spans first two-thirds of wall width
+	•	Lower section spans remaining one-third
+	•	Smooth transitions, precise spacing, architectural accuracy.
+
+Flooring: polished white Carrara marble.
+Warm ambient lighting, soft indirect hidden lighting, cozy yet luxurious Italian-style high-end interior. Ultra-realistic architectural visualization.
+
+Strict instructions for AI: exact material matching, follow reference image exactly, maintain proportions, do not reinterpret or create new patterns, marble must appear natural and realistic in scale.
+
+⸻
+
+Midjourney / Inpainting Parameters:
+
+--v 6 --style raw --ar 3:4 --quality 2 --iw 2 --no artistic interpretation
+```
+
+</details>
+
+<details><summary><b>Interstellar Style Movie Poster</b></summary>
+
+```text
+A monumental cinematic poster inspired by Interstellar, vast cosmic panorama with a lone astronaut standing on a shallow mirror-like alien ocean, facing a colossal black hole bending starlight across the sky, distant frozen mountains and surreal planetary rings on the horizon, a tiny spacecraft suspended above the atmosphere, swirling dust, mist, drifting ice particles, and luminous nebula clouds filling the background, intense volumetric lighting, cold blue-black space contrasted with warm golden helmet reflections, dramatic backlight, high contrast, awe-filled and melancholic atmosphere, ultra-detailed engraved illustration fused with highly detailed digital painting and refined line art, intricate suit textures, reflective water ripples, celestial distortion, deep shadows, subtle film grain, epic scale, slightly surreal realism, wide shot, low angle perspective, razor-sharp focal point, premium cinematic poster composition, masterpiece quality, rich atmospheric depth, dark void versus radiant stellar glow
+```
+
+</details>
+
+<details><summary><b>Intimate Macro Eye Portrait</b></summary>
+
+```text
+Use the girl’s face from the reference photo: preserve her exact facial features (face shape, eyes, eyebrows, nose, lips, cheekbones), expression, and overall likeness. DO NOT change the identity of the face.
+
+Subject: expressive eyes with dramatic winged eyeliner and long dark eyelashes; perfectly shaped dark arched eyebrows; a barely noticeable, slightly parted expression; her head is tilted to the side, with her face partially hidden by voluminous hair; her gaze is directed straight into the camera, with a mysterious and seductive expression.
+
+Clothing: black long-sleeve top.
+
+Pose: her head rests against her shoulder, with the shoulder covering half of her face; long hair is spread around her face and shoulders, framing her features; her body is turned away from the camera. Her nose and lips are hidden behind the shoulder, with only her eyes visible; her hair falls naturally over the shoulder.
+
+Environment: an indoor setting with a very dark, heavily blurred background, creating an intimate and isolated atmosphere.
+
+Lighting: dramatic, low-contrast lighting; a single light source from the upper left casts soft shadows that emphasize the contours of her face; the light highlights the texture of her skin and hair, enhancing the dark and intimate mood.
+
+Technical details: macro close-up, raw iPhone photo, subtle grain, lifestyle photography, Instagram aesthetic, 3:4 aspect ratio.
+Реалістичне високоякісне чітке фото 8к Зроблено на айфон 16про
+```
+
+</details>
+
+<details><summary><b>Isometric 3D Scene with Weather Effects</b></summary>
+
+```text
+Act as a 3D rendering artist tasked with creating an isometric miniature cartoon scene. Your goal is to:
+- Present a clear, 45° top-down view of a vertical (9:16) composition.
+- Center iconic landmarks in the scene, ensuring precise and delicate modeling.
+- Use soft, refined textures with realistic PBR materials.
+- Integrate gentle, lifelike lighting and shadow effects.
+- Creatively incorporate weather elements into the urban architecture to enhance the dynamic interaction between the city's landscape and atmospheric conditions.
+- Retrieve current weather conditions for the specified city, Sofia, Bulgaria, before rendering.
+- Maintain a clean, unified composition with minimalistic aesthetics and a soft, solid-colored background to highlight the main content.
+- Ensure the overall visual style is fresh and soothing.
+```
+
+</details>
+
+<details><summary><b>Isometric 3D Weather Cityscapes</b></summary>
+
+```text
+Present a clear, 45° top-down isometric miniature 3D cartoon scene of ${city_name:İSTANBUL}, featuring its most iconic landmarks and architectural elements. Use soft, refined textures with realistic PBR materials and gentle, lifelike lighting and shadows. Integrate the current weather conditions directly into the city environment to create an immersive atmospheric mood.
+Use a clean, minimalistic composition with a soft, solid-colored background.
+
+At the top-center, place the title “İSTANBUL” in large bold text, a prominent weather icon beneath it, then the date (small text) and temperature (medium text).
+All text must be centered with consistent spacing, and may subtly overlap the tops of the buildings.
+Square 1080x1080 dimension.
+```
+
+</details>
+
+<details><summary><b>Isometric City Diorama</b></summary>
+
+```text
+{
+  "meta": {
+    "description": "Structured prompt for generating an isometric city diorama in a miniature 3D style, with weather and environment adaptive to the specified city.",
+    "variable": "${City:San Francisco}"
+  },
+  "prompt_structure": {
+    "perspective_and_format": {
+      "view": "Isometric camera view",
+      "format": "Miniature 3D diorama resting on a floating square base serving as the ground plinth.",
+      "ratio": "16:9 (vertical phone)"
+    },
+    "art_style": {
+      "medium": "High-detail 3D render",
+      "texture_quality": "Realistic textures appropriate for the region's architecture (e.g., stone/brick, stucco/adobe, glass/steel).",
+      "vibe": "Toy-like but highly sophisticated architectural model with tactile material qualities."
+    },
+    "environment_and_atmosphere": {
+      "weather": "Typical climate and weather conditions associated with the specified city (e.g., overcast/rainy for London, bright/sunny/arid for Cairo, snowy for Moscow). Lighting matches the weather.",
+      "ground": "Ground surface material typical for the city (e.g., asphalt, cobblestones, sand, dirt). Surface conditions reflect the weather (e.g., wet with reflections if rainy, dry and dusty if arid, snow-covered if winter).",
+      "background": "Sky gradient and atmosphere matching the chosen weather, filling the upper frame."
+    },
+    "architectural_elements": {
+      "housing": "Dense cluster of residential or commercial buildings reflecting the city's vernacular architecture style.",
+      "landmarks": "Isometric miniature representations of iconic landmarks defining the city."
+    },
+    "props_and_details": {
+      "street_level": "Miniature elements specific to the city's vibe (e.g., iconic vehicles like yellow cabs or red buses, specific vegetation like palm trees or deciduous trees, streetlights, signage).",
+      "life": "Tiny, stylized figures dressed in clothing appropriate for the climate and culture."
+    },
+    "text_overlay": {
+      "content": "${City:San Francisco}",
+      "font_style": "White, sans-serif, bold, uppercase letters",
+      "placement": "Centered floating at the very top of the frame."
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>Isometric Cozy Corner Bakery at Dawn</b></summary>
+
+```text
+A charming 3D isometric diorama of a small two-story corner bakery at dawn, floating on a square slab of cobblestone street against a soft cream background. The front and one side wall are cut away like a dollhouse so we can see inside. Ground floor: a brick bread oven glowing orange with a baker in a white apron and cap sliding a tray of loaves out on a wooden peel, cooling racks of baguettes and croissants, burlap flour sacks, a marble counter with a vintage brass scale and a glass display case of pastel macarons. Upstairs: the baker's tiny flat with a quilted bed, a sleeping orange cat on the windowsill, a bookshelf and a steaming teapot. Outside: a striped mint-and-white awning, a hand-painted wooden sign shaped like a croissant with no readable text, a chalkboard easel, a bicycle with a bread basket, potted geraniums and a lamppost still lit. Warm golden sunrise light from the left, long soft shadows, gentle ambient occlusion. Pastel palette of butter yellow, mint, terracotta and cream. Soft clay-like materials, rounded edges, tilt-shift miniature feel, highly detailed, clean render, 1:1.
+```
+
+</details>
+
+<details><summary><b>Isometric Cutaway of a Busy Corner Coffee Roastery</b></summary>
+
+```text
+An isometric cutaway illustration of a busy corner coffee roastery at dawn, landscape 4:3. The two-story brick corner building is sliced open to show a ground-floor roasting room with a large drum roaster, burlap coffee sacks, a cooling tray of glossy brown beans, and a small packing counter, while upstairs a tiny tasting nook has a cupping table and shelves of sample jars. Warm early sunlight enters through tall corner windows; a bicycle leans outside by the door; steam rises from a cup on the counter. Soft clay-like 3D diorama style, neat tiny details, pastel morning palette with terracotta, cream, and sage, clean edges, lively but orderly mood. No readable text, no logos, no watermarks, no brand names on bags or signs.
+```
+
+</details>
+
+<details><summary><b>Isometric Ink-Wash Heritage Scroll</b></summary>
+
+```text
+Hyper-realistic 3D isometric masterpiece, set against a magnificent, endless traditional ink-wash historical parchment scroll unfurling across the background.
+The scene visualizes the historical lineage and cultural heritage of ([Siirt,1890s]), with iconic ancient architecture and landmarks dynamically emerging from the scroll.
+Parchment Annotations (Location-Adaptive):
+The parchment contains handwritten explanatory notes, ink sketches, and diagrammatic drawings that automatically adapt to the location written in parentheses.
+For each location, the parchment includes:
+
+All texts are in Turkish.
+
+• Identity Notes:
+Name of the location, known historical or alternative names, and a short defining description.
+• Time & Origin Notes:
+Century or era of origin, founding civilization or culture, and major historical phases shown with timeline arrows.
+• Function & Usage Notes:
+Original purpose, changes in function over time, and present-day symbolic or cultural role.
+
+• Spatial & Architectural Notes:
+Geographic position (elevated, coastal, central, strategic), architectural character, and defining structural elements illustrated through ink sketches, cross-sections, and elevation drawings.
+• Cultural & Historical Significance Notes:
+Important historical events, legends or myths, and broader cultural or civilizational impact.
+
+All notes are written in calligraphic manuscript style, with parenthetical explanations, directional arrows, compass symbols, scale markings, and cartographic icons pointing toward the emerging 3D structures.
+Composition:
+The scroll flows through space like a river of time, forming a panoramic historical narrative.
+2D black ink brushstrokes, handwritten text, and schematic drawings on the parchment seamlessly transform into high-fidelity 3D monuments rising from the paper.
+
+Visual Effect:
+Ink lines morph into stone, brick, wood, and metal surfaces.
+Flat manuscript illustrations evolve into volumetric, ultra-detailed architecture while remaining visually connected to the parchment.
+Details:
+Aged parchment texture, ink bleed, floating historical calligraphy, red wax or seal stamps, atmospheric clouds and fog wrapping around the structures.
+
+Lighting:
+Epic golden-hour cinematic lighting illuminating the 3D forms, dramatically contrasted against the monochrome ink-and-parchment background.
+Specs:
+8K resolution, depth of field, Unreal Engine 5 render, grand scale, museum-quality realism.
+
+--ar 16:9 --stylize 350
+--no flat, simple, cartoon, borders, frame, table, modern buildings
+
+Bitlis-1890'lar yazıyor fotoğrafta.
+```
+
+</details>
+
+<details><summary><b>Isometric Miniature 3D Cartoon City</b></summary>
+
+```text
+Present a clear, 45° top-down view of a vertical (9:16) isometric miniature 3D cartoon scene, highlighting iconic landmarks centered in the composition to showcase precise and delicate modeling.
+
+The scene features soft, refined textures with realistic PBR materials and gentle, lifelike lighting and shadow effects. Weather elements are creatively integrated into the urban architecture, establishing a dynamic interaction between the city's landscape and atmospheric conditions, creating an immersive weather ambiance.
+
+Use a clean, unified composition with minimalistic aesthetics and a soft, solid-colored background that highlights the main content. The overall visual style is fresh and soothing.
+
+Please retrieve current weather conditions for the specified city before rendering.
+
+City name: ${city_name:Istanbul}
+```
+
+</details>
+
+<details><summary><b>Isometric Miniature 3D Figurine</b></summary>
+
+```text
+Make a miniature, full-body, isometric, realistic figurine of this person, wearing ABC, doing XYZ, on a white background, minimal, 4K resolution.
+```
+
+</details>
+
+<details><summary><b>Isometric Ottoman Historical Scene</b></summary>
+
+```text
+Generate a hyper-realistic 3D isometric masterpiece, set against a magnificent, endless traditional ink-wash Ottoman historical parchment scroll unfurling across the background.
+
+The scene captures the legacy, strategic genius, and world-changing impact of ${name:Fatih Sultan Mehmet} during ${event:the Conquest of Constantinople (1453)}, visualized through symbolic imagery, military motion, and spiritual determination, emerging directly from the parchment itself.
+
+Parchment Annotations (Content-Adaptive – Ottoman History)
+
+The parchment is filled with Ottoman-style handwritten calligraphy, ink sketches, miniature-style illustrations, strategic diagrams, and architectural motifs that dynamically adapt to ${name:Fatih Sultan Mehmet} and ${event:the Conquest of Constantinople (1453)}.
+
+• Identity & Legacy Notes
+
+Bold Ottoman calligraphy spells ${name:Fatih Sultan Mehmet}, accompanied by manuscript annotations explaining his identity and his defining achievement, describing how ${event:the Conquest of Constantinople (1453)} reshaped Ottoman and world history.
+
+• Time & Origin Notes
+
+Flowing ink-drawn timeline arrows mark the reign period and historical context, with strong emphasis on ${event:1453}, connecting regions such as Edirne → Constantinople, symbolizing a decisive historical transition.
+
+• Strategic & Military Innovation Notes
+
+Parchment diagrams adapt to the event and may include:
+
+Large-scale Ottoman cannons
+
+Siege or campaign maps
+
+Fortress layouts, naval routes, or reform schemas
+
+Tactical arrows and motion lines illustrating execution of ${event:the Conquest of Constantinople}
+
+All elements are annotated with handwritten strategic explanations.
+
+• Symbols, Attire & Instruments Notes
+
+Ink sketches with labels dynamically adapt and may include:
+
+Ottoman imperial armor and ceremonial attire
+
+Swords, banners, or tools relevant to ${event}
+
+Architectural silhouettes (cities, mosques, fortresses, institutions)
+
+Imperial tuğra motifs and wax seals
+
+• Cultural & Civilizational Significance Notes
+
+Manuscript-style reflections describe ${event} as:
+
+A major turning point in Ottoman history
+
+A transformation of political, cultural, or civilizational order
+
+A symbol of leadership, vision, and statecraft
+
+A lasting contribution to world heritage
+
+Composition
+
+The parchment scroll flows through space like a river of history, forming a continuous narrative.
+
+At the center, ${name:Fatih Sultan Mehmet} breaks free from the parchment at the climactic moment of ${event:the Conquest of Constantinople}, symbolizing achievement, authority, and historical destiny.
+
+2D → 3D Transformation
+
+Flat black ink drawings—calligraphy, diagrams, symbols, and figures—seamlessly transform into hyper-realistic 3D stone, metal, fabric, skin, smoke, and light, while remaining visually tethered to the parchment surface.
+
+Visual Effects & Details
+
+Aged parchment texture, visible ink bleed, faded edges, floating Ottoman calligraphy fragments, imperial wax seals, geometric motifs, drifting dust particles, mist, and deep atmospheric perspective.
+
+Lighting
+
+Epic golden-hour cinematic lighting illuminates the central figure and key elements of ${event}, dramatically contrasted against the monochrome parchment background, emphasizing historical weight and legacy.
+
+Technical Specs
+
+8K resolution
+Cinematic depth of field
+Unreal Engine 5 render
+Museum-quality realism
+Grand scale
+Ultra-detailed textures
+
+--ar 16:9
+--stylize 350
+--no flat, simple, cartoon, borders, frame, modern buildings
+```
+
+</details>
+
+<details><summary><b>Isometric Potion Shop With a Sleeping Cat</b></summary>
+
+```text
+A cozy isometric 3D cutaway of a small witch's potion shop with a black cat asleep on a stool: two wooden plank walls and a grey stone-tile floor on a plain dark teal background, square 1:1. In the center, a large hammered copper cauldron full of bubbling, glowing green potion stands on a ring of stones with green fire glowing beneath it and green steam. Wooden corner shelves along the back walls are filled with colorful glass potion bottles in green, teal, purple, and orange, with lit candles between them. Dozens of bundles of dried herbs and flowers in purple, yellow, green, and red hang upside down along the top of both walls. At the upper left, a round wooden-framed window shows a crescent moon in a deep blue night sky. On the left: potted plants, small wooden boxes and drawers, and wicker baskets of dried flowers. On the right, a wooden counter holds a brass balance scale, an open spell book with a purple ribbon, candles, and small bottles. In the front right, a black cat sleeps curled up on a round wooden stool. Warm candlelight with green potion glow, stylized semi-low-poly game-art render. No people, no text, no logos.
+```
+
+</details>
+
+<details><summary><b>Isometric Voxel Hot Spring Inn</b></summary>
+
+```text
+An isometric voxel game scene of a mountain hot spring inn at dusk. Colorful blocky voxels build a wooden onsen inn with sliding doors, a tiled roof, and paper lanterns glowing warm orange along a stone path. Steam rises in soft white cubes from outdoor stone baths. Pine trees and rocky cliffs frame the inn; a small stream of blue voxels runs past mossy rocks. Lantern light pools on the path while the sky shifts violet to deep blue. Cheerful game-art palette, clean voxel edges, slight ambient occlusion in crevices, no UI, no text, no characters. Looking slightly down from a classic isometric angle.
+```
+
+</details>
+
+<details><summary><b>Istanbul Crayon Travel Journal</b></summary>
+
+```text
+{
+  "title": "Istanbul Travel Journal",
+  "artwork_style": "vibrant, child-like crayon-style vertical (9:16) illustration",
+  "background": "soft, warm light-toned (e.g., pale yellow)",
+  "color_palette": "bright reds, blues, greens, and other cheerful colors",
+  "atmosphere": "cozy, playful travel atmosphere",
+  "main_scene": {
+    "title": "Winding, Zigzagging Travel Route",
+    "style": "arrows and dotted lines connecting multiple locations",
+    "itinerary": {
+      "city": "Istanbul",
+      "duration": "7-Day Trip",
+      "stops": [
+        {
+          "day": 1,
+          "attraction": "Hagia Sophia & Blue Mosque",
+          "description": "Exploring giant, colorful mosques that look like castles from a fairytale!"
+        },
+        {
+          "day": 2,
+          "attraction": "Topkapi Palace",
+          "description": "Visiting the home of sultans, a huge palace with sparkly jewels!"
+        },
+        {
+          "day": 3,
+          "attraction": "Grand Bazaar & Spice Bazaar",
+          "description": "Getting lost in a giant maze of shops with sparkly lamps and sweet smells!"
+        },
+        {
+          "day": 4,
+          "attraction": "Bosphorus Cruise",
+          "description": "Sailing on a big boat between two continents, Europe and Asia!"
+        },
+        {
+          "day": 5,
+          "attraction": "Galata Tower",
+          "description": "Climbing a super tall tower to see all of Istanbul from the sky!"
+        },
+        {
+          "day": 6,
+          "attraction": "Princes' Islands",
+          "description": "Riding in a horse-drawn carriage on an island with no cars!"
+        },
+        {
+          "day": 7,
+          "attraction": "Turkish Delight & Baklava",
+          "description": "Eating yummy, sticky, and sweet Turkish candies before we go home. What a treat!"
+        }
+      ]
+    }
+  },
+  "surrounding_elements": {
+    "characters": [
+      {
+        "description": "A child holding a simit (a yummy Turkish bagel)"
+      },
+      {
+        "description": "A little adventurer with a backpack and a fez hat"
+      }
+    ],
+    "landmarks": [
+      "A cute, round Hagia Sophia with a smiley face",
+      "A tall and colorful Galata Tower",
+      "A friendly-looking Bosphorus Bridge"
+    ],
+    "signboards": [
+      "Don’t get lost in the Grand Bazaar!",
+      "Seagulls ahead!",
+      "Yummy Turkish Delight this way!"
+    ],
+    "phrases": [
+      "Istanbul travel memories unlocked!",
+      "Istanbul food adventure!",
+      "Where to next?"
+    ],
+    "food_icons": [
+      "A cartoonish Turkish ice cream cone (dondurma)",
+      "A smiling piece of baklava",
+      "A colorful plate of Turkish delight (lokum)"
+    ],
+    "exclamations": [
+      "I didn’t know Istanbul was so fun!",
+      "I want to ride the ferry again!"
+    ]
+  },
+  "overall_style": {
+    "art_style": "Crayon / children’s hand-drawn travel diary style",
+    "palette": "Bright, warm, colorful palette",
+    "composition": "Cozy but full and lively composition",
+    "emphasis": "The joy of exploring",
+    "font": "Cute handwritten font",
+    "feeling": "A young child’s fun travel-journal entry"
+  }
+}
+```
+
+</details>
 
 <details><summary><b>Istanbul Plaza Office Selfie</b></summary>
 
@@ -55,6 +1201,14 @@ A wide panel of glazed Iznik ceramic tiles shows a tall dark green cypress tree 
 
 ```text
 A photorealistic Halloween night photograph of five glowing carved jack-o'-lanterns on the weathered wooden porch steps of an old white clapboard farmhouse, wide landscape 16:9. On the upper step: one with triangle eyes and a jagged toothy grin, and one with round surprised eyes and an open O-shaped mouth. On the lower step: triangle eyes and a toothy grin on the far left, smiling crescent eyes in the center, and on the right a carved black cat silhouette with an arched back, backlit by candlelight. Three small white mini pumpkins sit on the top step at the right, beside a white painted porch post with an old straw broom leaning against it. A white wooden railing runs down the left side, and a glowing old brass hurricane lantern hangs on the house wall at the upper left. Dry orange and red maple leaves are scattered over the worn grey steps. Beyond the porch, bare tree silhouettes stand against a dark blue night sky with a small full moon behind thin clouds at the upper right. Low camera angle, shallow depth of field, warm candle glow against cool blue night, cozy and festive mood. No people, no text, no logos.
+```
+
+</details>
+
+<details><summary><b>Japanese Woodblock Print of Mount Fuji Reflected at Dawn</b></summary>
+
+```text
+A traditional Japanese ukiyo-e woodblock print of Mount Fuji reflected in a calm lake at dawn, tall portrait 3:4. Mount Fuji rises in the upper half as a simple snow-capped cone with crisp indigo and white slopes, its perfect mirror image filling the still lake below. A pale peach and gold dawn sky washes behind the peak, with a few flat layered clouds in soft pink. Along the near shore, a thin line of dark pine silhouettes and a small empty wooden fishing pier sit low in the foreground; one empty skiff floats near the pier. Flat color blocks, visible woodgrain texture, fine ink outlines, classic Edo-period print style, quiet and balanced composition. No people, no text, no signatures, no seals, no watermarks, no letters.
 ```
 
 </details>
@@ -2662,6 +3816,16 @@ Quote = "You shall not pass!"
 
 </details>
 
+<details><summary><b>Mushroom-Embroidered Knit Cape Cardigan Outfit</b></summary>
+
+```text
+[Your character], full-body view, wearing:
+
+olive green knitted cape cardigan, wide flowing poncho silhouette, hip length cape with continuous fabric draping from shoulders to hem, broad sloping sides and loose open lower edges, round neckline with warm chestnut brown knitted Peter Pan collar, two rounded collar lobes with scalloped edges, layered textured brown knitting across collar, small embroidered red mushrooms with white spotted caps and ivory stems on both collar tips, chestnut brown knitted cords tied in a long loose bow at center neckline, long brown cord ends hanging down chest, olive green center front button band, single vertical row of small round ivory buttons with decorative silver rims, two raised olive green cable knit columns flanking button band, dense horizontal knit stitches across cape body, raglan style knitted shoulder lines, scattered red and ivory mushroom embroidery near both lower front sides, dark green embroidered winding stems and tiny leaves, gently flared olive green hem, brown collar and olive green cape body
+```
+
+</details>
+
 <details><summary><b>Mystical Gothic Skull Portrait</b></summary>
 
 ```text
@@ -3713,6 +4877,32 @@ Create a beautiful nostalgic anime film development board with soothing countrys
 
 </details>
 
+<details><summary><b>Ocean of Memories: Dawn Beach with Glowing Bottles</b></summary>
+
+```text
+[Global Setting] 30-second poetic magical realism sequence, 16:9, 4K, photoreal, emotional atmosphere. A quiet, wide sandy beach at dawn. The ocean is perfectly calm, pale pink and soft gold light spreading across the horizon, gentle mist over the water. No dialogue, no text on screen.
+
+[Character] A woman in her 40s, long loose dark hair moving in the breeze, a simple oversized cream knit sweater and a long linen skirt, barefoot in the wet sand. Calm, melancholic, gentle eyes. She holds an old pale seashell, worn smooth by time.
+
+[0–2s] Medium shot. She stands at the water's edge, holding the old seashell to her ear, eyes closed. She hears only silence. Soft waves touch her feet.
+
+[2–8s] All around her, thousands of small glass bottles wash ashore with the gentle waves, each sealed with a cork, each containing a tiny floating glowing light. She kneels, picks one up, uncorks it. A child's laugh echoes softly across the water. Her eyes fill with tears, a small smile.
+
+[8–15s] The camera moves low along the shoreline at sand level. One by one, the bottles begin to glow brighter, warm white and gold, until the entire beach becomes a field of soft lights stretching into the distance.
+
+[15–23s] The waves turn transparent like glass. Beneath the surface, fleeting images appear and dissolve like reflections: an old family house, a birthday cake with candles, two people talking at a kitchen table, a hand holding another hand, faces of people once loved. They drift by gently and fade.
+
+[23–30s] She walks into the shallow water and gently places the seashell back into the sea. A moment of stillness. Then the ocean answers: a warm golden glow spreads from where the shell sank, across the whole surface, all the way to the horizon, meeting the rising sun. She stands bathed in golden light, peaceful. Hold.
+
+[Camera] Slow, gentle, floating movements. Medium shots on her, low tracking along the shoreline, a wide shot for the golden ocean. No cuts, no shaky cam.
+
+[Audio] Soft lapping waves, gentle breeze, silence in the shell, the clink of glass bottles on sand, a child's distant laugh echoing, faint overlapping whispers and laughter from the memories beneath the waves, a delicate piano and soft strings rising, then a warm resonant hum as the ocean glows.
+
+[Consistency] Same woman, same seashell, same beach. Dawn pink light turning golden. Tender, emotional, never dark.
+```
+
+</details>
+
 <details><summary><b>Ocean's Eleven Style Movie Poster</b></summary>
 
 ```text
@@ -3763,6 +4953,28 @@ Act as a versatile Design Mockup Software. You are a tool that allows users to e
 Constraints:
 - Ensure high-quality output in both vector and PNG formats.
 - Provide a seamless user experience with minimal steps required.
+```
+
+</details>
+
+<details><summary><b>One-Man Construction Hyperlapse Building a Data Center</b></summary>
+
+```text
+Construction hyperlapse of one man building an entire data center on an empty flat plot, one continuous locked-off wide shot. The builder is [describe your builder, e.g. a stocky man in his 40s in a hi-vis vest, hard hat, work trousers and muddy boots, or attach a reference image of your character]. The camera is fixed on a tall tripod at the edge of the plot, looking across graded ground toward a distant tree line. The camera stays completely fixed: no pan, tilt, zoom, reframing or cuts.
+
+Time runs extremely fast. The man is always mid-task with motion blur, and the building grows only because he works.
+
+0-2s: Bare levelled ground. He walks in and pegs out a huge rectangle with stakes and string.
+2-4s: Concrete foundation slab spreads across the rectangle as he screeds it.
+4-6s: Grey steel frame and wall panels rise around him.
+6-8s: Flat roof goes on, rooftop cooling units and a row of diesel generators appear beside the building.
+8-10s: Cable trunks run in, the finished windowless data center stands complete and he walks to the door. Hold on the finished building.
+
+Shot on iPhone 15 Pro ultra-wide. Overcast daylight, soft shadows. Mud, dust, concrete splashes. Natural motion blur, 24fps, muted realistic colour, subtle grain.
+
+Sound: drills, hammering, concrete mixer and steel clanks only. No music, no speech.
+
+The camera position and horizon stay identical throughout. One man only. No morphing or dissolves, no floating materials, no text, no legible logos.
 ```
 
 </details>
@@ -3964,6 +5176,14 @@ A steaming outdoor hot spring pool beside a traditional Japanese mountain inn du
 
 </details>
 
+<details><summary><b>Painterly Impasto Rainy Kyoto Lantern Street at Dusk</b></summary>
+
+```text
+A painterly impasto oil painting of a rainy stone-paved street in old Kyoto at dusk, tall portrait 3:4, with thick visible brushstrokes and a heavy textured paint surface. Dark wooden two-story machiya townhouses with lattice windows and tiled eaves line both sides of the street, with glowing red paper lanterns hanging along the eaves, larger and closer on the left, smaller and fading into the distance. The wet paving stones shine and reflect warm orange lantern light in long, broken streaks. A lone figure in a long dark coat, holding a red paper umbrella, walks away from the viewer up the middle of the street. At the far end, the silhouette of a tall five-story pagoda rises into the misty blue distance. Above, a deep blue cloudy evening sky with a faint warm glow near the horizon. Rich deep blues against warm orange and red, quiet, nostalgic, rainy mood. No text, no lettering, no logos.
+```
+
+</details>
+
 <details><summary><b>Paper Craft Lighthouse in a Storm</b></summary>
 
 ```text
@@ -3976,6 +5196,14 @@ A handcrafted paper-craft diorama of a lonely lighthouse on a rocky cliff during
 
 ```text
 Animate the paper-craft lighthouse diorama from the input image into a short cinematic loop. Keep the handmade paper look exactly as in the image: layered paper waves rise and crash against the rocks in a gentle stop-motion rhythm, cardstock clouds drift slowly from left to right, and the lighthouse beam sweeps across the scene, lighting up paper fibers as it passes. Add tiny paper rain flecks falling diagonally. Slow camera push-in toward the lighthouse, ${duration:5} seconds, seamless loop, no new objects, no text.
+```
+
+</details>
+
+<details><summary><b>Paper Cut-Out Storybook Character Template</b></summary>
+
+```text
+Paper cut-out animation of a ${subject:little brown bear in a patchwork apron} ${simple_action:watering a tall sunflower}, full-body character, layered paper shapes, handmade paper texture, visible cut edges, soft shadows between layers, flat colorful paper tones, slightly imperfect handcrafted details, minimal paper-collage scenery, charming folk story aesthetic, gentle stop-motion feel, poetic children’s book atmosphere, clean white background
 ```
 
 </details>
@@ -4674,6 +5902,87 @@ upscale this photo and make it look amazing. make it transparent background. fix
 
 </details>
 
+<details><summary><b>Photo-to-Watercolor Travel Art Poster Template</b></summary>
+
+```text
+Create an exceptionally beautiful vertical 4:5 travel-art poster featuring [CITY / COUNTRY / LANDMARK], presented as a sophisticated two-part visual collage.
+
+The composition must have two distinct but harmoniously connected sections.
+
+TOP SECTION — THE REAL WORLD
+
+Use the actual destination as the primary visual reference.
+
+Create a breathtaking photorealistic travel photograph of [DESTINATION].
+Preserve its recognizable architecture, landscape, landmarks and geographical identity.
+Capture beautiful natural lighting, realistic colours and atmospheric depth.
+Include a few subtle human elements, boats, streets or local details where appropriate.
+Keep the composition cinematic, clean and visually immersive.
+
+This section should feel like a photograph taken during a beautiful journey.
+
+MIDDLE SECTION — THE EDITORIAL TRANSITION
+
+Create an elegant transition between photography and illustration.
+
+Add the destination name in beautiful, sophisticated typography.
+Include the country name in small uppercase lettering.
+Add a short poetic travel-inspired tagline.
+Use delicate hand-drawn decorative elements, tiny botanical details or a minimal location emblem.
+Maintain generous white space and a refined editorial layout.
+
+BOTTOM SECTION — THE WORLD REIMAGINED AS ART
+
+Transform the same destination into a beautiful minimalist hand-painted illustration.
+
+Recreate the recognizable landmark or scenery from the upper photograph.
+Use delicate watercolor washes, expressive gouache brushwork and subtle ink outlines.
+Simplify the architecture and surroundings into an elegant artistic composition.
+Retain the destination’s signature colours, shapes and distinctive features.
+Add a few charming details such as tiny boats, flowering branches, little figures, birds or local elements.
+Use soft pastel shades, muted colours and carefully placed vibrant accents.
+Allow some watercolor textures and painted edges to fade naturally into the white background.
+
+The lower illustration must be an artistic interpretation of the SAME location shown above, not an unrelated scene.
+
+ART DIRECTION
+
+Premium illustrated travel magazine aesthetic.
+Contemporary minimalist editorial design.
+Beautiful balance between photography and fine art.
+Delicate watercolor and mixed-media textures.
+Sophisticated typography and generous negative space.
+Soft, harmonious colour palette.
+Elegant, clean and collectible poster appearance.
+
+FINAL COMPOSITION
+
+Vertical 4:5 poster.
+Upper half: approximately 50% photorealistic destination photography.
+Lower half: approximately 50% minimalist watercolor illustration.
+A subtle, elegant transition between both worlds.
+Destination name clearly visible and beautifully typeset.
+No creator watermark, no unnecessary text, no clutter.
+
+DESTINATION TITLE: [CITY / LANDMARK]
+
+COUNTRY: [COUNTRY]
+
+TAGLINE: [SHORT POETIC TRAVEL QUOTE]
+
+The final artwork should communicate one beautiful idea: experience the destination in reality above, then discover its artistic soul below.
+```
+
+</details>
+
+<details><summary><b>Photoreal Arctic Hare Asleep in Powder Snow at Blue Hour</b></summary>
+
+```text
+A photorealistic wildlife photograph of a pure white arctic hare curled asleep in deep powder snow at blue hour, wide landscape 16:9. The hare is tucked into a tight round ball in the lower-left third of the frame, long black-tipped ears folded back along its body, eyes closed, thick winter fur dusted with tiny snow crystals, breath not visible. Soft fresh powder surrounds it in smooth wind-shaped drifts, with a few delicate paw prints leading in from the left and stopping at the resting spot. Behind, a quiet snowy tundra rolls into soft blue dusk haze under a clear cold sky with a thin pink-lavender band on the far horizon. Shot low to the snow with a telephoto lens, shallow depth of field, sharp fur texture on the hare, creamy bokeh on the distant drifts, calm, cold, peaceful mood. No people, no text, no logos, no watermarks.
+```
+
+</details>
+
 <details><summary><b>Photoreal Atlantic Puffin Colony at Golden Hour</b></summary>
 
 ```text
@@ -4686,6 +5995,30 @@ A photoreal wildlife photograph of a small colony of Atlantic puffins standing o
 
 ```text
 A photoreal wildlife photograph of a shaggy ginger Highland cow standing in tall golden grass in a misty Scottish glen at sunrise, in a wide landscape 16:9 frame. The cow stands in the left half of the frame facing the camera, its long rust-orange and copper coat thick and wavy, with tiny dew drops caught in the hair. A heavy fringe of hair hangs over its eyes, its broad pink-brown nose and muzzle are sharp and detailed, and a pair of long, pale, upswept horns curve outward and up from its head. A cloud of warm breath and mist drifts to the right of its head in the cold morning air. In the foreground, tall dry golden grass and dewy seed heads are softly out of focus. Soft golden backlight from a low sun in the upper right makes the edges of the coat glow and fills the glen with warm haze. In the background, blurred rolling hills in muted brown, mauve, and purple tones fade into the mist, with patches of pink heather and a pale silver loch in the right middle distance. Shallow depth of field, 200mm telephoto compression, natural colors, calm, quiet mood. No people, no fences, no text, no watermark.
+```
+
+</details>
+
+<details><summary><b>Photoreal Mandarin Ducks on a Still Autumn Pond</b></summary>
+
+```text
+A photorealistic wildlife photograph of a pair of mandarin ducks floating on a perfectly still autumn pond at first light, wide landscape 16:9. The male sits in the left-center foreground in full breeding plumage: orange sail-like tertial feathers raised on his back, a white crescent above the eye, a purple-green iridescent crest, a chestnut and orange chest with bold white stripes, a red bill, and a white belly, facing slightly right toward the female. The female floats to the right, mottled brown-grey with fine barring and a thin white eye-ring, facing left toward the male. Both birds rest on glassy water with clear, sharp reflections beneath them; many amber and gold maple leaves drift on the surface. Soft pink-gold first light and low mist hang over dark pines and autumn-colored trees on the far bank. Low water-level camera, shallow depth of field, peaceful dawn mood. No people, no text, no logos, no watermarks.
+```
+
+</details>
+
+<details><summary><b>Photoreal Panther Chameleon on a Mossy Rainforest Branch</b></summary>
+
+```text
+A photorealistic macro wildlife photograph of a panther chameleon walking along a thick mossy branch in a misty rainforest, wide landscape 16:9. The chameleon is shown in full side profile facing left, its body bright green with bold orange-red and turquoise bands running along its side, a raised crest on its head, a ridge of small spikes along its back, a turret eye looking forward, and its feet gripping the branch mid-step. Its long tail curls into a tight spiral at the right. The thick, horizontal branch spans the whole frame, covered in green moss and dotted with small clusters of pink star-shaped flowers. Wet, glossy dark-green leaves with fresh dew drops fill the lower corners. Behind, a soft green rainforest background melts into creamy bokeh with round highlights. Shot at eye level with a macro lens, shallow depth of field, sharp scale and skin texture on the chameleon, soft diffused light after rain, calm, vivid, natural mood. No people, no text, no logos.
+```
+
+</details>
+
+<details><summary><b>Photoreal Snowy Owl on a Frosted Fence Post at Dawn</b></summary>
+
+```text
+A photorealistic wildlife photograph of a snowy owl perched on a frosted, weathered wooden fence post in a snowy field at dawn, wide landscape 16:9. The owl sits just right of center, facing the camera with bright yellow eyes, its round white head lightly speckled on top, and its white chest and folded wings covered in fine black and brown barring, with a few loose feathers lifting at the tail in a light breeze. The thick, cracked gray fence post rises from the bottom edge of the frame, its top and sides dusted with delicate white frost crystals. Behind, a wide snow field with soft wind-rippled drifts stretches into low ground mist, with clusters of bare winter trees fading in the haze on the left and right. The sun glows low on the horizon at the far left, washing the sky and snow in pale pink, peach, and lavender tones. Shot with a long telephoto lens at eye level, shallow depth of field, sharp feather detail, creamy background blur, cold, quiet, serene mood. No people, no text, no logos.
 ```
 
 </details>
@@ -4861,1393 +6194,6 @@ Visual style: museum exhibit / engineering infographicColor palette: white backg
     "noise": "Slight digital noise characteristic of phone camera sensors in indoor light."
   }
 }
-```
-
-</details>
-
-<details><summary><b>Photorealistic Tokyo Travel Vlog Portrait</b></summary>
-
-```text
-Create a photorealistic smartphone travel-vlog image of a fictional 20-year-old Japanese woman walking through a lively Tokyo side street in the early evening.
-
-She has shoulder-length black hair with soft natural bangs, warm brown eyes, realistic skin texture, and a friendly, relaxed expression. She wears a light blue denim jacket over a simple white top, a dark pleated skirt, and a small cream-colored crossbody bag.
-
-She holds a clear cup of iced matcha in one hand while filming herself with the other hand at arm's length. Use a wide-angle front-camera perspective with subtle smartphone lens distortion and a spontaneous, candid composition.
-
-The street is lined with small restaurants and local shops. Pedestrians walk naturally in the background. Warm shop lights and neon signs begin to glow beneath a cool evening sky.
-
-Natural body proportions, realistic hands, sharp eyes, balanced skin tones, documentary travel photography, no beauty filter, no readable brand logos, no watermark, 16:9 aspect ratio.
-```
-
-</details>
-
-<details><summary><b>Photorealistic Webcam Bedroom Scene</b></summary>
-
-```text
-{
-  "subject": {
-    "description": "A young woman lying on a bed, holding a smartphone and looking at the screen with a calm, slightly focused expression.",
-    "body": {
-      "type": "female, slim build",
-      "details": "light skin tone, long blonde hair, natural makeup with defined eyes and lips",
-      "pose": "lying on her side on a bed, upper body slightly raised, one arm holding a phone in front of her face, the other arm resting on the bed"
-    },
-    "face": {
-      "expression": "neutral, relaxed, slightly focused",
-      "gaze_direction": "looking at her phone screen",
-      "head_tilt": "slight downward tilt"
-    },
-    "wardrobe": {
-      "top": "black casual t-shirt",
-      "bottom": "soft fabric pajama shorts",
-      "style": "comfortable indoor loungewear / pajama outfit"
-    },
-    "hair": "long blonde hair, straight and slightly voluminous, falling naturally around shoulders"
-  },
-  "scene": {
-    "description": "A bedroom scene captured through a laptop screen using a camera app interface.",
-    "location": "indoor bedroom",
-    "setting": "bed with soft blankets and pillows",
-    "background_elements": "neutral wall, slightly messy bedding, soft fabric textures",
-    "lighting": "low ambient indoor lighting with soft warm tones",
-    "atmosphere": "cozy, intimate, relaxed night-time vibe"
-  },
-  "environment": {
-    "ambience": "dimly lit, quiet indoor environment",
-    "style": "candid digital capture through screen",
-    "depth_of_field": "subject clear within the screen, slight softness overall"
-  },
-  "camera": {
-    "device": "laptop camera (MacBook Photo Booth style)",
-    "angle": "slightly elevated screen perspective",
-    "aspect_ratio": "4:3 within screen frame",
-    "framing": "the subject appears inside the laptop display, with the laptop bezel partially visible",
-    "focus": "moderate focus, slightly soft typical webcam quality"
-  },
-  "interface": {
-    "visible_ui": "Photo Booth application interface visible on screen",
-    "elements": "top bar with 'Photo Booth' text, bottom center red shutter button, small UI icons",
-    "screen_effect": "subtle screen glare, pixel softness, digital display look"
-  },
-  "image_quality": {
-    "resolution": "webcam-like quality",
-    "grain": "visible digital noise due to low light",
-    "sharpness": "slightly soft, not highly detailed",
-    "compression_artifacts": "minor digital artifacts",
-    "dynamic_range": "limited, darker shadows with some highlight softness"
-  },
-  "lighting": {
-    "type": "low indoor ambient light",
-    "quality": "soft, slightly uneven, warm tones",
-    "effects": "gentle shadows, subtle highlights on face"
-  },
-  "color_grading": {
-    "tone": "warm and muted",
-    "temperature": "slightly warm",
-    "contrast": "low to moderate",
-    "saturation": "slightly reduced, natural indoor tones"
-  },
-  "rendering": {
-    "style": "photorealistic webcam capture",
-    "quality": "intentionally imperfect, screen-captured feel",
-    "skin_texture": "natural, slightly softened by low resolution",
-    "post_processing": "minimal, raw webcam look"
-  },
-  "artifacts": {
-    "screen_glare": "subtle reflections on laptop screen",
-    "noise_pattern": "visible low-light grain",
-    "chromatic_aberration": "minimal",
-    "motion_blur": "none"
-  },
-  "constraints": {
-    "focus_priority": "subject inside the screen is the main focus",
-    "avoid": "overly sharp DSLR look, studio lighting, artificial filters"
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Picture Book Character Turnaround Brief Builder</b></summary>
-
-```text
-Act as a children's picture book character designer and art director. I will give you a rough character idea, and you will turn it into a consistent, reusable character design plus two ready-to-use image prompts: a character turnaround sheet, and a first story scene that keeps the character exactly on model.
-
-Character idea: ${character:a gentle river otter who runs a tiny floating library for the animals of the riverbank}
-Reader age: ${age:3 to 6 years}
-Story mood: ${mood:cozy, curious, a little bit funny}
-Art style: ${style:soft watercolor and colored pencil on textured paper, warm and hand-made}
-First scene to illustrate: ${scene:story hour on the library raft at sunset, reading aloud to a small audience of riverbank animals}
-
-Please produce:
-
-1. Character bible
-   - Name suggestions (three, easy to read aloud) and one-line personality.
-   - Silhouette: the shape a child could recognize from a shadow alone.
-   - Proportions: head-to-body ratio and any exaggerations that make the character friendly.
-   - Fixed design details that must never change between images: fur or skin colors (name each color simply, for example "warm chestnut brown"), clothing, one signature prop, and one small quirk (for example a crooked whisker).
-   - Palette: 5 colors for the character and 3 for their world.
-   - Expressions: four key expressions with a short description of eyes, brows, and mouth.
-
-2. Turnaround sheet prompt
-   A single, detailed image prompt for an AI image generator showing the character on a plain off-white background in four poses in one row: front, three-quarter, side, and back view, all at the same scale, plus a small row of three facial expressions underneath. Repeat every fixed design detail in the prompt. Include style, lighting, and "no text, no labels" at the end, and recommend a wide aspect ratio.
-
-3. First scene prompt
-   A second image prompt for the first scene that is a clear follow-on of the turnaround sheet: the same character with every fixed design detail restated word for word, now placed in the scene, with composition notes that leave clean space for one or two lines of picture book text. Recommend an aspect ratio for a double-page spread.
-
-4. Consistency checklist
-   Five short checks I can use to compare any new image with the turnaround sheet before I accept it.
-
-Rules: keep everything gentle and age-appropriate, avoid any resemblance to existing famous characters, and keep the language simple enough to read to a child where it describes the character.
-```
-
-</details>
-
-<details><summary><b>Pilates Studio Soft Daylight</b></summary>
-
-```text
-{
-  "category": "PILATES_STUDIO_SOFT_DAYLIGHT",
-  "identity_lock": {
-    "enabled": true,
-    "priority": "ABSOLUTE_MAX",
-    "instruction": "Preserve exact reference identity and facial proportions. Adult 21+ only."
-  },
-  "subject": {
-    "demographics": "Adult woman, 21-29, match reference identity.",
-    "hair": {
-      "color": "Match reference.",
-      "style": "High ponytail or neat bun (realistic, not perfect)",
-      "texture": "Strands visible, a few flyaways",
-      "movement": "Minimal"
-    },
-    "face": {
-      "eyes": "Exact reference eyes; calm focus",
-      "skin_details": "Natural texture; subtle workout glow (not oily)",
-      "micro_details": "Preserve marks"
-    },
-    "clothing": {
-      "outfit": "Minimal activewear set (no logos/text)",
-      "fabric": "Athletic knit texture visible; realistic tension at seams"
-    },
-    "accessories": {
-      "jewelry": [
-        "Small silver hoops optional (can be removed for workout realism)"
-      ]
-    }
-  },
-  "pose": {
-    "type": "Post-session candid",
-    "orientation": "Half-body seated on mat",
-    "hands": "One hand holding water bottle (unbranded), other resting on knee",
-    "gaze": "Near-direct eye contact",
-    "expression": "Soft proud smile"
-  },
-  "setting": {
-    "environment": "Pilates studio",
-    "background_elements": [
-      "Neutral studio walls",
-      "Mirrors blurred without reflections glitches",
-      "Yoga mats and props (no logos)"
-    ],
-    "depth": "Subject sharp; background soft"
-  },
-  "camera": {
-    "shot_type": "Half-body portrait",
-    "angle": "Eye level or slightly above",
-    "focal_length_equivalent": "26mm phone OR 50mm pro",
-    "framing": "4:5",
-    "focus": "Eyes sharp; background bokeh"
-  },
-  "lighting": {
-    "source": "Soft window daylight",
-    "direction": "Gentle side/front",
-    "highlights": "Natural highlights on cheekbones",
-    "shadows": "Soft, flattering"
-  },
-  "mood_and_expression": {
-    "tone": "Clean, sporty, calm confidence",
-    "atmosphere": "Minimal, airy"
-  },
-  "style_and_realism": {
-    "style": "Photoreal fitness lifestyle",
-    "imperfections": "Mild noise, subtle sweat glow"
-  },
-  "technical_details": {
-    "aspect_ratio": "4:5",
-    "resolution": "High",
-    "noise": "Low to mild",
-    "mode_variants": {
-      "amateur": "Phone candid framing, mild noise, slight tilt",
-      "pro": "Editorial fitness look, crisp micro-contrast, clean exposure"
-    }
-  },
-  "constraints": {
-    "adult_only": true,
-    "single_subject_only": true,
-    "no_text": true,
-    "no_logos": true,
-    "no_watermarks": true
-  },
-  "negative_prompt": [
-    "identity drift",
-    "face morphing",
-    "mirror glitches",
-    "duplicate reflections",
-    "extra fingers",
-    "bad anatomy",
-    "readable text",
-    "logos",
-    "watermark",
-    "plastic skin",
-    "over-smoothing"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>Pina Colada Cocktail Video</b></summary>
-
-```text
-Cinematic vertical smartphone video, portrait orientation, centered composition with strong top and bottom headroom. Elegant Piña Colada cocktail inside a coconut shell glass placed in the middle of a tall frame. Clean marble bar surface only in lower third, soft tropical daylight, palm leaf shadows moving gently across background. Slow creamy Piña Colada pour with visible thick texture and condensation. Camera performs slow vertical push-in macro movement, shallow depth of field, luxury beverage commercial style, minimal aesthetic, portrait framing, vertical composition, tall frame, 9:16 aspect ratio, no text.
-```
-
-</details>
-
-<details><summary><b>Pink Hair Glasses Selfie</b></summary>
-
-```text
-Create a realistic selfie photo of a girl with the following features:
-- Transparent glasses
-- Vibrant pink hair, styled naturally
-- Natural lighting to enhance realism
-- Casual expression, capturing a candid moment
-- Ensure high resolution and detail to make it look like a genuine selfie.
-```
-
-</details>
-
-<details><summary><b>Pink Hair Green Eyes Cozy Bedroom Portrait</b></summary>
-
-```text
-/imagine prompt: Ultra realistic photographic portrait of a 30-year-old Asian woman with facial features inspired by the original character, featuring short pink hair and green eyes, wearing a glossy red sleeveless zippered top and pink skirt, indoor bedroom setting, high angle shot, natural skin microtextures, authentic pores, soft sheen, subtle highlights, warm and directional lighting, high detail, photorealistic rendering. /monochrome /calm /naturaltone /highdetail --ar 9:16 --style raw --v 6.1 --no deformed, bad anatomy, disfigured, poorly drawn face, mutation, extra limbs, ugly, blurry, lowres, bad proportions /added
-```
-
-</details>
-
-<details><summary><b>Pip the Otter Librarian Turnaround Sheet</b></summary>
-
-```text
-A children's picture book character turnaround sheet of Pip, a gentle young river otter librarian, drawn in soft watercolor and colored pencil on textured off-white paper. Four full-body views in one row at the same scale, evenly spaced: front view, three-quarter view, side view, and back view. Pip has a rounded, pear-shaped silhouette with a big head (about one third of the body height), short legs, small webbed paws, and a long tapered tail. Fixed design details, identical in every view: warm chestnut brown fur with a cream-colored face, chest, and belly; small round dark eyes with a white highlight; a tiny black button nose; one crooked whisker on the left side of the face; a mustard-yellow knitted scarf wrapped once around the neck with a short fringe; round wire spectacles resting low on the nose; and a small teal satchel worn across the body, with a single brass buckle and a book poking out of the top. Below the four poses, a smaller row of three head-and-shoulders expressions: a warm smile, wide-eyed curious surprise, and a sleepy content yawn. Plain off-white background with a faint paper texture, soft even daylight, gentle colored pencil outlines, light watercolor washes, no cast shadows except a soft ground shadow under each pose. No text, no labels, no arrows, 16:9 wide composition.
-```
-
-</details>
-
-<details><summary><b>Pip the Otter Story Hour on the River</b></summary>
-
-```text
-A children's picture book double-page spread illustration in soft watercolor and colored pencil on textured paper, showing the same character from the turnaround sheet: Pip, a gentle young river otter librarian. Keep every fixed design detail exactly the same: warm chestnut brown fur with a cream-colored face, chest, and belly; small round dark eyes with a white highlight; a tiny black button nose; one crooked whisker on the left side of the face; a mustard-yellow knitted scarf wrapped once around the neck with a short fringe; round wire spectacles resting low on the nose; and a small teal satchel worn across the body with a single brass buckle. Scene: story hour at sunset on Pip's tiny floating library, a wooden raft with a little shed of overflowing bookshelves, a striped canvas roof, and a string of paper lanterns just starting to glow. Pip sits on an upturned crate at the right third of the image, holding an open picture book toward the audience and reading aloud with a warm smile. Gathered on the raft and the grassy bank are a small audience of riverbank animals listening closely: two ducklings, a young beaver hugging its knees, a frog on a lily pad, and a sleepy hedge sparrow on a reed. The river reflects peach and lavender sky, with reeds, dragonflies, and gentle ripples. Leave a calm, softly painted sky area in the upper left third with no important details, as clean space for one or two lines of story text. Cozy, gentle, age-appropriate mood. No text, no letters, no watermark, 16:9 wide composition.
-```
-
-</details>
-
-<details><summary><b>Pixar Style 3D Character from Photo</b></summary>
-
-```text
-3D character render in high-end Pixar Disney animation style, based on the uploaded photo. Preserve facial structure, expression, hairstyle and unique characteristics. Cute but realistic proportions, clean topology, smooth skin, detailed eyes. Standing full body on a plain white studio background, soft even lighting, subtle natural shadow under the feet, global illumination, no props, no distractions. Ultra sharp, 4K, high detail, physically based rendering, balanced colors, cinematic depth, professional studio look, symmetrical framing, photoreal cartoon finish.
-```
-
-</details>
-
-<details><summary><b>Pixar Style Family Wallpaper</b></summary>
-
-```text
-Pixar-style, Disney-style, high quality 3D render, octane render, global illumination, subsurface scattering, ultra detailed, soft cinematic lighting, cute and warm mood.
-
-A happy family of three (father, mother, and their young daughter) reimagined as Pixar-style 3D characters, peeking playfully from behind a wall on the left side.
-
-The father has medium-length slightly wavy brown hair, a short beard, and a warm friendly smile.  
-The mother has long straight brown hair, a bright smile, soft facial features, and elegant appearance.  
-The little girl is around 2–3 years old, with light brown/blonde slightly curly hair, round cheeks, big expressive eyes, and a joyful playful expression.
-
-Use the reference image to preserve facial identity, proportions, hair color, hairstyle, and natural expressions. Keep strong resemblance to the real people while transforming into a stylized Pixar-like character.
-
-Composition: father slightly above, mother centered, child in front leaning forward playfully.
-
-Clothing inspired by cozy winter / Christmas theme with red tones and soft patterns (subtle, not distracting).
-
-Include a cute tabby cat at the bottom looking upward with big shiny eyes.
-
-Color palette: warm beige, peach, cream tones, soft gradients, cozy atmosphere.
-
-Minimal background, textured wall on the left side, characters emerging from behind it.
-
-iPhone lockscreen wallpaper composition, vertical framing, large clean space at the top for clock, ultra aesthetic, depth of field, 4K resolution.
-
-same identity, same person, keep exact likeness from reference photo
-```
-
-</details>
-
-<details><summary><b>Pixel Art Alpine Railway Station at Sunset</b></summary>
-
-```text
-A wide 16-bit era pixel art scene of a tiny alpine railway station in a mountain valley at golden-hour sunset, in the style of a beautifully detailed retro adventure game background, crisp hard-edged pixels with no anti-aliasing and no blur, limited 48-color palette with careful dithering in the sky. In the foreground, a small wooden station building with a steep red tile roof, a round station clock, flower boxes with pink and yellow pixel flowers, a bench, two milk cans, and a hanging lantern just starting to glow. A short cream-and-forest-green steam train with three carriages waits at the platform, a soft white puff of pixel steam rising from its chimney, warm yellow light in its windows. The track curves away to the right over a stone arch viaduct across a turquoise river with tiny white rapids, then disappears into a tunnel in the mountainside. In the midground, a cluster of chalet houses with chimneys, a little church with an onion-dome steeple, pine forests in three shades of green, and a waterfall falling from a cliff. In the background, layered snow-capped peaks in lavender, peach, and rose tones catching the last light, a gradient sunset sky from deep orange at the horizon to violet at the top, a few long pixel clouds, and the first two stars. Small life details: a cat on the platform, birds as two-pixel silhouettes, smoke from chimneys. Clean parallax-style layering, cozy and nostalgic mood, readable silhouettes, consistent pixel scale across the whole image. 16:9 landscape composition. No people, no text, no user interface, no logos, no watermark.
-```
-
-</details>
-
-<details><summary><b>Pixel Art Prompt Generator</b></summary>
-
-```text
-Act as a Pixel Art Prompt Generator. When the user provides a subject, scene, character, object, or idea, generate a detailed image-generation prompt using the following style:
-
-- Chunky low-resolution pixel art
-- Thick black outlines
-- Bold cartoon shapes
-- Big expressive eyes
-- Soft cel-shading with 2-tone shadows
-- Vibrant saturated color palette
-- Bubblegum pink, sky blue, forest green, sunset orange accents
-- Dithered and crosshatched textures
-- Retro 16-bit console RPG aesthetic
-- Cute kawaii-inspired design
-- Subtle grungy details
-- Soft bokeh background lights
-- Dreamy nostalgic atmosphere
-- Upscaled 480p appearance
-- Nearest-neighbor pixel scaling
-- Crisp pixel edges without anti-aliasing
-
-Rules:
-1. Keep the user's subject unchanged.
-2. Expand it into a highly detailed image-generation prompt.
-3. Output only the final prompt unless the user asks otherwise.
-4. Never mention specific living artists or copyrighted styles.
-```
-
-</details>
-
-<details><summary><b>Pixel Dissolve Food Transformation</b></summary>
-
-```text
-Minimalist food photograph, [1080x1080] – a single ${food} rests on a light, matte surface and is captured mid-transformation into a 3D pixelized form: one half remains intact while the other organically fragments into large, floating cubes that drift outward, each cube revealing the object’s texture, ingredients, and colors. Studio lighting with soft, realistic shadows, shallow depth of field, tasteful perspective and composition, hyperrealistic detail, stylish geometric abstraction, subtle motion blur on the cubes, high resolution, cinematic close-up.
-```
-
-</details>
-
-<details><summary><b>Plant Hero Section Image</b></summary>
-
-```text
-Create an image for a hero section with a 16:9 aspect ratio. The image should feature 6-7 different types of plants, all set in a natural environment with sunlight streaming in. Make sure the composition is aesthetically pleasing and suitable for use in a webpage hero section.
-```
-
-</details>
-
-<details><summary><b>Plants and Bouquet Under a Warm Lamp</b></summary>
-
-```text
-{
-  "category": "PLANTS_BOUQUET_WARM_LAMP",
-  "subject": {
-    "demographics": "Adult woman, 21-27, Turkish-looking, youthful vibe but clearly adult.",
-    "hair": {
-      "color": "Dark brown",
-      "style": "Natural, soft, slightly tousled, casual asymmetry",
-      "texture": "Realistic strands, flyaways, roots visible",
-      "movement": "Falls naturally over shoulders; small motion blur allowed in ends"
-    },
-    "face": {
-      "shape": "Oval, soft jawline",
-      "eyes": "Expressive, dark irises, crisp catchlights",
-      "nose": "Defined bridge, natural highlight",
-      "lips": "Soft rosy tint, natural texture lines visible",
-      "skin_details": "Real pores, slight natural blush, no airbrushing",
-      "micro_details": "Fine hair strands across forehead, subtle imperfections preserved"
-    },
-    "clothing": {
-      "outfit": "Trendy black casual outfit, no text/logos",
-      "fabric": "Tactile textile weave visible, gentle wrinkles"
-    },
-    "accessories": {
-      "jewelry": ["Silver hoop earrings"]
-    }
-  },
-  "pose": {
-    "type": "Candid lifestyle portrait",
-    "orientation": "Half-body",
-    "head_position": "Slight tilt; subtle glance slightly left of lens then back to lens feel",
-    "hands": "Holding bouquet wrapped in kraft paper; fingers natural, joints correct",
-    "gaze": "Warm, lively eye contact",
-    "expression": "Sweet confident smile"
-  },
-  "setting": {
-    "environment": "Indoor plant corner",
-    "background_elements": [
-      "Many green plants layered foreground/midground/background",
-      "Warm orange lamp bulb behind subject creating halo glow",
-      "Kraft paper bouquet wrap: creases, twine detail, tactile texture"
-    ],
-    "depth": "Foreground leaf bokeh, subject sharp, background lamp bloom"
-  },
-  "camera": {
-    "shot_type": "Half-body portrait",
-    "angle": "Slightly off-axis, casual handheld",
-    "focal_length_equivalent": "26mm iPhone wide look",
-    "framing": "4:5, asymmetrical composition",
-    "focus": "Eyes sharp, bouquet slightly softer at edges"
-  },
-  "lighting": {
-    "source": "Soft warm key + orange tungsten practical behind",
-    "direction": "Warm side light casts intricate leaf-shadow patterns across face (subtle, flattering)",
-    "highlights": "Gentle highlight on hair and cheekbones",
-    "shadows": "Nuanced warm shadows, comforting atmosphere",
-    "quality": "Soft, warm, tactile"
-  },
-  "mood_and_expression": {
-    "tone": "Cute-relaxed, cozy, candid",
-    "expression": "Lively eyes, soft smile",
-    "atmosphere": "Immersive, spontaneous"
-  },
-  "style_and_realism": {
-    "style": "Photorealistic iPhone snapshot vibe",
-    "fidelity": "High skin and hair detail, no smoothing",
-    "imperfections": "Slight motion blur away from face, mild noise"
-  },
-  "technical_details": {
-    "aspect_ratio": "4:5",
-    "resolution": "High resolution",
-    "noise": "Slight phone sensor noise",
-    "composition": "Imperfect candid framing (slightly awkward angle) but still aesthetic"
-  },
-  "constraints": {
-    "adult_only": true,
-    "no_text": true,
-    "no_logos": true,
-    "no_watermarks": true,
-    "single_subject_only": true,
-    "do_not_show_phone": true
-  },
-  "negative_prompt": [
-    "cgi", "cartoon", "anime", "plastic skin", "over-smoothing",
-    "extra fingers", "warped hands", "duplicate person",
-    "readable text", "logos", "watermark"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>Playful Cat Ear Flash Portrait</b></summary>
-
-```text
-Do not change the girl's facial features, eye shape, eyebrows, nose, or lips. Maintain 100% facial resemblance.
-
-Aspect ratio: 3:4. Ultra-realistic, high-quality, sharp 8K photograph, shot on iPhone 16 Pro Max.
-
-Subject & Pose: A young  woman in a playful cat-inspired look. Medium close-up portrait with a relaxed, candid Pinterest aesthetic. She leans slightly toward the camera with naturally angled shoulders, her head gently tilted, and one hand casually touching her hair or collarbone. Her pose should feel spontaneous, relaxed, feminine, and flirtatious, never stiff or posed like an ID photo. She looks directly into the lens with a playful, confident expression, soft kissy lips, bright expressive eyes, and a sweet, teasing gaze.
-
-Outfit & Accessories: A fitted white corset bustier with thin straps and a front hook closure. A fluffy white cat-ear headband with soft pink inner ears. Layered delicate gold necklaces with small coin pendants and small gold hoop earrings.
-
-Hair: thick, voluminous  hair styled in loose soft beach waves. Center part, with soft strands naturally framing the face and falling over the shoulders.
-
-Nails: Long, elegant square-shaped nails with a glossy milky-white manicure. The nails are neat, feminine, smooth, and clearly visible in the frame.
-
-Makeup: Fresh glowing soft glam makeup with luminous skin, peachy-pink blush, defined lashes, subtle brown eyeshadow, a fine winged eyeliner, glossy nude peach lips, a small black triangle cat nose drawn on the tip of the nose with black eyeliner, and three delicate black cat whiskers drawn on each cheek in the same pencil-drawn style.
-
-Lighting & Camera: Direct flash photography with bright frontal lighting, creating radiant skin, crisp contrast, and a luxurious Instagram editorial look. Eye-level angle with an effortless, natural composition.
-
-Background & Mood: A nighttime garden with dark leafy trees and warm golden fairy lights melting into creamy bokeh. Festive, youthful, playful, flirty, feminine, and coquettish. Stylish Pinterest and Instagram aesthetic, like a chic Halloween or themed party.
-```
-
-</details>
-
-<details><summary><b>Playful Fisheye Candid Portrait</b></summary>
-
-```text
-GPT Image 2.5 on ChatGPT
-
-Prompt: 
-
-Create a realistic fisheye photo of the woman in my uploaded selfie, preserving her exact facial features. She sits on a doorstep in front of weathered green wooden doors, wearing a beige trench coat, ivory turtleneck, and light blue jeans. A curious tabby-and-white cat fills the right foreground with an oversized nose and expressive eyes. Soft daylight, natural textures, playful candid mood, ultra-realistic photography, landscape 16:9, no text.
-```
-
-</details>
-
-<details><summary><b>Playful Ghostbusters Halloween Selfie</b></summary>
-
-```text
-The photograph conveys a casual, playful, and warm mood. It is a festive mirror selfie capturing the joy of getting ready for Halloween. The cozy home atmosphere is enhanced by soft lighting and the presence of a small pet.
-
-Camera Angle:
-The photo is taken in a mirror from a medium distance, framed from the waist up. The camera (phone) is approximately at eye level, creating a straight and natural selfie perspective. The image is in a vertical format, keeping the woman and her pet as the main focus.
-
-Subjects:
-The main subjects are a young woman and a small Chihuahua.
-
-Woman — Appearance and Outfit
-
-Clothing and Accessories:
-The woman is wearing a fitted beige sleeveless jumpsuit/vest inspired by the Ghostbusters uniform.
-
-On the left side of her chest is the official “No Ghost” logo — the classic white ghost inside a red crossed-out circle.
-
-Her waist is accentuated with a wide black tactical belt featuring a large buckle.
-
-She wears a thin, delicate gold chain around her neck.
-
-Several gold bracelets are visible on her left wrist, including one wider and one thinner bracelet.
-
-She is holding a pink iPhone with two cameras in her left hand. The phone partially covers her face, but her smile remains visible.
-
-Pose:
-The woman stands in a relaxed pose, holding the phone in her left hand to take the mirror selfie. With her right hand, she gently holds the dog. She looks directly into the mirror and smiles sweetly, with closed lips and a subtle half-smile.
-
-Hairstyle:
-Her hair is loose, with a natural texture and soft waves. It is styled to one side, adding softness to her appearance.
-
-Makeup:
-Natural makeup enhanced slightly for the Halloween celebration. Her lips are covered with rich berry-toned lipstick, while her eyes are subtly defined with light makeup.
-
-Dog — Appearance and Costume
-
-A small dark-brown Chihuahua with a white patch on its chest. The dog is wearing a cute ghost costume.
-
-The costume is a white poncho with two large oval black eyes and a black mouth drawn on it, resembling a classic “ghost under a sheet.”
-
-The dog looks directly at the camera through the mirror with a calm and curious expression. The woman gently holds the dog with her right hand.
-
-Background and Lighting
-
-Background:
-The setting is a cozy residential room creating a warm home atmosphere.
-
-Part of a bed is visible on the left.
-
-Along the right wall is a large wardrobe with light-colored wooden doors.
-
-A section of parquet or laminate flooring is visible between the wardrobe and the mirror.
-
-The interior is modern, minimalist, and uncluttered.
-
-Lighting:
-Soft, natural, diffused light, likely daylight, fills the room. There are no harsh shadows. The lighting naturally emphasizes the colors of the clothing, the woman’s face, and the dog while creating a warm and cozy atmosphere.
-
-Important: Do not change the facial features or identity from the reference image. Preserve the exact facial structure, eyes, nose, lips, and other distinctive features.
-
-Expression: A subtle, natural half-smile with closed lips.
-
-Format: 3:4
-Quality: Ultra-realistic, high-quality, sharp 8K photograph, natural skin texture, highly detailed, shot on an iPhone 16 Pro.
-```
-
-</details>
-
-<details><summary><b>Playing Card Sorcerer Poster</b></summary>
-
-```text
-A hyper-realistic cinematic movie poster of a powerful sorcerer with the same facial structure and likeness as the uploaded reference photo, bursting through a cracked ${specificcard} playing card. 
-The card explodes outward with stone fragments, dust, and debris frozen mid-air.
-They wear an ornate royal maroon and gold embroidered medieval fantasy jacket, rich fabric textures, intricate detailing, regal and mystical. The sorcerer extends one hand forward toward the viewer, fingers glowing with intense magical energy, subtle golden sparks and dark arcane aura surrounding the hand. 
-Intense piercing gaze, confident and dominant expression, cinematic hero framing.
-Dramatic chiaroscuro lighting, dark moody background, volumetric light rays, ultra-detailed textures, shallow cinematic depth of field.
-Photorealistic face, epic fantasy realism, movie poster composition, high contrast, dynamic motion, dust particles, masterpiece quality, ultra-sharp focus, 8K resolution, cinematic color grading.
-```
-
-</details>
-
-<details><summary><b>Plush Toy Transformation</b></summary>
-
-```text
-Transform the subject or image into a cute plush form with soft textures and rounded shapes. If the image contains a human, preserve the distinctive features so the subject remains recognizable. Otherwise, turn the object or animal into an adorable plush toy using felt or fleece textures. It should have a warm felt or fleece look, simple shapes, and gently crafted eyes, mouth, and facial details. Use a heartwarming pastel or neutral color palette, smooth shading, and subtle stitching to evoke a handmade plush toy. Give it a friendly, cute facial expression, a slightly oversized head, short limbs, and a soft, huggable silhouette. The final image should feel charming, collectible, and like a genuine plush toy. It should be cute, heart-warming, and inviting to hug, while still clearly preserving the recognizability of the original subject.
-```
-
-</details>
-
-<details><summary><b>Pointillist Tide Pool Painting</b></summary>
-
-```text
-A rocky tide pool with orange and purple starfish, green sea anemones, small hermit crab shells, and ribbons of kelp is painted in the Neo-Impressionist pointillist style of Georges Seurat and Paul Signac. The whole canvas is built from thousands of small, distinct dots and short dabs of pure color placed side by side, so the colors mix in the eye: turquoise and violet dots for the clear water, ochre and rose dots for the wet rocks, and sparkling white and lemon dots where the afternoon sun glints on the surface. Barnacle-covered boulders frame the pool, and beyond them a calm sea with a few gentle waves stretches to a soft horizon under a pale peach sky. Small sea snails and pebbles are visible through the shallow water. Luminous, airy, and balanced composition with a low viewpoint close to the pool. Visible canvas texture and the slight relief of oil paint dots. Wide landscape 16:9. No people, no hands, no boats, no text, no signature, no logos.
-```
-
-</details>
-
-<details><summary><b>Pokemon Master Face Swap</b></summary>
-
-```text
-Take the input image, and use it is face and apply it to be Ash the Pokemon master image with his favorite character pikachu.
-```
-
-</details>
-
-<details><summary><b>Policy Safe DALL-E Image Generation</b></summary>
-
-```text
-Please generate an image according to the detailed description provided below. If the request involves copyrighted, content policy restrictions or content policy-violating elements, please substitute them with similar but compliant visuals. My detailed image description is: [detailed image description]
-```
-
-</details>
-
-<details><summary><b>Post-Apocalyptic Scavenger Transformation</b></summary>
-
-```text
-{
-  "prompt": "You will perform an image edit using the person from the provided photo as the main subject. The face must remain clear and unaltered. Transform the subject into a hardened **Wasteland Scavenger/Survivor**, standing vigilant on a windswept dune in a desolate, post-apocalyptic landscape. Emphasize weathered, patched clothing, makeshift gear, gritty textures, and a bleak, survivalist atmosphere.",
-  "details": {
-    "year": "Undefined Post-Apocalyptic Future (e.g., 'After the Collapse')",
-    "genre": "Post-Apocalyptic / Dystopian / Survival",
-    "location": "A vast, desolate desert or barren wasteland. The ground is cracked earth, wind-blown sand, and scattered debris (e.g., rusted car parts, broken signs). A hazy, polluted sky looms overhead, perhaps with a distant, ruined city skyline barely visible on the horizon.",
-    "lighting": "Harsh, muted, and desaturated sunlight, filtering through a dusty, smoggy atmosphere. Strong directional shadows, emphasizing the rough textures of the environment and the subject's gear. Overall tone is gritty and somewhat oppressive.",
-    "camera_angle": "Medium shot to full-body, positioned slightly low to make the subject appear formidable against the stark landscape. The horizon line is low, emphasizing the vast, empty sky. (1:1 composition).",
-    "emotion": "Vigilant, weary, resilient, and determined.",
-    "costume": "Layered, patched-together clothing made from repurposed materials: torn denim, worn leather, tattered canvas. Functional, utilitarian gear like heavy boots, fingerless gloves, and a bandana or makeshift face covering. A visible collection of scavenged items (e.g., pouches, tools, water canteen) strapped to their body.",
-    "color_palette": "Dominated by desaturated earth tones: dusty browns, faded greens, muted grays, and rusty oranges. Punctual pops of faded color from repurposed fabric scraps. The sky is a washed-out pale yellow or sickly green.",
-    "atmosphere": "Bleak, harsh, dangerous, and lonely. The air feels heavy with dust and the silence of a dead world. A constant sense of survival against overwhelming odds.",
-    "subject_expression": "A grim, focused gaze, scanning the horizon for threats or resources. Mouth set in a firm, determined line. Hair is windswept and dusty.",
-    "subject_action": "Standing alert, possibly holding a makeshift weapon (e.g., a sharpened pipe, a crossbow, or a sturdy club) resting on their shoulder or held defensively. Their stance is one of readiness and caution.",
-    "environmental_elements": "Fine dust or sand particles visibly blowing in the wind around the subject. Distant, skeletal remains of trees or buildings. Perhaps a single, circling scavenger bird high in the sky. The ground shows cracks and dry vegetation."
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Pottery Studio Workbench at Blue Hour</b></summary>
-
-```text
-Interior workbench room of a cedar lakeside pottery studio at blue hour, looking out to the water. A heavy wooden wedging table fills the foreground with clay tools, a wire cutter, and a few leather-hard bowls. Shelves of drying pots line the left wall. Through a wide rectangular window and open barn-style double bay doors with X-braces, the lake sits deep blue under a violet dusk sky; the wide wooden plank dock with its T-shaped extension, a small red rowboat, and slender birch trees are visible outside. Warm task lamp light on the bench contrasts cool blue window light. Vertical cedar interior boards, plaster accents, pottery wheel at the right edge. Same studio as the golden-hour exterior: weathered vertical cedar boards, dark pitched metal roof with a brick chimney, wide plank dock, two small side windows, pines and birches. Photoreal, landscape 16:9. No people, no text.
-```
-
-</details>
-
-<details><summary><b>POV Smartphone with Space Themed Feed</b></summary>
-
-```text
-Capture a photograph from the viewer’s eyes (female), holding a modern smartphone at chest height with both hands. Her nails are glossy red nail polish with a clean manicure. The camera looks slightly downward at the phone screen, which displays a Twitter-like home timeline UI with NASA-focused posts. The UI should be recognizable and crisp, featuring posts about Artemis, JWST, Hubble, and Mars rover with space imagery thumbnails and verified-style elements.
-
-Ensure the sunlight creates a subtle mirror reflection of the woman’s face over the interface, with half her face lit by the sun and the other in soft shadow. Maintain natural skin texture without a beauty-filter look.
-
-Set the background in Central Park, NYC, with out-of-focus bokeh of trees, walkways, and skyline hints. Use a full-frame DSLR look with a 50mm or 85mm lens at f/1.8 for a shallow depth of field, keeping the phone and hands in crisp focus while achieving a smooth bokeh.
-
-Negative Prompt: Avoid low-res UI, distorted or extra fingers, warped phone, incorrect hand anatomy, oversharpening, cartoonish effects, watermarks, random logos, fake app UI, duplicated icons, and excessive glare obscuring the screen.
-```
-
-</details>
-
-<details><summary><b>Pre-Dawn Scene in Ancient Mecca</b></summary>
-
-```text
-Create a hyper-realistic cinematic pre-dawn scene in ancient Mecca, viewed from a high overhead camera angle above the roof of the Kaaba, looking diagonally downward toward its lower corner and the wide open ground surrounding it. The scene includes:
-
-- The Kaaba standing alone at the center of a large open sandy courtyard, with uneven, dusty ground made of compacted sand and dry soil.
-- The surrounding area is intentionally open and spacious, emphasizing its sacred isolation, with distant clusters of small mud-brick and stone houses marking the early Meccan settlement.
-- Rugged rocky mountains rise on both sides of the valley, fading into the cold bluish pre-dawn haze.
-- A miraculous opening at the lower vertical corner of the Kaaba where two walls meet, with an intense, pure white sacred light shining outward.
-- A woman emerging from the corner opening, wearing simple desert garments and holding a newborn bundle, casting a long shadow across the ground.
-- Faint abstract clusters of luminous white light in the sky suggesting the presence of angels.
-
-The atmosphere should be majestic and sacred, with ultra-realistic rendering, dramatic cinematic lighting, strong volumetric light rays, and highly detailed textures. The scene should be shot like an epic historical film frame, in a 4:5 vertical aspect ratio, with no modern elements.
-```
-
-</details>
-
-<details><summary><b>Prefab BBQ Commercial Kitchen Model</b></summary>
-
-```text
-create a pre-fab kitchen model along with the complete equipments related to bbq setup within the dimension 10'x15'
-```
-
-</details>
-
-<details><summary><b>Print Ready Image Enhancement</b></summary>
-
-```text
-Enhance the provided uploaded image by improving its sharpness, exposer, clarity, quality, and overall visual impact while preserving its core design elements. Ensure that the completed image is suitable for display in professional and digital contexts.
-
-Your task is to:
-- Arrangements need to be made to print the image in 4K resolution.
-
-You will:
-- Use high-resolution and color-accurate techniques to ensure print quality.
-- Tailor images to be engaging and marketable.
-
-Rules:
-- Maintain print resolution of at least 300 DPI.
-- Avoid overly complex designs that detract from the image focus.
-```
-
-</details>
-
-<details><summary><b>Printable Sales Material Images</b></summary>
-
-```text
-Act as a professional image creator. You are an expert in generating high-quality, impactful images suitable for printing and sales.
-
-Your task is to:
-- Create visually stunning images that are ready for print.
-- Ensure each image is impactful and appealing for sales.
-- Focus on themes such as ${theme:product promotion}, ${style:modern}.
-
-You will:
-- Use high-resolution and color-accurate techniques to ensure print quality.
-- Tailor images to be engaging and marketable.
-
-Rules:
-- Maintain print resolution of at least 300 DPI.
-- Avoid overly complex designs that detract from the image focus.
-```
-
-</details>
-
-<details><summary><b>Private Jet Aviation Portrait</b></summary>
-
-```text
-Create a photorealistic 2026 high-fashion aviation portrait beside the turbine of an elite private jet, using a powerful mid-close composition from the waist upward. The adult female cabin crew model is exceptionally glamorous, with captivating hazel eyes, a naturally very broad ribcage and naturally fuller bust with realistic elegant proportions and a naturally close-set silhouette. Her hair is fully open and loose, with luxurious voluminous waves illuminated by the aircraft surroundings.
-
-Design an extraordinary modern airline uniform around a fitted white aviation shirt with premium matte structured cotton: sculptural collar, carefully tailored chest and ribcage shaping, fitted short sleeves, clean architectural seams, slightly open neckline, small polished wing badge and metallic crew nameplate. Add a sophisticated navy-and-cream aviation scarf tied asymmetrically. No jacket or suit. The uniform should feel like a prestigious airline's signature fashion identity rather than corporate workwear.
-
-She stands extremely close to the aircraft fuselage, one shoulder almost touching the polished surface. Her body faces slightly away while her shoulders and head rotate toward camera. One hand is placed against the aircraft beside her head; the other gently holds the scarf at her collar. Her posture creates an elongated diagonal from hand to shoulder to waist. Her hazel eyes lock directly onto the camera with an intense, confident, magnetic expression.
-
-LIGHTING: dramatic single-sided cinematic key from camera-right, creating sculptural light across her face and the white shirt while allowing the opposite side to fall into rich but readable shadow. Add a pronounced narrow rim light from behind that separates her loose hair, shoulder and shirt edge from the aircraft. Subtle reflected fill from the white fuselage keeps skin luminous without flattening the contrast. Bright cinematic exposure, crisp white highlights, controlled shadows, realistic cotton texture, natural skin detail, 85mm lens, shallow depth of field, sophisticated ivory-white-navy-champagne color tonality, premium fashion-film realism, no flat lighting, no frontal beauty lighting, no silk, no satin, no jacket, no suit, no dark/deep color grading, no generic airline pose, no retro styling, no logo or text except the fictional crew insignia and name tag.
-```
-
-</details>
-
-<details><summary><b>Product Hero Shot Brief Builder</b></summary>
-
-```text
-Act as a commercial product photographer and art director. Turn my short product idea into a precise, production-ready image-generation brief for an e-commerce or advertising hero shot, then write a final image prompt I can paste into any image model.
-
-Product idea: ${product_idea:a matte ceramic pour-over coffee set for a small roastery's spring launch}
-Where the image will be used: ${usage:website hero banner with headline space on the right}
-Brand feel (3-5 words): ${brand_feel:calm, warm, handcrafted, modern}
-Aspect ratio: ${aspect_ratio:16:9}
-Must include / must avoid: ${musts:show a little steam; no logos or text}
-
-Rules:
-- The product is the undisputed hero: the sharpest, best-lit element, filling roughly 30-45% of the frame.
-- Choose ONE clear lighting setup and describe it in photographer's terms (key, fill, rim, direction, softness, color temperature).
-- Props support the story without competing: at most 3, each with a reason.
-- Respect the usage: leave clean negative space where text or UI will go and say exactly where.
-- Describe how light behaves on the product's material (matte, gloss, metal, glass, fabric).
-- Never add brand names, logos, readable text, faces, or hands unless I ask for them.
-- If my idea is vague, make confident choices and list them under Assumptions instead of asking questions.
-
-Output exactly this format:
-
-HERO SHOT BRIEF: <product name>
-1. Product & hero detail: <what is shown; which feature is emphasized>
-2. Angle & framing: <camera height, angle, distance, crop>
-3. Surface & set: <surface material, background, depth>
-4. Props (max 3): <prop - why it is there>
-5. Lighting: <setup, direction, quality, color temperature, how highlights and shadows fall on the material>
-6. Camera & lens: <format, focal length, aperture, focus point, depth of field>
-7. Color palette: <3-5 named colors>
-8. Mood & story: <one sentence>
-9. Composition & negative space: <product placement; where text space is reserved>
-10. Aspect ratio: <ratio>
-11. Avoid: <comma-separated negatives>
-Assumptions: <bullets, or "none">
-
-FINAL IMAGE PROMPT:
-<one paragraph of 90-140 words, a vivid photographic description that merges points 1-11 in this order: subject, set, props, lighting, camera, palette, mood, composition, aspect ratio, ending with the avoid list written as "no ..." phrases>
-
-VARIATIONS (one line each):
-- Lifestyle: <same product in a lived-in scene>
-- Minimal: <seamless studio version>
-- Seasonal: <a seasonal or campaign twist>
-```
-
-</details>
-
-<details><summary><b>Product Photo to Studio Shot</b></summary>
-
-```text
-{
-  "model": "nano-banana",
-  "task": "image_to_image_product_enhancement",
-  "objective": "Transform the input product image into a professional commercial studio photograph while preserving the exact product identity, geometry, proportions, stitching, texture, and material properties.",
-  "input": {
-    "type": "image",
-    "preserve_identity": true,
-    "preserve_geometry": true,
-    "preserve_texture": true,
-    "preserve_color": true,
-    "preserve_material": true
-  },
-  "scene": {
-    "background": {
-      "type": "solid",
-      "color": "#FFFFFF",
-      "pure_white": true,
-      "uniform": true,
-      "no_gradient": true,
-      "no_texture": true
-    },
-    "environment": "professional commercial photography studio",
-    "surface": "invisible or pure white seamless sweep"
-  },
-  "lighting": {
-    "style": "soft studio lighting",
-    "setup": "three_point_lighting",
-    "key_light": {
-      "type": "softbox",
-      "position": "front-left",
-      "intensity": "medium",
-      "softness": "high"
-    },
-    "fill_light": {
-      "type": "softbox",
-      "position": "front-right",
-      "intensity": "low",
-      "softness": "high"
-    },
-    "rim_light": {
-      "type": "softbox",
-      "position": "rear",
-      "intensity": "low",
-      "purpose": "edge separation and clean outline"
-    },
-    "shadow": {
-      "type": "contact_shadow",
-      "softness": "soft",
-      "opacity": "low",
-      "blur": "subtle",
-      "direction": "natural",
-      "realistic": true
-    },
-    "reflections": {
-      "allowed": false
-    }
-  },
-  "camera": {
-    "angle": "front-facing or natural product angle",
-    "alignment": "perfectly centered",
-    "lens": "85mm equivalent",
-    "distortion": "none",
-    "focus": "tack sharp across entire product",
-    "depth_of_field": "moderate",
-    "aperture": "f/8",
-    "perspective": "natural and undistorted"
-  },
-  "composition": {
-    "framing": "centered",
-    "product_scale": "occupies 75-90% of frame",
-    "orientation": "straight, upright, natural",
-    "symmetry": "maintained if applicable",
-    "clean_edges": true,
-    "no_crop_of_product": true
-  },
-  "quality": {
-    "resolution": "4096x4096",
-    "definition": "ultra high definition",
-    "sharpness": "maximum",
-    "noise": "none",
-    "grain": "none",
-    "compression_artifacts": "none",
-    "photorealism": "maximum",
-    "commercial_quality": true,
-    "catalog_ready": true,
-    "ecommerce_ready": true
-  },
-  "color": {
-    "profile": "sRGB",
-    "accuracy": "true_to_original",
-    "white_balance": "neutral studio",
-    "exposure": "balanced",
-    "contrast": "natural",
-    "saturation": "accurate",
-    "no_color_shift": true
-  },
-  "material_rendering": {
-    "fabric_detail": "fully preserved",
-    "texture_clarity": "high",
-    "stitching_visibility": "clear",
-    "edges": "clean and precise",
-    "wrinkles": "natural and realistic",
-    "no_fake_modifications": true
-  },
-  "constraints": {
-    "do_not_modify_product_design": true,
-    "do_not_change_shape": true,
-    "do_not_add_or_remove_parts": true,
-    "do_not_hallucinate_details": true,
-    "do_not_stylize": true,
-    "keep_product_exact": true
-  },
-  "negative_prompt": [
-    "colored background",
-    "gray background",
-    "gradient background",
-    "dirty background",
-    "text",
-    "logo",
-    "watermark",
-    "reflection floor",
-    "extra objects",
-    "props",
-    "person",
-    "hands",
-    "model",
-    "distortion",
-    "warping",
-    "blurry",
-    "low resolution",
-    "noise",
-    "grain",
-    "overexposed",
-    "underexposed",
-    "harsh shadows",
-    "hard shadows",
-    "inconsistent lighting",
-    "fake texture",
-    "hallucinated details"
-  ],
-  "output": {
-    "format": "PNG",
-    "background": "pure_white",
-    "transparent_background": false,
-    "ready_for": [
-      "ecommerce",
-      "catalog",
-      "website",
-      "advertising",
-      "print"
-    ]
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Product Storyboard Grid</b></summary>
-
-```text
-A clean 3×3 [ratio] storyboard grid with nine equal [ratio] sized panels on [4:5] ratio. 
-
-Use the reference image as the base product reference. Keep the same product, packaging design, branding, materials, colors, proportions and overall identity across all nine panels exactly as the reference. The product must remain clearly recognizable in every frame. The label, logo and proportions must stay exactly the same.
-
-This storyboard is a high-end designer mockup presentation for a branding portfolio. The focus is on form, composition, materiality and visual rhythm rather than realism or lifestyle narrative. The overall look should feel curated, editorial and design-driven.
-
-FRAME 1:
-Front-facing hero shot of the product in a clean studio setup. Neutral background, balanced composition, calm and confident presentation of the product.
-
-FRAME 2:
-Close-up shot with the focus centered on the middle of the product. Focusing on surface texture, materials and print details.
-
-FRAME 3:
-Shows the reference product placed in an environment that naturally fits the brand and product category. Studio setting inspired by the product design elements and colours. 
-
-FRAME 4:
-Product shown in use or interaction on a neutral studio background. Hands and interaction elements are minimal and restrained, the look matches the style of the package. 
-
-FRAME 5:
-Isometric composition showing multiple products arranged in a precise geometric order from the top isometric angle. All products are placed at the same isometric top angle, evenly spaced, clean, structured and graphic.
-
-FRAME 6:
-Product levitating slightly tilted on a neutral background that matches the reference image color palette. Floating position is angled and intentional, the product is floating naturally in space.
-
-FRAME 7:
-is an extreme close-up focusing on a specific detail of the label, edge, texture or material behavior.
-
-FRAME 8:
-The product in an unexpected yet aesthetically strong setting that feels bold, editorial and visually striking.
-Unexpected but highly stylized setting. Studio-based, and designer-driven. Bold composition that elevates the brand.
-
-FRAME 9:
-Wide composition showing the product in use, placed within a refined designer setup. Clean props, controlled styling, cohesive with the rest of the series.
-
-CAMERA & STYLE:
-Ultra high-quality studio imagery with a real camera look. Different camera angles and framings across frames. Controlled depth of field, precise lighting, accurate materials and reflections. Lighting logic, color palette, mood and visual language must remain consistent across all nine panels as one cohesive series.
-
-OUTPUT:
-A clean 3×3 grid with no borders, no text, no captions and no watermarks.
-```
-
-</details>
-
-<details><summary><b>Professional Artist Sketchbook Page</b></summary>
-
-```text
-Create a professional, high-end artist sketchbook page using the uploaded photo as the sole reference for the character. Preserve the exact facial features, identity, hairstyle, proportions, and overall recognizable likeness with exceptional accuracy. Depict the character in a refined pencil-and-ink illustration style with subtle, tasteful watercolor or marker accents, on a clean pure white background. The image should look clear, beautiful, polished, and professionally composed, with no ruled notebook lines, no construction-grid lines, no mannequin skeletons, and no distracting guide marks. Fill the page naturally with a rich variety of overlapping character studies and spontaneous artistic explorations, as if a master illustrator spent a full day studying the same character. Include multiple full-body poses, dynamic action poses, relaxed standing poses, seated poses, close-up facial studies from different angles, expressive portraits, subtle emotional variations, tiny personal doodles, gesture sketches, and a few lightly unfinished fragments for authenticity. Focus only on the same character and his personality; do not include children, chibi or deformed versions, unrelated characters, props that distract from the subject, or extra figures. The layout should feel organic, layered, creative, and visually rich, but still elegant and professional rather than messy or chaotic. Vary the scale dramatically across the page, with some drawings large and dominant, others small and secondary, partially overlapping in a natural way. Capture the character’s charm, confidence, humor, and everyday mannerisms through expressive poses and refined artistic exploration. Use clean, well-defined sketchwork, smooth contours, subtle shading, believable hand-drawn energy, and an authentic concept-art sketchbook aesthetic. The final result should feel like a premium character development page: visually striking, highly detailed, polished, and centered entirely on the same character.
-```
-
-</details>
-
-<details><summary><b>Professional Badge Photo</b></summary>
-
-```text
-Create a modern corporate ID photo of the person from the uploaded image, suitable for company badges and internal systems.
-Keep the face identical to the uploaded image, with realistic proportions, no beautification or age adjustment.
-
-Framing:
-• Neutral, centered head and shoulders
-• Subject looking straight at the camera with a neutral but friendly expression
-
-Background:
-• Plain, uniform background in [BACKGROUND_COLOR], no texture, no gradient
-• No props, no text, no logos
-
-Style:
-• Even, soft lighting with minimal shadows
-• High clarity and sharpness around the face, natural skin tones, high-resolution
-
-Outfit:
-• Transform clothing into [OUTFIT_STYLE] that matches a corporate environment
-• No visible logos, patterns or distracting accessories
-
-Make the result look like an upgraded, well-lit, professional version of a corporate ID or access badge photo, ready to be dropped into internal tools, email accounts or passes.
-```
-
-</details>
-
-<details><summary><b>Professional Image Enhancement</b></summary>
-
-```text
-Enhance the provided uploaded image by improving its clarity, quality, and overall visual impact while preserving its core design elements. Ensure that the completed image is suitable for display in professional and digital contexts.
-```
-
-</details>
-
-<details><summary><b>Profile Pic Rebuild</b></summary>
-
-```text
-A professional, high-resolution profile photo, maintaining the exact facial structure, identity, and key features of the person in the input image. The subject is framed from the chest up, with ample headroom. The person looks directly at the camera. They are styled for a professional photo studio shoot, wearing a premium smart casual blazer in a subtle charcoal gray. The background is a solid '#1A1A1A' neutral studio color. Shot from a high angle with bright and airy soft, diffused studio lighting, gently illuminating the face and creating a subtle catchlight in the eyes, conveying a sense of clarity. Captured on an 85mm f/1.8 lens with a shallow depth of field, exquisite focus on the eyes, and beautiful, soft bokeh. Observe crisp detail on the fabric texture of the blazer, individual strands of hair, and natural, realistic skin texture. The atmosphere exudes confidence, professionalism, and approachability. Clean and bright cinematic color grading with subtle warmth and balanced tones, ensuring a polished and contemporary feel.
-```
-
-</details>
-
-<details><summary><b>Provence Lavender Farmhouse Image to Video</b></summary>
-
-```text
-Start from the step 2 image "Stone Farmhouse at the End of Lavender Rows in Provence at Sunrise" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the stone farmhouse with its terracotta roof and pale blue shutters in the right third, the tall cypress beside it, the lone oak tree on the left, the converging lavender rows and central path, the low sun at the far left, the horizon line, and the composition exactly as in the image. A gentle breeze makes the lavender rows sway softly, all in the same direction. The camera makes a very slow, steady push-in along the central row toward the farmhouse. The sun's golden glow slowly brightens and thin morning haze drifts across the hills on the left. A couple of small birds fly across the sky from right to left above the house, a few bees drift over the lavender in the foreground, and the small white clouds drift slightly. Natural, realistic motion, no cuts, no people, no new buildings or objects, no text. Soft sound of a light breeze, distant birdsong, and buzzing bees.
-```
-
-</details>
-
-<details><summary><b>Provence Lavender Farmhouse Scene Brief Builder</b></summary>
-
-```text
-Act as a cinematic landscape designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of an old stone farmhouse at the end of long rows of purple lavender in Provence at sunrise. The shot will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move naturally (lavender rows swaying in a light breeze, morning haze drifting over the hills, the low sun's glow slowly brightening, small clouds drifting, bees over the flowers, a bird or two crossing the sky) while keeping the composition calm, readable, and easy to animate.
-
-My starting choices:
-- Farmhouse: ${farmhouse:a two-story old stone farmhouse with a terracotta tile roof and pale blue shutters}
-- Trees: ${trees:one tall dark cypress right beside the house and a lone round oak tree on a grassy rise}
-- Lavender field: ${field:long straight rows of purple lavender with dirt paths between them, converging toward the house}
-- Landscape: ${landscape:gentle rolling hills fading to blue in the distance}
-- Time and light: ${time:sunrise with the sun just above the hills, warm golden light, long shadows, light haze}
-- Visual style: ${style:photoreal landscape photography, natural colors}
-- Mood words: ${mood:peaceful, warm, fragrant, timeless}
-
-First ask me, in one short message, for anything missing: the camera position I prefer (low at the end of a lavender row, standing height on the path, or slightly elevated), which side of the frame the farmhouse and the oak tree should sit on, where the sun should be, how much haze I want, and anything to avoid (people, cars, tractors, fences, signs, birds that would have to fly convincingly, text, logos, or copying a specific real photograph).
-
-Then produce the brief with these sections:
-
-1. **Scene Overview**: two or three sentences describing the place, the time, the light, and the feeling of the moment. Describe an imagined Provence scene in the spirit of the region, not a copy of a specific photograph or a named farm.
-
-2. **Farmhouse and Trees**: the farmhouse's position and size in the frame, its stone walls, roof, shutters, windows, and the shrubs around it, the cypress and oak trees and where they stand, and how the low sun lights each of them.
-
-3. **Lavender Rows and Foreground**: the number of rows visible, the central path, how the rows converge toward the vanishing point, the color of the flowers in sun and shade, and the texture of the closest stems.
-
-4. **Landscape and Depth**: the depth layers from the foreground lavender to the farmhouse, the oak on its rise, the middle-distance greenery, and the hills on the horizon, and how haze softens each layer.
-
-5. **Light and Sky**: the sun's position and height, the glow and lens warmth around it, the sky gradient, the shape and position of the clouds, the length and direction of the shadows along the rows.
-
-6. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (farmhouse position, roof and shutter colors, cypress position, oak position, row direction and central path, sun position, horizon line, cloud layout, camera position, framing).
-
-7. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the lavender, the haze, the sun glow, the clouds, the trees, bees or birds, and the camera move. Keep total motion subtle and physically plausible, with one wind direction.
-
-8. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the lavender rows, the stone farmhouse, and the sunrise in the first sentence, ending with: no people, no text, no logos.
-
-9. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes the lavender swaying, the haze drifting, the glow brightening, small clouds drifting, one very slow push-in along the central row for about 6 seconds, and says to keep the farmhouse, trees, rows, and framing exactly as in the image with no new objects.
-
-Rules: no people, vehicles, or farm machinery; no text, signs, or logos; no fast camera moves or cuts; and no motion that breaks physics (all plants bend the same way in the wind, the house and trees never move or change shape, the sun does not jump, shadows stay consistent with the sun). Use short paragraphs and lists.
-```
-
-</details>
-
-<details><summary><b>Quiet Luxury Autumn Editorial Portrait</b></summary>
-
-```text
-Do not change the girl's facial features, eye shape, eyebrows, nose, or lips. Maintain 100% facial resemblance.
-
-Aspect ratio: 3:4. Ultra-realistic, high-quality, sharp 8K photograph, shot on iPhone 16 Pro Max.
-
-Subject & Framing:
-A three-quarter body portrait (from the top of the head to just below the boots). The woman is the central subject, sitting on a light gray stone ledge in an elegant autumn city park. The composition is vertical, with the model occupying most of the frame while the softly blurred background creates depth.
-
-Camera Angle:
-Eye-level perspective with a slight diagonal composition. The camera is positioned about 2–3 meters away using a natural portrait lens look (around 50–85mm). Shallow depth of field keeps the face, sweater, and legs sharp while the background melts into creamy bokeh.
-
-Pose:
-She sits sideways on the stone ledge with relaxed posture. One leg is crossed gracefully over the other, creating an elegant feminine silhouette. Her left hand rests naturally beside her on the ledge with slightly curved fingers, while the other arm disappears softly into the oversized sweater. Her head is tilted downward and slightly to the side as she looks toward her lap instead of the camera, giving a candid, unposed feeling.
-
-Expression:
-Soft, calm, introspective expression with relaxed lips and half-lowered eyes. The mood feels thoughtful, cozy, and quietly romantic rather than smiling.
-
-Hair:
- silky  hair with a subtle warm shine. The hair is straight with a slight natural bend at the ends. A gentle autumn breeze blows several strands across one side of her face, partially covering one eye for an effortless cinematic look.
-
-Makeup:
-Natural clean-girl makeup.  subtle brown eyeshadow, delicate eyeliner, natural lashes, soft contour, and nude pink lips without gloss. 
-
-Outfit:
-Oversized charcoal-black knitted sweater with long sleeves covering part of the hands. Short ivory satin skirt finished with delicate floral lace along the hem. White ribbed mid-calf socks. Black matte leather knee-high boots with chunky platform soles. Short glossy deep-red manicure.
-
-Lighting:
-Natural overcast autumn daylight with warm golden undertones. The light is soft, diffused, and flattering with no harsh shadows. Gentle highlights appear on the hair and legs while maintaining a cozy cinematic atmosphere.
-
-Background:
-An elegant city park in early autumn. Golden-orange and muted green trees, soft bokeh foliage, a blurred wooden bench, and stone architecture remain visible but out of focus. The environment feels peaceful, minimal, and luxurious.
-
-Color Palette:
-Chocolate brown, charcoal black, ivory white, warm beige stone, golden amber, burnt orange, and muted olive green.
-
-Mood & Aesthetic:
-Quiet luxury, Pinterest aesthetic, cinematic autumn editorial, cozy, feminine, sophisticated, candid, emotionally warm, premium lifestyle photography.
-
-Negative prompt:
-No smile, no teeth, no accessories, no handbag, no jewelry, no text, no watermark, no extra people, no distorted anatomy, no AI artifacts, no oversaturated colors.
-```
-
-</details>
-
-<details><summary><b>Quiet Luxury Poolside Shoot</b></summary>
-
-```text
-Style: Professional photoshoot for a lifestyle blog or fashion magazine. Aesthetic: “Old Money” and “Quiet Luxury”.
-
-Camera angle: High-angle shot from a slightly elevated perspective, showing the full body of the girl, the float ring, and the swimming pool.
-
-Location: Luxury villa or resort area. In the background: a swimming pool with crystal-clear turquoise water, stone pool edges, tropical plants (palm trees), and a stylish yellow-and-white striped umbrella.
-
-Lighting: Bright, direct sunlight. Visible caustics (water reflections) on the bottom of the pool. Shadows are soft yet deep, emphasizing body contours and texture.
-
-Main subject and pose:
-Model: Young woman with tanned skin. Hair is loose with soft beach waves.
-Pose: She is relaxed, lying on an inflatable float ring in the middle of the pool. Legs are extended and crossed at the ankles. Arms are resting casually on the sides of the float. Her head is slightly lifted toward the sun, gaze directed upward or to the side.
-
-Accessories: Classic narrow dark sunglasses with a thin frame, an elegant gold bracelet on the wrist, and minimalistic rings.
-
-Outfit and details:
-Swimsuit: Minimalist one-piece swimsuit. Color palette: white base with contrasting chocolate-brown trim on straps, neckline, and hip lines. High-cut leg design.
-
-Main prop (updated): A large inflatable watermelon-shaped swim ring. The inside is bright pink with black seeds, and the outer edge (rind) is dark green with lighter stripes. The texture looks realistic with a slight glossy shine under sunlight.
-
-Technical parameters for AI:
-Quality: 8K, Ultra-HD, photorealism.
-Camera: Sony Alpha A7R IV, 35mm f/1.8 lens.
-Color grading: Natural tones, highly saturated turquoise and green water, warm skin tones. “iPhone realistic photo” effect with ultra-detailed water droplets on skin.
-
-Do not change facial features.
-
-Aspect ratio: 3:4
-
-Ultra-realistic, high-quality, sharp 8K photo.
-
-Framing: slightly closer shot.
-```
-
-</details>
-
-<details><summary><b>Rags to Riches Young Man Character Sheet</b></summary>
-
-```text
-Young Black man, 23 years old
-* Slim athletic build, medium height
-* Dark brown skin
-* Short, tightly curled black hair
-* Brown eyes
-* Small scar above his right eyebrow
-* Calm, determined facial expression
-* Poor version: faded dark-brown hoodie, worn blue jeans, old black sneakers, brown canvas shoulder bag
-```
-
-</details>
-
-<details><summary><b>Rainy Night Market Noodle Stall</b></summary>
-
-```text
-A photorealistic street-level night photograph of a busy noodle stall at an open-air Asian night market during light rain. In the center, an older cook in a white cotton apron and a dark cap lifts a tangle of fresh noodles out of a giant steaming stockpot with a long bamboo strainer; thick clouds of steam rise and glow in the light. The stall has a weathered wooden counter, stacked ceramic bowls, bundles of green onions, chili jars, and a hand-painted menu board with blurred, unreadable characters. Strings of warm tungsten bulbs and a red canvas awning frame the scene; rain drips from the awning edge in bright streaks. Two customers sit on low plastic stools in the foreground, out of focus, one holding a bowl with chopsticks. The wet pavement reflects orange, red, and teal light from neighboring stalls in long shimmering puddle reflections, with soft bokeh of lanterns and passing umbrellas in the background. Moody, cinematic, documentary feel, rich contrast, natural skin tones, visible steam and rain detail. Shot on a full-frame camera with a 35mm lens at f/1.8, 1/125s, ISO 1600, handheld, shallow depth of field, slight film grain, no readable text, no logos, no watermark, 16:9 horizontal composition.
-```
-
-</details>
-
-<details><summary><b>Rainy Season College Moodboard Collage</b></summary>
-
-```text
-{
-  "aspect_ratio": "9:16",
-  "format": "vertical collage moodboard",
-  "identity_lock": {
-    "rule": "Use whatever genetic features the attached image has - 100% identity preservation",
-    "source": "attached_image",
-    "features_to_use_from_reference": ["face structure", "skin tone", "eye color", "hair color, texture, length and style", "body shape", "age", "ethnicity"],
-    "instruction": "Do NOT invent, describe, or alter face, body shape, or hair. Use the exact genetic features from the attached reference image for the person in ALL 6 photos. Keep identity consistent across the collage."
-  },
-  "positive_prompt": "Create an ultra-realistic Pinterest-style rainy season collage in a vertical 9:16 format. The collage contains 6 different candid photographs arranged in an elegant moodboard layout.",
-  "outfit": {
-    "top": "oversized pastel pink button-up shirt",
-    "bottom": "loose-flowing white wide-leg pants",
-    "note": "Same outfit in all 6 photos, with natural fabric folds and realistic draping"
-  },
-  "collage_photos": [
-    {
-      "photo_1": "Standing peacefully, enjoying the rain"
-    },
-    {
-      "photo_2": "Walking away under a transparent umbrella along a flower-lined pathway"
-    },
-    {
-      "photo_3": "Close-up shot beside blooming pink flowers"
-    },
-    {
-      "photo_4": "Stretching one hand into the falling rain"
-    },
-    {
-      "photo_5": "Sitting on a bench surrounded by flowers, relaxed pose"
-    },
-    {
-      "photo_6": "Standing under a transparent umbrella on a reflective rain-soaked campus road"
-    }
-  ],
-  "environment": "Charming university campus with old European-style architecture, flower-covered pathways, wet stone walkways, lush greenery, wet pavement reflecting lights and flowers, pink flower petals scattered on the ground, soft rainfall, dreamy atmosphere, warm earthy tones mixed with cool rainy weather, romantic mood",
-  "decorations": "Include handwritten-style aesthetic doodles, tiny hearts, flowers, raindrop illustrations, paper-note stickers, scrapbook elements, and Pinterest moodboard decorations",
-  "captions_in_collage": ["Rainy Season", "College Days", "Collecting Moments, Not Things", "Just Breathe", "Some People Feel Like Rain"],
-  "lighting_and_quality": "Soft cinematic lighting, creamy bokeh, photorealistic rain droplets, natural fabric folds, dreamy Korean aesthetic, lifestyle photography, editorial quality, ultra-detailed 8K",
-  "style_tags": "Korean Pinterest Moodboard, Rainy Season Aesthetic, College Campus Photography, Scrapbook Collage, Photorealistic 8K",
-  "negative_prompt": "cartoon, anime, CGI, distorted hands, extra fingers, low resolution, oversaturated colors, watermark, logo, AI artifacts, unrealistic anatomy, duplicate faces, different outfits, identity change"
-}
-```
-
-</details>
-
-<details><summary><b>Rainy Street with Umbrella</b></summary>
-
-```text
-{
-  "category": "RAINY_CITY_UMBRELLA_FULLBODY",
-  "subject": {
-    "demographics": "Adult woman, 21-27, Turkish-looking.",
-    "hair": {
-      "color": "Dark brown",
-      "style": "Slightly damp strands, tucked behind ears",
-      "texture": "Wet sheen realistic, not greasy",
-      "movement": "A few strands stick lightly to cheek"
-    },
-    "face": {
-      "eyes": "Bright eye contact, reflective catchlights",
-      "skin_details": "Natural texture, slight moisture realism",
-      "makeup": "Minimal, water-resistant look"
-    },
-    "clothing": {
-      "outerwear": "Raincoat or trench (no logos)",
-      "fabric": "Slight wet sheen and droplets visible"
-    },
-    "accessories": {
-      "umbrella": "Clear umbrella with raindrops",
-      "jewelry": ["Small silver hoops"]
-    }
-  },
-  "pose": {
-    "type": "Full-body walking candid",
-    "orientation": "Mid-stride, slight turn toward camera",
-    "hands": "One hand holding umbrella handle, other in coat pocket",
-    "gaze": "Soft smile, eye contact",
-    "posture": "Relaxed, natural walk"
-  },
-  "setting": {
-    "environment": "Rainy city street at dusk",
-    "background_elements": [
-      "Wet pavement reflections",
-      "Streetlight bokeh",
-      "Light drizzle visible (fine droplets, not smoke/fog)"
-    ],
-    "depth": "Subject clear, background blurred"
-  },
-  "camera": {
-    "shot_type": "Full-body street photo",
-    "angle": "Eye level",
-    "focal_length_equivalent": "26mm phone or 35mm editorial",
-    "framing": "4:5, subject slightly off-center",
-    "focus": "Face sharp, motion blur minimal"
-  },
-  "lighting": {
-    "source": "Streetlights + ambient sky",
-    "direction": "Soft top/side glows",
-    "highlights": "Raindrop specular highlights on umbrella",
-    "shadows": "Soft, realistic"
-  },
-  "mood_and_expression": {
-    "tone": "Moody, cozy, stylish",
-    "expression": "Gentle smile, calm confidence",
-    "atmosphere": "Cinematic rain realism"
-  },
-  "style_and_realism": {
-    "style": "Photorealistic street candid",
-    "imperfections": "Mild noise, slight blur in background only"
-  },
-  "technical_details": {
-    "aspect_ratio": "4:5",
-    "noise": "Phone-like grain in low light",
-    "motion_blur": "Slight in background reflections only"
-  },
-  "constraints": {
-    "adult_only": true,
-    "no_text": true,
-    "no_logos": true,
-    "no_watermarks": true
-  },
-  "negative_prompt": [
-    "smoke", "fog machine look", "watergun splash",
-    "extra limbs", "warped umbrella spokes",
-    "readable signs", "logos", "watermark"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>Rammed Earth Library at Dusk</b></summary>
-
-```text
-The rear side of the same single-story rammed earth village library at dusk, seen from its quiet reading garden, with warm golden light glowing from wide windows and from the round rammed earth reading tower now at the left end. Same building: long walls with distinct horizontal layers of ochre, sand, and rust-red earth on a low grey stone plinth, a flat roof with a thin dark steel edge that overhangs deeply, and tall narrow windows with dark bronze frames. The cylindrical tower is slightly taller than the main roof, with a continuous band of tall dark-framed windows wrapping around its top, glowing like a lantern. Along this garden side, a shallow timber pergola with six slender pale timber columns shades a stone terrace with low timber reading benches. The garden has gravel paths, native dry grasses, lavender in clay planters, and small warm path lights, and the top of the broad old juniper tree from the front plaza is just visible above the roof on the right. Deep blue twilight sky with a thin crescent moon and the first stars. Photoreal architectural photography, landscape 16:9. No people, no text, no signs, no cars.
-```
-
-</details>
-
-<details><summary><b>Rammed Earth Library Brief Builder</b></summary>
-
-```text
-Act as an architectural concept designer who writes image-ready design briefs. Help me shape a small rammed earth community library for a village or small town: a single-story building with a reading room, a children's corner, and a shaded outdoor reading garden. Your brief must be specific enough that two separate image generations (an establishing exterior and a second exterior view) show the same building.
-
-First ask me, in one short message, for:
-- Region and climate (for example dry highland, warm Mediterranean hills, semi-arid plains) and the season I want to show
-- The site: village square, edge of a park, hillside lane, or beside a school
-- Collection size and capacity (how many readers at once), and whether there is a small community room
-- Material preferences and anything I want to avoid (glass boxes, heavy concrete, rustic kitsch)
-- Mood words (welcoming, quiet, sunlit, earthy, civic, playful)
-
-Then produce the brief with these sections:
-
-1. **Site and Orientation**: where the library sits, which side faces the public plaza and which faces the reading garden, the sun path for morning and dusk, and how people approach on foot.
-
-2. **Building Form**: footprint size, roof type (flat, low mono-pitch, or gently curved), roof edge and overhang, the shaded entrance porch, the number and position of large openings, and one signature element such as a round reading tower or a wide clerestory band. Keep it compact and buildable.
-
-3. **Materials Palette**: exactly four or five materials with colors (for example layered ochre and rust rammed earth walls, pale timber columns and soffits, a thin dark steel roof edge, local stone paving, clay planters) and where each appears.
-
-4. **Landscape**: native trees and grasses, one signature tree near the entrance, a shallow stone water channel or none, benches, and bicycle stands.
-
-5. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in every image (wall color and visible earth layers, roof shape, number of porch columns, window count and shape, door color, the signature element and its position, the signature tree and its side, lighting fixtures). These details make the images consistent.
-
-6. **Prompt Seed A - Establishing Exterior**: a ready-to-paste image prompt under 150 words for a bright morning exterior from the public plaza, with the building and its key objects in the first sentence.
-
-7. **Prompt Seed B - Second Exterior View**: a ready-to-paste image prompt under 150 words for a dusk view from the reading garden side with warm light glowing from the windows, repeating every fixed visual detail in plain words and stating which side each element appears on from this viewpoint.
-
-8. **Practical Notes**: three short notes on passive cooling and shade, step-free access, and protecting earth walls from rain (roof overhang, stone plinth).
-
-Rules: no people as the main subject, no text, signs, or logos in the image prompts, no interiors in the seeds (image models often ignore furniture). Use short paragraphs and lists.
 ```
 
 </details>

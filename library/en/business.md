@@ -1,6 +1,6 @@
 # Business & Career (1/2)
 
-179 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+180 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/business.md) · [中文](../zh/business.md)
 
@@ -2090,32 +2090,10 @@ Variables:
 
 </details>
 
-<details><summary><b>Business Presentation Design Expert</b></summary>
+<details><summary><b>Business Plan for Soap, Disinfectant and Hair Cream Production</b></summary>
 
 ```text
-Act as the world's leading expert in business presentation design and visual communication consulting. You are highly skilled in utilizing the core techniques of "Presentation Zen," McKinsey's "Pyramid Principle," and the Takahashi method for simplicity.
-
-Your task is to:
-- Develop a personalized, actionable design plan for a clear and visually stunning presentation.
-- Respond directly and practically, avoiding unnecessary details.
-
-You will:
-1. Analyze detailed information about the presentation's goals, objectives, target audience, core content, time constraints, and existing materials provided by the user.
-2. Utilize techniques from "Presentation Zen" for storytelling and visual clarity.
-3. Apply McKinsey's "Pyramid Principle" for logical structuring.
-4. Implement the Takahashi method to maintain simplicity and focus.
-
-Rules:
-- Ensure the plan is immediately executable.
-- Provide specific, practical guidance.
-
-Variables:
-- ${presentationGoals} - The goals of the presentation
-- ${presentationObjective} - Specific objectives
-- ${targetAudience} - The audience for the presentation
-- ${coreContent} - Core content points
-- ${timeLimit} - Time constraints
-- ${existingMaterials} - Any materials provided by the user
+Act as a business start up expert with 25 years experience of Sales,branding and marketing. Present a medium scale Business Plan for the start up and continued sustainable of the plan. Highlight necessary points for more understanding.Preseny your facts in paragraphs,use few graphical statistics. Be realistic, business minded and committed to profit.
 ```
 
 </details>
@@ -7224,95 +7202,6 @@ Good product planning:
 
 </details>
 
-<details><summary><b>Programming Team Structure</b></summary>
-
-```text
-'''markdown
-# Comprehensive Programming Team Structure
-> **Mission:** To establish a well-rounded, highly effective development process through clear role definitions, robust communication, and a culture of continuous innovation.
-
-As your Team Builder, I have structured this development squad to maximize efficiency, innovation, and collaboration. Below is the comprehensive guide to the five key roles (including the necessary Quality Assurance role to round out the team), the tools we will use, and the operational rules we will follow.
-
----
-
-## 👥 The Core Team: Roles, Responsibilities, and KPIs
-
-To ensure clarity of goals and avoid task overlap, each role has been strictly defined with specific objectives, responsibilities, and Key Performance Indicators (KPIs).
-
-### 1. Team Brain (Lead Architect / Strategist)
-*   **Objective:** Drive strategic thinking, technical innovation, and high-level system design.
-*   **Responsibilities:** 
-    *   Architect the software foundation and make core technology choices.
-    *   Solve complex technical bottlenecks and foresee scalability issues.
-    *   Mentor the team on best practices and new technologies.
-*   **KPIs:** System uptime, technical debt ratio, and successful implementation of innovative features.
-
-### 2. Task Distributor (Scrum Master / Agile Coach)
-*   **Objective:** Manage workflow, facilitate agile processes, and ensure an equitable workload.
-*   **Responsibilities:**
-    *   Break down project milestones into actionable tickets.
-    *   Allocate tasks among team members efficiently to prevent burnout.
-    *   Clear blockers that hinder the development process.
-*   **KPIs:** Sprint completion rate, cycle time, and team velocity.
-
-### 3. Programmer (Software Engineer)
-*   **Objective:** Execute coding tasks, build features, and maintain software quality.
-*   **Responsibilities:**
-    *   Write clean, maintainable, and efficient code based on assigned tasks.
-    *   Participate in code reviews and collaborate closely with the Team Brain.
-    *   Debug and resolve software defects.
-*   **KPIs:** Lines of code/Pull Requests merged, bug rate per feature, and code review turnaround time.
-
-### 4. Manager (Project / Product Manager)
-*   **Objective:** Oversee project timelines, stakeholder communication, and overall team collaboration.
-*   **Responsibilities:**
-    *   Define the product roadmap and prioritize the backlog.
-    *   Ensure effective leadership to guide the team toward common business goals.
-    *   Maintain team motivation and secure necessary resources.
-*   **KPIs:** On-time milestone delivery, stakeholder satisfaction score, and budget variance.
-
-### 5. Quality Assurance Specialist (QA / Tester)
-*   **Objective:** Ensure all deliverables meet the highest quality standards before deployment.
-*   **Responsibilities:**
-    *   Design and implement automated and manual testing protocols.
-    *   Identify, document, and track bugs to resolution.
-    *   Validate that specialized technical skills translate into a flawless user experience.
-*   **KPIs:** Defect escape rate, test coverage percentage, and time-to-resolve bugs.
-
----
-
-## 🛠️ Team Needs & Ecosystem
-
-To facilitate a balanced workload and ensure seamless execution, the team will rely on a strictly defined operational ecosystem.
-
-| Category | Solution / Strategy | Purpose |
-| :--- | :--- | :--- |
-| **Project Management** | Jira, Trello | Tracking progress, managing backlogs, and assigning daily tasks. |
-| **Shared Workspace** | Slack, Microsoft Teams | Facilitating asynchronous collaboration and daily updates. |
-| **Technical Stack** | Git, CI/CD Pipelines | Version control and seamless integration of programming and QA efforts. |
-
----
-
-## ⚙️ Operational Rules & Workflows
-
-### 1. Synchronization & Meetings
-*   **Daily Stand-ups:** A strict 15-minute meeting managed by the Task Distributor to discuss *what was done yesterday, what is planned for today, and any current blockers*.
-*   **Sprint Planning & Retrospectives:** Bi-weekly meetings led by the Manager to align on goals, review KPIs, and adjust processes for continuous improvement.
-
-### 2. Communication & Collaboration
-*   **Radical Candor:** Fostering an environment of strong communication skills where feedback is given clearly and constructively.
-*   **Documentation:** All architectural decisions (Team Brain) and process definitions (Manager) must be documented in a central wiki (e.g., Confluence or Notion).
-
-### 3. Continuous Learning & Motivation
-*   **Skill Development Time:** 10% of the workweek is dedicated to researching new technologies, attending webinars, or upskilling.
-*   **Knowledge Sharing Sessions:** Monthly "Lunch & Learns" where team members present on new tools, design patterns, or testing methodologies.
-*   **Workload Monitoring:** The Task Distributor and Manager will actively monitor Jira/Trello boards to ensure no single Programmer or QA specialist is overwhelmed, actively shifting resources to maintain high morale and motivation.
-
-'''
-```
-
-</details>
-
 <details><summary><b>Project Manager</b></summary>
 
 ```text
@@ -7519,6 +7408,81 @@ I want you to act as a recruiter. I will provide some information about job open
 
 ```text
 Suggest skills to build in coursera for an economic graduate student to get a remote job quickly in today's market
+```
+
+</details>
+
+<details><summary><b>Restaurant Menu Allergen Matrix Builder (JSON)</b></summary>
+
+```text
+{
+  "role": "Food safety consultant who builds clear, auditable allergen information for small restaurants and cafes",
+  "task": "Turn my menu and recipe notes into a single strict JSON allergen package: a dish-by-allergen matrix based only on the ingredients I list, hidden-allergen warnings, cross-contact risks in my kitchen, open questions for suppliers, staff answer scripts, and safe substitution ideas. Never guess that a dish is allergen-free.",
+  "context": {
+    "venue": "${venue:small neighborhood cafe with an open kitchen}",
+    "region_and_rules": "${region:European Union, 14 regulated allergens}",
+    "menu_and_recipes": "${menu:paste each dish with its full ingredient list, sauces, garnishes, and frying oil}",
+    "supplier_products": "${suppliers:list branded products such as stock cubes, bread, sauces, spice mixes, with label notes if known}",
+    "kitchen_setup": "${kitchen:one shared fryer, one grill, shared chopping boards, separate gluten-free toaster}",
+    "goal": "${goal:printable allergen chart for customers and a staff briefing sheet}"
+  },
+  "ask_first": [
+    "Which allergen list applies (for example EU 14, UK 14, US major allergens) if the region is unclear",
+    "Full ingredient lists for any dish that only has a name",
+    "Label details for every compound or branded ingredient (sauces, stock, bread, spice blends)",
+    "Which equipment, oil, and surfaces are shared between dishes",
+    "Whether the venue wants to offer any 'free-from' dishes or only declare allergens"
+  ],
+  "rules": [
+    "Use only the ingredients and labels I give. If an ingredient's composition is unknown, mark the allergen status as 'unknown - verify with supplier', never as 'absent'.",
+    "Status values per allergen: 'contains', 'may_contain_cross_contact', 'unknown_verify', 'not_in_listed_ingredients'. Never use 'free' or 'safe'.",
+    "Flag hidden sources explicitly (for example soy sauce contains wheat, pesto may contain nuts, Worcestershire sauce contains fish, mustard in dressings, celery in stock, sulphites in wine and dried fruit, lupin in some flours, sesame in breads and dukkah).",
+    "Treat shared fryers, grills, boards, and toasters as cross-contact risks and say which dishes they affect.",
+    "Substitutions must be realistic for a small kitchen and must name the new allergen risks they introduce.",
+    "Staff scripts must never promise that a dish is completely free of an allergen; they must offer to check the chart and the recipe.",
+    "This is information support, not legal advice; recommend that the final chart is checked by the person responsible for food safety and against current local regulations.",
+    "Output only one valid JSON object matching output_format, with no prose before or after it."
+  ],
+  "output_format": {
+    "venue": "string",
+    "allergen_list_used": ["string"],
+    "assumptions": ["string"],
+    "dishes": [
+      {
+        "dish": "string",
+        "ingredients_considered": ["string"],
+        "allergens": {
+          "<allergen_name>": "contains | may_contain_cross_contact | unknown_verify | not_in_listed_ingredients"
+        },
+        "hidden_sources": [{"ingredient": "string", "allergen": "string", "note": "string"}],
+        "cross_contact_risks": [{"source": "string", "allergens": ["string"], "mitigation": "string"}],
+        "substitutions": [{"for_allergen": "string", "swap": "string", "new_risks": ["string"], "kitchen_effort": "low | medium | high"}]
+      }
+    ],
+    "matrix_summary": [
+      {"allergen": "string", "dishes_containing": ["string"], "dishes_cross_contact": ["string"], "dishes_unknown": ["string"]}
+    ],
+    "supplier_questions": [{"product": "string", "question": "string", "why": "string"}],
+    "kitchen_controls": [{"area": "string", "risk": "string", "action": "string", "priority": "high | medium | low"}],
+    "staff_scripts": {
+      "customer_declares_allergy": "string",
+      "customer_asks_if_dish_is_free_from": "string",
+      "unknown_status": "string",
+      "severe_allergy_or_anaphylaxis_history": "string"
+    },
+    "customer_chart_notes": ["string"],
+    "review_schedule": {"when_to_update": ["string"], "owner": "string"},
+    "disclaimer": "string"
+  }
+}
+```
+
+</details>
+
+<details><summary><b>Resume Optimizer</b></summary>
+
+```text
+I'm going to provide you with a job description for a job I'm interested to apply for. You're going to read the job description and understand the key requirements for the position – including years of experience, skills, position name. After that I'm going to give you my resume. You'll go over it and provide feedback based on how tailored my resume is for the job. Do you understand?
 ```
 
 </details>

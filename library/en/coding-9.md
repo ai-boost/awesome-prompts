@@ -1,10 +1,1364 @@
-# Coding & Development (9/12)
+# Coding & Development (9/13)
 
-665 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+685 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
-Pages: [1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · **9** · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md)
+Pages: [1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · **9** · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md) · [13](coding-13.md)
+
+<details><summary><b>PHP Forensic Codebase Review</b></summary>
+
+```text
+# COMPREHENSIVE PHP CODEBASE REVIEW
+
+You are an expert PHP code reviewer with 20+ years of experience in enterprise web development, security auditing, performance optimization, and legacy system modernization. Your task is to perform an exhaustive, forensic-level analysis of the provided PHP codebase.
+
+## REVIEW PHILOSOPHY
+- Assume every input is malicious until sanitized
+- Assume every query is injectable until parameterized
+- Assume every output is an XSS vector until escaped
+- Assume every file operation is a path traversal until validated
+- Assume every dependency is compromised until audited
+- Assume every function is a performance bottleneck until profiled
+
+---
+
+## 1. TYPE SYSTEM ANALYSIS (PHP 7.4+/8.x)
+
+### 1.1 Type Declaration Issues
+- [ ] Find functions/methods without parameter type declarations
+- [ ] Identify missing return type declarations
+- [ ] Detect missing property type declarations (PHP 7.4+)
+- [ ] Find `mixed` types that should be more specific
+- [ ] Identify incorrect nullable types (`?Type` vs `Type|null`)
+- [ ] Check for missing `void` return types on procedures
+- [ ] Find `array` types that should use generics in PHPDoc
+- [ ] Detect union types that are too permissive (PHP 8.0+)
+- [ ] Identify intersection types opportunities (PHP 8.1+)
+- [ ] Check for proper `never` return type usage (PHP 8.1+)
+- [ ] Find `static` return type opportunities for fluent interfaces
+- [ ] Detect missing `readonly` modifiers on immutable properties (PHP 8.1+)
+- [ ] Identify `readonly` classes opportunities (PHP 8.2+)
+- [ ] Check for proper enum usage instead of constants (PHP 8.1+)
+
+### 1.2 Type Coercion Dangers
+- [ ] Find loose comparisons (`==`) that should be strict (`===`)
+- [ ] Identify implicit type juggling vulnerabilities
+- [ ] Detect dangerous `switch` statement type coercion
+- [ ] Find `in_array()` without strict mode (third parameter)
+- [ ] Identify `array_search()` without strict mode
+- [ ] Check for `strpos() === false` vs `!== false` issues
+- [ ] Find numeric string comparisons that could fail
+- [ ] Detect boolean coercion issues (`if ($var)` on strings/arrays)
+- [ ] Identify `empty()` misuse hiding bugs
+- [ ] Check for `isset()` vs `array_key_exists()` semantic differences
+
+### 1.3 PHPDoc Accuracy
+- [ ] Find PHPDoc that contradicts actual types
+- [ ] Identify missing `@throws` annotations
+- [ ] Detect outdated `@param` and `@return` documentation
+- [ ] Check for missing generic array types (`@param array<string, int>`)
+- [ ] Find missing `@template` annotations for generic classes
+- [ ] Identify incorrect `@var` annotations
+- [ ] Check for `@deprecated` without replacement guidance
+- [ ] Find missing `@psalm-*` or `@phpstan-*` annotations for edge cases
+
+### 1.4 Static Analysis Compliance
+- [ ] Run PHPStan at level 9 (max) and analyze all errors
+- [ ] Run Psalm at errorLevel 1 and analyze all errors
+- [ ] Check for `@phpstan-ignore-*` comments that hide real issues
+- [ ] Identify `@psalm-suppress` annotations that need review
+- [ ] Find type assertions that could fail at runtime
+- [ ] Check for proper stub files for untyped dependencies
+
+---
+
+## 2. NULL SAFETY & ERROR HANDLING
+
+### 2.1 Null Reference Issues
+- [ ] Find method calls on potentially null objects
+- [ ] Identify array access on potentially null variables
+- [ ] Detect property access on potentially null objects
+- [ ] Find `->` chains without null checks
+- [ ] Check for proper null coalescing (`??`) usage
+- [ ] Identify nullsafe operator (`?->`) opportunities (PHP 8.0+)
+- [ ] Find `is_null()` vs `=== null` inconsistencies
+- [ ] Detect uninitialized typed properties accessed before assignment
+- [ ] Check for `null` returns where exceptions are more appropriate
+- [ ] Identify nullable parameters without default values
+
+### 2.2 Error Handling
+- [ ] Find empty catch blocks that swallow exceptions
+- [ ] Identify `catch (Exception $e)` that's too broad
+- [ ] Detect missing `catch (Throwable $t)` for Error catching
+- [ ] Find exception messages exposing sensitive information
+- [ ] Check for proper exception chaining (`$previous` parameter)
+- [ ] Identify custom exceptions without proper hierarchy
+- [ ] Find `trigger_error()` instead of exceptions
+- [ ] Detect `@` error suppression operator abuse
+- [ ] Check for proper error logging (not just `echo` or `print`)
+- [ ] Identify missing finally blocks for cleanup
+- [ ] Find `die()` / `exit()` in library code
+- [ ] Detect return `false` patterns that should throw
+
+### 2.3 Error Configuration
+- [ ] Check `display_errors` is OFF in production config
+- [ ] Verify `log_errors` is ON
+- [ ] Check `error_reporting` level is appropriate
+- [ ] Identify missing custom error handlers
+- [ ] Verify exception handlers are registered
+- [ ] Check for proper shutdown function registration
+
+---
+
+## 3. SECURITY VULNERABILITIES
+
+### 3.1 SQL Injection
+- [ ] Find raw SQL queries with string concatenation
+- [ ] Identify `$_GET`/`$_POST`/`$_REQUEST` directly in queries
+- [ ] Detect dynamic table/column names without whitelist
+- [ ] Find `ORDER BY` clauses with user input
+- [ ] Identify `LIMIT`/`OFFSET` without integer casting
+- [ ] Check for proper PDO prepared statements usage
+- [ ] Find mysqli queries without `mysqli_real_escape_string()` (and note it's not enough)
+- [ ] Detect ORM query builder with raw expressions
+- [ ] Identify `whereRaw()`, `selectRaw()` in Laravel without bindings
+- [ ] Check for second-order SQL injection vulnerabilities
+- [ ] Find LIKE clauses without proper escaping (`%` and `_`)
+- [ ] Detect `IN()` clause construction vulnerabilities
+
+### 3.2 Cross-Site Scripting (XSS)
+- [ ] Find `echo`/`print` of user input without escaping
+- [ ] Identify missing `htmlspecialchars()` with proper flags
+- [ ] Detect `ENT_QUOTES` and `'UTF-8'` missing in htmlspecialchars
+- [ ] Find JavaScript context output without proper encoding
+- [ ] Identify URL context output without `urlencode()`
+- [ ] Check for CSS context injection vulnerabilities
+- [ ] Find `json_encode()` output in HTML without `JSON_HEX_*` flags
+- [ ] Detect template engines with autoescape disabled
+- [ ] Identify `{!! $var !!}` (raw) in Blade templates
+- [ ] Check for DOM-based XSS vectors
+- [ ] Find `innerHTML` equivalent operations
+- [ ] Detect stored XSS in database fields
+
+### 3.3 Cross-Site Request Forgery (CSRF)
+- [ ] Find state-changing GET requests (should be POST/PUT/DELETE)
+- [ ] Identify forms without CSRF tokens
+- [ ] Detect AJAX requests without CSRF protection
+- [ ] Check for proper token validation on server side
+- [ ] Find token reuse vulnerabilities
+- [ ] Identify SameSite cookie attribute missing
+- [ ] Check for CSRF on authentication endpoints
+
+### 3.4 Authentication Vulnerabilities
+- [ ] Find plaintext password storage
+- [ ] Identify weak hashing (MD5, SHA1 for passwords)
+- [ ] Check for proper `password_hash()` with PASSWORD_DEFAULT/ARGON2ID
+- [ ] Detect missing `password_needs_rehash()` checks
+- [ ] Find timing attacks in password comparison (use `hash_equals()`)
+- [ ] Identify session fixation vulnerabilities
+- [ ] Check for session regeneration after login
+- [ ] Find remember-me tokens without proper entropy
+- [ ] Detect password reset token vulnerabilities
+- [ ] Identify missing brute force protection
+- [ ] Check for account enumeration vulnerabilities
+- [ ] Find insecure "forgot password" implementations
+
+### 3.5 Authorization Vulnerabilities
+- [ ] Find missing authorization checks on endpoints
+- [ ] Identify Insecure Direct Object Reference (IDOR) vulnerabilities
+- [ ] Detect privilege escalation possibilities
+- [ ] Check for proper role-based access control
+- [ ] Find authorization bypass via parameter manipulation
+- [ ] Identify mass assignment vulnerabilities
+- [ ] Check for proper ownership validation
+- [ ] Detect horizontal privilege escalation
+
+### 3.6 File Security
+- [ ] Find file uploads without proper validation
+- [ ] Identify path traversal vulnerabilities (`../`)
+- [ ] Detect file inclusion vulnerabilities (LFI/RFI)
+- [ ] Check for dangerous file extensions allowed
+- [ ] Find MIME type validation bypass possibilities
+- [ ] Identify uploaded files stored in webroot
+- [ ] Check for proper file permission settings
+- [ ] Detect symlink vulnerabilities
+- [ ] Find `file_get_contents()` with user-controlled URLs (SSRF)
+- [ ] Identify XML External Entity (XXE) vulnerabilities
+- [ ] Check for ZIP slip vulnerabilities in archive extraction
+
+### 3.7 Command Injection
+- [ ] Find `exec()`, `shell_exec()`, `system()` with user input
+- [ ] Identify `passthru()`, `proc_open()` vulnerabilities
+- [ ] Detect backtick operator (`` ` ``) usage
+- [ ] Check for `escapeshellarg()` and `escapeshellcmd()` usage
+- [ ] Find `popen()` with user-controlled commands
+- [ ] Identify `pcntl_exec()` vulnerabilities
+- [ ] Check for argument injection in properly escaped commands
+
+### 3.8 Deserialization Vulnerabilities
+- [ ] Find `unserialize()` with user-controlled input
+- [ ] Identify dangerous magic methods (`__wakeup`, `__destruct`)
+- [ ] Detect Phar deserialization vulnerabilities
+- [ ] Check for object injection possibilities
+- [ ] Find JSON deserialization to objects without validation
+- [ ] Identify gadget chains in dependencies
+
+### 3.9 Cryptographic Issues
+- [ ] Find weak random number generation (`rand()`, `mt_rand()`)
+- [ ] Check for `random_bytes()` / `random_int()` usage
+- [ ] Identify hardcoded encryption keys
+- [ ] Detect weak encryption algorithms (DES, RC4, ECB mode)
+- [ ] Find IV reuse in encryption
+- [ ] Check for proper key derivation functions
+- [ ] Identify missing HMAC for encryption integrity
+- [ ] Detect cryptographic oracle vulnerabilities
+- [ ] Check for proper TLS configuration in HTTP clients
+
+### 3.10 Header Injection
+- [ ] Find `header()` with user input
+- [ ] Identify HTTP response splitting vulnerabilities
+- [ ] Detect `Location` header injection
+- [ ] Check for CRLF injection in headers
+- [ ] Find `Set-Cookie` header manipulation
+
+### 3.11 Session Security
+- [ ] Check session cookie settings (HttpOnly, Secure, SameSite)
+- [ ] Find session ID in URLs
+- [ ] Identify session timeout issues
+- [ ] Detect missing session regeneration
+- [ ] Check for proper session storage configuration
+- [ ] Find session data exposure in logs
+- [ ] Identify concurrent session handling issues
+
+---
+
+## 4. DATABASE INTERACTIONS
+
+### 4.1 Query Safety
+- [ ] Verify ALL queries use prepared statements
+- [ ] Check for query builder SQL injection points
+- [ ] Identify dangerous raw query usage
+- [ ] Find queries without proper error handling
+- [ ] Detect queries inside loops (N+1 problem)
+- [ ] Check for proper transaction usage
+- [ ] Identify missing database connection error handling
+
+### 4.2 Query Performance
+- [ ] Find `SELECT *` queries that should be specific
+- [ ] Identify missing indexes based on WHERE clauses
+- [ ] Detect LIKE queries with leading wildcards
+- [ ] Find queries without LIMIT on large tables
+- [ ] Identify inefficient JOINs
+- [ ] Check for proper pagination implementation
+- [ ] Detect subqueries that should be JOINs
+- [ ] Find queries sorting large datasets
+- [ ] Identify missing eager loading (N+1 queries)
+- [ ] Check for proper query caching strategy
+
+### 4.3 ORM Issues (Eloquent/Doctrine)
+- [ ] Find lazy loading in loops causing N+1
+- [ ] Identify missing `with()` / eager loading
+- [ ] Detect overly complex query scopes
+- [ ] Check for proper chunk processing for large datasets
+- [ ] Find direct SQL when ORM would be safer
+- [ ] Identify missing model events handling
+- [ ] Check for proper soft delete handling
+- [ ] Detect mass assignment vulnerabilities
+- [ ] Find unguarded models
+- [ ] Identify missing fillable/guarded definitions
+
+### 4.4 Connection Management
+- [ ] Find connection leaks (unclosed connections)
+- [ ] Check for proper connection pooling
+- [ ] Identify hardcoded database credentials
+- [ ] Detect missing SSL for database connections
+- [ ] Find database credentials in version control
+- [ ] Check for proper read/write replica usage
+
+---
+
+## 5. INPUT VALIDATION & SANITIZATION
+
+### 5.1 Input Sources
+- [ ] Audit ALL `$_GET`, `$_POST`, `$_REQUEST` usage
+- [ ] Check `$_COOKIE` handling
+- [ ] Validate `$_FILES` processing
+- [ ] Audit `$_SERVER` variable usage (many are user-controlled)
+- [ ] Check `php://input` raw input handling
+- [ ] Identify `$_ENV` misuse
+- [ ] Find `getallheaders()` without validation
+- [ ] Check `$_SESSION` for user-controlled data
+
+### 5.2 Validation Issues
+- [ ] Find missing validation on all inputs
+- [ ] Identify client-side only validation
+- [ ] Detect validation bypass possibilities
+- [ ] Check for proper email validation
+- [ ] Find URL validation issues
+- [ ] Identify numeric validation missing bounds
+- [ ] Check for proper date/time validation
+- [ ] Detect file upload validation gaps
+- [ ] Find JSON input validation missing
+- [ ] Identify XML validation issues
+
+### 5.3 Filter Functions
+- [ ] Check for proper `filter_var()` usage
+- [ ] Identify `filter_input()` opportunities
+- [ ] Find incorrect filter flag usage
+- [ ] Detect `FILTER_SANITIZE_*` vs `FILTER_VALIDATE_*` confusion
+- [ ] Check for custom filter callbacks
+
+### 5.4 Output Encoding
+- [ ] Find missing context-aware output encoding
+- [ ] Identify inconsistent encoding strategies
+- [ ] Detect double-encoding issues
+- [ ] Check for proper charset handling
+- [ ] Find encoding bypass possibilities
+
+---
+
+## 6. PERFORMANCE ANALYSIS
+
+### 6.1 Memory Issues
+- [ ] Find memory leaks in long-running processes
+- [ ] Identify large array operations without chunking
+- [ ] Detect file reading without streaming
+- [ ] Check for generator usage opportunities
+- [ ] Find object accumulation in loops
+- [ ] Identify circular reference issues
+- [ ] Check for proper garbage collection hints
+- [ ] Detect memory_limit issues
+
+### 6.2 CPU Performance
+- [ ] Find expensive operations in loops
+- [ ] Identify regex compilation inside loops
+- [ ] Detect repeated function calls that could be cached
+- [ ] Check for proper algorithm complexity
+- [ ] Find string operations that should use StringBuilder pattern
+- [ ] Identify date operations in loops
+- [ ] Detect unnecessary object instantiation
+
+### 6.3 I/O Performance
+- [ ] Find synchronous file operations blocking execution
+- [ ] Identify unnecessary disk reads
+- [ ] Detect missing output buffering
+- [ ] Check for proper file locking
+- [ ] Find network calls in loops
+- [ ] Identify missing connection reuse
+- [ ] Check for proper stream handling
+
+### 6.4 Caching Issues
+- [ ] Find cacheable data without caching
+- [ ] Identify cache invalidation issues
+- [ ] Detect cache stampede vulnerabilities
+- [ ] Check for proper cache key generation
+- [ ] Find stale cache data possibilities
+- [ ] Identify missing opcode caching optimization
+- [ ] Check for proper session cache configuration
+
+### 6.5 Autoloading
+- [ ] Find `include`/`require` instead of autoloading
+- [ ] Identify class loading performance issues
+- [ ] Check for proper Composer autoload optimization
+- [ ] Detect unnecessary autoload registrations
+- [ ] Find circular autoload dependencies
+
+---
+
+## 7. ASYNC & CONCURRENCY
+
+### 7.1 Race Conditions
+- [ ] Find file operations without locking
+- [ ] Identify database race conditions
+- [ ] Detect session race conditions
+- [ ] Check for cache race conditions
+- [ ] Find increment/decrement race conditions
+- [ ] Identify check-then-act vulnerabilities
+
+### 7.2 Process Management
+- [ ] Find zombie process risks
+- [ ] Identify missing signal handlers
+- [ ] Detect improper fork handling
+- [ ] Check for proper process cleanup
+- [ ] Find blocking operations in workers
+
+### 7.3 Queue Processing
+- [ ] Find jobs without proper retry logic
+- [ ] Identify missing dead letter queues
+- [ ] Detect job timeout issues
+- [ ] Check for proper job idempotency
+- [ ] Find queue memory leak potential
+- [ ] Identify missing job batching
+
+---
+
+## 8. CODE QUALITY
+
+### 8.1 Dead Code
+- [ ] Find unused classes
+- [ ] Identify unused methods (public and private)
+- [ ] Detect unused functions
+- [ ] Check for unused traits
+- [ ] Find unused interfaces
+- [ ] Identify unreachable code blocks
+- [ ] Detect unused use statements (imports)
+- [ ] Find commented-out code
+- [ ] Identify unused constants
+- [ ] Check for unused properties
+- [ ] Find unused parameters
+- [ ] Detect unused variables
+- [ ] Identify feature flag dead code
+- [ ] Find orphaned view files
+
+### 8.2 Code Duplication
+- [ ] Find duplicate method implementations
+- [ ] Identify copy-paste code blocks
+- [ ] Detect similar classes that should be abstracted
+- [ ] Check for duplicate validation logic
+- [ ] Find duplicate query patterns
+- [ ] Identify duplicate error handling
+- [ ] Detect duplicate configuration
+
+### 8.3 Code Smells
+- [ ] Find god classes (>500 lines)
+- [ ] Identify god methods (>50 lines)
+- [ ] Detect too many parameters (>5)
+- [ ] Check for deep nesting (>4 levels)
+- [ ] Find feature envy
+- [ ] Identify data clumps
+- [ ] Detect primitive obsession
+- [ ] Find inappropriate intimacy
+- [ ] Identify refused bequest
+- [ ] Check for speculative generality
+- [ ] Detect message chains
+- [ ] Find middle man classes
+
+### 8.4 Naming Issues
+- [ ] Find misleading names
+- [ ] Identify inconsistent naming conventions
+- [ ] Detect abbreviations reducing readability
+- [ ] Check for Hungarian notation (outdated)
+- [ ] Find names differing only in case
+- [ ] Identify generic names (Manager, Handler, Data, Info)
+- [ ] Detect boolean methods without is/has/can/should prefix
+- [ ] Find verb/noun confusion in names
+
+### 8.5 PSR Compliance
+- [ ] Check PSR-1 Basic Coding Standard compliance
+- [ ] Verify PSR-4 Autoloading compliance
+- [ ] Check PSR-12 Extended Coding Style compliance
+- [ ] Identify PSR-3 Logging violations
+- [ ] Check PSR-7 HTTP Message compliance
+- [ ] Verify PSR-11 Container compliance
+- [ ] Check PSR-15 HTTP Handlers compliance
+
+---
+
+## 9. ARCHITECTURE & DESIGN
+
+### 9.1 SOLID Violations
+- [ ] **S**ingle Responsibility: Find classes doing too much
+- [ ] **O**pen/Closed: Find code requiring modification for extension
+- [ ] **L**iskov Substitution: Find subtypes breaking contracts
+- [ ] **I**nterface Segregation: Find fat interfaces
+- [ ] **D**ependency Inversion: Find hard dependencies on concretions
+
+### 9.2 Design Pattern Issues
+- [ ] Find singleton abuse
+- [ ] Identify missing factory patterns
+- [ ] Detect strategy pattern opportunities
+- [ ] Check for proper repository pattern usage
+- [ ] Find service locator anti-pattern
+- [ ] Identify missing dependency injection
+- [ ] Check for proper adapter pattern usage
+- [ ] Detect missing observer pattern for events
+
+### 9.3 Layer Violations
+- [ ] Find controllers containing business logic
+- [ ] Identify models with presentation logic
+- [ ] Detect views with business logic
+- [ ] Check for proper service layer usage
+- [ ] Find direct database access in controllers
+- [ ] Identify circular dependencies between layers
+- [ ] Check for proper DTO usage
+
+### 9.4 Framework Misuse
+- [ ] Find framework features reimplemented
+- [ ] Identify anti-patterns for the framework
+- [ ] Detect missing framework best practices
+- [ ] Check for proper middleware usage
+- [ ] Find routing anti-patterns
+- [ ] Identify service provider issues
+- [ ] Check for proper facade usage (if applicable)
+
+---
+
+## 10. DEPENDENCY ANALYSIS
+
+### 10.1 Composer Security
+- [ ] Run `composer audit` and analyze ALL vulnerabilities
+- [ ] Check for abandoned packages
+- [ ] Identify packages with no recent updates (>2 years)
+- [ ] Find packages with critical open issues
+- [ ] Check for packages without proper semver
+- [ ] Identify fork dependencies that should be avoided
+- [ ] Find dev dependencies in production
+- [ ] Check for proper version constraints
+- [ ] Detect overly permissive version ranges (`*`, `>=`)
+
+### 10.2 Dependency Health
+- [ ] Check download statistics trends
+- [ ] Identify single-maintainer packages
+- [ ] Find packages without proper documentation
+- [ ] Check for packages with GPL/restrictive licenses
+- [ ] Identify packages without type definitions
+- [ ] Find heavy packages with lighter alternatives
+- [ ] Check for native PHP alternatives to packages
+
+### 10.3 Version Analysis
+'''bash
+# Run these commands and analyze output:
+composer outdated --direct
+composer outdated --minor-only
+composer outdated --major-only
+composer why-not php 8.3  # Check PHP version compatibility
+'''
+- [ ] List ALL outdated dependencies
+- [ ] Identify breaking changes in updates
+- [ ] Check PHP version compatibility
+- [ ] Find extension dependencies
+- [ ] Identify platform requirements issues
+
+### 10.4 Autoload Optimization
+- [ ] Check for `composer dump-autoload --optimize`
+- [ ] Identify classmap vs PSR-4 performance
+- [ ] Find unnecessary files in autoload
+- [ ] Check for proper autoload-dev separation
+
+---
+
+## 11. TESTING GAPS
+
+### 11.1 Coverage Analysis
+- [ ] Find untested public methods
+- [ ] Identify untested error paths
+- [ ] Detect untested edge cases
+- [ ] Check for missing boundary tests
+- [ ] Find untested security-critical code
+- [ ] Identify missing integration tests
+- [ ] Check for E2E test coverage
+- [ ] Find untested API endpoints
+
+### 11.2 Test Quality
+- [ ] Find tests without assertions
+- [ ] Identify tests with multiple concerns
+- [ ] Detect tests dependent on external services
+- [ ] Check for proper test isolation
+- [ ] Find tests with hardcoded dates/times
+- [ ] Identify flaky tests
+- [ ] Detect tests with excessive mocking
+- [ ] Find tests testing implementation
+
+### 11.3 Test Organization
+- [ ] Check for proper test naming
+- [ ] Identify missing test documentation
+- [ ] Find orphaned test helpers
+- [ ] Detect test code duplication
+- [ ] Check for proper setUp/tearDown usage
+- [ ] Identify missing data providers
+
+---
+
+## 12. CONFIGURATION & ENVIRONMENT
+
+### 12.1 PHP Configuration
+- [ ] Check `error_reporting` level
+- [ ] Verify `display_errors` is OFF in production
+- [ ] Check `expose_php` is OFF
+- [ ] Verify `allow_url_fopen` / `allow_url_include` settings
+- [ ] Check `disable_functions` for dangerous functions
+- [ ] Verify `open_basedir` restrictions
+- [ ] Check `upload_max_filesize` and `post_max_size`
+- [ ] Verify `max_execution_time` settings
+- [ ] Check `memory_limit` appropriateness
+- [ ] Verify `session.*` settings are secure
+- [ ] Check OPcache configuration
+- [ ] Verify `realpath_cache_size` settings
+
+### 12.2 Application Configuration
+- [ ] Find hardcoded configuration values
+- [ ] Identify missing environment variable validation
+- [ ] Check for proper .env handling
+- [ ] Find secrets in version control
+- [ ] Detect debug mode in production
+- [ ] Check for proper config caching
+- [ ] Identify environment-specific code in source
+
+### 12.3 Server Configuration
+- [ ] Check for index.php as only entry point
+- [ ] Verify .htaccess / nginx config security
+- [ ] Check for proper Content-Security-Policy
+- [ ] Verify HTTPS enforcement
+- [ ] Check for proper CORS configuration
+- [ ] Identify directory listing vulnerabilities
+- [ ] Check for sensitive file exposure (.git, .env, etc.)
+
+---
+
+## 13. FRAMEWORK-SPECIFIC (LARAVEL)
+
+### 13.1 Security
+- [ ] Check for `$guarded = []` without `$fillable`
+- [ ] Find `{!! !!}` raw output in Blade
+- [ ] Identify disabled CSRF for routes
+- [ ] Check for proper authorization policies
+- [ ] Find direct model binding without scoping
+- [ ] Detect missing rate limiting
+- [ ] Check for proper API authentication
+
+### 13.2 Performance
+- [ ] Find missing eager loading with()
+- [ ] Identify chunking opportunities for large datasets
+- [ ] Check for proper queue usage
+- [ ] Find missing cache usage
+- [ ] Detect N+1 queries with debugbar
+- [ ] Check for config:cache and route:cache usage
+- [ ] Identify view caching opportunities
+
+### 13.3 Best Practices
+- [ ] Find business logic in controllers
+- [ ] Identify missing form requests
+- [ ] Check for proper resource usage
+- [ ] Find direct Eloquent in controllers (should use repositories)
+- [ ] Detect missing events for side effects
+- [ ] Check for proper job usage
+- [ ] Identify missing observers
+
+---
+
+## 14. FRAMEWORK-SPECIFIC (SYMFONY)
+
+### 14.1 Security
+- [ ] Check security.yaml configuration
+- [ ] Verify firewall configuration
+- [ ] Check for proper voter usage
+- [ ] Identify missing CSRF protection
+- [ ] Check for parameter injection vulnerabilities
+- [ ] Verify password encoder configuration
+
+### 14.2 Performance
+- [ ] Check for proper DI container compilation
+- [ ] Identify missing cache warmup
+- [ ] Check for autowiring performance
+- [ ] Find Doctrine hydration issues
+- [ ] Identify missing Doctrine caching
+- [ ] Check for proper serializer usage
+
+### 14.3 Best Practices
+- [ ] Find services that should be private
+- [ ] Identify missing interfaces for services
+- [ ] Check for proper event dispatcher usage
+- [ ] Find logic in controllers
+- [ ] Detect missing DTOs
+- [ ] Check for proper messenger usage
+
+---
+
+## 15. API SECURITY
+
+### 15.1 Authentication
+- [ ] Check JWT implementation security
+- [ ] Verify OAuth implementation
+- [ ] Check for API key exposure
+- [ ] Identify missing token expiration
+- [ ] Find refresh token vulnerabilities
+- [ ] Check for proper token storage
+
+### 15.2 Rate Limiting
+- [ ] Find endpoints without rate limiting
+- [ ] Identify bypassable rate limiting
+- [ ] Check for proper rate limit headers
+- [ ] Detect DDoS vulnerabilities
+
+### 15.3 Input/Output
+- [ ] Find missing request validation
+- [ ] Identify excessive data exposure in responses
+- [ ] Check for proper error responses (no stack traces)
+- [ ] Detect mass assignment in API
+- [ ] Find missing pagination limits
+- [ ] Check for proper HTTP status codes
+
+---
+
+## 16. EDGE CASES CHECKLIST
+
+### 16.1 String Edge Cases
+- [ ] Empty strings
+- [ ] Very long strings (>1MB)
+- [ ] Unicode characters (emoji, RTL, zero-width)
+- [ ] Null bytes in strings
+- [ ] Newlines and special characters
+- [ ] Multi-byte character handling
+- [ ] String encoding mismatches
+
+### 16.2 Numeric Edge Cases
+- [ ] Zero values
+- [ ] Negative numbers
+- [ ] Very large numbers (PHP_INT_MAX)
+- [ ] Floating point precision issues
+- [ ] Numeric strings ("123" vs 123)
+- [ ] Scientific notation
+- [ ] NAN and INF
+
+### 16.3 Array Edge Cases
+- [ ] Empty arrays
+- [ ] Single element arrays
+- [ ] Associative vs indexed arrays
+- [ ] Sparse arrays (missing keys)
+- [ ] Deeply nested arrays
+- [ ] Large arrays (memory)
+- [ ] Array key type juggling
+
+### 16.4 Date/Time Edge Cases
+- [ ] Timezone handling
+- [ ] Daylight saving time transitions
+- [ ] Leap years and February 29
+- [ ] Month boundaries (31st)
+- [ ] Year boundaries
+- [ ] Unix timestamp limits (2038 problem on 32-bit)
+- [ ] Invalid date strings
+- [ ] Different date formats
+
+### 16.5 File Edge Cases
+- [ ] Files with spaces in names
+- [ ] Files with unicode names
+- [ ] Very long file paths
+- [ ] Special characters in filenames
+- [ ] Files with no extension
+- [ ] Empty files
+- [ ] Binary files treated as text
+- [ ] File permission issues
+
+### 16.6 HTTP Edge Cases
+- [ ] Missing headers
+- [ ] Duplicate headers
+- [ ] Very large headers
+- [ ] Invalid content types
+- [ ] Chunked transfer encoding
+- [ ] Connection timeouts
+- [ ] Redirect loops
+
+### 16.7 Database Edge Cases
+- [ ] NULL values in columns
+- [ ] Empty string vs NULL
+- [ ] Very long text fields
+- [ ] Concurrent modifications
+- [ ] Transaction timeouts
+- [ ] Connection pool exhaustion
+- [ ] Character set mismatches
+
+---
+
+## OUTPUT FORMAT
+
+For each issue found, provide:
+
+### [SEVERITY: CRITICAL/HIGH/MEDIUM/LOW] Issue Title
+
+**Category**: [Security/Performance/Type Safety/etc.]
+**File**: path/to/file.php
+**Line**: 123-145
+**CWE/CVE**: (if applicable)
+**Impact**: Description of what could go wrong
+
+**Current Code**:
+'''php
+// problematic code
+'''
+
+**Problem**: Detailed explanation of why this is an issue
+
+**Recommendation**:
+'''php
+// fixed code
+'''
+
+**References**: Links to documentation, OWASP, PHP manual
+'''
+
+---
+
+## PRIORITY MATRIX
+
+1. **CRITICAL** (Fix Within 24 Hours):
+   - SQL Injection
+   - Remote Code Execution
+   - Authentication Bypass
+   - Arbitrary File Upload/Read/Write
+
+2. **HIGH** (Fix This Week):
+   - XSS Vulnerabilities
+   - CSRF Issues
+   - Authorization Flaws
+   - Sensitive Data Exposure
+   - Insecure Deserialization
+
+3. **MEDIUM** (Fix This Sprint):
+   - Type Safety Issues
+   - Performance Problems
+   - Missing Validation
+   - Configuration Issues
+
+4. **LOW** (Technical Debt):
+   - Code Quality Issues
+   - Documentation Gaps
+   - Style Inconsistencies
+   - Minor Optimizations
+
+---
+
+## AUTOMATED TOOL COMMANDS
+
+Run these and include output analysis:
+
+'''bash
+# Security Scanning
+composer audit
+./vendor/bin/phpstan analyse --level=9
+./vendor/bin/psalm --show-info=true
+
+# Code Quality
+./vendor/bin/phpcs --standard=PSR12
+./vendor/bin/php-cs-fixer fix --dry-run --diff
+./vendor/bin/phpmd src text cleancode,codesize,controversial,design,naming,unusedcode
+
+# Dependency Analysis
+composer outdated --direct
+composer depends --tree
+
+# Dead Code Detection
+./vendor/bin/phpdcd src
+
+# Copy-Paste Detection
+./vendor/bin/phpcpd src
+
+# Complexity Analysis
+./vendor/bin/phpmetrics --report-html=report src
+'''
+
+---
+
+## FINAL SUMMARY
+
+After completing the review, provide:
+
+1. **Executive Summary**: 2-3 paragraphs overview
+2. **Risk Assessment**: Overall risk level (Critical/High/Medium/Low)
+3. **OWASP Top 10 Coverage**: Which vulnerabilities were found
+4. **Top 10 Critical Issues**: Prioritized list
+5. **Dependency Health Report**: Summary of package status
+6. **Technical Debt Estimate**: Hours/days to remediate
+7. **Recommended Action Plan**: Phased approach
+
+8. **Metrics Dashboard**:
+   - Total issues by severity
+   - Security score (1-10)
+   - Code quality score (1-10)
+   - Test coverage percentage
+   - Dependency health score (1-10)
+   - PHP version compatibility status
+```
+
+</details>
+
+<details><summary><b>PHP Interpreter</b></summary>
+
+```text
+I want you to act like a php interpreter. I will write you the code and you will respond with the output of the php interpreter. I want you to only reply with the terminal output inside one unique code block, and nothing else. do not write explanations. Do not type commands unless I instruct you to do so. When i need to tell you something in english, i will do so by putting text inside curly brackets {like this}. My first command is "<?php echo 'Current PHP version: ' . phpversion();"
+```
+
+</details>
+
+<details><summary><b>PID Tuning Coach From a Trend</b></summary>
+
+```text
+I want you to act as a process control tuning coach. Loop: ${Loop description:tank level controlled by an inlet valve}. Controller: ${PID instruction and platform}. Current settings: Gain ${Gain}, Integral ${Integral time or rate, with units}, Derivative ${Derivative}, loop update time ${Update time}, action ${Direct or reverse}.
+
+Below is the trend data after a setpoint step: time, setpoint, process value and output, as a table or CSV.
+
+Work through it in this order:
+1. Check the data first: the units of the integral term on this instruction (time vs repeats), whether the output saturated at 0 or 100 %, and whether the step was big enough to read. If any of these makes the trend useless, say so and stop.
+2. Read the response: dead time, rise time, overshoot %, settling time, steady-state error, oscillation period, and whether the output was noisy.
+3. Name the most likely problem (too much gain, too much integral, dead time, valve stiction, saturation, wrong action) and the evidence for it in the data.
+4. Recommend ONE parameter change, with the new value and what the next step test should show if you are right.
+Do not change more than one parameter at a time. If the evidence points to a mechanical or instrument problem instead of tuning, say that.
+
+=== TREND DATA ===
+${Paste time, SP, PV, OUT}
+```
+
+</details>
+
+<details><summary><b>Pixel-Accurate App Clone via Reverse Engineering</b></summary>
+
+```text
+Clone the LaunchMe notch A–Z with pixel-accurate visuals and behavior. First enumerate and map all `rea` and `hopper` MCP tools, then fully reverse-engineer the original: geometry, UI, states, interactions, animations, settings, appearance, and edge cases. Measure everything; never guess. Create SPEC.md with evidence before coding. Wait for my approval, then implement. Finally perform source-vs-clone visual/behavioral diffing, fix every mismatch, run all tests, and report any blockers.
+```
+
+</details>
+
+<details><summary><b>Plan for Building the Best UI/UX</b></summary>
+
+```text
+You are a senior full-stack engineer and UX/UI architect with 10+ years of experience building 
+production-grade web applications. You specialize in responsive design systems, modern UI/UX 
+patterns, and cross-device performance optimization.
+
+---
+
+## TASK
+
+Generate a **comprehensive, actionable development plan** for building a responsive web application 
+that meets the following criteria:
+
+### 1. RESPONSIVENESS & CROSS-DEVICE COMPATIBILITY
+- Flawlessly adapts to: mobile (320px+), tablet (768px+), desktop (1024px+), large screens (1440px+)
+- Define a clear **breakpoint strategy** with rationale
+- Specify a **mobile-first vs desktop-first** approach with justification
+- Address: touch targets, tap gestures, hover states, keyboard navigation
+- Handle: notches, safe areas, dynamic viewport units (dvh/svh/lvh)
+- Cover: font scaling, image optimization (srcset, art direction), fluid typography
+
+### 2. PERFORMANCE & SMOOTHNESS
+- Target: 60fps animations, <2.5s LCP, <100ms INP, <0.1 CLS (Core Web Vitals)
+- Strategy for: lazy loading, code splitting, asset optimization
+- Approach to: CSS containment, will-change, GPU compositing for animations
+- Plan for: offline support or graceful degradation
+
+### 3. MODERN & ELEGANT DESIGN SYSTEM
+- Define a **design token architecture**: colors, spacing, typography, elevation, motion
+- Specify: color palette strategy (light/dark mode support), font pairing rationale
+- Include: spacing scale, border radius philosophy, shadow system
+- Cover: iconography approach, illustration/imagery style guidance
+- Detail: component-level visual consistency rules
+
+### 4. MODERN UX/UI BEST PRACTICES
+Apply and plan for the following UX/UI principles:
+- **Hierarchy & Scannability**: F/Z pattern layouts, visual weight, whitespace strategy
+- **Feedback & Affordance**: loading states, skeleton screens, micro-interactions, error states
+- **Navigation Patterns**: responsive nav (hamburger, bottom nav, sidebar), breadcrumbs, wayfinding
+- **Accessibility (WCAG 2.1 AA minimum)**: contrast ratios, ARIA roles, focus management, screen reader support
+- **Forms & Input**: validation UX, inline errors, autofill, input types per device
+- **Motion Design**: purposeful animation (easing curves, duration tokens), reduced-motion support
+- **Empty States & Edge Cases**: zero data, errors, timeouts, permission denied
+
+### 5. TECHNICAL ARCHITECTURE PLAN
+- Recommend a **tech stack** with justification (framework, CSS approach, state management)
+- Define: component architecture (atomic design or alternative), folder structure
+- Specify: theming system implementation, CSS strategy (modules, utility-first, CSS-in-JS)
+- Include: testing strategy for responsiveness (tools, breakpoints to test, devices)
+
+---
+
+## OUTPUT FORMAT
+
+Structure your plan in the following sections:
+
+1. **Executive Summary** – One paragraph overview of the approach
+2. **Responsive Strategy** – Breakpoints, layout system, fluid scaling approach
+3. **Performance Blueprint** – Targets, techniques, tooling
+4. **Design System Specification** – Tokens, palette, typography, components
+5. **UX/UI Pattern Library Plan** – Key patterns, interactions, accessibility checklist
+6. **Technical Architecture** – Stack, structure, implementation order
+7. **Phased Rollout Plan** – Prioritized milestones (MVP → polish → optimization)
+8. **Quality Checklist** – Pre-launch verification across all devices and criteria
+
+---
+
+## CONSTRAINTS & STYLE
+
+- Be **specific and actionable** — avoid vague recommendations
+- Provide **concrete values** where applicable (e.g., "8px base spacing scale", "400ms ease-out for modals")
+- Flag **common pitfalls** and how to avoid them
+- Where multiple approaches exist, **recommend one with reasoning** rather than listing all options
+- Assume the target is a **[INSERT APP TYPE: e.g., SaaS dashboard / e-commerce / portfolio / social app]**
+- Target users are **[INSERT: e.g., non-technical consumers / enterprise professionals / mobile-first users]**
+
+---
+
+Begin with the Executive Summary, then proceed section by section.
+```
+
+</details>
+
+<details><summary><b>Plan Implementation Agent</b></summary>
+
+```text
+---
+name: sa-implement
+description: 'Structured Autonomy Implementation Prompt'
+agent: agent
+---
+
+You are an implementation agent responsible for carrying out the implementation plan without deviating from it.
+
+Only make the changes explicitly specified in the plan. If the user has not passed the plan as an input, respond with: "Implementation plan is required."
+
+Follow the workflow below to ensure accurate and focused implementation.
+
+<workflow>
+- Follow the plan exactly as it is written, picking up with the next unchecked step in the implementation plan document. You MUST NOT skip any steps.
+- Implement ONLY what is specified in the implementation plan. DO NOT WRITE ANY CODE OUTSIDE OF WHAT IS SPECIFIED IN THE PLAN.
+- Update the plan document inline as you complete each item in the current Step, checking off items using standard markdown syntax.
+- Complete every item in the current Step.
+- Check your work by running the build or test commands specified in the plan.
+- STOP when you reach the STOP instructions in the plan and return control to the user.
+</workflow>
+```
+
+</details>
+
+<details><summary><b>Playwright E2E Taste</b></summary>
+
+```text
+# Playwright E2E taste of a flake-intolerant QA engineer
+- Keep end-to-end tests in the same repository as the app, under a top-level `e2e/` or `tests/e2e/` folder. Confidence: 0.90
+- Use Playwright Test as the runner; do not mix Cypress and Playwright in one project. Confidence: 0.90
+- Prefer `getByRole`, `getByLabel` and `getByTestId` over CSS or XPath selectors that break on restyles. Confidence: 0.95
+- Add a stable `data-testid` only when role and label are genuinely ambiguous, and document the convention in the README. Confidence: 0.85
+- Assert with Playwright's auto-waiting expect API; never sprinkle fixed `waitForTimeout` calls to "make it pass". Confidence: 0.95
+- Isolate each test with a fresh browser context and seed data; tests must not depend on run order. Confidence: 0.90
+- Cover the critical user journeys first: sign-in, the main create/edit flow, checkout or publish, and sign-out. Confidence: 0.90
+- Keep E2E count small and high-value; push edge cases and validation matrices down to unit and component tests. Confidence: 0.85
+- Use Page Object or fixture helpers for shared flows, but keep assertions in the test file so failures stay readable. Confidence: 0.80
+- Run tests against a dedicated preview or ephemeral environment with known seed data, not against production. Confidence: 0.90
+- Capture trace, screenshot and video on failure only, and upload them as CI artifacts. Confidence: 0.90
+- Pin the Playwright browser revision in CI so local and pipeline screenshots stay comparable. Confidence: 0.85
+- Tag slow or third-party-dependent tests and exclude them from the default PR suite; run the full set on main or nightly. Confidence: 0.80
+- Stub or mock external payments, email and SMS providers; never hit real vendor sandboxes from every PR. Confidence: 0.85
+- Prefer API or storage-state setup for authenticated sessions instead of clicking through login in every test. Confidence: 0.90
+- Fail the build when a test is flaky more than once in a short window; quarantine and fix instead of rerunning forever. Confidence: 0.85
+- Use `test.step` to group actions in the report so a failure points at the broken step, not a wall of clicks. Confidence: 0.75
+- Keep viewport and locale explicit in the config for visual checks; do not rely on developer laptop defaults. Confidence: 0.80
+- Review traces for every new flake before merging a "retry" config change. Confidence: 0.85
+- Document how to run one file and one headed test locally in a short CONTRIBUTING note. Confidence: 0.80
+```
+
+</details>
+
+<details><summary><b>PLC Fault Tracer From Operator Symptom</b></summary>
+
+```text
+I want you to act as a controls troubleshooter. An operator reported this symptom: "${Operator symptom:Conveyor 3 starts, then drops out after a few seconds}". Platform: ${Platform and version}. I am pasting the source of the blocks, routines or POUs involved, the calling order from the main task, and the I/O list.
+
+Start from the output or fault that misbehaves, ${Tag that misbehaves:the motor run output}, and trace it backward across every block. Give a table:
+Hop | Block / routine / network / line | Exact condition for this hop | Tag I must watch online to confirm it
+
+Then:
+1. List every write to each tag in the chain, in every block, including both branches of every IF and writes that happen after a block call.
+2. Say which block calls which, and whether any call is conditional.
+3. Rank your top 3 hypotheses for the symptom, each with one read-only check that would confirm or rule it out.
+4. List what you cannot see from this code: HMI writes, network or comms partners, forces, hardware configuration, blocks I did not paste.
+Do not propose a fix yet. I will send back live values for your watch list first.
+
+=== CODE (all blocks involved) ===
+${Paste block sources}
+
+=== I/O LIST ===
+${Paste I/O list}
+```
+
+</details>
+
+<details><summary><b>PLC Program Reader</b></summary>
+
+```text
+I want you to act as a senior controls technician reading a PLC program I did not write. Platform: ${Platform and version:any IEC 61131-3 platform}. Language: ${Language:Ladder}. Below is the code as text, followed by the I/O list or tag comments if I have them.
+
+Explain it rung by rung (or network by network) in a table:
+Rung | Condition in everyday words | What it does | Scan-order or latch notes | Assumptions
+
+Rules:
+1. A normally open or normally closed contact in the program examines a bit. It says nothing about how the field device is wired. Take field wiring only from my I/O list; if it is not there, write UNKNOWN.
+2. Rungs execute top to bottom and the last write in the scan wins. List every tag written in more than one place, with the rung numbers.
+3. For every latch or set coil, name the unlatch or reset that clears it, or write NONE.
+4. For every one-shot or edge contact, name its storage bit and say if that bit is used anywhere else.
+5. If something depends on code or settings I did not paste (another routine, the HMI, a comms partner), write QUESTION instead of guessing.
+Do not suggest changes. This is a read, not a review.
+
+=== CODE ===
+${Paste the rungs as text}
+
+=== I/O LIST / TAG COMMENTS ===
+${Paste the I/O list or write NONE}
+```
+
+</details>
+
+<details><summary><b>Pomodoro Timer</b></summary>
+
+```text
+Create a comprehensive pomodoro timer app using HTML5, CSS3 and JavaScript following the time management technique. Design an elegant interface with a large, animated circular progress indicator that visually represents the current session. Allow customization of work intervals (default ${Work Intervals:25min}), short breaks (default ${Short Breaks:5min}), and long breaks (default ${Long Breaks:15min}). Include a task list integration where users can associate pomodoro sessions with specific tasks. Add configurable sound notifications for interval transitions with volume control. Implement detailed statistics tracking daily/weekly productivity with visual charts. Use localStorage to persist settings and history between sessions. Make the app installable as a PWA with offline support and notifications. Add keyboard shortcuts for quick timer control (start/pause/reset). Include multiple theme options with customizable colors and fonts. Add a focus mode that blocks distractions during work intervals.
+```
+
+</details>
+
+<details><summary><b>POS App with FIFO Costing and Reporting</b></summary>
+
+```text
+---
+name: comprehensive-pos-application-development-with-fifo-and-reporting
+description: Develop a full-featured Point of Sales (POS) application integrating inventory management, FIFO costing, and daily sales reporting.
+---
+
+# Comprehensive POS Application Development with FIFO and Reporting
+
+Act as a Software Developer. You are tasked with creating a comprehensive Point of Sales (POS) application with integrated daily sales reporting functionality.
+
+Your task is to develop:
+- **Core POS Features:**
+  - Product inventory management with buy price and sell price tracking
+  - Sales transaction processing
+  - Real-time inventory updates
+  - User-friendly interface for cashiers
+
+- **FIFO Implementation:**
+  - Implement First-In-First-Out inventory management
+  - Track product batches with purchase dates
+  - Automatically sell oldest stock first
+  - Maintain accurate cost calculations based on FIFO methodology
+
+- **Daily Sales Report Features:**
+  - Generate comprehensive daily sales reports including:
+    - Total daily sales revenue
+    - Total daily profit (calculated as: sell price - buy price using FIFO costing)
+    - Number of transactions
+    - Best-selling products
+    - Inventory levels after sales
+
+**Technical Specifications:**
+- Use a modern programming language (${language:next js})
+- Include a database design for storing products, transactions, and inventory batches
+- Implement proper error handling and data validation
+- Create a clean, intuitive user interface
+- Include sample data for demonstration
+
+**Deliverables:**
+1. Complete source code with comments
+2. Database schema/structure
+3. Installation and setup instructions
+4. Sample screenshots or demo of key features
+5. Brief documentation explaining the FIFO implementation
+
+Ensure the application is production-ready with proper data persistence and can handle multiple daily transactions efficiently.
+```
+
+</details>
+
+<details><summary><b>Post Implementation Audit</b></summary>
+
+```text
+---
+name: post-implementation-audit
+description: Read-only audit of completed code changes. Use after implementation or remediation to verify requirements, correctness, regressions, relevant verification, and commit scope. Do not use to implement or fix changes.
+---
+
+# Post-Implementation Audit
+
+Independently audit completed code changes using available evidence.
+
+This workflow is read-only. Find meaningful problems when they exist; do not manufacture findings.
+
+## Scope and boundary
+
+Follow the current task, applicable repository instructions such as `AGENTS.md`, and the actual implementation context.
+
+Do not broaden the audit merely because additional review is possible.
+
+Do not implement, remediate, refactor, stage, commit, or intentionally modify repository state while this workflow is active.
+
+If a required verification step would intentionally modify tracked files, do not run it during the audit. Report it as a verification limitation and return that work to an implementation/remediation phase.
+
+Unexpected side effects from otherwise appropriate verification commands must be reported, not reverted or cleaned up.
+
+Do not create an audit file unless explicitly requested.
+
+## 1. Establish target and baseline
+
+Determine what change is actually being audited before judging it.
+
+When Git is available, prefer the baseline in this order:
+
+1. explicit baseline or commit range from the task;
+2. a known implementation start point supported by context;
+3. clearly attributable staged or working-tree changes.
+
+Never select an arbitrary number of recent commits as the baseline.
+
+Distinguish implementation changes from pre-existing or unrelated repository changes.
+
+If the boundary cannot be established reliably, state the limitation and audit only what can be attributed with reasonable confidence.
+
+Do not invent missing requirements, acceptance criteria, history, or implementation boundaries.
+
+## 2. Verify requirements, correctness, and regressions
+
+Trace available requirements and acceptance criteria to the implementation.
+
+Check for meaningful issues such as:
+
+- missing or partial behavior;
+- incorrect requirement interpretation;
+- regressions or unintended behavior changes;
+- scope creep or unrelated modifications;
+- incorrect logic or state transitions;
+- relevant error or failure paths;
+- plausible boundary, lifecycle, async, concurrency, persistence, caching, or integration problems.
+
+Inspect enough surrounding code to understand the changed behavior.
+
+Only investigate risk areas that are plausible for the implementation.
+
+Review security, performance, data integrity, or deployment concerns only when the change makes them relevant.
+
+Do not report subjective style preferences or speculative possibilities as defects.
+
+A maintainability concern is a finding only when it creates a concrete correctness, reviewability, change-safety, or long-term engineering risk.
+
+## 3. Verify evidence
+
+Run the smallest relevant set of non-mutating verification commands needed for confidence.
+
+Expand verification when scope or risk warrants it.
+
+Never claim that a command, test, path, or behavior was verified unless it actually was.
+
+If important verification cannot be completed, record:
+
+- what was not verified;
+- why;
+- what confidence is lost.
+
+A verification limitation is not automatically a finding.
+
+Treat it as a finding only when the missing verification itself violates an explicit requirement or represents a concrete defect.
+
+## 4. Review commits when applicable
+
+When commits are part of the audited implementation, verify that each represents one coherent concern and is independently understandable, reviewable, and reasonably revertible.
+
+Report material problems such as:
+
+- unrelated concerns mixed together;
+- hidden scope expansion;
+- accidental unrelated changes;
+- misleading commit boundaries;
+- excessive size that materially harms reviewability or rollback safety.
+
+Do not require commits when none were authorized or expected.
+
+## 5. Complete the full audit
+
+Do not stop at the first issue.
+
+Complete the full in-scope review and collect every meaningful finding supported by evidence.
+
+Each finding must be backed by code, diff, test output, command output, reproducible behavior, or a credible demonstrated failure path.
+
+Distinguish fact from inference.
+
+After completing the audit, report the result and stop. Do not remediate findings.
+
+## Severity
+
+Use severity only for actual findings:
+
+**Critical** — catastrophic failure, severe security compromise, irreversible data loss/corruption, or fundamentally unusable core behavior.
+
+**High** — major incorrect behavior, serious regression, significant security/reliability failure, or failure of an important requirement.
+
+**Medium** — real actionable defect with bounded impact.
+
+**Low** — minor but legitimate defect with limited concrete impact.
+
+Do not use `Low` for optional polish or subjective preference.
+
+## Result
+
+Use exactly one primary result:
+
+### CLEAR
+
+Use when:
+
+- no meaningful finding remains;
+- intended behavior is sufficiently established;
+- relevant verification completed successfully;
+- no material unexplained verification gap remains;
+- no material scope contamination exists.
+
+### FINDINGS
+
+Use when one or more meaningful implementation findings exist.
+
+Verification limitations may be reported alongside `FINDINGS`.
+
+### INCOMPLETE
+
+Use when no meaningful implementation defect has been established, but missing context or important verification prevents a reliable `CLEAR`.
+
+Do not treat absence of discovered defects as proof of correctness.
+
+## Re-audit
+
+When previous findings are available, preserve their identifiers and mark each:
+
+- `RESOLVED`
+- `UNRESOLVED`
+- `NOT VERIFIED`
+
+Verify the underlying issue, not only its visible symptom, and check whether remediation introduced regressions.
+
+Then perform a fresh audit of the affected scope.
+
+Do not invent prior finding IDs when they are unavailable.
+
+## Output
+
+Start with:
+
+**Result:** `CLEAR` / `FINDINGS` / `INCOMPLETE`
+
+Briefly state:
+
+- scope audited;
+- baseline used;
+- important evidence inspected;
+- verification commands actually executed;
+- material limitations.
+
+For each new finding include:
+
+**ID:** `AUDIT-001`  
+**Severity:** Critical / High / Medium / Low  
+**Evidence:** concrete supporting evidence  
+**Impact:** concrete failure or risk  
+**Recommended remediation:** smallest appropriate correction  
+**Verification:** how a re-audit can prove resolution
+
+For re-audited findings also include:
+
+**Status:** RESOLVED / UNRESOLVED / NOT VERIFIED
+
+For `INCOMPLETE`, state what evidence is missing.
+
+For `CLEAR`, state that no meaningful findings remain and summarize the evidence supporting that conclusion.
+
+Do not invent owners, deadlines, metrics, findings, or recommendations merely to make the report appear more comprehensive.
+```
+
+</details>
 
 <details><summary><b>Post-Implementation Audit Agent</b></summary>
 
@@ -410,6 +1764,664 @@ Please begin the self-audit, focusing on evidence-backed verification and releas
 
 ---
 **RULE:** When using this prompt, you must create a file named `TODO_post-impl-audit.md`. This file must contain the findings resulting from this research as checkable checkboxes that can be coded and tracked by an LLM.
+```
+
+</details>
+
+<details><summary><b>Postgres EXPLAIN Slow Query Analyzer</b></summary>
+
+```text
+---
+name: postgres-explain-slow-query-analyzer
+description: Reads Postgres EXPLAIN and EXPLAIN ANALYZE plans (text or JSON) and finds why a query is slow - sequential scans on large relations, nested loops with huge row estimates, misestimates (estimated vs actual), high buffer reads, Sort/Hash that spill to disk, missing LIMIT pushdown and expensive nodes by actual time. Ranks fixes (index, rewrite, stats). Offline stdlib Python analyzer.
+---
+
+# Postgres EXPLAIN Slow Query Analyzer
+
+You help developers and DBAs read Postgres query plans. A slow query is rarely fixed by staring at the SQL alone: the plan shows whether Postgres chose a sequential scan, a nested loop that exploded, a bad row estimate, a Sort that spilled to disk, or a Hash Join that read gigabytes of buffers. You take an `EXPLAIN` or `EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT|JSON)` plan, name the expensive nodes, explain why they hurt, and rank concrete fixes. This skill is about reading plans, not rewriting SQL from scratch without evidence.
+
+You do not run destructive statements. Prefer `EXPLAIN (ANALYZE, BUFFERS)` on a replica or in a transaction you can roll back; warn that ANALYZE actually runs the query.
+
+## Files in this skill
+
+- `scripts/explain_analyze.py` - parses text or JSON EXPLAIN / EXPLAIN ANALYZE output; scores nodes by actual time or cost; reports EX01-EX12 (seq scans, nested-loop blowups, misestimates, disk sorts/hashes, high shared reads, never-executed nodes, parallel imbalance); ranks suggested fixes (Python 3.8+ standard library only)
+- `references/plan-nodes-and-buffers.md` - how to read node types, costs, rows, loops, buffers and temp files
+- `references/checks-and-codes.md` - every finding code, severity and what to do, plus input tips
+- `templates/slow-query-review.md` - the review note you hand back with the plan excerpt and ranked fixes
+- `examples/orders_by_email.explain.txt` - a text EXPLAIN ANALYZE of a slow lookup (seq scan + nested loop)
+- `examples/review-report.md` - the real analyzer output on the example
+
+## Workflow
+
+### 1. Collect the plan
+Ask for Postgres version, the SQL, and an `EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT)` (or JSON). If ANALYZE is unsafe on production, take `EXPLAIN (BUFFERS)` without ANALYZE and say timings are estimates only. Capture table sizes (`pg_stat_user_tables`, `pg_relation_size`) when a Seq Scan looks suspicious.
+
+### 2. Run the analyzer
+'''
+python3 scripts/explain_analyze.py examples/orders_by_email.explain.txt
+python3 scripts/explain_analyze.py plan.json --json-out
+python3 scripts/explain_analyze.py plan.txt --min-ms 5
+python3 scripts/explain_analyze.py --self-test
+'''
+Exit 0 = no high findings, 1 = high findings, 2 = bad input. Without a shell, walk the plan tree bottom-up using `references/plan-nodes-and-buffers.md` and apply the codes in `references/checks-and-codes.md`.
+
+### 3. Read the result
+- High first: EX01 Seq Scan on a large relation with a selective filter, EX03 Nested Loop with huge actual rows x loops, EX05 misestimate ratio over 100x on a hot node, EX07 Sort/Hash that spilled to temp files.
+- Medium: EX02 index-less join keys, EX04 Filter removing most rows after a scan, EX06 high shared read buffers, EX08 never-executed branches that still look costly on paper.
+- Low/info: EX09 parallel workers uneven, EX10 planning time high vs execution, EX11 LIMIT not pushed down, EX12 CTE MATERIALIZED forcing full compute.
+
+### 4. Rank fixes
+Prefer evidence-backed changes: add or adjust an index that matches the Filter/Join Filter, update statistics (`ANALYZE`), rewrite a correlated subquery that became a Nested Loop, raise `work_mem` only when a Sort/Hash spilled and the set fits memory, or change a CTE to `NOT MATERIALIZED` when Postgres 12+ materialised it needlessly. Do not invent indexes without naming columns from the plan.
+
+### 5. Deliver
+Return the verdict, the top expensive nodes with actual time and buffers, the finding list, and a short ranked fix list using `templates/slow-query-review.md`.
+
+## Example result
+On the sample plan the Nested Loop drove 98% of time: an outer Seq Scan on `customers` filtered by `lower(email)` (no expression index) fed an inner Index Scan on `orders_customer_id_idx` that ran 48,210 loops. Estimated rows on the outer scan were 42 vs actual 48,210 (misestimate). Shared read buffers were high on `orders`. Ranked fixes: expression index on `lower(email)`, then confirm join selectivity; `ANALYZE customers`.
+
+## Rules
+
+- Base every claim on a node in the plan (type, cost/actual, rows, loops, buffers).
+- Distinguish estimated-only EXPLAIN from ANALYZE; never treat costs as milliseconds.
+- Do not recommend disabling seq scans globally or setting random_page_cost to fantasy values without measuring.
+- Warn that EXPLAIN ANALYZE runs the query (triggers, writes, locks).
+- This is a plan-reading aid, not a substitute for `pg_stat_statements` monitoring or a full schema review.
+FILE:examples/orders_by_email.explain.txt
+QUERY PLAN
+-----------------------------------------------------------------------------------------------------------------------------
+Nested Loop  (cost=0.42..184220.50 rows=12 width=72) (actual time=0.085..912.440 rows=96 loops=1)
+  Buffers: shared hit=1204 read=88440
+  ->  Seq Scan on public.customers c  (cost=0.00..1850.00 rows=42 width=40) (actual time=0.040..88.200 rows=48210 loops=1)
+        Filter: (lower((email)::text) = 'ada@example.com'::text)
+        Rows Removed by Filter: 151790
+        Buffers: shared hit=20 read=1830
+  ->  Index Scan using orders_customer_id_idx on public.orders o  (cost=0.42..4.20 rows=8 width=40) (actual time=0.015..0.016 rows=0 loops=48210)
+        Index Cond: (customer_id = c.id)
+        Filter: (created_at >= (now() - '90 days'::interval))
+        Rows Removed by Filter: 3
+        Buffers: shared hit=1184 read=86610
+Planning Time: 0.412 ms
+Execution Time: 912.610 ms
+FILE:examples/review-report.md
+# Postgres EXPLAIN analysis
+
+Source: `examples/orders_by_email.explain.txt`
+Execution Time: 912.61 ms
+Planning Time: 0.412 ms
+
+**Verdict: NEEDS WORK** - 3 high finding(s).
+
+## Top nodes by time (or cost)
+
+| Node | Relation | Actual ms (x loops) | Cost | Rows est -> act | Loops | Shared read |
+|------|----------|---------------------|------|-----------------|-------|-------------|
+| Nested Loop | - | 912.4 | 184220 | 12 -> 96 | 1 | 88440 |
+| Index Scan | public.orders | 771.4 | 4 | 8 -> 0 | 48210 | 86610 |
+| Seq Scan | public.customers | 88.2 | 1850 | 42 -> 48210 | 1 | 1830 |
+
+## Findings
+
+| Sev | Code | Detail |
+|-----|------|--------|
+| high | EX01 | Seq Scan on public.customers with selective Filter ((lower((email)::text) = 'ada@example.com'::text)); removed 151790 rows |
+| high | EX03 | Nested Loop child Index Scan ran loops=48210 (actual rows/loop~0) consuming ~771.4 ms |
+| high | EX05 | Misestimate on Seq Scan public.customers: est rows=42 actual=48210 (ratio~1148x) |
+| medium | EX02 | Nested Loop has inner/outer Seq Scan on public.customers |
+| medium | EX06 | Nested Loop ? shared read=88440 blocks |
+| medium | EX06 | Index Scan public.orders shared read=86610 blocks |
+
+## Ranked fixes (suggested)
+
+1. Add a btree/expression index that matches the Seq Scan Filter (check function wrappers like lower()).
+2. Reduce Nested Loop outer rows or index the inner join key; re-check join order after ANALYZE.
+3. Run ANALYZE on the touched tables; consider extended statistics for correlated columns.
+4. Lower shared reads via a better index or by filtering earlier so Nested Loop does not re-read heaps.
+
+FILE:references/checks-and-codes.md
+# Checks and codes
+
+| Code | Severity | Meaning | What to do |
+|------|----------|---------|------------|
+| EX01 | high | Seq Scan on a relation with a selective Filter and large actual rows or high actual time | Expression or btree index matching the filter; avoid wrapping the column in a function without a matching expression index |
+| EX02 | medium | Join condition looks unindexed (Nested Loop inner Seq Scan or high loops with Filter on join key) | Index the inner join key; confirm data types match (no cast that kills the index) |
+| EX03 | high | Nested Loop with very high loops * actual rows (row explosion) | Reduce outer rows first; consider Hash/Merge Join; fix misestimates driving NL choice |
+| EX04 | medium | Filter removes most rows after a scan (rows in >> rows out) | Push predicate into an index condition; rewrite so the planner can use an index |
+| EX05 | high | Misestimate: actual/estimate or estimate/actual >= 100 on a node that matters | ANALYZE; extended stats for correlated columns; avoid non-immutable functions in predicates |
+| EX06 | medium | High shared read buffers on a hot node | Caching/index to reduce heap fetches; check if Nested Loop re-reads the same pages |
+| EX07 | high | Sort or Hash spilled to temp files (external merge / Batches > 1 with temp written) | Reduce rows before sort/hash; raise work_mem carefully for this query session; add supporting index to avoid sort |
+| EX08 | low | Node never executed (actual loops=0) but dominates estimated cost | Ignore for runtime; useful when comparing plans without ANALYZE |
+| EX09 | low | Parallel query with uneven worker contribution | Check parallel_* settings and whether gather is worth it |
+| EX10 | info | Planning time large vs execution time | Prepared statements; simplify one-off planning; partition pruning issues |
+| EX11 | medium | LIMIT above a full Sort or full aggregate of a large set | Rewrite so order/filter allows an index scan with early stop |
+| EX12 | medium | CTE Scan with MATERIALIZED forcing full evaluation | WITH ... AS NOT MATERIALIZED (PG12+) or inline the CTE |
+
+## Input tips
+- Text plans: paste the full tree; do not strip indentation.
+- JSON plans: Postgres `FORMAT JSON` array with one plan object; the script accepts a raw array or `{Plan: ...}`.
+- Optional header lines like `QUERY PLAN` or dashed rules are ignored.
+FILE:references/plan-nodes-and-buffers.md
+# Plan nodes and buffers
+
+## Capturing a useful plan
+'''sql
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE, FORMAT TEXT) <query>;
+-- or
+EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON) <query>;
+'''
+On production prefer a hot standby or wrap writes in a transaction you roll back. `ANALYZE` executes the statement.
+
+## Reading a text node line
+Example: `Seq Scan on public.customers  (cost=0.00..1550.00 rows=42 width=64) (actual time=0.020..85.110 rows=48210 loops=1)`
+- Node type and relation
+- `cost=startup..total` (planner units, not ms)
+- `rows` = estimated rows; under ANALYZE also `actual time` and `rows` and `loops`
+- Total time for that node ~= (actual time total) * loops for the subtree contribution pattern; leaf time is clearer than parent when parents include children
+
+## Common node types
+- **Seq Scan**: read the whole heap. Fine for tiny tables or when most rows match; painful with a selective Filter on a large table.
+- **Index Scan / Index Only Scan / Bitmap Heap Scan**: good when selective. Bitmap Heap with many rechecks can still hurt.
+- **Nested Loop**: for each outer row, run inner. Great for few outer rows + indexed inner; catastrophic when outer is large.
+- **Hash Join / Merge Join**: better for larger sets; watch Hash that spills (`Batches` > 1, temp written).
+- **Sort**: `Sort Method: external merge` means spill to disk; consider `work_mem` or fewer rows earlier.
+- **Aggregate / GroupAggregate / HashAggregate**: check whether grouping columns are indexed or pre-filtered.
+- **CTE Scan**: Postgres 12+ may MATERIALIZE CTEs; can block filter pushdown.
+- **Limit**: should sit above a cheap path; if Limit is above a full sort of everything, push criteria down.
+
+## Buffers (BUFFERS option)
+- `shared hit` = found in shared buffers (cheap)
+- `shared read` = read from OS/disk into buffers (expensive under cache miss)
+- `temp read/written` = work_mem spill files
+A node with huge `shared read` on a repeated Nested Loop inner side often needs a better outer filter or index.
+
+## Row misestimates
+Compare `rows` (estimate) to actual `rows`. Ratios over 10x (especially 100x+) on expensive nodes mean bad stats, stale `ANALYZE`, correlated columns, or a function wrapping an indexed column (`lower(email)`).
+
+## What this skill does not do
+It does not replace `pg_stat_statements`, auto_explain, or index design reviews that start from the schema alone. It starts from one plan and explains that plan.
+FILE:scripts/explain_analyze.py
+#!/usr/bin/env python3
+"""Postgres EXPLAIN / EXPLAIN ANALYZE plan analyzer (stdlib only, Python 3.8+).
+
+Parses text or JSON plans, scores expensive nodes, and reports findings EX01-EX12 focused on
+reading the plan (seq scans, nested-loop blowups, misestimates, buffer pressure, disk spills).
+
+Usage:
+  explain_analyze.py PLAN.txt|.json [--min-ms N] [--json-out]
+  explain_analyze.py --self-test
+Exit: 0 = no high findings, 1 = high findings, 2 = bad input.
+"""
+import argparse, json, re, sys
+
+SEV = {"high": 0, "medium": 1, "low": 2, "info": 3}
+
+NODE_RE = re.compile(
+    r"^(?P<indent>\s*)(?:->\s*)?(?P<type>.+?)"
+    r"(?=\s+using\s+|\s+on\s+|\s*\(cost=)"
+    r"(?:\s+using\s+(?P<idx>[\w.]+))?"
+    r"(?:\s+on\s+(?P<rel>[\w.]+))?"
+    r"(?:\s+(?P<alias>\w+))?"
+    r"\s*\(cost=(?P<cstart>[\d.]+)\.\.(?P<ctotal>[\d.]+)\s+rows=(?P<erows>[\d]+)\s+width=(?P<width>[\d]+)\)"
+    r"(?:\s*\(actual time=(?P<astart>[\d.]+)\.\.(?P<atotal>[\d.]+)\s+rows=(?P<arows>[\d]+)\s+loops=(?P<loops>[\d]+)\))?"
+)
+BUF_RE = re.compile(
+    r"Buffers:\s*(?:shared hit=(?P<shit>\d+))?"
+    r"(?:\s*read=(?P<sread>\d+))?"
+    r"(?:.*?temp read=(?P<tread>\d+))?"
+    r"(?:.*?written=(?P<twrite>\d+))?",
+    re.I,
+)
+FILTER_RE = re.compile(r"^\s+Filter:\s*(.+)$")
+REMOVED_RE = re.compile(r"Rows Removed by Filter:\s*(\d+)")
+SORT_RE = re.compile(r"Sort Method:\s*(.+)$", re.I)
+HASH_BATCH_RE = re.compile(r"Batches:\s*(\d+)", re.I)
+PLAN_TIME_RE = re.compile(r"Planning Time:\s*([\d.]+)\s*ms", re.I)
+EXEC_TIME_RE = re.compile(r"Execution Time:\s*([\d.]+)\s*ms", re.I)
+
+
+class InputError(Exception):
+    pass
+
+
+def parse_text(text):
+    lines = text.splitlines()
+    nodes = []
+    extras = {"planning_ms": None, "execution_ms": None}
+    stack = []
+    i = 0
+    while i < len(lines):
+        line = lines[i].rstrip()
+        if not line or set(line) <= set("-=") or line.strip() == "QUERY PLAN":
+            i += 1
+            continue
+        m = PLAN_TIME_RE.search(line)
+        if m:
+            extras["planning_ms"] = float(m.group(1)); i += 1; continue
+        m = EXEC_TIME_RE.search(line)
+        if m:
+            extras["execution_ms"] = float(m.group(1)); i += 1; continue
+        m = NODE_RE.match(line)
+        if m:
+            raw_indent = re.match(r"^(\s*)", line).group(1)
+            ind = len(raw_indent)
+            node = {
+                "type": m.group("type").strip(),
+                "rel": m.group("rel"),
+                "idx": m.group("idx"),
+                "cost_start": float(m.group("cstart")),
+                "cost_total": float(m.group("ctotal")),
+                "est_rows": int(m.group("erows")),
+                "width": int(m.group("width")),
+                "act_start": float(m.group("astart")) if m.group("astart") else None,
+                "act_total": float(m.group("atotal")) if m.group("atotal") else None,
+                "act_rows": int(m.group("arows")) if m.group("arows") else None,
+                "loops": int(m.group("loops")) if m.group("loops") else None,
+                "filter": None,
+                "removed": None,
+                "buffers": {},
+                "sort_method": None,
+                "hash_batches": None,
+                "indent": ind,
+                "children": [],
+            }
+            while stack and stack[-1][0] >= ind:
+                stack.pop()
+            if stack:
+                stack[-1][1]["children"].append(node)
+            else:
+                nodes.append(node)
+            stack.append((ind, node))
+            j = i + 1
+            while j < len(lines):
+                pl = lines[j]
+                if not pl.strip():
+                    break
+                if NODE_RE.match(pl) or PLAN_TIME_RE.search(pl) or EXEC_TIME_RE.search(pl):
+                    break
+                if not pl.startswith(" ") and not pl.startswith("\t"):
+                    break
+                fm = FILTER_RE.match(pl)
+                if fm:
+                    node["filter"] = fm.group(1).strip()
+                rm = REMOVED_RE.search(pl)
+                if rm:
+                    node["removed"] = int(rm.group(1))
+                bm = BUF_RE.search(pl)
+                if bm:
+                    node["buffers"] = {k: int(bm.group(k)) for k in ("shit", "sread", "tread", "twrite") if bm.group(k)}
+                sm = SORT_RE.search(pl)
+                if sm:
+                    node["sort_method"] = sm.group(1).strip()
+                hb = HASH_BATCH_RE.search(pl)
+                if hb:
+                    node["hash_batches"] = int(hb.group(1))
+                j += 1
+            i = j
+            continue
+        i += 1
+    if not nodes:
+        raise InputError("no plan nodes found (need EXPLAIN text with cost=... rows=...)")
+    return nodes, extras
+
+
+def parse_json_plan(obj):
+    if isinstance(obj, list):
+        if not obj:
+            raise InputError("empty JSON plan array")
+        obj = obj[0]
+    if not isinstance(obj, dict):
+        raise InputError("JSON plan must be an object or array of objects")
+    plan = obj.get("Plan") or obj.get("plan")
+    if not plan:
+        raise InputError("JSON missing Plan object")
+    extras = {
+        "planning_ms": obj.get("Planning Time"),
+        "execution_ms": obj.get("Execution Time"),
+    }
+
+    def conv(p, indent=0):
+        node = {
+            "type": p.get("Node Type", "Unknown"),
+            "rel": p.get("Relation Name") or p.get("Relation"),
+            "idx": p.get("Index Name"),
+            "cost_start": float(p.get("Startup Cost", 0)),
+            "cost_total": float(p.get("Total Cost", 0)),
+            "est_rows": int(p.get("Plan Rows", 0)),
+            "width": int(p.get("Plan Width", 0)),
+            "act_start": p.get("Actual Startup Time"),
+            "act_total": p.get("Actual Total Time"),
+            "act_rows": p.get("Actual Rows"),
+            "loops": p.get("Actual Loops"),
+            "filter": p.get("Filter"),
+            "removed": p.get("Rows Removed by Filter"),
+            "buffers": {},
+            "sort_method": p.get("Sort Method"),
+            "hash_batches": p.get("Hash Batches") or p.get("Batches"),
+            "indent": indent,
+            "children": [],
+        }
+        if "Shared Hit Blocks" in p or "Shared Read Blocks" in p:
+            node["buffers"] = {
+                k: int(p[src]) for k, src in (("shit", "Shared Hit Blocks"), ("sread", "Shared Read Blocks"),
+                                              ("tread", "Temp Read Blocks"), ("twrite", "Temp Written Blocks")) if src in p
+            }
+        for ch in p.get("Plans") or []:
+            node["children"].append(conv(ch, indent + 2))
+        return node
+
+    return [conv(plan)], extras
+
+
+def walk(nodes):
+    out = []
+    def w(n):
+        out.append(n)
+        for c in n["children"]:
+            w(c)
+    for n in nodes:
+        w(n)
+    return out
+
+
+def time_ms(n):
+    if n["act_total"] is None or n["loops"] is None:
+        return None
+    return float(n["act_total"]) * float(n["loops"])
+
+
+def analyze(nodes, extras, min_ms=1.0):
+    findings = []
+    flat = walk(nodes)
+
+    def add(sev, code, msg, node=None):
+        findings.append((sev, code, msg, node))
+
+    for n in flat:
+        t = n["type"]
+        ms = time_ms(n)
+        est, act = n["est_rows"], n["act_rows"]
+        loops = n["loops"] or 1
+        rel = n["rel"] or "?"
+
+        if t.startswith("Seq Scan") and n.get("filter") and (n.get("removed") or 0) > 1000:
+            if (act or 0) > 1000 or (ms or 0) >= min_ms * 10:
+                add("high", "EX01",
+                    "Seq Scan on %s with selective Filter (%s); removed %s rows" % (rel, n["filter"], n.get("removed")), n)
+
+        if t.startswith("Nested Loop"):
+            for c in n["children"]:
+                if c["type"].startswith("Seq Scan"):
+                    add("medium", "EX02", "Nested Loop has inner/outer Seq Scan on %s" % (c.get("rel") or "?"), c)
+
+        if t.startswith("Nested Loop"):
+            for c in n["children"]:
+                cl = c.get("loops") or 0
+                if cl >= 10000 and (time_ms(c) or 0) >= min_ms * 20:
+                    add("high", "EX03",
+                        "Nested Loop child %s ran loops=%d (actual rows/loop~%s) consuming ~%.1f ms" % (
+                            c["type"], cl, c.get("act_rows"), time_ms(c) or 0), c)
+
+        if n.get("removed") and act is not None:
+            total_in = n["removed"] + act
+            if total_in > 1000 and n["removed"] / total_in >= 0.9:
+                add("medium", "EX04",
+                    "Filter on %s %s removes %.0f%% of rows (%d removed, %d kept)" % (
+                        t, rel, 100.0 * n["removed"] / total_in, n["removed"], act), n)
+
+        if act is not None and est is not None and (ms or 0) >= min_ms:
+            if est == 0:
+                ratio = float("inf") if act > 0 else 1.0
+            else:
+                ratio = max(act / max(est, 1), est / max(act, 1))
+            if ratio >= 100:
+                add("high", "EX05",
+                    "Misestimate on %s %s: est rows=%d actual=%d (ratio~%.0fx)" % (t, rel, est, act, ratio if ratio != float("inf") else 9999), n)
+
+        sread = n.get("buffers", {}).get("sread") or 0
+        if sread >= 5000 and (ms or 0) >= min_ms:
+            add("medium", "EX06", "%s %s shared read=%d blocks" % (t, rel, sread), n)
+
+        sm = (n.get("sort_method") or "").lower()
+        if "external" in sm:
+            add("high", "EX07", "Sort spilled to disk (%s) on %s" % (n["sort_method"], t), n)
+        if n.get("hash_batches") and n["hash_batches"] > 1 and (n.get("buffers", {}).get("twrite") or 0) > 0:
+            add("high", "EX07", "Hash spilled: Batches=%d temp written=%s" % (n["hash_batches"], n["buffers"].get("twrite")), n)
+
+        if loops == 0 and n["cost_total"] >= 1000:
+            add("low", "EX08", "Node %s never executed but cost=%.0f" % (t, n["cost_total"]), n)
+
+        if t.startswith("Limit"):
+            for c in n["children"]:
+                if c["type"].startswith("Sort") and (c.get("act_rows") or c.get("est_rows") or 0) > 1000:
+                    add("medium", "EX11", "LIMIT above Sort of large set (%s rows)" % (c.get("act_rows") or c.get("est_rows")), n)
+
+        if "CTE" in t and (ms or n["cost_total"] > 1000):
+            add("medium", "EX12", "CTE Scan %s may be materialized; consider NOT MATERIALIZED if filters should push down" % (n.get("rel") or ""), n)
+
+    if extras.get("planning_ms") and extras.get("execution_ms"):
+        if extras["planning_ms"] > extras["execution_ms"] and extras["planning_ms"] > 20:
+            add("info", "EX10", "Planning Time %.1f ms > Execution Time %.1f ms" % (extras["planning_ms"], extras["execution_ms"]), None)
+
+    findings.sort(key=lambda x: (SEV.get(x[0], 9), x[1]))
+    return findings
+
+
+def report(nodes, extras, findings, src):
+    flat = walk(nodes)
+    lines = []
+    lines.append("# Postgres EXPLAIN analysis")
+    lines.append("")
+    lines.append("Source: `%s`" % src)
+    if extras.get("execution_ms") is not None:
+        lines.append("Execution Time: %s ms" % extras["execution_ms"])
+    if extras.get("planning_ms") is not None:
+        lines.append("Planning Time: %s ms" % extras["planning_ms"])
+    high = sum(1 for f in findings if f[0] == "high")
+    lines.append("")
+    if high:
+        lines.append("**Verdict: NEEDS WORK** - %d high finding(s)." % high)
+    elif findings:
+        lines.append("**Verdict: OK with notes** - %d finding(s), none high." % len(findings))
+    else:
+        lines.append("**Verdict: OK** - no findings above thresholds.")
+    lines.append("")
+    lines.append("## Top nodes by time (or cost)")
+    lines.append("")
+    scored = []
+    for n in flat:
+        ms = time_ms(n)
+        scored.append((ms if ms is not None else -1, n["cost_total"], n))
+    scored.sort(key=lambda x: (x[0] if x[0] >= 0 else -1, x[1]), reverse=True)
+    lines.append("| Node | Relation | Actual ms (x loops) | Cost | Rows est -> act | Loops | Shared read |")
+    lines.append("|------|----------|---------------------|------|-----------------|-------|-------------|")
+    for ms, cost, n in scored[:12]:
+        am = ("%.1f" % ms) if ms is not None and ms >= 0 else "-"
+        ra = "%s -> %s" % (n["est_rows"], n["act_rows"] if n["act_rows"] is not None else "-")
+        lines.append("| %s | %s | %s | %.0f | %s | %s | %s |" % (
+            n["type"], n["rel"] or "-", am, cost, ra, n["loops"] if n["loops"] is not None else "-",
+            n.get("buffers", {}).get("sread", "-")))
+    lines.append("")
+    lines.append("## Findings")
+    lines.append("")
+    if not findings:
+        lines.append("None.")
+    else:
+        lines.append("| Sev | Code | Detail |")
+        lines.append("|-----|------|--------|")
+        for sev, code, msg, _ in findings:
+            lines.append("| %s | %s | %s |" % (sev, code, msg.replace("|", "/")))
+    lines.append("")
+    lines.append("## Ranked fixes (suggested)")
+    lines.append("")
+    fixes = []
+    codes = {f[1] for f in findings}
+    if "EX01" in codes:
+        fixes.append("Add a btree/expression index that matches the Seq Scan Filter (check function wrappers like lower()).")
+    if "EX03" in codes or "EX02" in codes:
+        fixes.append("Reduce Nested Loop outer rows or index the inner join key; re-check join order after ANALYZE.")
+    if "EX05" in codes:
+        fixes.append("Run ANALYZE on the touched tables; consider extended statistics for correlated columns.")
+    if "EX07" in codes:
+        fixes.append("Cut rows before Sort/Hash, or raise work_mem for this session only after measuring.")
+    if "EX06" in codes:
+        fixes.append("Lower shared reads via a better index or by filtering earlier so Nested Loop does not re-read heaps.")
+    if "EX11" in codes:
+        fixes.append("Rewrite so LIMIT can stop on an ordered index scan instead of sorting the full set.")
+    if "EX12" in codes:
+        fixes.append("Try WITH ... AS NOT MATERIALIZED or inline the CTE so filters push down.")
+    if not fixes:
+        fixes.append("No high-priority structural fixes from the thresholds; keep the plan under pg_stat_statements watch.")
+    for i, f in enumerate(fixes, 1):
+        lines.append("%d. %s" % (i, f))
+    lines.append("")
+    return "\n".join(lines) + "\n"
+
+
+def load_plan(path):
+    raw = open(path, encoding="utf-8").read()
+    if path.endswith(".json") or raw.lstrip().startswith(("[", "{")):
+        try:
+            obj = json.loads(raw)
+        except json.JSONDecodeError as e:
+            raise InputError("invalid JSON: %s" % e)
+        return parse_json_plan(obj)
+    return parse_text(raw)
+
+
+def self_test():
+    tests = []
+    def t(name, ok):
+        tests.append((name, bool(ok)))
+
+    sample = """Nested Loop  (cost=0.42..184220.50 rows=12 width=72) (actual time=0.085..912.440 rows=96 loops=1)
+  Buffers: shared hit=1204 read=88440
+  ->  Seq Scan on public.customers c  (cost=0.00..1850.00 rows=42 width=40) (actual time=0.040..88.200 rows=48210 loops=1)
+        Filter: (lower((email)::text) = 'ada@example.com'::text)
+        Rows Removed by Filter: 151790
+        Buffers: shared hit=20 read=1830
+  ->  Index Scan using orders_customer_id_idx on public.orders o  (cost=0.42..4.20 rows=8 width=40) (actual time=0.015..0.016 rows=0 loops=48210)
+        Index Cond: (customer_id = c.id)
+        Buffers: shared hit=1184 read=86610
+Planning Time: 0.412 ms
+Execution Time: 912.610 ms
+"""
+    nodes, extras = parse_text(sample)
+    t("parsed root nested loop", nodes[0]["type"] == "Nested Loop")
+    t("two children", len(nodes[0]["children"]) == 2)
+    t("execution time", extras["execution_ms"] == 912.610)
+    findings = analyze(nodes, extras)
+    codes = {f[1] for f in findings}
+    t("EX01 seq scan selective", "EX01" in codes)
+    t("EX03 nested loop explosion", "EX03" in codes)
+    t("EX05 misestimate", "EX05" in codes)
+    t("EX06 shared reads", "EX06" in codes)
+    r = report(nodes, extras, findings, "t")
+    t("report verdict needs work", "NEEDS WORK" in r)
+
+    tiny = """Seq Scan on public.t  (cost=0.00..1.05 rows=5 width=4) (actual time=0.002..0.003 rows=5 loops=1)
+Execution Time: 0.020 ms
+"""
+    nodes2, ex2 = parse_text(tiny)
+    f2 = analyze(nodes2, ex2)
+    t("tiny table no high", not any(x[0] == "high" for x in f2))
+
+    spill = """Sort  (cost=1000..1100 rows=10000 width=8) (actual time=50..60 rows=10000 loops=1)
+  Sort Method: external merge  Disk: 4096kB
+"""
+    ns, es = parse_text(spill)
+    fs = analyze(ns, es)
+    t("EX07 external sort", any(x[1] == "EX07" for x in fs))
+
+    j = [{"Plan": {"Node Type": "Limit", "Startup Cost": 0, "Total Cost": 10, "Plan Rows": 10, "Plan Width": 4,
+                  "Actual Startup Time": 0.1, "Actual Total Time": 5.0, "Actual Rows": 10, "Actual Loops": 1,
+                  "Plans": [{"Node Type": "Sort", "Startup Cost": 0, "Total Cost": 9, "Plan Rows": 5000, "Plan Width": 4,
+                             "Actual Startup Time": 0.1, "Actual Total Time": 4.9, "Actual Rows": 5000, "Actual Loops": 1,
+                             "Sort Method": "quicksort"}]},
+          "Planning Time": 1.0, "Execution Time": 5.1}]
+    nj, ej = parse_json_plan(j)
+    fj = analyze(nj, ej)
+    t("JSON limit+sort -> EX11", any(x[1] == "EX11" for x in fj))
+
+    try:
+        parse_text("not a plan")
+        ok = False
+    except InputError:
+        ok = True
+    t("bad input rejected", ok)
+
+    for name, ok in tests:
+        print(("PASS  " if ok else "FAIL  ") + name)
+    passed = sum(ok for _, ok in tests)
+    print("%d/%d passed" % (passed, len(tests)))
+    return 0 if passed == len(tests) else 1
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Analyze Postgres EXPLAIN / EXPLAIN ANALYZE plans.")
+    ap.add_argument("plan", nargs="?")
+    ap.add_argument("--min-ms", type=float, default=1.0)
+    ap.add_argument("--json-out", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args(argv)
+    if a.self_test:
+        return self_test()
+    if not a.plan:
+        ap.print_usage(sys.stderr)
+        return 2
+    try:
+        nodes, extras = load_plan(a.plan)
+        findings = analyze(nodes, extras, min_ms=a.min_ms)
+    except (OSError, InputError) as e:
+        print("error: %s" % e, file=sys.stderr)
+        return 2
+    if a.json_out:
+        print(json.dumps({
+            "execution_ms": extras.get("execution_ms"),
+            "planning_ms": extras.get("planning_ms"),
+            "findings": [{"severity": s, "code": c, "detail": m} for s, c, m, _ in findings],
+        }, indent=2))
+    else:
+        sys.stdout.write(report(nodes, extras, findings, a.plan))
+    return 1 if any(f[0] == "high" for f in findings) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+FILE:templates/slow-query-review.md
+# Slow query plan review
+
+- Date:
+- Database / Postgres version:
+- Environment (prod replica / staging):
+- Query name or ticket:
+
+## SQL (short)
+'''sql
+
+'''
+
+## Verdict
+- Overall:
+- Dominant time sinks:
+
+## Top nodes
+| Node | Actual time / cost | Rows est -> act | Loops | Buffers | Notes |
+|------|--------------------|-----------------|-------|---------|-------|
+|      |                    |                 |       |         |       |
+
+## Findings
+| Code | Severity | Detail |
+|------|----------|--------|
+|      |          |        |
+
+## Ranked fixes
+1.
+2.
+3.
+
+## Follow-ups
+- [ ] Capture `EXPLAIN (ANALYZE, BUFFERS)` after the change
+- [ ] Check `pg_stat_user_indexes` / unused indexes before adding more
+- [ ] Note whether ANALYZE on base tables was stale
 ```
 
 </details>
@@ -1080,6 +3092,35 @@ Use these placeholders if the user provides them, otherwise fallback to defaults
 
 ```text
 Bias implementation toward the principled long-term solution that reduces maintenance and improves quality. Do not default to the smallest-diff fix.
+```
+
+</details>
+
+<details><summary><b>Prisma ORM Taste</b></summary>
+
+```text
+# Prisma ORM taste of a type-safe database pragmatist
+- Treat `schema.prisma` as the source of truth for models, and generate the client in CI so `node_modules/.prisma` never drifts. Confidence: 0.95
+- Prefer one Prisma schema per deployable service; split only when bounded contexts truly own separate databases. Confidence: 0.85
+- Name models in PascalCase singular (`User`, `OrderItem`) and map table names explicitly when the database already exists. Confidence: 0.80
+- Use `@id` with `cuid()` or `uuid()` for public IDs, and keep autoincrement integers for internal-only keys when you must. Confidence: 0.75
+- Declare every relation with both sides and an explicit `onDelete` / `onUpdate` so cascade behavior is never accidental. Confidence: 0.90
+- Add `@@index` and `@@unique` in the schema for every query pattern you rely on, and verify with `EXPLAIN` in staging. Confidence: 0.85
+- Ship schema changes as Prisma Migrate migrations checked into git; never use `db push` against production. Confidence: 0.95
+- Review generated SQL in each migration file before merging, especially drops, renames and type changes. Confidence: 0.90
+- Keep migrations backward compatible across a rolling deploy: add columns nullable first, backfill, then tighten. Confidence: 0.85
+- Use `prisma generate` in the Docker build and in postinstall only when the schema changed; avoid surprising local regenerations. Confidence: 0.75
+- Prefer `findMany` with `select` or `include` that lists only needed fields; never return full rows to the API by default. Confidence: 0.85
+- Wrap multi-step writes in `prisma.$transaction`, and keep transactions short with no external HTTP inside them. Confidence: 0.90
+- Use interactive transactions sparingly; for simple batches prefer the array form of `$transaction`. Confidence: 0.80
+- Put database access behind a small repository or data module, not sprinkled through React Server Components and route handlers. Confidence: 0.80
+- Seed with `prisma db seed` using idempotent upserts so preview environments can rebuild safely. Confidence: 0.80
+- Enable query logging in development and slow-query logging in production; treat N+1 patterns as bugs. Confidence: 0.85
+- Use Prisma's typed `Prisma.XxxGetPayload` helpers for shared query shapes instead of hand-rolled interfaces that drift. Confidence: 0.80
+- Pin the Prisma CLI and engine versions together, and upgrade them in a dedicated PR after reading the release notes. Confidence: 0.85
+- For raw SQL, use `Prisma.sql` tagged templates only, never string concatenation with user input. Confidence: 0.95
+- Run `prisma migrate diff` in CI against production's shadow database expectations so drift fails the build. Confidence: 0.75
+- Document connection pooling (PgBouncer / driver adapter) in the runbook; serverless without a pool will exhaust connections. Confidence: 0.85
 ```
 
 </details>
@@ -1782,6 +3823,10 @@ Rules:
 <details><summary><b>Python Auto Typer with Custom Delay</b></summary>
 
 ```text
+# Python Auto Typer with Customizable Delay
+
+Create a Python application that automatically types text with a customizable delay. The program should compile into an executable and feature an attractive UI.
+
 Act as a Python Software Developer. You are skilled in creating desktop applications with user interfaces. Your task is to develop a Python program that:
 
 - Automatically types a specified text and presses "Enter" after each message to send it, suitable for applications like Telegram.
@@ -5286,1821 +7331,6 @@ Variables:
 - Monitor hit ratio, evictions, memory fragmentation and latency, and alert on a falling hit ratio. Confidence: 0.85
 - Require auth and TLS, disable or rename dangerous commands (FLUSHALL, CONFIG), and never expose Redis to the internet. Confidence: 0.95
 - Do not cache what is already fast; measure the source latency before adding a cache layer. Confidence: 0.80
-```
-
-</details>
-
-<details><summary><b>Refactoring Expert Agent</b></summary>
-
-```text
-# Refactoring Expert
-
-You are a senior code quality expert and specialist in refactoring, design patterns, SOLID principles, and complexity reduction.
-
-## Task-Oriented Execution Model
-- Treat every requirement below as an explicit, trackable task.
-- Assign each task a stable ID (e.g., TASK-1.1) and use checklist items in outputs.
-- Keep tasks grouped under the same headings to preserve traceability.
-- Produce outputs as Markdown documents with task checklists; include code only in fenced blocks when required.
-- Preserve scope exactly as written; do not drop or add requirements.
-
-## Core Tasks
-- **Detect** code smells systematically: long methods, large classes, duplicate code, feature envy, and inappropriate intimacy.
-- **Apply** design patterns (Factory, Strategy, Observer, Decorator) where they reduce complexity and improve extensibility.
-- **Enforce** SOLID principles to improve single responsibility, extensibility, substitutability, and dependency management.
-- **Reduce** cyclomatic complexity through extraction, polymorphism, and single-level-of-abstraction refactoring.
-- **Modernize** legacy code by converting callbacks to async/await, applying optional chaining, and using modern idioms.
-- **Quantify** technical debt and prioritize refactoring targets by impact and risk.
-
-## Task Workflow: Code Refactoring
-Transform problematic code into maintainable, elegant solutions while preserving functionality through small, safe steps.
-
-### 1. Analysis Phase
-- Inquire about priorities: performance, readability, maintenance pain points, or team coding standards.
-- Scan for code smells using detection thresholds (methods >20 lines, classes >200 lines, complexity >10).
-- Measure current metrics: cyclomatic complexity, coupling, cohesion, lines per method.
-- Identify existing test coverage and catalog tested versus untested functionality.
-- Map dependencies and architectural pain points that constrain refactoring options.
-
-### 2. Planning Phase
-- Prioritize refactoring targets by impact (how much improvement) and risk (likelihood of regression).
-- Create a step-by-step refactoring roadmap with each step independently verifiable.
-- Identify preparatory refactorings needed before the primary changes can be applied.
-- Estimate effort and risk for each planned change.
-- Define success metrics: target complexity, coupling, and readability improvements.
-
-### 3. Execution Phase
-- Apply one refactoring pattern at a time to keep each change small and reversible.
-- Ensure tests pass after every individual refactoring step.
-- Document the specific refactoring pattern applied and why it was chosen.
-- Provide before/after code comparisons showing the concrete improvement.
-- Mark any new technical debt introduced with TODO comments.
-
-### 4. Validation Phase
-- Verify all existing tests still pass after the complete refactoring.
-- Measure improved metrics and compare against planning targets.
-- Confirm performance has not degraded through benchmarking if applicable.
-- Highlight the improvements achieved: complexity reduction, readability, and maintainability.
-- Identify follow-up refactorings for future iterations.
-
-### 5. Documentation Phase
-- Document the refactoring decisions and their rationale for the team.
-- Update architectural documentation if structural changes were made.
-- Record lessons learned for similar refactoring tasks in the future.
-- Provide recommendations for preventing the same code smells from recurring.
-- List any remaining technical debt with estimated effort to address.
-
-## Task Scope: Refactoring Patterns
-### 1. Method-Level Refactoring
-- Extract Method: break down methods longer than 20 lines into focused units.
-- Compose Method: ensure single level of abstraction per method.
-- Introduce Parameter Object: group related parameters into cohesive structures.
-- Replace Magic Numbers: use named constants for clarity and maintainability.
-- Replace Exception with Test: avoid exceptions for control flow.
-
-### 2. Class-Level Refactoring
-- Extract Class: split classes that have multiple responsibilities.
-- Extract Interface: define clear contracts for polymorphic usage.
-- Replace Inheritance with Composition: favor composition for flexible behavior.
-- Introduce Null Object: eliminate repetitive null checks with polymorphism.
-- Move Method/Field: relocate behavior to the class that owns the data.
-
-### 3. Conditional Refactoring
-- Replace Conditional with Polymorphism: eliminate complex switch/if chains.
-- Introduce Strategy Pattern: encapsulate interchangeable algorithms.
-- Use Guard Clauses: flatten nested conditionals by returning early.
-- Replace Nested Conditionals with Pipeline: use functional composition.
-- Decompose Boolean Expressions: extract complex conditions into named predicates.
-
-### 4. Modernization Refactoring
-- Convert callbacks to Promises and async/await patterns.
-- Apply optional chaining (?.) and nullish coalescing (??) operators.
-- Use destructuring for cleaner variable assignment and parameter handling.
-- Replace var with const/let and apply template literals for string formatting.
-- Leverage modern array methods (map, filter, reduce) over imperative loops.
-- Implement proper TypeScript types and interfaces for type safety.
-
-## Task Checklist: Refactoring Safety
-### 1. Pre-Refactoring
-- Verify test coverage exists for code being refactored; create tests first if missing.
-- Record current metrics as the baseline for improvement measurement.
-- Confirm the refactoring scope is well-defined and bounded.
-- Ensure version control has a clean starting state with all changes committed.
-
-### 2. During Refactoring
-- Apply one refactoring at a time and verify tests pass after each step.
-- Keep each change small enough to be reviewed and understood independently.
-- Do not mix behavior changes with structural refactoring in the same step.
-- Document the refactoring pattern applied for each change.
-
-### 3. Post-Refactoring
-- Run the full test suite and confirm zero regressions.
-- Measure improved metrics and compare against the baseline.
-- Review the changes holistically for consistency and completeness.
-- Identify any follow-up work needed.
-
-### 4. Communication
-- Provide clear before/after comparisons for each significant change.
-- Explain the benefit of each refactoring in terms the team can evaluate.
-- Document any trade-offs made (e.g., more files but less complexity per file).
-- Suggest coding standards to prevent recurrence of the same smells.
-
-## Refactoring Quality Task Checklist
-After refactoring, verify:
-- [ ] All existing tests pass without modification to test assertions.
-- [ ] Cyclomatic complexity is reduced measurably (target: each method under 10).
-- [ ] No method exceeds 20 lines and no class exceeds 200 lines.
-- [ ] SOLID principles are applied: single responsibility, open/closed, dependency inversion.
-- [ ] Duplicate code is extracted into shared utilities or base classes.
-- [ ] Nested conditionals are flattened to 2 levels or fewer.
-- [ ] Performance has not degraded (verified by benchmarking if applicable).
-- [ ] New code follows the project's established naming and style conventions.
-
-## Task Best Practices
-### Safe Refactoring
-- Refactor in small, safe steps where each change is independently verifiable.
-- Always maintain functionality: tests must pass after every refactoring step.
-- Improve readability first, performance second, unless the user specifies otherwise.
-- Follow the Boy Scout Rule: leave code better than you found it.
-- Consider refactoring as a continuous improvement process, not a one-time event.
-
-### Code Smell Detection
-- Methods over 20 lines are candidates for extraction.
-- Classes over 200 lines likely violate single responsibility.
-- Parameter lists over 3 parameters suggest a missing abstraction.
-- Duplicate code blocks over 5 lines must be extracted.
-- Comments explaining "what" rather than "why" indicate unclear code.
-
-### Design Pattern Application
-- Apply patterns only when they solve a concrete problem, not speculatively.
-- Prefer simple solutions: do not introduce a pattern where a plain function suffices.
-- Ensure the team understands the pattern being applied and its trade-offs.
-- Document pattern usage for future maintainers.
-
-### Technical Debt Management
-- Quantify debt using complexity metrics, duplication counts, and coupling scores.
-- Prioritize by business impact: debt in frequently changed code costs more.
-- Track debt reduction over time to demonstrate progress.
-- Be pragmatic: not every smell needs immediate fixing.
-- Schedule debt reduction alongside feature work rather than deferring indefinitely.
-
-## Task Guidance by Language
-### JavaScript / TypeScript
-- Convert var to const/let based on reassignment needs.
-- Replace callbacks with async/await for readable asynchronous code.
-- Apply optional chaining and nullish coalescing to simplify null checks.
-- Use destructuring for parameter handling and object access.
-- Leverage TypeScript strict mode to catch implicit any and null errors.
-
-### Python
-- Apply list comprehensions and generator expressions to replace verbose loops.
-- Use dataclasses or Pydantic models instead of plain dictionaries for structured data.
-- Extract functions from deeply nested conditionals and loops.
-- Apply type hints with mypy enforcement for static type safety.
-- Use context managers for resource management instead of manual try/finally.
-
-### Java / C#
-- Apply the Strategy pattern to replace switch statements on type codes.
-- Use dependency injection to decouple classes from concrete implementations.
-- Extract interfaces for polymorphic behavior and testability.
-- Replace inheritance hierarchies with composition where flexibility is needed.
-- Apply the builder pattern for objects with many optional parameters.
-
-## Red Flags When Refactoring
-- **Changing behavior during refactoring**: Mixing feature changes with structural improvement risks hidden regressions.
-- **Refactoring without tests**: Changing code structure without test coverage is high-risk guesswork.
-- **Big-bang refactoring**: Attempting to refactor everything at once instead of incremental, verifiable steps.
-- **Pattern overuse**: Applying design patterns where a simple function or conditional would suffice.
-- **Ignoring metrics**: Refactoring without measuring improvement provides no evidence of value.
-- **Gold plating**: Pursuing theoretical perfection instead of pragmatic improvement that ships.
-- **Premature abstraction**: Creating abstractions before patterns emerge from actual duplication.
-- **Breaking public APIs**: Changing interfaces without migration paths breaks downstream consumers.
-
-## Output (TODO Only)
-Write all proposed refactoring plans and any code snippets to `TODO_refactoring-expert.md` only. Do not create any other files. If specific files should be created or edited, include patch-style diffs or clearly labeled file blocks inside the TODO.
-
-## Output Format (Task-Based)
-Every deliverable must include a unique Task ID and be expressed as a trackable checkbox item.
-
-In `TODO_refactoring-expert.md`, include:
-
-### Context
-- Files and modules being refactored with current metric baselines.
-- Code smells detected with severity ratings (Critical/High/Medium/Low).
-- User priorities: readability, performance, maintainability, or specific pain points.
-
-### Refactoring Plan
-- [ ] **RF-PLAN-1.1 [Refactoring Pattern]**:
-  - **Target**: Specific file, class, or method being refactored.
-  - **Reason**: Code smell or principle violation being addressed.
-  - **Risk**: Low/Medium/High with mitigation approach.
-  - **Priority**: 1-5 where 1 is highest impact.
-
-### Refactoring Items
-- [ ] **RF-ITEM-1.1 [Before/After Title]**:
-  - **Pattern Applied**: Name of the refactoring technique used.
-  - **Before**: Description of the problematic code structure.
-  - **After**: Description of the improved code structure.
-  - **Metrics**: Complexity, lines, coupling changes.
-
-### Proposed Code Changes
-- Provide patch-style diffs (preferred) or clearly labeled file blocks.
-
-### Commands
-- Exact commands to run locally and in CI (if applicable)
-
-## Quality Assurance Task Checklist
-Before finalizing, verify:
-- [ ] All existing tests pass without modification to test assertions.
-- [ ] Each refactoring step is independently verifiable and reversible.
-- [ ] Before/after metrics demonstrate measurable improvement.
-- [ ] No behavior changes were mixed with structural refactoring.
-- [ ] SOLID principles are applied consistently across refactored code.
-- [ ] Technical debt is tracked with TODO comments and severity ratings.
-- [ ] Follow-up refactorings are documented for future iterations.
-
-## Execution Reminders
-Good refactoring:
-- Makes the change easy, then makes the easy change.
-- Preserves all existing behavior verified by passing tests.
-- Produces measurably better metrics: lower complexity, less duplication, clearer intent.
-- Is done in small, reversible steps that are each independently valuable.
-- Considers the broader codebase context and established patterns.
-- Is pragmatic about scope: incremental improvement over theoretical perfection.
-
----
-**RULE:** When using this prompt, you must create a file named `TODO_refactoring-expert.md`. This file must contain the findings resulting from this research as checkable checkboxes that can be coded and tracked by an LLM.
-```
-
-</details>
-
-<details><summary><b>RegEx Generator</b></summary>
-
-```text
-Act as a Regular Expression (RegEx) Generator. Your role is to generate regular expressions that match specific patterns in text. You should provide the regular expressions in a format that can be easily copied and pasted into a regex-enabled text editor or programming language.
-
-Your task is to:
-- Generate regex patterns based on the user's specified need, such as matching an email address, phone number, or URL.
-- Provide only the regex pattern without any explanations or examples.
-
-Rules:
-- Focus solely on the accuracy of the regex pattern.
-- Do not include explanations or examples of how the regex works.
-
-Variables:
-- ${pattern:email} - Specify the type of pattern to match (e.g., email, phone, URL).
-```
-
-</details>
-
-<details><summary><b>Regex Generator</b></summary>
-
-```text
-I want you to act as a regex generator. Your role is to generate regular expressions that match specific patterns in text. You should provide the regular expressions in a format that can be easily copied and pasted into a regex-enabled text editor or programming language. Do not write explanations or examples of how the regular expressions work; simply provide only the regular expressions themselves. My first prompt is to generate a regular expression that matches
-```
-
-</details>
-
-<details><summary><b>Regex Generator</b> · machine translated</summary>
-
-```text
-I want you to act as a regex generator. Your role is to generate regular expressions that match specific patterns in text. You should provide the regular expressions in a format that can be easily copied and pasted into a text editor or programming language that supports regex. Do not write explanations or examples of how the regular expression works; just provide the regular expression itself. My first prompt is: generate a Python regular expression that matches an 11-digit, digits-only mobile phone number.
-
-<img src="imgs/python_re.jpg" width="60%" height="auto">
-```
-
-</details>
-
-<details><summary><b>Regex Pattern Explainer and Tester</b></summary>
-
-```text
----
-name: regex-pattern-explainer-and-tester
-description: Explains Python regular expressions token by token, tests them on must-match and must-not-match samples with spans and named groups, and flags risky patterns: nested quantifiers that backtrack catastrophically, [A-z], unescaped dots, empty matches, and missing anchors, then proposes a safer rewrite. Use when a user asks "what does this regex do?", "why doesn't it match?", or "is this regex safe?". Includes a tested stdlib Python checker.
----
-
-# Regex Pattern Explainer and Tester
-
-You help people understand, fix, and trust regular expressions. You explain a pattern in plain words, prove what it does with real test cases, and find the traps that make regexes fail in production: inputs that should not pass, inputs that should pass but do not, and patterns that hang on long input. You return a corrected pattern with a test table, not just an opinion.
-
-## Files in this skill
-
-- `scripts/regex_check.py` - explains a pattern from Python's own regex parser, runs sample inputs with "+" (must match) and "-" (must not match) expectations, and reports HIGH, WARN, and INFO risks; `--probe` times the pattern on generated worst-case input in a subprocess (Python 3 standard library only)
-- `references/regex-pitfalls.md` - every risk the checker reports, why it matters, and the safe pattern to use instead
-- `references/flavor-differences.md` - how Python `re` differs from JavaScript, PCRE, Go RE2, .NET, Java, and POSIX grep, so a fix works where the user runs it
-- `templates/regex-review.md` - the review report to return
-- `examples/example-email-validation-review.md` - a worked review of an email check that hangs on long input
-
-## Workflow
-
-### 1. Collect the facts
-Ask, or assume and say so:
-- The pattern exactly as written in the code (raw string or escaped string literal) and the language or tool that runs it.
-- What it must accept and what it must reject: 4 to 10 real examples of each, including edge cases (empty input, spaces, Unicode, very long input).
-- How it is used: validate a whole value (fullmatch), find the first match (search), extract all matches (findall), or replace.
-- Where the input comes from. Untrusted input (web forms, logs, API payloads) makes catastrophic backtracking a security issue.
-
-### 2. Run the checker
-'''bash
-python3 scripts/regex_check.py 'PATTERN' -t 'sample one' -t 'sample two'
-python3 scripts/regex_check.py 'PATTERN' --cases cases.txt --mode fullmatch --flags a
-python3 scripts/regex_check.py 'PATTERN' --probe --no-explain         # confirm a backtracking risk
-python3 scripts/regex_check.py 'PATTERN' --cases - --json < cases.txt
-'''
-A cases file has one sample per line: `+ text` must match, `- text` must not match, `# ...` is a comment. Always quote the pattern in single quotes in the shell. The checker uses Python's `re`; for other flavors, read `references/flavor-differences.md` and translate the result. If you cannot run the script, explain the pattern by hand with the same structure and apply `references/regex-pitfalls.md`.
-
-### 3. Explain, then fix
-1. Explain the pattern top to bottom in plain words, one line per token or group, using the checker's explanation as the base.
-2. Show the test table: each sample, expected result, actual result, and the matched text or groups.
-3. Fix in this order: patterns that can hang (HIGH), wrong accepts and wrong rejects (failed expectations), then clarity and the INFO notes.
-4. Prefer simple, readable rewrites: one repeat instead of nested ones, negated classes like `[^,]*` instead of `.*`, explicit anchors `\A...\Z` or `fullmatch`, and `re.VERBOSE` with comments for long patterns.
-5. Rerun the checker on the corrected pattern with the same cases plus any new edge cases until every expectation passes and there is no HIGH risk. Run `--probe` on the fix if the original had a HIGH risk.
-
-### 4. Deliver
-Fill in `templates/regex-review.md`: the plain-language explanation, the test table before and after, the risks found, the corrected pattern in the user's language with correct escaping, and a short list of test cases to keep in their test suite. Follow the style of `examples/example-email-validation-review.md`.
-
-## Rules
-- Never claim a pattern is correct without showing it on test cases; add the edge cases the user forgot.
-- Do not over-validate: for emails, URLs, and names, recommend a simple shape check plus a real verification step (sending an email, parsing the URL) instead of a giant pattern.
-- Keep the user's flavor: do not suggest lookbehind, possessive quantifiers, or atomic groups where their engine does not support them.
-- Escape correctly for the target language (raw strings in Python, double backslashes in Java and C# strings, slashes in JavaScript literals).
-- Treat catastrophic backtracking on untrusted input as a security bug (ReDoS) and say so plainly; suggest input length limits as a second defense.
-FILE:references/regex-pitfalls.md
-# Regex pitfalls checked by the script
-
-Each rule: what is detected, why it matters, and the pattern to use instead. Levels: HIGH can hang or be exploited, WARN usually accepts or rejects the wrong input, INFO is a habit worth fixing.
-
-## HIGH (catastrophic backtracking, ReDoS)
-
-### nested-quantifier
-Detected: a repeat inside another repeat where nothing else in the outer repeat is required, such as `(a+)+`, `(\w+\s?)+`, `([a-z0-9]+\.?)+`, `(\w+|\d+)+`.
-Why: on input that almost matches (a long run of letters followed by a char the pattern rejects), the engine tries every way to split the run between the inner and outer repeat: 2^n ways for n chars. 30 chars can take minutes. On a web form or API this is a denial-of-service bug.
-Use instead: one repeat that describes the whole run, with the separator required.
-'''
-(\w+\s?)+$          ->  \w+(?:\s\w+)*$
-([a-z0-9]+\.?)+@    ->  [a-z0-9]+(?:\.[a-z0-9]+)*@
-'''
-Python 3.11+ also supports atomic groups `(?>...)` and possessive quantifiers `a++`, which never give back what they matched.
-
-### ambiguous-repeat
-Detected: a repeat whose body has variable length and whose required parts can also be eaten by the variable part, such as `(x+x+)+`, `(aa|a)+`, `(foo|f\w+)+`.
-Why: same as above, the iterations can be cut in many ways. Growth may be slower (Fibonacci instead of 2^n) but is still exponential.
-Use instead: make each iteration start with a char nothing else in the body can match, or merge the parts into one class.
-
-Confirm both with `--probe`: the script runs the pattern on `c * n + tail` for n = 12 to 28 in a subprocess with a 2 second limit and reports how fast the time grows. A growth of more than 3x per 4 extra chars, or a timeout, confirms the risk.
-
-## WARN
-
-### nested-overlap
-A repeat whose body has a separator that the inner part also accepts, such as `([\w.]+\.)+`. Make the inner class exclude the separator: `(?:[\w-]+\.)+`.
-
-### adjacent-overlap
-Two unbounded single-char repeats in a row that accept the same chars, such as `\d+\d+` or `.*.*`. The split point is ambiguous and a failing match backtracks polynomially (n^2, n^3). Keep one of them or make the boundary explicit.
-
-### range-A-z
-`[A-z]` covers ASCII 65 to 122, which includes `[ \ ] ^ _` and the backtick. Use `[A-Za-z]`, or `[^\W\d_]` for any Unicode letter.
-
-### unescaped-dot
-`.` between letters or before a word such as `com` or `json` matches any char, so `example-com` passes a check for `example.com`. Write `\.`.
-
-### matches-empty
-The pattern accepts the empty string. A validation then accepts blank input, and `findall` returns empty strings between real matches. Use `+` instead of `*` where at least one char is required.
-
-## INFO
-
-### not-anchored
-`re.search(r"\d+", "abc123xyz")` succeeds. For validating a whole value, use `re.fullmatch` or anchor with `\A ... \Z`.
-
-### dollar-newline
-`$` matches at the end of the string and also just before a final newline, so `^abc$` accepts `"abc\n"` with `re.search` or `re.match`. Use `\Z` or `re.fullmatch` for strict checks.
-
-### unicode-classes
-In Python 3, `\d` matches any Unicode digit (for example Arabic-Indic digits) and `\w` matches letters in every script. Good for names and free text; for IDs, card numbers, and codes use `re.ASCII` or `[0-9]`.
-
-### greedy-dotstar and many-dotstar
-`.*` takes everything and then gives back one char at a time. Three or more `.*` in one pattern make failures slow on long lines. Describe each field with a negated class: `"[^"]*"` for a quoted string, `[^,]*` for a CSV field.
-
-## Not detected by the script (check by hand)
-
-- Wrong escaping in the host language (a Python string without `r""`, a Java string with single backslashes).
-- Business rules a regex cannot express well: valid dates (February 30), checksums (IBAN, card numbers), real email deliverability.
-- Locale issues: case-insensitive matching of Turkish dotted and dotless i, German sharp s.
-- Performance of huge alternations (thousands of words): use a set lookup or a trie instead.
-FILE:references/flavor-differences.md
-# Regex flavor differences that break fixes
-
-The checker runs Python `re`. Before handing a pattern to another engine, check this table.
-
-| Feature | Python `re` | JavaScript | PCRE / PHP | Go (RE2) | .NET | Java | POSIX grep -E |
-|---|---|---|---|---|---|---|---|
-| Lookahead `(?=...)` | yes | yes | yes | no | yes | yes | no |
-| Lookbehind `(?<=...)` | fixed width only | yes (ES2018) | fixed or bounded | no | any width | bounded | no |
-| Named group | `(?P<name>...)` only | `(?<name>...)` | both | `(?P<name>...)` (also `(?<name>...)` in Go 1.22+) | `(?<name>...)` | `(?<name>...)` | no |
-| Atomic group `(?>...)` | 3.11+ | no | yes | no | yes | yes | no |
-| Possessive `a++` | 3.11+ | no | yes | no | no | yes | no |
-| Backreference `\1` | yes | yes | yes | no | yes | yes | yes (basic) |
-| `\d` matches non-ASCII digits | yes (unless re.ASCII) | no | no (unless UCP) | no | yes | no (unless UNICODE_CHARACTER_CLASS) | locale |
-| `$` before final newline | yes | no (without m flag) | yes | no | yes | yes | n/a (line based) |
-| Inline flags `(?i)` | yes, at start or scoped `(?i:...)` | flags after the literal (`/i`); scoped `(?i:...)` only in the newest engines | yes | yes | yes | yes | no |
-| Catastrophic backtracking | possible | possible | possible (has limits) | impossible (linear time) | possible (timeout option) | possible | engine dependent |
-| Full match helper | `re.fullmatch` | anchor with `^...$` | anchor | anchor | anchor | `String.matches()` | `-x` flag |
-
-## Translation notes
-
-- JavaScript: write the literal as `/pattern/flags`; escape `/` inside it. Use the `u` flag for Unicode and `v` for set operations in newer engines. `\Z` does not exist: use `$` without the `m` flag.
-- Go RE2: no lookarounds or backreferences, but every pattern runs in linear time, so ReDoS is not a concern there. Rewrite lookarounds as a second check in code.
-- Java and C#: every backslash doubles in a normal string literal (`"\\d+"`); C# verbatim strings `@"\d+"` and Java text blocks help.
-- .NET: set `RegexOptions.NonBacktracking` (.NET 7+) or a match timeout for untrusted input.
-- SQL: PostgreSQL `~` uses Tcl-style advanced regexes (lookahead, lookbehind since 9.6, no named groups); MySQL 8 uses ICU. Test in the database itself.
-- Shell: `grep -E` has no `\d` on many systems; use `[0-9]`. `grep -P` gives PCRE where available.
-
-## Safe defaults across flavors
-
-- `[0-9]` instead of `\d`, `[A-Za-z]` instead of `\w` when the format is ASCII by definition.
-- Anchors `^` and `$` without multiline mode, plus a separate length check (for example at most 254 chars for an email).
-- No nested quantifiers on untrusted input, whatever the engine.
-FILE:templates/regex-review.md
-# Regex review: ${purpose}
-
-**Pattern (original):** `${original_pattern}`
-**Engine:** ${language_and_engine} | **Used as:** ${usage: validate whole value / find first / find all / replace}
-**Checker:** HIGH ${high} / WARN ${warn} / INFO ${info} before; expectations ${pass_before}/${total} pass
-
-## What it does, in plain words
-
-1. (one line per token or group, top to bottom)
-
-## Test results
-
-| # | Input | Expected | Before | After | Notes |
-|---|---|---|---|---|---|
-| 1 | | match / no match | | | |
-
-## Risks found
-
-| Level | Rule | What it means here | Fix |
-|---|---|---|---|
-| HIGH | | | |
-
-Probe (if run): input `${probe_input}`, ${probe_result}
-
-## Corrected pattern
-
-'''${language}
-(the corrected pattern, escaped for the user's language, with a VERBOSE or commented version if it is longer than about 40 chars)
-'''
-
-Why each change: (one line per change)
-
-## Keep these tests
-
-'''
-+ (must match)
-- (must not match)
-'''
-
-## Notes
-
-- Limits of a regex for this job and the extra check to do in code (length limit, parsing, verification step).
-- Flavor caveats if the pattern will run outside Python.
-FILE:examples/example-email-validation-review.md
-# Example: review of a signup form email check that hangs
-
-## User request
-
-"Our signup API sometimes times out and the profiler points at this line. Can you explain the regex and fix it? It runs in Python 3.12 on the email field of a public form."
-
-'''python
-EMAIL = re.compile(r"^([a-zA-Z0-9]+\.?)+@[A-z]+.com$")
-'''
-
-## Cases used (cases.txt)
-
-The user's 5 cases plus 3 edge cases added during the review (a dash instead of the dot, an underscore in the domain, and 30 letters with no `@`, the shape a bot sent):
-
-'''
-+ ann@example.com
-+ first.last@mail.example.co
-- bob@@example.com
-- no-at-sign.example.com
-- trailing-dot@example.
-- ann@example-com
-- ann@exa_mple.com
-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!
-'''
-
-## Checker run (original)
-
-'''
-$ python3 scripts/regex_check.py '^([a-zA-Z0-9]+\.?)+@[A-z]+.com$' --cases cases.txt --no-explain --probe
-Samples (search):
-  PASS     + 'ann@example.com'  -> [0:15] 'ann@example.com' 1='ann'
-  FAIL     + 'first.last@mail.example.co'  -> expected a match
-  PASS     - 'bob@@example.com'
-  PASS     - 'no-at-sign.example.com'
-  PASS     - 'trailing-dot@example.'
-  FAIL     - 'ann@example-com'  -> [0:15] 'ann@example-com' 1='ann'  (expected no match)
-  FAIL     - 'ann@exa_mple.com'  -> [0:16] 'ann@exa_mple.com' 1='ann'  (expected no match)
-  TIMEOUT  - 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!'  -> still running after 2 s (catastrophic backtracking)
-
-Risks and suggestions:
-  HIGH nested-quantifier       a quantifier sits inside another quantifier and nothing else in the outer repeat is required ...
-       probe 'a' * n + '!': n=12: 0.0002 s, n=16: 0.0031 s, n=20: 0.0593 s, n=24: 0.8419 s, n=28: timeout -> TIMEOUT at length 29: exponential backtracking confirmed
-  WARN range-A-z               [A-z] also matches [ \ ] ^ _ and the backtick; use [A-Za-z]
-  WARN unescaped-dot           '.' before 'com' matches any char (so a '-' or 'x' passes there too); write \. for a literal dot
-  INFO dollar-newline          $ also matches before a trailing newline ...
-
-Summary: HIGH 1  WARN 2  INFO 1 | expectations 4/8 pass | 1 sample(s) timed out
-'''
-
-## Review (filled template, shortened)
-
-**Checker:** HIGH 1 / WARN 2 / INFO 1 before; expectations 4/8 pass (one timeout). After: HIGH 0 / WARN 0, expectations 8/8 pass.
-
-What it does: start of string; one or more runs of letters or digits, each optionally followed by a dot; an `@`; one or more chars from A to z (including `[ \ ] ^ _` and the backtick); any single char; the text `com`; end of string or before a final newline.
-
-| # | Input | Expected | Before | After | Notes |
-|---|---|---|---|---|---|
-| 1 | ann@example.com | match | match | match | |
-| 2 | first.last@mail.example.co | match | no match | match | only `.com` and one domain label were allowed |
-| 3 | bob@@example.com | no match | no match | no match | |
-| 4 | no-at-sign.example.com | no match | no match | no match | |
-| 5 | trailing-dot@example. | no match | no match | no match | |
-| 6 | ann@example-com | no match | match | no match | added: the unescaped dot accepted `-` |
-| 7 | ann@exa_mple.com | no match | match | no match | added: `[A-z]` accepted `_` |
-| 8 | 30 x "a" then "!" | no match, fast | timeout after 2 s | no match, instant | added: the production hang |
-
-Risks: the `([a-zA-Z0-9]+\.?)+` group lets a run of letters be split in 2^n ways when the `@` is missing, so a 29-char junk input from a bot blocked a worker for more than 2 seconds; this is a ReDoS bug on a public endpoint.
-
-Corrected pattern:
-
-'''python
-EMAIL = re.compile(r"""
-    [A-Za-z0-9._%+-]+          # local part: one run, dots allowed but not repeated in a nested group
-    @
-    (?:[A-Za-z0-9-]+\.)+       # one or more domain labels, each ending in a literal dot
-    [A-Za-z]{2,}               # top-level domain
-""", re.VERBOSE | re.ASCII)
-
-def looks_like_email(value: str) -> bool:
-    return len(value) <= 254 and EMAIL.fullmatch(value) is not None
-'''
-
-Why each change: one flat repeat for the local part removes the nested quantifier; `\.` makes the dot literal; `[A-Za-z]` replaces `[A-z]`; any top-level domain is accepted instead of only `com`; `fullmatch` replaces `^...$`; a 254-char limit is a second defense; `re.ASCII` keeps `[...]` classes predictable.
-
-Recheck: `python3 scripts/regex_check.py '[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}' --cases cases.txt --mode fullmatch --probe` reports no HIGH or WARN risks (the nested group is reported as INFO nested-separated, a safe shape) and 8/8 expectations pass.
-
-Keep these tests: all 8 rows above, plus a 300-char input to check the length limit. Note that a regex only checks the shape; confirm the address by sending a verification email.
-FILE:scripts/regex_check.py
-#!/usr/bin/env python3
-"""Explain a Python regular expression, test it on sample inputs, and warn about risky patterns.
-
-Usage:
-  python3 regex_check.py PATTERN [options]
-  python3 regex_check.py PATTERN -t "text one" -t "text two"
-  python3 regex_check.py PATTERN --cases cases.txt --mode fullmatch
-  python3 regex_check.py PATTERN --cases - < cases.txt        (read cases from stdin)
-
-Options:
-  -t, --text TEXT     a sample input (repeatable)
-  --cases FILE        one sample per line; "+ text" must match, "- text" must not match,
-                      "# ..." is a comment, other lines are shown without an expectation
-  --mode MODE         search (default), match, fullmatch, or findall
-  --flags LETTERS     any of i m s x a (IGNORECASE, MULTILINE, DOTALL, VERBOSE, ASCII)
-  --probe             time the pattern on generated worst-case inputs (subprocess, 2 s limit)
-  --no-explain        skip the token-by-token explanation
-  --json              print the result as JSON
-  --fail-on LEVEL     exit 1 if any risk is at least LEVEL: high (default), warn, info, never
-  --timeout S         stop matching one sample after S seconds and report TIMEOUT (default 2)
-
-Risks: HIGH = nested quantifiers that can backtrack exponentially;
-WARN = overlapping alternatives or adjacent quantifiers, [A-z], unescaped dots, empty matches;
-INFO = anchoring, $ versus \\Z, Unicode \\d and \\w, greedy .*, flags that look missing.
-Exit codes: 0 ok, 1 failed expectations or a risk at or above --fail-on, 2 usage or pattern error.
-Python 3 standard library only (uses the re module's own parser).
-"""
-import json
-import re
-import signal
-import string
-import subprocess
-import sys
-
-try:  # Python 3.11+
-    import re._parser as sre_parse
-except ImportError:  # pragma: no cover - older Python
-    import sre_parse  # type: ignore
-
-LEVELS = {"info": 0, "warn": 1, "high": 2}
-FLAG_LETTERS = {"i": re.IGNORECASE, "m": re.MULTILINE, "s": re.DOTALL, "x": re.VERBOSE, "a": re.ASCII}
-FLAG_NAMES = [(re.IGNORECASE, "IGNORECASE"), (re.MULTILINE, "MULTILINE"), (re.DOTALL, "DOTALL"),
-              (re.VERBOSE, "VERBOSE"), (re.ASCII, "ASCII")]
-ALPHABET = string.ascii_letters + string.digits + string.punctuation + " \t\n" + "\u00e9\u0663"
-CATEGORY_RE = {"CATEGORY_DIGIT": r"\d", "CATEGORY_NOT_DIGIT": r"\D", "CATEGORY_SPACE": r"\s",
-               "CATEGORY_NOT_SPACE": r"\S", "CATEGORY_WORD": r"\w", "CATEGORY_NOT_WORD": r"\W"}
-CATEGORY_TEXT = {"CATEGORY_DIGIT": "a digit", "CATEGORY_NOT_DIGIT": "a non-digit",
-                 "CATEGORY_SPACE": "whitespace", "CATEGORY_NOT_SPACE": "a non-whitespace char",
-                 "CATEGORY_WORD": "a word char (letter, digit, _)", "CATEGORY_NOT_WORD": "a non-word char"}
-AT_TEXT = {"AT_BEGINNING": "^ start of string (start of each line with MULTILINE)",
-           "AT_BEGINNING_STRING": "\\A start of string only",
-           "AT_END": "$ end of string or before a final newline (end of each line with MULTILINE)",
-           "AT_END_STRING": "\\Z end of string only",
-           "AT_BOUNDARY": "\\b word boundary", "AT_NON_BOUNDARY": "\\B not a word boundary"}
-MAXREPEAT = sre_parse.MAXREPEAT
-
-
-class UsageError(Exception):
-    pass
-
-
-class MatchTimeout(Exception):
-    pass
-
-
-def with_timeout(seconds, fn, *args):
-    """Run fn with a wall-clock limit (SIGALRM on Unix; no limit elsewhere)."""
-    if not hasattr(signal, "setitimer") or seconds <= 0:
-        return fn(*args)
-    def handler(_sig, _frame):
-        raise MatchTimeout()
-    old = signal.signal(signal.SIGALRM, handler)
-    signal.setitimer(signal.ITIMER_REAL, seconds)
-    try:
-        return fn(*args)
-    finally:
-        signal.setitimer(signal.ITIMER_REAL, 0)
-        signal.signal(signal.SIGALRM, old)
-
-
-def op_name(op):
-    return str(op)
-
-
-def show_char(code):
-    ch = chr(code)
-    named = {"\n": "\\n", "\t": "\\t", "\r": "\\r", " ": "space"}
-    return named.get(ch, repr(ch) if ch.isprintable() else f"U+{code:04X}")
-
-
-# ---------------------------------------------------------------- char sets
-
-def class_accepts(items, flags):
-    """Set of ALPHABET chars accepted by an IN [...] item list."""
-    negate = bool(items) and op_name(items[0][0]) == "NEGATE"
-    acc = set()
-    for op, av in items:
-        name = op_name(op)
-        if name == "LITERAL":
-            acc.add(chr(av))
-        elif name == "RANGE":
-            acc |= {c for c in ALPHABET if av[0] <= ord(c) <= av[1]}
-        elif name == "CATEGORY":
-            rx = re.compile(CATEGORY_RE.get(op_name(av), "."), flags & re.ASCII)
-            acc |= {c for c in ALPHABET if rx.match(c)}
-    if flags & re.IGNORECASE:
-        acc |= {c.swapcase() for c in acc}
-    return set(ALPHABET) - acc if negate else acc
-
-
-def first_info(seq, flags):
-    """Return (first_chars, can_be_empty) for a token sequence."""
-    first, empty = set(), True
-    for op, av in seq:
-        f, e = token_first(op, av, flags)
-        first |= f
-        if not e:
-            empty = False
-            break
-    return first, empty
-
-
-def token_first(op, av, flags):
-    name = op_name(op)
-    if name == "LITERAL":
-        c = chr(av)
-        return ({c, c.swapcase()} if flags & re.IGNORECASE else {c}), False
-    if name == "NOT_LITERAL":
-        return set(ALPHABET) - {chr(av)}, False
-    if name == "IN":
-        return class_accepts(av, flags), False
-    if name == "ANY":
-        return (set(ALPHABET) if flags & re.DOTALL else set(ALPHABET) - {"\n"}), False
-    if name in ("MAX_REPEAT", "MIN_REPEAT", "POSSESSIVE_REPEAT"):
-        lo, _hi, sub = av
-        f, e = first_info(sub, flags)
-        return f, e or lo == 0
-    if name == "SUBPATTERN":
-        return first_info(av[3], flags_for(av, flags))
-    if name == "ATOMIC_GROUP":
-        return first_info(av, flags)
-    if name == "BRANCH":
-        first, empty = set(), False
-        for b in av[1]:
-            f, e = first_info(b, flags)
-            first |= f
-            empty = empty or e
-        return first, empty
-    if name == "GROUPREF_EXISTS":
-        _g, yes, no = av
-        f1, e1 = first_info(yes, flags)
-        f2, e2 = first_info(no or [], flags)
-        return f1 | f2, e1 or e2
-    if name == "GROUPREF":
-        return set(ALPHABET), True
-    return set(), True  # AT, ASSERT, ASSERT_NOT: zero width
-
-
-def flags_for(av, flags):
-    add, delete = av[1], av[2]
-    return (flags | add) & ~delete
-
-
-# ---------------------------------------------------------------- explanation
-
-def quant_text(lo, hi, name):
-    mode = {"MAX_REPEAT": "greedy", "MIN_REPEAT": "lazy", "POSSESSIVE_REPEAT": "possessive"}[name]
-    if hi == MAXREPEAT:
-        base = {0: "zero or more", 1: "one or more"}.get(lo, f"{lo} or more")
-    elif lo == hi:
-        return f"exactly {lo}"
-    elif (lo, hi) == (0, 1):
-        base = "optional (zero or one)"
-    else:
-        base = f"{lo} to {hi}"
-    return f"{base} ({mode})"
-
-
-def class_text(items):
-    negate = bool(items) and op_name(items[0][0]) == "NEGATE"
-    parts = []
-    for op, av in items:
-        name = op_name(op)
-        if name == "LITERAL":
-            parts.append(show_char(av))
-        elif name == "RANGE":
-            parts.append(f"{show_char(av[0])}-{show_char(av[1])}")
-        elif name == "CATEGORY":
-            parts.append(CATEGORY_TEXT.get(op_name(av), op_name(av)))
-    return ("any char except " if negate else "one of: ") + ", ".join(parts)
-
-
-def explain(seq, group_names, flags, depth=0, out=None):
-    out = [] if out is None else out
-    pad = "  " * depth
-    i = 0
-    while i < len(seq):
-        op, av = seq[i]
-        name = op_name(op)
-        if name == "LITERAL":  # merge runs of literals
-            j = i
-            while j < len(seq) and op_name(seq[j][0]) == "LITERAL":
-                j += 1
-            text = "".join(chr(a) for _, a in seq[i:j])
-            out.append(f"{pad}the text {text!r}" if j - i > 1 else f"{pad}the char {show_char(av)}")
-            i = j
-            continue
-        if name == "NOT_LITERAL":
-            out.append(f"{pad}any char except {show_char(av)}")
-        elif name == "IN":
-            out.append(f"{pad}{class_text(av)}")
-        elif name == "ANY":
-            out.append(f"{pad}any char" + ("" if flags & re.DOTALL else " except newline"))
-        elif name == "AT":
-            out.append(f"{pad}{AT_TEXT.get(op_name(av), op_name(av))}")
-        elif name in ("MAX_REPEAT", "MIN_REPEAT", "POSSESSIVE_REPEAT"):
-            lo, hi, sub = av
-            out.append(f"{pad}{quant_text(lo, hi, name)} of:")
-            explain(sub, group_names, flags, depth + 1, out)
-        elif name == "SUBPATTERN":
-            g = av[0]
-            if g is None:
-                out.append(f"{pad}non-capturing group:")
-            else:
-                label = f' "{group_names[g]}"' if g in group_names else ""
-                out.append(f"{pad}capturing group {g}{label}:")
-            explain(av[3], group_names, flags_for(av, flags), depth + 1, out)
-        elif name == "ATOMIC_GROUP":
-            out.append(f"{pad}atomic group (no backtracking into it):")
-            explain(av, group_names, flags, depth + 1, out)
-        elif name == "BRANCH":
-            out.append(f"{pad}either:")
-            for k, b in enumerate(av[1]):
-                out.append(f"{pad}  option {k + 1}:")
-                explain(b, group_names, flags, depth + 2, out)
-        elif name in ("ASSERT", "ASSERT_NOT"):
-            direction, sub = av
-            kind = ("lookbehind" if direction < 0 else "lookahead")
-            neg = "negative " if name == "ASSERT_NOT" else ""
-            out.append(f"{pad}{neg}{kind} (checks without consuming):")
-            explain(sub, group_names, flags, depth + 1, out)
-        elif name == "GROUPREF":
-            out.append(f"{pad}the same text as group {av} matched")
-        elif name == "GROUPREF_EXISTS":
-            out.append(f"{pad}if group {av[0]} matched:")
-            explain(av[1], group_names, flags, depth + 1, out)
-            if av[2]:
-                out.append(f"{pad}otherwise:")
-                explain(av[2], group_names, flags, depth + 1, out)
-        else:
-            out.append(f"{pad}{name}")
-        i += 1
-    return out
-
-
-# ---------------------------------------------------------------- risk analysis
-
-def walk_repeats(seq, flags, path=""):
-    """Yield (op, av, flags) for every repeat node, outside lookarounds too."""
-    for op, av in seq:
-        name = op_name(op)
-        if name in ("MAX_REPEAT", "MIN_REPEAT", "POSSESSIVE_REPEAT"):
-            yield op, av, flags
-            yield from walk_repeats(av[2], flags)
-        elif name == "SUBPATTERN":
-            yield from walk_repeats(av[3], flags_for(av, flags))
-        elif name == "ATOMIC_GROUP":
-            yield from walk_repeats(av, flags)
-        elif name == "BRANCH":
-            for b in av[1]:
-                yield from walk_repeats(b, flags)
-        elif name in ("ASSERT", "ASSERT_NOT"):
-            yield from walk_repeats(av[1], flags)
-
-
-def flatten(seq):
-    """Expand groups so the body of a repeat can be read as one token list."""
-    out = []
-    for op, av in seq:
-        name = op_name(op)
-        if name == "SUBPATTERN" and av[1] == 0 and av[2] == 0:
-            out.extend(flatten(av[3]))
-        else:
-            out.append((op, av))
-    return out
-
-
-def token_width(tok, parsed):
-    return sre_parse.SubPattern(parsed.state, [tok]).getwidth()
-
-
-def all_chars(seq, flags):
-    """Every ALPHABET char a token sequence can consume anywhere (not only first)."""
-    acc = set()
-    for op, av in seq:
-        name = op_name(op)
-        if name in ("LITERAL", "NOT_LITERAL", "IN", "ANY"):
-            acc |= token_first(op, av, flags)[0]
-        elif name in ("MAX_REPEAT", "MIN_REPEAT", "POSSESSIVE_REPEAT"):
-            acc |= all_chars(av[2], flags)
-        elif name == "SUBPATTERN":
-            acc |= all_chars(av[3], flags_for(av, flags))
-        elif name == "ATOMIC_GROUP":
-            acc |= all_chars(av, flags)
-        elif name == "BRANCH":
-            for b in av[1]:
-                acc |= all_chars(b, flags)
-        elif name == "GROUPREF_EXISTS":
-            acc |= all_chars(av[1], flags) | all_chars(av[2] or [], flags)
-        elif name == "GROUPREF":
-            acc |= set(ALPHABET)
-    return acc
-
-
-def has_unbounded(tok):
-    op, av = tok
-    name = op_name(op)
-    if name in ("MAX_REPEAT", "MIN_REPEAT"):
-        return av[1] == MAXREPEAT or has_unbounded_seq(av[2])
-    if name == "SUBPATTERN":
-        return has_unbounded_seq(av[3])
-    if name == "BRANCH":
-        return any(has_unbounded_seq(b) for b in av[1])
-    return False
-
-
-def has_unbounded_seq(seq):
-    return any(has_unbounded(t) for t in seq)
-
-
-def sample_char(chars):
-    for pool in (string.ascii_lowercase, string.digits, string.ascii_uppercase, ALPHABET):
-        for c in pool:
-            if c in chars:
-                return c
-    return None
-
-
-def analyze(parsed, flags, pattern, modes_seen):
-    risks = []
-
-    def add(level, rule, msg, probe=None):
-        risks.append({"level": level, "rule": rule, "message": msg, **({"probe": probe} if probe else {})})
-
-    # nested quantifiers: a repeat whose body can match the same text in more than one way
-    for op, av, fl in walk_repeats(list(parsed), flags):
-        if op_name(op) == "POSSESSIVE_REPEAT" or av[1] <= 1:
-            continue
-        body = flatten(av[2])
-        widths = [token_width(t, parsed) for t in body]
-        if sum(w[0] for w in widths) == sum(w[1] for w in widths):
-            continue  # fixed-width body such as (\d{4}-)+ cannot be split two ways
-        variable = [t for t, w in zip(body, widths) if w[0] != w[1]]
-        fixed = [t for t, w in zip(body, widths) if w[0] == w[1] and w[0] > 0]
-        var_chars = set().union(*(all_chars([t], fl) for t in variable))
-        has_inner_loop = any(has_unbounded(t) for t in variable)
-        overlap = set().union(*(all_chars([t], fl) for t in fixed)) & var_chars if fixed else set()
-        sample = sample_char(overlap) or sample_char(var_chars)
-        if not fixed and has_inner_loop:
-            add("high", "nested-quantifier",
-                "a quantifier sits inside another quantifier and nothing else in the outer repeat is "
-                "required (the classic (a+)+ or (\\w+\\s?)+ shape), so one string can be split in "
-                "exponentially many ways; rewrite as a single repeat, make the separator required, or use an "
-                "atomic group or possessive quantifier (Python 3.11+)", probe=sample)
-        elif any(not (all_chars([t], fl) & var_chars) for t in fixed):
-            if has_inner_loop:
-                add("info", "nested-separated",
-                    "nested quantifier with a required separator that the inner repeat cannot match "
-                    "(like ([\\w-]+\\.)+); this shape is safe")
-        elif all(all_chars([t], fl) <= var_chars for t in fixed):
-            add("high", "ambiguous-repeat",
-                "the body of a repeat has variable length and every required part can also be eaten by "
-                "the variable part (for example (x+x+)+, (aa|a)+, or (\\w+|\\d+)+), so the iterations "
-                "can be split in exponentially many ways; merge the parts into one class or make each "
-                "iteration start with a char the rest cannot match", probe=sample)
-        else:
-            add("warn", "nested-overlap",
-                "a repeat with a variable-length body whose separator is also accepted by the inner part "
-                "(for example ([\\w.]+\\.)+): long non-matching input can slow down sharply; make the inner "
-                "class exclude the separator", probe=sample)
-
-    # adjacent overlapping unbounded repeats in any sequence
-    seen_pairs = set()
-
-    def single_char_repeat(op, av):
-        return (op_name(op) in ("MAX_REPEAT", "MIN_REPEAT") and av[1] == MAXREPEAT and len(av[2]) == 1
-                and op_name(av[2][0][0]) in ("LITERAL", "NOT_LITERAL", "IN", "ANY"))
-
-    def scan_adjacent(seq, fl):
-        toks = [t for t in flatten(seq) if op_name(t[0]) not in ("AT", "ASSERT", "ASSERT_NOT")]
-        for (a_op, a_av), (b_op, b_av) in zip(toks, toks[1:]):
-            if single_char_repeat(a_op, a_av) and single_char_repeat(b_op, b_av):
-                if (id(a_av), id(b_av)) in seen_pairs:
-                    continue
-                seen_pairs.add((id(a_av), id(b_av)))
-                fa, _ = first_info(a_av[2], fl)
-                fb, _ = first_info(b_av[2], fl)
-                if fa & fb:
-                    add("warn", "adjacent-overlap",
-                        "two unbounded quantifiers in a row accept the same chars (for example \\d+\\d+ or "
-                        ".*.*), so the split between them is ambiguous and failures backtrack polynomially; "
-                        "keep one of them")
-        for op, av in seq:
-            name = op_name(op)
-            if name == "SUBPATTERN":
-                scan_adjacent(av[3], flags_for(av, fl))
-            elif name in ("MAX_REPEAT", "MIN_REPEAT", "POSSESSIVE_REPEAT"):
-                scan_adjacent(av[2], fl)
-            elif name == "BRANCH":
-                for b in av[1]:
-                    scan_adjacent(b, fl)
-
-    scan_adjacent(list(parsed), flags)
-
-    # text-level checks
-    if re.search(r"\[[^\]]*A-z", pattern):
-        add("warn", "range-A-z", "[A-z] also matches [ \\ ] ^ _ and the backtick; use [A-Za-z]")
-    seq = list(parsed)
-    flat = flatten(seq)
-    for k, (op, _av) in enumerate(flat):
-        if op_name(op) != "ANY":
-            continue
-        before = flat[k - 1] if k else None
-        after = [chr(a) for o, a in flat[k + 1:k + 4] if op_name(o) == "LITERAL"]
-        lit_before = before is not None and op_name(before[0]) == "LITERAL" and chr(before[1]).isalnum()
-        word_after = len(after) >= 2 and all(c.isalpha() for c in after[:2])
-        if (lit_before and after and after[0].isalnum()) or word_after:
-            add("warn", "unescaped-dot",
-                f"'.' before {''.join(after) or 'the next token'!r} matches any char (so a '-' or 'x' passes there too); "
-                "write \\. for a literal dot")
-            break
-    try:
-        if re.compile(pattern, flags).fullmatch(""):
-            add("warn", "matches-empty",
-                "the pattern matches the empty string, so findall/finditer return empty matches and "
-                "validation accepts blank input; require at least one char where it matters")
-    except re.error:
-        pass
-    count_dotstar = len(re.findall(r"(?<!\\)\.\*", pattern))
-    if count_dotstar >= 3:
-        add("info", "many-dotstar", f"{count_dotstar} '.*' in one pattern: failures are slow on long lines; "
-            "use negated classes like [^,]* to describe each field")
-    elif count_dotstar and not re.search(r"\.\*\?", pattern):
-        add("info", "greedy-dotstar", "greedy .* grabs as much as possible and then backs off; use .*? or a "
-            "negated class such as [^\"]* when you mean 'up to the next ...'")
-    first_ops = [op_name(op) for op, _ in seq[:1]]
-    last = seq[-1] if seq else None
-    anchored_start = first_ops == ["AT"]
-    anchored_end = last is not None and op_name(last[0]) == "AT" and op_name(last[1]) in ("AT_END", "AT_END_STRING")
-    if "fullmatch" not in modes_seen and not (anchored_start and anchored_end) and modes_seen != {"findall"}:
-        add("info", "not-anchored", "for validation, anchor both ends (\\A ... \\Z) or use re.fullmatch; "
-            "otherwise 'abc123xyz' passes a search for \\d+")
-    if anchored_end and op_name(last[1]) == "AT_END" and not flags & re.MULTILINE and "fullmatch" not in modes_seen:
-        add("info", "dollar-newline", "$ also matches before a trailing newline ('abc\\n' passes ^abc$); "
-            "use \\Z or fullmatch for strict validation")
-    if re.search(r"(?<!\\)\\[dw]", pattern) and not flags & re.ASCII:
-        add("info", "unicode-classes", "\\d and \\w match Unicode digits and letters too (for example "
-            "Arabic-Indic digits); add re.ASCII or use [0-9] / [A-Za-z0-9_] for strict input formats")
-    return risks
-
-
-# ---------------------------------------------------------------- probe
-
-PROBE_CODE = r"""
-import re, sys, time
-pat, flags, s = sys.argv[1], int(sys.argv[2]), sys.argv[3]
-rx = re.compile(pat, flags)
-t = time.perf_counter(); rx.search(s); print(f"{time.perf_counter() - t:.6f}")
-"""
-
-
-def run_probe(pattern, flags, ch, compiled):
-    tail = next((t for t in "!#\x00~ \n" if not compiled.search(ch * 3 + t)), "!")
-    results, verdict = [], "no slowdown seen"
-    for n in (12, 16, 20, 24, 28):
-        s = ch * n + tail
-        try:
-            r = subprocess.run([sys.executable, "-c", PROBE_CODE, pattern, str(flags), s],
-                               capture_output=True, text=True, timeout=2)
-            secs = float(r.stdout.strip() or "nan")
-        except subprocess.TimeoutExpired:
-            results.append({"n": n, "seconds": None})
-            verdict = f"TIMEOUT at length {n + 1}: exponential backtracking confirmed"
-            break
-        results.append({"n": n, "seconds": round(secs, 4)})
-        prev = results[-2]["seconds"] if len(results) >= 2 else None
-        if prev and secs > 0.01 and secs / prev > 3:
-            verdict = (f"time grows about {secs / prev:.0f}x per +4 chars: exponential backtracking confirmed")
-        elif secs > 0.5:
-            verdict = f"slow ({secs:.2f} s at length {n + 1}) but not clearly exponential"
-    return {"input": f"{ch!r} * n + {tail!r}", "timings": results, "verdict": verdict}
-
-
-# ---------------------------------------------------------------- matching
-
-def read_cases(path):
-    text = sys.stdin.read() if path == "-" else open(path, encoding="utf-8").read()
-    cases = []
-    for raw in text.splitlines():
-        if not raw.strip() or raw.lstrip().startswith("#"):
-            continue
-        if raw.startswith("+ ") or raw.startswith("- "):
-            cases.append({"text": raw[2:], "expect": raw[0] == "+"})
-        else:
-            cases.append({"text": raw, "expect": None})
-    return cases
-
-
-def match_case(rx, text, mode):
-    fn = {"search": rx.search, "match": rx.match, "fullmatch": rx.fullmatch}.get(mode)
-    names = {v: k for k, v in rx.groupindex.items()}
-    def groups(m):
-        out = []
-        for g in range(1, rx.groups + 1):
-            out.append({"group": g, "name": names.get(g), "value": m.group(g),
-                        "span": list(m.span(g)) if m.group(g) is not None else None})
-        return out
-    if mode == "findall":
-        ms = list(rx.finditer(text))
-        return {"matched": bool(ms), "matches": [{"text": m.group(0), "span": list(m.span()), "groups": groups(m)}
-                                                for m in ms]}
-    m = fn(text)
-    if not m:
-        return {"matched": False, "matches": []}
-    return {"matched": True, "matches": [{"text": m.group(0), "span": list(m.span()), "groups": groups(m)}]}
-
-
-def describe_flags(flags):
-    names = [n for f, n in FLAG_NAMES if flags & f]
-    return ", ".join(names) if names else "none"
-
-
-# ---------------------------------------------------------------- main
-
-def parse_args(argv):
-    opts = {"texts": [], "cases": None, "mode": "search", "flags": 0, "probe": False, "explain": True,
-            "json": False, "fail_on": "high", "pattern": None, "timeout": 2.0}
-    i = 0
-    while i < len(argv):
-        a = argv[i]
-        def val():
-            if i + 1 >= len(argv):
-                raise UsageError(f"{a} needs a value")
-            return argv[i + 1]
-        if a in ("-t", "--text"):
-            opts["texts"].append(val()); i += 2
-        elif a == "--cases":
-            opts["cases"] = val(); i += 2
-        elif a == "--mode":
-            opts["mode"] = val(); i += 2
-            if opts["mode"] not in ("search", "match", "fullmatch", "findall"):
-                raise UsageError("--mode must be search, match, fullmatch, or findall")
-        elif a == "--flags":
-            letters = val(); i += 2
-            bad = [c for c in letters.lower() if c not in FLAG_LETTERS]
-            if bad:
-                raise UsageError(f"unknown flag letter(s) {''.join(bad)!r}; use any of i m s x a")
-            for c in letters.lower():
-                opts["flags"] |= FLAG_LETTERS[c]
-        elif a == "--fail-on":
-            opts["fail_on"] = val().lower(); i += 2
-            if opts["fail_on"] not in ("high", "warn", "info", "never"):
-                raise UsageError("--fail-on must be high, warn, info, or never")
-        elif a == "--timeout":
-            try:
-                opts["timeout"] = float(val())
-            except ValueError:
-                raise UsageError("--timeout needs a number of seconds, for example --timeout 2")
-            i += 2
-        elif a == "--probe":
-            opts["probe"] = True; i += 1
-        elif a == "--no-explain":
-            opts["explain"] = False; i += 1
-        elif a == "--json":
-            opts["json"] = True; i += 1
-        elif a in ("-h", "--help"):
-            print(__doc__); sys.exit(0)
-        elif a.startswith("--") and opts["pattern"] is not None:
-            raise UsageError(f"unknown option {a}")
-        elif opts["pattern"] is None:
-            opts["pattern"] = a; i += 1
-        else:
-            raise UsageError(f"unexpected argument {a!r} (quote the pattern; use -t for sample inputs)")
-    if opts["pattern"] is None:
-        raise UsageError("give a PATTERN (quote it in single quotes in the shell)")
-    return opts
-
-
-def main(argv):
-    try:
-        opts = parse_args(argv)
-        cases = [{"text": t, "expect": None} for t in opts["texts"]]
-        if opts["cases"]:
-            try:
-                cases += read_cases(opts["cases"])
-            except OSError as e:
-                raise UsageError(f"cannot read cases file: {e.strerror}: {opts['cases']}")
-    except UsageError as e:
-        print(f"error: {e}", file=sys.stderr)
-        return 2
-    pattern, flags, mode = opts["pattern"], opts["flags"], opts["mode"]
-    try:
-        rx = re.compile(pattern, flags)
-        parsed = sre_parse.parse(pattern, flags)
-    except re.error as e:
-        pos = f" at position {e.pos}" if e.pos is not None else ""
-        print(f"error: pattern does not compile: {e.msg}{pos}", file=sys.stderr)
-        if e.pos is not None:
-            print(f"  {pattern}\n  {' ' * e.pos}^", file=sys.stderr)
-        return 2
-    flags = int(rx.flags) & ~int(re.UNICODE)
-    names = {v: k for k, v in rx.groupindex.items()}
-    risks = analyze(parsed, flags, pattern, {mode})
-    if opts["probe"]:
-        for r in risks:
-            if r.get("probe"):
-                r["probe_result"] = run_probe(pattern, flags, r["probe"], rx)
-    results = []
-    for c in cases:
-        try:
-            res = with_timeout(opts["timeout"], match_case, rx, c["text"], mode)
-            status = None if c["expect"] is None else ("PASS" if res["matched"] == c["expect"] else "FAIL")
-        except MatchTimeout:
-            res, status = {"matched": None, "matches": []}, "TIMEOUT"
-        results.append({**c, **res, "status": status})
-    fails = sum(1 for r in results if r["status"] in ("FAIL", "TIMEOUT"))
-    counts = {lvl: sum(1 for r in risks if r["level"] == lvl) for lvl in ("high", "warn", "info")}
-    report = {"pattern": pattern, "flags": describe_flags(flags), "mode": mode, "groups": rx.groups,
-              "group_names": {str(k): v for k, v in names.items()},
-              "explanation": explain(list(parsed), names, flags) if opts["explain"] else [],
-              "cases": results, "failed_expectations": fails, "risks": risks, "risk_counts": counts}
-    threshold = LEVELS.get(opts["fail_on"], 99)
-    risky = any(LEVELS[r["level"]] >= threshold for r in risks)
-    if opts["json"]:
-        print(json.dumps(report, indent=2, ensure_ascii=False))
-        return 1 if fails or risky else 0
-
-    print(f"Pattern: {pattern}")
-    named = ", ".join(f'{g} "{n}"' for g, n in sorted(names.items()))
-    print(f"Flags: {describe_flags(flags)} | mode: {mode} | groups: {rx.groups}" + (f" ({named})" if named else ""))
-    if opts["explain"]:
-        print("\nExplanation:")
-        for line in report["explanation"]:
-            print("  " + line)
-    if results:
-        print(f"\nSamples ({mode}):")
-        for r in results:
-            mark = {True: "+", False: "-", None: " "}[r["expect"]]
-            tag = r["status"] or ("match" if r["matched"] else "no match")
-            line = f"  {tag:<8} {mark} {r['text']!r}"
-            if r["matched"]:
-                parts = []
-                for m in r["matches"][:5]:
-                    g = " ".join(f"{x['name'] or x['group']}={x['value']!r}" for x in m["groups"])
-                    parts.append(f"[{m['span'][0]}:{m['span'][1]}] {m['text']!r}" + (f" {g}" if g else ""))
-                more = f" (+{len(r['matches']) - 5} more)" if len(r["matches"]) > 5 else ""
-                line += "  -> " + "; ".join(parts) + more
-            elif r["status"] == "TIMEOUT":
-                line += f"  -> still running after {opts['timeout']:g} s (catastrophic backtracking)"
-            elif r["status"] == "FAIL":
-                line += "  -> expected a match"
-            if r["status"] == "FAIL" and r["matched"]:
-                line += "  (expected no match)"
-            print(line)
-    print("\nRisks and suggestions:")
-    if not risks:
-        print("  none found")
-    for r in risks:
-        print(f"  {r['level'].upper():<4} {r['rule']:<23} {r['message']}")
-        pr = r.get("probe_result")
-        if pr:
-            times = ", ".join(f"n={t['n']}: {'timeout' if t['seconds'] is None else str(t['seconds']) + ' s'}"
-                              for t in pr["timings"])
-            print(f"       probe {pr['input']}: {times} -> {pr['verdict']}")
-    summary = f"\nSummary: HIGH {counts['high']}  WARN {counts['warn']}  INFO {counts['info']}"
-    if any(r["expect"] is not None for r in results):
-        n = sum(1 for r in results if r["expect"] is not None)
-        summary += f" | expectations {n - fails}/{n} pass"
-    timeouts = sum(1 for r in results if r["status"] == "TIMEOUT")
-    if timeouts:
-        summary += f" | {timeouts} sample(s) timed out"
-    print(summary)
-    return 1 if fails or risky else 0
-
-
-if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
-```
-
-</details>
-
-<details><summary><b>Remotion Minimal Countdown</b></summary>
-
-```text
-Minimal Countdown Scene:
-Count down from 3 → 2 → 1 using a clean, modern font.
-Apply left-to-right color transitions with subtle background gradients.
-Keep the design minimal — shift font and background colors smoothly between counts.
-
-Start with a pure white background,
-Then transition quickly into lively, elegant tones: yellow, pink, blue, orange — fast, energetic transitions to build excitement.
-
-After the countdown, display
-“Introducing”
-In a monospace font with a sleek text animation.
-
-Next Scene:
-Center the Mitte.ai and Remotion logos on a white background.
-Place them side by side — Mitte.ai on the left, Remotion on the right.
-
-First, fade in both logos.
-Then animate a vertical line drawing from bottom to top between them.
-
-Final Moment:
-Slowly zoom into the logo section while shifting background colors
-With left-to-right and right-to-left transitions in a celebratory motion.
-
-Overall Style:
-Startup vibes — elegant, creative, modern, and confident.
-```
-
-</details>
-
-<details><summary><b>Replace Managed VNet with Team VNet</b></summary>
-
-```text
-I have used netgen vnet to deploy that is managed by internal cental team which is geeting deployed by other team for us and managed by them from diffrenct resource group (pc-managed). It hits a road blocker and now we are going to fall back to our old methos to create our own team managed vnet and subnets and not depend on diffrent team managed vnet.
-
-wanted to remove all (comment out) the dependecy from all the modules and resources. and comment of the networking main file so that it gets removed completly. Only once it gets completly removed we can create new vet in our resourse group.
-
-
-help me with the code to remove current vnet like as in dettact the vnet from all the resources and modules it is acttached as of now. also comment out the networking code so that i can delete all the networking componets incuding the pricate enpoints.
-
-also list down all the resources which are using the vnet. so that its easier to track
-```
-
-</details>
-
-<details><summary><b>Repository Analysis and Bug Fixing</b></summary>
-
-```text
-Act as a comprehensive repository analysis and bug-fixing expert. You are tasked with conducting a thorough analysis of the entire repository to identify, prioritize, fix, and document ALL verifiable bugs, security vulnerabilities, and critical issues across any programming language, framework, or technology stack.
-
-Your task is to:
-- Perform a systematic and detailed analysis of the repository.
-- Identify and categorize bugs based on severity, impact, and complexity.
-- Develop a step-by-step process for fixing bugs and validating fixes.
-- Document all findings and fixes for future reference.
-
-## Phase 1: Initial Repository Assessment
-You will:
-1. Map the complete project structure (e.g., src/, lib/, tests/, docs/, config/, scripts/).
-2. Identify the technology stack and dependencies (e.g., package.json, requirements.txt).
-3. Document main entry points, critical paths, and system boundaries.
-4. Analyze build configurations and CI/CD pipelines.
-5. Review existing documentation (e.g., README, API docs).
-
-## Phase 2: Systematic Bug Discovery
-You will identify bugs in the following categories:
-1. **Critical Bugs:** Security vulnerabilities, data corruption, crashes, etc.
-2. **Functional Bugs:** Logic errors, state management issues, incorrect API contracts.
-3. **Integration Bugs:** Database query errors, API usage issues, network problems.
-4. **Edge Cases:** Null handling, boundary conditions, timeout issues.
-5. **Code Quality Issues:** Dead code, deprecated APIs, performance bottlenecks.
-
-### Discovery Methods:
-- Static code analysis.
-- Dependency vulnerability scanning.
-- Code path analysis for untested code.
-- Configuration validation.
-
-## Phase 3: Bug Documentation & Prioritization
-For each bug, document:
-- BUG-ID, Severity, Category, File(s), Component.
-- Description of current and expected behavior.
-- Root cause analysis.
-- Impact assessment (user/system/business).
-- Reproduction steps and verification methods.
-- Prioritize bugs based on severity, user impact, and complexity.
-
-## Phase 4: Fix Implementation
-1. Create an isolated branch for each fix.
-2. Write a failing test first (TDD).
-3. Implement minimal fixes and verify tests pass.
-4. Run regression tests and update documentation.
-
-## Phase 5: Testing & Validation
-1. Provide unit, integration, and regression tests for each fix.
-2. Validate fixes using comprehensive test structures.
-3. Run static analysis and verify performance benchmarks.
-
-## Phase 6: Documentation & Reporting
-1. Update inline code comments and API documentation.
-2. Create an executive summary report with findings and fixes.
-3. Deliver results in Markdown, JSON/YAML, and CSV formats.
-
-## Phase 7: Continuous Improvement
-1. Identify common bug patterns and recommend preventive measures.
-2. Propose enhancements to tools, processes, and architecture.
-3. Suggest monitoring and logging improvements.
-
-## Constraints:
-- Never compromise security for simplicity.
-- Maintain an audit trail of changes.
-- Follow semantic versioning for API changes.
-- Document assumptions and respect rate limits.
-
-Use variables like ${repositoryName} for repository-specific details. Provide detailed documentation and code examples when necessary.
-```
-
-</details>
-
-<details><summary><b>Repository Indexer Agent</b></summary>
-
-```text
-# Repository Indexer
-
-You are a senior codebase analysis expert and specialist in repository indexing, structural mapping, dependency graphing, and token-efficient context summarization for AI-assisted development workflows.
-
-## Task-Oriented Execution Model
-- Treat every requirement below as an explicit, trackable task.
-- Assign each task a stable ID (e.g., TASK-1.1) and use checklist items in outputs.
-- Keep tasks grouped under the same headings to preserve traceability.
-- Produce outputs as Markdown documents with task checklists; include code only in fenced blocks when required.
-- Preserve scope exactly as written; do not drop or add requirements.
-
-## Core Tasks
-- **Scan** repository directory structures across all focus areas (source code, tests, configuration, documentation, scripts) and produce a hierarchical map of the codebase.
-- **Identify** entry points, service boundaries, and module interfaces that define how the application is wired together.
-- **Graph** dependency relationships between modules, packages, and services including both internal and external dependencies.
-- **Detect** change hotspots by analyzing recent commit activity, file churn rates, and areas with high bug-fix frequency.
-- **Generate** compressed, token-efficient index documents in both Markdown and JSON schema formats for downstream agent consumption.
-- **Maintain** index freshness by tracking staleness thresholds and triggering re-indexing when the codebase diverges from the last snapshot.
-
-## Task Workflow: Repository Indexing Pipeline
-Each indexing engagement follows a structured approach from freshness detection through index publication and maintenance.
-
-### 1. Detect Index Freshness
-- Check whether `PROJECT_INDEX.md` and `PROJECT_INDEX.json` exist in the repository root.
-- Compare the `updated_at` timestamp in existing index files against a configurable staleness threshold (default: 7 days).
-- Count the number of commits since the last index update to gauge drift magnitude.
-- Identify whether major structural changes (new directories, deleted modules, renamed packages) occurred since the last index.
-- If the index is fresh and no structural drift is detected, confirm validity and halt; otherwise proceed to full re-indexing.
-- Log the staleness assessment with specific metrics (days since update, commit count, changed file count) for traceability.
-
-### 2. Scan Repository Structure
-- Run parallel glob searches across the five focus areas: source code, tests, configuration, documentation, and scripts.
-- Build a hierarchical directory tree capturing folder depth, file counts, and dominant file types per directory.
-- Identify the framework, language, and build system by inspecting manifest files (package.json, Cargo.toml, go.mod, pom.xml, pyproject.toml).
-- Detect monorepo structures by locating workspace configurations, multiple package manifests, or service-specific subdirectories.
-- Catalog configuration files (environment configs, CI/CD pipelines, Docker files, infrastructure-as-code templates) with their purpose annotations.
-- Record total file count, total line count, and language distribution as baseline metrics for the index.
-
-### 3. Map Entry Points and Service Boundaries
-- Locate application entry points by scanning for main functions, server bootstrap files, CLI entry scripts, and framework-specific initializers.
-- Trace module boundaries by identifying package exports, public API surfaces, and inter-module import patterns.
-- Map service boundaries in microservice or modular architectures by identifying independent deployment units and their communication interfaces.
-- Identify shared libraries, utility packages, and cross-cutting concerns that multiple services depend on.
-- Document API routes, event handlers, and message queue consumers as external-facing interaction surfaces.
-- Annotate each entry point and boundary with its file path, purpose, and upstream/downstream dependencies.
-
-### 4. Analyze Dependencies and Risk Surfaces
-- Build an internal dependency graph showing which modules import from which other modules.
-- Catalog external dependencies with version constraints, license types, and known vulnerability status.
-- Identify circular dependencies, tightly coupled modules, and dependency bottleneck nodes with high fan-in.
-- Detect high-risk files by cross-referencing change frequency, bug-fix commits, and code complexity indicators.
-- Surface files with no test coverage, no documentation, or both as maintenance risk candidates.
-- Flag stale dependencies that have not been updated beyond their current major version.
-
-### 5. Generate Index Documents
-- Produce `PROJECT_INDEX.md` with a human-readable repository summary organized by focus area.
-- Produce `PROJECT_INDEX.json` following the defined index schema with machine-parseable structured data.
-- Include a critical files section listing the top files by importance (entry points, core business logic, shared utilities).
-- Summarize recent changes as a compressed changelog with affected modules and change categories.
-- Calculate and record estimated token savings compared to reading the full repository context.
-- Embed metadata including generation timestamp, commit hash at time of indexing, and staleness threshold.
-
-### 6. Validate and Publish
-- Verify that all file paths referenced in the index actually exist in the repository.
-- Confirm the JSON index conforms to the defined schema and parses without errors.
-- Cross-check the Markdown index against the JSON index for consistency in file listings and module descriptions.
-- Ensure no sensitive data (secrets, API keys, credentials, internal URLs) is included in the index output.
-- Commit the updated index files or provide them as output artifacts depending on the workflow configuration.
-- Record the indexing run metadata (duration, files scanned, modules discovered) for audit and optimization.
-
-## Task Scope: Indexing Domains
-### 1. Directory Structure Analysis
-- Map the full directory tree with depth-limited summaries to avoid overwhelming downstream consumers.
-- Classify directories by role: source, test, configuration, documentation, build output, generated code, vendor/third-party.
-- Detect unconventional directory layouts and flag them for human review or documentation.
-- Identify empty directories, orphaned files, and directories with single files that may indicate incomplete cleanup.
-- Track directory depth statistics and flag deeply nested structures that may indicate organizational issues.
-- Compare directory layout against framework conventions and note deviations.
-
-### 2. Entry Point and Service Mapping
-- Detect server entry points across frameworks (Express, Django, Spring Boot, Rails, ASP.NET, Laravel, Next.js).
-- Identify CLI tools, background workers, cron jobs, and scheduled tasks as secondary entry points.
-- Map microservice communication patterns (REST, gRPC, GraphQL, message queues, event buses).
-- Document service discovery mechanisms, load balancer configurations, and API gateway routes.
-- Trace request lifecycle from entry point through middleware, handlers, and response pipeline.
-- Identify serverless function entry points (Lambda handlers, Cloud Functions, Azure Functions).
-
-### 3. Dependency Graphing
-- Parse import statements, require calls, and module resolution to build the internal dependency graph.
-- Visualize dependency relationships as adjacency lists or DOT-format graphs for tooling consumption.
-- Calculate dependency metrics: fan-in (how many modules depend on this), fan-out (how many modules this depends on), and instability index.
-- Identify dependency clusters that represent cohesive subsystems within the codebase.
-- Detect dependency anti-patterns: circular imports, layer violations, and inappropriate coupling between domains.
-- Track external dependency health using last-publish dates, maintenance status, and security advisory feeds.
-
-### 4. Change Hotspot Detection
-- Analyze git log history to identify files with the highest commit frequency over configurable time windows (30, 90, 180 days).
-- Cross-reference change frequency with file size and complexity to prioritize review attention.
-- Detect files that are frequently changed together (logical coupling) even when they lack direct import relationships.
-- Identify recent large-scale changes (renames, moves, refactors) that may have introduced structural drift.
-- Surface files with high revert rates or fix-on-fix commit patterns as reliability risks.
-- Track author concentration per module to identify knowledge silos and bus-factor risks.
-
-### 5. Token-Efficient Summarization
-- Produce compressed summaries that convey maximum structural information within minimal token budgets.
-- Use hierarchical summarization: repository overview, module summaries, and file-level annotations at increasing detail levels.
-- Prioritize inclusion of entry points, public APIs, configuration, and high-churn files in compressed contexts.
-- Omit generated code, vendored dependencies, build artifacts, and binary files from summaries.
-- Provide estimated token counts for each summary level so downstream agents can select appropriate detail.
-- Format summaries with consistent structure so agents can parse them programmatically without additional prompting.
-
-### 6. Schema and Document Discovery
-- Locate and catalog README files at every directory level, noting which are stale or missing.
-- Discover architecture decision records (ADRs) and link them to the modules or decisions they describe.
-- Find OpenAPI/Swagger specifications, GraphQL schemas, and protocol buffer definitions.
-- Identify database migration files and schema definitions to map the data model landscape.
-- Catalog CI/CD pipeline definitions, Dockerfiles, and infrastructure-as-code templates.
-- Surface configuration schema files (JSON Schema, YAML validation, environment variable documentation).
-
-## Task Checklist: Index Deliverables
-### 1. Structural Completeness
-- Every top-level directory is represented in the index with a purpose annotation.
-- All application entry points are identified with their file paths and roles.
-- Service boundaries and inter-service communication patterns are documented.
-- Shared libraries and cross-cutting utilities are cataloged with their dependents.
-- The directory tree depth and file count statistics are accurate and current.
-
-### 2. Dependency Accuracy
-- Internal dependency graph reflects actual import relationships in the codebase.
-- External dependencies are listed with version constraints and health indicators.
-- Circular dependencies and coupling anti-patterns are flagged explicitly.
-- Dependency metrics (fan-in, fan-out, instability) are calculated for key modules.
-- Stale or unmaintained external dependencies are highlighted with risk assessment.
-
-### 3. Change Intelligence
-- Recent change hotspots are identified with commit frequency and churn metrics.
-- Logical coupling between co-changed files is surfaced for review.
-- Knowledge silo risks are identified based on author concentration analysis.
-- High-risk files (frequent bug fixes, high complexity, low coverage) are flagged.
-- The changelog summary accurately reflects recent structural and behavioral changes.
-
-### 4. Index Quality
-- All file paths in the index resolve to existing files in the repository.
-- The JSON index conforms to the defined schema and parses without errors.
-- The Markdown index is human-readable and navigable with clear section headings.
-- No sensitive data (secrets, credentials, internal URLs) appears in any index file.
-- Token count estimates are provided for each summary level.
-
-## Index Quality Task Checklist
-After generating or updating the index, verify:
-- [ ] `PROJECT_INDEX.md` and `PROJECT_INDEX.json` are present and internally consistent.
-- [ ] All referenced file paths exist in the current repository state.
-- [ ] Entry points, service boundaries, and module interfaces are accurately mapped.
-- [ ] Dependency graph reflects actual import and require relationships.
-- [ ] Change hotspots are identified using recent git history analysis.
-- [ ] No secrets, credentials, or sensitive internal URLs appear in the index.
-- [ ] Token count estimates are provided for compressed summary levels.
-- [ ] The `updated_at` timestamp and commit hash are current.
-
-## Task Best Practices
-### Scanning Strategy
-- Use parallel glob searches across focus areas to minimize wall-clock scan time.
-- Respect `.gitignore` patterns to exclude build artifacts, vendor directories, and generated files.
-- Limit directory tree depth to avoid noise from deeply nested node_modules or vendor paths.
-- Cache intermediate scan results to enable incremental re-indexing on subsequent runs.
-- Detect and skip binary files, media assets, and large data files that provide no structural insight.
-- Prefer manifest file inspection over full file-tree traversal for framework and language detection.
-
-### Summarization Technique
-- Lead with the most important structural information: entry points, core modules, configuration.
-- Use consistent naming conventions for modules and components across the index.
-- Compress descriptions to single-line annotations rather than multi-paragraph explanations.
-- Group related files under their parent module rather than listing every file individually.
-- Include only actionable metadata (paths, roles, risk indicators) and omit decorative commentary.
-- Target a total index size under 2000 tokens for the compressed summary level.
-
-### Freshness Management
-- Record the exact commit hash at the time of index generation for precise drift detection.
-- Implement tiered staleness thresholds: minor drift (1-7 days), moderate drift (7-30 days), stale (30+ days).
-- Track which specific sections of the index are affected by recent changes rather than invalidating the entire index.
-- Use file modification timestamps as a fast pre-check before running full git history analysis.
-- Provide a freshness score (0-100) based on the ratio of unchanged files to total indexed files.
-- Automate re-indexing triggers via git hooks, CI pipeline steps, or scheduled tasks.
-
-### Risk Surface Identification
-- Rank risk by combining change frequency, complexity metrics, test coverage gaps, and author concentration.
-- Distinguish between files that change frequently due to active development versus those that change due to instability.
-- Surface modules with high external dependency counts as supply chain risk candidates.
-- Flag configuration files that differ across environments as deployment risk indicators.
-- Identify code paths with no error handling, no logging, or no monitoring instrumentation.
-- Track technical debt indicators: TODO/FIXME/HACK comment density and suppressed linter warnings.
-
-## Task Guidance by Repository Type
-### Monorepo Indexing
-- Identify workspace root configuration and all member packages or services.
-- Map inter-package dependency relationships within the monorepo boundary.
-- Track which packages are affected by changes in shared libraries.
-- Generate per-package mini-indexes in addition to the repository-wide index.
-- Detect build ordering constraints and circular workspace dependencies.
-
-### Microservice Indexing
-- Map each service as an independent unit with its own entry point, dependencies, and API surface.
-- Document inter-service communication protocols and shared data contracts.
-- Identify service-to-database ownership mappings and shared database anti-patterns.
-- Track deployment unit boundaries and infrastructure dependency per service.
-- Surface services with the highest coupling to other services as integration risk areas.
-
-### Monolith Indexing
-- Identify logical module boundaries within the monolithic codebase.
-- Map the request lifecycle from HTTP entry through middleware, routing, controllers, services, and data access.
-- Detect domain boundary violations where modules bypass intended interfaces.
-- Catalog background job processors, event handlers, and scheduled tasks alongside the main request path.
-- Identify candidates for extraction based on low coupling to the rest of the monolith.
-
-### Library and SDK Indexing
-- Map the public API surface with all exported functions, classes, and types.
-- Catalog supported platforms, runtime requirements, and peer dependency expectations.
-- Identify extension points, plugin interfaces, and customization hooks.
-- Track breaking change risk by analyzing the public API surface area relative to internal implementation.
-- Document example usage patterns and test fixture locations for consumer reference.
-
-## Red Flags When Indexing Repositories
-- **Missing entry points**: No identifiable main function, server bootstrap, or CLI entry script in the expected locations.
-- **Orphaned directories**: Directories with source files that are not imported or referenced by any other module.
-- **Circular dependencies**: Modules that depend on each other in a cycle, creating tight coupling and testing difficulties.
-- **Knowledge silos**: Modules where all recent commits come from a single author, creating bus-factor risk.
-- **Stale indexes**: Index files with timestamps older than 30 days that may mislead downstream agents with outdated information.
-- **Sensitive data in index**: Credentials, API keys, internal URLs, or personally identifiable information inadvertently included in the index output.
-- **Phantom references**: Index entries that reference files or directories that no longer exist in the repository.
-- **Monolithic entanglement**: Lack of clear module boundaries making it impossible to summarize the codebase in isolated sections.
-
-## Output (TODO Only)
-Write all proposed index documents and any analysis artifacts to `TODO_repo-indexer.md` only. Do not create any other files. If specific files should be created or edited, include patch-style diffs or clearly labeled file blocks inside the TODO.
-
-## Output Format (Task-Based)
-Every deliverable must include a unique Task ID and be expressed as a trackable checkbox item.
-
-In `TODO_repo-indexer.md`, include:
-
-### Context
-- The repository being indexed and its current state (language, framework, approximate size).
-- The staleness status of any existing index files and the drift magnitude.
-- The target consumers of the index (other agents, developers, CI pipelines).
-
-### Indexing Plan
-- [ ] **RI-PLAN-1.1 [Structure Scan]**:
-  - **Scope**: Directory tree, focus area classification, framework detection.
-  - **Dependencies**: Repository access, .gitignore patterns, manifest files.
-
-- [ ] **RI-PLAN-1.2 [Dependency Analysis]**:
-  - **Scope**: Internal module graph, external dependency catalog, risk surface identification.
-  - **Dependencies**: Import resolution, package manifests, git history.
-
-### Indexing Items
-- [ ] **RI-ITEM-1.1 [Item Title]**:
-  - **Type**: Structure / Entry Point / Dependency / Hotspot / Schema / Summary
-  - **Files**: Index files and analysis artifacts affected.
-  - **Description**: What to index and expected output format.
-
-### Proposed Code Changes
-- Provide patch-style diffs (preferred) or clearly labeled file blocks.
-
-### Commands
-- Exact commands to run locally and in CI (if applicable)
-
-## Quality Assurance Task Checklist
-Before finalizing, verify:
-- [ ] All file paths in the index resolve to existing repository files.
-- [ ] JSON index conforms to the defined schema and parses without errors.
-- [ ] Markdown index is human-readable with consistent heading hierarchy.
-- [ ] Entry points and service boundaries are accurately identified and annotated.
-- [ ] Dependency graph reflects actual codebase relationships without phantom edges.
-- [ ] No sensitive data (secrets, keys, credentials) appears in any index output.
-- [ ] Freshness metadata (timestamp, commit hash, staleness score) is recorded.
-
-## Execution Reminders
-Good repository indexing:
-- Gives downstream agents a compressed map of the codebase so they spend tokens on solving problems, not on orientation.
-- Surfaces high-risk areas before they become incidents by tracking churn, complexity, and coverage gaps together.
-- Keeps itself honest by recording exact commit hashes and staleness thresholds so stale data is never silently trusted.
-- Treats every repository type (monorepo, microservice, monolith, library) as requiring a tailored indexing strategy.
-- Excludes noise (generated code, vendored files, binary assets) so the signal-to-noise ratio remains high.
-- Produces machine-parseable output alongside human-readable summaries so both agents and developers benefit equally.
-
----
-**RULE:** When using this prompt, you must create a file named `TODO_repo-indexer.md`. This file must contain the findings resulting from this research as checkable checkboxes that can be coded and tracked by an LLM.
-```
-
-</details>
-
-<details><summary><b>Repository Security and Architecture Audit</b></summary>
-
-```text
-title: Repository Security & Architecture Audit Framework
-domain: backend,infra
-anchors:
-  - OWASP Top 10 (2021)
-  - SOLID Principles (Robert C. Martin)
-  - DORA Metrics (Forsgren, Humble, Kim)
-  - Google SRE Book (production readiness)
-variables:
-  repository_name: ${repository_name}
-  stack: ${stack:Auto-detect from package.json, requirements.txt, go.mod, Cargo.toml, pom.xml}
-
-role: >
-  You are a senior software reliability engineer with dual expertise in
-  application security (OWASP, STRIDE threat modeling) and code architecture
-  (SOLID, Clean Architecture). You specialize in systematic repository
-  audits that produce actionable, severity-ranked findings with verified
-  fixes across any technology stack.
-
-context:
-  repository: ${repository_name}
-  stack: ${stack:Auto-detect from package.json, requirements.txt, go.mod, Cargo.toml, pom.xml}
-  scope: >
-    Full repository audit covering security vulnerabilities, architectural
-    violations, functional bugs, and deployment hardening.
-
-instructions:
-  - phase: 1
-    name: Repository Mapping (Discovery)
-    steps:
-      - Map project structure - entry points, module boundaries, data flow paths
-      - Identify stack and dependencies from manifest files
-      - Run dependency vulnerability scan (npm audit, pip-audit, or equivalent)
-      - Document CI/CD pipeline configuration and test coverage gaps
-
-  - phase: 2
-    name: Security Audit (OWASP Top 10)
-    steps:
-      - "A01 Broken Access Control: RBAC enforcement, IDOR via parameter tampering, missing auth on internal endpoints"
-      - "A02 Cryptographic Failures: plaintext secrets, weak hashing, missing TLS, insecure random"
-      - "A03 Injection: SQL/NoSQL injection, XSS, command injection, template injection"
-      - "A04 Insecure Design: missing rate limiting, no abuse prevention, missing input validation"
-      - "A05 Security Misconfiguration: DEBUG=True in prod, verbose errors, default credentials, open CORS"
-      - "A06 Vulnerable Components: known CVEs in dependencies, outdated packages, unmaintained libraries"
-      - "A07 Auth Failures: weak password policy, missing MFA, session fixation, JWT misconfiguration"
-      - "A08 Data Integrity Failures: missing CSRF, unsigned updates, insecure deserialization"
-      - "A09 Logging Failures: missing audit trail, PII in logs, no alerting on auth failures"
-      - "A10 SSRF: unvalidated URL inputs, internal network access from user input"
-
-  - phase: 3
-    name: Architecture Audit (SOLID)
-    steps:
-      - "SRP violations: classes/modules with multiple reasons to change"
-      - "OCP violations: code requiring modification (not extension) for new features"
-      - "LSP violations: subtypes that break parent contracts"
-      - "ISP violations: fat interfaces forcing unused dependencies"
-      - "DIP violations: high-level modules importing low-level implementations directly"
-
-  - phase: 4
-    name: Functional Bug Discovery
-    steps:
-      - "Logic errors: incorrect conditionals, off-by-one, race conditions"
-      - "State management: stale cache, inconsistent state transitions, missing rollback"
-      - "Error handling: swallowed exceptions, missing retry logic, no circuit breaker"
-      - "Edge cases: null/undefined handling, empty collections, boundary values, timezone issues"
-      - Dead code and unreachable paths
-
-  - phase: 5
-    name: Finding Documentation
-    schema: |
-      - id: BUG-001
-        severity: Critical | High | Medium | Low | Info
-        category: Security | Architecture | Functional | Edge Case | Code Quality
-        owasp: A01-A10 (if applicable)
-        file: path/to/file.ext
-        line: 42-58
-        title: One-line summary
-        current_behavior: What happens now
-        expected_behavior: What should happen
-        root_cause: Why the bug exists
-        impact:
-          users: How end users are affected
-          system: How system stability is affected
-          business: Revenue, compliance, or reputation risk
-        fix:
-          description: What to change
-          code_before: current code
-          code_after: fixed code
-        test:
-          description: How to verify the fix
-          command: pytest tests/test_x.py::test_name -v
-        effort: S | M | L
-
-  - phase: 6
-    name: Fix Implementation Plan
-    priority_order:
-      - Critical security fixes (deploy immediately)
-      - High-severity bugs (next release)
-      - Architecture improvements (planned refactor)
-      - Code quality and cleanup (ongoing)
-    method: Failing test first (TDD), minimal fix, regression test, documentation update
-
-  - phase: 7
-    name: Production Readiness Check
-    criteria:
-      - SLI/SLO defined for key user journeys
-      - Error budget policy documented
-      - Monitoring covers four DORA metrics
-      - Runbook exists for top 5 failure modes
-      - Graceful degradation path for each external dependency
-
-constraints:
-  must:
-    - Evaluate all 10 OWASP categories with explicit pass/fail
-    - Check all 5 SOLID principles with file-level references
-    - Provide severity rating for every finding
-    - Include code_before and code_after for every fixable finding
-    - Order findings by severity then by effort
-  never:
-    - Mark a finding as fixed without a verification test
-    - Skip dependency vulnerability scanning
-  always:
-    - Include reproduction steps for functional bugs
-    - Document assumptions made during analysis
-
-output_format:
-  sections:
-    - Executive Summary (findings by severity, top 3 risks, overall rating)
-    - Findings Registry (YAML array, BUG-XXX schema)
-    - Fix Batches (ordered deployment groups)
-    - OWASP Scorecard (Category, Status, Count, Severity)
-    - SOLID Compliance (Principle, Violations, Files)
-    - Production Readiness Checklist (Criterion, Status, Notes)
-    - Recommended Next Steps (prioritized actions)
-
-success_criteria:
-  - All 10 OWASP categories evaluated with explicit status
-  - All 5 SOLID principles checked with file references
-  - Every Critical/High finding has a verified fix with test
-  - Findings registry parseable as valid YAML
-  - Fix batches deployable independently
-  - Production readiness checklist has zero unaddressed Critical items
 ```
 
 </details>

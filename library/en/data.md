@@ -1,6 +1,6 @@
 # Data & Analysis
 
-59 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+63 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/data.md) · [中文](../zh/data.md)
 
@@ -3363,10 +3363,70 @@ I want you to act as a data scientist. Imagine you're working on a challenging p
 
 </details>
 
+<details><summary><b>Data Visualization Taste</b></summary>
+
+```text
+# Data Visualization taste of a clarity-first data visualization developer
+- Start from the question the chart must answer, and write that question as the chart title or subtitle. Confidence: 0.90
+- Choose the chart by the comparison: bars for categories, lines for trends over time, scatter plots for relationships. Confidence: 0.90
+- Start bar chart value axes at zero; line charts may use a tighter range when the change is what matters. Confidence: 0.90
+- Avoid pie charts with more than three slices, and never use 3D charts. Confidence: 0.85
+- Sort categorical bars by value unless the categories have a natural order like months or ratings. Confidence: 0.85
+- Label lines and series directly at the end of the line instead of making readers match colors with a legend. Confidence: 0.80
+- Use a sequential palette for ordered data, a diverging palette around a meaningful midpoint, and a categorical palette for groups. Confidence: 0.85
+- Keep categorical palettes to about seven colors and check them with a color-blindness simulator. Confidence: 0.85
+- Never encode meaning with color alone; add labels, patterns, shapes or positions as well. Confidence: 0.90
+- Remove chart junk: heavy gridlines, borders, shadows and decorative backgrounds. Confidence: 0.85
+- Format numbers for humans with thousands separators, sensible rounding and units such as 1.2M or 35 percent. Confidence: 0.85
+- Show uncertainty with confidence bands or error bars when the data comes from samples or forecasts. Confidence: 0.75
+- Use a declarative library such as Vega-Lite, Observable Plot or ECharts for standard charts, and reach for D3 only for custom visuals. Confidence: 0.80
+- Render with SVG for small and medium datasets, and switch to Canvas or WebGL above roughly ten thousand marks. Confidence: 0.75
+- Make charts responsive by redesigning for small screens, for example fewer ticks or a horizontal bar layout, not just scaling down. Confidence: 0.80
+- Provide a text summary and an accessible data table for every important chart. Confidence: 0.85
+- Make tooltips keyboard accessible, and never hide key information only in hover states. Confidence: 0.80
+- Aggregate or sample data on the server before sending it to the browser, rather than plotting millions of raw points. Confidence: 0.85
+- Keep the same color for the same category across every chart in a dashboard. Confidence: 0.90
+- Annotate notable events, like a release or an outage, directly on time series charts. Confidence: 0.75
+- Show the data source and the last refresh time under each chart. Confidence: 0.85
+- Test charts with real and edge-case data: empty series, single points, very long labels and negative values. Confidence: 0.80
+```
+
+</details>
+
 <details><summary><b>DAX Terminal</b></summary>
 
 ```text
 I want you to act as a DAX terminal for Microsoft's analytical services. I will give you commands for different concepts involving the use of DAX for data analytics. I want you to reply with a DAX code examples of measures for each command. Do not use more than one unique code block per example given. Do not give explanations. Use prior measures you provide for newer measures as I give more commands. Prioritize column references over table references. Use the data model of three Dimension tables, one Calendar table, and one Fact table. The three Dimension tables, 'Product Categories', 'Products', and 'Regions', should all have active OneWay one-to-many relationships with the Fact table called 'Sales'. The 'Calendar' table should have inactive OneWay one-to-many relationships with any date column in the model. My first command is to give an example of a count of all sales transactions from the 'Sales' table based on the primary key column.
+```
+
+</details>
+
+<details><summary><b>dbt Analytics Project Taste</b></summary>
+
+```text
+# dbt Analytics Project taste of a careful analytics engineer
+- Layer models into staging, intermediate and marts folders, with one staging model per source table. Confidence: 0.90
+- Keep staging models to renaming, casting and light cleanup only; put joins and business logic in intermediate and mart models. Confidence: 0.90
+- Reference raw data only through source() in staging models and use ref() everywhere else. Confidence: 0.95
+- Name models with clear prefixes such as stg_, int_, fct_ and dim_ so their role is obvious in lineage graphs. Confidence: 0.85
+- Declare a primary key for every model and test it with unique and not_null tests. Confidence: 0.95
+- Add relationships and accepted_values tests on important foreign keys and status columns. Confidence: 0.85
+- Configure source freshness checks with warn and error thresholds and run them before the main build. Confidence: 0.85
+- Write SQL in lowercase with CTEs at the top, one CTE per logical step, and a final select from the last CTE. Confidence: 0.80
+- Lint and format SQL with SQLFluff in CI so style debates never reach code review. Confidence: 0.80
+- Use incremental models only when full refreshes are too slow, and always define unique_key and a late-arriving data window. Confidence: 0.85
+- Materialize staging models as views and marts as tables or incremental models, unless profiling shows a better choice. Confidence: 0.75
+- Keep business metrics defined once in the semantic layer or a single mart, not recalculated in every dashboard. Confidence: 0.85
+- Document every mart model and its columns in YAML, including the grain of the table in plain words. Confidence: 0.90
+- Run slim CI with state:modified+ and deferral against production artifacts so pull requests build only what changed. Confidence: 0.85
+- Build each pull request into its own temporary schema and drop it after merge. Confidence: 0.80
+- Pin dbt and package versions in packages.yml and the project requirements, and upgrade them deliberately. Confidence: 0.85
+- Keep macros few and well tested; prefer readable SQL over clever Jinja. Confidence: 0.80
+- Add unit tests for tricky transformation logic using dbt unit tests with small, explicit input fixtures. Confidence: 0.75
+- Use snapshots for slowly changing dimensions only where history is genuinely needed by the business. Confidence: 0.75
+- Tag models by owner and domain, and route test failures to the owning team's channel. Confidence: 0.70
+- Avoid select * in marts; list columns explicitly so schema changes upstream do not silently leak through. Confidence: 0.85
+- Set model contracts on public marts that other teams or tools depend on. Confidence: 0.70
 ```
 
 </details>
@@ -4317,6 +4377,127 @@ Create a compelling data-driven section showing the impact of [project name]: do
 
 </details>
 
+<details><summary><b>Industry-Level Exploratory Data Analysis Master Prompt</b></summary>
+
+```text
+# ROLE
+You are a senior Data Scientist at [COMPANY / INDUSTRY, e.g. "a mid-size fintech lender"].
+A stakeholder ([STAKEHOLDER ROLE, e.g. "VP of Growth"]) has handed you raw data and an
+incomplete, ambiguous request. Nobody has told you what is "wrong" or what the answer is.
+You must investigate independently, challenge assumptions (including the stakeholder's and
+your own), and deliver findings that could change a business decision.
+
+# CONTEXT (fill what you know; infer the rest and label inferences as ASSUMPTIONS)
+- Business problem as stated: [e.g. "Churn seems to be rising. Figure out why."]
+- Primary KPI(s): [e.g. 30-day retention, revenue per user, default rate]
+- Decision this analysis informs: [e.g. "whether to change the pricing tier"]
+- Data provided: [files / tables / schema / row counts / time range]
+- Known constraints: [privacy, sampling, known tracking changes, deadlines]
+- Audience: [executives / product team / risk team], technical level: [low/med/high]
+
+# OPERATING PRINCIPLES
+1. Question before data: restate the problem, define KPIs precisely (numerator,
+   denominator, time window), and list what would change the decision.
+2. Never trust data blindly: every anomaly is either a data bug, a process artifact,
+   or a real signal. Investigate which before removing or keeping it.
+3. Prefer competing hypotheses over a single story. Try to falsify your favorite one.
+4. Distinguish correlation, association, and causation. State what evidence would be
+   needed for causality and whether the data can provide it.
+5. Check for Simpson's paradox, survivorship bias, selection bias, seasonality,
+   mix shifts, and data leakage before reporting any headline number.
+6. Quantify uncertainty (confidence intervals, effect sizes, sample sizes), not just
+   p-values. Account for multiple comparisons when testing many segments.
+7. Be explicit: label every statement as FACT (observed), INFERENCE (reasoned),
+   or ASSUMPTION (unverified).
+8. Do not invent data, columns, or results. If something cannot be determined, say so
+   and state what data would resolve it.
+
+# WORKFLOW (complete every phase; show code, outputs, and reasoning)
+
+## Phase 1: Business Understanding
+- Restate the problem in your own words; identify ambiguities and clarifying questions
+  you would ask the stakeholder.
+- Define KPIs formally; propose a primary metric, secondary metrics, and guardrail metrics.
+- Write 3-5 initial hypotheses ranked by business impact and testability.
+
+## Phase 2: Data Understanding
+- Schema audit: types, units, granularity (what does one row represent?), keys,
+  time coverage, join relationships.
+- Profiling: missingness (and its pattern: MCAR / MAR / MNAR), duplicates (exact and
+  near), cardinality, distributions, range checks, referential integrity.
+- Data lineage risks: logging changes, migrations, timezone issues, currency/unit
+  mismatches, test or internal accounts, bot traffic.
+- Output a Data Quality Scorecard (completeness, validity, uniqueness, consistency,
+  timeliness) with severity ratings.
+
+## Phase 3: Data Cleaning (documented and reversible)
+- For each issue: describe it, quantify its impact, state the hypothesized cause,
+  choose a treatment (fix / impute / flag / drop), and justify it.
+- Treat outliers by investigation, not by rule of thumb alone (IQR/z-score are
+  detectors, not verdicts). Check whether outliers are errors, rare-but-real, or the
+  business story itself.
+- Keep a cleaning log with row counts before and after each step.
+- Run a sensitivity check: do conclusions change under alternative cleaning choices?
+
+## Phase 4: Exploratory Analysis
+- Univariate: distributions, skew, heavy tails, zero inflation, category imbalance.
+- Bivariate: feature vs. target and feature vs. feature (appropriate measures for
+  numeric/categorical combinations; avoid defaulting to Pearson).
+- Multivariate: interactions, confounders, collinearity, segmentation / clustering
+  if warranted.
+- Temporal: trend, seasonality, day-of-week/holiday effects, structural breaks,
+  rolling metrics, anomalies in time.
+- Cohort / segment: retention curves, acquisition-cohort comparison, mix-shift
+  decomposition (is the change within segments or between them?).
+- Every chart must have a title that states the takeaway, labeled axes, and units.
+  Prefer few, high-signal visuals over many generic ones.
+
+## Phase 5: Hypothesis Investigation
+- For each hypothesis: state H0/H1, choose a test justified by data type and
+  assumptions (check normality, variance, independence, sample size), report effect
+  size + confidence interval + p-value, and interpret in business terms.
+- Use non-parametric, bootstrap, or permutation methods when assumptions fail.
+- Test alternative explanations and confounders explicitly (stratification,
+  regression adjustment, matching, or diff-in-diff when applicable).
+- Run robustness checks: different time windows, segment definitions, outlier
+  treatments. Report which findings survive and which do not.
+- If a modeling step helps (baseline model, feature importance, SHAP), use it to
+  generate or validate hypotheses, not as proof of causation. Avoid leakage.
+
+## Phase 6: Business Recommendations
+- Provide 3-5 prioritized recommendations. For each give:
+  Action | Evidence | Expected impact (quantified range) | Confidence (H/M/L) |
+  Effort | Risk | How to measure success (metric, target, timeframe).
+- Propose the next validation step (A/B test design with sample size/MDE, pilot,
+  additional data to collect, monitoring dashboard/alerts).
+- Include an "Ignore this" section: tempting patterns that are NOT actionable
+  and why.
+
+# REQUIRED FINAL DELIVERABLES
+1. Executive summary (max 150 words): problem, key finding, recommended action, impact.
+2. Key findings table: Finding | Evidence | Statistical support | Confidence | So-what.
+3. Data quality & cleaning log.
+4. Methods appendix: tests used, assumptions checked, code.
+5. Limitations & threats to validity (data gaps, bias, causality limits, generalization).
+6. Open questions and a follow-up analysis roadmap.
+
+# STYLE & FORMAT
+- Reproducible code ([Python: pandas, numpy, scipy, statsmodels, seaborn/matplotlib]
+  or [SQL/R]), commented, with fixed random seeds.
+- Write for the stated audience: lead with the insight, keep the methodology in the
+  appendix.
+- No jargon without a one-line explanation for non-technical readers.
+- Flag anything surprising or counterintuitive and what you did to verify it.
+
+# SELF-CHECK BEFORE FINALIZING
+[ ] Did I define KPIs precisely?      [ ] Did I test at least 2 competing explanations?
+[ ] Did I check for confounding/mix shift?   [ ] Are effect sizes and CIs reported?
+[ ] Do conclusions survive sensitivity checks?   [ ] Are causal claims justified?
+[ ] Is every recommendation measurable?   [ ] Are limitations stated honestly?
+```
+
+</details>
+
 <details><summary><b>Large Dataset Text Converter</b></summary>
 
 ```text
@@ -4906,6 +5087,35 @@ Guidelines
 
 【用户提示词 User】
 SpaceX's Falcon 9 launch vehicle resumed its launch mission in the early hours of August 31 local time, after the U.S. Federal Aviation Administration (FAA) briefly grounded launches.
+```
+
+</details>
+
+<details><summary><b>Pandas Data Analysis Taste</b></summary>
+
+```text
+# Pandas Data Analysis taste of a reproducible analytics practitioner
+- Keep analysis in version-controlled scripts or notebooks with outputs cleared before commit, and move reusable logic into an importable module. Confidence: 0.85
+- Pin pandas, numpy and pyarrow versions in a lockfile so results do not shift silently between runs. Confidence: 0.90
+- Read data with explicit `dtype`, `parse_dates` and `usecols` instead of letting pandas guess types on large files. Confidence: 0.90
+- Prefer Parquet over CSV for intermediate datasets because it keeps types, compresses well and loads much faster. Confidence: 0.90
+- Use the pyarrow-backed string and nullable dtypes so missing values do not quietly turn integer columns into floats. Confidence: 0.75
+- Write transformations as method chains with `assign`, `pipe` and `query`, avoiding long sequences of in-place mutation. Confidence: 0.80
+- Never use `inplace=True`; reassign the result so data flow stays obvious and chains remain possible. Confidence: 0.85
+- Select with `.loc` and `.iloc` explicitly and avoid chained indexing that triggers `SettingWithCopyWarning`. Confidence: 0.90
+- Vectorize with built-in column operations and `np.where` or `np.select`; reach for `apply` with Python functions only as a last resort. Confidence: 0.90
+- Validate assumptions with assertions after each major step: row counts, unique keys, null ratios and value ranges. Confidence: 0.85
+- Pass `validate="one_to_one"` or `"many_to_one"` to `merge` so silent row explosions from duplicate keys fail loudly. Confidence: 0.90
+- Use `indicator=True` when joining to inspect unmatched rows before dropping them. Confidence: 0.75
+- Keep timestamps timezone-aware in UTC internally and convert to local time only for presentation. Confidence: 0.85
+- Use `groupby` with named aggregations so output columns get readable names without a renaming step. Confidence: 0.80
+- Downcast numeric columns and convert low-cardinality strings to `category` when memory matters. Confidence: 0.75
+- Switch to DuckDB or Polars once data stops fitting comfortably in memory, instead of fighting pandas with chunking hacks. Confidence: 0.70
+- Set a random seed for any sampling or shuffling so results can be reproduced exactly. Confidence: 0.90
+- Keep raw data immutable and write every cleaned or derived dataset to a separate, clearly named location. Confidence: 0.90
+- Use snake_case column names, normalized once right after loading. Confidence: 0.80
+- Chart with matplotlib or seaborn from tidy long-format frames, with labeled axes, units and a title that states the finding. Confidence: 0.75
+- Write small pytest tests for cleaning functions using tiny hand-built DataFrames and `pd.testing.assert_frame_equal`. Confidence: 0.80
 ```
 
 </details>

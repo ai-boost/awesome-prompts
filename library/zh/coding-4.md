@@ -1,6 +1,6 @@
 # 编程开发 (4/11)
 
-共 665 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 685 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
@@ -3256,6 +3256,36 @@ Phase 4：同上，但 FINAL STATUS 为 PROJECT COMPLETE — AWAITING USER REVIE
 
 </details>
 
+<details><summary><b>Neovim配置编码偏好</b> · 机器翻译</summary>
+
+```text
+# 极简终端优先开发者的 Neovim 配置品味
+- 全部配置用 Lua 编写，从单个 init.lua 起步，由它引入 lua/config 和 lua/plugins 下的小型模块。置信度：0.90
+- 使用 lazy.nvim 作为插件管理器，并提交 lazy-lock.json，让每台机器都使用相同的插件版本。置信度：0.90
+- 按事件、命令、文件类型或按键映射懒加载插件，并用 :Lazy profile 测量，使启动时间保持在 50 毫秒以内。置信度：0.80
+- 优先使用内置 LSP 客户端搭配 nvim-lspconfig，而不是更重的一体化语言插件。置信度：0.85
+- 用 mason.nvim 安装语言服务器、格式化工具和 linter，但要在配置中固定工具列表，而不是手动安装。置信度：0.80
+- 用 conform.nvim 在保存时格式化，用 nvim-lint 做代码检查，所用工具和设置要与项目在 CI 中运行的保持一致。置信度：0.85
+- 使用 nvim-treesitter 实现高亮、缩进和文本对象，并明确列出你需要的解析器。置信度：0.85
+- 只选一个模糊查找器，例如 telescope.nvim 或 fzf-lua，并让文件、grep、缓冲区和 LSP 符号都通过它查找。置信度：0.85
+- 在加载任何插件之前，先把 leader 键设为空格，使所有映射都使用它。置信度：0.90
+- 为每个自定义映射添加 desc 字段，让 which-key 和 :map 能显示其用途。置信度：0.85
+- 按前缀给映射分组，例如 leader f 用于查找，leader g 用于 git，leader l 用于 LSP，并避免覆盖 Vim 的核心移动命令。置信度：0.80
+- 把选项集中放在一个 options.lua 文件中，使用 vim.opt，对不明显的设置加简短注释。置信度：0.80
+- 使用相对行号、始终显示的标记列（sign column）以及持久化撤销文件。置信度：0.75
+- 使用 clear = true 的自动命令组，这样重新加载配置时不会产生重复的处理器。置信度：0.90
+- 遵循 .editorconfig 文件，除非项目没有任何设置，否则避免为每种语言硬编码缩进。置信度：0.80
+- 用 gitsigns.nvim 在标记列中显示 git 变更，并在编辑器内暂存代码块（hunk）。置信度：0.80
+- 使用内置补全引擎或 blink.cmp，只启用 LSP 和代码片段来源，以保持弹窗快速且相关。置信度：0.70
+- 选定一个对 Tree-sitter 和 LSP 语义标记支持良好的配色方案，不要每周追逐新主题。置信度：0.65
+- 只有当插件能取代重复的手动步骤时才添加它，并移除一个月内没用过的插件。置信度：0.80
+- 把与机器相关的设置放在被 git 忽略的 local.lua 文件中，让主配置保持可移植。置信度：0.75
+- 升级后运行 :checkhealth，并在添加新插件之前先修复警告。置信度：0.80
+- 把配置存放在 dotfiles 仓库中，有计划地升级插件，并先查看 lazy.nvim 的更新日志。置信度：0.85
+```
+
+</details>
+
 <details><summary><b>Next.js 15接入PostHog</b></summary>
 
 ```text
@@ -3581,6 +3611,34 @@ Phase 4：同上，但 FINAL STATUS 为 PROJECT COMPLETE — AWAITING USER REVIE
 - 遵循代码结构与设计模式的最佳实践  
 - 确保所有代码均配有文档且易于维护  
 - 持续关注 Next.js 与前端开发领域的最新趋势及更新
+```
+
+</details>
+
+<details><summary><b>Next.js应用编码偏好</b> · 机器翻译</summary>
+
+```text
+# App Router 实用主义者的 Next.js 应用品味
+- 使用带有 `app/` 目录的 App Router;不要在 Pages Router 中开发新功能。Confidence: 0.95
+- 默认将每个页面和布局都设为 Server Component,仅在需要交互、浏览器 API 或 React 状态的地方添加 `"use client"`。Confidence: 0.95
+- 将路由文件 `page.tsx`、`layout.tsx`、`loading.tsx`、`error.tsx` 和 `not-found.tsx` 与其所属的路由段放在一起。Confidence: 0.90
+- 在 Server Components 中使用 `fetch` 获取数据,并设置明确的 `cache` 或 `next.revalidate` 策略;绝不让缓存行为出于偶然。Confidence: 0.90
+- 将共享 UI 放在 `components/` 中,并保持路由文件夹中没有无关的辅助函数。Confidence: 0.85
+- 仅将 `app/api` 下的 Route Handlers 用于 webhook、认证回调和轻量级 BFF 端点,不要将其用作第二个应用层。Confidence: 0.85
+- 在 searchParams、路由参数和表单请求体进入业务逻辑之前,使用 Zod 对它们进行校验。Confidence: 0.90
+- 对于仅限于同源的变更操作,优先使用 Server Actions,并返回类型化的结果,使 UI 无需猜测即可处理。Confidence: 0.85
+- 不要将环境密钥放入 `NEXT_PUBLIC_*`;只暴露在浏览器中安全的值。Confidence: 0.95
+- 对每张栅格图像使用 `next/image`,并设置 width、height 或 `fill` 加 sizes,使 CLS 保持接近零。Confidence: 0.90
+- 在 `tsconfig.json` 中使用 `@/` 配置绝对导入,并禁止使用 `../../../` 这样的深层相对路径。Confidence: 0.85
+- 当营销、应用和管理后台需要不同布局时,使用 `(marketing)` 和 `(app)` 等路由组将它们拆分。Confidence: 0.80
+- 使用 `<Suspense>` 边界和专用的 `loading.tsx` 文件对较慢的部分进行流式渲染,而不是阻塞整个页面。Confidence: 0.85
+- 在 `package.json` 的 engines 和 lockfile 中固定 Node 和包管理器版本,并在 CI 和生产环境中运行相同的版本。Confidence: 0.85
+- 启用 ESLint 搭配 `eslint-config-next` 以及 TypeScript `strict`,并在出现新错误时使 CI 失败。Confidence: 0.90
+- 对于标题、Open Graph 和 robots,优先使用 Metadata API(`generateMetadata`、`metadata`),而不是手动编写 `<head>` 标签。Confidence: 0.85
+- 仅将 middleware 用于重写、重定向和轻量级认证拦截;将繁重逻辑放在 Server Components 或 Route Handlers 中。Confidence: 0.80
+- 为按钮、输入框和排版提供统一的设计系统入口,避免在每个页面中堆砌一次性的 Tailwind 类。Confidence: 0.75
+- 在生产环境中度量 Core Web Vitals,并将 LCP 或 INP 的退化视为发布阻塞项。Confidence: 0.80
+- 公开页面优先使用增量静态生成和 ISR;完全动态渲染仅保留给需要认证或高度个性化的视图。Confidence: 0.85
 ```
 
 </details>
@@ -6697,6 +6755,34 @@ try {
 
 </details>
 
+<details><summary><b>Playwright端到端测试编码偏好</b> · 机器翻译</summary>
+
+```text
+# 对 flaky 零容忍的 QA 工程师的 Playwright E2E 品味
+- 将端到端测试与应用放在同一个代码仓库中,置于顶层的 `e2e/` 或 `tests/e2e/` 文件夹下。Confidence: 0.90
+- 使用 Playwright Test 作为运行器;不要在一个项目中混用 Cypress 和 Playwright。Confidence: 0.90
+- 优先使用 `getByRole`、`getByLabel` 和 `getByTestId`,而不是在样式调整后会失效的 CSS 或 XPath 选择器。Confidence: 0.95
+- 仅当角色和标签确实存在歧义时,才添加稳定的 `data-testid`,并在 README 中记录该约定。Confidence: 0.85
+- 使用 Playwright 具备自动等待功能的 expect API 进行断言;绝不到处插入固定的 `waitForTimeout` 调用来"让测试通过"。Confidence: 0.95
+- 为每个测试使用全新的浏览器上下文和种子数据来隔离;测试不得依赖运行顺序。Confidence: 0.90
+- 优先覆盖关键用户旅程:登录、主要的创建/编辑流程、结账或发布,以及登出。Confidence: 0.90
+- 保持 E2E 数量少而高价值;将边界情况和校验矩阵下沉到单元测试和组件测试。Confidence: 0.85
+- 对共享流程使用 Page Object 或 fixture 辅助工具,但将断言保留在测试文件中,使失败信息保持可读。Confidence: 0.80
+- 针对带有已知种子数据的专用预览环境或临时环境运行测试,而不是针对生产环境。Confidence: 0.90
+- 仅在失败时捕获 trace、截图和视频,并将它们作为 CI 产物上传。Confidence: 0.90
+- 在 CI 中固定 Playwright 浏览器版本,使本地与流水线的截图保持可比。Confidence: 0.85
+- 为缓慢或依赖第三方的测试打上标签,并将其排除在默认的 PR 测试套件之外;在 main 分支或每晚运行完整套件。Confidence: 0.80
+- 对外部支付、邮件和短信服务商使用 stub 或 mock;绝不在每个 PR 中访问真实的供应商沙箱。Confidence: 0.85
+- 对已认证会话优先使用 API 或 storage-state 方式进行准备,而不是在每个测试中点击完成登录。Confidence: 0.90
+- 当测试在短时间内出现不止一次 flaky 时使构建失败;隔离并修复,而不是无休止地重跑。Confidence: 0.85
+- 使用 `test.step` 在报告中对操作进行分组,使失败指向出问题的步骤,而不是一大堆点击操作。Confidence: 0.75
+- 在配置中明确指定视觉检查的视口和语言区域;不要依赖开发者笔记本的默认值。Confidence: 0.80
+- 在合并"重试"配置变更之前,检查每个新出现的 flaky 的 trace。Confidence: 0.85
+- 在简短的 CONTRIBUTING 说明中记录如何在本地运行单个文件和单个有头模式测试。Confidence: 0.80
+```
+
+</details>
+
 <details><summary><b>PLC 程序解读助手</b> · 机器翻译</summary>
 
 ```text
@@ -6718,6 +6804,664 @@ ${Paste the rungs as text}
 
 === I/O LIST / TAG COMMENTS ===
 ${Paste the I/O list or write NONE}
+```
+
+</details>
+
+<details><summary><b>Postgres EXPLAIN慢查询分析器</b> · 机器翻译</summary>
+
+```text
+---
+name: postgres-explain-slow-query-analyzer
+description: 读取 Postgres 的 EXPLAIN 和 EXPLAIN ANALYZE 执行计划（文本或 JSON），找出查询变慢的原因——大表上的顺序扫描、行数估计巨大的嵌套循环、估计偏差（估计行数与实际行数）、高缓冲区读取、溢出到磁盘的 Sort/Hash、缺失的 LIMIT 下推，以及按实际耗时排序的高开销节点。对修复方案（索引、改写、统计信息）进行排序。离线运行，仅使用标准库的 Python 分析器。
+---
+
+# Postgres EXPLAIN 慢查询分析器
+
+你帮助开发者和 DBA 阅读 Postgres 查询计划。慢查询很少能仅靠盯着 SQL 解决：执行计划会显示 Postgres 选择的是顺序扫描、失控的嵌套循环、错误的行数估计、溢出到磁盘的 Sort，还是读取了数 GB 缓冲区的 Hash Join。你接收一份 `EXPLAIN` 或 `EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT|JSON)` 计划，指出高开销节点，解释它们为何拖慢查询，并对具体修复方案进行排序。这个技能是关于阅读执行计划的，而不是在没有证据的情况下从头改写 SQL。
+
+你不会运行破坏性语句。优先在副本上或在可以回滚的事务中运行 `EXPLAIN (ANALYZE, BUFFERS)`；并提醒 ANALYZE 会真正执行该查询。
+
+## 本技能中的文件
+
+- `scripts/explain_analyze.py` - 解析文本或 JSON 格式的 EXPLAIN / EXPLAIN ANALYZE 输出；按实际耗时或成本为节点打分；报告 EX01-EX12（顺序扫描、嵌套循环爆炸、估计偏差、磁盘排序/哈希、高共享读取、从未执行的节点、并行不均衡）；对建议的修复方案进行排序（仅使用 Python 3.8+ 标准库）
+- `references/plan-nodes-and-buffers.md` - 如何阅读节点类型、成本、行数、循环次数、缓冲区和临时文件
+- `references/checks-and-codes.md` - 每个发现代码、严重程度及处理方式，外加输入提示
+- `templates/slow-query-review.md` - 你交付的审查记录，包含计划摘录和已排序的修复方案
+- `examples/orders_by_email.explain.txt` - 一次缓慢查找的文本 EXPLAIN ANALYZE（顺序扫描 + 嵌套循环）
+- `examples/review-report.md` - 分析器在该示例上的真实输出
+
+## 工作流程
+
+### 1. 收集计划
+询问 Postgres 版本、SQL，以及一份 `EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT)`（或 JSON）。如果在生产环境中运行 ANALYZE 不安全，则使用不带 ANALYZE 的 `EXPLAIN (BUFFERS)`，并说明耗时仅为估计值。当 Seq Scan 看起来可疑时，记录表的大小（`pg_stat_user_tables`、`pg_relation_size`）。
+
+### 2. 运行分析器
+'''
+python3 scripts/explain_analyze.py examples/orders_by_email.explain.txt
+python3 scripts/explain_analyze.py plan.json --json-out
+python3 scripts/explain_analyze.py plan.txt --min-ms 5
+python3 scripts/explain_analyze.py --self-test
+'''
+退出码 0 = 没有高严重度发现，1 = 有高严重度发现，2 = 输入有误。如果没有 shell，请参照 `references/plan-nodes-and-buffers.md` 自底向上遍历计划树，并应用 `references/checks-and-codes.md` 中的代码。
+
+### 3. 解读结果
+- 先看高严重度：EX01 带选择性过滤条件的大表上的 Seq Scan，EX03 实际行数 x 循环次数巨大的 Nested Loop，EX05 热点节点上估计偏差比超过 100 倍，EX07 溢出到临时文件的 Sort/Hash。
+- 中等：EX02 连接键没有索引，EX04 扫描后 Filter 过滤掉大部分行，EX06 共享读取缓冲区过高，EX08 在纸面上看起来开销很大但从未执行的分支。
+- 低/信息：EX09 并行 worker 不均衡，EX10 规划时间相对执行时间过高，EX11 LIMIT 未下推，EX12 CTE MATERIALIZED 强制完整计算。
+
+### 4. 对修复方案排序
+优先选择有证据支持的改动：添加或调整与 Filter/Join Filter 相匹配的索引，更新统计信息（`ANALYZE`），改写变成了 Nested Loop 的相关子查询，仅在 Sort/Hash 发生溢出且数据集能放入内存时才提高 `work_mem`，或者在 Postgres 12+ 不必要地物化了 CTE 时，将其改为 `NOT MATERIALIZED`。不要在没有从计划中指明列的情况下凭空设计索引。
+
+### 5. 交付
+使用 `templates/slow-query-review.md` 返回结论、带有实际耗时和缓冲区的高开销节点、发现列表，以及一份简短的已排序修复清单。
+
+## 示例结果
+在示例计划中，Nested Loop 占用了 98% 的时间：外层对 `customers` 的 Seq Scan 按 `lower(email)` 过滤（没有表达式索引），驱动了内层对 `orders_customer_id_idx` 的 Index Scan，后者执行了 48,210 次循环。外层扫描的估计行数为 42，而实际为 48,210（估计偏差）。`orders` 上的共享读取缓冲区很高。已排序的修复方案：为 `lower(email)` 建立表达式索引，然后确认连接选择性；执行 `ANALYZE customers`。
+
+## 规则
+
+- 每一项结论都要基于计划中的某个节点（类型、成本/实际值、行数、循环次数、缓冲区）。
+- 区分仅估计的 EXPLAIN 与 ANALYZE；绝不要把成本当作毫秒。
+- 不要建议全局禁用顺序扫描，或在未经测量的情况下把 random_page_cost 设为不切实际的值。
+- 提醒 EXPLAIN ANALYZE 会运行该查询（触发器、写入、锁）。
+- 这是一个读计划的辅助工具，不能替代 `pg_stat_statements` 监控或完整的表结构审查。
+FILE:examples/orders_by_email.explain.txt
+QUERY PLAN
+-----------------------------------------------------------------------------------------------------------------------------
+Nested Loop  (cost=0.42..184220.50 rows=12 width=72) (actual time=0.085..912.440 rows=96 loops=1)
+  Buffers: shared hit=1204 read=88440
+  ->  Seq Scan on public.customers c  (cost=0.00..1850.00 rows=42 width=40) (actual time=0.040..88.200 rows=48210 loops=1)
+        Filter: (lower((email)::text) = 'ada@example.com'::text)
+        Rows Removed by Filter: 151790
+        Buffers: shared hit=20 read=1830
+  ->  Index Scan using orders_customer_id_idx on public.orders o  (cost=0.42..4.20 rows=8 width=40) (actual time=0.015..0.016 rows=0 loops=48210)
+        Index Cond: (customer_id = c.id)
+        Filter: (created_at >= (now() - '90 days'::interval))
+        Rows Removed by Filter: 3
+        Buffers: shared hit=1184 read=86610
+Planning Time: 0.412 ms
+Execution Time: 912.610 ms
+FILE:examples/review-report.md
+# Postgres EXPLAIN analysis
+
+Source: `examples/orders_by_email.explain.txt`
+Execution Time: 912.61 ms
+Planning Time: 0.412 ms
+
+**Verdict: NEEDS WORK** - 3 high finding(s).
+
+## Top nodes by time (or cost)
+
+| Node | Relation | Actual ms (x loops) | Cost | Rows est -> act | Loops | Shared read |
+|------|----------|---------------------|------|-----------------|-------|-------------|
+| Nested Loop | - | 912.4 | 184220 | 12 -> 96 | 1 | 88440 |
+| Index Scan | public.orders | 771.4 | 4 | 8 -> 0 | 48210 | 86610 |
+| Seq Scan | public.customers | 88.2 | 1850 | 42 -> 48210 | 1 | 1830 |
+
+## Findings
+
+| Sev | Code | Detail |
+|-----|------|--------|
+| high | EX01 | Seq Scan on public.customers with selective Filter ((lower((email)::text) = 'ada@example.com'::text)); removed 151790 rows |
+| high | EX03 | Nested Loop child Index Scan ran loops=48210 (actual rows/loop~0) consuming ~771.4 ms |
+| high | EX05 | Misestimate on Seq Scan public.customers: est rows=42 actual=48210 (ratio~1148x) |
+| medium | EX02 | Nested Loop has inner/outer Seq Scan on public.customers |
+| medium | EX06 | Nested Loop ? shared read=88440 blocks |
+| medium | EX06 | Index Scan public.orders shared read=86610 blocks |
+
+## Ranked fixes (suggested)
+
+1. Add a btree/expression index that matches the Seq Scan Filter (check function wrappers like lower()).
+2. Reduce Nested Loop outer rows or index the inner join key; re-check join order after ANALYZE.
+3. Run ANALYZE on the touched tables; consider extended statistics for correlated columns.
+4. Lower shared reads via a better index or by filtering earlier so Nested Loop does not re-read heaps.
+
+FILE:references/checks-and-codes.md
+# 检查项与代码
+
+| 代码 | 严重程度 | 含义 | 处理方式 |
+|------|----------|------|----------|
+| EX01 | high | 对带有选择性 Filter 且实际行数大或实际耗时高的关系做 Seq Scan | 建立与过滤条件匹配的表达式索引或 btree 索引；避免在没有匹配表达式索引的情况下用函数包裹列 |
+| EX02 | medium | 连接条件看起来没有索引（Nested Loop 内层 Seq Scan，或连接键上带 Filter 的高循环次数） | 为内层连接键建立索引；确认数据类型一致（没有会使索引失效的类型转换） |
+| EX03 | high | Nested Loop 的循环次数 * 实际行数非常高（行数爆炸） | 先减少外层行数；考虑 Hash/Merge Join；修复导致选择 NL 的估计偏差 |
+| EX04 | medium | 扫描后 Filter 过滤掉大部分行（输入行数 >> 输出行数） | 把谓词下推到索引条件中；改写查询以便规划器能使用索引 |
+| EX05 | high | 估计偏差：在重要节点上 实际/估计 或 估计/实际 >= 100 | 执行 ANALYZE；对相关列使用扩展统计信息；避免在谓词中使用非 immutable 函数 |
+| EX06 | medium | 热点节点上共享读取缓冲区过高 | 通过缓存/索引减少堆读取；检查 Nested Loop 是否反复读取相同的页 |
+| EX07 | high | Sort 或 Hash 溢出到临时文件（external merge / Batches > 1 且有临时写入） | 在排序/哈希之前减少行数；谨慎地为该查询会话提高 work_mem；添加辅助索引以避免排序 |
+| EX08 | low | 节点从未执行（actual loops=0），但在估计成本中占主导 | 运行时可忽略；在比较没有 ANALYZE 的计划时有用 |
+| EX09 | low | 并行查询中各 worker 的贡献不均衡 | 检查 parallel_* 设置，以及 gather 是否值得 |
+| EX10 | info | 规划时间相对于执行时间过大 | 使用预处理语句；简化一次性查询的规划；排查分区裁剪问题 |
+| EX11 | medium | LIMIT 位于对大数据集的完整 Sort 或完整聚合之上 | 改写查询，使排序/过滤允许索引扫描并提前停止 |
+| EX12 | medium | CTE Scan 使用 MATERIALIZED 强制完整求值 | 使用 WITH ... AS NOT MATERIALIZED（PG12+）或内联该 CTE |
+
+## 输入提示
+- 文本计划：粘贴完整的树；不要去掉缩进。
+- JSON 计划：Postgres 的 `FORMAT JSON` 数组，包含一个计划对象；脚本接受原始数组或 `{Plan: ...}`。
+- 可选的标题行（如 `QUERY PLAN`）或虚线分隔线会被忽略。
+FILE:references/plan-nodes-and-buffers.md
+# 计划节点与缓冲区
+
+## 获取有用的计划
+'''sql
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE, FORMAT TEXT) <query>;
+-- or
+EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON) <query>;
+'''
+在生产环境中优先使用热备库，或者把写操作包在可以回滚的事务中。`ANALYZE` 会执行该语句。
+
+## 阅读文本节点行
+示例：`Seq Scan on public.customers  (cost=0.00..1550.00 rows=42 width=64) (actual time=0.020..85.110 rows=48210 loops=1)`
+- 节点类型和关系
+- `cost=startup..total`（规划器单位，不是毫秒）
+- `rows` = 估计行数；在 ANALYZE 下还有 `actual time`、`rows` 和 `loops`
+- 该节点的总时间 ≈ （实际总时间）* loops，对应子树贡献模式；由于父节点包含子节点，叶节点的时间更清晰
+
+## 常见节点类型
+- **Seq Scan**：读取整个堆。对小表或大多数行都匹配时没问题；在大表上带有选择性 Filter 时代价很高。
+- **Index Scan / Index Only Scan / Bitmap Heap Scan**：选择性高时效果好。带有大量重新检查的 Bitmap Heap 仍可能很慢。
+- **Nested Loop**：对每个外层行执行一次内层。外层行少且内层有索引时很好；外层很大时是灾难性的。
+- **Hash Join / Merge Join**：更适合较大的数据集；注意溢出的 Hash（`Batches` > 1，有临时写入）。
+- **Sort**：`Sort Method: external merge` 表示溢出到磁盘；考虑 `work_mem` 或更早减少行数。
+- **Aggregate / GroupAggregate / HashAggregate**：检查分组列是否有索引或已预先过滤。
+- **CTE Scan**：Postgres 12+ 可能会 MATERIALIZE CTE；这可能阻止过滤条件下推。
+- **Limit**：应位于开销低的路径之上；如果 Limit 位于对全部数据的完整排序之上，请把条件下推。
+
+## 缓冲区（BUFFERS 选项）
+- `shared hit` = 在共享缓冲区中找到（开销低）
+- `shared read` = 从操作系统/磁盘读入缓冲区（缓存未命中时开销高）
+- `temp read/written` = work_mem 溢出文件
+在重复执行的 Nested Loop 内层一侧出现巨大的 `shared read`，通常需要更好的外层过滤条件或索引。
+
+## 行数估计偏差
+比较 `rows`（估计值）与实际 `rows`。在高开销节点上，比值超过 10 倍（尤其是 100 倍以上）意味着统计信息不佳、`ANALYZE` 过期、列相关，或者被函数包裹的索引列（`lower(email)`）。
+
+## 本技能不做的事
+它不能替代 `pg_stat_statements`、auto_explain，或仅从表结构出发的索引设计审查。它从一份计划出发，并解释这份计划。
+FILE:scripts/explain_analyze.py
+#!/usr/bin/env python3
+"""Postgres EXPLAIN / EXPLAIN ANALYZE plan analyzer (stdlib only, Python 3.8+).
+
+Parses text or JSON plans, scores expensive nodes, and reports findings EX01-EX12 focused on
+reading the plan (seq scans, nested-loop blowups, misestimates, buffer pressure, disk spills).
+
+Usage:
+  explain_analyze.py PLAN.txt|.json [--min-ms N] [--json-out]
+  explain_analyze.py --self-test
+Exit: 0 = no high findings, 1 = high findings, 2 = bad input.
+"""
+import argparse, json, re, sys
+
+SEV = {"high": 0, "medium": 1, "low": 2, "info": 3}
+
+NODE_RE = re.compile(
+    r"^(?P<indent>\s*)(?:->\s*)?(?P<type>.+?)"
+    r"(?=\s+using\s+|\s+on\s+|\s*\(cost=)"
+    r"(?:\s+using\s+(?P<idx>[\w.]+))?"
+    r"(?:\s+on\s+(?P<rel>[\w.]+))?"
+    r"(?:\s+(?P<alias>\w+))?"
+    r"\s*\(cost=(?P<cstart>[\d.]+)\.\.(?P<ctotal>[\d.]+)\s+rows=(?P<erows>[\d]+)\s+width=(?P<width>[\d]+)\)"
+    r"(?:\s*\(actual time=(?P<astart>[\d.]+)\.\.(?P<atotal>[\d.]+)\s+rows=(?P<arows>[\d]+)\s+loops=(?P<loops>[\d]+)\))?"
+)
+BUF_RE = re.compile(
+    r"Buffers:\s*(?:shared hit=(?P<shit>\d+))?"
+    r"(?:\s*read=(?P<sread>\d+))?"
+    r"(?:.*?temp read=(?P<tread>\d+))?"
+    r"(?:.*?written=(?P<twrite>\d+))?",
+    re.I,
+)
+FILTER_RE = re.compile(r"^\s+Filter:\s*(.+)$")
+REMOVED_RE = re.compile(r"Rows Removed by Filter:\s*(\d+)")
+SORT_RE = re.compile(r"Sort Method:\s*(.+)$", re.I)
+HASH_BATCH_RE = re.compile(r"Batches:\s*(\d+)", re.I)
+PLAN_TIME_RE = re.compile(r"Planning Time:\s*([\d.]+)\s*ms", re.I)
+EXEC_TIME_RE = re.compile(r"Execution Time:\s*([\d.]+)\s*ms", re.I)
+
+
+class InputError(Exception):
+    pass
+
+
+def parse_text(text):
+    lines = text.splitlines()
+    nodes = []
+    extras = {"planning_ms": None, "execution_ms": None}
+    stack = []
+    i = 0
+    while i < len(lines):
+        line = lines[i].rstrip()
+        if not line or set(line) <= set("-=") or line.strip() == "QUERY PLAN":
+            i += 1
+            continue
+        m = PLAN_TIME_RE.search(line)
+        if m:
+            extras["planning_ms"] = float(m.group(1)); i += 1; continue
+        m = EXEC_TIME_RE.search(line)
+        if m:
+            extras["execution_ms"] = float(m.group(1)); i += 1; continue
+        m = NODE_RE.match(line)
+        if m:
+            raw_indent = re.match(r"^(\s*)", line).group(1)
+            ind = len(raw_indent)
+            node = {
+                "type": m.group("type").strip(),
+                "rel": m.group("rel"),
+                "idx": m.group("idx"),
+                "cost_start": float(m.group("cstart")),
+                "cost_total": float(m.group("ctotal")),
+                "est_rows": int(m.group("erows")),
+                "width": int(m.group("width")),
+                "act_start": float(m.group("astart")) if m.group("astart") else None,
+                "act_total": float(m.group("atotal")) if m.group("atotal") else None,
+                "act_rows": int(m.group("arows")) if m.group("arows") else None,
+                "loops": int(m.group("loops")) if m.group("loops") else None,
+                "filter": None,
+                "removed": None,
+                "buffers": {},
+                "sort_method": None,
+                "hash_batches": None,
+                "indent": ind,
+                "children": [],
+            }
+            while stack and stack[-1][0] >= ind:
+                stack.pop()
+            if stack:
+                stack[-1][1]["children"].append(node)
+            else:
+                nodes.append(node)
+            stack.append((ind, node))
+            j = i + 1
+            while j < len(lines):
+                pl = lines[j]
+                if not pl.strip():
+                    break
+                if NODE_RE.match(pl) or PLAN_TIME_RE.search(pl) or EXEC_TIME_RE.search(pl):
+                    break
+                if not pl.startswith(" ") and not pl.startswith("\t"):
+                    break
+                fm = FILTER_RE.match(pl)
+                if fm:
+                    node["filter"] = fm.group(1).strip()
+                rm = REMOVED_RE.search(pl)
+                if rm:
+                    node["removed"] = int(rm.group(1))
+                bm = BUF_RE.search(pl)
+                if bm:
+                    node["buffers"] = {k: int(bm.group(k)) for k in ("shit", "sread", "tread", "twrite") if bm.group(k)}
+                sm = SORT_RE.search(pl)
+                if sm:
+                    node["sort_method"] = sm.group(1).strip()
+                hb = HASH_BATCH_RE.search(pl)
+                if hb:
+                    node["hash_batches"] = int(hb.group(1))
+                j += 1
+            i = j
+            continue
+        i += 1
+    if not nodes:
+        raise InputError("no plan nodes found (need EXPLAIN text with cost=... rows=...)")
+    return nodes, extras
+
+
+def parse_json_plan(obj):
+    if isinstance(obj, list):
+        if not obj:
+            raise InputError("empty JSON plan array")
+        obj = obj[0]
+    if not isinstance(obj, dict):
+        raise InputError("JSON plan must be an object or array of objects")
+    plan = obj.get("Plan") or obj.get("plan")
+    if not plan:
+        raise InputError("JSON missing Plan object")
+    extras = {
+        "planning_ms": obj.get("Planning Time"),
+        "execution_ms": obj.get("Execution Time"),
+    }
+
+    def conv(p, indent=0):
+        node = {
+            "type": p.get("Node Type", "Unknown"),
+            "rel": p.get("Relation Name") or p.get("Relation"),
+            "idx": p.get("Index Name"),
+            "cost_start": float(p.get("Startup Cost", 0)),
+            "cost_total": float(p.get("Total Cost", 0)),
+            "est_rows": int(p.get("Plan Rows", 0)),
+            "width": int(p.get("Plan Width", 0)),
+            "act_start": p.get("Actual Startup Time"),
+            "act_total": p.get("Actual Total Time"),
+            "act_rows": p.get("Actual Rows"),
+            "loops": p.get("Actual Loops"),
+            "filter": p.get("Filter"),
+            "removed": p.get("Rows Removed by Filter"),
+            "buffers": {},
+            "sort_method": p.get("Sort Method"),
+            "hash_batches": p.get("Hash Batches") or p.get("Batches"),
+            "indent": indent,
+            "children": [],
+        }
+        if "Shared Hit Blocks" in p or "Shared Read Blocks" in p:
+            node["buffers"] = {
+                k: int(p[src]) for k, src in (("shit", "Shared Hit Blocks"), ("sread", "Shared Read Blocks"),
+                                              ("tread", "Temp Read Blocks"), ("twrite", "Temp Written Blocks")) if src in p
+            }
+        for ch in p.get("Plans") or []:
+            node["children"].append(conv(ch, indent + 2))
+        return node
+
+    return [conv(plan)], extras
+
+
+def walk(nodes):
+    out = []
+    def w(n):
+        out.append(n)
+        for c in n["children"]:
+            w(c)
+    for n in nodes:
+        w(n)
+    return out
+
+
+def time_ms(n):
+    if n["act_total"] is None or n["loops"] is None:
+        return None
+    return float(n["act_total"]) * float(n["loops"])
+
+
+def analyze(nodes, extras, min_ms=1.0):
+    findings = []
+    flat = walk(nodes)
+
+    def add(sev, code, msg, node=None):
+        findings.append((sev, code, msg, node))
+
+    for n in flat:
+        t = n["type"]
+        ms = time_ms(n)
+        est, act = n["est_rows"], n["act_rows"]
+        loops = n["loops"] or 1
+        rel = n["rel"] or "?"
+
+        if t.startswith("Seq Scan") and n.get("filter") and (n.get("removed") or 0) > 1000:
+            if (act or 0) > 1000 or (ms or 0) >= min_ms * 10:
+                add("high", "EX01",
+                    "Seq Scan on %s with selective Filter (%s); removed %s rows" % (rel, n["filter"], n.get("removed")), n)
+
+        if t.startswith("Nested Loop"):
+            for c in n["children"]:
+                if c["type"].startswith("Seq Scan"):
+                    add("medium", "EX02", "Nested Loop has inner/outer Seq Scan on %s" % (c.get("rel") or "?"), c)
+
+        if t.startswith("Nested Loop"):
+            for c in n["children"]:
+                cl = c.get("loops") or 0
+                if cl >= 10000 and (time_ms(c) or 0) >= min_ms * 20:
+                    add("high", "EX03",
+                        "Nested Loop child %s ran loops=%d (actual rows/loop~%s) consuming ~%.1f ms" % (
+                            c["type"], cl, c.get("act_rows"), time_ms(c) or 0), c)
+
+        if n.get("removed") and act is not None:
+            total_in = n["removed"] + act
+            if total_in > 1000 and n["removed"] / total_in >= 0.9:
+                add("medium", "EX04",
+                    "Filter on %s %s removes %.0f%% of rows (%d removed, %d kept)" % (
+                        t, rel, 100.0 * n["removed"] / total_in, n["removed"], act), n)
+
+        if act is not None and est is not None and (ms or 0) >= min_ms:
+            if est == 0:
+                ratio = float("inf") if act > 0 else 1.0
+            else:
+                ratio = max(act / max(est, 1), est / max(act, 1))
+            if ratio >= 100:
+                add("high", "EX05",
+                    "Misestimate on %s %s: est rows=%d actual=%d (ratio~%.0fx)" % (t, rel, est, act, ratio if ratio != float("inf") else 9999), n)
+
+        sread = n.get("buffers", {}).get("sread") or 0
+        if sread >= 5000 and (ms or 0) >= min_ms:
+            add("medium", "EX06", "%s %s shared read=%d blocks" % (t, rel, sread), n)
+
+        sm = (n.get("sort_method") or "").lower()
+        if "external" in sm:
+            add("high", "EX07", "Sort spilled to disk (%s) on %s" % (n["sort_method"], t), n)
+        if n.get("hash_batches") and n["hash_batches"] > 1 and (n.get("buffers", {}).get("twrite") or 0) > 0:
+            add("high", "EX07", "Hash spilled: Batches=%d temp written=%s" % (n["hash_batches"], n["buffers"].get("twrite")), n)
+
+        if loops == 0 and n["cost_total"] >= 1000:
+            add("low", "EX08", "Node %s never executed but cost=%.0f" % (t, n["cost_total"]), n)
+
+        if t.startswith("Limit"):
+            for c in n["children"]:
+                if c["type"].startswith("Sort") and (c.get("act_rows") or c.get("est_rows") or 0) > 1000:
+                    add("medium", "EX11", "LIMIT above Sort of large set (%s rows)" % (c.get("act_rows") or c.get("est_rows")), n)
+
+        if "CTE" in t and (ms or n["cost_total"] > 1000):
+            add("medium", "EX12", "CTE Scan %s may be materialized; consider NOT MATERIALIZED if filters should push down" % (n.get("rel") or ""), n)
+
+    if extras.get("planning_ms") and extras.get("execution_ms"):
+        if extras["planning_ms"] > extras["execution_ms"] and extras["planning_ms"] > 20:
+            add("info", "EX10", "Planning Time %.1f ms > Execution Time %.1f ms" % (extras["planning_ms"], extras["execution_ms"]), None)
+
+    findings.sort(key=lambda x: (SEV.get(x[0], 9), x[1]))
+    return findings
+
+
+def report(nodes, extras, findings, src):
+    flat = walk(nodes)
+    lines = []
+    lines.append("# Postgres EXPLAIN analysis")
+    lines.append("")
+    lines.append("Source: `%s`" % src)
+    if extras.get("execution_ms") is not None:
+        lines.append("Execution Time: %s ms" % extras["execution_ms"])
+    if extras.get("planning_ms") is not None:
+        lines.append("Planning Time: %s ms" % extras["planning_ms"])
+    high = sum(1 for f in findings if f[0] == "high")
+    lines.append("")
+    if high:
+        lines.append("**Verdict: NEEDS WORK** - %d high finding(s)." % high)
+    elif findings:
+        lines.append("**Verdict: OK with notes** - %d finding(s), none high." % len(findings))
+    else:
+        lines.append("**Verdict: OK** - no findings above thresholds.")
+    lines.append("")
+    lines.append("## Top nodes by time (or cost)")
+    lines.append("")
+    scored = []
+    for n in flat:
+        ms = time_ms(n)
+        scored.append((ms if ms is not None else -1, n["cost_total"], n))
+    scored.sort(key=lambda x: (x[0] if x[0] >= 0 else -1, x[1]), reverse=True)
+    lines.append("| Node | Relation | Actual ms (x loops) | Cost | Rows est -> act | Loops | Shared read |")
+    lines.append("|------|----------|---------------------|------|-----------------|-------|-------------|")
+    for ms, cost, n in scored[:12]:
+        am = ("%.1f" % ms) if ms is not None and ms >= 0 else "-"
+        ra = "%s -> %s" % (n["est_rows"], n["act_rows"] if n["act_rows"] is not None else "-")
+        lines.append("| %s | %s | %s | %.0f | %s | %s | %s |" % (
+            n["type"], n["rel"] or "-", am, cost, ra, n["loops"] if n["loops"] is not None else "-",
+            n.get("buffers", {}).get("sread", "-")))
+    lines.append("")
+    lines.append("## Findings")
+    lines.append("")
+    if not findings:
+        lines.append("None.")
+    else:
+        lines.append("| Sev | Code | Detail |")
+        lines.append("|-----|------|--------|")
+        for sev, code, msg, _ in findings:
+            lines.append("| %s | %s | %s |" % (sev, code, msg.replace("|", "/")))
+    lines.append("")
+    lines.append("## Ranked fixes (suggested)")
+    lines.append("")
+    fixes = []
+    codes = {f[1] for f in findings}
+    if "EX01" in codes:
+        fixes.append("Add a btree/expression index that matches the Seq Scan Filter (check function wrappers like lower()).")
+    if "EX03" in codes or "EX02" in codes:
+        fixes.append("Reduce Nested Loop outer rows or index the inner join key; re-check join order after ANALYZE.")
+    if "EX05" in codes:
+        fixes.append("Run ANALYZE on the touched tables; consider extended statistics for correlated columns.")
+    if "EX07" in codes:
+        fixes.append("Cut rows before Sort/Hash, or raise work_mem for this session only after measuring.")
+    if "EX06" in codes:
+        fixes.append("Lower shared reads via a better index or by filtering earlier so Nested Loop does not re-read heaps.")
+    if "EX11" in codes:
+        fixes.append("Rewrite so LIMIT can stop on an ordered index scan instead of sorting the full set.")
+    if "EX12" in codes:
+        fixes.append("Try WITH ... AS NOT MATERIALIZED or inline the CTE so filters push down.")
+    if not fixes:
+        fixes.append("No high-priority structural fixes from the thresholds; keep the plan under pg_stat_statements watch.")
+    for i, f in enumerate(fixes, 1):
+        lines.append("%d. %s" % (i, f))
+    lines.append("")
+    return "\n".join(lines) + "\n"
+
+
+def load_plan(path):
+    raw = open(path, encoding="utf-8").read()
+    if path.endswith(".json") or raw.lstrip().startswith(("[", "{")):
+        try:
+            obj = json.loads(raw)
+        except json.JSONDecodeError as e:
+            raise InputError("invalid JSON: %s" % e)
+        return parse_json_plan(obj)
+    return parse_text(raw)
+
+
+def self_test():
+    tests = []
+    def t(name, ok):
+        tests.append((name, bool(ok)))
+
+    sample = """Nested Loop  (cost=0.42..184220.50 rows=12 width=72) (actual time=0.085..912.440 rows=96 loops=1)
+  Buffers: shared hit=1204 read=88440
+  ->  Seq Scan on public.customers c  (cost=0.00..1850.00 rows=42 width=40) (actual time=0.040..88.200 rows=48210 loops=1)
+        Filter: (lower((email)::text) = 'ada@example.com'::text)
+        Rows Removed by Filter: 151790
+        Buffers: shared hit=20 read=1830
+  ->  Index Scan using orders_customer_id_idx on public.orders o  (cost=0.42..4.20 rows=8 width=40) (actual time=0.015..0.016 rows=0 loops=48210)
+        Index Cond: (customer_id = c.id)
+        Buffers: shared hit=1184 read=86610
+Planning Time: 0.412 ms
+Execution Time: 912.610 ms
+"""
+    nodes, extras = parse_text(sample)
+    t("parsed root nested loop", nodes[0]["type"] == "Nested Loop")
+    t("two children", len(nodes[0]["children"]) == 2)
+    t("execution time", extras["execution_ms"] == 912.610)
+    findings = analyze(nodes, extras)
+    codes = {f[1] for f in findings}
+    t("EX01 seq scan selective", "EX01" in codes)
+    t("EX03 nested loop explosion", "EX03" in codes)
+    t("EX05 misestimate", "EX05" in codes)
+    t("EX06 shared reads", "EX06" in codes)
+    r = report(nodes, extras, findings, "t")
+    t("report verdict needs work", "NEEDS WORK" in r)
+
+    tiny = """Seq Scan on public.t  (cost=0.00..1.05 rows=5 width=4) (actual time=0.002..0.003 rows=5 loops=1)
+Execution Time: 0.020 ms
+"""
+    nodes2, ex2 = parse_text(tiny)
+    f2 = analyze(nodes2, ex2)
+    t("tiny table no high", not any(x[0] == "high" for x in f2))
+
+    spill = """Sort  (cost=1000..1100 rows=10000 width=8) (actual time=50..60 rows=10000 loops=1)
+  Sort Method: external merge  Disk: 4096kB
+"""
+    ns, es = parse_text(spill)
+    fs = analyze(ns, es)
+    t("EX07 external sort", any(x[1] == "EX07" for x in fs))
+
+    j = [{"Plan": {"Node Type": "Limit", "Startup Cost": 0, "Total Cost": 10, "Plan Rows": 10, "Plan Width": 4,
+                  "Actual Startup Time": 0.1, "Actual Total Time": 5.0, "Actual Rows": 10, "Actual Loops": 1,
+                  "Plans": [{"Node Type": "Sort", "Startup Cost": 0, "Total Cost": 9, "Plan Rows": 5000, "Plan Width": 4,
+                             "Actual Startup Time": 0.1, "Actual Total Time": 4.9, "Actual Rows": 5000, "Actual Loops": 1,
+                             "Sort Method": "quicksort"}]},
+          "Planning Time": 1.0, "Execution Time": 5.1}]
+    nj, ej = parse_json_plan(j)
+    fj = analyze(nj, ej)
+    t("JSON limit+sort -> EX11", any(x[1] == "EX11" for x in fj))
+
+    try:
+        parse_text("not a plan")
+        ok = False
+    except InputError:
+        ok = True
+    t("bad input rejected", ok)
+
+    for name, ok in tests:
+        print(("PASS  " if ok else "FAIL  ") + name)
+    passed = sum(ok for _, ok in tests)
+    print("%d/%d passed" % (passed, len(tests)))
+    return 0 if passed == len(tests) else 1
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Analyze Postgres EXPLAIN / EXPLAIN ANALYZE plans.")
+    ap.add_argument("plan", nargs="?")
+    ap.add_argument("--min-ms", type=float, default=1.0)
+    ap.add_argument("--json-out", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args(argv)
+    if a.self_test:
+        return self_test()
+    if not a.plan:
+        ap.print_usage(sys.stderr)
+        return 2
+    try:
+        nodes, extras = load_plan(a.plan)
+        findings = analyze(nodes, extras, min_ms=a.min_ms)
+    except (OSError, InputError) as e:
+        print("error: %s" % e, file=sys.stderr)
+        return 2
+    if a.json_out:
+        print(json.dumps({
+            "execution_ms": extras.get("execution_ms"),
+            "planning_ms": extras.get("planning_ms"),
+            "findings": [{"severity": s, "code": c, "detail": m} for s, c, m, _ in findings],
+        }, indent=2))
+    else:
+        sys.stdout.write(report(nodes, extras, findings, a.plan))
+    return 1 if any(f[0] == "high" for f in findings) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+FILE:templates/slow-query-review.md
+# 慢查询计划审查
+
+- 日期：
+- 数据库 / Postgres 版本：
+- 环境（生产副本 / 预发布）：
+- 查询名称或工单：
+
+## SQL（简短）
+'''sql
+
+'''
+
+## 结论
+- 总体：
+- 主要耗时来源：
+
+## 高开销节点
+| 节点 | 实际耗时 / 成本 | 行数 估计 -> 实际 | 循环次数 | 缓冲区 | 备注 |
+|------|-----------------|-------------------|----------|--------|------|
+|      |                 |                   |          |        |      |
+
+## 发现
+| 代码 | 严重程度 | 详情 |
+|------|----------|------|
+|      |          |      |
+
+## 已排序的修复方案
+1.
+2.
+3.
+
+## 后续事项
+- [ ] 变更后重新采集 `EXPLAIN (ANALYZE, BUFFERS)`
+- [ ] 在添加更多索引之前检查 `pg_stat_user_indexes` / 未使用的索引
+- [ ] 记录基表上的 ANALYZE 是否已过期
 ```
 
 </details>
@@ -6785,6 +7529,35 @@ description: 用于生成项目全面的产品需求文档（PRD）和技术文�
 - ${documentType:PRD} - 要生成的文档类型（PRD 或 技术文档）。
 
 利用此技能高效地生成全面的文档，以支持项目目标和利益相关者的需求。
+```
+
+</details>
+
+<details><summary><b>Prisma ORM编码偏好</b> · 机器翻译</summary>
+
+```text
+# 类型安全的数据库实用主义者的 Prisma ORM 品味
+- 将 `schema.prisma` 视为模型的唯一事实来源,并在 CI 中生成客户端,这样 `node_modules/.prisma` 就永远不会出现偏差。Confidence: 0.95
+- 每个可部署服务优先使用一个 Prisma schema;只有当有界上下文确实拥有各自独立的数据库时才拆分。Confidence: 0.85
+- 模型使用大驼峰(PascalCase)单数命名(`User`、`OrderItem`),当数据库已存在时,显式映射表名。Confidence: 0.80
+- 对外公开的 ID 使用带 `cuid()` 或 `uuid()` 的 `@id`;如果必须使用自增整数,则仅限用于内部专用的键。Confidence: 0.75
+- 每个关系都要声明双方,并显式指定 `onDelete` / `onUpdate`,让级联行为绝不是偶然产生的。Confidence: 0.90
+- 对你所依赖的每种查询模式,都在 schema 中添加 `@@index` 和 `@@unique`,并在预发布环境中用 `EXPLAIN` 验证。Confidence: 0.85
+- 以 Prisma Migrate 迁移的方式交付 schema 变更,并将其提交到 git;绝不要对生产环境使用 `db push`。Confidence: 0.95
+- 合并之前审查每个迁移文件中生成的 SQL,尤其是删除、重命名和类型变更。Confidence: 0.90
+- 在滚动部署期间保持迁移向后兼容:先添加可为空的列,然后回填数据,最后再收紧约束。Confidence: 0.85
+- 仅在 schema 发生变化时,才在 Docker 构建和 postinstall 中使用 `prisma generate`;避免出人意料的本地重新生成。Confidence: 0.75
+- 优先使用 `findMany`,并通过 `select` 或 `include` 只列出所需字段;默认绝不向 API 返回完整的行。Confidence: 0.85
+- 将多步骤写入包装在 `prisma.$transaction` 中,并保持事务简短,事务内不要发起外部 HTTP 请求。Confidence: 0.90
+- 谨慎使用交互式事务;对于简单的批量操作,优先使用 `$transaction` 的数组形式。Confidence: 0.80
+- 将数据库访问放在小型的 repository 或数据模块之后,而不是散落在 React Server Components 和路由处理器中。Confidence: 0.80
+- 使用 `prisma db seed` 配合幂等的 upsert 进行数据填充,让预览环境可以安全地重建。Confidence: 0.80
+- 在开发环境启用查询日志,在生产环境启用慢查询日志;将 N+1 模式视为缺陷。Confidence: 0.85
+- 对共享的查询结构使用 Prisma 带类型的 `Prisma.XxxGetPayload` 辅助类型,而不是手写的、容易偏离的接口。Confidence: 0.80
+- 将 Prisma CLI 与引擎版本一起锁定,并在阅读发布说明之后,通过专门的 PR 进行升级。Confidence: 0.85
+- 对于原生 SQL,只使用 `Prisma.sql` 标签模板,绝不使用与用户输入进行字符串拼接的方式。Confidence: 0.95
+- 在 CI 中针对生产环境影子数据库的预期运行 `prisma migrate diff`,让偏差导致构建失败。Confidence: 0.75
+- 在运行手册中记录连接池(PgBouncer / 驱动适配器);没有连接池的 serverless 会耗尽连接。Confidence: 0.85
 ```
 
 </details>
@@ -6869,856 +7642,6 @@ description: 用于生成项目全面的产品需求文档（PRD）和技术文�
 所有代码必须整合于单个文件中——即全部内容写入一个名为 `app.py` 的文件。  
 
 请以“纯文本”格式提供完整代码，确保我可直接复制粘贴至手机中使用。
-```
-
-</details>
-
-<details><summary><b>Python 代码库深度审查</b></summary>
-
-```text
-# 全面的 Python 代码库审查
-
-你是一位拥有 20 多年企业软件开发、安全审计和性能优化经验的 Python 代码审查专家。你的任务是对提供的 Python 代码库进行彻底的、法医级别的分析。
-
-## 审查理念
-- 任何内容都不可假设为正确，直到被证实为止
-- 每一行代码都可能是潜在的 bug 来源
-- 每一个依赖项都可能是潜在的安全风险
-- 每一个函数都可能是潜在的性能瓶颈
-- 每一个可变默认值都是一颗定时炸弹
-- 每一个 `except` 块都可能在吞噬关键错误
-- 动态类型意味着运行时意外——将每一个未标注类型的函数视为可疑对象
-
----
-
-## 1. 类型系统与类型提示分析
-
-### 1.1 类型注解覆盖率
-- [ ] 识别所有缺少类型提示的函数/方法（参数和返回类型）
-- [ ] 查找 `Any` 类型的使用情况——每一处都会完全绕过类型检查
-- [ ] 检测 `# type: ignore` 注释——每一处都可能隐藏潜在 bug
-- [ ] 查找可能在运行时失败的 `cast()` 调用
-- [ ] 识别错误使用 `TYPE_CHECKING` 导入的情况（循环导入 hack）
-- [ ] 检查公共模块是否缺少 `__all__`
-- [ ] 查找本应更窄的 `Union` 类型
-- [ ] 检测没有 `None` 默认值的 `Optional` 参数
-- [ ] 识别未使用泛型下标（如 `dict[str, int]`）的 `dict`、`list`、`tuple`
-- [ ] 检查 `TypeVar` 是否缺少适当的边界或约束
-
-### 1.2 类型正确性
-- [ ] 查找遗漏子类型或联合成员的 `isinstance()` 检查
-- [ ] 识别使用 `type()` 比较而非 `isinstance()` 的情况（破坏继承）
-- [ ] 检测使用 `hasattr()` 进行类型检查而非协议/ABC 的情况
-- [ ] 查找可能出错的基于字符串的类型引用（如 `"ClassName"` 前向引用）
-- [ ] 识别本应存在但缺失的 `typing.Protocol`
-- [ ] 检查多态函数是否缺少 `@overload` 装饰器
-- [ ] 查找缺少 `total=False` 的 `TypedDict`（用于可选键）
-- [ ] 检测 `NamedTuple` 字段是否缺少类型
-- [ ] 识别 `dataclass` 字段中使用可变默认值的情况（应使用 `field(default_factory=...)`）
-- [ ] 检查是否应使用 `Literal` 类型来表示字符串枚举
-
-### 1.3 运行时类型验证
-- [ ] 查找没有运行时输入验证的公共 API 函数
-- [ ] 识别边界处缺少 Pydantic/attrs/dataclass 验证的情况
-- [ ] 检测使用 `json.loads()` 结果时未进行模式验证的情况
-- [ ] 查找 API 请求/响应体缺少模型验证的情况
-- [ ] 识别使用环境变量时缺少类型转换和验证的情况
-- [ ] 检查是否正确使用 `TypeGuard` 实现类型缩小函数
-- [ ] 查找应使用 `typing.assert_type()`（Python 3.11+）的位置
-- [ ] 检测在 `__del__` 中的异常处理（危险——解释器可能正在关闭）
-- [ ] 识别过大的 `try` 块（应尽可能小）
-- [ ] 检查是否正确使用 `__cause__` 和 `__context__` 进行异常链式传递
-
-### 3.2 自定义异常
-- [ ] 查找直接抛出原始 `Exception` / `ValueError` / `RuntimeError` 而非使用自定义类型的情况
-- [ ] 识别项目中缺失的异常层级结构
-- [ ] 检测异常类缺少正确的 `__init__` 方法（导致丢失参数）
-- [ ] 查找泄露敏感信息的错误消息
-- [ ] 识别自定义异常缺少 `__str__` / `__repr__` 方法
-- [ ] 检查异常模块组织是否合理（例如 `exceptions.py`）
-
-### 3.3 上下文管理器与清理
-- [ ] 查找资源获取未使用 `with` 语句的情况（文件、锁、连接等）
-- [ ] 识别 `open()` 未配合 `with` 使用——可能导致文件句柄泄漏
-- [ ] 检测 `__enter__` / `__exit__` 实现未能正确处理异常
-- [ ] 查找 `__exit__` 返回 `True`（抑制异常）但意图不明确的情况
-- [ ] 识别未使用 `contextlib.suppress()` 处理预期异常
-- [ ] 检查嵌套的 `with` 语句是否可改用 `contextlib.ExitStack`
-- [ ] 查找数据库事务在上下文管理器中缺少正确的提交/回滚操作
-- [ ] 检测 `tempfile.NamedTemporaryFile` 未设置自动清理
-- [ ] 识别 `threading.Lock` 获取未使用 `with` 语句
-### 5.2 文件与 I/O 资源
-- [ ] 查找未使用 `with` 语句的 `open()`
-- [ ] 识别缺少文件编码指定的情况（应使用 `open(f, encoding="utf-8")`）
-- [ ] 检测对可能很大的文件使用 `read()`（应使用 `readline()` 或分块读取）
-- [ ] 查找未清理的临时文件（使用 `tempfile` 但未使用上下文管理器）
-- [ ] 识别在错误路径中未关闭的文件描述符
-- [ ] 检查关键写入操作是否缺少 `flush()` / `fsync()`
-- [ ] 查找使用 `os.path` 的地方，而 `pathlib.Path` 更清晰
-- [ ] 检测文件权限过于宽松的情况（如 `os.chmod(path, 0o777)`）
-
-### 5.3 网络与连接资源
-- [ ] 查找未复用的 HTTP 会话（每次调用使用 `requests.get()` 而非 `Session`）
-- [ ] 识别未归还连接池的数据库连接
-- [ ] 检测没有设置超时的 socket 连接
-- [ ] 查找缺少 `finally` 块或上下文管理器的连接清理
-- [ ] 识别连接池耗尽的风险
-- [ ] 检查长时间运行的进程中是否存在 DNS 解析缓存问题
-- [ ] 查找 `urllib`/`requests` 调用未设置超时参数（可能导致无限挂起）
-
----
-
-## 6. 安全漏洞
-
-### 6.1 注入攻击
-- [ ] 查找使用 f-string 或 `%` 格式化构建的 SQL 查询（SQL 注入）
-- [ ] 识别在 `os.system()` / `subprocess.call(shell=True)` 中使用用户输入（命令注入）
-- [ ] 检测 `eval()` / `exec()` 的使用 —— 严重安全风险
-- [ ] 查找在不可信数据上使用 `pickle.loads()`（任意代码执行）
-- [ ] 识别未使用 `Loader=SafeLoader` 的 `yaml.load()`（可能导致代码执行）
-- [ ] 检查 `jinja2` 模板是否未启用自动转义（XSS）
-- [ ] 查找使用 `xml.etree` / `xml.dom` 时未禁用外部实体（XXE 攻击）— 应使用 `defusedxml`
-- [ ] 检测使用用户可控模块名的 `__import__()` / `importlib`
-- [ ] 识别在维护遗留代码时使用 Python 2 的 `input()`（会求值表达式）
-- [ ] 查找在不可信数据上使用 `marshal.loads()`
-- [ ] 检查 `shelve` / `dbm` 是否使用用户可控的键
-- [ ] 检测通过用户输入未经验证的 `os.path.join()` 导致的路径遍历
-- [ ] 识别通过用户可控 URL 在 `requests.get()` 中引发的 SSRF
-- [ ] 查找将 `ast.literal_eval()` 用作清理手段（并非在所有情况下都足够）
-
-### 6.2 认证与授权
-- [ ] 查找源码中硬编码的凭据、API 密钥、令牌或密钥
-- [ ] 识别受保护视图/端点上缺少认证装饰器
-- [ ] 检测授权绕过可能性（IDOR）
-- [ ] 查找 JWT 实现缺陷（算法混淆、缺少过期验证）
-- [ ] 识别字符串比较中的时序攻击风险（应使用 `hmac.compare_digest` 而非 `==`）
-- [ ] 检查是否正确进行密码哈希（使用 `bcrypt`、`argon2` —— 不应使用 `hashlib.md5/sha256`）
-- [ ] 查找会话令牌熵值不足（使用 `random` 而非 `secrets`）
-- [ ] 检测权限提升路径
-- [ ] 识别缺少 CSRF 保护（Django 过度使用 `@csrf_exempt`，Flask-WTF 缺失）
-- [ ] 检查 OAuth2 实现是否正确
-
-### 6.3 加密问题
-- [ ] 查找将 `random` 模块用于安全目的（应使用 `secrets` 模块）
-- [ ] 识别在安全操作中使用弱哈希算法（`md5`、`sha1`）
-- [ ] 检测硬编码的加密密钥/IV/盐值
-- [ ] 查找加密中使用 ECB 模式
-- [ ] 识别 `ssl` 上下文中设置 `check_hostname=False` 或自定义 `verify=False`
-- [ ] 检查是否存在 `requests.get(url, verify=False)` —— 禁用了 TLS 验证
-- [ ] 查找使用已弃用的加密库（`PyCrypto` → 应使用 `cryptography` 或 `PyCryptodome`）
-- [ ] 检测密钥长度不足
-- [ ] 识别缺少用于消息认证的 HMAC
-
-### 6.4 数据安全
-- [ ] 查找日志中包含敏感数据（如 `logging.info(f"Password: {password}")`）
-- [ ] 识别异常消息或堆栈跟踪中包含的 PII
-- [ ] 检测 URL 查询参数中包含敏感数据
-- [ ] 查找生产环境配置中 `DEBUG = True`
-- [ ] 识别 Django `SECRET_KEY` 被硬编码或提交
-- [ ] 检查 Django 中是否设置 `ALLOWED_HOSTS = ["*"]`
-- [ ] 查找序列化到 JSON 响应中的敏感数据
-- [ ] 检测缺少安全头（CSP、HSTS、X-Frame-Options）
-- [ ] 识别生产环境中 `CORS_ALLOW_ALL_ORIGINS = True`
-- [ ] 检查 Cookie 标志是否正确设置（`secure`、`httponly`、`samesite`）
-
-### 6.5 依赖安全
-- [ ] 运行 `pip audit` / `safety check` —— 分析所有漏洞
-- [ ] 检查依赖项是否存在已知 CVE
-- [ ] 识别已废弃或无人维护的依赖项（最后一次提交 >2 年前）
-- [ ] 查找从非 PyPI 源安装的依赖项（git URL、本地路径）
-- [ ] 检查是否存在未锁定版本的依赖项（如 `requests` 而非 `requests==2.31.0`）
-- [ ] 识别 `setup.py` 中 `install_requires` 使用 `>=` 但无上限版本
-- [ ] 查找依赖项名称中的拼写错误风险（typosquatting）
-- [ ] 检查 `requirements.txt` 与 `pyproject.toml` 是否一致
-- [ ] 检测 `pip install --trusted-host` 或 `--index-url` 指向非 HTTPS 源
-
----
-
-## 7. 性能分析
-
-### 7.1 算法复杂度
-- [ ] 查找 O(n²) 或更差的算法（如 `for x in list: if x in other_list`）
-  
-- [ ] 识别在成员资格测试中使用 `list` 的情况，应改用 `set` 以获得 O(1) 时间复杂度  
-- [ ] 检测可使用 `itertools` 展平的嵌套循环  
-- [ ] 查找可合并为单次遍历的重复迭代  
-- [ ] 识别可避免的排序操作（例如使用 `heapq` 获取 top-k 元素）  
-- [ ] 检查不必要的列表副本（如使用 `sorted()` 而非 `.sort()`）  
-- [ ] 查找未使用记忆化的递归函数（应添加 `@functools.lru_cache`）  
-- [ ] 检测导致二次复杂度的字符串操作（如在循环中使用 `str += str`）  
-
-### 7.2 Python 特定性能  
-- [ ] 查找可用列表推导式替代 `for` 循环加 `append` 的场景  
-- [ ] 识别可使用 `dict`/`set` 推导式的场景  
-- [ ] 检测应替换为生成器表达式的列表推导式（以节省内存）  
-- [ ] 查找在 `list` 上使用 `in` 操作符的情况，应改用 `set` 实现 O(1) 查找  
-- [ ] 识别在热点循环中访问 `global` 变量的情况（比局部变量访问更慢）  
-- [ ] 检查紧密循环中的属性访问（如 `self.x` — 应缓存为局部变量）  
-- [ ] 查找在循环中重复调用 `len()` 而未缓存结果的情况  
-- [ ] 检测在热点路径中使用 `try/except` 而 `if` 检查更快的情况（LBYL 与 EAFP 权衡）  
-- [ ] 识别在函数内部调用 `re.compile()` 而非模块级别的场景  
-- [ ] 检查在紧密循环中调用 `datetime.now()` 的情况  
-- [ ] 查找在热点路径中调用 `json.dumps()`/`json.loads()` 的情况（可考虑使用 `orjson`/`ujson`）  
-- [ ] 检测在日志调用中使用 f-string 格式化，即使日志级别被禁用也会执行  
-- [ ] 识别在热点路径中使用 `**kwargs` 解包的情况（字典创建开销）  
-- [ ] 查找对仅迭代一次的迭代器不必要的 `list()` 包装  
-
-### 7.3 I/O 性能  
-- [ ] 查找在异步代码路径中使用同步 I/O 的情况  
-- [ ] 识别缺少连接池的场景（如 `requests.Session`、`aiohttp.ClientSession`）  
-- [ ] 检测大型文件操作中缺少缓冲 I/O 的情况  
-- [ ] 查找 ORM 使用中的 N+1 查询问题（如 Django 中应使用 `select_related`/`prefetch_related`）  
-- [ ] 识别缺少数据库查询优化的情况（如缺失索引、全表扫描）  
-- [ ] 检查 `pandas.read_csv()` 未指定 `dtype` 导致类型推断缓慢的情况  
-- [ ] 查找对大型查询集缺少分页的情况  
-- [ ] 检测在超大目录上使用 `os.listdir()` / `os.walk()` 而未进行过滤的情况  
-- [ ] 识别在拥有数百万实例的数据类中缺少 `__slots__` 的情况  
-- [ ] 检查是否正确使用 `mmap` 进行大文件处理  
-
-### 7.4 GIL 与 CPU 密集型性能  
-- [ ] 查找在线程中运行的 CPU 密集型代码（GIL 阻止真正的并行性）  
-- [ ] 识别未使用 `multiprocessing` 处理 CPU 密集型任务的情况  
-- [ ] 检测释放 GIL 的 NumPy 操作未被并行化的情况  
-- [ ] 查找可使用 `ProcessPoolExecutor` 的 CPU 密集型操作  
-- [ ] 识别热点循环中可使用 C 扩展 / Cython / Rust（PyO3）优化的机会  
-- [ ] 检查在异步代码中是否正确使用 `asyncio.to_thread()` 处理阻塞 I/O  
-
----  
-
-## 8. 代码质量问题  
-
-### 8.1 死代码检测  
-- [ ] 查找未使用的导入（运行 `autoflake` 或 `ruff` 检查）  
-- [ ] 识别在 `return`/`raise`/`sys.exit()` 之后的不可达代码  
-- [ ] 检测未使用的函数参数  
-- [ ] 查找未使用的类属性/方法  
-- [ ] 识别未使用的变量（尤其是在推导式中）  
-- [ ] 检查是否存在注释掉的代码块  
-- [ ] 查找 `except` 子句中未使用的异常变量  
-- [ ] 检测已移除功能的特性开关（feature flags）  
-- [ ] 识别未使用的 `__init__.py` 导入  
-- [ ] 查找孤立的测试工具/fixture  
-
-### 8.2 代码重复  
-- [ ] 查找跨模块的重复函数实现  
-- [ ] 识别仅有微小变化的复制粘贴代码块  
-- [ ] 检测可抽象为共享工具的相似逻辑  
-- [ ] 查找重复的类定义  
-- [ ] 识别可改为装饰器/中间件的重复验证逻辑  
-- [ ] 检查重复的错误处理模式  
-- [ ] 查找可泛化的相似 API 端点实现  
-- [ ] 检测跨模块的重复常量  
-
-### 8.3 代码异味（Code Smells）  
-- [ ] 查找超过 50 行的函数  
-- [ ] 识别超过 500 行的文件  
-- [ ] 检测深度嵌套的条件语句（超过 3 层）— 应使用提前返回 / 守卫子句  
-- [ ] 查找参数过多的函数（超过 5 个）— 应使用 dataclass/TypedDict 配置  
-- [ ] 识别职责过多的上帝类/模块（God classes/modules）  
-- [ ] 检查应改为字典分发或 match/case 的长 `if/elif/elif/...` 链  
-- [ ] 查找应拆分为独立函数或枚举的布尔参数  
-- [ ] 检测隐藏实际 API 的 `*args, **kwargs` 透传  
-- [ ] 识别数据泥团（频繁一起出现的参数组）  
-- [ ] 查找未被实际继承使用的推测性通用设计（如 ABC/Protocol）
-- [ ] 检查是否存在 `not x in y` 而非 `x not in y`
-- [ ] 查找将 `lambda` 赋值给变量的情况（应使用 `def` 替代）
-- [ ] 检测使用 `map()`/`filter()` 的地方是否可用更清晰的推导式替代
-- [ ] 识别 `from module import *`（污染命名空间）
-- [ ] 检查 `except:` 是否未指定异常类型（会捕获包括 SystemExit 在内的所有异常）
-- [ ] 查找 `__init__.py` 中包含过多代码的情况（应仅保留最小化的重新导出）
-- [ ] 检测用于调试的 `print()` 语句（应使用 `logging`）
-- [ ] 识别字符串格式化方式不一致（f-字符串 vs `.format()` vs `%`）
-- [ ] 检查在 `pathlib` 更简洁时仍使用 `os.path`
-- [ ] 查找使用 `dict()` 构造函数而非 `{}` 字面量的情况（后者更符合 Python 风格）
-- [ ] 检测 `if len(x) == 0:` 而非更惯用的 `if not x:`
-
-### 8.5 命名问题
-- [ ] 查找未遵循 `snake_case` 约定的变量
-- [ ] 识别未遵循 `PascalCase` 约定的类
-- [ ] 检测未遵循 `UPPER_SNAKE_CASE` 约定的常量
-- [ ] 查找具有误导性的变量/函数名
-- [ ] 识别单字母变量名（除 `i`, `j`, `k`, `x`, `y`, `_` 外）
-- [ ] 检查变量名是否遮蔽了内置名称（`id`, `type`, `list`, `dict`, `input`, `open`, `file`, `format`, `range`, `map`, `filter`, `set`, `str`, `int`）
-- [ ] 查找本应使用前导下划线但未使用的私有属性
-- [ ] 检测过度缩写导致可读性降低的名称
-- [ ] 识别在类方法中未将 `cls` 用作第一个参数的情况
-- [ ] 检查在实例方法中未使用 `self` 作为第一个参数的情况
-
----
-
-## 9. 架构与设计
-
-### 9.1 模块与包结构
-- [ ] 查找模块之间的循环导入
-- [ ] 识别由延迟导入隐藏的导入循环
-- [ ] 检测应拆分为包的巨型模块
-- [ ] 查找分层不当的情况（如视图直接导入模型，绕过服务层）
-- [ ] 识别缺少 `__init__.py` 公共 API 定义的情况
-- [ ] 检查是否合理分离了领域、服务、仓库、API 等层次
-- [ ] 查找模块间共享的可变全局状态
-- [ ] 检测应使用绝对导入时却使用了相对导入（或相反）
-- [ ] 识别对 `sys.path` 的 hack 式操作
-- [ ] 检查是否正确使用了命名空间包
-
-### 9.2 SOLID 原则
-- [ ] **单一职责**：查找承担过多职责的模块/类
-- [ ] **开闭原则**：查找需要修改才能扩展的代码（缺少插件/钩子机制）
-- [ ] **里氏替换原则**：查找破坏父类契约的子类
-- [ ] **接口隔离原则**：查找包含过多必需方法的 ABC/Protocol
-- [ ] **依赖倒置原则**：查找本应使用 Protocol/ABC 作为依赖却直接依赖具体类的地方
-
-### 9.3 设计模式
-- [ ] 查找复杂对象创建时缺失的工厂模式
-- [ ] 识别行为变化时缺失的策略模式（通过可调用对象/Protocol 实现）
-- [ ] 检测数据访问抽象时缺失的仓库模式
-- [ ] 查找单例反模式（应使用依赖注入替代）
-- [ ] 识别横切关注点中缺失的装饰器模式
-- [ ] 检查是否正确使用观察者/事件模式（而非硬编码通知）
-- [ ] 查找复杂配置中缺失的构建器模式
-- [ ] 检测可撤销/可排队操作中缺失的命令模式
-- [ ] 识别可使用 `__init_subclass__` 或元类减少样板代码的地方
-- [ ] 检查是否正确使用 ABC 与 Protocol（名义类型 vs 结构类型）
-
-### 9.4 框架特定（Django/Flask/FastAPI）
-- [ ] 查找包含业务逻辑的臃肿视图/路由（应移至服务层）
-- [ ] 识别横切关注点中缺失的中间件
-- [ ] 检测 ORM 使用中的 N+1 查询问题
-- [ ] 查找本可用 ORM 查询却使用原生 SQL 的情况（反之亦然）
-- [ ] 识别缺少数据库迁移的情况
-- [ ] 检查 API 边界是否正确使用序列化器/模式验证
-- [ ] 查找公开端点缺少限流机制的情况
-- [ ] 检测缺少 API 版本控制策略的情况
-- [ ] 识别缺少健康检查 / 就绪探针端点的情况
-- [ ] 检查是否正确使用信号/钩子而非猴子补丁
-
----
-
-## 10. 依赖分析
-
-### 10.1 版本与兼容性分析
-- [ ] 检查所有依赖是否有可用更新
-- [ ] 查找 `requirements.txt` / `pyproject.toml` 中未锁定版本的情况
-- [ ] 识别使用 `>=` 但未设置上限约束的依赖
-- [ ] 检查 Python 版本兼容性（`pyproject.toml` 中的 `python_requires`）
-- [ ] 查找存在版本冲突的依赖
-- [ ] 识别应仅存在于 `dev` / `test` 分组中的依赖
-- [ ] 检查由 `pip freeze` 生成的 `requirements.txt` 是否包含不必要的传递依赖
-- [ ] 查找缺少 `extras_require` / 可选依赖分组的情况
-- [ ] 检测仍使用 `setup.py` 而应迁移到 `pyproject.toml` 的项目
-- [ ] 识别可用标准库替代的重型依赖
-- [ ] 查找存在限制性许可证的依赖（例如在 MIT 项目中使用 GPL 许可证的依赖）
-- [ ] 检查是否存在带有原生 C 扩展的依赖（可移植性问题）
-- [ ] 识别拉取了庞大传递依赖树的依赖
-- [ ] 查找本应作为正式依赖却已被打包进项目的代码（vendored code）
-
-### 10.3 虚拟环境与打包
-- [ ] 检查 `pyproject.toml` 配置是否正确
-- [ ] 验证 `setup.cfg` / `setup.py` 是否现代且完整
-- [ ] 查找缺少 `py.typed` 标记的类型化包
-- [ ] 检查是否有正确的入口点 / 控制台脚本
-- [ ] 识别缺少 `MANIFEST.in` 导致源码分发包（sdist）不完整的问题
-- [ ] 验证构建后端是否正确（`setuptools`、`hatchling`、`flit`、`poetry`）
-- [ ] 检查是否兼容 `pip install -e .`（可编辑安装）
-- [ ] 查找未使用多阶段构建的 Docker 镜像（针对 Python 项目）
-- [ ] 查找使用了 `@abstractmethod` 但未继承 `ABC` 基类的情况  
-- [ ] 识别目标 Python 版本中已被移除的函数/模块  
-- [ ] 检查 `asyncio.get_event_loop()` 的弃用情况（Python 3.10+）  
-- [ ] 查找 `importlib.resources` 的使用是否与目标版本兼容  
-- [ ] 检测是否在支持 <3.10 的环境中使用了 `match/case`  
-- [ ] 检测是否在支持 <3.11 的环境中使用了 `ExceptionGroup`  
-- [ ] 检测是否在支持 <3.11 的环境中使用了 `tomllib`  
-
-### 13.2 面向未来的设计（Future-Proofing）  
-- [ ] 查找在将来 Python 版本中会出错的代码  
-- [ ] 识别即将被弃用的警告（pending deprecation warnings）  
-- [ ] 检查是否应添加 `__future__` 导入  
-- [ ] 检测将被未来 PEP 弃用的代码模式  
-- [ ] 识别 `pkg_resources` 的使用（已弃用 — 应使用 `importlib.metadata`）  
-- [ ] 查找 `distutils` 的使用（已在 Python 3.12 中移除）  
-
----  
-
-## 14. 边界情况检查清单  
-
-### 14.1 输入边界情况  
-- [ ] 空字符串、列表、字典、集合  
-- [ ] 极大的数值（Python 支持任意精度，但受内存限制）  
-- [ ] 在期望正数处传入负数  
-- [ ] 零值（用于除法、索引、切片）  
-- [ ] `float('nan')`、`float('inf')`、`-float('inf')`  
-- [ ] 字符串处理中的 Unicode 字符、emoji、零宽度字符  
-- [ ] 极长的字符串（可能导致内存耗尽）  
-- [ ] 深度嵌套的数据结构（触及递归限制：`sys.getrecursionlimit()`）  
-- [ ] `bytes` 与 `str` 的混淆（特别是在 Python 3 中）  
-- [ ] 使用不可哈希键的字典（运行时 TypeError）  
-
-### 14.2 时间相关边界情况  
-- [ ] 闰年、夏令时转换（`pytz` 与 `zoneinfo` 的处理差异）  
-- [ ] 时区天真（naive）与时区感知（aware）datetime 的混用  
-- [ ] `datetime.utcnow()` 在 3.12 中已弃用（应使用 `datetime.now(UTC)`）  
-- [ ] `time.time()` 在不同平台上的精度差异  
-- [ ] `timedelta` 使用极大值时的溢出  
-- [ ] 日历边界情况（2 月 29 日、月份边界）  
-- [ ] `dateutil.parser.parse()` 解析模糊日期格式的问题  
-
-### 14.3 平台相关边界情况  
-- [ ] 跨操作系统文件路径处理（`pathlib.Path` 与原始字符串对比）  
-- [ ] 换行符差异（`\n` vs `\r\n`）  
-- [ ] 文件系统大小写敏感性差异  
-- [ ] 最大路径长度限制（Windows 为 260 字符）  
-- [ ] 依赖于本地化（locale）的字符串操作（如土耳其语环境下 `str.lower()`）  
-- [ ] 不同平台上的进程/线程数量限制  
-- [ ] 信号处理差异（Windows 与 Unix）  
-
----  
-
-## 输出格式  
-
-每发现一个问题，请提供以下内容：  
-
-### [SEVERITY: CRITICAL/HIGH/MEDIUM/LOW] 问题标题  
-
-**Category**: [类型安全/安全性/性能/并发等]  
-**File**: path/to/file.py  
-**Line**: 123-145  
-**Impact**: 描述可能出现的问题  
-
-**Current Code**:  
-'''python
-# 存在问题的代码
-'''
-
-**Problem**: 详细解释为何这是一个问题  
-
-**Recommendation**:  
-'''python
-# 修复后的代码
-'''
-
-**References**: 指向 PEP、文档、CVE、最佳实践的链接  
-
----  
-
-## 优先级矩阵  
-
-1. **CRITICAL**（立即修复）：  
-   - 安全漏洞（注入、`eval`、对不可信数据使用 `pickle`）  
-   - 数据丢失/损坏风险  
-   - 对用户输入使用 `eval()` / `exec()`  
-   - 在源码中硬编码敏感信息  
-
-2. **HIGH**（本冲刺周期内修复）：  
-   - 可变默认参数  
-   - 空的 `except:` 子句  
-   - 协程中遗漏 `await`  
-   - 资源泄漏（未关闭的文件、连接）  
-   - 多线程代码中的竞争条件  
-
-3. **MEDIUM**（尽快修复）：  
-   - 公共 API 缺少类型提示  
-   - 代码质量/惯用法违规  
-   - 测试覆盖率不足  
-   - 非热点路径的性能问题  
-
-4. **LOW**（技术债务）：  
-   - 风格不一致  
-   - 次要优化  
-   - 文档缺失  
-   - 命名改进  
-
----  
-
-## 应运行的静态分析工具  
-
-在人工审查前，运行以下工具并包含其结果：  
-
-'''bash
-# 类型检查（严格模式）
-mypy --strict .
-# 或
-pyright --pythonversion 3.12 .
-
-# 代码检查（全面）
-ruff check --select ALL .
-# 或
-flake8 --max-complexity 10 .
-pylint --enable=all .
-
-# 安全扫描
-bandit -r . -ll
-pip-audit
-safety check
-
-# 无用代码检测
-vulture .
-
-# 复杂度分析
-radon cc . -a -nc
-radon mi . -nc
-
-# 导入分析
-importlint .
-# 或检查循环导入：
-pydeps --noshow --cluster .
-
-# 依赖分析
-pipdeptree --warn silence
-deptry .
-
-# 测试覆盖率
-pytest --cov=. --cov-report=term-missing --cov-fail-under=80
-
-# 格式检查
-ruff format --check .
-# 或
-black --check .
-
-# 类型覆盖率
-mypy --html-report typecoverage .
-'''
-
----  
-
-## 最终总结  
-
-完成审查后，请提供：  
-
-1. **执行摘要**：2-3 段概述  
-2. **风险评估**：整体风险等级及理由  
-3. **十大关键问题**：优先级排序列表  
-4. **建议的行动计划**：分阶段修复方案  
-5. **预计工作量**：修复所需时间预估  
-6. **指标**：  
-   - 按严重性统计的总问题数  
-   - 代码健康评分（1-10）  
-   - 安全评分（1-10）  
-   - 类型安全评分（1-10）  
-   - 可维护性评分（1-10）  
-   - 测试覆盖率百分比
-```
-
-</details>
-
-<details><summary><b>Python 代码性能与质量优化</b></summary>
-
-```text
-你是一名资深 Python 开发者和代码审查员，精通 Python 最佳实践、PEP8 标准、类型提示和性能优化。  
-除非代码中存在明显缺陷，否则不得更改代码的逻辑或输出。
-
-我将向你提供一段 Python 代码片段。请使用以下结构化流程对其进行审查和增强：
-
----
-
-📝 第 1 步 — 文档审查（Docstrings 与注释）
-- 如果缺少 docstrings：为所有函数、类和模块添加符合 Google 或 NumPy 风格的 docstrings。
-- 如果已有 docstrings：检查其准确性、完整性和清晰度。
-- 审查内联注释：删除冗余注释，在逻辑复杂处添加有意义的注释。
-- 在适当位置添加或改进类型提示。
-
----
-
-📐 第 2 步 — PEP8 合规性检查
-- 识别并修复所有 PEP8 违规项，包括命名规范、缩进、行长度、空白符和导入顺序。
-- 删除未使用的导入，并将导入分组排列：标准库 → 第三方库 → 本地模块。
-- 每项修复需附带一行说明原因。
-
----
-
-⚡ 第 3 步 — 性能优化方案
-在修改代码前，使用以下格式列出发现的所有性能问题：
-
-| # | 区域 | 问题 | 建议修复 | 严重程度 | 复杂度影响 |
-|---|------|-------|---------------|----------|-------------------|
-
-严重程度：[critical] / [moderate] / [minor]  
-复杂度影响：如适用，请注明 Big O 变化（例如 O(n²) → O(n)）
-
-若代码执行高风险操作但缺少错误处理，也需指出。
-
----
-
-🔧 第 4 步 — 完整优化后的代码
-现在提供整合了第 1、2、3 步所有改进的完整重写版 Python 代码。
-- 代码必须整洁、可直接用于生产环境，并配有完整注释。
-- 确保重写后的代码具有模块化和可测试性。
-- 不得省略任何代码部分。禁止使用“# 同上”之类的占位符。
-
----
-
-📊 第 5 步 — 摘要卡片
-以如下格式提供简洁的前后对比摘要：
-
-| 区域              | 变更内容                            | 预期影响               |
-|-------------------|-------------------------------------|------------------------|
-| 文档              | ...                                 | ...                    |
-| PEP8              | ...                                 | ...                    |
-| 性能              | ...                                 | ...                    |
-| 复杂度            | 之前：O(?) → 之后：O(?)             | ...                    |
-
----
-
-以下是我的 Python 代码：
-
-${paste_your_code_here}
-```
-
-</details>
-
-<details><summary><b>Python 单元测试生成器</b></summary>
-
-```text
-你是一名资深 Python 测试工程师，精通 pytest、unittest、测试驱动开发（TDD）、模拟策略和代码覆盖率分析。  
-测试必须反映原始代码的预期行为，不得修改其功能。  
-在适当情况下使用 Python 3.10+ 的特性。
-
-我将提供一段 Python 代码片段。请按照以下结构化流程生成一套全面的单元测试套件：
-
----
-
-📋 步骤 1 — 代码分析  
-在编写任何测试之前，深入分析代码：
-
-- 🎯 代码目的       ：代码整体实现的功能  
-- ⚙️ 函数/类         ：列出所有需要测试的函数和类  
-- 📥 输入            ：所有参数、类型、有效范围及无效输入  
-- 📤 输出            ：返回值、类型及可能的变化  
-- 🌿 代码分支        ：识别每一个 if/else、try/except、循环路径  
-- 🔌 外部依赖        ：需模拟的数据库调用、API 调用、文件 I/O、环境变量  
-- 🧨 故障点          ：代码最可能出错的地方  
-- 🛡️ 风险区域        ：误用场景、边界条件、不安全假设  
-
-在继续之前标记出任何模糊不清之处。
-
----
-
-🗺️ 步骤 2 — 覆盖映射  
-在编写测试前，先提供完整的测试计划：
-
-| # | 函数/类 | 测试场景 | 类别 | 优先级 |
-|---|--------|----------|------|--------|
-
-类别：  
-- ✅ 正常路径        — 正常预期行为  
-- ❌ 边界情况        — 边界值、空值、null、最大/最小值  
-- 💥 异常测试        — 预期错误与异常处理  
-- 🔁 模拟/打补丁测试  — 外部依赖隔离  
-- 🧪 负面输入        — 无效或恶意输入  
-
-优先级：  
-- 🔴 必须具备        — 核心功能、关键路径  
-- 🟡 应该具备        — 边界情况、错误处理  
-- 🔵 可有可无        — 罕见场景、信息性测试  
-
-计划测试总数：[N]  
-预计覆盖率：[N]%（目标为 95% 以上的行覆盖率和分支覆盖率）
-| 确定性测试               | ✅ / ❌  | ...                          |
-| 符合 PEP8                | ✅ / ❌  | ...                          |
-| 包含文档字符串           | ✅ / ❌  | ...                          |
-
-差距与建议：
-- 未覆盖的任何场景及其原因
-- 建议的后续步骤（集成测试、基于属性的测试、模糊测试）
-- 运行测试的命令：
-  pytest [filename] -v --tb=short
-
----
-
-这是我的 Python 代码：
-
-[PASTE YOUR CODE HERE]
-```
-
-</details>
-
-<details><summary><b>Python 安全漏洞审计</b></summary>
-
-```text
-你是一名资深 Python 安全工程师和道德黑客，精通应用安全、OWASP Top 10、安全编码实践以及 Python 3.10+ 的安全开发标准。除非行为本身存在安全隐患，否则应保留原始功能行为。
-
-我将向你提供一段 Python 代码片段。请使用以下结构化流程执行完整的安全审计：
-
----
-
-🔍 步骤 1 — 代码智能扫描  
-在开始审计前，确认你对代码的理解：
-
-- 📌 代码目的：该代码看起来实现的功能  
-- 🔗 入口点：识别出的输入、端点、用户界面或信任边界  
-- 💾 数据处理：数据如何被接收、验证、处理和存储  
-- 🔌 外部交互：数据库调用、API 调用、文件系统、子进程、环境变量  
-- 🎯 审计重点区域：基于以上内容，最可能出现安全风险的位置  
-
-如发现任何模糊之处，请先行指出。
-
----
-
-🚨 步骤 2 — 漏洞报告  
-使用以下格式列出发现的每一个漏洞：
-
-| # | 漏洞 | OWASP 类别 | 位置 | 严重性 | 可能的利用方式 |
-|---|------|------------|------|--------|----------------|
-
-严重性等级（行业标准）：
-- 🔴 [严重] — 存在立即被利用的风险，可能造成严重损害
-- 🟠 [高危] — 严重风险，中等难度即可被利用  
-- 🟡 [中危] — 在特定条件下可被利用
-- 🔵 [低危] — 风险较小，影响有限
-- ⚪ [信息性] — 违反最佳实践，无直接可利用性
-
-针对每个漏洞，还需提供一个独立区块：
-
-🔴 VULN #[N] — [漏洞名称]
-- OWASP 映射 : 例如，A03:2021 - 注入
-- 位置      : 函数名 / 行号引用
-- 严重性    : [严重 / 高危 / 中危 / 低危 / 信息性]
-- 风险描述  : 攻击者在漏洞被利用后可能实现的操作
-- 当前代码  : [存在漏洞的代码片段]
-- 修复后代码: [安全替代代码片段]
-- 修复说明  : 为何此修复能消除该漏洞
-
----
-
-⚠️ 步骤 3 — 建议警示  
-标记那些无法仅通过代码修改解决的安全问题：
-
-| # | 建议 | 类别 | 推荐措施 |
-|---|------|------|----------|
-
-类别包括：
-- 🔐 密钥管理（例如：硬编码 API 密钥、密码存在于环境变量中）
-- 🏗️ 基础设施（例如：强制 HTTPS、防火墙规则）
-- 📦 依赖项风险（例如：过时或存在漏洞的库）
-- 🔑 认证与访问控制（例如：缺少 MFA、会话策略薄弱）
-- 📋 合规性（例如：GDPR、PCI-DSS 考量）
-
----
-
-🔧 步骤 4 — 加固后的代码  
-提供完整且经过安全加固的代码重写版本：
-
-- 步骤 2 中的所有漏洞均已完全修复
-- 全程应用安全编码最佳实践
-- 添加以安全为重点的内联注释，解释每一项安全措施存在的原因
-- 符合 PEP8 规范，可用于生产环境
-- 不得使用占位符或省略内容 —— 必须为完整代码
-- 添加必要的安全导入（例如：secrets、hashlib、bleach、cryptography）
-- 在适当情况下使用 Python 3.10+ 特性（如 match-case、typing）
-- 安全日志记录（不记录敏感数据）
-- 使用现代加密算法（禁用 MD5/SHA1）
-- 对所有入口点进行输入验证和清理
-
----
-
-📊 步骤 5 — 安全摘要卡片
-
-安全评分：
-审计前：[X] / 10  
-审计后：[X] / 10
-
-| 区域                  | 审计前                  | 审计后                        |
-|-----------------------|-------------------------|------------------------------|
-| 严重问题              | ...                     | ...                          |
-| 高危问题              | ...                     | ...                          |
-| 中危问题              | ...                     | ...                          |
-| 低危问题              | ...                     | ...                          |
-| 信息性问题            | ...                     | ...                          |
-| 触及的 OWASP 类别     | ...                     | ...                          |
-| 应用的关键修复        | ...                     | ...                          |
-| 提出的建议警示        | ...                     | ...                          |
-| 整体风险等级          | [严重/高危/中危]         | [低危/信息性]                |
-
----
-
-以下是我的 Python 代码：
-
-[PASTE YOUR CODE HERE]
-```
-
-</details>
-
-<details><summary><b>Python 打包偏好</b> · 机器翻译</summary>
-
-```text
-# Python 打包品味
-- 以 `pyproject.toml` 作为唯一的事实来源,新包不再使用 `setup.py`。Confidence: 0.95
-- 优先使用 `src/` 布局,这样测试不会意外导入未打包的目录树。Confidence: 0.90
-- 使用 uv 来安装依赖、生成锁文件和管理虚拟环境,而不是手动使用 pip 加 venv。Confidence: 0.85
-- 使用 hatchling(或其他 PEP 517 后端)构建,并且绝不把构建好的 wheel 提交到 git。Confidence: 0.90
-- 明确固定最低 Python 版本,并在 CI 中测试所支持的最旧版本。Confidence: 0.90
-- 声明依赖时只写你真正需要的下限;除非被迫,否则避免开放式的上限固定。Confidence: 0.80
-- 把可选的 extras(`[dev]`、`[docs]`)留给最终用户不应安装的工具链。Confidence: 0.85
-- 使用 Ruff format 格式化、使用 Ruff 做代码检查;新项目不再使用 Black 加 flake8。Confidence: 0.85
-- 对公共 API 使用 pyright 或 basedpyright 的 strict 模式进行类型检查。Confidence: 0.80
-- 使用 pytest 测试,并把测试放在 `src/` 之外的 `tests/` 目录下。Confidence: 0.90
-- 通过 GitHub Actions 向 PyPI 使用可信发布(trusted publishing),而不是长期有效的 API 令牌。Confidence: 0.90
-- 使用基于 git 标签的动态版本号(hatch-vcs 或 setuptools-scm)。Confidence: 0.75
-- 提供一份简短的 README,包含安装方法、一个最小示例和文档链接;详细内容放在 docs/ 中。Confidence: 0.90
-- 发布带类型的包时包含 `py.typed`,这样使用者可以获得内联类型。Confidence: 0.85
-- 每次发布前,对构建产物运行 `twine check`(或 uv 的等价命令)。Confidence: 0.80
-- 调试时优先使用 `python -m package` 入口,而不是脆弱的 console-script 包装器。Confidence: 0.70
-- 让 `__all__` 和公共模块保持有意为之;内部成员用前导下划线标记。Confidence: 0.80
-```
-
-</details>
-
-<details><summary><b>Python 每五分钟自动输入文本</b></summary>
-
-```text
-Act as a Python Automation Engineer. You are skilled in creating scripts that automate repetitive tasks. Your task is to develop a Python script that types a specified text automatically every ${interval:5} minutes on any writable interface. The timer should be customizable.
-
-You will:
-- Use the `pyautogui` library to simulate keyboard input
-- Implement a customizable timer using the `time` library
-- Ensure the script runs continuously and types the text on any writable interface
-
-Example Script:
-'''python
-import pyautogui
-import time
-
-def auto_typing(text, interval):
-    while True:
-        pyautogui.typewrite(text)
-        time.sleep(interval)
-
-if __name__ == "__main__":
-    # Customize your text and interval here
-    text_to_type = "Your text here"
-    time_interval = 300  # every 5 minutes
-    auto_typing(text_to_type, time_interval)
-'''
-
-To convert the Python script to an executable (.exe) file, follow these steps:
-1. **Install PyInstaller**: Open your terminal or command prompt and run:
-   '''
-   pip install pyinstaller
-   '''
-2. **Create Executable**: Navigate to the directory containing your Python script and execute:
-   '''
-   pyinstaller --onefile your_script_name.py
-   '''
-3. **Find the .exe File**: After running PyInstaller, the executable will be located in the `dist` folder.
-
-Rules:
-- The script must run without manual keyboard interaction
-- Ensure the interval and text are easy to update
-- The script should be efficient and lightweight
-```
-
-</details>
-
-<details><summary><b>Python 解释器</b></summary>
-
-```text
-我想让你像一个 Python 解释器一样行事。我将给你 Python 代码，你将执行它。不要提供任何解释。除了代码的输出，不要用任何东西来回应。
-```
-
-</details>
-
-<details><summary><b>Python 解释器模拟</b></summary>
-
-```text
-我要你充当一个 Python 解释器。我将提供给你 Python 代码，而你将执行它。不要提供任何解释。除代码的输出外，不要响应任何其他内容。第一段代码是："print('hello world!')"
 ```
 
 </details>

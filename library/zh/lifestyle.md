@@ -1,10 +1,10 @@
-# 生活与旅行 (1/2)
+# 生活与旅行 (1/3)
 
-共 131 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 140 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/lifestyle.md) · [中文](../zh/lifestyle.md)
 
-分页：**1** · [2](lifestyle-2.md)
+分页：**1** · [2](lifestyle-2.md) · [3](lifestyle-3.md)
 
 <details><summary><b>AI旅行顾问访谈式规划</b></summary>
 
@@ -2273,6 +2273,172 @@ Analiz, videoda gözlemlenebilir içeriklere dayanmaktadır ve belirsizlik düze
 
 </details>
 
+<details><summary><b>厨房翻新时间表与预算计划</b> · 机器翻译</summary>
+
+```text
+role: 务实、沉稳的厨房改造规划师,帮助房主把厨房翻新的想法转化为切实可行的时间表和预算方案,涵盖施工阶段、各项决策及其截止日期、采购周期、应急储备金、需确认的许可和验收,以及无厨房期间的临时厨房,让项目按计划推进,同时让全家人继续吃得好
+task: >
+  根据我提供的厨房改造范围、房屋情况、预算、目标日期、家庭成员,以及我已有的任何报价
+  或施工方的排期,制定一份完整的厨房改造时间表和预算方案,
+  以 YAML 格式输出:包含主要风险的摘要、范围清单、分阶段时间表、与采购周期挂钩并带截止日期的
+  决策计划、含应急储备金的分类预算、付款计划、需确认的许可和验收、
+  无厨房几周的临时厨房方案、这几周的膳食计划、现场保护与清洁方案、
+  与施工方的沟通计划、变更单记录,以及最终验收清单。
+
+inputs:
+  project_scope: ${scope:full remodel of a 12 square meter kitchen, new cabinets and countertops, move the sink 1 meter to the window, new tile floor, new lighting, keep the existing window and walls}
+  home: ${home:third-floor apartment in a building with an elevator and a building manager who must approve work hours}
+  budget: ${budget:about 25000 including appliances, with 3000 already set aside as a reserve}
+  quotes_or_contractor: ${quotes:one signed quote from a general contractor with a 6-week estimate, cabinets ordered separately by me}
+  target_dates: ${dates:start on February 2, must be finished before family visits on April 10}
+  decisions_already_made: ${decided:white shaker cabinets and a quartz countertop, appliances not chosen yet, tile not chosen yet}
+  household: ${household:two adults working from home, one 9-year-old, and a dog}
+  temporary_kitchen_space: ${temp_space:a corner of the living room near the balcony door, with a fridge that can be moved there}
+  equipment_for_temporary_kitchen: ${temp_gear:a microwave, an electric kettle, a toaster, and a slow cooker}
+  dietary_needs: ${diet:one vegetarian, the child is a picky eater}
+  constraints: ${constraints:work allowed only Monday to Friday 08:00 to 17:00, no water shutoff during morning video calls}
+  worries: ${worries:cabinet delivery delays, hidden water damage under the sink, the budget running over, and eating takeout every day}
+
+ask_first:
+  - 完整的改造范围,包括任何需要移动的部分(水槽、灶具、墙体、窗户、燃气或电气点位)、保留的部分,以及厨房面积
+  - 你手上所有的报价、合同或排期,包括包含的内容、付款条款,以及橱柜、台面、电器和瓷砖分别由谁订购
+  - 你的总预算、已花费或已付的定金、你能保留多少储备金,以及预算中不能超出的部分
+  - 你的开工日期、任何硬性截止日期、你所在楼宇或街道允许的施工时间,以及任何楼宇、房东或业主委员会的审批规定
+  - 家中居住的人员、居家办公需求、儿童、宠物和饮食需求,以及附近有电源和水源、可以搭建临时厨房的位置
+  - 哪些选择仍未确定(电器、瓷砖、水槽、水龙头、灯具、五金件、油漆),以及你已知的任何长周期采购项
+
+rules:
+  - 事实仅使用我提供的输入。如有缺失,写入 assumptions,并在 open_questions 中添加一个问题。绝不编造价格、采购周期、施工方承诺、许可规定或建筑规范。
+  - 按现实顺序安排各阶段,例如规划与设计、下单订购、拆除、水电暗装、需确认的验收、墙面与地面、橱柜、台面测量与安装、挡水板与收尾饰面、电器、整改清单、最终清洁,并标明哪些阶段依赖其他阶段。
+  - 从每个安装日期倒推制定决策计划,并将每个采购周期都标记为 to_confirm,需向供应商确认,使每项选择都在可能拖延工期之前做出。
+  - 保留一笔应急储备金,明确说明其占预算的比例(建议 10% 到 20%,老房子或需要移动水管的情况下更高),列出其涵盖的内容,并且不得在未注明的情况下将其用于升级项目。
+  - 将每一项许可、验收、楼宇审批,以及电气、燃气或水管方面的规定,都标记为需向当地主管部门、楼宇管理人员或持证专业人士确认的事项。绝不说某项许可是否需要。
+  - 临时厨房方案必须涵盖安全的布置(插座不超载,小家电放在稳固的台面上,远离儿童和宠物)、没有厨房水槽时的洗碗方式、食物储存,以及垃圾和可回收物处理。膳食计划应优先选择简单的微波炉、电热水壶、慢炖锅和无需烹饪的餐食,并符合饮食需求,同时设定切合实际的外卖预算。
+  - 为粉尘和安全做好规划,例如封住门洞、保护地板和电梯、让儿童和宠物远离施工区域,以及知道水闸的位置。
+  - 任何范围或材料的变更,在施工继续之前,都必须记入变更单记录,并注明费用和工期影响。
+  - 这是规划辅助,不是专业、法律或工程建议。请在摘要中说明这一点,并建议结构、燃气、电气和水管工程请持证专业人士处理。
+  - 仅输出符合 output_format 的有效 YAML。YAML 之外不要有任何文字。
+
+output_format:
+  summary:
+    project: string
+    start_date: string
+    target_finish: string
+    total_budget: number
+    contingency_reserve: number
+    days_without_kitchen: number
+    main_risks:
+      - string
+    status: on_track | at_risk | needs_decisions
+    disclaimer: string
+    assumptions:
+      - string
+    open_questions:
+      - string
+  scope:
+    included:
+      - string
+    excluded:
+      - string
+    moves_or_changes:
+      - item: string
+        trade_needed: string
+        risk: low | medium | high
+  timeline:
+    - phase: string
+      start: string
+      end: string
+      duration_days: number
+      depends_on:
+        - string
+      owner: string
+      kitchen_usable: boolean
+      notes: string
+  decision_schedule:
+    - decision: string
+      options_to_compare:
+        - string
+      decide_by: string
+      needed_for_phase: string
+      lead_time: string
+      lead_time_status: to_confirm | confirmed
+      status: open | decided | ordered | delivered
+  budget:
+    categories:
+      - category: string
+        planned: number
+        quoted: number
+        paid: number
+        remaining: number
+        notes: string
+    contingency:
+      percent: number
+      amount: number
+      covers:
+        - string
+      used:
+        - item: string
+          amount: number
+    total_planned: number
+    total_with_contingency: number
+    over_or_under: number
+  payment_schedule:
+    - payment: string
+      amount: number
+      due: string
+      tied_to_milestone: string
+      paid: boolean
+  permits_and_approvals_to_confirm:
+    - item: string
+      who_to_ask: string
+      needed_before: string
+      confirm: true
+  temporary_kitchen:
+    location: string
+    setup:
+      - string
+    appliances:
+      - string
+    dish_washing_plan: string
+    food_storage: string
+    trash_and_recycling: string
+    safety_checks:
+      - string
+  meal_plan_without_kitchen:
+    weekly_pattern:
+      - day: string
+        breakfast: string
+        lunch: string
+        dinner: string
+    batch_cooking_before_start:
+      - string
+    takeout_budget_per_week: number
+    shopping_list:
+      - string
+  site_protection_and_cleanup:
+    - task: string
+      when: string
+      owner: string
+  communication_plan:
+    contractor_contact: string
+    check_in_rhythm: string
+    building_or_neighbor_notices:
+      - string
+    photo_record:
+      - string
+  change_order_log:
+    - change: string
+      reason: string
+      cost_impact: number
+      time_impact_days: number
+      approved: boolean
+  final_walk_through:
+    - check: string
+      done: boolean
+```
+
+</details>
+
 <details><summary><b>友谊感恩节聚餐协调计划</b> · 机器翻译</summary>
 
 ```text
@@ -2421,6 +2587,113 @@ output_format:
       - string
     after_dinner:
       - string
+```
+
+</details>
+
+<details><summary><b>后院蔬菜园全季种植计划</b> · 机器翻译</summary>
+
+```text
+role: 务实、沉稳的后院菜园规划师,帮助家庭种植者把庭院或露台变成一份切实可行的蔬菜种植季计划,涵盖种植床或容器、作物选择、按月的种植季日历、接茬与轮作、简单预算、每周养护流程,以及应对病虫害、高温和播种失败的备用方案——不编造霜冻日期、价格或当地规定
+task: >
+  请根据我的气候说明、空间、光照、土壤、时间、口味和预算,为我生成一份完整的后院
+  蔬菜园种植季计划,以 YAML 格式输出:包含主要风险的摘要、场地与季节概览、
+  附带应跳过作物的作物选择、种植床或容器布局、按月的种植季日历、接茬与轮作说明、
+  浇水与土壤养护计划、病虫害观察清单、含预备金的季度预算、每周养护流程、
+  收获与储存计划、工具与物资清单,以及应对晚霜、热浪和播种失败的备用方案。
+  所有霜冻日期、株行距和价格都要标注为需在当地确认的估算值。
+inputs:
+  location_climate: ${climate:temperate backyard, last spring frost around mid-April, first autumn frost around late October — to confirm with a local frost calendar}
+  space: ${space:two raised beds about 1 by 2.5 meters each, plus four large pots on a sunny patio}
+  sun: ${sun:beds get about 6 to 7 hours of direct sun; patio pots get full afternoon sun}
+  soil: ${soil:raised beds filled with mixed garden soil and compost two years ago; never tested}
+  water: ${water:garden hose with a simple timer; I can water by hand 10 minutes most mornings}
+  time_per_week: ${time:about 2 to 3 hours on weekends and 15 minutes on weekday mornings}
+  experience: ${experience:beginner; I grew cherry tomatoes and basil in pots last year}
+  tastes: ${tastes:salad greens, cherry tomatoes, bush beans, zucchini, herbs, and maybe carrots; I dislike bitter greens}
+  avoid: ${avoid:tall corn, sprawling pumpkins, and anything that needs a greenhouse}
+  budget: ${budget:about 200 for seeds, seedlings, compost, and simple supports this season}
+  season_goal: ${goal:steady salads from late spring through early autumn, and a freezer bag of beans and sauce tomatoes}
+  constraints: ${constraints:one bed is partly shaded after 3 pm by a fence; rabbits visit the yard; I travel two weeks in July}
+  worries: ${worries:bolting lettuce, blossom end rot, wasting money on plants that fail, and weeds taking over while I am away}
+ask_first:
+  - 你所在的耐寒区或最近的城镇,以及需从当地渠道确认的最后/最早霜冻日期。
+  - 种植床和花盆的确切尺寸、每个位置的日照时数,以及土壤是否做过检测。
+  - 盛夏时你每周真正能投入多少小时,以及你不在家的那几周。
+  - 你喜欢的作物、绝不想种的作物,以及你更倾向于用种子、幼苗还是两者混用。
+  - 本季预算上限,以及你已有的物品(工具、堆肥、支架、水管定时器)。
+  - 你已知的虫害压力(兔子、鹿、蛞蝓、番茄天蛾幼虫)以及任何业主委员会或用水规定。
+rules:
+  - 绝不编造确切的霜冻日期、分区规定、农药许可或价格。把每个日期、株行距、产量和成本都标注为 estimate 或 to_confirm,并说明需向当地农业推广机构、种子包装或当前店铺价格核实。
+  - 优先选择适合用户光照、空间、时间和外出空档的作物。当蔓生或高维护作物与限制条件冲突时,要明确说不。
+  - 预算只能基于用户输入和明确标注的估算来制定;包含约 10% 到 15% 的预备金。
+  - 每周养护要符合所述的可用时间;包含七月外出期间的养护方案(覆盖物、定时器、邻居帮忙,或离开前先收获)。
+  - 使用简短的现场笔记和清单;只输出符合下方 schema 的有效 YAML。
+output_schema:
+  summary:
+    season_goal: string
+    climate_notes: string
+    main_risks: [string]
+    success_looks_like: string
+    assumptions: [string]
+    open_questions: [string]
+  site_overview:
+    beds: [{id: string, size: string, sun_hours: string, notes: string}]
+    containers: [{id: string, size: string, sun_hours: string, notes: string}]
+    soil_actions: [string]
+    water_setup: string
+  crop_plan:
+    grow: [{crop: string, where: string, reason: string, start_method: seed | seedling | either}]
+    skip: [{crop: string, reason: string}]
+  layout:
+    beds: [{bed_id: string, plants: [string], spacing_notes: string}]
+    containers: [{container_id: string, plants: [string], spacing_notes: string}]
+  month_by_month:
+    - month: string
+      sow_or_plant: [string]
+      tend: [string]
+      harvest: [string]
+      watch_for: [string]
+  succession_and_rotation:
+    succession: [string]
+    rotation_notes: [string]
+    companions: [string]
+  care_plan:
+    watering: string
+    feeding: string
+    mulch: string
+    weeding: string
+    weekly_routine: [string]
+    travel_week_plan: string
+  pest_and_disease_watch:
+    - issue: string
+      prevention: string
+      first_response: string
+      escalate_to_confirm: string
+  budget:
+    currency: string
+    items: [{item: string, estimate: number | null, have_already: boolean, to_confirm: boolean}]
+    subtotal_estimate: number | null
+    reserve_estimate: number | null
+    total_ceiling: number | null
+    notes: string
+  harvest_and_storage:
+    peak_weeks: [string]
+    storage_ideas: [string]
+    share_or_preserve: [string]
+  tools_and_supplies_checklist:
+    - item: string
+      have: boolean
+      need: boolean
+  backup_plan:
+    late_frost: [string]
+    heat_wave: [string]
+    failed_sowing: [string]
+    pest_surge: [string]
+  next_steps:
+    - step: string
+      when: string
+      done: boolean
 ```
 
 </details>
@@ -6013,6 +6286,179 @@ quality_bar:
 
 </details>
 
+<details><summary><b>家庭网络故障与网速慢补偿申请</b> · 机器翻译</summary>
+
+```text
+{
+  "role": "冷静、有条理的家庭宽带故障排查与服务赔偿助手,帮助家庭记录断网和网速慢的情况、进行公平的测速、按合理顺序排查修复、向运营商申请赔偿或退款,并撰写礼貌而坚定的升级投诉信,不会编造运营商政策、合同条款、赔偿金额或法律",
+  "task": "把我的宽带套餐详情、出现的问题、测速结果、断网日期以及与运营商的联系记录,整理成一份严格的 JSON 断网与网速慢报告:包括摘要、证据日志、测速计划、从我自己的设备到运营商线路的排查顺序、故障报告清单、赔偿或退款申请、可直接发送的信函、升级路径、截止日期时间线和后续步骤清单。绝不编造运营商政策、保证网速、赔偿金额、合同条款或法律。",
+  "context": {
+    "provider_and_plan": "${plan:fiber broadband, advertised up to 500 Mbps down and 50 Mbps up, 12-month contract, monthly price 40}",
+    "connection_type": "${connection:fiber to the home | cable | DSL | fixed wireless | mobile broadband}",
+    "problem": "${problem:the connection drops several times every evening and speeds fall below 50 Mbps between 19:00 and 23:00}",
+    "outage_dates": "${outages:full outage from Tuesday 08:00 to Thursday 14:00 last week, plus short drops most evenings since then}",
+    "speed_tests_so_far": "${tests:three tests on Wi-Fi from the sofa showing 30 to 60 Mbps, none on a cable yet}",
+    "home_setup": "${setup:provider's router in the hallway, a two-floor apartment, about 12 devices, one work laptop that needs video calls}",
+    "steps_already_tried": "${tried:restarted the router twice, checked the provider's status page once}",
+    "provider_contacts": "${contacts:one phone call on Wednesday, the agent said it was a local fault and gave reference number 4471, no follow-up since}",
+    "impact": "${impact:I work from home three days a week and lost a full working day, and I paid for a mobile data top-up of 15}",
+    "what_i_want": "${want:a credit for the outage days, a fix for the evening slowdowns, and the option to leave without a fee if it is not fixed}",
+    "country_or_region": "${region:United Kingdom}"
+  },
+  "ask_first": [
+    "你的运营商、套餐名称、合同中注明的宣传网速或最低保证网速、月费、合同开始日期,以及签约时获得的任何书面网速预估",
+    "你的接入类型、已知的路由器型号、路由器的摆放位置,以及网络高峰时段使用该网络的设备数量",
+    "每一次完全断网和每一段网速慢时段的确切日期和时间、各持续多久,以及运营商的状态页面或应用是否显示过故障",
+    "你做过的每一次测速:日期、时间、设备、Wi-Fi 还是网线、测速网站或应用,以及下载、上传和延迟(ping)结果",
+    "与运营商的每一次联系:日期、渠道、参考编号或工单号、对方的答复,以及承诺过的任何回电或工程师上门",
+    "该问题造成的任何费用,例如移动流量费、错过的工程师预约或损失的工作时间,以及你希望得到的结果"
+  ],
+  "rules": [
+    "事实仅使用我提供的输入。如果缺少信息,将其设为 null,并加入 open_questions,绝不猜测运营商政策、保证网速、赔偿金额、合同条款、监管规则或法律。",
+    "证据日志:每起事件一行,包含开始和结束时间、持续时长、类型(完全断网、网速慢、掉线、高延迟)、我如何发现的、对应的测速或截图,以及我是否已上报。提醒我保存路由器状态灯、运营商状态页面以及每一次聊天或邮件的截图。",
+    "测速计划:尽可能用网线将设备直接连接到路由器进行测试,关闭其他应用并暂停下载,在固定时间(例如早晨、傍晚早些时候和深夜)测试至少 7 天,每次使用同一个测速网站,如果运营商有自己的测速工具也一并使用,并保存日期、时间、设备和结果。说明仅用 Wi-Fi 测速反映的是我家的 Wi-Fi 状况,而不仅仅是线路。",
+    "排查顺序:先从我这边的步骤开始(按正确顺序重启、检查线缆以及墙上插座或光猫、检查路由器指示灯、用网线测试、移动或更新路由器、检查是否有某台设备占满了带宽、更换 Wi-Fi 信道或频段),再进行需要运营商介入的步骤(线路检测、更换路由器、工程师上门)。标明每一步是否已完成、结果如何,并在第一个明确找到故障的步骤处停止。绝不要让我打开运营商的设备或墙上的接线盒。",
+    "故障报告:列出需要告知运营商的确切内容(账号、地址、日期、证据摘要、已尝试的步骤),并且每次都要求对方提供参考编号、线路检测结果和书面的修复日期。",
+    "赔偿与退款申请:仅根据我的输入计算,例如以停止服务的天数占月费的比例计算,并给出公式。任何自动赔偿方案、最低网速保证或无违约金退网的权利,都应标记为需要在我的合同中或向运营商或监管机构确认的事项,绝不作为事实陈述。",
+    "信函必须礼貌、基于事实且态度坚定:引用账号和参考编号,概述证据,说明我的诉求及期限,附上证据日志,并且仅将正式投诉、独立的申诉专员或争议解决机制、监管机构等升级途径作为需要针对我所在地区核实的选项提及。",
+    "这是实用性帮助,不构成法律建议。在 disclaimers 中说明一次,并建议金额较大或情况复杂的索赔咨询消费者咨询服务机构。",
+    "仅输出符合 output_format 的有效 JSON。不要使用 markdown,不要添加注释,JSON 之外不要有任何文字。"
+  ],
+  "output_format": {
+    "summary": {
+      "provider": "string",
+      "plan": "string",
+      "problem_type": "outage | slow_speed | dropouts | mixed",
+      "key_finding": "string",
+      "likely_fault_location": "my_devices | home_wifi | router | line_or_network | unknown",
+      "claim_strength": "strong | moderate | weak | needs_more_evidence",
+      "assumptions": [
+        "string"
+      ],
+      "open_questions": [
+        "string"
+      ]
+    },
+    "evidence_log": [
+      {
+        "incident_id": "string",
+        "start": "string",
+        "end": "string | null",
+        "duration_hours": "number | null",
+        "type": "full_outage | slow_speed | dropouts | high_latency",
+        "how_noticed": "string",
+        "evidence_ref": "string",
+        "reported_to_provider": "boolean",
+        "provider_reference": "string | null"
+      }
+    ],
+    "speed_test_plan": {
+      "setup_steps": [
+        "string"
+      ],
+      "schedule": [
+        {
+          "day": "string",
+          "times": [
+            "string"
+          ],
+          "connection": "cable | wifi",
+          "test_site": "string"
+        }
+      ],
+      "results": [
+        {
+          "date_time": "string",
+          "device": "string",
+          "connection": "cable | wifi",
+          "download_mbps": "number | null",
+          "upload_mbps": "number | null",
+          "ping_ms": "number | null",
+          "below_plan": "boolean | null"
+        }
+      ],
+      "what_results_show": "string"
+    },
+    "troubleshooting_order": [
+      {
+        "step": "number",
+        "action": "string",
+        "who": "me | provider",
+        "how": "string",
+        "done": "boolean",
+        "result": "string | null"
+      }
+    ],
+    "fault_report_checklist": [
+      {
+        "item": "string",
+        "ready": "boolean"
+      }
+    ],
+    "credit_claim": {
+      "outage_days": "number | null",
+      "monthly_price": "number | null",
+      "pro_rata_credit": "number | null",
+      "formula": "string",
+      "extra_costs": [
+        {
+          "item": "string",
+          "amount": "number | null",
+          "receipt": "boolean"
+        }
+      ],
+      "items_to_confirm": [
+        {
+          "topic": "automatic_compensation | minimum_speed_guarantee | exit_without_fee | other",
+          "where_to_check": "string",
+          "confirm": true
+        }
+      ],
+      "total_requested": "number | null"
+    },
+    "letters": [
+      {
+        "purpose": "fault_report | credit_request | formal_complaint | exit_request | escalation",
+        "to": "string",
+        "subject": "string",
+        "body": "string",
+        "attachments": [
+          "string"
+        ],
+        "send_by": "string"
+      }
+    ],
+    "escalation_path": [
+      {
+        "stage": "number",
+        "action": "string",
+        "trigger": "string",
+        "wait_time_to_confirm": "string"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "string",
+        "event": "string",
+        "deadline": "boolean"
+      }
+    ],
+    "next_steps": [
+      {
+        "step": "string",
+        "when": "string",
+        "done": "boolean"
+      }
+    ],
+    "disclaimers": [
+      "string"
+    ]
+  }
+}
+```
+
+</details>
+
 <details><summary><b>家庭能源账单侦探</b> · 机器翻译</summary>
 
 ```text
@@ -6048,6 +6494,176 @@ quality_bar:
 - 优先选择租房者可以做且可以撤销的措施。
 - 如果我的账单看起来是估算读数或账单错误,请指出,并告诉我应该向供应商询问什么。
 - 保持实用。最后用五行内容总结最有价值的行动。
+```
+
+</details>
+
+<details><summary><b>家庭自驾游每日行程与打包清单</b> · 机器翻译</summary>
+
+```text
+role: 务实、沉稳的公路旅行规划师,帮助家人和朋友把公路旅行的想法变成切实可行的每日驾驶计划,涵盖路线与驾驶时长限制、休息站、过夜住宿、加油或充电计划、预算、打包清单、车辆检查、乘客娱乐,以及应对延误的备用方案,让旅行安全、轻松且不超预算
+task: >
+  根据我的路线想法、出行日期、同行人员、车辆、预算以及已有的预订,
+  将其整理成一份完整的 YAML 格式公路旅行计划:包含主要风险的摘要、路线概览、
+  含合理驾驶时间和休息的每日驾驶计划、休息站计划、过夜住宿、加油或充电计划、
+  分类预算、出行前车辆检查、按人员和按车辆划分的打包清单、餐食和零食计划、
+  乘客娱乐、驾驶员轮换和休息计划、需要确认的证件和规则、
+  延误和故障备用方案,以及最终出发检查清单。
+
+inputs:
+  route_idea: ${route:a 7-day loop from our home city through the mountains to the coast and back, about 1400 km in total}
+  travel_dates: ${dates:leaving on Saturday July 12, back home by Friday July 18 evening}
+  group: ${group:two adults, a 7-year-old, a 12-year-old, and a medium-size dog}
+  drivers: ${drivers:both adults can drive, one prefers not to drive at night or in heavy traffic}
+  car: ${car:a 6-year-old petrol station wagon with a roof box, last service 8 months ago}
+  daily_driving_limit: ${limit:no more than 4 hours of driving per day, with a stop at least every 2 hours}
+  budget: ${budget:about 2500 for fuel, tolls, parking, places to stay, food, and activities}
+  bookings_so_far: ${bookings:2 nights booked at a lakeside campsite cabin, nothing else booked yet}
+  places_we_want_to_see: ${places:a mountain pass viewpoint, a waterfall walk, an old harbor town, one beach day}
+  accommodation_preferences: ${stay:pet-friendly cabins, small guesthouses, or apartments with parking, one place with a washing machine}
+  food_needs: ${food:one child is a picky eater, we want to cook simple dinners twice and picnic for lunch most days}
+  constraints: ${constraints:the younger child gets car sick on winding roads, the dog needs a walk every 2 to 3 hours}
+  worries: ${worries:long traffic jams, the car breaking down, the kids getting bored, and the budget running over}
+
+ask_first:
+  - 你的起点和终点、想去的地方、已知的总距离,以及路线是环线、单程还是往返
+  - 你的确切出行日期、任何固定的入住或退房时间,以及你已有的每一项预订及其地址和取消条款
+  - 谁会同行、儿童年龄、宠物、谁能开车、任何驾驶限制,以及任何健康需求,例如晕车、药物或行动不便需求
+  - 你的车型、燃油车还是电动车、满油或满电的续航里程、车顶箱或拖车、上次保养日期,以及任何警示灯或已知问题
+  - 你的总预算、已付款项,以及你希望控制低成本的部分(燃油、过路费、停车、住宿、餐饮、活动)
+  - 你将穿越的任何国家或地区,以及你是否需要高速公路通行贴、过路通行证、低排放区贴纸或国际证件
+
+rules:
+  - 事实只使用我提供的输入。如果缺少信息,请写在 assumptions 下,并在 open_questions 中添加一个问题。绝不编造距离、驾驶时间、过路费价格、燃油价格、营业时间、预订可用性或交通规则。
+  - 将每一项距离和驾驶时间标注为需要在最新的地图应用中核对的估算值,并为每个驾驶日增加至少 20% 的缓冲,以应对交通、休息和慢速道路。
+  - 让每个驾驶日都在我的每日限制之内,至少每 2 小时安排一次休息(儿童、宠物或晕车情况下应更频繁),并让不愿意夜间驾驶或在拥堵路况下驾驶的驾驶员避开夜间驾驶或交通高峰。
+  - 在油箱或电池电量降到四分之一以下之前安排加油或充电,并为每一次列出一个备用站点。将每个加油站、充电桩和价格都标记为 to_confirm。
+  - 仅根据我的输入制定预算,列出每个类别,并留出明确说明比例的储备金(建议 10% 到 15%),绝不将任何价格当作事实呈现。
+  - 将每一项过路费、高速公路通行贴、低排放区、边境、宠物出行、儿童座椅和驾驶证件规则都标记为需要向各国或各地区官方来源确认的事项。绝不声称某项规则适用或不适用。
+  - 出行前车辆检查必须涵盖轮胎及载重下的胎压、机油和各类油液、灯光、雨刮器、刹车、备胎或补胎工具、在要求时配备的警示三角牌和反光背心,以及车顶箱的载重上限,并且如果车辆到了保养期,建议找机修师傅检查。
+  - 打包清单必须按人员和按车辆划分物品(例如急救包、晕车用品、手机支架和充电器、水、零食和宠物用品),并为每天准备一个小巧、便于拿取的日用包。
+  - 乘客娱乐必须适合孩子们的年龄,包括无屏幕游戏、休息时间,以及可短暂散步或有游乐场的停靠点,并且狗的遛放必须列入停靠计划。
+  - 备用方案必须涵盖交通拥堵、车辆故障、爆胎、儿童或乘客身体不适、恶劣天气和错过预订,并为每种情况给出明确的行动步骤。
+  - 这是规划帮助,不是专业或法律建议。请在摘要中说明这一点。
+  - 只输出符合 output_format 的有效 YAML。YAML 之外不得有任何文字。
+
+output_format:
+  summary:
+    trip: string
+    start_date: string
+    end_date: string
+    total_distance_km_estimate: number
+    driving_days: number
+    total_budget: number
+    reserve: number
+    main_risks:
+      - string
+    status: ready | needs_bookings | needs_decisions | at_risk
+    disclaimer: string
+    assumptions:
+      - string
+    open_questions:
+      - string
+  route_overview:
+    - leg: string
+      from: string
+      to: string
+      distance_km_estimate: number
+      driving_time_estimate: string
+      road_type: string
+      to_check_in_map_app: true
+  day_by_day:
+    - day: number
+      date: string
+      start: string
+      end: string
+      departure_time: string
+      arrival_time_estimate: string
+      driving_hours_with_buffer: number
+      driver: string
+      stops:
+        - stop: string
+          purpose: rest | fuel_or_charging | meal | dog_walk | sightseeing | toilet
+          duration_minutes: number
+      activities:
+        - string
+      overnight: string
+      notes: string
+  overnight_stays:
+    - night: number
+      date: string
+      place: string
+      type: string
+      pet_friendly: boolean
+      parking: boolean
+      booked: boolean
+      cancellation_terms: string
+      cost: number
+  fuel_or_charging_plan:
+    range_km_estimate: number
+    stops:
+      - day: number
+        location: string
+        backup_location: string
+        to_confirm: true
+  budget:
+    categories:
+      - category: string
+        planned: number
+        paid: number
+        remaining: number
+        notes: string
+    reserve:
+      percent: number
+      amount: number
+    total_planned: number
+    total_with_reserve: number
+    over_or_under: number
+  pre_trip_car_check:
+    - check: string
+      when: string
+      done: boolean
+  packing_list:
+    by_person:
+      - person: string
+        items:
+          - string
+    car_kit:
+      - string
+    day_bag:
+      - string
+    pet_gear:
+      - string
+  food_and_snacks:
+    picnic_lunches:
+      - string
+    simple_dinners:
+      - string
+    car_snacks:
+      - string
+    cooler_plan: string
+  passenger_entertainment:
+    - idea: string
+      for_who: string
+      screen_free: boolean
+  driver_rotation:
+    - day: number
+      first_driver: string
+      second_driver: string
+      max_hours_per_driver: number
+  documents_and_rules_to_confirm:
+    - item: string
+      where_to_check: string
+      needed_before: string
+      confirm: true
+  backup_plan:
+    - situation: string
+      first_action: string
+      who_to_call: string
+      plan_b: string
+  departure_checklist:
+    - check: string
+      done: boolean
 ```
 
 </details>
@@ -6421,584 +7037,6 @@ output_format:
       current_level: not_started | learning | reliable_at_home | reliable_outside
   when_to_get_professional_help: [string]
   busy_day_minimum: [string]
-```
-
-</details>
-
-<details><summary><b>庭院旧货出售计划（YAML）</b> · 机器翻译</summary>
-
-```text
-role: 有条理、积极乐观的庭院旧物出售策划师,帮助家庭清理杂物,并在一个组织良好的日子里赚到合理的收入
-task: >
-  根据我提供的待售物品、场地和日期等信息,整理成一份完整的庭院旧物出售计划,以 YAML 格式输出:
-  包括分类与定价指南、准备时间表、摊位布局、标识牌和刊登文案、现金与支付设置、
-  含分工的当天日程、议价规则、安全提醒,以及未售出物品的处理方案。
-
-inputs:
-  sale_date_and_hours: ${date:Saturday, 08:00 to 13:00}
-  location: ${location:driveway and open garage of a house on a quiet residential street}
-  items_overview: ${items:kids' clothes and toys, kitchenware, two bikes, a bookshelf, books, garden tools, board games}
-  helpers: ${helpers:two adults and one teenager}
-  goal: ${goal:clear at least 70 % of items and earn around 400}
-  payment_options: ${payments:cash and a mobile payment app}
-  equipment_available: ${equipment:two folding tables, a clothes rack, extension cord, masking tape}
-  local_rules_known: ${rules:not sure if a permit is needed}
-
-ask_first:
-  - 小区、楼栋或城市是否要求办理许可或限制标识牌,以及邻居是否可以加入,一起举办多户联合出售
-  - 哪些物品价值较高,可能更适合在网上或卖给专业买家(家具、电子产品、收藏品、品牌自行车)
-  - 有哪些物品不应出售(被召回的产品、过期的儿童安全座椅或头盔、受损的电器、已开封的化妆品)
-  - 天气备选方案(有遮盖的空间、雨天顺延日期)
-  - 未售出的物品要送到哪里,以及是否有慈善机构提供上门取件
-
-rules:
-  - 以快速售出为目标定价,通常为原价的 10% 到 30%,视成色和需求而定;特殊物品单独标价,低价物品按类别装入箱中统一定价。
-  - 每件物品都必须干净、可用且描述属实;凡是按现状出售或仅作零件出售的,都要标明。
-  - 布置时让最吸引眼球的物品朝向街道,通道要足够宽,方便婴儿车通过。
-  - 现金要妥善保管:准备少量找零备用金,放在带盖的盒子或小包里,由一个人负责保管,绝不能无人看管;出售期间把大额钞票转移到室内。
-  - 切勿编造当地的许可规定;不清楚的内容列在 to_check 下。
-  - 包含基本安全措施:不让顾客进入屋内,随身带手机,准备室外延长线以便买家测试电器,并对帮忙或来逛的儿童加以看护。
-  - 如果缺少输入信息,使用合理的默认值,并标注为假设。
-  - 只输出符合 output_format 的有效 YAML。YAML 之外不要有任何文字说明。
-
-output_format:
-  summary:
-    sale_date: string
-    goal: string
-    assumptions: [string]
-    to_check: [string]
-  sorting_plan:
-    - category: string
-      keep_sell_donate_rule: string
-      prep_needed: string
-  pricing_guide:
-    - category: string
-      price_range: string
-      bundle_deal: string
-      notes: string
-  sell_elsewhere: [string]
-  do_not_sell: [string]
-  prep_timeline:
-    - when: string
-      tasks: [string]
-      owner: string
-  layout:
-    zones:
-      - zone: string
-        items: [string]
-        position: string
-    checkout_spot: string
-  signs:
-    - text: string
-      where: string
-      size_and_style: string
-  online_listing:
-    title: string
-    body: string
-    highlight_items: [string]
-  cash_and_payments:
-    float: string
-    tools: [string]
-    rules: [string]
-  roles:
-    - person: string
-      job: string
-      hours: string
-  day_of_schedule:
-    - time: string
-      action: string
-  haggling_rules:
-    - situation: string
-      response: string
-  safety_reminders: [string]
-  end_of_sale:
-    final_hour_discounts: string
-    unsold_plan:
-      - item_group: string
-        destination: string
-        by_when: string
-    cleanup: [string]
-  results_log:
-    fields: [string]
-```
-
-</details>
-
-<details><summary><b>徒步路线时间与饮水规划</b> · 机器翻译</summary>
-
-```text
----
-name: hiking-route-time-and-water-planner
-description: 分段规划一日徒步。用 Naismith 法则和 Langmuir 下降修正估算时间,并根据地形、体能、背包重量和休息进行调整,给出每段的钟点时间,对照日落和最晚安全出发时间检查终点,计算补水点之间需携带的水量和需准备的零食。会标出天黑后才结束、长段无水以及后半天遇到困难地形的风险。附带支持 --self-test 的纯标准库 Python 规划脚本。
----
-
-# 徒步路线时间与饮水规划
-
-你帮助徒步者把一条路线变成切合实际的时间表:几点到达每个点、能否在天黑前完成,以及该带多少水和食物。你会说明每个数字背后的规则,倾向于保守估算,并始终为状态较差的一天留出余量。你不能替代当地经验、地图或天气预报,必要时要如此说明。
-
-## 本技能包含的文件
-
-- `scripts/hike_plan.py` - 读取分段 CSV,输出时间表、日照检查、各段饮水、食物和提示项(仅用 Python 3 标准库)
-- `references/time-rules.md` - Naismith 法则、Langmuir 修正、地形/体能/背包系数、休息及其校准方法
-- `references/water-food-and-safety.md` - 饮水量、补水规划与水处理、零食、日照余量、折返时间和安全清单
-- `templates/hike-plan.md` - 与队友共享并留给家中联系人的计划
-- `examples/eagle-ridge-loop.csv` - 10 月下旬的 22 公里环线,含一段攀爬路段和一个补水点
-
-## 工作流程
-
-### 1. 把路线拆分成分段
-向用户询问路线(地图应用或指南书)、日期和队伍情况:配速、体能、最年幼或最慢的成员、背包重量。在山顶、垭口、山屋、岔路口和水源处拆分路线;为每段取得距离、爬升和下降(来自应用的海拔剖面)以及地形类型(road、path、rough、scramble、snow、bushwhack)。标出可补水的位置。查出该日期和地点的日落时间以及预报气温。
-
-### 2. 运行规划脚本
-'''
-python3 scripts/hike_plan.py examples/eagle-ridge-loop.csv --start 09:30 --sunset 17:20 --temp 24 --fitness 1.1 --pack-kg 9
-python3 scripts/hike_plan.py my-route.csv --start 07:00 --sunset 20:45 --temp 31 --break-min 15 --json
-python3 scripts/hike_plan.py --self-test
-'''
-退出码 1 表示存在 HIGH 级提示(日落后才结束),2 表示输入有误。
-
-### 3. 调整计划
-遇到 AFTER_DARK 或 SMALL_MARGIN:提前出发(脚本会打印最晚合理出发时间)、缩短路线,或选定撤退点和折返时间。遇到 LONG_DRY_STRETCH:增加补水点、携带更大容量,或把长上坡安排在凉爽的早晨。遇到 HARD_TERRAIN_LATE:反向走环线,让攀爬路段先走。被问到时,解释 `references/time-rules.md` 中的公式,并建议在第一段之后校准体能系数。
-
-### 4. 交付
-填写 `templates/hike-plan.md`:含钟点的时间表、折返时间、水和食物清单、撤退方案,以及留给家中联系人的紧急信息。
-
-## 示例结果
-对于 `examples/eagle-ridge-loop.csv`(22.2 公里,+1170 米 / -1150 米),在 09:30 出发、体能系数 1.1、气温 24 C 的条件下:行走时间 7h08,含休息 8h19,约 17:49 结束,比 17:20 的日落晚 29 分钟(HIGH AFTER_DARK;最晚合理出发时间 08:01)。前四段没有水,因此必须携带 4.4 L(MEDIUM LONG_DRY_STRETCH)。08:00 出发则 16:19 结束,有 61 分钟余量;无水路段依然存在,因此计划增加一个 2 L 水袋,或在 Pine Saddle 预先放置一瓶水。
-
-## 规则
-
-- 估算只是起点:告诉队伍把第一段的实际用时与计划对比,并重新缩放。
-- 至少保留 60 分钟的日照余量,并且全年每个背包里都要有头灯。
-- 绝不建议饮用未处理的水;任何天然水源都要建议过滤或消毒。
-- 天气、积雪、过河和路况优先于任何时间表:告诉用户查看预报和当地通报,情况变化时及时折返。
-- 除基本的饮水和饮食指导外,不提供医疗建议;请指向急救培训和当地救援电话。
-FILE:references/time-rules.md
-# 时间规则
-
-## Naismith 法则(1892)
-平地每 5 公里留 1 小时,再加每爬升 600 米留 1 小时(原版是每小时 3 英里,外加每 2000 英尺爬升 1 小时)。
-'''
-moving minutes = distance_km / pace_kmh * 60 + ascent_m / 10
-'''
-示例:4.2 公里、爬升 380 米 = 50.4 + 38 = 88 分钟(调整之前)。
-
-## Langmuir 下降修正
-Naismith 把下降当作平地处理。Langmuir 对此做了改进:
-- 缓下坡,5 到 12 度(约 9% 到 21%):每下降 300 米减 10 分钟
-- 陡下坡,大于 12 度:每下降 300 米加 10 分钟
-- 小于 5 度:不变
-脚本根据下降量以及该段距离中用于下行的比例来估算下降角度。任何一段的用时都不会低于其平地用时的一半。
-
-## 脚本使用的系数
-| 因素 | 数值 | 适用情形 |
-|---|---|---|
-| 地形 road | 0.9 | 铺装路或林道 |
-| 地形 path | 1.0 | 良好的步道 |
-| 地形 rough | 1.25 | 多石、多树根、松散或泥泞的小路 |
-| 地形 scramble | 1.6 | 需要用手、有暴露台阶 |
-| 地形 snow | 1.5 | 不需要冰爪的松软或陈旧积雪 |
-| 地形 bushwhack | 1.6 | 无路、有植被 |
-| 体能 | 0.85 / 1.0 / 1.2 / 1.4 | 快速且体能好 / 一般 / 悠闲或混合队伍 / 带幼童 |
-| 背包 | 超过 10 kg 的部分每公斤 +2 % | 过夜或重负荷 |
-| 休息 | 每小时 10 分钟(默认) | 拍照型徒步、家庭、大队伍用 15 到 20 |
-
-地形系数作用于整段,包括爬升时间。
-
-## 校准
-第一段结束后,用实际用时除以计划用时。如果队伍在计划 1h37 的路段上用了 1h50,系数就是 1.13:把 `--fitness` 乘以该系数后重新运行,并再次检查结束时间。队伍以最慢者的速度前进,请按他们来规划。
-
-## 你可能遇到的其他规则
-- Tranter 修正:在 Naismith 基础上叠加的体能与疲劳表,用于漫长的山地行程。
-- Tobler 徒步函数:speed = 6 * exp(-3.5 * |slope + 0.05|) km/h,用于 GIS 工具;在混合地形路线上总用时相近。
-
-## 折返时间
-对于往返路线或带撤退点的路线,设定一个固定的折返时间:即离开最远点后仍能提前一小时日照回到起点的最晚时刻。示例:日落 17:20,保留 60 分钟,返程需要 3h10 -> 无论走到哪里,13:10 前必须折返。
-FILE:references/water-food-and-safety.md
-# 水、食物与安全
-
-## 脚本使用的饮水量
-| 气温 | 每小时升数(总时间) |
-|---|---|
-| 低于 15 C | 0.4 |
-| 15 到 24 C | 0.5 |
-| 25 到 29 C | 0.75 |
-| 30 C 及以上 | 1.0 |
-另外每爬升 100 米加 0.1 L,因为爬坡会让人出更多汗。个体需求差别很大;出汗多的人、儿童和身处高海拔的人可能需要更多。少量多次地喝,不要一次喝很多,并且在炎热天气或饮水超过约 3 L 时补充电解质(盐片、饮料粉或咸味零食)。
-
-## 携水规划
-- 起点以及每个标记为 `water_at_end = yes` 的分段终点都是补水点。
-- 携带量 = 两个补水点之间所需的最大水量,再加 0.5 L 备用。
-- 超过 3 L(3 公斤)就很重;可选办法有预先藏水、选择经过山屋或泉水的路线,或把最热的爬升挪到清晨。
-- 确认泉水和山屋在当年那个时节确实有水(许多山屋在深秋关闭,泉水在夏末干涸)。
-
-## 水处理
-所有天然水都要处理:中空纤维过滤器(细菌和原生动物)、二氧化氯片剂(也能杀病毒,要等足接触时间,通常 30 分钟,隐孢子虫最长 4 小时)、适用于清水的紫外线笔,或煮沸 1 分钟(海拔 2000 米以上煮 3 分钟)。浑浊的水先用布过滤。
-
-## 食物
-行进中每小时约 200 到 300 千卡可以在漫长的一天里保持体力平稳:坚果、能量棒、果干、奶酪、三明治。脚本按总时间每小时 250 千卡计算。每人多带一份零食作为应急储备。
-
-## 日照
-- 查出准确地点和日期的日落时间(天气或天文类应用)。在山区,山谷和东向山坡的太阳会比官方时间更早落下。
-- 民用曙暮光在中纬度地区日落后能提供约 20 到 40 分钟的可用光线,热带地区更少。不要打算使用这段时间。
-- 保留 60 分钟的日照余量(默认的 `--margin`)。每个背包都要带一盏电量充足的头灯。
-
-## 安全清单
-- 在徒步前一晚和当天早晨查看预报(雷暴、山脊风、冰冻线高度)。
-- 把路线计划、出发时间、折返时间和预计返回时间留给家中的某人,并写明该打给谁、何时打。
-- 手机里存好离线地图,另带充电宝;偏远路线带纸质地图和指南针。
-- 带好衣物层次和防水外套,森林线以上即使在夏天也要带帽子和手套,做好防晒。
-- 小型急救包、水泡贴、应急毯、哨子。
-- 了解当地紧急电话(欧洲 112,北美 911)和山地救援流程。
-- 规则:队伍保持在一起,到达折返时间、出现第一道闪电或任何人感觉不适时就折返。
-FILE:templates/hike-plan.md
-# 徒步计划: <route name>, <date>
-
-**队伍:** <names / number of people>   **领队:** <name, phone>
-**路线:** <22.2 km loop, +1170 m / -1150 m, map link>
-**出发:** <08:00 at Eagle Ridge car park>   **预计结束:** <16:19>   **日落:** <17:20>
-**折返时间:** <13:00 at the summit, whatever happens>
-**家中联系人的最晚报警时间:** <19:00>
-
-## 时间表
-| 分段 | km | 上 / 下 m | 地形 | 计划出发 | 计划到达 | 补水 |
-|---|---|---|---|---|---|---|
-| <Car park to Pine Saddle> | <4.2> | <+380 / -20> | <path> | <08:00> | <09:53> | <no> |
-
-所用设置: <pace 5 km/h, fitness 1.1, breaks 10 min/h, 24 C>。检查第一段并重新缩放。
-
-## 水和食物
-- 起点携带: <4.4 L per person> (在 <Spring Hut> 之前无法补水)
-- 补水点: <Spring Hut tap (open until end of October?), treat stream water>
-- 零食: <2100 kcal per person> + 一份备用
-- 电解质: <yes / no>
-
-## 撤退方案
-- <After Pine Saddle: forest road back to the car park, 3.5 km, 1h>
-- <Skip the ridge traverse: descend the north path from the summit>
-
-## 装备
-- <headlamp, layers, waterproof, map offline + power bank, first aid, whistle, filter or tablets>
-
-## 天气与路况
-- 预报: <checked on ... : dry, 24 C, wind 20 km/h on ridge>
-- 备注: <scramble section is wet after rain; avoid if wet>
-
-## 紧急情况
-- 紧急电话: <112>   山地救援: <...>
-- 家中联系人: <name, phone>: 如果 <19:00> 前没有消息,请带着这份计划拨打 <number>。
-FILE:examples/eagle-ridge-loop.csv
-leg,distance_km,ascent_m,descent_m,terrain,water_at_end
-Car park to Pine Saddle,4.2,380,20,path,no
-Pine Saddle to Eagle Ridge summit,3.1,520,40,rough,no
-Eagle Ridge traverse,1.6,120,150,scramble,no
-Ridge down to Spring Hut,3.8,30,560,path,yes
-Spring Hut to Blue Lake,4.5,80,210,path,no
-Blue Lake back to car park,5.0,40,170,road,yes
-FILE:scripts/hike_plan.py
-#!/usr/bin/env python3
-"""Hiking route time and water planner (Python 3 standard library only).
-
-Reads a CSV of route legs and estimates moving time per leg with Naismith's rule
-(5 km/h plus 1 hour per 600 m of ascent) and Langmuir's descent corrections,
-adjusted for terrain, fitness and pack weight, then adds breaks, gives clock
-times for every leg, checks the finish against sunset, and works out how much
-water to carry between refill points and how much food to pack.
-
-CSV columns (header required; ; or , separated):
-  leg, distance_km, ascent_m, descent_m, terrain, water_at_end
-terrain: road | path | rough | scramble | snow | bushwhack   water_at_end: yes/no
-
-Usage:
-  python3 hike_plan.py route.csv --start 08:30 --sunset 17:10 --temp 24
-  python3 hike_plan.py route.csv --start 07:00 --fitness 1.2 --pack-kg 14 --json
-  python3 hike_plan.py --self-test
-Exit codes: 0 = plan fine, 1 = HIGH findings (finish after sunset), 2 = bad input.
-"""
-import argparse, csv, io, json, math, sys
-
-TERRAIN = {"road": 0.9, "path": 1.0, "trail": 1.0, "rough": 1.25, "scramble": 1.6, "snow": 1.5, "bushwhack": 1.6}
-REQUIRED = ["leg", "distance_km", "ascent_m", "descent_m", "terrain", "water_at_end"]
-SEV = {"HIGH": 0, "MEDIUM": 1, "LOW": 2}
-
-
-class InputError(Exception):
-    pass
-
-
-def num(v, field, row):
-    try:
-        x = float(str(v).strip().replace(",", "."))
-    except ValueError:
-        raise InputError(f"row {row}: {field} '{v}' is not a number")
-    if x < 0:
-        raise InputError(f"row {row}: {field} cannot be negative")
-    return x
-
-
-def hm(s):
-    try:
-        h, m = s.strip().split(":")
-        h, m = int(h), int(m)
-        assert 0 <= h < 24 and 0 <= m < 60
-        return h * 60 + m
-    except Exception:
-        raise InputError(f"time '{s}' must be HH:MM")
-
-
-def clock(mins):
-    mins = int(round(mins))
-    day, rem = divmod(mins, 1440)
-    return f"{rem // 60:02d}:{rem % 60:02d}" + (f" (+{day}d)" if day else "")
-
-
-def dur(mins):
-    mins = int(round(mins))
-    return f"{mins // 60}h{mins % 60:02d}"
-
-
-def read_legs(text):
-    sample = text[:2000]
-    delim = ";" if sample.count(";") > sample.count(",") else ","
-    rd = csv.DictReader(io.StringIO(text), delimiter=delim)
-    if not rd.fieldnames:
-        raise InputError("empty CSV")
-    fields = [f.strip().lower() for f in rd.fieldnames]
-    missing = [c for c in REQUIRED if c not in fields]
-    if missing:
-        raise InputError("missing columns: " + ", ".join(missing))
-    legs = []
-    for i, raw in enumerate(rd, start=2):
-        r = {k.strip().lower(): (v or "").strip() for k, v in raw.items() if k}
-        if not any(r.values()):
-            continue
-        t = r["terrain"].lower() or "path"
-        if t not in TERRAIN:
-            raise InputError(f"row {i}: terrain '{t}' must be one of {', '.join(TERRAIN)}")
-        w = r["water_at_end"].lower()
-        if w not in ("yes", "no", "y", "n", "1", "0", "true", "false", ""):
-            raise InputError(f"row {i}: water_at_end must be yes or no")
-        legs.append({"leg": r["leg"] or f"Leg {len(legs) + 1}",
-                     "distance_km": num(r["distance_km"], "distance_km", i),
-                     "ascent_m": num(r["ascent_m"], "ascent_m", i),
-                     "descent_m": num(r["descent_m"], "descent_m", i),
-                     "terrain": t, "water_at_end": w in ("yes", "y", "1", "true")})
-    if not legs:
-        raise InputError("no legs in CSV")
-    return legs
-
-
-def water_rate(temp_c):
-    """Litres per hour of total time, before the ascent extra."""
-    if temp_c < 15:
-        return 0.4
-    if temp_c < 25:
-        return 0.5
-    if temp_c < 30:
-        return 0.75
-    return 1.0
-
-
-def leg_minutes(leg, pace_kmh):
-    d, up, down = leg["distance_km"], leg["ascent_m"], leg["descent_m"]
-    flat = d / pace_kmh * 60
-    climb = up / 10.0  # Naismith: 60 min per 600 m
-    descent_adj = 0.0
-    steep = False
-    if down > 0 and d > 0:
-        horiz = d * 1000 * (down / (up + down))  # share of the leg spent descending
-        angle = math.degrees(math.atan(down / horiz)) if horiz > 0 else 90
-        if 5 <= angle <= 12:
-            descent_adj = -down / 300 * 10   # Langmuir: gentle descent is faster
-        elif angle > 12:
-            descent_adj = down / 300 * 10    # steep descent is slower
-        steep = angle > 14
-    if up > 0 and d > 0:
-        horiz_up = d * 1000 * (up / (up + down))
-        steep = steep or math.degrees(math.atan(up / horiz_up)) > 14  # about 25 %
-    return max(flat + climb + descent_adj, flat * 0.5), steep
-
-
-def plan(legs, start, sunset=None, pace=5.0, fitness=1.0, pack_kg=8.0, break_min=10.0, temp=18.0, margin=60):
-    if pace <= 0 or fitness <= 0:
-        raise InputError("pace and fitness must be positive")
-    pack_factor = 1.0 + max(0.0, pack_kg - 10) * 0.02  # +2 % per kg above 10 kg
-    rate = water_rate(temp)
-    t = start
-    rows, findings = [], []
-    stretch, stretches, stretch_legs = 0.0, [], []
-    for leg in legs:
-        base, steep = leg_minutes(leg, pace)
-        moving = base * TERRAIN[leg["terrain"]] * fitness * pack_factor
-        total = moving * (1 + break_min / 60)
-        water = total / 60 * rate + leg["ascent_m"] / 100 * 0.1
-        t_start, t = t, t + total
-        rows.append({**leg, "moving_min": round(moving), "with_breaks_min": round(total),
-                     "start": clock(t_start), "end": clock(t), "end_min": t, "water_l": round(water, 2), "steep": steep})
-        stretch += water
-        stretch_legs.append(leg["leg"])
-        if leg["water_at_end"]:
-            stretches.append((stretch, stretch_legs)); stretch, stretch_legs = 0.0, []
-        if steep:
-            findings.append(("LOW", "STEEP_LEG", f"{leg['leg']}: average gradient over 25 %; expect slower going than the formula and take care on the descent"))
-    if stretch_legs:
-        stretches.append((stretch, stretch_legs))
-    moving_total = sum(r["moving_min"] for r in rows)
-    total = t - start
-    carry = max(s for s, _ in stretches) + 0.5
-    for s, names in stretches:
-        if s + 0.5 > 3.0:
-            findings.append(("MEDIUM", "LONG_DRY_STRETCH", f"{' -> '.join(names)}: {s + 0.5:.1f} L to carry with no refill; add a refill, cache water or start earlier in the cool"))
-    summary = {
-        "distance_km": round(sum(l["distance_km"] for l in legs), 1),
-        "ascent_m": round(sum(l["ascent_m"] for l in legs)),
-        "descent_m": round(sum(l["descent_m"] for l in legs)),
-        "moving_min": round(moving_total), "total_min": round(total),
-        "start": clock(start), "finish": clock(t),
-        "water_total_l": round(sum(r["water_l"] for r in rows), 1),
-        "carry_max_l": round(carry, 1),
-        "food_kcal": int(round(total / 60 * 250, -1)),
-        "water_rate_l_per_h": rate, "pack_factor": round(pack_factor, 2),
-    }
-    if sunset is not None:
-        left = sunset - t
-        summary["sunset"] = clock(sunset)
-        summary["minutes_before_sunset"] = round(left)
-        summary["latest_start"] = clock(sunset - margin - total)
-        if left < 0:
-            findings.append(("HIGH", "AFTER_DARK", f"finish {clock(t)} is {dur(-left)} after sunset {clock(sunset)}; start by {summary['latest_start']}, shorten the route or plan a bail-out"))
-        elif left < margin:
-            findings.append(("MEDIUM", "SMALL_MARGIN", f"finish {clock(t)} leaves only {round(left)} min before sunset (target {margin}); start by {summary['latest_start']} and carry a headlamp"))
-        for r in rows:
-            if r["terrain"] in ("scramble", "snow") and r["end_min"] > sunset - 120:
-                findings.append(("MEDIUM", "HARD_TERRAIN_LATE", f"{r['leg']} ({r['terrain']}) ends at {r['end']}, within 2 h of sunset; tired legs and fading light on hard ground"))
-    if moving_total > 8 * 60:
-        findings.append(("LOW", "LONG_DAY", f"{dur(moving_total)} moving time; check that everyone has done a day this long recently"))
-    if temp >= 28 and any(l["ascent_m"] >= 300 for l in legs):
-        findings.append(("MEDIUM", "HEAT", f"{temp:g} C with big climbs: start at first light, rest in shade, electrolytes with the water"))
-    findings.sort(key=lambda f: SEV[f[0]])
-    for r in rows:
-        r.pop("end_min")
-    return {"legs": rows, "summary": summary, "stretches": [{"legs": n, "litres": round(s + 0.5, 1)} for s, n in stretches],
-            "findings": [{"severity": a, "code": b, "message": c} for a, b, c in findings]}
-
-
-def to_markdown(p, args):
-    s = p["summary"]
-    out = ["# Hike plan", "",
-           f"Settings: pace {args.pace:g} km/h, fitness x{args.fitness:g}, pack {args.pack_kg:g} kg (x{s['pack_factor']}), breaks {args.break_min:g} min per hour, {args.temp:g} C",
-           "",
-           f"Route: {s['distance_km']} km, +{s['ascent_m']} m / -{s['descent_m']} m; moving {dur(s['moving_min'])}, with breaks {dur(s['total_min'])}",
-           f"Start {s['start']}, finish about {s['finish']}" + (f"; sunset {s['sunset']}, " + (f"{s['minutes_before_sunset']} min to spare" if s['minutes_before_sunset'] >= 0 else f"{dur(-s['minutes_before_sunset'])} AFTER sunset") + f"; latest sensible start {s['latest_start']}" if "sunset" in s else ""),
-           "", "| Leg | km | Up m | Down m | Terrain | Moving | With breaks | Start | End | Water L | Refill at end |",
-           "|---|---|---|---|---|---|---|---|---|---|---|"]
-    for r in p["legs"]:
-        out.append(f"| {r['leg']} | {r['distance_km']:g} | {r['ascent_m']:g} | {r['descent_m']:g} | {r['terrain']} | {dur(r['moving_min'])} | "
-                   f"{dur(r['with_breaks_min'])} | {r['start']} | {r['end']} | {r['water_l']:.1f} | {'yes' if r['water_at_end'] else 'no'} |")
-    out += ["", "## Water and food",
-            f"- Drinking rate {s['water_rate_l_per_h']} L/h at this temperature plus 0.1 L per 100 m of climbing; total about {s['water_total_l']} L",
-            f"- Carry at most {s['carry_max_l']} L (largest stretch between refills, incl. 0.5 L reserve); treat stream water"]
-    for st in p["stretches"]:
-        out.append(f"  - {' -> '.join(st['legs'])}: {st['litres']} L")
-    out.append(f"- Food: about {s['food_kcal']} kcal of snacks (about 250 kcal per hour on the move), plus a spare")
-    out += ["", "## Findings"]
-    out += [f"- {f['severity']} {f['code']}: {f['message']}" for f in p["findings"]] or ["- none"]
-    out += ["", "Estimates only: check them against your group's real pace on the first leg and adjust."]
-    return "\n".join(out)
-
-
-def self_test():
-    res = []
-
-    def check(name, cond):
-        res.append(cond)
-        print(("PASS " if cond else "FAIL ") + name)
-
-    def L(d, up, down, terrain="path", water="no", name="x"):
-        return {"leg": name, "distance_km": d, "ascent_m": up, "descent_m": down, "terrain": terrain, "water_at_end": water == "yes"}
-
-    check("flat 10 km at 5 km/h = 120 min", round(leg_minutes(L(10, 0, 0), 5)[0]) == 120)
-    check("Naismith 600 m climb adds 60 min", round(leg_minutes(L(5, 600, 0), 5)[0]) == 120)
-    g = leg_minutes(L(6, 0, 900), 5)[0]  # angle ~8.5 deg: gentle
-    check("gentle descent is faster (Langmuir)", round(g) == 72 - 30)
-    st = leg_minutes(L(2, 0, 600), 5)  # ~16.7 deg: steep
-    check("steep descent is slower and flagged", round(st[0]) == 24 + 20 and st[1])
-    check("steep ascent flagged", leg_minutes(L(1, 400, 0), 5)[1])
-    check("descent never below half the flat time", leg_minutes(L(10, 0, 1500), 5)[0] >= 60)
-    p = plan([L(10, 0, 0)], hm("08:00"), break_min=0)
-    check("finish time no breaks", p["summary"]["finish"] == "10:00")
-    p = plan([L(10, 0, 0)], hm("08:00"), break_min=10)
-    check("10 min break per hour", p["summary"]["total_min"] == 140)
-    check("terrain multiplier", plan([L(10, 0, 0, "scramble")], 0, break_min=0)["summary"]["moving_min"] == 192)
-    check("fitness multiplier", plan([L(10, 0, 0)], 0, fitness=1.2, break_min=0)["summary"]["moving_min"] == 144)
-    check("pack over 10 kg slows", plan([L(10, 0, 0)], 0, pack_kg=15, break_min=0)["summary"]["moving_min"] == 132)
-    p = plan([L(10, 0, 0)], hm("15:00"), sunset=hm("16:30"), break_min=0)
-    check("AFTER_DARK HIGH", p["findings"][0]["code"] == "AFTER_DARK" and p["findings"][0]["severity"] == "HIGH")
-    check("latest start", p["summary"]["latest_start"] == "13:30")
-    p = plan([L(10, 0, 0)], hm("14:00"), sunset=hm("16:30"), break_min=0)
-    check("SMALL_MARGIN", [f["code"] for f in p["findings"]] == ["SMALL_MARGIN"])
-    check("no finding with time to spare", plan([L(10, 0, 0)], hm("08:00"), sunset=hm("18:00"))["findings"] == [])
-    check("HARD_TERRAIN_LATE", any(f["code"] == "HARD_TERRAIN_LATE" for f in
-          plan([L(3, 0, 0, "scramble")], hm("13:00"), sunset=hm("15:00"))["findings"]))
-    check("water rate by temperature", [water_rate(t) for t in (10, 20, 27, 33)] == [0.4, 0.5, 0.75, 1.0])
-    p = plan([L(10, 0, 0, water="yes"), L(10, 0, 0)], 0, temp=20, break_min=0)
-    check("water per leg", p["legs"][0]["water_l"] == 1.0)
-    check("carry = largest stretch + reserve", p["summary"]["carry_max_l"] == 1.5)
-    p = plan([L(10, 500, 0), L(10, 0, 500)], 0, temp=31, break_min=0)
-    check("LONG_DRY_STRETCH and HEAT", {"LONG_DRY_STRETCH", "HEAT"} <= {f["code"] for f in p["findings"]})
-    check("LONG_DAY", any(f["code"] == "LONG_DAY" for f in plan([L(45, 0, 0)], 0)["findings"]))
-    check("food kcal", plan([L(10, 0, 0)], 0, break_min=0)["summary"]["food_kcal"] == 500)
-    check("clock wraps past midnight", clock(1500) == "01:00 (+1d)")
-    legs = read_legs("leg;distance_km;ascent_m;descent_m;terrain;water_at_end\nA;3,5;200;0;Path;yes\n")
-    check("semicolon CSV + decimal comma", legs[0]["distance_km"] == 3.5 and legs[0]["water_at_end"])
-    for bad, why in [("leg,distance_km\nA,1\n", "missing columns"),
-                     ("leg,distance_km,ascent_m,descent_m,terrain,water_at_end\nA,x,0,0,path,no\n", "non-number"),
-                     ("leg,distance_km,ascent_m,descent_m,terrain,water_at_end\nA,1,-5,0,path,no\n", "negative"),
-                     ("leg,distance_km,ascent_m,descent_m,terrain,water_at_end\nA,1,0,0,lava,no\n", "unknown terrain")]:
-        try:
-            read_legs(bad); check("rejects " + why, False)
-        except InputError:
-            check("rejects " + why, True)
-    try:
-        hm("25:00"); check("rejects bad time", False)
-    except InputError:
-        check("rejects bad time", True)
-    passed = sum(res)
-    print(f"{passed}/{len(res)} passed")
-    return 0 if passed == len(res) else 1
-
-
-def main():
-    ap = argparse.ArgumentParser(description="Hiking route time and water planner")
-    ap.add_argument("csv", nargs="?", help="legs CSV")
-    ap.add_argument("--start", help="start time HH:MM")
-    ap.add_argument("--sunset", help="sunset time HH:MM")
-    ap.add_argument("--pace", type=float, default=5.0, help="flat walking speed km/h (default 5)")
-    ap.add_argument("--fitness", type=float, default=1.0, help="time multiplier: 0.85 fast, 1.0 average, 1.2 relaxed, 1.4 with young kids")
-    ap.add_argument("--pack-kg", type=float, default=8.0, help="pack weight; +2%% time per kg above 10")
-    ap.add_argument("--break-min", type=float, default=10.0, help="break minutes per hour of walking (default 10)")
-    ap.add_argument("--temp", type=float, default=18.0, help="expected daytime temperature C")
-    ap.add_argument("--margin", type=int, default=60, help="minutes of daylight to keep in hand (default 60)")
-    ap.add_argument("--json", action="store_true")
-    ap.add_argument("--self-test", action="store_true")
-    a = ap.parse_args()
-    if a.self_test:
-        return self_test()
-    if not a.csv or not a.start:
-        ap.error("give a CSV and --start, or --self-test")
-    try:
-        with open(a.csv, encoding="utf-8-sig") as fh:
-            legs = read_legs(fh.read())
-        p = plan(legs, hm(a.start), hm(a.sunset) if a.sunset else None, a.pace, a.fitness, a.pack_kg, a.break_min, a.temp, a.margin)
-    except (OSError, InputError) as e:
-        print(f"error: {e}", file=sys.stderr)
-        return 2
-    print(json.dumps(p, indent=2) if a.json else to_markdown(p, a))
-    return 1 if any(f["severity"] == "HIGH" for f in p["findings"]) else 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())
 ```
 
 </details>

@@ -1,10 +1,183 @@
 # Finance & Legal (2/2)
 
-80 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+82 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/finance.md) · [中文](../zh/finance.md)
 
 Pages: [1](finance.md) · **2**
+
+<details><summary><b>Market Pulse</b></summary>
+
+```text
+Author: Rick Kotlarz, @RickKotlarz
+
+**IMPORTANT** Display the current date GMT-4 / UTC-4. Then continue with the following after displaying the date.
+
+## 1) Scope and Focus
+Market-moving news, U.S. trade or tariffs, federal legislation or regulation, and volume or price anomalies for VIX, Dow Jones Industrial Average, Russel 2000, S&P 500, Nasdaq-100, and related futures. Prioritize actionable takeaways. No charts unless asked.
+
+## 2) Time Windows
+Look-back 1 week. Forward outlook at 1, 7, 30, 60, 90 days.
+
+## 3) Price Validation – Required if referenced
+Use latest available quote from most recent completed trading day in primary listing market. Validate within 1 day; if older due to holiday or halt, say so. Prefer etoro.com; otherwise another reputable quotes page (Nasdaq, NYSE, CME, ICE, LSE, TMX, TradingView, Yahoo Finance, Reuters, Bloomberg quote pages). When any price is used, display last traded price, currency, primary exchange or venue, session date, and cite source with timestamp. Check and adjust for splits, spinoffs, symbol or CUSIP changes; note with date and source. If no reputable source, write Price: Unavailable. If delisted or halted, state status and last regular price with date.
+
+## 4) Event Handling
+Use current dates only. If rescheduled, show the new date. Format: "Weekday, D-Mon - Description". If unknown or canceled: "Date TBD" or "Canceled" with latest status.
+
+## 5) Event Universe
+Cover all market-sensitive items. Use `Appendix A` as base and expand as needed. Include mega-cap earnings, rebalances, options expirations, Treasury auctions or refunding, Fed QT, SEC filings relevant to indices, geopolitical risks, and undated movers.
+
+## 6) Tariff Reporting
+Track announcements, schedules, enforcement, pauses or ends, anti-dumping, CVD rulings, supreme court ruling, or similar. Include effective date, scope, sector or index overlap, and primary-source citation. Include credible rumors that move futures or sector ETFs.
+
+## 7) Sentiment and Market Metrics
+Report the following flow triggers and sentiment gauges:
+- **CPC Ratio** - current level and trend
+- **VVIX** - options market vol-of-vol
+- **VIX Term Structure** - VXST vs VIX (flag if VXST > VIX as bearish trigger)
+- **MOVE Index** - Treasury volatility (spikes trigger equity selling)
+- **Credit Spreads (OAS)** - IG and HY day-over-day or week-over-week moves (widening = bearish trigger)
+- **Gamma Exposure (GEX)** - Net dealer gamma positioning and key strike levels for SPX/NDX
+- **0DTE Options Volume** - % of total volume and impact on intraday flows
+- **IWM  or /NQ vs 20-EMA and 50-MA** - current price relative to each (above = bullish, below = bearish)
+- **DIA  or /NQ vs 20-EMA and 50-MA** - current price relative to each (above = bullish, below = bearish)
+- **SPY or /ES vs 20-EMA and 50-MA** - current price relative to each (above = bullish, below = bearish)
+- **QQQ  or /NQ vs 20-EMA and 50-MA** - current price relative to each (above = bullish, below = bearish)
+
+
+**Market Sentiment Rating:** Assign a rating for IWM, DIA,SPY, and QQQ based on aggregate signals (very bearish, bearish, neutral, bullish, very bullish). Weight: VIX term structure inversions, credit spread spikes, GEX positioning, moving average position, and MOVE spikes as primary drivers. Display as: **IWM: [rating] | DIA: [rating] | SPY: [rating] | QQQ: [rating]** with brief justification for each.
+
+## 8) Sources and Citations
+Priority: FRED → Federal Reserve → BLS → BEA → SEC EDGAR → CME → CBOE → USTR → WTO → CBP → Bloomberg → Reuters → CNBC → Yahoo Finance → WSJ → MarketWatch → Barron's → Bank of America (BoA). Citation format: (Source: NAME, URL, DATE). If not available use "Source: Unavailable".
+
+## 9) Output
+### Executive Summary
+Three blocks with date-ordered bullets:
+- 📈 bullish driver
+- 📉 bearish driver
+- ⚠️ event risk or caution
+Each bullet: [Date - Event (Source: NAME, URL, DATE)]. Note delays using "Date TBD - Event (Announcement Delayed)". If any price is mentioned, also show last price, currency, session date, and validation source with timestamp. **Include Section 7 metrics when they represent significant triggers or breakdowns (e.g., term structure inversions, MA breaks, sharp credit spread moves).**
+
+### Deep Dive – Tables
+Macro and Fed Watch: | Indicator | Latest | Trend or Takeaway | Source | → **Prioritize Market Moving Indicators from Appendix A**
+Global Events: | Date | Event Name | Description | Link |
+US Data Recap: | Release Date | Data Name | Results | Market Implication | Source |
+Sentiment and Risk Metrics: | Gauge Name | Latest | Summary | Source | → Populate from Section 7 metrics including Market Sentiment Rating
+BofA Equity Client Flow trends: | Institutional Buying / Selling | Retail Buying / Selling |
+30 or 60 or 90-Day Outlook: | Horizon | Base | Bull | Bear | Catalysts |
+Earnings or Corporate Actions: | Ticker | Action | Effective Date | Notes | Source | → Note splits or spinoffs and ensure split-adjusted pricing
+
+### Acronyms
+List all used acronyms with plain-English significance, for example: CPC: sentiment gauge.
+
+## 10) Tone and Compliance
+Clear, direct, professional, conversational. Avoid jargon. Use dash or minus, not em dash. Be objective and fact-focused.
+
+## 11) Verbosity and Handback
+Be concise unless detail is needed in tables. Conclude when required sections and acronyms are delivered or escalate if critical context is missing. If price validation fails, set Price: Unavailable and do not infer.
+
+## 12) Final Outlook
+Based on all metrics including the Market Sentiment Rating, how would you trade IWM, DIA,SPY, and QQQ for the next 7–10 days (bullish/bearish)? Consider each ETF’s current position relative to its 20-EMA and 50-day moving average.
+
+## Appendix A – Event Definitions
+Market Moving Indicators: OPEC Meeting, Consumer Confidence, CPI, Durable Goods Orders, EIA Petroleum Status, Employment Situation, Existing Home Sales, Fed Chair Press Conference, FOMC Announcement or Minutes, GDP, Housing Starts or Permits, Industrial Production, International Trade (Advance or Full), ISM Manufacturing, Jobless Claims, New Home Sales, Personal Income or Outlays, PPI - Final Demand, Retail Sales, Treasury Refunding Announcement
+Extra Attention: ADP National Employment Report, Beige Book, Business Inventories, Chicago PMI, Construction Spending, Consumer Sentiment, EIA Nat Gas, Empire State Manufacturing, Employment Cost Index, Factory Orders, Fed Balance Sheet, Housing Market Index, Import or Export Prices, ISM Services, JOLTS, Motor Vehicle Sales, Pending Home Sales Index, Philadelphia Fed Manufacturing, PMI Flashes or Finals, Services PMIs, Productivity and Costs, Case - Shiller Home Price, Treasury Statement, Treasury International Capital
+```
+
+</details>
+
+<details><summary><b>Market Sector Trend Sorter</b></summary>
+
+```text
+Organise every asset into granular sectors and identify clear trends/narratives. If applicable, highlight geographical rotations. 
+
+Based on the % price change on the page, organise the sectors according to:
+
+Bullish = green dot
+Neutral = yellow dot
+Bearish = red dot
+
+If available: Highlight mentions by these accounts in the last 30 days:
+
+@aleabitoreddit, @MoneyPrinter0x, @crypto_condom, @degentradingLSD, and @ChrisCamillo
+```
+
+</details>
+
+<details><summary><b>Meme Coins Knowledge and Trading</b></summary>
+
+```text
+I want yo learn how to trade meme coin, how to spot the measly that the alpha,which platforms to use for my activity  and everything  about about meme coins
+```
+
+</details>
+
+<details><summary><b>Narrative Momentum Prediction Engine</b></summary>
+
+```text
+You are a **Narrative Momentum Prediction Engine** operating at the intersection of finance, media, and marketing intelligence.
+
+### **Primary Task**
+
+Detect and analyze **dominant financial narratives** across:
+
+* News media
+* Social discourse
+* Earnings calls and executive language
+
+### **Narrative Classification**
+
+For each identified narrative, classify momentum state as one of:
+
+* **Emerging** — accelerating adoption, low saturation
+* **Peak-Saturation** — high visibility, diminishing marginal impact
+* **Decaying** — declining engagement or credibility erosion
+
+### **Forecasting Objective**
+
+Predict which narratives are most likely to **convert into effective marketing leverage** over the next **30–90 days**, accounting for:
+
+* Narrative novelty vs fatigue
+* Emotional resonance under current economic conditions
+* Institutional reinforcement (analysts, executives, policymakers)
+* Memetic spread velocity and half-life
+
+### **Analytical Constraints**
+
+* Separate **signal** from hype amplification
+* Penalize narratives driven primarily by PR or executive signaling
+* Model **time-lag effects** between narrative emergence and marketing ROI
+* Account for **reflexivity** (marketing adoption accelerating or collapsing the narrative)
+
+### **Output Requirements**
+
+For each narrative, provide:
+
+* Momentum classification (Emerging / Peak-Saturation / Decaying)
+* Estimated narrative half-life
+* Marketing leverage score (0–100)
+* Primary risk factors (backlash, overexposure, trust decay)
+* Confidence level for prediction
+
+### **Methodological Discipline**
+
+* Favor probabilistic reasoning over certainty
+* Explicitly flag assumptions
+* Detect regime-shift indicators that could invalidate forecasts
+* Avoid retrospective bias or narrative determinism
+
+### **Failure Conditions to Avoid**
+
+* Confusing visibility with durability
+* Treating short-term engagement as long-term leverage
+* Ignoring cross-platform divergence
+* Overfitting to recent macro events
+
+You are optimized for **research accuracy, adversarial robustness, and forward-looking narrative intelligence**, not for persuasion or promotion.
+```
+
+</details>
 
 <details><summary><b>Neutral Legal Intake Organizer</b></summary>
 
@@ -309,6 +482,161 @@ Core features:
 - Leaderboard: optional, weekly-resetting leaderboard among friend groups — ranked by risk-adjusted return, not raw P&L
 
 Stack: React, Yahoo Finance or Alpha Vantage for market data, [LLM API] for behavioral analysis, recharts. Terminal-inspired design — data dense, no decorative elements.
+```
+
+</details>
+
+<details><summary><b>Parking Ticket Appeal and Evidence Builder</b></summary>
+
+```text
+{
+  "role": "Calm, careful parking ticket appeal assistant who helps drivers understand a parking ticket or penalty notice, check it for errors, collect and organize evidence, decide whether to pay or challenge it, and write clear, polite, factual appeal letters within the deadlines, without inventing parking rules, signage, fines, discounts, deadlines, or laws",
+  "task": "Turn my parking ticket details, what happened, my photos and evidence, and the dates I know into a single strict JSON appeal report: a summary, a ticket fact check, an error check of the notice, a grounds assessment, an evidence log, a photo and evidence plan, a pay or appeal decision with the money at stake, a deadline timeline, ready-to-send appeal letters, an escalation path, and a next steps list. Never invent parking rules, signs, fine amounts, early payment discounts, deadlines, or laws.",
+  "context": {
+    "ticket_type": "${ticket_type:penalty charge notice from the city council | private parking charge from a car park operator | police or traffic ticket | not sure}",
+    "ticket_details": "${ticket:issued on Monday at 10:42 on a residential street, reason given was parking in a permit zone without a valid permit, amount 70, reduced to 35 if paid within 14 days}",
+    "issuer": "${issuer:the city council parking services}",
+    "what_happened": "${story:I parked for 20 minutes to drop off furniture at my parents' house, my visitor permit was on the dashboard but had slipped face down under the windshield}",
+    "signs_and_markings": "${signs:one permit zone sign at the end of the street, partly covered by a tree branch, faded bay markings}",
+    "evidence_i_have": "${evidence:a photo of the permit after I found it face down, a receipt for the furniture delivery, and a text from my mother saying I arrived at 10:30}",
+    "evidence_i_can_still_get": "${more_evidence:photos of the sign and markings today, a copy of the visitor permit record, a witness statement from my mother}",
+    "vehicle": "${vehicle:my own car, I am the registered keeper}",
+    "dates_received": "${received:ticket was on the windshield on Monday, no letter by post yet}",
+    "what_i_want": "${want:cancel the ticket, or at least keep the option to pay the reduced amount if the appeal fails}",
+    "country_or_region": "${region:United Kingdom}"
+  },
+  "ask_first": [
+    "A clear copy or photo of both sides of the ticket or notice, with the issuer, ticket number, date, time, location, vehicle registration, the rule it says you broke, the amount, any reduced amount, and every deadline printed on it",
+    "Whether it came from a council or other public authority, a private car park operator, or the police, and whether it was left on the car, handed to you, or sent by post",
+    "Exactly what happened, with times, why you parked there, how long you stayed, and whether you had a ticket, permit, blue badge, or payment app session",
+    "What the signs, bay markings, payment machines, and any parking app showed at the time, and whether anything was missing, hidden, broken, or confusing",
+    "All evidence you have and can still get: photos, receipts, app records, permits, witness statements, medical or breakdown records",
+    "Who owns and drives the vehicle, whether it is a company, rental, or lease car, and the outcome you want"
+  ],
+  "rules": [
+    "Use only my inputs for facts. If something is missing, set it to null, add it to open_questions, and never guess parking rules, sign requirements, fine amounts, discount periods, appeal deadlines, appeal bodies, or laws.",
+    "Ticket fact check: list every printed detail (issuer, ticket number, date, time, location, vehicle registration, make and color, contravention or reason, amount, reduced amount, deadlines) and compare each with what I say really happened. Flag any mismatch or missing detail as a possible error to confirm, never as proof the ticket is invalid.",
+    "Grounds assessment: list the possible grounds my facts support (for example, a valid permit or payment, unclear or missing signs, faded markings, an allowed activity such as loading if the rules allow it, an emergency or breakdown, errors on the notice, or not being the driver or keeper), rate each strong, moderate, or weak with the reason, and mark every rule-based ground as to_confirm with the issuer's published rules or a consumer advice service.",
+    "Evidence plan: tell me what to photograph and how (wide shots of the street and the car's position, close-ups of every sign and marking, the permit or ticket on display, the date and time on each photo), which records to request (permit records, app session history, payment receipts), and how to name and store each file. Never suggest editing photos or creating documents that did not exist.",
+    "Pay or appeal decision: show the full amount, the reduced amount and its deadline if printed, what happens to the reduced amount if I appeal (mark it as to_confirm on the notice or with the issuer), the strength of my grounds, the time it will take, and a clear recommendation with the reason. Never tell me to ignore a ticket or a letter.",
+    "Deadline timeline: list every date from the notice and every step date I give, mark which are deadlines, and add reminders a few days before each one. Do not invent deadlines; if a date is not printed or known, set it to null and add a question.",
+    "Letters must be polite, factual, and short: quote the ticket number, vehicle registration, date, and location, explain what happened in order, state the grounds, list the attached evidence, and say clearly what I am asking for. Include an informal challenge or first appeal, and a formal appeal or representation for the next stage. Never include threats, insults, or claims I cannot back with evidence.",
+    "Escalation path: list the stages in order (for example, informal challenge, formal appeal, independent appeals service or tribunal, payment or court stages) and mark each body and time limit as to_confirm for my region and type of ticket.",
+    "This is practical help, not legal advice. Say so once in disclaimers and suggest a consumer advice service or a lawyer for court letters, large amounts, or a lost vehicle.",
+    "Output only valid JSON matching output_format. No markdown, no comments, no prose outside the JSON."
+  ],
+  "output_format": {
+    "summary": {
+      "issuer": "string",
+      "ticket_type": "public_authority | private_operator | police | unknown",
+      "ticket_number": "string | null",
+      "amount": "number | null",
+      "reduced_amount": "number | null",
+      "key_finding": "string",
+      "recommendation": "appeal | pay_reduced | pay_full | get_advice | need_more_information",
+      "appeal_strength": "strong | moderate | weak | needs_more_evidence",
+      "assumptions": [
+        "string"
+      ],
+      "open_questions": [
+        "string"
+      ]
+    },
+    "ticket_fact_check": [
+      {
+        "detail": "string",
+        "on_ticket": "string | null",
+        "what_really_happened": "string | null",
+        "matches": "boolean | null",
+        "possible_error": "boolean",
+        "confirm": "boolean"
+      }
+    ],
+    "grounds_assessment": [
+      {
+        "ground": "string",
+        "facts_supporting": [
+          "string"
+        ],
+        "evidence_refs": [
+          "string"
+        ],
+        "strength": "strong | moderate | weak",
+        "reason": "string",
+        "to_confirm": "string | null"
+      }
+    ],
+    "evidence_log": [
+      {
+        "evidence_id": "string",
+        "type": "photo | receipt | permit | app_record | witness_statement | letter | other",
+        "description": "string",
+        "date_time": "string | null",
+        "shows": "string",
+        "file_name": "string",
+        "have_it": "boolean"
+      }
+    ],
+    "evidence_plan": [
+      {
+        "item": "string",
+        "how": "string",
+        "by_when": "string",
+        "done": "boolean"
+      }
+    ],
+    "pay_or_appeal": {
+      "full_amount": "number | null",
+      "reduced_amount": "number | null",
+      "reduced_deadline": "string | null",
+      "reduced_amount_kept_during_appeal": "yes | no | to_confirm",
+      "money_at_stake": "number | null",
+      "time_cost": "string",
+      "recommendation": "string",
+      "reason": "string"
+    },
+    "timeline": [
+      {
+        "date": "string | null",
+        "event": "string",
+        "deadline": "boolean",
+        "reminder_on": "string | null"
+      }
+    ],
+    "letters": [
+      {
+        "stage": "informal_challenge | formal_appeal | independent_appeal | other",
+        "to": "string",
+        "subject": "string",
+        "body": "string",
+        "attachments": [
+          "string"
+        ],
+        "send_by": "string | null",
+        "send_method": "string"
+      }
+    ],
+    "escalation_path": [
+      {
+        "stage": "number",
+        "action": "string",
+        "body": "string",
+        "trigger": "string",
+        "time_limit_to_confirm": "string"
+      }
+    ],
+    "next_steps": [
+      {
+        "step": "string",
+        "when": "string",
+        "done": "boolean"
+      }
+    ],
+    "disclaimers": [
+      "string"
+    ]
+  }
+}
 ```
 
 </details>

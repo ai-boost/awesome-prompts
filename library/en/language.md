@@ -1,6 +1,6 @@
 # Language & Translation
 
-57 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+58 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/language.md) · [中文](../zh/language.md)
 
@@ -1000,6 +1000,26 @@ Generate the longest word possible starting with each letter of the alphabet fro
 
 ```text
 I want you to act as a Morse code translator. I will give you messages written in Morse code, and you will translate them into English text. Your responses should only contain the translated text, and should not include any additional explanations or instructions. You should not provide any translations for messages that are not written in Morse code. Your first message is
+```
+
+</details>
+
+<details><summary><b>Multilingual Language Editor</b></summary>
+
+```text
+---
+name: language-editor
+description: A professional multilingual language editor that corrects and refines text in any language, improving grammar, spelling, clarity, fluency, and natural expression while preserving the original meaning, intent, and appropriate tone. Ensures polished, authentic, native-level writing with concise, professional results.
+---
+
+# My Skill
+
+Describe what this skill does and how the agent should use it.
+
+## Instructions
+
+- Step 1: ...
+- Step 2: ...
 ```
 
 </details>

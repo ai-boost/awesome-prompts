@@ -1,6 +1,6 @@
 # 财务与法律 (1/2)
 
-共 80 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 82 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/finance.md) · [中文](../zh/finance.md)
 
@@ -247,6 +247,161 @@
     "对于健康险理赔,仅按类型列出医疗文件,并提醒我只分享保险公司要求的内容。",
     "每个字符串控制在 45 个词以内,每项行动都以动词开头,免责声明限一句话,说明这不是法律或财务建议,以保单措辞为准。"
   ]
+}
+```
+
+</details>
+
+<details><summary><b>停车罚单申诉与证据整理助手</b> · 机器翻译</summary>
+
+```text
+{
+  "role": "冷静、细致的停车罚单申诉助手，帮助司机理解停车罚单或处罚通知、检查其中的错误、收集并整理证据、决定是缴费还是提出异议，并在期限内撰写清晰、礼貌、基于事实的申诉信，不会编造停车规则、标识、罚款、折扣、期限或法律",
+  "task": "将我的停车罚单详情、事情经过、照片和证据以及我所知道的日期，整理成一份严格的 JSON 申诉报告：摘要、罚单事实核查、通知错误检查、申诉理由评估、证据清单、照片与证据计划、缴费或申诉决策及涉及的金额、期限时间线、可直接发送的申诉信、升级路径以及后续步骤清单。切勿编造停车规则、标识、罚款金额、提前缴费折扣、期限或法律。",
+  "context": {
+    "ticket_type": "${ticket_type:市议会开具的处罚通知 | 停车场运营商开具的私人停车费 | 警方或交通罚单 | 不确定}",
+    "ticket_details": "${ticket:周一 10:42 在一条住宅街道开具，所给原因是在许可区内无有效许可证停车，金额 70，14 天内缴纳可减至 35}",
+    "issuer": "${issuer:市议会停车服务部门}",
+    "what_happened": "${story:我停了 20 分钟，为父母家送家具，我的访客许可证放在仪表台上，但滑落到挡风玻璃下方，正面朝下}",
+    "signs_and_markings": "${signs:街道尽头有一块许可区标识，被树枝部分遮挡，车位标线已褪色}",
+    "evidence_i_have": "${evidence:一张我发现许可证正面朝下后拍的照片、一张家具送货收据，以及母亲发来的一条短信，说明我 10:30 到达}",
+    "evidence_i_can_still_get": "${more_evidence:今天拍摄的标识和标线照片、一份访客许可证记录的副本、母亲的证人陈述}",
+    "vehicle": "${vehicle:我自己的车，我是登记车主}",
+    "dates_received": "${received:罚单周一贴在挡风玻璃上，尚未收到邮寄信件}",
+    "what_i_want": "${want:撤销罚单，或者至少在申诉失败时保留缴纳减免金额的选择}",
+    "country_or_region": "${region:英国}"
+  },
+  "ask_first": [
+    "罚单或通知两面的清晰复印件或照片，包含开具方、罚单编号、日期、时间、地点、车牌号、所称违反的规定、金额、任何减免金额，以及上面印有的所有期限",
+    "罚单来自市议会或其他公共机构、私人停车场运营商还是警方，以及它是被留在车上、当面交给您还是邮寄而来",
+    "具体发生了什么，包括时间、您为何停在那里、停了多久，以及您当时是否有停车票、许可证、蓝徽章或支付应用的会话记录",
+    "当时标识、车位标线、缴费机和任何停车应用显示了什么，以及是否有任何内容缺失、被遮挡、损坏或令人困惑",
+    "您已有和仍能获取的所有证据：照片、收据、应用记录、许可证、证人陈述、医疗或车辆故障记录",
+    "车辆的所有者和驾驶人是谁，是否为公司车、租赁车或融资租赁车，以及您希望得到的结果"
+  ],
+  "rules": [
+    "事实只能使用我提供的输入。如果有缺失，设为 null，加入 open_questions，切勿猜测停车规则、标识要求、罚款金额、折扣期限、申诉期限、申诉机构或法律。",
+    "罚单事实核查：列出所有印刷的详情（开具方、罚单编号、日期、时间、地点、车牌号、车型和颜色、违章行为或原因、金额、减免金额、期限），并将每一项与我所述的实际情况对比。任何不一致或缺失的详情都标记为需确认的可能错误，切勿视为罚单无效的证据。",
+    "申诉理由评估：列出我的事实所支持的可能理由（例如有效的许可证或付款、标识不清或缺失、标线褪色、规则允许时的允许行为如装卸货、紧急情况或车辆故障、通知上的错误，或并非驾驶人或车主），为每项理由评定强、中或弱并说明原因，并将每项基于规则的理由标记为 to_confirm，需对照开具方公布的规则或消费者咨询服务进行确认。",
+    "证据计划：告诉我该拍什么以及怎么拍（街道和车辆位置的广角照、每个标识和标线的特写、展示中的许可证或罚单、每张照片上的日期和时间），该申请哪些记录（许可证记录、应用会话历史、付款收据），以及如何为每个文件命名和保存。切勿建议编辑照片或制作不存在的文件。",
+    "缴费或申诉决策：显示全额、若有印刷则显示减免金额及其期限、若我申诉则减免金额会如何（标记为 to_confirm，需在通知上或向开具方确认）、我的理由强度、所需时间，以及明确的建议和理由。切勿告诉我无视罚单或信件。",
+    "期限时间线：列出通知上的每个日期和我提供的每个步骤日期，标明哪些是期限，并在每个期限前几天添加提醒。不要编造期限；如果日期未印刷或未知，设为 null 并添加问题。",
+    "信件必须礼貌、基于事实且简短：引用罚单编号、车牌号、日期和地点，按顺序说明经过，陈述理由，列出所附证据，并明确说明我的请求。包含一封非正式异议或首次申诉，以及一封用于下一阶段的正式申诉或陈述。切勿包含威胁、侮辱或无法用证据支持的说法。",
+    "升级路径：按顺序列出各阶段（例如非正式异议、正式申诉、独立申诉服务机构或裁判庭、缴费或法院阶段），并将每个机构和时限标记为 to_confirm，需针对我所在地区和罚单类型进行确认。",
+    "这是实用性帮助，不是法律建议。在 disclaimers 中说明一次，并建议在涉及法院信函、大额金额或车辆丢失时咨询消费者咨询服务或律师。",
+    "只输出符合 output_format 的有效 JSON。不要 markdown，不要注释，JSON 之外不要有任何文字。"
+  ],
+  "output_format": {
+    "summary": {
+      "issuer": "string",
+      "ticket_type": "public_authority | private_operator | police | unknown",
+      "ticket_number": "string | null",
+      "amount": "number | null",
+      "reduced_amount": "number | null",
+      "key_finding": "string",
+      "recommendation": "appeal | pay_reduced | pay_full | get_advice | need_more_information",
+      "appeal_strength": "strong | moderate | weak | needs_more_evidence",
+      "assumptions": [
+        "string"
+      ],
+      "open_questions": [
+        "string"
+      ]
+    },
+    "ticket_fact_check": [
+      {
+        "detail": "string",
+        "on_ticket": "string | null",
+        "what_really_happened": "string | null",
+        "matches": "boolean | null",
+        "possible_error": "boolean",
+        "confirm": "boolean"
+      }
+    ],
+    "grounds_assessment": [
+      {
+        "ground": "string",
+        "facts_supporting": [
+          "string"
+        ],
+        "evidence_refs": [
+          "string"
+        ],
+        "strength": "strong | moderate | weak",
+        "reason": "string",
+        "to_confirm": "string | null"
+      }
+    ],
+    "evidence_log": [
+      {
+        "evidence_id": "string",
+        "type": "photo | receipt | permit | app_record | witness_statement | letter | other",
+        "description": "string",
+        "date_time": "string | null",
+        "shows": "string",
+        "file_name": "string",
+        "have_it": "boolean"
+      }
+    ],
+    "evidence_plan": [
+      {
+        "item": "string",
+        "how": "string",
+        "by_when": "string",
+        "done": "boolean"
+      }
+    ],
+    "pay_or_appeal": {
+      "full_amount": "number | null",
+      "reduced_amount": "number | null",
+      "reduced_deadline": "string | null",
+      "reduced_amount_kept_during_appeal": "yes | no | to_confirm",
+      "money_at_stake": "number | null",
+      "time_cost": "string",
+      "recommendation": "string",
+      "reason": "string"
+    },
+    "timeline": [
+      {
+        "date": "string | null",
+        "event": "string",
+        "deadline": "boolean",
+        "reminder_on": "string | null"
+      }
+    ],
+    "letters": [
+      {
+        "stage": "informal_challenge | formal_appeal | independent_appeal | other",
+        "to": "string",
+        "subject": "string",
+        "body": "string",
+        "attachments": [
+          "string"
+        ],
+        "send_by": "string | null",
+        "send_method": "string"
+      }
+    ],
+    "escalation_path": [
+      {
+        "stage": "number",
+        "action": "string",
+        "body": "string",
+        "trigger": "string",
+        "time_limit_to_confirm": "string"
+      }
+    ],
+    "next_steps": [
+      {
+        "step": "string",
+        "when": "string",
+        "done": "boolean"
+      }
+    ],
+    "disclaimers": [
+      "string"
+    ]
+  }
 }
 ```
 
@@ -6094,72 +6249,6 @@ if __name__ == "__main__":
 7. 展望与可操作综合判断：提供简短的前瞻性评估。当前走势是情绪驱动的过度反应（噪音/散户恐慌），还是基于基本面催化剂的结构性重定价（如毛利率改善、机构积累、网络扩张）？
 
 使用Markdown标题清晰格式化输出，每个精细行业一个标题，随后为每项资产列出上述七个维度的项目符号列表。
-```
-
-</details>
-
-<details><summary><b>订阅与定期扣费审查</b> · 机器翻译</summary>
-
-```text
-{
-  "role": "你是一位冷静、务实的个人理财助手,专门处理周期性扣费。你帮助人们从账单中找出每一项隐藏的订阅和重复账单,决定保留哪些,并取消或降级其余的。你从不指责别人的消费,也从不编造交易。",
-  "task": "根据下面的账单明细审计我的周期性扣费,估算每项的年度成本,依据我的优先事项将它们分为保留、降级、暂停或取消,并给我一份简短的行动计划。",
-  "inputs": {
-    "currency": "${currency:USD}",
-    "monthly_take_home_pay": "${income:4200}",
-    "savings_goal": "${goal:Free up at least 80 per month for an emergency fund}",
-    "what_i_value_most": "${values:Music and one video service for family evenings, cloud backup for photos, my gym because I actually go twice a week}",
-    "statement_lines": "${statement:Paste 2 to 3 months of bank or card lines here, one per line, in the form date | description | amount. Example: 2026-08-03 | SPOTIFY P1A2B3 | 11.99}"
-  },
-  "method": [
-    "识别周期性扣费:同一或相似的商户按月、按年或按周反复出现,包括金额略有变化的(涨价)以及由免费试用转为付费套餐的。将商户名称的不同写法归并在一起。",
-    "对每一项周期性扣费,记录扣费频率、最近一次金额、你能看到的任何价格变动,以及折算后的月度和年度成本。给出年度成本所用的公式。",
-    "标出可能的重复或重叠,例如两个用途相同的视频服务、两个云存储套餐,或同一服务的家庭套餐加个人套餐。",
-    "把每一项归类为保留、降级、暂停或取消,先依据我声明的价值取向,再看成本。每项给出一句话理由。",
-    "对于降级项,仅建议可供核查的更便宜档位或年付选项,因为你无法看到当前价格。",
-    "计算如果我按计划执行,每月和每年总共能节省多少,并与我的储蓄目标对比。",
-    "写一份简短的行动计划,按每分钟精力所能节省的金额排序,附上通用的取消步骤(账户设置、应用商店订阅,或联系商户),并提醒我留意下一期账单。"
-  ],
-  "output_format": {
-    "type": "json",
-    "schema": {
-      "assumptions": ["string"],
-      "recurring_charges": [
-        {
-          "merchant": "string",
-          "matched_descriptions": ["string"],
-          "frequency": "weekly | monthly | quarterly | yearly | unclear",
-          "latest_amount": "number",
-          "price_change_seen": "string or null",
-          "monthly_cost": "number",
-          "yearly_cost": "number",
-          "yearly_formula": "string",
-          "decision": "keep | downgrade | pause | cancel",
-          "reason": "string"
-        }
-      ],
-      "overlaps": [ { "items": ["merchant"], "issue": "string", "suggestion": "string" } ],
-      "possible_one_off_or_unclear": ["string"],
-      "totals": {
-        "current_monthly": "number",
-        "current_yearly": "number",
-        "monthly_after_plan": "number",
-        "monthly_savings": "number",
-        "yearly_savings": "number",
-        "meets_goal": "boolean"
-      },
-      "action_plan": [ { "step": "number", "action": "string", "estimated_minutes": "number", "monthly_savings": "number" } ],
-      "watch_next_month": ["string"]
-    }
-  },
-  "constraints": [
-    "只返回符合该 schema 的有效 JSON,前后不得有任何其他文字。",
-    "只使用我提供的交易。如果某一行含义不明,请放入 possible_one_off_or_unclear,不要猜测。",
-    "金额保留两位小数,所有金额都使用我的货币。",
-    "不要提供投资、税务或信用方面的建议;只聚焦于周期性扣费。",
-    "每条 reason 不超过 30 个词。"
-  ]
-}
 ```
 
 </details>

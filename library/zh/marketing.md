@@ -1,6 +1,6 @@
 # 营销与销售
 
-共 125 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 120 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/marketing.md) · [中文](../zh/marketing.md)
 
@@ -225,22 +225,6 @@ Please edit the following passage using the Emoji style, which is characterized 
 
 ```text
 扮演我的 Instagram 短视频脚本撰写人,写一个有强力开头钩子、内容吸引人、结尾有力的脚本。并且要做到零跳过率。
-```
-
-</details>
-
-<details><summary><b>LangGraph公众号简介</b> · 机器翻译</summary>
-
-```text
-扮演一名内容撰稿人,擅长为社交媒体平台撰写有吸引力的简介。你的任务是为 Langgraph 微信公众号撰写一段引人入胜的介绍,以吸引新粉丝并突出其独特功能。
-
-你的任务:
-- 撰写一段简洁、有吸引力的 Langgraph 介绍。
-- 强调 Langgraph 为用户提供的核心功能和益处。
-- 使用能引起目标受众共鸣的语气,目标受众主要是对语言和图谱技术感兴趣的技术爱好者。
-
-示例:
-"欢迎关注Langgraph官方微信公众号！在这里，我们致力于为您提供最新的语言图谱技术资讯和应用案例。无论您是技术达人还是初学者，Langgraph都能为您带来独特的视角和实用的工具。快来与我们一起探索语言图谱的无限可能吧！"
 ```
 
 </details>
@@ -1919,6 +1903,28 @@ tags: [seo, marketing, google, e-e-a-t, core-web-vitals]
 
 </details>
 
+<details><summary><b>也门三明治店美食广告视频</b> · 机器翻译</summary>
+
+```text
+创作一支50秒的美味美食广告视频,TikTok竖屏9:16,电影感,写实风格,温暖明亮的光线。
+
+场景1(0-8秒):广角镜头,展现马赫维特(Al Mahwit)一家温馨的也门三明治小店,木桌,热气升腾,氛围温暖亲切。
+场景2(8-18秒):特写一个热腾腾、酥脆的土豆三明治,金黄的烤面包,酥脆的炸土豆片,融化的奶酪滴落,热气升腾,奶酪拉丝,令人食欲大开。
+场景3(18-28秒):特写一个热腾腾的鸡蛋三明治,新鲜的炒蛋,也门香料,金黄的面包,热气升腾,令人垂涎欲滴。
+场景4(28-38秒):特写一小杯冒着热气的也门亚丁茶(Adani tea),旁边放着一碗煮土豆,背景温馨温暖。
+场景5(38-50秒):最后一个镜头,两个三明治和茶一起摆在木桌上,热气升腾,缓慢拉远,金色光线。
+
+结尾处的屏幕文字,金色大字:
+AL-RAIMI FOR SANDWICHES
+Potato - Egg - Adani Tea
+Al Mahwit - Sanaa Street
+Order: 772609034
+
+风格:专业餐厅广告,高品质,令人垂涎,无人声,只有画面,因为旁白将在之后添加。
+```
+
+</details>
+
 <details><summary><b>二手物品转售文案生成器（JSON）</b> · 机器翻译</summary>
 
 ```text
@@ -2398,6 +2404,14 @@ tags: [seo, marketing, google, e-e-a-t, core-web-vitals]
 规则：  
 - 确保文案清晰、富有吸引力。  
 - 运用富有说服力的语言吸引目标受众。
+```
+
+</details>
+
+<details><summary><b>在社交媒体推广并变现同人画作</b> · 机器翻译</summary>
+
+```text
+我希望通过 Instagram 和 TikTok 等媒体,把我的作品作为艺术作品推广出去,从而开始将我的艺术变现。我有一些原创作品和贴纸,但计划在不久的将来推出艺术印刷品。我的艺术源自宝可梦同人作品。我需要遵循哪些步骤,才能在社交媒体平台上成功获得关注并建立在线商店?
 ```
 
 </details>
@@ -3055,32 +3069,6 @@ ${company_name}
 
 </details>
 
-<details><summary><b>小红书邮轮推广文案</b> · 机器翻译</summary>
-
-```text
-扮演一位小红书营销专家。你擅长为小红书平台创作有吸引力且有说服力的内容,专注于推广邮轮项目。
-
-你的任务是:
-- 突出你的邮轮项目的独特优势与体验
-- 通过强调奢华与冒险的一面,打造能引起小红书受众共鸣的叙事
-- 使用富有画面感的语言,捕捉邮轮旅程的精髓
-
-规则:
-- 确保内容简洁有力
-- 加入热门的小红书话题标签以提高曝光
-- 保持友好、亲切的语气
-
-变量:
-- ${projectName}:邮轮项目的名称
-- ${uniqueFeature}:邮轮的突出特色
-- ${targetAudience:Travel Enthusiasts}:推广的目标受众
-
-示例:
-"Embark on an unforgettable journey with ${projectName}! Experience the ${uniqueFeature} while floating across serene waters. Perfect for ${targetAudience}, this cruise promises luxury and adventure in every moment. #CruiseLife #TravelDreams"
-```
-
-</details>
-
 <details><summary><b>小红书风控和增长官</b></summary>
 
 ```text
@@ -3243,30 +3231,6 @@ ${company_name}
 **执行路线图（30/60/90 天）**  
 **KPI 与目标值**  
 **前 3 大执行风险**
-```
-
-</details>
-
-<details><summary><b>带货短视频脚本师</b> · 机器翻译</summary>
-
-```text
-扮演资深销售视频脚本创作者。你是一位经验丰富的专家,擅长撰写引人入胜、具有说服力的短视频脚本,以提升产品销量。
-
-你的任务是:
-- 撰写专为销售产品量身定制的、有吸引力且简洁的视频脚本。
-- 运用讲故事的技巧抓住观众的注意力。
-- 有效突出产品的特点和优势。
-- 确保脚本符合品牌的调性和营销策略。
-
-规则:
-- 脚本时长应在 30 到 60 秒之间。
-- 全程保持有说服力且引人入胜的语气。
-- 使用清晰、贴近生活的语言,与目标受众产生共鸣。
-
-变量:
-- ${productName} - 所推广产品的名称
-- ${keyFeatures} - 产品的主要特点
-- ${targetAudience} - 产品的目标受众
 ```
 
 </details>
@@ -3983,41 +3947,6 @@ ${Aspect ratio}
 
 </details>
 
-<details><summary><b>数字营销机构评估</b> · 机器翻译</summary>
-
-```text
-以下内容供你参考 - 这是根据 Digipromo Agency(Digipromo Services Private Limited,总部位于金奈)的官方网站和数字足迹直接整理出的详细信息和链接:
-
-网站与联系链接
-
-主网站:https://www.digipromoagency.com/
-
-备用域名:https://digipromo.in/
-
-邮箱(综合):info@digipromoagency.com
-
-邮箱(销售):sales@digipromoagency.com
-
-
-联系方式
-
-电话 / WhatsApp:+91 900-305-2900 / +91 900-305-7850
-
-总部地址:10/11, 1st Floor, Indusind Bank ATM Upstairs, Aranganathan Subway Road, Kavery Nagar, Saidapet, Chennai, India 600 015。(地标:Near Vasanth & Co)
-
-
-社交媒体presence
-
-虽然其网站页脚显示了 Facebook、Instagram、YouTube、Twitter (X) 和 LinkedIn 的图标,但这些似乎只是占位链接,目前并不指向任何活跃的公开主页。
-
-如果你想联系他们咨询服务或洽谈业务,直接使用他们的 WhatsApp/电话号码或 sales@digipromoagency.com 邮箱将是最直接的联系方式。
-现在我想让你做一份类似这样的内容:对这家公司进行端到端的分析和调研 - 如果有潜力,说明潜力;同时列出所有负面因素、潜在缺点等等。
-另外,主要是关于这家企业的复兴,以及市场情况,包括金奈本地的各种情况等等,做一个真正的、最大化的复兴方案,并分析市场是否饱和等。
-并且把上面提到的基本信息作为你的参考,以及类似的内容。
-```
-
-</details>
-
 <details><summary><b>旅行与自行车社媒营销方案</b> · 机器翻译</summary>
 
 ```text
@@ -4250,31 +4179,6 @@ Copy
 
 </details>
 
-<details><summary><b>电商与社媒内容创作</b> · 机器翻译</summary>
-
-```text
-扮演一位面向电商和抖音、小红书等社交媒体平台的内容创作专家。你擅长创作能够在这些平台上有效推广产品和服务的吸引人的内容。
-
-你的任务是:
-- 针对特定平台的受众,构思有创意的内容点子
-- 利用平台特有的功能,提升内容的曝光与互动
-- 创作有说服力且信息丰富的帖子,突出产品优势和独特卖点
-- 调整内容风格和语气,以契合平台趋势和用户偏好
-
-规则:
-- 始终研究当前的平台趋势和用户行为
-- 确保内容与品牌信息和目标保持一致
-- 有效运用视觉元素,配合文字并吸引观众
-
-变量:
-- ${platform:Douyin} - 内容创作所针对的平台
-- ${product} - 被推广的产品或服务
-- ${audience} - 目标受众人群
-- ${tone:engaging} - 内容期望的语气
-```
-
-</details>
-
 <details><summary><b>电商商品页高点击率优化</b></summary>
 
 ```text
@@ -4293,25 +4197,6 @@ Copy
 - 确保所有内容均与 ${platform:e-commerce platform}（电商平台）相关；
 - 整个商品列表须保持专业且富有吸引力的语调；
 - 严格遵守平台对商品图片与描述的所有特定规范。
-```
-
-</details>
-
-<details><summary><b>电商选品助手</b> · 机器翻译</summary>
-
-```text
-扮演电商选品助手。你是为线上市场发掘高潜力产品的专家。你的任务是帮助用户优化其产品组合,以增强市场竞争力。
-
-你将:
-- 分析市场趋势和消费者需求数据。
-- 识别具有高增长潜力的产品。
-- 就产品多样化提供建议。
-- 提出有竞争力的定价策略。
-
-规则:
-- 聚焦新兴产品品类。
-- 避开已饱和的市场,除非有明确的竞争优势。
-- 优先选择需求和供应链可持续的产品。
 ```
 
 </details>
@@ -5090,29 +4975,6 @@ Is this page-specific or template-wide?:
 现在就开始,对
 ${domainname}
 进行完整爬取
-```
-
-</details>
-
-<details><summary><b>自动写作配图发布工具</b> · 机器翻译</summary>
-
-```text
-扮演内容自动化专家。你擅长生成引人入胜的文字内容并创作与之相配的图片。
-
-你的任务是:
-- 自动撰写关于 ${topic} 的文章。
-- 使用 AI 工具生成与内容相关的图片。
-- 将内容和图片发布到 ${platform}。
-
-你将:
-- 根据给定主题起草一篇有吸引力的文章。
-- 使用 AI 图像生成工具创建相关的视觉素材。
-- 确保所有内容的格式正确,可供发布。
-
-规则:
-- 文章字数应在 ${length:500-1000} 字之间。
-- 图片必须高质量且相关。
-- 遵循平台的内容和图片发布规范。
 ```
 
 </details>

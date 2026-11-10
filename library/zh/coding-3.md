@@ -1,6 +1,6 @@
 # 编程开发 (3/11)
 
-共 665 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 685 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
@@ -3548,6 +3548,35 @@ if __name__ == "__main__":
 
 </details>
 
+<details><summary><b>Kafka流处理编码偏好</b> · 机器翻译</summary>
+
+```text
+# 务实的事件平台工程师的 Kafka Streaming 偏好
+- 按领域和事件命名主题，例如 `orders.order-placed.v1`，仅当破坏性变更迫使创建新主题时，才把模式版本放进名称。Confidence: 0.85
+- 在模式注册中心（Avro 或 Protobuf）中注册每个主题的模式，并强制执行向后兼容；绝不向共享主题发布未定型的原始 JSON。Confidence: 0.90
+- 根据对顺序有要求的实体（订单 ID、账户 ID）选择分区键，且绝不依赖跨分区的顺序。Confidence: 0.95
+- 起始分区数应满足预期峰值消费者并行度并留有余量，因为之后增加分区会破坏键到分区的映射。Confidence: 0.80
+- 对任何业务关键的数据，生产者应使用 `acks=all`、启用幂等性，并在复制因子为 3 的情况下设置 `min.insync.replicas=2`。Confidence: 0.90
+- 将投递视为至少一次，并通过去重键或 upsert 让每个消费者幂等，而不是追求端到端的恰好一次。Confidence: 0.90
+- 仅在副作用成功后才提交偏移量；对于写入数据库或调用 API 的消费者，禁用自动提交。Confidence: 0.90
+- 将反复失败的消息发送到死信主题，并保留原始消息头、错误信息和尝试次数，同时对其增长设置告警。Confidence: 0.85
+- 在进入死信之前，先在消费者内部以有界退避重试瞬时故障；绝不让一条毒消息永远阻塞某个分区。Confidence: 0.85
+- 让事件成为以过去时描述已发生之事的事实，而不是告诉另一个服务该做什么的命令。Confidence: 0.80
+- 让载荷足够小且自包含，以便无需同步回调生产者即可处理，但大型二进制数据应放入对象存储并发送引用。Confidence: 0.75
+- 使用事务性发件箱模式，使事件与数据库写入原子性地发布，而不是双写。Confidence: 0.90
+- 对表示每个键最新状态的主题使用日志压缩，对纯事件流使用基于时间的保留策略。Confidence: 0.85
+- 将每个消费者组和分区的消费者滞后作为主要健康信号进行监控，针对持续增长而不是单次尖峰发出告警。Confidence: 0.90
+- 在消息头中放入关联 ID 和生产服务名称，以便链路追踪能够跟随事件跨服务流转。Confidence: 0.80
+- 为每个消费者组指定与服务绑定的稳定、具描述性的 ID，且绝不让不相关的应用共用同一个组。Confidence: 0.85
+- 仅在需要有状态连接或窗口计算时才使用 Kafka Streams 或 Flink；对于无状态转换，普通消费者更简单。Confidence: 0.75
+- 将主题、分区、保留策略和 ACL 作为代码管理并通过拉取请求评审，且在生产环境中禁用自动创建主题。Confidence: 0.90
+- 使用 TLS、已认证的客户端以及仅授予每个服务所需主题的逐服务 ACL 来锁定集群。Confidence: 0.85
+- 集成测试使用容器中的真实 broker 来测试消费者，单元测试则针对纯处理函数。Confidence: 0.80
+- 在与主题定义放在一起的目录中记录每个主题的所有者、模式、键、保留策略和消费者。Confidence: 0.70
+```
+
+</details>
+
 <details><summary><b>Karpathy 编码准则</b></summary>
 
 ```text
@@ -4285,6 +4314,35 @@ if __name__ == "__main__":
 
 ```text
 请创建一个功能完整的单页 HTML 监控页面，用于运行最新版 Ubuntu 的 Linux 系统（主机名：ubuntu-MacBookPro12-1，内核版本：6.14.0-37-generic #37~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Nov 20 10:25:38 UTC 2 x86_64 x86_64 x86_64 GNU/Linux），该系统部署在一台运行 macOS 的 MacBook Pro 12,1 上，通过 Windows 端的 Visual Studio Code 经由 SSH 连接访问。Linux 主机已安装 Docker，且当前有容器正在运行。监控页面需在同一张图表中展示磁盘 I/O 吞吐量（总吞吐量、读取吞吐量、写入吞吐量）。请使用最新版 React 构建组件，以实现高端图表渲染效果。刷新频率选项必须支持 1 秒、3 秒、5 秒和 10 秒；界面采用浅色主题（light theme），字体为 Quicksand，字重为 400，最小字号需符合可读性要求；整体设计须现代、精致、简洁。
+```
+
+</details>
+
+<details><summary><b>Linux服务器加固偏好</b> · 机器翻译</summary>
+
+```text
+# 谨慎的运维工程师的 Linux 服务器加固偏好
+- 从最小化基础镜像构建服务器,只安装某个角色所需的软件包,并从生产主机上移除编译器和调试工具。Confidence: 0.85
+- 用配置即代码(Ansible、cloud-init 或镜像流水线)管理每一台服务器,绝不依赖会导致配置漂移的手动修改。Confidence: 0.90
+- 禁用 SSH 密码认证和 root 登录,只允许基于密钥或证书的登录。Confidence: 0.95
+- 优先使用短期有效的 SSH 证书或具备身份感知能力的访问代理,而不是到处复制的长期 authorized_keys 文件。Confidence: 0.75
+- 为每位工程师分配具名账户,并通过用户组授予 sudo 权限,绝不共用同一个管理员账户。Confidence: 0.90
+- 主机防火墙默认拒绝所有入站流量,只开放服务实际监听的端口。Confidence: 0.90
+- 不要把 SSH 和管理界面暴露在公网上,只能通过 VPN、堡垒机或私有网络访问。Confidence: 0.85
+- 为基础操作系统启用无人值守的安全更新,并安排重启,使内核补丁真正生效。Confidence: 0.85
+- 让每个服务以各自独立的、无特权的系统用户运行,且不提供登录 shell。Confidence: 0.90
+- 对每个长期运行的服务使用 systemd 沙箱选项,例如 `ProtectSystem=strict`、`NoNewPrivileges=yes` 和 `PrivateTmp=yes`。Confidence: 0.80
+- 让 SELinux 或 AppArmor 保持强制(enforcing)模式;出问题时编写策略例外,而不是将其禁用。Confidence: 0.75
+- 将包括认证日志和审计日志在内的日志发送到中央存储,使主机上的攻击者无法抹除痕迹。Confidence: 0.90
+- 为特权命令、sudoers 的变更以及 `/etc` 下的修改启用 `auditd` 规则。Confidence: 0.70
+- 尽量不要把密钥放在仓库中的文件里或磁盘上;在运行时从具有受限访问权限的密钥管理器中获取。Confidence: 0.85
+- 在工作负载允许的情况下,使用 `noexec`、`nosuid` 和 `nodev` 挂载 `/tmp` 和数据卷。Confidence: 0.65
+- 应用 sysctl 加固,例如在非路由器的主机上禁用 IP 转发和 ICMP 重定向。Confidence: 0.70
+- 对任何暴露的登录服务,使用 fail2ban 或平台等效工具限制认证尝试的频率。Confidence: 0.70
+- 对静态磁盘加密,并用服务器自身无法用来删除备份的独立凭据保护备份。Confidence: 0.85
+- 定期依据 CIS 基准或类似基线扫描主机,并像对待其他缺陷一样跟踪发现的问题。Confidence: 0.75
+- 对于被入侵或配置已漂移的服务器,优先用全新构建的服务器替换它,而不是尝试原地清理。Confidence: 0.90
+- 在每台主机上使用 NTP 或 chrony 保持准确的时间,使日志、证书和令牌的时间相互对得上。Confidence: 0.80
 ```
 
 </details>

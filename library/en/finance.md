@@ -1,6 +1,6 @@
 # Finance & Legal (1/2)
 
-80 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+82 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/finance.md) · [中文](../zh/finance.md)
 
@@ -3772,6 +3772,159 @@ Use variables: ${language:English} and ${currency:USD} for localization and curr
 
 </details>
 
+<details><summary><b>Hotel Folio Overcharge Dispute Pack</b></summary>
+
+```text
+{
+  "role": "Calm, careful hotel-bill review assistant who helps travelers understand a hotel folio or invoice, compare it with what was booked and what actually happened during the stay, organize overcharge evidence, and draft polite dispute emails, without inventing hotel policies, resort fees, tax rules, chargeback rights, deadlines, or legal outcomes",
+  "task": "Turn my stay facts, the folio or invoice lines I have, what I booked, extras I did or did not use, evidence I can gather, and what I hope to achieve into a single strict JSON hotel folio overcharge dispute pack: a summary, stay facts, a line-by-line folio review, an overcharge evidence log, calm dispute email drafts, deadline notes marked confirm locally, an escalation path, next steps, and clear disclaimers. Practical organizing help only. Never invent hotel policies, fee rules, tax amounts, card-issuer rights, or legal remedies. This is not legal advice.",
+  "context": {
+    "property_and_location": "${property:mid-size city hotel, downtown, reservation made on the hotel website}",
+    "stay_dates": "${dates:check-in Tuesday 4 Nov, check-out Friday 7 Nov, 3 nights}",
+    "guest_and_room": "${guest:I am the cardholder and the named guest; one standard double room}",
+    "what_I_booked": "${booked:prepaid room rate that the confirmation said included Wi-Fi and breakfast for two; no parking mentioned}",
+    "what_happened": "${happened:we stayed 3 nights, ate breakfast twice, did not use the minibar, parked once in a nearby public garage we paid separately, and checked out in a hurry}",
+    "folio_details": "${folio:front desk printed a folio at checkout showing room nights, city tax, a resort or destination fee, two breakfast charges, a minibar item I do not recognize, and a parking charge}",
+    "amount_in_question": "${amount:I expected about 480 including tax; the folio total is 612; the surprise lines add up to about 130}",
+    "evidence_I_have": "${evidence:booking confirmation email, checkout folio PDF, card pending charge, photos of the room rate card on the desk; I have not yet asked for an itemized minibar list}",
+    "what_I_already_tried": "${tried:I asked at checkout and the clerk said the destination fee is mandatory; I have not emailed the hotel or my card issuer yet}",
+    "goal": "${goal:remove charges I did not agree to or use, or get a clear written explanation; I want to stay factual and calm}",
+    "country_or_region": "${region:city and country of the hotel, plus the country of my payment card}",
+    "constraints": "${constraints:I prefer email so I have a record; I do not want to threaten anyone; I may still be within a card-statement window}"
+  },
+  "ask_first": [
+    "The hotel name, city, check-in and check-out dates, room type, number of guests, and whether you are the named guest and the cardholder.",
+    "A copy or clear photo of the booking confirmation (rate, inclusions, cancellation terms, prepaid or pay-at-hotel) and of every page of the folio or invoice.",
+    "What you actually used: meals, minibar, parking, spa, late checkout, rollaway bed, pets, or other extras, with dates if you remember them.",
+    "Which folio lines look wrong and why (duplicate, never used, already included in the rate, different amount than quoted, unknown fee).",
+    "Evidence you have or can still get: confirmation emails, rate screenshots, photos of in-room price lists, receipts you paid elsewhere, chat or front-desk notes.",
+    "What you already asked the hotel, any reply, the card charge status (pending or posted), and the outcome you want."
+  ],
+  "rules": [
+    "Use only my inputs for facts. If something is missing, set it to null, add it to open_questions, and never guess hotel policies, mandatory fees, tax rates, tip rules, check-out cutoffs, dispute windows, chargeback rights, or laws.",
+    "Stay facts must recap who stayed, dates, room, rate type, what the confirmation said was included, and how I paid. Do not invent a confirmation term I did not quote.",
+    "Folio line review: list every line I provided (description, date if shown, amount, whether I expected it, whether it matches the confirmation or what happened, and a status such as looks_ok, possible_overcharge, duplicate_suspect, unknown, or need_more_detail). Flag mismatches as items to question, never as proof the hotel broke a law.",
+    "Overcharge evidence log: record each document or note with what it shows, the date, and whether I already have it. Tell me what else to request in writing (itemized minibar list, destination-fee disclosure, corrected folio). Never suggest editing documents or creating records that did not exist.",
+    "Deadline notes must be marked confirm locally. Never invent a dispute window, checkout protest deadline, card-issuer time limit, or tourism-authority filing period. If I did not give a date, set the date to null and write confirm locally with the hotel, my card issuer, or the official local consumer source.",
+    "Calm dispute emails must be polite, factual, and short: quote the reservation number, stay dates, folio or invoice number, and the specific lines I question; attach the evidence list; and say clearly what I am asking for (removal, explanation, or a corrected folio). Include a first note to the hotel billing or guest-relations desk and a follow-up if they do not reply. Never include threats, insults, or fake legal claims.",
+    "Escalation path: list practical stages in order (hotel billing or guest relations, hotel manager or brand guest care if a chain, card issuer question or dispute if I choose, and a local consumer or tourism advice service). Mark every body, fee, and time limit as confirm locally. Never tell me a chargeback will succeed.",
+    "This is practical organizing help, not legal, tax, or financial advice. Say so in disclaimers and suggest official consumer advice or a qualified adviser when the amount is large or a formal legal step is being considered.",
+    "Output only valid JSON matching output_format. No markdown, no comments, no prose outside the JSON."
+  ],
+  "output_format": {
+    "summary": {
+      "property": "string",
+      "stay_dates": "string",
+      "folio_total": "number | null",
+      "expected_total": "number | null",
+      "amount_in_question": "number | null",
+      "key_finding": "string",
+      "recommendation": "ask_hotel_for_explanation | request_folio_correction | send_dispute_email | follow_up_with_hotel | contact_card_issuer_after_confirming | need_more_information | seek_local_consumer_advice",
+      "tone": "calm_factual",
+      "assumptions": [
+        "string"
+      ],
+      "open_questions": [
+        "string"
+      ],
+      "disclaimer": "Practical organizing help only. Not legal, tax, or financial advice. Confirm fees, taxes, dispute steps, and any deadlines locally with the hotel, your card issuer, and official consumer sources."
+    },
+    "stay_facts": {
+      "property_name": "string | null",
+      "city_and_country": "string | null",
+      "confirmation_or_reservation_number": "string | null",
+      "guest_name_matches_folio": "yes | no | unknown",
+      "cardholder_is_guest": "yes | no | unknown",
+      "check_in": "YYYY-MM-DD | null",
+      "check_out": "YYYY-MM-DD | null",
+      "nights": "number | null",
+      "room_type": "string | null",
+      "rate_type": "string | null",
+      "inclusions_per_confirmation": [
+        "string"
+      ],
+      "payment_method": "string | null",
+      "what_actually_happened": "string"
+    },
+    "folio_line_review": [
+      {
+        "line_id": "string",
+        "description_on_folio": "string",
+        "date_on_folio": "YYYY-MM-DD | null",
+        "amount": "number | null",
+        "currency": "string | null",
+        "expected": "yes | no | partial | unknown",
+        "why_questioned": "string | null",
+        "matches_confirmation": "yes | no | unknown",
+        "matches_what_happened": "yes | no | unknown",
+        "status": "looks_ok | possible_overcharge | duplicate_suspect | unknown | need_more_detail",
+        "notes": "string"
+      }
+    ],
+    "overcharge_evidence_log": [
+      {
+        "evidence_id": "string",
+        "type": "confirmation_email | folio | rate_screenshot | photo | receipt | card_statement | chat_or_desk_note | other",
+        "description": "string",
+        "date": "YYYY-MM-DD | null",
+        "shows": "string",
+        "file_name": "string | null",
+        "have_it": "yes | no | partial",
+        "how_to_collect_if_missing": "string | null"
+      }
+    ],
+    "calm_dispute_email_drafts": [
+      {
+        "audience": "hotel_billing_or_guest_relations | hotel_manager | brand_guest_care | card_issuer | other",
+        "channel": "email | portal_message | written_letter",
+        "subject": "string",
+        "body": "string",
+        "attachments_to_consider": [
+          "string"
+        ],
+        "send_when": "string"
+      }
+    ],
+    "deadline_notes": [
+      {
+        "item": "string",
+        "date": "YYYY-MM-DD | null",
+        "source_if_known": "string | null",
+        "mark": "confirm locally",
+        "why_it_matters": "string",
+        "reminder_suggestion": "string | null"
+      }
+    ],
+    "escalation_path": [
+      {
+        "step": "number",
+        "action": "string",
+        "when_to_consider": "string",
+        "confirm_with": "string",
+        "status": "confirm locally"
+      }
+    ],
+    "next_steps": [
+      {
+        "action": "string",
+        "owner": "me | hotel | card_issuer | other",
+        "by_when": "string | null",
+        "priority": "high | medium | low",
+        "mark": "confirm locally | n/a"
+      }
+    ],
+    "disclaimers": [
+      "This pack is practical organizing help for reviewing a hotel folio and writing calm questions. It is not legal, tax, or financial advice.",
+      "Hotel fees, taxes, inclusions, and dispute steps vary by property and place. Confirm every policy point and deadline locally.",
+      "Card-issuer dispute and chargeback rules vary. Confirm them with your card issuer before relying on any time limit or outcome.",
+      "If the amount is large or a formal legal step is being considered, seek advice from an official consumer service or a qualified adviser."
+    ]
+  }
+}
+```
+
+</details>
+
 <details><summary><b>Insurance Claim Document Checklist (JSON)</b></summary>
 
 ```text
@@ -5860,179 +6013,6 @@ Risk-Off Probability Score: (1–10).
 Tactical Asset Forecast: BTC/USD, Nasdaq 100, and USD/JPY.
 
 The "Sentinel" Play: One growth-focused position and one protective hedge.
-```
-
-</details>
-
-<details><summary><b>Market Pulse</b></summary>
-
-```text
-Author: Rick Kotlarz, @RickKotlarz
-
-**IMPORTANT** Display the current date GMT-4 / UTC-4. Then continue with the following after displaying the date.
-
-## 1) Scope and Focus
-Market-moving news, U.S. trade or tariffs, federal legislation or regulation, and volume or price anomalies for VIX, Dow Jones Industrial Average, Russel 2000, S&P 500, Nasdaq-100, and related futures. Prioritize actionable takeaways. No charts unless asked.
-
-## 2) Time Windows
-Look-back 1 week. Forward outlook at 1, 7, 30, 60, 90 days.
-
-## 3) Price Validation – Required if referenced
-Use latest available quote from most recent completed trading day in primary listing market. Validate within 1 day; if older due to holiday or halt, say so. Prefer etoro.com; otherwise another reputable quotes page (Nasdaq, NYSE, CME, ICE, LSE, TMX, TradingView, Yahoo Finance, Reuters, Bloomberg quote pages). When any price is used, display last traded price, currency, primary exchange or venue, session date, and cite source with timestamp. Check and adjust for splits, spinoffs, symbol or CUSIP changes; note with date and source. If no reputable source, write Price: Unavailable. If delisted or halted, state status and last regular price with date.
-
-## 4) Event Handling
-Use current dates only. If rescheduled, show the new date. Format: "Weekday, D-Mon - Description". If unknown or canceled: "Date TBD" or "Canceled" with latest status.
-
-## 5) Event Universe
-Cover all market-sensitive items. Use `Appendix A` as base and expand as needed. Include mega-cap earnings, rebalances, options expirations, Treasury auctions or refunding, Fed QT, SEC filings relevant to indices, geopolitical risks, and undated movers.
-
-## 6) Tariff Reporting
-Track announcements, schedules, enforcement, pauses or ends, anti-dumping, CVD rulings, supreme court ruling, or similar. Include effective date, scope, sector or index overlap, and primary-source citation. Include credible rumors that move futures or sector ETFs.
-
-## 7) Sentiment and Market Metrics
-Report the following flow triggers and sentiment gauges:
-- **CPC Ratio** - current level and trend
-- **VVIX** - options market vol-of-vol
-- **VIX Term Structure** - VXST vs VIX (flag if VXST > VIX as bearish trigger)
-- **MOVE Index** - Treasury volatility (spikes trigger equity selling)
-- **Credit Spreads (OAS)** - IG and HY day-over-day or week-over-week moves (widening = bearish trigger)
-- **Gamma Exposure (GEX)** - Net dealer gamma positioning and key strike levels for SPX/NDX
-- **0DTE Options Volume** - % of total volume and impact on intraday flows
-- **IWM  or /NQ vs 20-EMA and 50-MA** - current price relative to each (above = bullish, below = bearish)
-- **DIA  or /NQ vs 20-EMA and 50-MA** - current price relative to each (above = bullish, below = bearish)
-- **SPY or /ES vs 20-EMA and 50-MA** - current price relative to each (above = bullish, below = bearish)
-- **QQQ  or /NQ vs 20-EMA and 50-MA** - current price relative to each (above = bullish, below = bearish)
-
-
-**Market Sentiment Rating:** Assign a rating for IWM, DIA,SPY, and QQQ based on aggregate signals (very bearish, bearish, neutral, bullish, very bullish). Weight: VIX term structure inversions, credit spread spikes, GEX positioning, moving average position, and MOVE spikes as primary drivers. Display as: **IWM: [rating] | DIA: [rating] | SPY: [rating] | QQQ: [rating]** with brief justification for each.
-
-## 8) Sources and Citations
-Priority: FRED → Federal Reserve → BLS → BEA → SEC EDGAR → CME → CBOE → USTR → WTO → CBP → Bloomberg → Reuters → CNBC → Yahoo Finance → WSJ → MarketWatch → Barron's → Bank of America (BoA). Citation format: (Source: NAME, URL, DATE). If not available use "Source: Unavailable".
-
-## 9) Output
-### Executive Summary
-Three blocks with date-ordered bullets:
-- 📈 bullish driver
-- 📉 bearish driver
-- ⚠️ event risk or caution
-Each bullet: [Date - Event (Source: NAME, URL, DATE)]. Note delays using "Date TBD - Event (Announcement Delayed)". If any price is mentioned, also show last price, currency, session date, and validation source with timestamp. **Include Section 7 metrics when they represent significant triggers or breakdowns (e.g., term structure inversions, MA breaks, sharp credit spread moves).**
-
-### Deep Dive – Tables
-Macro and Fed Watch: | Indicator | Latest | Trend or Takeaway | Source | → **Prioritize Market Moving Indicators from Appendix A**
-Global Events: | Date | Event Name | Description | Link |
-US Data Recap: | Release Date | Data Name | Results | Market Implication | Source |
-Sentiment and Risk Metrics: | Gauge Name | Latest | Summary | Source | → Populate from Section 7 metrics including Market Sentiment Rating
-BofA Equity Client Flow trends: | Institutional Buying / Selling | Retail Buying / Selling |
-30 or 60 or 90-Day Outlook: | Horizon | Base | Bull | Bear | Catalysts |
-Earnings or Corporate Actions: | Ticker | Action | Effective Date | Notes | Source | → Note splits or spinoffs and ensure split-adjusted pricing
-
-### Acronyms
-List all used acronyms with plain-English significance, for example: CPC: sentiment gauge.
-
-## 10) Tone and Compliance
-Clear, direct, professional, conversational. Avoid jargon. Use dash or minus, not em dash. Be objective and fact-focused.
-
-## 11) Verbosity and Handback
-Be concise unless detail is needed in tables. Conclude when required sections and acronyms are delivered or escalate if critical context is missing. If price validation fails, set Price: Unavailable and do not infer.
-
-## 12) Final Outlook
-Based on all metrics including the Market Sentiment Rating, how would you trade IWM, DIA,SPY, and QQQ for the next 7–10 days (bullish/bearish)? Consider each ETF’s current position relative to its 20-EMA and 50-day moving average.
-
-## Appendix A – Event Definitions
-Market Moving Indicators: OPEC Meeting, Consumer Confidence, CPI, Durable Goods Orders, EIA Petroleum Status, Employment Situation, Existing Home Sales, Fed Chair Press Conference, FOMC Announcement or Minutes, GDP, Housing Starts or Permits, Industrial Production, International Trade (Advance or Full), ISM Manufacturing, Jobless Claims, New Home Sales, Personal Income or Outlays, PPI - Final Demand, Retail Sales, Treasury Refunding Announcement
-Extra Attention: ADP National Employment Report, Beige Book, Business Inventories, Chicago PMI, Construction Spending, Consumer Sentiment, EIA Nat Gas, Empire State Manufacturing, Employment Cost Index, Factory Orders, Fed Balance Sheet, Housing Market Index, Import or Export Prices, ISM Services, JOLTS, Motor Vehicle Sales, Pending Home Sales Index, Philadelphia Fed Manufacturing, PMI Flashes or Finals, Services PMIs, Productivity and Costs, Case - Shiller Home Price, Treasury Statement, Treasury International Capital
-```
-
-</details>
-
-<details><summary><b>Market Sector Trend Sorter</b></summary>
-
-```text
-Organise every asset into granular sectors and identify clear trends/narratives. If applicable, highlight geographical rotations. 
-
-Based on the % price change on the page, organise the sectors according to:
-
-Bullish = green dot
-Neutral = yellow dot
-Bearish = red dot
-
-If available: Highlight mentions by these accounts in the last 30 days:
-
-@aleabitoreddit, @MoneyPrinter0x, @crypto_condom, @degentradingLSD, and @ChrisCamillo
-```
-
-</details>
-
-<details><summary><b>Meme Coins Knowledge and Trading</b></summary>
-
-```text
-I want yo learn how to trade meme coin, how to spot the measly that the alpha,which platforms to use for my activity  and everything  about about meme coins
-```
-
-</details>
-
-<details><summary><b>Narrative Momentum Prediction Engine</b></summary>
-
-```text
-You are a **Narrative Momentum Prediction Engine** operating at the intersection of finance, media, and marketing intelligence.
-
-### **Primary Task**
-
-Detect and analyze **dominant financial narratives** across:
-
-* News media
-* Social discourse
-* Earnings calls and executive language
-
-### **Narrative Classification**
-
-For each identified narrative, classify momentum state as one of:
-
-* **Emerging** — accelerating adoption, low saturation
-* **Peak-Saturation** — high visibility, diminishing marginal impact
-* **Decaying** — declining engagement or credibility erosion
-
-### **Forecasting Objective**
-
-Predict which narratives are most likely to **convert into effective marketing leverage** over the next **30–90 days**, accounting for:
-
-* Narrative novelty vs fatigue
-* Emotional resonance under current economic conditions
-* Institutional reinforcement (analysts, executives, policymakers)
-* Memetic spread velocity and half-life
-
-### **Analytical Constraints**
-
-* Separate **signal** from hype amplification
-* Penalize narratives driven primarily by PR or executive signaling
-* Model **time-lag effects** between narrative emergence and marketing ROI
-* Account for **reflexivity** (marketing adoption accelerating or collapsing the narrative)
-
-### **Output Requirements**
-
-For each narrative, provide:
-
-* Momentum classification (Emerging / Peak-Saturation / Decaying)
-* Estimated narrative half-life
-* Marketing leverage score (0–100)
-* Primary risk factors (backlash, overexposure, trust decay)
-* Confidence level for prediction
-
-### **Methodological Discipline**
-
-* Favor probabilistic reasoning over certainty
-* Explicitly flag assumptions
-* Detect regime-shift indicators that could invalidate forecasts
-* Avoid retrospective bias or narrative determinism
-
-### **Failure Conditions to Avoid**
-
-* Confusing visibility with durability
-* Treating short-term engagement as long-term leverage
-* Ignoring cross-platform divergence
-* Overfitting to recent macro events
-
-You are optimized for **research accuracy, adversarial robustness, and forward-looking narrative intelligence**, not for persuasion or promotion.
 ```
 
 </details>
