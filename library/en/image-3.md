@@ -1,72 +1,10 @@
 # Image & Design (3/5)
 
-846 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+847 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
 Pages: [1](image.md) · [2](image-2.md) · **3** · [4](image-4.md) · [5](image-5.md)
-
-<details><summary><b>Icelandic Beach Church Concept Brief Builder</b></summary>
-
-```text
-Act as a cinematic landscape designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of a small white wooden church with a red roof standing on a grassy headland above an Icelandic black sand beach, with dark basalt sea stacks rising from the ocean at golden hour. The shot will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move naturally (surf lines rolling in and washing up the black sand, foam pulling back, sea spray bursting against the base of the stacks, clouds drifting slowly, the warm glow shifting a little, grass stirring in the wind) while keeping the composition calm, readable, and easy to animate.
-
-My starting choices:
-- Church: ${church:a small white wooden church with a red gabled roof and a short red steeple}
-- Headland: ${headland:a rounded grassy green headland that drops to the beach}
-- Beach: ${beach:a long curve of fine black volcanic sand}
-- Sea stacks: ${stacks:a few dark basalt sea stacks offshore, one tall and jagged, the others smaller spires and a low rounded rock}
-- Time and light: ${time:golden hour with a low sun near the horizon and scattered clouds lit orange, pink, and purple}
-- Visual style: ${style:photoreal landscape photography, natural colors}
-- Mood words: ${mood:remote, peaceful, dramatic, warm}
-
-First ask me, in one short message, for anything missing: the camera position I prefer (low on the beach at the waterline, slightly elevated from the dunes, or from a cliff path), which side of the frame the church and the sea stacks should sit on, where the sun should be, how rough the sea should be, and anything to avoid (people, cars, drones in the sky, birds that would have to fly convincingly, text, logos, or copying a specific real photograph).
-
-Then produce the brief with these sections:
-
-1. **Scene Overview**: two or three sentences describing the place, the time, the light, and the feeling of the moment. Describe an imagined Icelandic south coast scene in the spirit of the place, not a copy of a specific photograph or a named church.
-
-2. **Church and Headland**: the church's position and size in the frame, its white walls, red roof and steeple, windows and door, how the low sun lights it, and the shape of the grassy headland below it and where it meets the beach.
-
-3. **Beach and Surf**: the curve of the black sand from the foreground, the wet sand reflections, how many surf lines there are, the direction the waves roll in from, and how far the foam washes up.
-
-4. **Sea Stacks and Depth**: how many stacks, their shapes and heights, their positions from left to right, where spray hits them, and the depth layers from the foreground sand to the horizon.
-
-5. **Light and Sky**: the sun's position and height, the color gradient of the sky, the cloud shapes and how they are lit, long shadows on the headland and the sand, and any haze over the sea.
-
-6. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (church position and colors, steeple shape, headland outline, beach curve, number and order of the sea stacks, sun position, horizon line, cloud layout, camera position, framing).
-
-7. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the surf lines, the foam on the sand, spray at the stacks, the clouds, the grass, the light, and the camera move. Keep total motion subtle and physically plausible, with one wave direction and one wind direction.
-
-8. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the church on the headland, the black sand beach, and the sea stacks in the first sentence, ending with: no people, no text, no logos.
-
-9. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes the surf rolling in and washing up the sand, spray at the stacks, clouds drifting, one very slow camera move for about 6 seconds, and says to keep the church, headland, stacks, and framing exactly as in the image with no new objects.
-
-Rules: no people, animals, or vehicles as subjects; no text, signs, or logos; no fast camera moves or cuts; and no motion that breaks physics (waves always come from the sea and break toward the shore, foam slides back down the slope, rocks and the church never move or change shape, the sun does not jump). Use short paragraphs and lists.
-```
-
-</details>
-
-<details><summary><b>Icelandic Beach Church Image to Video</b></summary>
-
-```text
-Start from the step 2 image "White Church with a Red Roof Above a Black Sand Beach and Basalt Sea Stacks at Golden Hour" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the white church with its red roof and steeple on the grassy headland in the left third, the curve of black sand, the four basalt rocks and sea stacks on the right, the low sun at the far left, the horizon line, and the framing exactly as in the image. Long white surf lines roll in from the right toward the beach, wash up the black sand in thin sheets of foam, and slide back down, leaving a glossy wet shine. Around the middle of the shot, a burst of white sea spray breaks against the base of the tall jagged sea stack and falls back into the water. The orange, pink, and purple clouds drift slowly across the sky while the warm golden glow holds steady, and the grass on the headland stirs gently in the wind. The camera stays almost still, with only a very slight, slow push-in. Natural, realistic motion, no cuts, no people, no new objects, no text. Sound of rolling surf, wind, and distant waves.
-```
-
-</details>
-
-<details><summary><b>Icon Designer</b></summary>
-
-```text
-Act like an icon designer and give me ideas on representing an icon of the word [KEYWORD].
-
-The idea is to add to the main website page of the app an icon that represents the idea of [KEYIDEA] because the app's main goal is to offer [Function]
-
-More information:
--The icon should be XXXX
-```
-
-</details>
 
 <details><summary><b>Identity Locked Image Transformation</b></summary>
 
@@ -6193,6 +6131,109 @@ Visual style: museum exhibit / engineering infographicColor palette: white backg
     "resolution": "High resolution, sharp details.",
     "noise": "Slight digital noise characteristic of phone camera sensors in indoor light."
   }
+}
+```
+
+</details>
+
+<details><summary><b>Photorealistic Tokyo Travel Vlog Portrait</b></summary>
+
+```text
+Create a photorealistic smartphone travel-vlog image of a fictional 20-year-old Japanese woman walking through a lively Tokyo side street in the early evening.
+
+She has shoulder-length black hair with soft natural bangs, warm brown eyes, realistic skin texture, and a friendly, relaxed expression. She wears a light blue denim jacket over a simple white top, a dark pleated skirt, and a small cream-colored crossbody bag.
+
+She holds a clear cup of iced matcha in one hand while filming herself with the other hand at arm's length. Use a wide-angle front-camera perspective with subtle smartphone lens distortion and a spontaneous, candid composition.
+
+The street is lined with small restaurants and local shops. Pedestrians walk naturally in the background. Warm shop lights and neon signs begin to glow beneath a cool evening sky.
+
+Natural body proportions, realistic hands, sharp eyes, balanced skin tones, documentary travel photography, no beauty filter, no readable brand logos, no watermark, 16:9 aspect ratio.
+```
+
+</details>
+
+<details><summary><b>Photorealistic Webcam Bedroom Scene</b></summary>
+
+```text
+{
+  "subject": {
+    "description": "A young woman lying on a bed, holding a smartphone and looking at the screen with a calm, slightly focused expression.",
+    "body": {
+      "type": "female, slim build",
+      "details": "light skin tone, long blonde hair, natural makeup with defined eyes and lips",
+      "pose": "lying on her side on a bed, upper body slightly raised, one arm holding a phone in front of her face, the other arm resting on the bed"
+    },
+    "face": {
+      "expression": "neutral, relaxed, slightly focused",
+      "gaze_direction": "looking at her phone screen",
+      "head_tilt": "slight downward tilt"
+    },
+    "wardrobe": {
+      "top": "black casual t-shirt",
+      "bottom": "soft fabric pajama shorts",
+      "style": "comfortable indoor loungewear / pajama outfit"
+    },
+    "hair": "long blonde hair, straight and slightly voluminous, falling naturally around shoulders"
+  },
+  "scene": {
+    "description": "A bedroom scene captured through a laptop screen using a camera app interface.",
+    "location": "indoor bedroom",
+    "setting": "bed with soft blankets and pillows",
+    "background_elements": "neutral wall, slightly messy bedding, soft fabric textures",
+    "lighting": "low ambient indoor lighting with soft warm tones",
+    "atmosphere": "cozy, intimate, relaxed night-time vibe"
+  },
+  "environment": {
+    "ambience": "dimly lit, quiet indoor environment",
+    "style": "candid digital capture through screen",
+    "depth_of_field": "subject clear within the screen, slight softness overall"
+  },
+  "camera": {
+    "device": "laptop camera (MacBook Photo Booth style)",
+    "angle": "slightly elevated screen perspective",
+    "aspect_ratio": "4:3 within screen frame",
+    "framing": "the subject appears inside the laptop display, with the laptop bezel partially visible",
+    "focus": "moderate focus, slightly soft typical webcam quality"
+  },
+  "interface": {
+    "visible_ui": "Photo Booth application interface visible on screen",
+    "elements": "top bar with 'Photo Booth' text, bottom center red shutter button, small UI icons",
+    "screen_effect": "subtle screen glare, pixel softness, digital display look"
+  },
+  "image_quality": {
+    "resolution": "webcam-like quality",
+    "grain": "visible digital noise due to low light",
+    "sharpness": "slightly soft, not highly detailed",
+    "compression_artifacts": "minor digital artifacts",
+    "dynamic_range": "limited, darker shadows with some highlight softness"
+  },
+  "lighting": {
+    "type": "low indoor ambient light",
+    "quality": "soft, slightly uneven, warm tones",
+    "effects": "gentle shadows, subtle highlights on face"
+  },
+  "color_grading": {
+    "tone": "warm and muted",
+    "temperature": "slightly warm",
+    "contrast": "low to moderate",
+    "saturation": "slightly reduced, natural indoor tones"
+  },
+  "rendering": {
+    "style": "photorealistic webcam capture",
+    "quality": "intentionally imperfect, screen-captured feel",
+    "skin_texture": "natural, slightly softened by low resolution",
+    "post_processing": "minimal, raw webcam look"
+  },
+  "artifacts": {
+    "screen_glare": "subtle reflections on laptop screen",
+    "noise_pattern": "visible low-light grain",
+    "chromatic_aberration": "minimal",
+    "motion_blur": "none"
+  },
+  "constraints": {
+    "focus_priority": "subject inside the screen is the main focus",
+    "avoid": "overly sharp DSLR look, studio lighting, artificial filters"
+  }
 }
 ```
 

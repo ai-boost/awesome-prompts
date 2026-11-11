@@ -1,6 +1,6 @@
 # 图像与设计 (1/5)
 
-共 846 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 847 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
@@ -4088,6 +4088,31 @@ GPT Image 2.5 on ChatGPT
 
 </details>
 
+<details><summary><b>儿童兔子3D动画短视频</b> · 机器翻译</summary>
+
+```text
+为 YouTube Shorts 创作一个极具吸引力的 3D 动画儿童视频，主角是一只可爱的小兔宝宝，有着闪闪发光的大眼睛，探索一个神奇而多彩的世界。
+
+视频开头的前 2 秒是出人意料的彩虹爆炸和欢快的音乐。
+
+小兔子发现了 5 颗神奇的彩色蛋。每颗蛋都会打开，露出一只可爱的小动物宝宝和一种不同的鲜艳色彩。
+
+包含：
+
+* 表情丰富的可爱角色。
+* 明亮、鲜艳的色彩。
+* 流畅的皮克斯风格 3D 动画。
+* 搞笑的动作和好玩的惊喜。
+* 欢快的原创背景音乐。
+* 幼儿也能看懂的简单视觉叙事。
+* 快节奏的场景切换以保持注意力。
+* 快乐又出人意料的结尾，鼓励孩子们再看一遍。
+
+竖屏 9:16 格式，45-60 秒，高质量动画，没有恐怖场景，没有暴力，没有闪烁效果，没有受版权保护的角色，没有标志。  你会做短视频吗？
+```
+
+</details>
+
 <details><summary><b>儿童时装摄影</b></summary>
 
 ```text
@@ -6591,14 +6616,6 @@ Apply clean soft textures and realistic PBR materials.
 Lighting feels balanced and natural. The raised base includes nearby streets, landscape features, and cultural details linked to the structure. Add tiny stylized locals and visitors with heavy facial details.
 
 Background stays solid ${background_color}. Top center text shows ${country_name} in bold. Second line shows ${structure_name}. Place a minimal architecture icon below. Text color adjusts for contrast.”
-```
-
-</details>
-
-<details><summary><b>合成波沙漠公路老爷车</b> · 机器翻译</summary>
-
-```text
-一辆空无一人的樱桃红复古敞篷车停在笔直沙漠公路的路肩上,时值日落,以复古合成波(synthwave)风格呈现。公路延伸至灭点,一轮巨大的条纹太阳半沉于地平线之下,太阳带有艳粉、橙色和黄色的条带。发光的洋红色网格线铺满沙漠地面,高大的巨柱仙人掌以深色剪影立在道路两旁。低矮的紫色群山带着霓虹青色的轮廓光,勾勒出地平线。天空从顶部的深紫罗兰色渐变为太阳附近的珊瑚色,点缀着几颗柔和的星星和细长的水平云带。镀铬保险杠和车身弯曲的尾鳍映出粉色与青绿色的反光;虚线中心线隐隐发光。干净的 1980 年代复古未来主义外观,细微的胶片颗粒和柔和的泛光,电影感宽幅构图。无人物,无文字,无标志,无车牌字符。
 ```
 
 </details>

@@ -1,10 +1,97 @@
 # 生活与旅行 (2/3)
 
-共 140 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 141 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/lifestyle.md) · [中文](../zh/lifestyle.md)
 
 分页：[1](lifestyle.md) · **2** · [3](lifestyle-3.md)
+
+<details><summary><b>幼犬训练与社会化计划</b> · 机器翻译</summary>
+
+```text
+role: 友善、基于证据的幼犬训练与社会化规划师
+task: >
+  以 YAML 格式为新幼犬制定一份实用的八周训练与社会化计划。
+  计划只使用正向强化,适配家庭的每日日程,
+  并涵盖定点排泄训练、笼子或休息区的舒适感、触摸适应、基础指令、咬力控制、
+  独处时间,以及对日常景象、声音、人、场所的平静、循序渐进的接触。
+
+inputs:
+  puppy_name: ${puppy_name:Biscuit}
+  breed_or_mix: ${breed:Labrador mix}
+  age_weeks: ${age_weeks:10}
+  home_type: ${home_type:apartment with a small balcony and no yard}
+  household: ${household:two adults working partly from home, no other pets}
+  daily_time_available_minutes: ${time_minutes:45}
+  main_concerns: ${concerns:nipping, toilet accidents, crying at night}
+
+ask_first:
+  - 疫苗接种情况,以及兽医对外出和幼犬课程的建议
+  - 家中谁来训练,以及他们工作日和周末的日程
+  - 附近的邻居、楼梯、电梯、交通或其他狗
+  - 已经观察到的任何恐惧、低吼或护食
+  - 幼犬喜欢的食物奖励以及任何饮食限制
+
+rules:
+  - 只使用正向强化。不使用惩罚、电击项圈、尖刺项圈或勒颈项圈,不揪后颈皮,不"阿尔法翻转",不大声呵斥。
+  - 绝不提供医疗或疫苗方面的建议;健康、疫苗、饮食和安全外出时机一律交由幼犬的兽医判断。
+  - 训练时段要短(2 到 5 分钟)并每天多次;安排休息和睡眠,因为幼犬需要大量睡眠。
+  - 社会化指的是按幼犬的节奏进行平静、积极的接触,而不是强行淹没式刺激。包括压力的肢体语言迹象,以及出现时该怎么做。
+  - 如果幼犬表现出强烈恐惧、伴随身体僵硬的低吼、护食,或咬破皮肤,建议寻求合格的正向强化训练师或兽医行为专家。
+  - 所有内容都要适配每天可用的分钟数;说明忙碌的日子可以舍弃什么。
+  - 如果输入信息缺失,使用合理的默认值,并在 assumptions 下列出。
+  - 只输出符合 output_format 的有效 YAML。YAML 之外不要有任何文字。
+
+output_format:
+  puppy:
+    name: string
+    age_weeks: integer
+    assumptions: [string]
+  daily_schedule_template:
+    - time: string
+      activity: string
+      notes: string
+  house_training:
+    toilet_trip_triggers: [string]
+    routine_steps: [string]
+    accident_response: [string]
+  rest_and_crate_comfort:
+    setup: [string]
+    steps_to_build_comfort: [string]
+    night_plan: [string]
+  weekly_plan:
+    - week: integer
+      focus: string
+      cues_to_teach: [string]
+      handling_and_grooming: [string]
+      socialization_exposures:
+        - item: string
+          category: sounds | surfaces | people | animals | places | objects | handling
+          how_to_do_it_safely: string
+      alone_time_goal: string
+      success_signs: [string]
+  bite_inhibition_and_nipping:
+    why_it_happens: string
+    what_to_do: [string]
+    what_not_to_do: [string]
+  stress_signals:
+    signs_to_watch: [string]
+    what_to_do: [string]
+  reward_plan:
+    rewards_ranked: [string]
+    fading_treats: string
+  household_rules:
+    shared_cue_words: [string]
+    consistency_agreements: [string]
+  progress_tracker:
+    - skill: string
+      week_started: integer
+      current_level: not_started | learning | reliable_at_home | reliable_outside
+  when_to_get_professional_help: [string]
+  busy_day_minimum: [string]
+```
+
+</details>
 
 <details><summary><b>庭院旧货出售计划（YAML）</b> · 机器翻译</summary>
 

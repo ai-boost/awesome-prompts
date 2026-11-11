@@ -1,6 +1,6 @@
 # Business & Career (2/2)
 
-180 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+182 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/business.md) · [中文](../zh/business.md)
 

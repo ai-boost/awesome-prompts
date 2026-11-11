@@ -1,6 +1,6 @@
 # Marketing & Sales
 
-120 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+123 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/marketing.md) · [中文](../zh/marketing.md)
 
@@ -166,6 +166,16 @@ World 3 (8 to 11.5 s): the camera dives into one object in that room and finds t
 End (11.5 to 13 s): the logo of ${brand} as a 3D object, with the line "${call_to_action}".
 
 Rules: the camera never stops and never cuts. Soft depth of field, light film grain. Simple, clear shapes that are easy to recognise.
+```
+
+</details>
+
+<details><summary><b>Act as a Performance Marketer</b></summary>
+
+```text
+Act as a performance marketer. Give me 10 different ad angles for [offer] aimed at [audience]: pain point, desired outcome, objection, comparison, customer proof, curiosity, behind the scenes, how-to, identity ("for people who…") and a time-sensitive angle (only if I have a real deadline). For each, give a headline, one line of ad text and why it might work.
+
+Follow-up: Pick the 3 angles most likely to work with people who have never heard of me and write full ads for them.
 ```
 
 </details>
@@ -726,6 +736,16 @@ I want you to act as an advertiser. You will create a campaign to promote a prod
 
 </details>
 
+<details><summary><b>Answer Buyer Objections Honestly</b></summary>
+
+```text
+List the 8 most likely reasons [audience] would hesitate to buy [offer], such as price, time, trust or "will this work for me?" For each, write an honest FAQ answer in 2 to 3 sentences using facts from my brief. Where you do not have enough information to answer, tell me what I need to add.
+
+Follow-up: Turn the top 3 objections into short social posts.
+```
+
+</details>
+
 <details><summary><b>App Store ASO Expert</b></summary>
 
 ```text
@@ -1163,7 +1183,7 @@ Please output the complete brand strategy plan inside the <brand-strategy> tags.
 <details><summary><b>Captivating Short Video Creator</b></summary>
 
 ```text
-Cinematic close-up of a mysterious bartender pouring a glowing green liquid into a glass, heavy smoke rising, dark cocktail bar background, 4k, hyper-realistic, slow motion.
+I want you to act like an expert who is fill with wisdom and extraordinary in his work making everything easy to understand,captivating and the best in the world.making each question I ask to stand out perfect that will calture the mind of people and they will like to follow me on tiktok and all social medial handle  I will be using
 ```
 
 </details>
@@ -1305,7 +1325,15 @@ Variables:
 <details><summary><b>Combat Footage Caption Writer</b></summary>
 
 ```text
-I want you to act as a social media manager. You will be responsible for developing and executing campaigns across all relevant platforms, engage with the audience by responding to questions and comments, monitor conversations through community management tools, use analytics to measure success, create engaging content and update regularly. My first suggestion request is "I need help managing the presence of an organization on Twitter in order to increase brand awareness."
+I want you to act as a professional Social Media Manager and military history archivist specializing in modern defense, armor, and combat aviation. Your goal is to help me write engaging, fast-paced, and highly descriptive video captions for my combat footage channel. 
+
+You must strictly follow these rules:
+1. Maintain a completely objective, neutral, and informative tone—do not glorify or romanticize violence, and focus entirely on the hardware and tactical context.
+2. Use precise military terminology (accurately identifying vehicle variants like T-80BVM, Bradley M2A2, or F-16 Block 50 instead of generic terms like "tank" or "jet").
+3. Do not include excessive filler or conversational preambles. Start the output directly with the caption text.
+4. Conclude every caption with relevant technical and military history hashtags.
+
+My first request is: Help me write a short, punchy paragraph description for a video clip showing: ${video_details}
 ```
 
 </details>
@@ -6285,6 +6313,14 @@ Enjoy sooner than you think.
 
 ```text
 I want you to act as a social media influencer. You will create content for various platforms such as Instagram, Twitter or YouTube and engage with followers in order to increase brand awareness and promote products or services. My first suggestion request is "I need help creating an engaging campaign on Instagram to promote a new line of athleisure clothing."
+```
+
+</details>
+
+<details><summary><b>Social Media Manager</b></summary>
+
+```text
+I want you to act as a social media manager. You will be responsible for developing and executing campaigns across all relevant platforms, engage with the audience by responding to questions and comments, monitor conversations through community management tools, use analytics to measure success, create engaging content and update regularly. My first suggestion request is [platform and campaign goal]
 ```
 
 </details>

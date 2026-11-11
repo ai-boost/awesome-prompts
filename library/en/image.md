@@ -1,6 +1,6 @@
 # Image & Design (1/5)
 
-846 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+847 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
@@ -1341,6 +1341,31 @@ Keep the screen readable but slightly blurry, like a poorly photographed phone s
 
 ```text
 Kodak porra 400 Authentic vintage analog film photography, captured on classic 35mm film camera with manual focus lens, shot on expired Kodak Portra 400 film stock, pronounced natural film grain structure with visible halation around bright highlights, warm nostalgic color palette with slightly desaturated mid-tones, organic color shifts between frames, gentle peachy skin tones characteristic of Portra film, soft dreamy vignetting gradually darkening towards corners and edges, accidental light leaks with orange and red hues bleeding into frame edges, subtle lens flare from uncoated vintage optics, imperfect manual focus creating dreamy bokeh with swirly out-of-focus areas, chromatic aberration visible in high contrast edges, film dust particles and hair caught during scanning process, fine vertical scratches from film transport mechanism, authentic analog warmth with slightly lifted blacks and compressed highlights, natural color bleeding between adjacent film layers, gentle overexposure in bright areas creating soft glow, film edge artifacts and frame numbers barely visible, scanned from original negative with slight color cast, 1990s point-and-shoot disposable camera aesthetic, Fujifilm Superia or Agfa Vista alternative film characteristics, organic photographic imperfections and inconsistencies, slightly soft focus overall sharpness, date stamp in corner optional, double exposure ghost images subtle overlay, sprocket holes impression, cross-processed color shifts, pushed film development look with increased contrast and grain, natural lighting artifacts and lens imperfections, retro photo lab color correction style, authentic film emulsion texture, varying exposure between frames showing human photographer touch, mechanical shutter artifacts, slight motion blur from slower shutter speeds, nostalgic summer afternoon golden hour warmth, faded photograph found in old shoebox quality, memory lane aesthetic, tactile analog photography feel
+```
+
+</details>
+
+<details><summary><b>Animated Bunny Kids Video</b></summary>
+
+```text
+Create a highly engaging 3D animated children’s video for YouTube Shorts, featuring an adorable baby bunny with big sparkling eyes exploring a magical colorful world.
+
+The video starts with a surprising colorful rainbow explosion and cheerful music in the first 2 seconds.
+
+The bunny discovers 5 magical colorful eggs. Each egg opens to reveal a cute baby animal and a different bright color.
+
+Include:
+
+* Cute characters with expressive faces.
+* Bright, vibrant colors.
+* Smooth Pixar-inspired 3D animation.
+* Funny movements and playful surprises.
+* Cheerful original background music.
+* Simple visual storytelling that toddlers can understand.
+* Fast-paced scene changes to maintain attention.
+* A happy, surprising ending that encourages children to watch again.
+
+Vertical 9:16 format, 45-60 seconds, high-quality animation, no scary scenes, no violence, no flashing effects, no copyrighted characters, no logos.  تعرف تعمل فيديو قصير ؟
 ```
 
 </details>

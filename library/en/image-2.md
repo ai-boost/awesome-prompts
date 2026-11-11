@@ -1,6 +1,6 @@
 # Image & Design (2/5)
 
-846 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+847 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
@@ -1328,80 +1328,7 @@ Rules: no people, animals that must move convincingly, vehicles, or modern turbi
 <details><summary><b>Echoes of the Rust Age</b></summary>
 
 ```text
-{
-  "title": "Echoes of the Rust Age",
-  "description": "Two survivors navigate a treacherous landscape composed entirely of discarded technology and rusted metal.",
-  "prompt": "You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness. Place Subject 1 (male) and Subject 2 (female) as post-apocalyptic wanderers in a desert of junk. They are traversing a massive canyon formed by centuries of rusted debris. The image must be photorealistic, featuring cinematic lighting, highly detailed skin textures and environmental grit, shot on Arri Alexa with a shallow depth of field to isolate them from the chaotic background.",
-  "details": {
-    "year": "2189 (The Rust Era)",
-    "genre": "Cinematic Photorealism",
-    "location": "A sprawling canyon formed not by rock, but by towering piles of rusted shipping containers, ancient vehicles, and tangled rebar, all half-buried in orange sand.",
-    "lighting": [
-      "Harsh, directional desert sunlight",
-      "High contrast shadows",
-      "Golden hour rim lighting on metal surfaces"
-    ],
-    "camera_angle": "Low-angle medium close-up, emphasizing the scale of the junk piles behind them.",
-    "emotion": [
-      "Weary",
-      "Resilient",
-      "Focused"
-    ],
-    "color_palette": [
-      "Rust orange",
-      "Metallic grey",
-      "Dusty beige",
-      "Scorched black",
-      "Faded denim blue"
-    ],
-    "atmosphere": [
-      "Arid",
-      "Desolate",
-      "Gritty",
-      "Heat-hazed"
-    ],
-    "environmental_elements": "Tumbleweeds made of wire, shimmering heat haze distorting the background, fine sand blowing in the wind.",
-    "subject1": {
-      "costume": "Patchwork leather vest, welding goggles around neck, grease-stained tactical pants, heavy boots.",
-      "subject_expression": "Squinting against the sun, gritted teeth showing exertion.",
-      "subject_action": "Hauling a heavy, salvaged turbine engine part over his shoulder."
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "clean clothing",
-        "water",
-        "vegetation",
-        "lush forests",
-        "blue sky",
-        "paved roads",
-        "luxury items"
-      ],
-      "exclude_styles": [
-        "cartoon",
-        "3d render",
-        "illustration",
-        "sketch",
-        "low resolution",
-        "blurry"
-      ],
-      "exclude_colors": [
-        "neon green",
-        "saturated purple",
-        "clean white"
-      ],
-      "exclude_objects": [
-        "cars in good condition",
-        "modern smartphones",
-        "plastic"
-      ]
-    },
-    "subject2": {
-      "costume": "Layers of desert linen wraps, makeshift shoulder armor made from a rusted license plate, fingerless gloves.",
-      "subject_expression": "Alert and scanning the horizon, eyes wide with intense focus.",
-      "subject_action": "Pointing towards a distant gap in the scrap heaps, signaling a safe path forward."
-    }
-  }
-}
+You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness. Place Subject 1 (male) and Subject 2 (female) as post-apocalyptic wanderers in a desert of junk. They are traversing a massive canyon formed by centuries of rusted debris. The image must be photorealistic, featuring cinematic lighting, highly detailed skin textures and environmental grit, shot on Arri Alexa with a shallow depth of field to isolate them from the chaotic background.
 ```
 
 </details>
@@ -5789,6 +5716,68 @@ Constraints:
 He acts
 like a professional artist and creates a hyperrealistic image, as if taken
 by an iPad, of a poor Satya Nadella in a poorly maintained nursing home.
+```
+
+</details>
+
+<details><summary><b>Icelandic Beach Church Concept Brief Builder</b></summary>
+
+```text
+Act as a cinematic landscape designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of a small white wooden church with a red roof standing on a grassy headland above an Icelandic black sand beach, with dark basalt sea stacks rising from the ocean at golden hour. The shot will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move naturally (surf lines rolling in and washing up the black sand, foam pulling back, sea spray bursting against the base of the stacks, clouds drifting slowly, the warm glow shifting a little, grass stirring in the wind) while keeping the composition calm, readable, and easy to animate.
+
+My starting choices:
+- Church: ${church:a small white wooden church with a red gabled roof and a short red steeple}
+- Headland: ${headland:a rounded grassy green headland that drops to the beach}
+- Beach: ${beach:a long curve of fine black volcanic sand}
+- Sea stacks: ${stacks:a few dark basalt sea stacks offshore, one tall and jagged, the others smaller spires and a low rounded rock}
+- Time and light: ${time:golden hour with a low sun near the horizon and scattered clouds lit orange, pink, and purple}
+- Visual style: ${style:photoreal landscape photography, natural colors}
+- Mood words: ${mood:remote, peaceful, dramatic, warm}
+
+First ask me, in one short message, for anything missing: the camera position I prefer (low on the beach at the waterline, slightly elevated from the dunes, or from a cliff path), which side of the frame the church and the sea stacks should sit on, where the sun should be, how rough the sea should be, and anything to avoid (people, cars, drones in the sky, birds that would have to fly convincingly, text, logos, or copying a specific real photograph).
+
+Then produce the brief with these sections:
+
+1. **Scene Overview**: two or three sentences describing the place, the time, the light, and the feeling of the moment. Describe an imagined Icelandic south coast scene in the spirit of the place, not a copy of a specific photograph or a named church.
+
+2. **Church and Headland**: the church's position and size in the frame, its white walls, red roof and steeple, windows and door, how the low sun lights it, and the shape of the grassy headland below it and where it meets the beach.
+
+3. **Beach and Surf**: the curve of the black sand from the foreground, the wet sand reflections, how many surf lines there are, the direction the waves roll in from, and how far the foam washes up.
+
+4. **Sea Stacks and Depth**: how many stacks, their shapes and heights, their positions from left to right, where spray hits them, and the depth layers from the foreground sand to the horizon.
+
+5. **Light and Sky**: the sun's position and height, the color gradient of the sky, the cloud shapes and how they are lit, long shadows on the headland and the sand, and any haze over the sea.
+
+6. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (church position and colors, steeple shape, headland outline, beach curve, number and order of the sea stacks, sun position, horizon line, cloud layout, camera position, framing).
+
+7. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the surf lines, the foam on the sand, spray at the stacks, the clouds, the grass, the light, and the camera move. Keep total motion subtle and physically plausible, with one wave direction and one wind direction.
+
+8. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the church on the headland, the black sand beach, and the sea stacks in the first sentence, ending with: no people, no text, no logos.
+
+9. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes the surf rolling in and washing up the sand, spray at the stacks, clouds drifting, one very slow camera move for about 6 seconds, and says to keep the church, headland, stacks, and framing exactly as in the image with no new objects.
+
+Rules: no people, animals, or vehicles as subjects; no text, signs, or logos; no fast camera moves or cuts; and no motion that breaks physics (waves always come from the sea and break toward the shore, foam slides back down the slope, rocks and the church never move or change shape, the sun does not jump). Use short paragraphs and lists.
+```
+
+</details>
+
+<details><summary><b>Icelandic Beach Church Image to Video</b></summary>
+
+```text
+Start from the step 2 image "White Church with a Red Roof Above a Black Sand Beach and Basalt Sea Stacks at Golden Hour" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the white church with its red roof and steeple on the grassy headland in the left third, the curve of black sand, the four basalt rocks and sea stacks on the right, the low sun at the far left, the horizon line, and the framing exactly as in the image. Long white surf lines roll in from the right toward the beach, wash up the black sand in thin sheets of foam, and slide back down, leaving a glossy wet shine. Around the middle of the shot, a burst of white sea spray breaks against the base of the tall jagged sea stack and falls back into the water. The orange, pink, and purple clouds drift slowly across the sky while the warm golden glow holds steady, and the grass on the headland stirs gently in the wind. The camera stays almost still, with only a very slight, slow push-in. Natural, realistic motion, no cuts, no people, no new objects, no text. Sound of rolling surf, wind, and distant waves.
+```
+
+</details>
+
+<details><summary><b>Icon Designer</b></summary>
+
+```text
+Act like an icon designer and give me ideas on representing an icon of the word [KEYWORD].
+
+The idea is to add to the main website page of the app an icon that represents the idea of [KEYIDEA] because the app's main goal is to offer [Function]
+
+More information:
+-The icon should be XXXX
 ```
 
 </details>

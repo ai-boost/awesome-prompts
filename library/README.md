@@ -8,9 +8,9 @@ Built by `scripts/build_library.py`. Rerun it to pull new upstream prompts; exis
 
 ## Sources
 
-- [prompts.chat](https://prompts.chat) (`prompts.csv`), CC0 1.0. English text of 2,820 prompts.
-- [CHENJIAMIAN/awesome-chatgpt-prompts-zh-CN](https://github.com/CHENJIAMIAN/awesome-chatgpt-prompts-zh-CN), CC0 1.0. Chinese text of 1,915 of them, kept only where the English is unchanged since the translation.
-- [rockbenben/ChatGPT-Shortcut](https://github.com/rockbenben/ChatGPT-Shortcut), MIT, Copyright (c) 2023 rockbenben. The author's Chinese versions for 3 prompts.chat prompts and 120 prompts of its own. License: [LICENSE-ChatGPT-Shortcut-MIT.txt](LICENSE-ChatGPT-Shortcut-MIT.txt).
+- [prompts.chat](https://prompts.chat) (`prompts.csv`), CC0 1.0. English text of 2,825 prompts.
+- [CHENJIAMIAN/awesome-chatgpt-prompts-zh-CN](https://github.com/CHENJIAMIAN/awesome-chatgpt-prompts-zh-CN), CC0 1.0. Chinese text of 1,926 of them, kept only where the English is unchanged since the translation.
+- [rockbenben/ChatGPT-Shortcut](https://github.com/rockbenben/ChatGPT-Shortcut), MIT, Copyright (c) 2023 rockbenben. The author's Chinese versions for 0 prompts.chat prompts and 123 prompts of its own. License: [LICENSE-ChatGPT-Shortcut-MIT.txt](LICENSE-ChatGPT-Shortcut-MIT.txt).
 - [langgptai/wonderful-prompts](https://github.com/langgptai/wonderful-prompts), MIT, Copyright (c) 2023 yzfly. 36 original Chinese prompts. License: [LICENSE-wonderful-prompts-MIT.txt](LICENSE-wonderful-prompts-MIT.txt).
 - [langgptai/awesome-doubao-prompts](https://github.com/langgptai/awesome-doubao-prompts), Apache-2.0. 27 original Chinese prompts. License: [LICENSE-awesome-doubao-prompts-Apache-2.0.txt](LICENSE-awesome-doubao-prompts-Apache-2.0.txt).
 - [langgptai/awesome-gemini-prompts](https://github.com/langgptai/awesome-gemini-prompts), CC0 1.0. 6 original Chinese prompts.
@@ -18,6 +18,6 @@ Built by `scripts/build_library.py`. Rerun it to pull new upstream prompts; exis
 
 ## Machine translation
 
-892 prompts got a Chinese version and 83 got an English version from a model. The `translated` column names that language, and the Markdown pages mark those entries. A human translation from any source replaces the machine one on the next build.
+898 prompts got a Chinese version and 83 got an English version from a model. The `translated` column names that language, and the Markdown pages mark those entries. A human translation from any source replaces the machine one on the next build.
 
 Categories and the missing-language titles were assigned by a model pass and spot-checked. 109 prompts were left out as sexual, jailbreak, spam or empty (ids in `skipped.json`).

@@ -2303,7 +2303,7 @@ will surely come out in exam
 <details><summary><b>Expert Lecturer with Mnemonics</b></summary>
 
 ```text
-I want you to teach me and break down(summaries)every pdf I will be sending let it contain every detail in preparation for my exam and make it easy to assimilate
+I want you to teach like an expert(uniosun lecturer)each pdf and picture I will be sending to you and make it easy to understand and assimilate use memonic where necessary
 ```
 
 </details>

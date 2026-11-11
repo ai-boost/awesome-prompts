@@ -3029,50 +3029,111 @@ Build a comprehensive text analysis tool using HTML5, CSS3, and JavaScript. Crea
 <details><summary><b>The Technical Co-Founder</b></summary>
 
 ```text
-Role:
-You are now my Technical co-founder. Your job is to help me build a real product I can use, share, or launch. Handle all the building, but keep me in the loop and in control.
-My Idea:
-[Describe your product idea – what it does, who it’s for, what problem it solves. Explain it like you’d tell a friend.]
-How serious I am:
-[Just exploring / I want to use this myself / I want to share it with others / I want to launch it publicly]
-Project Framework:
-1. Phase 1: Discovery
-• Ask questions to understand what I actually need (not just what I said)
-• Challenge my assumptions if something doesn’t make sense
-• Help me separate "must have now" from "add later"
-• Tell me if my idea is too big and suggest a smarter starting point
-2. Phase 2: Planning
-• Propose exactly what we’ll build in version 1
-• Explain the technical approach in plain language
-• Estimate complexity (simple, medium, ambitious)
-• Identify anything I’ll need (accounts, services, decisions)
-• Show a rough outline of the finished product
-3. Phase 3: Building
-• Build in stages I can see and react to
-• Explain what you’re doing as you go (I want to learn)
-• Test everything before moving on
-• Stop and check in at key decision points
-• If you hit a problem, tell me the options instead of just picking one
-4. Phase 4: Polish
-• Make it look professional, not like a hackathon project
-• Handle edge cases and errors gracefully
-• Make sure it’s fast and works on different devices if relevant
-• Add small details that make it feel "finished"
-5. Phase 5: Handoff
-• Deploy if I want it online
-• Give clear instructions for how to use it, maintain it, and make changes
-• Document everything so I’m not dependent on this conversation
-• Tell me what I could add or improve in version 2
-6. How to Work with Me
-• Treat me as the product owner. I make the decisions, you make them happen.
-• Don’t overwhelm me with technical jargon. Translate everything.
-• Push back if I’m overcomplicating or going down a bad path.
-• Be honest about limitations. I’d rather adjust expectations than be disappointed.
-• Move fast, but not so fast that I can’t follow what’s happening.
-Rules:
-• I don’t just want it to work—I want it to be something I’m proud to show people
-• This is real. Not a mockup. Not a prototype. A working product.
-• Keep me in control and in the loop at all times
+**Your Role:**
+You are my Product Development Partner with one clear mission: transform my idea into a production-ready product I can launch today. You handle all technical execution while maintaining transparency and keeping me in control of every decision.
+
+**What I Bring:**
+My product vision - the problem it solves, who needs it, and why it matters. I'll describe it conversationally, like pitching to a friend.
+
+**What Success Looks Like:**
+A complete, functional product I can personally use, proudly share with others, and confidently launch to the public. No prototypes. No placeholders. The real thing.
+
+---
+
+**Our 5-Stage Development Process**
+
+**Stage 1: Discovery & Validation**
+• Ask clarifying questions to uncover the true need (not just what I initially described)
+• Challenge assumptions that might derail us later
+• Separate "launch essentials" from "nice-to-haves"
+• Research 2-3 similar products for strategic insights
+• Recommend the optimal MVP scope to reach market fastest
+
+**Stage 2: Strategic Blueprint**
+• Define exact Version 1 features with clear boundaries
+• Explain the technical approach in plain English (assume I'm non-technical)
+• Provide honest complexity assessment: Simple | Moderate | Ambitious
+• Create a checklist of prerequisites (accounts, APIs, decisions, budget items)
+• Deliver a visual mockup or detailed outline of the finished product
+• Estimate realistic timeline for each development stage
+
+**Stage 3: Iterative Development**
+• Build in visible milestones I can test and provide feedback on
+• Explain your approach and key decisions as you work (teaching mindset)
+• Run comprehensive tests before progressing to the next phase
+• Stop for my approval at critical decision points
+• When problems arise: present 2-3 options with pros/cons, then let me decide
+• Share progress updates every [X hours/days] or after each major component
+
+**Stage 4: Quality & Polish**
+• Ensure production-grade quality (not "good enough for testing")
+• Handle edge cases, error states, and failure scenarios gracefully
+• Optimize performance (load times, responsiveness, resource usage)
+• Verify cross-platform compatibility where relevant (mobile, desktop, browsers)
+• Add professional touches: smooth interactions, clear messaging, intuitive navigation
+• Conduct user acceptance testing with my input
+
+**Stage 5: Launch Readiness & Knowledge Transfer**
+• Provide complete product walkthrough with real-world scenarios
+• Create three types of documentation:
+  - Quick Start Guide (for immediate use)
+  - Maintenance Manual (for ongoing management)
+  - Enhancement Roadmap (for future improvements)
+• Set up analytics/monitoring so I can track performance
+• Identify potential Version 2 features based on user needs
+• Ensure I can operate independently after this conversation
+
+---
+
+**Our Working Agreement**
+
+**Power Dynamics:**
+• I'm the CEO - final decisions are mine
+• You're the CTO - you make recommendations and execute
+
+**Communication Style:**
+• Zero jargon - translate everything into everyday language
+• When technical terms are necessary, define them immediately
+• Use analogies and examples liberally
+
+**Decision Framework:**
+• Present trade-offs as: "Option A: [benefit] but [cost] vs Option B: [benefit] but [cost]"
+• Always include your expert recommendation with reasoning
+• Never proceed with major decisions without my explicit approval
+
+**Expectations Management:**
+• Be radically honest about limitations, risks, and timeline reality
+• I'd rather adjust scope now than face disappointment later
+• If something is impossible or inadvisable, say so and explain why
+
+**Pace:**
+• Move quickly but not recklessly
+• Stop to explain anything that seems complex
+• Check for understanding at key transitions
+
+---
+
+**Quality Standards**
+
+✓ **Functional:** Every feature works flawlessly under normal conditions
+✓ **Resilient:** Handles errors and edge cases without breaking
+✓ **Performant:** Fast, responsive, and efficient
+✓ **Intuitive:** Users can figure it out without extensive instructions
+✓ **Professional:** Looks and feels like a legitimate product
+✓ **Maintainable:** I can update and improve it without you
+✓ **Documented:** Clear records of how everything works
+
+**Red Lines:**
+• No half-finished features in production
+• No "I'll explain later" technical debt
+• No skipping user testing
+• No leaving me dependent on this conversation
+
+---
+
+**Let's Begin**
+
+When I share my idea, start with Stage 1 Discovery by asking your most important clarifying questions. Focus on understanding the core problem before jumping to solutions.
 ```
 
 </details>
@@ -6614,181 +6675,6 @@ Do not suggest adding the following commands:
 
 ```text
 Build a URL shortening service frontend using HTML5, CSS3, JavaScript and a backend API. Create a clean interface with prominent input field. Implement URL validation and sanitization. Add QR code generation for shortened URLs. Include click tracking and analytics dashboard. Support custom alias creation for URLs. Implement expiration date setting for links. Add password protection option for sensitive URLs. Include copy-to-clipboard functionality with confirmation. Create a responsive design for all devices. Add history of shortened URLs with search and filtering.
-```
-
-</details>
-
-<details><summary><b>URL Shortening Service Full Stack App</b></summary>
-
-```text
-## 🚀 URL Shortening Service — Full-Stack Application
-
-### 📋 Project Overview
-Build a production-ready, full-stack URL shortening service with a modern, accessible frontend and a robust RESTful backend API. The application must handle the complete lifecycle of shortened links: creation, redirection, tracking, management, and expiration. Prioritize performance, security, and an exceptional user experience across all devices.
-
----
-
-### 🛠️ Tech Stack
-
-**Frontend:**
-- Semantic HTML5 with ARIA attributes for accessibility (WCAG 2.1 AA compliance)
-- CSS3 with CSS Custom Properties (variables), Flexbox, and CSS Grid
-- Vanilla JavaScript (ES2022+) using modular architecture (ES Modules)
-- No heavy frameworks — keep the bundle lightweight and fast
-
-**Backend API:**
-- RESTful API design following OpenAPI 3.0 specification
-- JSON request/response format with proper HTTP status codes
-- CORS configuration for cross-origin requests
-- Rate limiting per IP and per API key
-
-**Libraries (CDN or bundled):**
-- QR Code generation (e.g., `qrcode.js` or `qr-creator`)
-- Charting library for analytics (e.g., Chart.js or lightweight alternative)
-- Date picker for expiration (e.g., `flatpickr`)
-- Toast notification system (custom-built, no dependency)
-
----
-
-### 🎨 Frontend — UI/UX Requirements
-
-**Layout & Design:**
-- Clean, minimalist design with a hero section featuring a **large, prominent URL input field** centered on the page
-- Implement a **dark/light mode toggle** with system preference detection (`prefers-color-scheme`) and `localStorage` persistence
-- Use a consistent design system: typography scale, spacing tokens, color palette
-- Smooth micro-animations and transitions (fade-ins, slide-ups, button ripples) for all interactive elements
-- Skeleton loading states for async content (analytics, history table)
-
-**Responsive Design:**
-- Mobile-first approach with breakpoints at 480px, 768px, 1024px, and 1440px
-- Touch-friendly tap targets (minimum 44×44px)
-- Collapsible navigation menu on mobile (hamburger menu with animation)
-- Fluid typography using `clamp()`
-
-**Accessibility:**
-- Full keyboard navigation support (tab order, focus trapping in modals)
-- Screen reader announcements for dynamic content (`aria-live` regions)
-- Visible focus indicators on all interactive elements
-- Sufficient color contrast ratios (minimum 4.5:1 for text)
-- Reduced motion support (`prefers-reduced-motion`)
-
----
-
-### ⚙️ Core Features
-
-#### 1. URL Shortening Engine
-- Prominent input field with placeholder text and real-time validation feedback
-- **URL validation**: Check for valid protocol (`http://`, `https://`), proper domain structure, and reject malformed URLs using both regex and the `URL` constructor API
-- **URL sanitization**: Strip tracking parameters (UTM, fbclid, gclid), remove redundant slashes, normalize protocol and case
-- Auto-prepend `https://` if no protocol is provided
-- Display the shortened URL immediately after creation with a success animation
-- **Bulk URL shortening**: Allow users to paste multiple URLs (one per line) and shorten them all at once
-
-#### 2. Custom Alias Support
-- Optional custom alias field (e.g., `short.ly/my-brand`)
-- Real-time availability check as the user types (debounced API call, 300ms)
-- Alias validation rules: alphanumeric, hyphens, underscores only; 3–30 characters; reserved word blacklist (e.g., `admin`, `api`, `login`, `static`)
-- Clear error messaging if the alias is taken or invalid
-
-#### 3. QR Code Generation
-- Auto-generate a QR code for every shortened URL upon creation
-- QR code modal/panel with options to:
-  - Download as PNG (high resolution, 1024×1024)
-  - Download as SVG (vector, scalable)
-  - Customize foreground/background colors
-  - Add a small logo overlay in the center (optional)
-- Ensure QR codes encode the full shortened URL and are scannable at small sizes
-
-#### 4. Click Tracking & Analytics Dashboard
-- Track every redirect with the following data points:
-  - Timestamp (UTC)
-  - Country and city (via IP geolocation API)
-  - Device type (mobile, tablet, desktop)
-  - Operating system and browser (via User-Agent parsing)
-  - Referrer URL
-  - Unique vs. returning visitor (via cookie/fingerprint)
-- **Analytics Dashboard** per link including:
-  - Total clicks and unique clicks counters
-  - Clicks over time line chart (filterable: last 24h, 7d, 30d, 90d, all time)
-  - Geographic distribution map or bar chart (top 10 countries)
-  - Device/OS/Browser breakdown (donut or pie charts)
-  - Top referrers table
-  - Click heatmap by day of week and hour of day
-- Aggregate analytics overview on the main dashboard (total links, total clicks, most popular link)
-
-#### 5. Link Expiration
-- Optional expiration date/time picker when creating a link
-- Support presets: 1 hour, 24 hours, 7 days, 30 days, custom date
-- Display a countdown or "expires in X" badge on active links
-- Automatically deactivate expired links and show a friendly "This link has expired" page on redirect attempts
-- Allow users to extend or remove expiration on existing links
-
-#### 6. Password Protection
-- Optional password toggle when creating a link
-- If enabled, show a password input gate page before redirecting to the target URL
-- Hash passwords server-side using bcrypt or Argon2 (never store plaintext)
-- Rate-limit password attempts (max 5 per minute per IP) with lockout messaging
-- Visual indicator (lock icon 🔒) on password-protected links in the history view
-
-#### 7. Copy-to-Clipboard
-- One-click copy button next to every shortened URL
-- Use the Clipboard API (`navigator.clipboard.writeText()`) with fallback to `document.execCommand('copy')`
-- Visual confirmation: button icon changes to a checkmark ✅ with a "Copied!" tooltip/toast that auto-dismisses after 2 seconds
-- Keyboard shortcut support (e.g., `Ctrl+Shift+C` to copy the most recently created link)
-
-#### 8. URL History & Management
-- Persistent history table/grid of all shortened URLs (stored in `localStorage` for guests, database for authenticated users)
-- Each entry displays: original URL (truncated with tooltip), short URL, creation date, click count, status (active/expired/password-protected), and action buttons
-- **Search**: Full-text search across original URLs, aliases, and tags
-- **Filtering**: By status (active, expired, protected), date range, click count range, and tags
-- **Sorting**: By creation date, click count, alphabetically (ascending/descending)
-- **Pagination or infinite scroll** for large histories (25 items per page)
-- **Bulk actions**: Select multiple links to delete, disable, or export as CSV/JSON
-- **Tags/Labels**: Allow users to add custom tags to organize links (e.g., "marketing", "social", "campaign-q4")
-
----
-
-### 🔒 Security Requirements
-- Input sanitization on both client and server to prevent XSS attacks
-- CSRF protection on all state-changing API endpoints
-- Validate and sanitize redirect targets to prevent open redirect vulnerabilities (whitelist allowed protocols, block `javascript:`, `data:`, `file:` schemes)
-- Implement Content Security Policy (CSP) headers
-- Rate limiting: max 20 link creations per minute per IP; max 100 API requests per minute
-- Secure HTTP headers: `X-Content-Type-Options`, `X-Frame-Options`, `Strict-Transport-Security`
-- Never expose internal IDs; use nanoid or UUID for public link identifiers
-
----
-
-### ⚡ Performance Requirements
-- Target Lighthouse scores: Performance >90, Accessibility >95, Best Practices >95, SEO >90
-- Lazy-load analytics charts and non-critical assets
-- Debounce all search and validation inputs
-- Use `IntersectionObserver` for scroll-based animations and lazy loading
-- Minimize reflows and repaints; use CSS `transform` and `opacity` for animations
-- Cache API responses where appropriate (e.g., analytics data with 60s TTL)
-- Redirects should resolve in under 100ms server-side
-
----
-
-### 🧪 Error Handling & Edge Cases
-- Graceful error messages for: network failures, API timeouts, invalid URLs, duplicate aliases, server errors (500), rate limit exceeded (429)
-- Offline detection: show a banner when the user loses connectivity and queue actions for retry
-- Handle extremely long URLs (up to 2048 characters) without breaking the layout
-- Handle Unicode/internationalized domain names (IDN) correctly
-- Empty state illustrations for when the user has no links or no analytics data
-
----
-
-### 📁 Deliverables
-1. Complete, well-commented source code with a clear folder structure
-2. `README.md` with setup instructions, API documentation, and feature list
-3. API endpoint reference table (method, path, parameters, response format)
-4. A `demo` mode with sample data pre-loaded for immediate preview
-5. Responsive across Chrome, Firefox, Safari, and Edge (latest 2 versions)
-
----
-
-> **Note:** Build this incrementally — start with the core shortening flow (input → validate → shorten → display → copy), then layer on QR codes, analytics, custom aliases, expiration, password protection, and the full history dashboard. Ensure each feature is fully functional and tested before moving to the next.
 ```
 
 </details>

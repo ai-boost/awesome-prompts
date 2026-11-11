@@ -1,6 +1,6 @@
 # Lifestyle & Travel (3/3)
 
-140 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+141 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/lifestyle.md) · [中文](../zh/lifestyle.md)
 

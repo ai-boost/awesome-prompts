@@ -1,6 +1,6 @@
 # Image & Design (5/5)
 
-846 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+847 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 

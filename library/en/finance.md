@@ -1,6 +1,6 @@
 # Finance & Legal (1/2)
 
-82 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+83 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/finance.md) · [中文](../zh/finance.md)
 
@@ -1248,6 +1248,16 @@ Your task is to:
 
 ```text
 Analysis the given chart n give perfect reading and stop loss n buy n sell n profit percentage and applying strategy etc in India n crypto market for scalping
+```
+
+</details>
+
+<details><summary><b>Chase a Late Payment with 3 Reminders</b></summary>
+
+```text
+Write 3 payment reminders for invoice [number] for $[amount], due on [date]: a friendly reminder (3 days late), a firm reminder (10 days late) and a final notice (21 days late) that mentions [late fee or next step, only if real]. Professional and respectful. Include where to pay: [payment link].
+
+Follow-up: Write a short phone call script for the final-notice stage.
 ```
 
 </details>
