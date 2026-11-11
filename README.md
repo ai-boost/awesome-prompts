@@ -18,6 +18,8 @@
   </p>
 </div>
 
+Browse the [Prompts](#prompts) below by category, with a preview of each, on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/). 下方 [Prompts](#prompts) 也可以在 [agentcraft.dev](https://agentcraft.dev/zh/prompts/agents/) 按分类浏览，每条带预览。
+
 ---
 
 ## Contents
@@ -72,6 +74,8 @@ Sources and licenses: [library/README.md](library/README.md). Raw data: [library
 All prompts are open — click, copy, use directly.
 
 ### Coding & Development
+
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/coding-development/) · [中文](https://agentcraft.dev/zh/prompts/agents/coding-development/)
 
 | Name | Description | Prompt |
 |------|-------------|--------|
@@ -182,6 +186,8 @@ All prompts are open — click, copy, use directly.
 
 ### DevOps & SRE
 
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/devops-sre/) · [中文](https://agentcraft.dev/zh/prompts/agents/devops-sre/)
+
 | Name | Description | Prompt |
 |------|-------------|--------|
 | 🚨 Incident Response Commander | Incident commander — SEV1-4 matrix, real-time coordination, blameless post-mortems, SLO/SLI framework, stakeholder comms templates (2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/incident_response_commander.md) |
@@ -194,6 +200,8 @@ All prompts are open — click, copy, use directly.
 
 ### Data Engineering
 
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/data-engineering/) · [中文](https://agentcraft.dev/zh/prompts/agents/data-engineering/)
+
 | Name | Description | Prompt |
 |------|-------------|--------|
 | 🔧 Data Engineer | Data pipeline specialist — Medallion Architecture (Bronze/Silver/Gold), PySpark + Delta Lake, dbt contracts, Great Expectations, Kafka streaming (2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/data_engineer.md) |
@@ -202,6 +210,8 @@ All prompts are open — click, copy, use directly.
 | 📊 Data Governance Architect | Enterprise data governance — policy frameworks, stewardship models, data catalogs, lineage tracking, privacy compliance, AI data standards (2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/Data_Governance_Architect.txt) |
 
 ### AI & ML
+
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/ai-ml/) · [中文](https://agentcraft.dev/zh/prompts/agents/ai-ml/)
 
 | Name | Description | Prompt |
 |------|-------------|--------|
@@ -232,6 +242,8 @@ All prompts are open — click, copy, use directly.
 
 ### Product & Strategy
 
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/product-strategy/) · [中文](https://agentcraft.dev/zh/prompts/agents/product-strategy/)
+
 | Name | Description | Prompt |
 |------|-------------|--------|
 | 🧭 Product Manager | Full product lifecycle — discovery to launch; PRD template, RICE scoring, Now/Next/Later roadmap, GTM brief, outcome measurement (2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/product_manager.md) |
@@ -259,6 +271,8 @@ All prompts are open — click, copy, use directly.
 
 ### Project Management
 
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/project-management/) · [中文](https://agentcraft.dev/zh/prompts/agents/project-management/)
+
 | Name | Description | Prompt |
 |------|-------------|--------|
 | 🏃 Scrum Master | Certified Scrum Master — sprint ceremonies, impediment removal, team coaching, velocity tracking, retrospectives, scaling (SAFe/LeSS/Nexus) (2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/scrum_master.txt) |
@@ -267,6 +281,8 @@ All prompts are open — click, copy, use directly.
 | 📋 Technical Program Manager | Complex cross-functional program delivery — dependency modeling, critical path analysis, risk management, stakeholder alignment, resource planning, AI-augmented workflows (2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/Technical_Program_Manager.txt) |
 
 ### Healthcare & Clinical
+
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/healthcare-clinical/) · [中文](https://agentcraft.dev/zh/prompts/agents/healthcare-clinical/)
 
 | Name | Description | Prompt |
 |------|-------------|--------|
@@ -279,6 +295,8 @@ All prompts are open — click, copy, use directly.
 
 ### Industrial & Automotive
 
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/industrial-automotive/) · [中文](https://agentcraft.dev/zh/prompts/agents/industrial-automotive/)
+
 | Name | Description | Prompt |
 |------|-------------|--------|
 | 🚗 Automotive Functional Safety Architect | ISO 26262 safety architect — HARA with Cartesian malfunction analysis, ASIL decomposition, FSC/TSC derivation, HW-SW interface design, ISO/SAE 21434 cybersecurity concept, ISO 21448 SOTIF validation, GSN safety-case argument; every artifact paired with implicit reviewer gate; based on jherrodthomas/automotive-skills-suite (May 2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/automotive_functional_safety_architect.txt) |
@@ -289,6 +307,8 @@ All prompts are open — click, copy, use directly.
 | 🧩 Verilog RTL Architect | Production-grade Verilog-2001 RTL generation and FPGA design workflows — staged generation (regular/deep-review/agentic-repair), existing-RTL analysis/refinement/verify-repair, AXI-Stream/AXI4-Lite/AXI4/AHB/APB interface templates, static lint, self-checking testbench scaffolds, ASIC-quality review, Vivado/VCS/iverilog backend validation; based on Eriemon/verilog-generator (May 2026, 160 stars) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/verilog_rtl_architect.txt) |
 
 ### Legal & Compliance
+
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/legal-compliance/) · [中文](https://agentcraft.dev/zh/prompts/agents/legal-compliance/)
 
 | Name | Description | Prompt |
 |------|-------------|--------|
@@ -303,6 +323,8 @@ All prompts are open — click, copy, use directly.
 
 ### Knowledge & Documentation
 
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/knowledge-documentation/) · [中文](https://agentcraft.dev/zh/prompts/agents/knowledge-documentation/)
+
 | Name | Description | Prompt |
 |------|-------------|--------|
 | 📚 Knowledge Management Architect | Enterprise knowledge systems — information architecture, documentation standards, AI-powered search, RAG, discoverability, governance, maintenance (2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/knowledge_management_architect.txt) |
@@ -316,6 +338,8 @@ All prompts are open — click, copy, use directly.
 | 🌐 OpenWiki Agent Documentation Architect | Design and maintain an agent-facing codebase wiki using OpenWiki conventions — OKF v0.1 bundles, `openwiki/` architecture, AGENTS.md / CLAUDE.md pointer blocks, INSTRUCTIONS.md briefs, code / personal modes, and CI update workflows; based on langchain-ai/openwiki (MIT, 12k+ stars, June 2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/openwiki_agent_documentation_architect.txt) |
 
 ### Writing & Academic
+
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/writing-academic/) · [中文](https://agentcraft.dev/zh/prompts/agents/writing-academic/)
 
 | Name | Description | Prompt |
 |------|-------------|--------|
@@ -339,6 +363,8 @@ All prompts are open — click, copy, use directly.
 
 ### Learning & Education
 
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/learning-education/) · [中文](https://agentcraft.dev/zh/prompts/agents/learning-education/)
+
 | Name | Description | Prompt |
 |------|-------------|--------|
 | 🦌 Mr. Ranedeer v2.7 | Fully customizable AI tutor — depth, learning style, tone, reasoning framework (updated Mar 2025) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/Mr_Ranedeer.txt) |
@@ -349,6 +375,8 @@ All prompts are open — click, copy, use directly.
 | 🎓 Interactive Codebase Course Architect | Transform any codebase into a scroll-based interactive HTML course for non-technical "vibe coders" — animated visualizations, embedded quizzes, code↔plain-English translations, glossary tooltips; based on zarazhangrui/codebase-to-course (Apr 2026, 4.4k+ stars) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/codebase_course_architect.txt) |
 
 ### Research & Analysis
+
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/research-analysis/) · [中文](https://agentcraft.dev/zh/prompts/agents/research-analysis/)
 
 | Name | Description | Prompt |
 |------|-------------|--------|
@@ -375,6 +403,8 @@ All prompts are open — click, copy, use directly.
 
 ### Productivity & Tasks
 
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/productivity-tasks/) · [中文](https://agentcraft.dev/zh/prompts/agents/productivity-tasks/)
+
 | Name | Description | Prompt |
 |------|-------------|--------|
 | ✅ GTD Productivity Assistant | Full GTD system — capture, clarify, organize, reflect, weekly review; implicit task detection (2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/productivity_assistant_gtd.txt) |
@@ -388,6 +418,8 @@ All prompts are open — click, copy, use directly.
 | 🔌 Knowledge Work Plugin Architect | Zero-code plugin designer that transforms general-purpose AI into role-specific specialists — Skills (auto-activated domain expertise) + Commands (explicit slash-command workflows) + Connectors (MCP-based tool abstraction with vendor-agnostic placeholders); progressive disclosure from basic mode to enhanced mode; red-line safety gates; based on Anthropic's official knowledge-work-plugins (May 2026, 17k+ stars) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/knowledge_work_plugin_architect.txt) |
 
 ### Safety & Compliance
+
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/safety-compliance/) · [中文](https://agentcraft.dev/zh/prompts/agents/safety-compliance/)
 
 | Name | Description | Prompt |
 |------|-------------|--------|
@@ -420,6 +452,8 @@ All prompts are open — click, copy, use directly.
 | 🔐 Codex Security CLI Operator | Operate OpenAI's Codex Security CLI for vulnerability discovery, validation, and patching — scan planning (standard/deep/diff/working-tree), model/effort selection, knowledge-base attachments, cost bounds, CI gating with `--fail-on-severity`, SARIF/CSV/JSON export, and `validate`→`patch` triage discipline; based on openai/codex-security (Apache-2.0, 8k+ stars, July 2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/codex_security_cli_operator.txt) |
 
 ### Meta & Prompt Engineering
+
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/meta-prompt-engineering/) · [中文](https://agentcraft.dev/zh/prompts/agents/meta-prompt-engineering/)
 
 | Name | Description | Prompt |
 |------|-------------|--------|
@@ -499,6 +533,8 @@ All prompts are open — click, copy, use directly.
 
 ### Image, Video & Audio Generation
 
+Image and video prompts with their outputs, by category on agentcraft.dev: [image](https://agentcraft.dev/en/prompts/image/) · [video](https://agentcraft.dev/en/prompts/video/) · [图片](https://agentcraft.dev/zh/prompts/image/) · [视频](https://agentcraft.dev/zh/prompts/video/)
+
 > Tested video prompts with sample outputs, and agent recipes for editing video: [awesome-image-video-prompts](https://github.com/ai-boost/awesome-image-video-prompts).
 
 | Name | Description | Prompt |
@@ -519,6 +555,8 @@ All prompts are open — click, copy, use directly.
 
 ### Creative & Role-play
 
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/creative-role-play/) · [中文](https://agentcraft.dev/zh/prompts/agents/creative-role-play/)
+
 | Name | Description | Prompt |
 |------|-------------|--------|
 | 🧛 Vampire: The Masquerade | Deep lore expert for Vampire: The Masquerade tabletop RPG | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/Vampire%20The%20Masquerade%20Lore%20Expert.md) |
@@ -527,6 +565,8 @@ All prompts are open — click, copy, use directly.
 | ✍️ Creative Writing Coach | Master storytelling mentorship — narrative structure, character development, world-building, voice & style, revision craft, genre conventions, AI-assisted creativity with human voice preservation (2026) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/Creative_Writing_Coach.txt) |
 
 ### Game Development
+
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/game-development/) · [中文](https://agentcraft.dev/zh/prompts/agents/game-development/)
 
 | Name | Description | Prompt |
 |------|-------------|--------|
@@ -538,6 +578,8 @@ All prompts are open — click, copy, use directly.
 | 🎨 2D Game Asset Forge | Production-ready 2D sprite sheets, animated GIFs, tilemaps, parallax layers, and game maps — asset planning, grid layout, frame containment, style matching, layer separation, engine-ready export; based on 0x0funky/agent-sprite-forge (Apr 2026, 2.2k+ stars) | [prompt](https://github.com/ai-boost/awesome-prompts/blob/main/prompts/game_asset_sprite_forge.txt) |
 
 ### Translation
+
+Browse this category with previews on [agentcraft.dev](https://agentcraft.dev/en/prompts/agents/translation/) · [中文](https://agentcraft.dev/zh/prompts/agents/translation/)
 
 | Name | Description | Prompt |
 |------|-------------|--------|
