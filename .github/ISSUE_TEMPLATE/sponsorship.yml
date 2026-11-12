@@ -1,0 +1,58 @@
+name: Sponsor this list
+description: Tell us about your product and where you would like it to appear.
+title: "Sponsorship: "
+labels: ["sponsorship"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest. This form opens a public issue, so share only what you are happy to publish. We reply here and move the details to email.
+  - type: input
+    id: company
+    attributes:
+      label: Company
+    validations:
+      required: true
+  - type: input
+    id: product
+    attributes:
+      label: Product
+      description: Name and link.
+      placeholder: Example Cloud, https://example.com
+    validations:
+      required: true
+  - type: checkboxes
+    id: repos
+    attributes:
+      label: Which lists
+      options:
+        - label: awesome-prompts
+        - label: awesome-harness-engineering
+        - label: awesome-image-video-prompts
+  - type: dropdown
+    id: budget
+    attributes:
+      label: Monthly budget
+      options:
+        - Up to $300
+        - $300 to $600
+        - $600 to $1,000
+        - Over $1,000
+        - Open to discuss
+    validations:
+      required: true
+  - type: input
+    id: payment
+    attributes:
+      label: How your team pays vendors
+      placeholder: Invoice and bank transfer, card, PayPal
+  - type: input
+    id: contact
+    attributes:
+      label: Contact email
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else

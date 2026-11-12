@@ -8,6 +8,7 @@
     <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome" /></a>
     <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome" /></a>
   </p>
+  <p><b><a href="https://github.com/ai-boost/awesome-prompts/issues/new?template=sponsorship.yml">Sponsor this list</a></b> to put your product in front of its readers</p>
   <p>
     <a href="https://agentcraft.dev/en/prompts/agents/">Online Gallery</a> ·
     <a href="https://agentcraft.dev/en/skills/">Claude Code Skills</a> ·
