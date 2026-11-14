@@ -8,14 +8,14 @@
     <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome" /></a>
     <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome" /></a>
   </p>
-  <p><b><a href="mailto:noahbenjamin1994@gmail.com?subject=Sponsorship%3A%20awesome-prompts">Sponsor this list</a></b> · Your logo and one line at the top of this README. From $400/month, open to discussion.</p>
   <p>
     <a href="https://agentcraft.dev/en/prompts/agents/">Online Gallery</a> ·
     <a href="https://agentcraft.dev/en/skills/">Claude Code Skills</a> ·
     <a href="https://agentcraft.dev/en/blog/claude-design-skills-tested/">Design Skills Tested</a> ·
     <a href="https://github.com/ai-boost/awesome-image-video-prompts">Image & Video Prompts</a> ·
     <a href="https://huggingface.co/datasets/Adrian2016/awesome-prompts">Hugging Face Dataset</a> ·
-    <a href="https://zdoc.app/en/ai-boost/awesome-prompts">Translations</a>
+    <a href="https://zdoc.app/en/ai-boost/awesome-prompts">Translations</a> ·
+    <a href="mailto:noahbenjamin1994@gmail.com?subject=Sponsorship%3A%20awesome-prompts">Sponsor</a>
   </p>
 </div>
 
