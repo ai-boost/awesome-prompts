@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 
-INDEX_FILES = ("README.md", "GPT_STORE.md")
+INDEX_FILES = ("README.md", "README_zh.md", "GPT_STORE.md")
 MARKDOWN_LINK = re.compile(r"(?<!!)\[([^\]]*)\]\(([^\s)]+)(?:\s+[^)]*)?\)")
 REPOSITORY_PREFIX = "/ai-boost/awesome-prompts/"
 

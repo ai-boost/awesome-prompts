@@ -9,17 +9,7 @@
     <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome" /></a>
     <a href="mailto:noahbenjamin1994@gmail.com?subject=Sponsorship%3A%20awesome-prompts"><img src="https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?logo=githubsponsors&logoColor=white&style=flat-square" alt="Sponsor" /></a>
   </p>
-  <p>
-    <a href="https://zdoc.app/de/ai-boost/awesome-prompts">Deutsch</a> |
-    <a href="https://zdoc.app/en/ai-boost/awesome-prompts">English</a> |
-    <a href="https://zdoc.app/es/ai-boost/awesome-prompts">Español</a> |
-    <a href="https://zdoc.app/fr/ai-boost/awesome-prompts">Français</a> |
-    <a href="https://zdoc.app/ja/ai-boost/awesome-prompts">日本語</a> |
-    <a href="https://zdoc.app/ko/ai-boost/awesome-prompts">한국어</a> |
-    <a href="https://zdoc.app/pt/ai-boost/awesome-prompts">Português</a> |
-    <a href="https://zdoc.app/ru/ai-boost/awesome-prompts">Русский</a> |
-    <a href="https://zdoc.app/zh/ai-boost/awesome-prompts">中文</a>
-  </p>
+  <p><b>English</b> · <a href="README_zh.md">简体中文</a></p>
   <p>
     <a href="https://agentcraft.dev/en/prompts/agents/">Online Gallery</a> ·
     <a href="https://agentcraft.dev/en/skills/">Claude Code Skills</a> ·
