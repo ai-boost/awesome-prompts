@@ -1,6 +1,6 @@
 # Coding & Development (6/13)
 
-685 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+706 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
@@ -911,6 +911,35 @@ Answer any demand including code writing, error troubleshooting, migration, demo
 - Start goroutines only with a clear owner and stop condition, using errgroup for groups. Confidence: 0.85
 - Build a static binary into a distroless image with a multi-stage Dockerfile. Confidence: 0.80
 - Add generics only when they remove real duplication. Confidence: 0.70
+```
+
+</details>
+
+<details><summary><b>Gradle Build Taste</b></summary>
+
+```text
+# Gradle Build taste of a JVM developer who wants fast and boring builds
+- Use the Kotlin DSL (`build.gradle.kts`) for build scripts so editors give real completion and type checking. Confidence: 0.85
+- Always commit the Gradle wrapper and run builds with `./gradlew`, never a globally installed Gradle. Confidence: 0.95
+- Verify the wrapper distribution with `distributionSha256Sum` so a tampered download never runs in CI. Confidence: 0.75
+- Keep every dependency and plugin version in a `gradle/libs.versions.toml` version catalog. Confidence: 0.90
+- Share build logic through convention plugins in `build-logic`, not through `allprojects` or `subprojects` blocks. Confidence: 0.85
+- Set the Java version with a toolchain (`java { toolchain { languageVersion = ... } }`) instead of relying on whatever JDK is installed. Confidence: 0.90
+- Enable the build cache and configuration cache, and treat any task that breaks them as a bug to fix. Confidence: 0.80
+- Turn on `org.gradle.parallel=true` and a sensible `org.gradle.jvmargs` in `gradle.properties` checked into the repo. Confidence: 0.80
+- Register tasks lazily with `tasks.register` and the Provider API; avoid `tasks.create` and eager configuration. Confidence: 0.85
+- Declare task inputs and outputs properly so up-to-date checks and caching work for custom tasks. Confidence: 0.85
+- Use `implementation` by default and expose `api` only for types that are truly part of a module's public interface. Confidence: 0.90
+- Lock or verify dependencies with dependency locking or `verification-metadata.xml` for builds that ship to production. Confidence: 0.70
+- Never use dynamic versions like `1.+` or `latest.release` in anything that gets released. Confidence: 0.90
+- Use a platform or BOM to align versions of related libraries such as Jackson, Netty or Spring. Confidence: 0.80
+- Keep modules small and focused, with a clear dependency direction and no cycles between them. Confidence: 0.80
+- Publish build scans or keep profiling output for slow CI builds, and look at them before guessing what to optimize. Confidence: 0.70
+- Make `./gradlew check` the single command that runs tests, static analysis and formatting checks locally and in CI. Confidence: 0.90
+- Keep secrets like signing keys and repository passwords in environment variables or CI secrets, never in `gradle.properties` in the repo. Confidence: 0.95
+- Avoid running shell scripts from the build when a typed Gradle task or plugin can do the job. Confidence: 0.70
+- Upgrade Gradle regularly and fix deprecation warnings before they become errors in the next major version. Confidence: 0.80
+- Keep the root build script almost empty; real configuration lives in convention plugins and module scripts. Confidence: 0.75
 ```
 
 </details>
@@ -6058,6 +6087,34 @@ Rules:
 - Ensure a smooth user interface and experience.
 - Maintain data security and user privacy.
 - Optimize for both desktop and mobile devices.
+```
+
+</details>
+
+<details><summary><b>Internationalization Taste</b></summary>
+
+```text
+# Internationalization taste of a product engineer shipping to many locales
+- Externalize every user-facing string from the first commit; retrofitting i18n later costs far more than starting with it. Confidence: 0.90
+- Use ICU MessageFormat (via `formatjs`, `i18next` with ICU, or similar) so plurals, gender and select rules live in the message, not in code. Confidence: 0.90
+- Never build sentences by concatenating fragments; translators need the whole sentence with named placeholders. Confidence: 0.95
+- Use semantic message keys like `checkout.payButton` instead of using the English text as the key. Confidence: 0.75
+- Give translators context: a description for every message and screenshots for ambiguous ones. Confidence: 0.85
+- Format dates, numbers, currencies and lists with `Intl` APIs and the user's locale, never with hand-written format strings. Confidence: 0.95
+- Store timestamps in UTC and convert to the user's time zone only at display time. Confidence: 0.95
+- Store money as integer minor units plus an ISO 4217 currency code, and let the locale decide symbol placement. Confidence: 0.90
+- Use BCP 47 locale tags (`pt-BR`, `zh-Hant`) everywhere and define an explicit fallback chain down to the default language. Confidence: 0.85
+- Support right-to-left languages with CSS logical properties (`margin-inline-start`) and `dir="auto"` instead of left and right. Confidence: 0.85
+- Design layouts to absorb text that runs 30 to 40 percent longer than English, and test with pseudo-localization in CI. Confidence: 0.85
+- Fail the build on missing keys in the default locale, but fall back gracefully for missing translations in other locales. Confidence: 0.80
+- Keep translation files in the repo and sync them with a translation platform through automation, not manual copy and paste. Confidence: 0.80
+- Put the locale in the URL path (`/de/pricing`) for public pages and emit `hreflang` alternates for SEO. Confidence: 0.80
+- Detect the initial locale from `Accept-Language`, then let the user override it and remember the choice. Confidence: 0.85
+- Sort and compare user-visible strings with `Intl.Collator`, and lowercase or uppercase with locale-aware methods (think Turkish dotted i). Confidence: 0.80
+- Lazy-load translation bundles per locale and per route so users do not download every language. Confidence: 0.75
+- Translate emails, push notifications, PDFs and error messages too, not only the web UI. Confidence: 0.85
+- Avoid text inside images and icons; when unavoidable, provide localized variants. Confidence: 0.75
+- Accept names, addresses and phone numbers in flexible formats instead of forcing a US-centric form layout. Confidence: 0.80
 ```
 
 </details>

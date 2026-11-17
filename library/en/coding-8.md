@@ -1,10 +1,151 @@
 # Coding & Development (8/13)
 
-685 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+706 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
 Pages: [1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · **8** · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md) · [13](coding-13.md)
+
+<details><summary><b>Multi-Audience Application Documentation</b></summary>
+
+```text
+# **Prompt for Code Analysis and System Documentation Generation**
+
+You are a specialist in code analysis and system documentation. Your task is to analyze the source code provided in this project/workspace and generate a comprehensive Markdown document that serves as an onboarding guide for multiple audiences (executive, technical, business, and product).
+
+## **Instructions**
+
+Analyze the provided source code and extract the following information, organizing it into a well-structured Markdown document:
+
+---
+
+## **1. Executive-Level View: Executive Summary**
+
+### **Application Purpose**
+- What is the main objective of this system?
+- What problem does it aim to solve at a high level?
+
+### **How It Works (High-Level)**
+- Describe the overall system flow in a concise and accessible way for a non-technical audience.
+- What are the main steps or processes the system performs?
+
+### **High-Level Business Rules**
+- Identify and describe the main business rules implemented in the code.
+- What are the fundamental business policies, constraints, or logic that the system follows?
+
+### **Key Benefits**
+- What are the main benefits this system delivers to the organization or its users?
+
+---
+
+## **2. Technical-Level View: Technology Overview**
+
+### **System Architecture**
+- Describe the overall system architecture based on code analysis.
+- Does it follow a specific pattern (e.g., Monolithic, Microservices, etc.)?
+- What are the main components or modules identified?
+
+### **Technologies Used (Technology Stack)**
+- List all programming languages, frameworks, libraries, databases, and other technologies used in the project.
+
+### **Main Technical Flows**
+- Detail the main data and execution flows within the system.
+- How do the different components interact with each other?
+
+### **Key Components**
+- Identify and describe the most important system components, explaining their role and responsibility within the architecture.
+
+### **Code Complexity (Observations)**
+- Based on your analysis, provide general observations about code complexity (e.g., well-structured, modularized, areas of higher apparent complexity).
+
+### **Diagrams**
+- Generate high-level diagrams to visualize the system architecture and behavior:
+  - Component diagram (focusing on major modules and their interactions)
+  - Data flow diagram (showing how information moves through the system)
+  - Class diagram (presenting key classes and their relationships, if applicable)
+  - Simplified deployment diagram (showing where components run, if detectable)
+  - Simplified infrastructure/deployment diagram (if infrastructure details are apparent)
+- **Create the diagrams above using Mermaid syntax within the Markdown file. Diagrams should remain high-level and not overly detailed.**
+
+---
+
+## **3. Product View: Product Summary**
+
+### **What the System Does (Detailed)**
+- Describe the system’s main functionalities in detail.
+- What tasks or actions can users perform?
+
+### **Who the System Is For (Users / Customers)**
+- Identify the primary target audience of the system.
+- Who are the end users or customers who benefit from it?
+
+### **Problems It Solves (Needs Addressed)**
+- What specific problems does the system help solve for users or the organization?
+- What needs does it address?
+
+### **Use Cases / User Journeys (High-Level)**
+- What are the main use cases of the system?
+- How do users interact with the system to achieve their goals?
+
+### **Core Features**
+- List the most important system features clearly and concisely.
+
+### **Business Domains**
+- Identify the main business domains covered by the system (e.g., sales, inventory, finance).
+
+---
+
+## **Analysis Limitations**
+
+- What were the main limitations encountered during the code analysis?
+- Briefly describe what constrained your understanding of the code.
+- Provide suggestions to reduce or eliminate these limitations.
+
+---
+
+## **Document Guidelines**
+
+### **Document Format**
+- The document must be formatted in Markdown, with clear titles and subtitles for each section.
+- Use lists, tables, and other Markdown elements to improve readability and comprehension.
+
+### **Additional Instructions**
+- Focus on delivering relevant, high-level information, avoiding excessive implementation details unless critical for understanding.
+- Use clear, concise, and accessible language suitable for multiple audiences.
+- Be as specific as possible based on the code analysis.
+- Generate the complete response as a **well-formatted Markdown (`.md`) document**.
+- Use **clear and direct language**.
+- Use **headings and subheadings** according to the sections above.
+
+### **Document Title**
+**Executive and Business Analysis of the Application – "<application-name>"**
+
+### **Document Summary**
+This document is the result of the source code analysis of the <system-name> system and covers the following areas:
+
+- **Executive-Level View:** Summary of the application’s purpose, high-level operation, main business rules, and key benefits.
+- **Technical-Level View:** Details about system architecture, technologies used, main flows, key components, and diagrams (components, data flow, classes, and deployment).
+- **Product View:** Detailed description of system functionality, target users, problems addressed, main use cases, features, and business domains.
+- **Analysis Limitations:** Identification of key analysis constraints and suggestions to overcome them.
+
+The analysis was based on the available source code files.
+
+---
+
+## **IMPORTANT**
+The analysis must consider **ALL project files**.  
+Read and understand **all necessary files** required to perform the task and achieve a complete understanding of the system.
+
+---
+
+## **Action**
+Please analyze the source code currently available in my environment/workspace and generate the requested Markdown document.
+
+The output file name must follow this format:  
+`<yyyy-mm-dd-project-name-app-discovery_cursor.md>`
+```
+
+</details>
 
 <details><summary><b>Multiplayer 3D Plane Game</b></summary>
 
@@ -1579,6 +1720,35 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+```
+
+</details>
+
+<details><summary><b>Nginx Config Taste</b></summary>
+
+```text
+# Nginx Config taste of an ops engineer who maintains many virtual hosts
+- Keep one server block per file under `sites-available` or `conf.d`, named after the domain it serves. Confidence: 0.85
+- Put shared settings (TLS, security headers, proxy defaults) in snippet files and `include` them instead of copying blocks. Confidence: 0.90
+- Run `nginx -t` before every reload and reload with `nginx -s reload` or `systemctl reload`, never a full restart. Confidence: 0.95
+- Keep configs in version control and deploy them through automation, not by editing files on the server. Confidence: 0.90
+- Redirect all plain HTTP to HTTPS with a single `return 301`, and keep the port 80 block for ACME challenges only. Confidence: 0.90
+- Allow only TLS 1.2 and 1.3 with a modern cipher list, and enable OCSP stapling. Confidence: 0.90
+- Automate certificates with Certbot or acme.sh and alert well before expiry. Confidence: 0.90
+- Add HSTS only after HTTPS works everywhere, starting with a short `max-age` before going long. Confidence: 0.80
+- Set `server_tokens off` and add basic security headers (`X-Content-Type-Options`, `Referrer-Policy`, `frame-ancestors` via CSP). Confidence: 0.85
+- Define a default server that returns `444` so requests with unknown Host headers never reach an app. Confidence: 0.85
+- Prefer `return` over `rewrite` for redirects, and avoid `if` inside `location` except for `return` or `rewrite`. Confidence: 0.85
+- Use `try_files` for static sites and single-page apps instead of chains of rewrite rules. Confidence: 0.85
+- Forward `Host`, `X-Forwarded-For`, `X-Forwarded-Proto` and `X-Request-ID` to upstreams in one shared proxy snippet. Confidence: 0.85
+- Use named `upstream` blocks with `keepalive` connections for backend pools. Confidence: 0.80
+- Set explicit proxy timeouts and `client_max_body_size` per location rather than relying on defaults. Confidence: 0.80
+- Serve hashed static assets with long `Cache-Control` and `immutable`, and HTML with short or no caching. Confidence: 0.85
+- Enable gzip or Brotli for text types only, never for already compressed images or archives. Confidence: 0.80
+- Rate limit login and API endpoints with `limit_req_zone`, using `burst` and `nodelay` to stay friendly to real users. Confidence: 0.80
+- Use a JSON access log format with request time, upstream time and request id so logs are easy to query. Confidence: 0.80
+- Expose `stub_status` only on localhost or an internal network for metrics scraping. Confidence: 0.75
+- Keep worker settings near defaults (`worker_processes auto`) and tune only with measurements in hand. Confidence: 0.70
 ```
 
 </details>

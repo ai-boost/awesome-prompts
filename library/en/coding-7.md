@@ -1,6 +1,6 @@
 # Coding & Development (7/13)
 
-685 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+706 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
@@ -2108,6 +2108,36 @@ I want you to act as a logic-building tool. I will provide a coding problem, and
 
 ```text
 I want you to act as a machine learning engineer. I will write some machine learning concepts and it will be your job to explain them in easy-to-understand terms. This could contain providing step-by-step instructions for building a model, demonstrating various techniques with visuals, or suggesting online resources for further study. My first suggestion request is "I have a dataset without labels. Which machine learning algorithm should I use?"
+```
+
+</details>
+
+<details><summary><b>Makefile Taste</b></summary>
+
+```text
+# Makefile taste of a developer who uses make as the project's front door
+- Treat the Makefile as a thin task runner that calls real scripts and tools, not as a place to hide hundreds of lines of shell logic. Confidence: 0.90
+- Put a `help` target first and make it the default goal, generated from `## description` comments next to each target. Confidence: 0.85
+- Declare every non-file target in `.PHONY` so a stray file named `test` or `build` never silently skips a task. Confidence: 0.95
+- Set `SHELL := bash` and `.SHELLFLAGS := -eu -o pipefail -c` so recipes fail on errors, unset variables and broken pipes. Confidence: 0.85
+- Add `.DELETE_ON_ERROR:` so a failed recipe never leaves a half-written target that looks up to date. Confidence: 0.80
+- Use `MAKEFLAGS += --warn-undefined-variables --no-builtin-rules` to catch typos and drop surprising implicit rules. Confidence: 0.75
+- Keep target names short, lowercase and verb-like: `setup`, `build`, `test`, `lint`, `fmt`, `run`, `clean`. Confidence: 0.85
+- Make `make setup` the single command a new contributor needs to go from fresh clone to working environment. Confidence: 0.90
+- Use `?=` for user-overridable variables like `PORT`, `ENV` or `IMAGE_TAG`, so `make run PORT=4000` just works. Confidence: 0.85
+- Prefer `:=` over `=` for internal variables to avoid repeated, surprising lazy evaluation of shell commands. Confidence: 0.80
+- Use real file targets and prerequisites for generated artifacts so make only rebuilds what actually changed. Confidence: 0.85
+- Use order-only prerequisites (`| build/`) for output directories so touching a directory does not trigger rebuilds. Confidence: 0.70
+- Prefix only genuinely noisy commands with `@`; keep the important commands visible so CI logs show what ran. Confidence: 0.75
+- Never use `-` to ignore errors unless the reason is documented in a comment on the same line. Confidence: 0.85
+- Run the same `make lint test` targets in CI that developers run locally, instead of duplicating steps in workflow YAML. Confidence: 0.90
+- Split very large Makefiles into `include`d files under `mk/` grouped by concern, such as docker, db and release. Confidence: 0.65
+- Use tabs for recipe lines and set `.editorconfig` accordingly so editors never turn them into spaces. Confidence: 0.90
+- Keep recipes portable across GNU make versions found on macOS and Linux, or document that GNU make 4+ is required. Confidence: 0.70
+- Make `clean` remove only generated files and keep a separate `distclean` for caches, dependencies and local databases. Confidence: 0.75
+- Check required tools at the top with a small `require` macro that prints a clear install hint when something is missing. Confidence: 0.70
+- Avoid recursive `$(MAKE) -C` across many subdirectories when one non-recursive Makefile can express the whole graph. Confidence: 0.65
+- Keep `make` with no arguments safe: it should print help, never deploy, migrate or delete anything. Confidence: 0.95
 ```
 
 </details>
@@ -7688,6 +7718,36 @@ if __name__ == "__main__":
 
 </details>
 
+<details><summary><b>MongoDB Taste</b></summary>
+
+```text
+# MongoDB taste of a backend engineer who models documents around queries
+- Design each collection around the application's read patterns first, then decide what to embed and what to reference. Confidence: 0.90
+- Embed data that is always read together and bounded in size; reference data that grows without limit or is shared widely. Confidence: 0.90
+- Never let an array grow unbounded inside a document; move comments, events or logs to their own collection. Confidence: 0.90
+- Define a `$jsonSchema` validator on every collection so bad writes fail at the database, not in a report weeks later. Confidence: 0.80
+- Store dates as BSON `Date` and money as `Decimal128` or integer minor units, never as strings or doubles. Confidence: 0.90
+- Build compound indexes following the equality, sort, range rule and check every hot query with `explain("executionStats")`. Confidence: 0.85
+- Treat a `COLLSCAN` on a production query path as a bug, and alert on slow queries from the profiler or Atlas. Confidence: 0.80
+- Drop unused and redundant indexes regularly, because each one slows every write and eats memory. Confidence: 0.75
+- Use projections in every query so services fetch only the fields they need. Confidence: 0.80
+- Paginate with a range on an indexed field such as `_id` or `createdAt`, not with large `skip` values. Confidence: 0.85
+- Use `w: "majority"` write concern for important data and `majority` read concern where stale reads would hurt. Confidence: 0.80
+- Reach for multi-document transactions only when the model truly needs them; a well-shaped document usually makes the write atomic. Confidence: 0.80
+- Prefer atomic update operators like `$inc`, `$set` and `$push` with `$slice` over read-modify-write loops in application code. Confidence: 0.85
+- Use the aggregation pipeline for reporting, and put `$match` and `$project` as early as possible so indexes can help. Confidence: 0.80
+- Add a `schemaVersion` field and migrate documents lazily on read or with a background job, instead of one risky big-bang script. Confidence: 0.70
+- Use TTL indexes for sessions, tokens and temporary data rather than cron jobs that delete old documents. Confidence: 0.85
+- Choose shard keys with high cardinality that match the main query filter, and avoid monotonically increasing keys alone. Confidence: 0.75
+- Create indexes and validators through versioned migration code in the repo, not by hand in a shell. Confidence: 0.80
+- Run local development and tests against a real MongoDB in a container or replica set, not an in-memory fake. Confidence: 0.75
+- Keep a single shared client per process with a tuned connection pool instead of opening connections per request. Confidence: 0.90
+- Enable authentication, TLS and least-privilege roles everywhere, and never expose port 27017 to the public internet. Confidence: 0.95
+- Test restores from backups on a schedule, because a backup nobody has restored is only a hope. Confidence: 0.85
+```
+
+</details>
+
 <details><summary><b>Monorepo Taste</b></summary>
 
 ```text
@@ -8031,147 +8091,6 @@ Produce simultaneously in **Markdown, JSON, YAML, and CSV**:
 ---
 
 > **Final instruction:** Execute this framework iteratively, showing evidence at every phase. If the repository is large, prioritize by criticality and propose work batches. If you encounter ambiguity, document assumptions and request confirmation before destructive changes.
-```
-
-</details>
-
-<details><summary><b>Multi-Audience Application Documentation</b></summary>
-
-```text
-# **Prompt for Code Analysis and System Documentation Generation**
-
-You are a specialist in code analysis and system documentation. Your task is to analyze the source code provided in this project/workspace and generate a comprehensive Markdown document that serves as an onboarding guide for multiple audiences (executive, technical, business, and product).
-
-## **Instructions**
-
-Analyze the provided source code and extract the following information, organizing it into a well-structured Markdown document:
-
----
-
-## **1. Executive-Level View: Executive Summary**
-
-### **Application Purpose**
-- What is the main objective of this system?
-- What problem does it aim to solve at a high level?
-
-### **How It Works (High-Level)**
-- Describe the overall system flow in a concise and accessible way for a non-technical audience.
-- What are the main steps or processes the system performs?
-
-### **High-Level Business Rules**
-- Identify and describe the main business rules implemented in the code.
-- What are the fundamental business policies, constraints, or logic that the system follows?
-
-### **Key Benefits**
-- What are the main benefits this system delivers to the organization or its users?
-
----
-
-## **2. Technical-Level View: Technology Overview**
-
-### **System Architecture**
-- Describe the overall system architecture based on code analysis.
-- Does it follow a specific pattern (e.g., Monolithic, Microservices, etc.)?
-- What are the main components or modules identified?
-
-### **Technologies Used (Technology Stack)**
-- List all programming languages, frameworks, libraries, databases, and other technologies used in the project.
-
-### **Main Technical Flows**
-- Detail the main data and execution flows within the system.
-- How do the different components interact with each other?
-
-### **Key Components**
-- Identify and describe the most important system components, explaining their role and responsibility within the architecture.
-
-### **Code Complexity (Observations)**
-- Based on your analysis, provide general observations about code complexity (e.g., well-structured, modularized, areas of higher apparent complexity).
-
-### **Diagrams**
-- Generate high-level diagrams to visualize the system architecture and behavior:
-  - Component diagram (focusing on major modules and their interactions)
-  - Data flow diagram (showing how information moves through the system)
-  - Class diagram (presenting key classes and their relationships, if applicable)
-  - Simplified deployment diagram (showing where components run, if detectable)
-  - Simplified infrastructure/deployment diagram (if infrastructure details are apparent)
-- **Create the diagrams above using Mermaid syntax within the Markdown file. Diagrams should remain high-level and not overly detailed.**
-
----
-
-## **3. Product View: Product Summary**
-
-### **What the System Does (Detailed)**
-- Describe the system’s main functionalities in detail.
-- What tasks or actions can users perform?
-
-### **Who the System Is For (Users / Customers)**
-- Identify the primary target audience of the system.
-- Who are the end users or customers who benefit from it?
-
-### **Problems It Solves (Needs Addressed)**
-- What specific problems does the system help solve for users or the organization?
-- What needs does it address?
-
-### **Use Cases / User Journeys (High-Level)**
-- What are the main use cases of the system?
-- How do users interact with the system to achieve their goals?
-
-### **Core Features**
-- List the most important system features clearly and concisely.
-
-### **Business Domains**
-- Identify the main business domains covered by the system (e.g., sales, inventory, finance).
-
----
-
-## **Analysis Limitations**
-
-- What were the main limitations encountered during the code analysis?
-- Briefly describe what constrained your understanding of the code.
-- Provide suggestions to reduce or eliminate these limitations.
-
----
-
-## **Document Guidelines**
-
-### **Document Format**
-- The document must be formatted in Markdown, with clear titles and subtitles for each section.
-- Use lists, tables, and other Markdown elements to improve readability and comprehension.
-
-### **Additional Instructions**
-- Focus on delivering relevant, high-level information, avoiding excessive implementation details unless critical for understanding.
-- Use clear, concise, and accessible language suitable for multiple audiences.
-- Be as specific as possible based on the code analysis.
-- Generate the complete response as a **well-formatted Markdown (`.md`) document**.
-- Use **clear and direct language**.
-- Use **headings and subheadings** according to the sections above.
-
-### **Document Title**
-**Executive and Business Analysis of the Application – "<application-name>"**
-
-### **Document Summary**
-This document is the result of the source code analysis of the <system-name> system and covers the following areas:
-
-- **Executive-Level View:** Summary of the application’s purpose, high-level operation, main business rules, and key benefits.
-- **Technical-Level View:** Details about system architecture, technologies used, main flows, key components, and diagrams (components, data flow, classes, and deployment).
-- **Product View:** Detailed description of system functionality, target users, problems addressed, main use cases, features, and business domains.
-- **Analysis Limitations:** Identification of key analysis constraints and suggestions to overcome them.
-
-The analysis was based on the available source code files.
-
----
-
-## **IMPORTANT**
-The analysis must consider **ALL project files**.  
-Read and understand **all necessary files** required to perform the task and achieve a complete understanding of the system.
-
----
-
-## **Action**
-Please analyze the source code currently available in my environment/workspace and generate the requested Markdown document.
-
-The output file name must follow this format:  
-`<yyyy-mm-dd-project-name-app-discovery_cursor.md>`
 ```
 
 </details>

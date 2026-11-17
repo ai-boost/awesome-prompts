@@ -1,6 +1,6 @@
 # 编程开发 (3/11)
 
-共 685 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 706 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
@@ -4343,6 +4343,36 @@ if __name__ == "__main__":
 - 定期依据 CIS 基准或类似基线扫描主机,并像对待其他缺陷一样跟踪发现的问题。Confidence: 0.75
 - 对于被入侵或配置已漂移的服务器,优先用全新构建的服务器替换它,而不是尝试原地清理。Confidence: 0.90
 - 在每台主机上使用 NTP 或 chrony 保持准确的时间,使日志、证书和令牌的时间相互对得上。Confidence: 0.80
+```
+
+</details>
+
+<details><summary><b>Makefile 开发偏好</b> · 机器翻译</summary>
+
+```text
+# 将 make 作为项目入口的开发者的 Makefile 品味
+- 把 Makefile 当作一个轻量的任务运行器,调用真正的脚本和工具,而不是把几百行 shell 逻辑藏在里面。Confidence: 0.90
+- 把 `help` 目标放在最前面并作为默认目标,由每个目标旁边的 `## description` 注释生成。Confidence: 0.85
+- 在 `.PHONY` 中声明所有非文件目标,这样名为 `test` 或 `build` 的同名文件就不会悄悄跳过任务。Confidence: 0.95
+- 设置 `SHELL := bash` 和 `.SHELLFLAGS := -eu -o pipefail -c`,使配方在出现错误、未设置变量和管道中断时失败。Confidence: 0.85
+- 添加 `.DELETE_ON_ERROR:`,这样失败的配方不会留下看起来是最新的、写了一半的目标。Confidence: 0.80
+- 使用 `MAKEFLAGS += --warn-undefined-variables --no-builtin-rules` 来捕获拼写错误,并去掉出人意料的隐式规则。Confidence: 0.75
+- 让目标名称简短、小写且像动词:`setup`、`build`、`test`、`lint`、`fmt`、`run`、`clean`。Confidence: 0.85
+- 让 `make setup` 成为新贡献者从全新克隆到可用环境所需的唯一命令。Confidence: 0.90
+- 对 `PORT`、`ENV` 或 `IMAGE_TAG` 这类用户可覆盖的变量使用 `?=`,这样 `make run PORT=4000` 就能直接生效。Confidence: 0.85
+- 对内部变量优先使用 `:=` 而不是 `=`,以避免 shell 命令被重复且出人意料地惰性求值。Confidence: 0.80
+- 对生成的产物使用真实的文件目标和先决条件,这样 make 只会重新构建真正发生变化的部分。Confidence: 0.85
+- 对输出目录使用仅顺序先决条件(`| build/`),这样触碰目录不会触发重新构建。Confidence: 0.70
+- 只对真正嘈杂的命令加 `@` 前缀;保持重要命令可见,这样 CI 日志能显示运行了什么。Confidence: 0.75
+- 除非在同一行的注释中写明原因,否则绝不使用 `-` 来忽略错误。Confidence: 0.85
+- 在 CI 中运行与开发者本地相同的 `make lint test` 目标,而不是在工作流 YAML 中重复这些步骤。Confidence: 0.90
+- 把非常大的 Makefile 拆分为 `mk/` 下按关注点分组的 `include` 文件,例如 docker、db 和 release。Confidence: 0.65
+- 配方行使用制表符,并相应地设置 `.editorconfig`,这样编辑器就不会把它们变成空格。Confidence: 0.90
+- 让配方在 macOS 和 Linux 上常见的各个 GNU make 版本之间保持可移植,或者注明需要 GNU make 4+。Confidence: 0.70
+- 让 `clean` 只删除生成的文件,并另设 `distclean` 用于缓存、依赖和本地数据库。Confidence: 0.75
+- 在顶部用一个小的 `require` 宏检查所需工具,缺失时打印清晰的安装提示。Confidence: 0.70
+- 当一个非递归的 Makefile 就能表达整个依赖图时,避免在许多子目录之间使用递归的 `$(MAKE) -C`。Confidence: 0.65
+- 让不带参数的 `make` 保持安全:它应该打印帮助信息,绝不部署、迁移或删除任何东西。Confidence: 0.95
 ```
 
 </details>

@@ -1,6 +1,6 @@
 # Productivity (2/2)
 
-94 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+95 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/productivity.md) · [中文](../zh/productivity.md)
 

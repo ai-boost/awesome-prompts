@@ -1,6 +1,6 @@
 # Coding & Development (11/13)
 
-685 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+706 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
@@ -5458,6 +5458,34 @@ I want you to act as a SQL terminal in front of an example database. The databas
 
 </details>
 
+<details><summary><b>SQLite Taste</b></summary>
+
+```text
+# SQLite taste of an engineer who ships it to production
+- Use SQLite for single-node apps, CLIs, desktop and mobile apps, and edge caches before reaching for a database server. Confidence: 0.85
+- Turn on WAL mode (`PRAGMA journal_mode = WAL`) so readers never block the writer. Confidence: 0.95
+- Set `PRAGMA foreign_keys = ON` on every connection, since it is off by default. Confidence: 0.95
+- Set a `busy_timeout` of a few seconds instead of letting writes fail immediately with `SQLITE_BUSY`. Confidence: 0.90
+- Use `PRAGMA synchronous = NORMAL` with WAL for a good balance of durability and speed. Confidence: 0.75
+- Funnel all writes through a single connection or queue, and use a pool of read-only connections for reads. Confidence: 0.80
+- Start write transactions with `BEGIN IMMEDIATE` to avoid deadlocks when a read transaction tries to upgrade. Confidence: 0.80
+- Declare tables `STRICT` on new schemas so type affinity does not silently store text in integer columns. Confidence: 0.80
+- Store timestamps as ISO 8601 text or Unix epoch integers consistently, and pick one convention per database. Confidence: 0.85
+- Use `INTEGER PRIMARY KEY` for row ids unless you need globally unique ids, then add a separate UUID or ULID column. Confidence: 0.75
+- Batch many inserts inside one transaction; thousands of autocommit inserts are slow. Confidence: 0.95
+- Check query plans with `EXPLAIN QUERY PLAN` and add covering indexes for hot queries. Confidence: 0.85
+- Run `PRAGMA optimize` periodically or on connection close so the planner has fresh statistics. Confidence: 0.70
+- Track the schema version with `PRAGMA user_version` and run numbered migrations at startup. Confidence: 0.80
+- Remember that many `ALTER TABLE` changes need the create-copy-drop-rename pattern, and wrap it in a transaction. Confidence: 0.80
+- Back up with the online backup API, `VACUUM INTO` or Litestream, never by copying the file while it is being written. Confidence: 0.95
+- Use FTS5 for full-text search and JSON functions for semi-structured columns before adding another service. Confidence: 0.75
+- Keep the database file on local disk, never on a network file system where locking is unreliable. Confidence: 0.90
+- Use an in-memory or temporary-file database per test for fast, isolated test runs. Confidence: 0.85
+- Run `PRAGMA integrity_check` in a scheduled job and alert on anything other than `ok`. Confidence: 0.65
+```
+
+</details>
+
 <details><summary><b>StackOverflow Post</b></summary>
 
 ```text
@@ -6010,6 +6038,35 @@ Rules:
 Variables:
 - ${operatingSystem:Windows} - The operating system for installation steps.
 - ${ide:Android Studio} - The preferred IDE for setup instructions.
+```
+
+</details>
+
+<details><summary><b>Storybook Taste</b></summary>
+
+```text
+# Storybook taste of a frontend developer who builds components in isolation
+- Write stories in Component Story Format 3 with a typed `Meta` and `StoryObj`, not the legacy `storiesOf` API. Confidence: 0.95
+- Colocate each story file next to its component, as `Button.stories.tsx` beside `Button.tsx`. Confidence: 0.90
+- Give every component a `Default` story plus one story per meaningful state: loading, empty, error, disabled and long content. Confidence: 0.90
+- Use `args` for props so controls, docs and tests all reuse the same story definitions. Confidence: 0.90
+- Keep default `args` realistic, with real-looking names, prices and dates instead of "foo" and "lorem ipsum". Confidence: 0.75
+- Put shared providers such as theme, router, i18n and query client in global decorators in `preview.tsx`. Confidence: 0.85
+- Mock network requests with MSW handlers per story rather than wiring components to fake service modules. Confidence: 0.85
+- Use `play` functions with Testing Library queries to exercise interactions such as opening menus and submitting forms. Confidence: 0.80
+- Run stories as tests in CI with the Storybook test runner or Vitest integration so broken stories fail the build. Confidence: 0.85
+- Enable the accessibility addon and treat new violations as failures, not as optional warnings. Confidence: 0.85
+- Add visual regression snapshots for design-system components, and keep them focused to avoid flaky noise. Confidence: 0.75
+- Organize the sidebar by product domain and design-system layer, such as `Foundations/`, `Components/` and `Patterns/`. Confidence: 0.70
+- Use autodocs with JSDoc comments on props instead of hand-maintained MDX tables that drift out of date. Confidence: 0.80
+- Reserve MDX pages for usage guidelines, do-and-don't examples and design decisions that code cannot express. Confidence: 0.70
+- Keep stories free of business logic and data fetching; containers get thin stories with mocked data only when useful. Confidence: 0.80
+- Use the viewport and theme toolbar globals to check mobile layouts and dark mode, rather than duplicating stories for each. Confidence: 0.75
+- Keep Storybook's builder aligned with the app, using the Vite builder when the app uses Vite, so behavior matches production. Confidence: 0.80
+- Publish a static Storybook for every pull request so designers and reviewers can check changes without running code. Confidence: 0.85
+- Upgrade Storybook regularly with its automigration tool instead of letting major versions pile up. Confidence: 0.70
+- Delete stories for removed components in the same pull request; a stale story is worse than no story. Confidence: 0.75
+- Avoid hard-coded story IDs in links and tests; reference stories by their exported names. Confidence: 0.65
 ```
 
 </details>

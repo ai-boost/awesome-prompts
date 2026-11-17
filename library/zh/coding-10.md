@@ -1,10 +1,74 @@
 # 编程开发 (10/11)
 
-共 685 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 706 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
 分页：[1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · **10** · [11](coding-11.md)
+
+<details><summary><b>构建面试练习应用</b></summary>
+
+```text
+你将构建自己的面试准备应用程序。我猜你可能在某个时候参加过几次面试。你被问到过问题，也被要求完成一些练习或性格测试。幸运的是，AI 可以提供帮助。借助 AI，你可以做几乎任何事情，包括为你的下一个理想职位做准备。你的任务是使用 VS Code（或 Cursor）编辑器，结合 Python 库 Streamlit 或 JavaScript 框架 Next.js，实现一个单页网站。你需要调用 OpenAI，编写一条系统提示词作为对 LLM 的指令，并编写你自己的提示词，包含面试准备的说明。在你想为面试练习的内容方面，你有极大的自由度。我们不想限制你的发挥。面试问题？特定编程语言的问题？在面试结束时向面试官提问？分析职位描述以制定面试准备策略？尽情实验吧！记住，如果你因某种原因卡住了或需要灵感，你可以随意使用所有工具：ChatGPT、StackOverflow 或你的朋友！
+```
+
+</details>
+
+<details><summary><b>架构与 UI/UX 审查</b></summary>
+
+```text
+充当一名资深前端工程师兼以产品为导向的 UI/UX 评审专家，具备构建可扩展 Web 应用的经验。
+
+你的任务目前不是编写代码。
+
+首先，基于以下方面仔细分析该项目：
+
+1. 文件夹结构（Next.js App Router 架构、路由组、组件组织）
+2. UI 实现（布局、间距、排版、层级、一致性）
+3. 组件复用与设计系统一致性
+4. 关注点分离（布局 vs 页面 vs 组件）
+5. 当前结构的可扩展性与可维护性
+
+上下文：  
+这是一个现代的 Next.js（App Router）项目，用于构建一个开发者社区平台（类似于 Reddit 与 StackOverflow 的混合体）。
+
+说明：
+
+* 首先分析文件夹结构，并说明其优点与问题所在
+* 识别架构问题或反模式
+* 从视觉上分析 UI（层级、间距、一致性、可用性）
+* 指出设计中的不一致之处（卡片、按钮、排版、间距、颜色）
+* 评估布局系统（根布局 vs 应用布局）是否正确实现
+* 仅在概念层面提出改进建议（暂不提供代码）
+* 对建议进行优先级排序（高影响 vs 低影响）
+* 像资深工程师评审真实产品一样，保持批判性但具建设性
+
+输出格式：
+
+1. 整体评估（简要）
+2. 文件夹结构评审
+3. UI/UX 评审
+4. 设计系统问题
+5. 前 5 项高影响改进建议
+
+暂不生成代码。  
+仅专注于分析与建议。
+```
+
+</details>
+
+<details><summary><b>校园碳足迹网站</b> · 机器翻译</summary>
+
+```text
+面向个人或校园团队的用户账户和个人资料。
+涵盖电力、出行、饮食和废弃物的碳计算器,并明确说明计算系数。
+按类别和随时间变化趋势展示排放量的交互式仪表盘。
+减排规划器,用户可以比较不同方案,例如改用其他交通方式或减少用电。
+带进度追踪和团队排行榜的目标与挑战。
+可下载的报告,汇总排放量和建议的行动。
+```
+
+</details>
 
 <details><summary><b>根因分析智能体</b></summary>
 
@@ -6898,317 +6962,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 通过共享令牌名称并在每次发布时审查差异,保持 Figma 组件与代码组件同步。Confidence: 0.70
 - 通过扫描产品代码仓库中对组件库的导入和一次性覆盖样式来衡量采用情况。Confidence: 0.65
 - 通过简短的提案模板接受贡献,在编写任何代码之前先说明使用场景、API 和无障碍性。Confidence: 0.70
-```
-
-</details>
-
-<details><summary><b>语义化版本升级顾问</b> · 机器翻译</summary>
-
-```text
----
-name: semver-bump-advisor
-description: 读取 Conventional Commits 或更新日志片段，对 fix/feat/breaking 变更进行分类，并推荐下一个 SemVer 版本号升级（patch、minor 或 major），附带清晰的理由和最终版本号预览。当用户询问"我该发布哪个版本？"、"这是破坏性变更吗？"或"根据这些提交升级 SemVer"时使用。包含一个经过测试的、仅依赖标准库的 Python 顾问脚本。
----
-
-# SemVer 升级顾问
-
-你帮助团队根据真实的变更信号来选择下一个语义化版本号：Conventional Commit 主题行、简短的更新日志，或明确列出的变更类型清单。你要区分 patch（修复、文档、不改变公共 API 的杂项）、minor（向后兼容的新功能）和 major（破坏性变更），然后给出最终的版本号字符串。你不会编造用户没有暗示过的发布说明。
-
-## 本技能中的文件
-
-- `scripts/semver_bump.py` - 解析提交或类似 CHANGELOG 的列表，评估所需的最高升级级别，并打印理由表格（仅使用 Python 3 标准库）
-- `references/conventional-commits-semver.md` - 提交类型如何映射到 SemVer，包括 `BREAKING CHANGE` 和 `!`
-- `references/edge-cases.md` - 1.0 之前的规则、构建元数据、多个包，以及何时不应升级版本
-- `templates/bump-report.md` - 要返回的报告格式
-- `examples/example-library-release.md` - 一个小型库发布的完整示例
-
-## 工作流程
-
-### 1. 收集事实
-询问，或者先假设并说明：
-- 当前版本（`MAJOR.MINOR.PATCH`，可带预发布标识）。
-- 变更信号：Conventional Commit 行、自上一个 tag 以来的更新日志，或带标签的要点（fix / feat / breaking）。
-- 项目是否仍处于 `0.x`（预期不同），以及公共 API 指的是 CLI 参数、HTTP 路由还是库导出。
-
-### 2. 运行顾问脚本
-'''bash
-python3 scripts/semver_bump.py 1.4.2 --commits commits.txt
-python3 scripts/semver_bump.py 0.9.1 --commits - --pre-1-0-major-as-minor
-python3 scripts/semver_bump.py 2.0.0-rc.1 --json < changes.txt
-'''
-提交文件每行一条主题（可带 `type(scope):` 前缀）。行后可以在缩进的后续行中包含 `BREAKING CHANGE:` 页脚，或者在类型后加 `!`。始终展示工具输出，然后用通俗的话解释它。
-
-### 3. 给出建议
-1. 说明所需的最高升级级别及原因（引用起决定作用的提交或要点）。
-2. 展示下一个版本号字符串；如相关，说明预发布版本在转为稳定版时如何重置。
-3. 指出含义模糊的行（例如可能是破坏性变更的 `refactor`），必要时请用户确认对 API 的影响。
-4. 使用 `templates/bump-report.md` 交付，并参照 `examples/example-library-release.md`。
-
-## 规则
-- 当明确存在破坏性变更时，绝不要跳过 major 升级，除非用户明确选择 1.0 之前的软 major 处理方式。
-- 不要编造提交；如果列表为空，请如实说明并拒绝猜测。
-- 构建元数据（`+...`）不参与升级计算；仅在用户要求时才去除或保留它。
-- 优先使用 `references/conventional-commits-semver.md` 中的 Conventional Commits 映射，而不是临时自拟的标签。
-FILE:references/conventional-commits-semver.md
-# Conventional Commits → SemVer
-
-## 类型映射（默认）
-
-| 提交信号 | SemVer 升级 |
-|---|---|
-| `fix`、`docs`、`style`、`test`、`chore`、`ci`、`perf`（非破坏性） | **patch** |
-| `feat`（非破坏性） | **minor** |
-| `BREAKING CHANGE` 页脚，或 `type!:` / `type(scope)!:` | **major** |
-| 没有破坏性标记的 `refactor`、`build`、`revert` | **patch**（如果公共 API 有变动请确认） |
-
-当出现多个提交时，取**最大**的升级级别：major > minor > patch。
-
-## 破坏性变更标记
-1. 以 `BREAKING CHANGE:` 或 `BREAKING-CHANGE:` 开头的页脚行。
-2. 冒号前紧跟 `!`：`feat!: ...` 或 `feat(api)!: ...`。
-
-## 作用域
-作用域本身不会改变升级级别。`feat(cli): add --json` 仍然是 minor。`fix(docs): typo` 仍然是 patch。
-
-## 预发布版本
-以 `1.2.0-rc.3` 为例：
-- 如果仍留在 RC 渠道，处于 RC 阶段的 patch 级变更通常会变成 `1.2.0-rc.4`。
-- RC 之后转为稳定版是一个产品决策：当 RC 已经代表该 minor 版本时，通常是 `1.2.0`（而不是 `1.2.1`）。
-
-本技能的脚本使用数字核心 `MAJOR.MINOR.PATCH` 进行升级计算，并单独打印预发布处理说明。
-FILE:references/edge-cases.md
-# 边界情况
-
-## 1.0 之前（`0.x.y`）
-SemVer 允许在 `0.x` 中引入破坏性变更而不升级 major，但许多团队为了清晰起见，仍然让 `feat` → minor、破坏性变更 → major。两种方式都可以提供：
-- 严格遵循 SemVer 的宽松做法：`0.x` 中的破坏性变更可以升级 minor。
-- 团队策略：即使在 1.0 之前也将破坏性变更视为 major（关闭 `--pre-1-0-major-as-minor`）。
-
-## 多个包
-Monorepo 可能会独立升级各个包。针对每个包单独运行一次顾问脚本，只使用该包的提交。
-
-## 含义模糊的重构
-`refactor: rename export Foo to Bar` 对库来说是破坏性变更，即使没有 `!`。请向用户确认：如果公共 API 被重命名 → major；如果仅是内部变更 → patch。
-
-## 空行或非规范格式的行
-没有类型的普通句子，只要明确表示"breaking"或"add feature"，仍然计入；否则标记为 **unknown** 并询问。
-
-## 构建元数据
-`1.2.3+build.9` — 先升级核心版本，再决定是丢弃还是刷新 `+build...`。不要让元数据影响 major/minor/patch 的计算。
-FILE:templates/bump-report.md
-# SemVer 升级报告
-
-## 当前版本
-- …
-
-## 推荐的升级
-- 级别：patch | minor | major
-- 下一个版本：…
-- 决定性变更：…
-
-## 变更统计
-| 级别 | 数量 | 示例 |
-|---|---|---|
-| major | | |
-| minor | | |
-| patch | | |
-| unknown | | |
-
-## 备注与问题
-- …
-
-## 建议的 tag / 发布命令
-'''bash
-# example
-git tag -a vX.Y.Z -m "…"
-'''
-FILE:examples/example-library-release.md
-# 示例：根据 Conventional Commits 发布库版本
-
-**当前版本：** `1.4.2`
-
-**自 v1.4.2 以来的提交：**
-'''
-fix: handle empty Accept headers
-feat(api): add cursor pagination
-docs: fix README typo
-feat!: remove deprecated /v1/list route
-'''
-
-**顾问结果：** major → `2.0.0`，原因是 `feat!: remove deprecated /v1/list route`。
-
-**理由：** `!` 标记了一次破坏性的 API 移除。仅凭新的分页功能只会是 minor（`1.5.0`），仅凭修复和文档只会是 patch（`1.4.3`），但 major 优先。
-
-**报告摘录：** 建议发布 `2.0.0`，并为 `/v1/list` 的调用方附上迁移说明；将游标分页作为这次大版本的头条功能。
-FILE:scripts/semver_bump.py
-#!/usr/bin/env python3
-"""Recommend a SemVer bump from Conventional Commit subjects or change lines.
-
-Usage:
-  python3 semver_bump.py 1.4.2 --commits commits.txt
-  python3 semver_bump.py 0.9.1 --commits - --pre-1-0-major-as-minor
-  python3 semver_bump.py 2.0.0 --json < changes.txt
-"""
-from __future__ import annotations
-
-import argparse
-import json
-import re
-import sys
-
-TYPE_PATCH = {"fix", "docs", "style", "test", "chore", "ci", "perf", "build", "refactor", "revert"}
-TYPE_MINOR = {"feat"}
-COMMIT_RE = re.compile(
-    r"^(?P<type>[a-zA-Z]+)(?P<scope>\([^)]*\))?(?P<breaking>!)?:\s*(?P<sub>.+)$"
-)
-VER_RE = re.compile(
-    r"^(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)"
-    r"(?:-(?P<pre>[0-9A-Za-z.-]+))?(?:\+(?P<build>[0-9A-Za-z.-]+))?$"
-)
-LEVELS = {"none": 0, "patch": 1, "minor": 2, "major": 3}
-
-
-def parse_version(v: str) -> dict:
-    m = VER_RE.match(v.strip())
-    if not m:
-        raise SystemExit(f"error: not a SemVer core version: {v!r}")
-    return {k: m.group(k) for k in ("major", "minor", "patch", "pre", "build")}
-
-
-def classify_line(line: str) -> tuple[str, str]:
-    raw = line.strip()
-    if not raw or raw.startswith("#"):
-        return "skip", raw
-    lower = raw.lower()
-    if lower.startswith("breaking change:") or lower.startswith("breaking-change:"):
-        return "major", raw
-    m = COMMIT_RE.match(raw)
-    if m:
-        if m.group("breaking"):
-            return "major", raw
-        t = m.group("type").lower()
-        if t in TYPE_MINOR:
-            return "minor", raw
-        if t in TYPE_PATCH:
-            return "patch", raw
-        return "unknown", raw
-    if "breaking" in lower:
-        return "major", raw
-    if lower.startswith("feat") or "new feature" in lower or lower.startswith("add "):
-        return "minor", raw
-    if lower.startswith("fix") or "bug" in lower:
-        return "patch", raw
-    return "unknown", raw
-
-
-def read_lines(path: str) -> list[str]:
-    if path == "-":
-        return sys.stdin.read().splitlines()
-    with open(path, encoding="utf-8") as f:
-        return f.read().splitlines()
-
-
-def bump(ver: dict, level: str, pre10_soft: bool) -> str:
-    major, minor, patch = int(ver["major"]), int(ver["minor"]), int(ver["patch"])
-    if level == "none":
-        core = f"{major}.{minor}.{patch}"
-    elif level == "major":
-        if pre10_soft and major == 0:
-            minor += 1
-            patch = 0
-        else:
-            major += 1
-            minor = 0
-            patch = 0
-        core = f"{major}.{minor}.{patch}"
-    elif level == "minor":
-        minor += 1
-        patch = 0
-        core = f"{major}.{minor}.{patch}"
-    else:
-        patch += 1
-        core = f"{major}.{minor}.{patch}"
-    return core
-
-
-def main(argv: list[str]) -> int:
-    ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("version", help="Current SemVer, e.g. 1.4.2 or 0.9.1-rc.1")
-    ap.add_argument("--commits", default="-", help="File of commit subjects (default: stdin)")
-    ap.add_argument("--pre-1-0-major-as-minor", action="store_true",
-                    help="In 0.x, treat breaking as minor bump")
-    ap.add_argument("--json", action="store_true", help="Machine-readable JSON output")
-    args = ap.parse_args(argv)
-
-    ver = parse_version(args.version)
-    lines = read_lines(args.commits)
-    tallies = {"major": [], "minor": [], "patch": [], "unknown": []}
-    best = "none"
-    for line in lines:
-        level, raw = classify_line(line)
-        if level == "skip":
-            continue
-        tallies[level].append(raw)
-        if LEVELS[level] > LEVELS[best]:
-            best = level
-
-    if best == "none":
-        print("error: no usable change lines", file=sys.stderr)
-        return 1
-
-    next_v = bump(ver, best, args.pre_1_0_major_as_minor)
-    decisive = (tallies[best][0] if tallies[best] else "")
-    note = None
-    if args.pre_1_0_major_as_minor and int(ver["major"]) == 0 and best == "major":
-        note = "pre-1.0 soft major: breaking treated as minor bump"
-        # best label stays major for tally, but version used soft path
-    result = {
-        "current": args.version,
-        "bump": best,
-        "next": next_v,
-        "decisive": decisive,
-        "tally": {k: len(v) for k, v in tallies.items()},
-        "examples": {k: v[:5] for k, v in tallies.items() if v},
-        "note": note,
-    }
-    if args.json:
-        json.dump(result, sys.stdout, indent=2)
-        sys.stdout.write("\n")
-    else:
-        print(f"current: {args.version}")
-        print(f"bump:    {best}")
-        print(f"next:    {next_v}")
-        if note:
-            print(f"note:    {note}")
-        print(f"decisive:{decisive}")
-        print("tally:")
-        for k in ("major", "minor", "patch", "unknown"):
-            print(f"  {k}: {len(tallies[k])}")
-            for ex in tallies[k][:5]:
-                print(f"    - {ex}")
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
-```
-
-</details>
-
-<details><summary><b>语言学校网站搭建</b> · 机器翻译</summary>
-
-```text
-扮演资深 UI/UX 设计师和专业文案撰稿人。我想为我的语言学校 WillSmart 打造一个高转化率的专业网站,学校位于佤邦盘山市(就在独立纪念碑 / လွတ်လပ်ရေးကျောက်တိုင်အရှေ့ 正前方)。
-​重要要求:
-请用三种语言并排或按板块撰写网站内容:缅甸语(မြန်မာ)、中文(中文)和英语(English)。每个主要板块都必须包含这三种语言,以便各类家长和学生都能轻松阅读。
-​需要包含的学校详情:
-​招生年龄:3 岁及以上(၃ နှစ်အရွယ်မှစတင်၍)。
-​日托班(上午 9:00 – 下午 3:00):
-​仅学费:600 元 / 月
-​学费 + 含健康午餐:800 元 / 月
-​晚间班:
-​学费:400 元 / 月
-​请清晰地设计网站的各个板块(首屏、关于我们、位置、课程与价格、选择我们的理由、联系方式),排版简洁,并提供缅甸语、中文和英语的翻译。"*
 ```
 
 </details>

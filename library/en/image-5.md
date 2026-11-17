@@ -1,10 +1,1071 @@
 # Image & Design (5/5)
 
-847 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+880 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
 Pages: [1](image.md) · [2](image-2.md) · [3](image-3.md) · [4](image-4.md) · **5**
+
+<details><summary><b>Tech Brand Identity Image</b></summary>
+
+```text
+Create a premium 4K ultra-high-resolution corporate technology brand identity image for a company named exactly:
+
+"Spine For Technologies"
+
+Design a futuristic, innovative, sophisticated logo that represents advanced technology, digital transformation, artificial intelligence, software development, cybersecurity, and the future of technological innovation.
+
+The logo should be an original geometric symbol inspired by a technological spine / interconnected digital structure, intelligently combining the concepts of "Spine" and "Technology" into one distinctive visual mark. Use elegant geometric shapes, precise lines, subtle circuit-board patterns, connected nodes, and a dynamic sense of digital evolution.
+
+Place the logo prominently in the center, with the company name:
+
+"Spine For Technologies"
+
+directly underneath it in a premium modern sans-serif typeface. Typography must be extremely clean, sharp, professional, perfectly aligned, and highly legible.
+
+Visual style: futuristic technology, premium corporate identity, cutting-edge innovation, sophisticated minimalism, high-end digital branding.
+
+Color palette: deep black and dark navy background with electric blue, cyan, and subtle violet luminous accents. Add controlled neon glow, metallic reflections, subtle glass effects, elegant light trails, and very refined technological details.
+
+Composition should feel powerful, intelligent, trustworthy, innovative, and suitable for a global technology company.
+
+Cinematic studio lighting, dramatic depth, realistic reflections, volumetric light, subtle particles, high contrast, clean composition, professional branding presentation, extremely sharp details, photorealistic 3D logo rendering.
+
+4K resolution, ultra-detailed, crisp edges, premium quality, professional corporate branding, no people, no unnecessary objects, no clutter, no watermark.
+
+IMPORTANT:
+The company name must be written EXACTLY as:
+"Spine For Technologies"
+
+Do not misspell, alter, abbreviate, or replace any letters in the company name.
+```
+
+</details>
+
+<details><summary><b>Tech Desk Builder Portrait</b></summary>
+
+```text
+{
+  "category": "TECH_DESK_BUILDER_HALF_BODY",
+  "subject": {
+    "demographics": "Adult woman, 21-29, Turkish-looking, creator vibe.",
+    "hair": {
+      "color": "Dark brown",
+      "style": "Low ponytail or loose waves",
+      "texture": "Strands visible, slight flyaways"
+    },
+    "face": {
+      "eyes": "Focused but friendly",
+      "skin_details": "Real texture, no smoothing",
+      "makeup": "Minimal"
+    },
+    "clothing": {
+      "outfit": "Casual black top + light cardigan, no logos",
+      "fabric": "Real knit weave, subtle wrinkles"
+    },
+    "accessories": {
+      "jewelry": ["Silver hoops"]
+    }
+  },
+  "pose": {
+    "type": "Half-body seated",
+    "orientation": "Body slightly angled, shoulders relaxed",
+    "hands": "One hand near trackpad, other tucking hair behind ear",
+    "gaze": "Looking at camera with small smirk",
+    "posture": "Relaxed confident"
+  },
+  "setting": {
+    "environment": "Minimal desk setup",
+    "background_elements": [
+      "Laptop/monitor with generic blurred UI (NO readable text)",
+      "Warm desk lamp + cool monitor glow mix",
+      "Plant in corner, small clutter blurred"
+    ],
+    "depth": "Face sharp, background bokeh"
+  },
+  "camera": {
+    "shot_type": "Half-body lifestyle portrait",
+    "angle": "Slightly above eye level",
+    "focal_length_equivalent": "26mm phone or 50mm pro",
+    "framing": "4:5",
+    "focus": "Eyes sharp"
+  },
+  "lighting": {
+    "source": "Warm lamp + cool monitor glow",
+    "direction": "Soft mixed lighting with gentle shadows",
+    "highlights": "Natural facial speculars",
+    "shadows": "Soft, realistic"
+  },
+  "mood_and_expression": {
+    "tone": "Cozy creator, confident",
+    "expression": "Micro-smirk",
+    "atmosphere": "Late-night build session vibe"
+  },
+  "style_and_realism": {
+    "style": "Photorealistic lifestyle",
+    "imperfections": "Mild noise, slight imperfect WB"
+  },
+  "technical_details": {
+    "aspect_ratio": "4:5",
+    "noise": "Mild",
+    "resolution": "High"
+  },
+  "constraints": {
+    "adult_only": true,
+    "no_text": true,
+    "no_logos": true,
+    "no_watermarks": true,
+    "no_readable_screens": true
+  },
+  "negative_prompt": [
+    "readable UI text", "logos", "watermark",
+    "plastic skin", "cgi",
+    "extra fingers", "warped hands"
+  ]
+}
+```
+
+</details>
+
+<details><summary><b>Teen Book Cover Illustration</b></summary>
+
+```text
+Thoughtful Islamic book cover illustration for teenagers, side silhouette of a young person. Inside the head a question mark transforming into light and certainty. Arabic word "اليقين" integrated in the light. Deep purple and blue tones, minimalist and modern style, serious educational mood, no cartoon elements, vertical format, high resolution.
+```
+
+</details>
+
+<details><summary><b>Terminal Drift</b></summary>
+
+```text
+{
+  "title": "Terminal Drift",
+  "description": "A haunting visualization of a lone traveler stuck in an infinite, empty airport terminal that defies logic.",
+  "prompt": "You will perform an image edit using the person from the provided photo as the main subject. Preserve her core likeness. Transform Subject 1 (female) into a solitary figure standing in an endless, windowless airport terminal. The surrounding space is a repetitive hallway of beige walls, low ceilings, and patterned carpet. There are no exits, only the endless stretch of artificial lighting and empty waiting chairs. The composition should adhere to a cinematic 1:1 aspect ratio.",
+  "details": {
+    "year": "Indeterminate 1990s",
+    "genre": "Liminal Space",
+    "location": "A vast, curving airport corridor with no windows, endless beige walls, and complex patterned carpet.",
+    "lighting": [
+      "Flat fluorescent overheads",
+      "Uniform artificial glow",
+      "No natural light source"
+    ],
+    "camera_angle": "Wide shot, symmetrical center-framed composition.",
+    "emotion": [
+      "Disassociation",
+      "Unease",
+      "Solitude"
+    ],
+    "color_palette": [
+      "Beige",
+      "Muted Teal",
+      "Faded Maroon",
+      "Off-white"
+    ],
+    "atmosphere": [
+      "Uncanny",
+      "Sterile",
+      "Silent",
+      "Timeless"
+    ],
+    "environmental_elements": "Rows of empty connected waiting chairs, commercial carpeting with a confusing pattern, generic signage with indecipherable text.",
+    "subject1": {
+      "costume": "A slightly oversized pastel sweater and loose trousers, appearing mundane and timeless.",
+      "subject_expression": "A vacant, glazed-over stare, looking slightly past the camera into the void.",
+      "subject_action": "Standing perfectly still, arms hanging loosely at her sides, holding a generic roller suitcase."
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "crowds",
+        "sunlight",
+        "deep shadows",
+        "dirt",
+        "clutter",
+        "windows looking outside",
+        "lens flare"
+      ],
+      "exclude_styles": [
+        "high contrast",
+        "action movie",
+        "vibrant saturation",
+        "cyberpunk",
+        "horror gore"
+      ],
+      "exclude_colors": [
+        "neon red",
+        "pitch black",
+        "vibrant green"
+      ],
+      "exclude_objects": [
+        "airplanes",
+        "trash",
+        "blood",
+        "animals"
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>Terminal Velocity</b></summary>
+
+```text
+{
+  "title": "Terminal Velocity",
+  "description": "A high-stakes action frame capturing a woman sprinting through a crumbling industrial tunnel amidst sparks and chaos.",
+  "prompt": "You will perform an image edit to create an Ultra-Photorealistic, Movie-Quality action shot. The result must be photorealistic, highly detailed, and feature cinematic lighting. Emulate the look of a blockbuster film shot on Arri Alexa with a shallow depth of field. Depict Subject 1 sprinting towards the camera in a dark, collapsing industrial tunnel, surrounded by flying sparks and falling debris.",
+  "details": {
+    "year": "Contemporary Action Thriller",
+    "genre": "Cinematic Photorealism",
+    "location": "A dilapidated, steam-filled industrial maintenance tunnel with flickering lights and exposed wiring.",
+    "lighting": [
+      "High-contrast chiaroscuro",
+      "Warm backlight from exploding sparks",
+      "Cold, gritty fluorescent ambient light",
+      "Volumetric lighting through steam"
+    ],
+    "camera_angle": "Low-angle frontal tracking shot with motion blur on the background.",
+    "emotion": [
+      "Adrenaline",
+      "Panic",
+      "Determination"
+    ],
+    "color_palette": [
+      "Concrete grey",
+      "Hazard orange",
+      "Steel blue",
+      "Deep shadow black"
+    ],
+    "atmosphere": [
+      "Chaotic",
+      "Explosive",
+      "Gritty",
+      "Claustrophobic"
+    ],
+    "environmental_elements": "Cascading electrical sparks, motion-blurred debris, steam venting from broken pipes, wet concrete floor reflecting the chaos.",
+    "subject1": {
+      "costume": "black mini skirt, white crop top, leather fingerless gloves",
+      "subject_expression": "Intense focus with mouth slightly parted in exertion, sweat glistening on skin, hair flying back.",
+      "subject_action": "running"
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "sunlight",
+        "calm environment",
+        "clean surfaces",
+        "smiling",
+        "standing still"
+      ],
+      "exclude_styles": [
+        "cartoon",
+        "3d render",
+        "illustration",
+        "sketch",
+        "low resolution"
+      ],
+      "exclude_colors": [
+        "pastel pink",
+        "vibrant green",
+        "soft colors"
+      ],
+      "exclude_objects": [
+        "trees",
+        "sky",
+        "animals",
+        "vehicles"
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>The Aether Workshop</b></summary>
+
+```text
+{
+  "title": "The Aether Workshop",
+  "description": "A vibrant, nostalgic snapshot of two inventors collaborating on a clockwork masterpiece in a sun-drenched steampunk atelier.",
+  "prompt": "You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness. Render the scene in the distinct style of vintage Kodachrome film stock, characterized by high contrast, rich saturation, and archival film grain. Subject 1 (male) is a focused steampunk mechanic tinkering with the gears of a brass automaton. Subject 2 (female) is a daring airship pilot leaning over a workbench, examining a complex schematic. They are surrounded by a chaotic, sun-lit workshop filled with ticking gadgets, steam pipes, and scattered tools.",
+  "details": {
+    "year": "Alternate 1890s",
+    "genre": "Kodachrome",
+    "location": "A high-ceilinged, cluttered attic workshop with large arched windows overlooking a smoggy industrial city.",
+    "lighting": [
+      "Hard, warm sunlight streaming through dusty glass",
+      "High contrast shadows typical of slide film",
+      "Golden hour glow"
+    ],
+    "camera_angle": "Eye-level medium shot, creating an intimate, documentary feel. 1:1 cinematic composition.",
+    "emotion": [
+      "Focused",
+      "Collaborative",
+      "Inventive"
+    ],
+    "color_palette": [
+      "Polished brass gold",
+      "Deep mahogany brown",
+      "Vibrant iconic Kodachrome red",
+      "Oxidized copper teal"
+    ],
+    "atmosphere": [
+      "Nostalgic",
+      "Warm",
+      "Dusty",
+      "Tactile"
+    ],
+    "environmental_elements": "Floating dust motes catching the light, steam venting softly from a copper pipe, blueprints pinned to walls, piles of cogs and springs.",
+    "subject1": {
+      "costume": "A grease-stained white shirt with rolled sleeves, a heavy leather apron, and brass welding goggles resting on his forehead.",
+      "subject_expression": " intense concentration, brow furrowed as he adjusts a delicate mechanism.",
+      "subject_action": "Holding a fine screwdriver and tweaking a golden gear inside a robotic arm."
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "neon lights",
+        "digital displays",
+        "plastic materials",
+        "modern sleekness",
+        "blue hues"
+      ],
+      "exclude_styles": [
+        "digital painting",
+        "3D render",
+        "anime",
+        "black and white",
+        "sepia only",
+        "low saturation"
+      ],
+      "exclude_colors": [
+        "fluorescent green",
+        "hot pink"
+      ],
+      "exclude_objects": [
+        "computers",
+        "smartphones",
+        "modern cars"
+      ]
+    },
+    "subject2": {
+      "costume": "A brown leather aviator jacket with a shearling collar, a vibrant red silk scarf, and canvas trousers.",
+      "subject_expression": "Curious and analytical, pointing out a specific detail on the machine.",
+      "subject_action": "Leaning one hand on the workbench while holding a rolled-up blue schematic in the other."
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>The Breathing Jack-o'-Lantern Horror Short</b></summary>
+
+```text
+30 seconds | 16:9 | 4K Ultra HD | 30 FPS | Ultra-photorealistic live-action Halloween horror short.
+
+A terrifying Halloween night unfolds on a rain-soaked wooden porch, where a real adult man discovers that his carved jack-o'-lantern is behaving strangely. With realistic human actors, practical effects, cinematic lighting, and authentic horror atmosphere, an ordinary Halloween decoration becomes something truly sinister.
+
+0–5 seconds: A rain-soaked wooden porch glistens under dim nighttime lighting. A flickering jack-o'-lantern sits beside the front door. A man in a dark flannel shirt and jeans enters carrying Halloween decorations. Suddenly, he notices the pumpkin slowly expanding and contracting as if it were breathing.
+
+5–12 seconds: The camera slowly pushes toward the pumpkin. Its jagged carved smile subtly widens before returning to normal. The internal candle flickers in sync with the movement. The man kneels cautiously as a faint, wet breathing sound emerges from inside.
+
+12–21 seconds: The pumpkin's light abruptly goes out. Complete silence. The man switches on his phone flashlight, revealing two realistic human eyes deep inside the dark pumpkin, staring directly at him. Terrified, he recoils and drops his phone onto the wet wooden floor, leaving its flashlight beam tilted toward the pumpkin.
+
+21–27 seconds: The man slowly reaches toward the pumpkin again. Before he can touch it, the jack-o'-lantern rotates several inches toward him on its own. Its carved smile remains perfectly still. Frozen with disbelief, he slowly backs toward the door.
+
+27–30 seconds: Extreme close-up of the pumpkin. Its internal light suddenly switches back on. A tiny, fresh handprint gradually appears in condensation across its outer surface. Before the viewer can understand what has happened, the screen cuts instantly to black.
+
+Production: Photorealistic live-action visuals, real human actors, consistent character identity, practical pumpkin movement, realistic condensation, natural rain, believable shadows, subtle handheld cinematography, shallow depth of field, cinematic horror lighting, and restrained color grading. Sound design includes rainfall, distant wind, wooden footsteps, soft breathing, subtle fabric movement, a low suspenseful musical rise, and sudden silence before the final reveal.
+
+Negative prompt: No animation, cartoon visuals, CGI-looking characters, artificial environments, changing faces, inconsistent clothing, distorted anatomy, unrealistic pumpkin movement, exaggerated jump scares, gore, dialogue, narration, subtitles, text, logos, watermarks, black bars, or abrupt transitions before the final cut.
+```
+
+</details>
+
+<details><summary><b>The Collector's Banquet 1985 Dark Fantasy Film</b></summary>
+
+```text
+Create a gripping 30-second dark fantasy film that looks like a forgotten Hollywood sword-and-sorcery movie from 1985, filmed on authentic 35mm with elaborate practical creature effects, handcrafted costumes, theatrical performances, and atmospheric cinematography.
+
+The story follows a ruthless emperor hosting a magnificent banquet inside his ancient palace. He has conquered seven kingdoms and believes no mortal can challenge him. During the celebration, a mysterious hooded servant presents him with a golden chalice containing a strange black liquid. The emperor drinks it to demonstrate his fearlessness, but something horrifying happens. Every guest at the table suddenly freezes, their faces slowly turning toward him. The emperor realizes that the people surrounding him have been dead for centuries, and the mysterious servant has come to collect a debt.
+
+Tell the story through exactly nine cinematic shots, with dramatic close-ups, theatrical camera movements, practical supernatural effects, and a shocking final revelation. Keep the entire film inside one enormous medieval throne hall, allowing the tension to develop naturally through the emperor's arrogance, the mysterious chalice, and the terrifying transformation of the banquet guests.
+
+Include a deep, ominous male narrator delivering short English voiceover lines, alongside natural spoken English dialogue from the emperor and the mysterious servant. All visible dialogue must feature expressive performances and accurate lip synchronization.
+
+[2] GLOBAL SETTING
+
+The entire film takes place inside an enormous medieval imperial throne hall at night. Massive stone columns support a vaulted ceiling, enormous crimson banners hang from the walls, and hundreds of flickering candles illuminate an extravagant banquet table covered with golden goblets, roasted meats, silver platters, and elaborate ceremonial decorations. Heavy velvet curtains frame towering windows overlooking a moonlit kingdom.
+
+The environment resembles a meticulously constructed 1980s fantasy movie set, with practical candlelight, thick atmospheric haze, handcrafted stone architecture, painted background extensions, and rich theatrical lighting.
+
+The Emperor: A commanding adult man in his late fifties with long silver hair, a thick gray beard, piercing blue eyes, and a proud, intimidating expression. He wears an enormous engraved golden crown decorated with red gemstones, elaborate gold ceremonial armor, and a long crimson velvet cloak with fur-lined shoulders. His voice is deep, powerful, and arrogant.
+
+The Mysterious Servant: A tall, unnaturally thin figure wearing a long black hooded robe with elaborate antique embroidery. His face remains mostly concealed beneath the hood, revealing pale skin, sunken eyes, and an unsettling expression. He carries an ancient golden chalice filled with thick black liquid. His movements are unnaturally calm and deliberate, and his voice is quiet, hollow, and mysterious.
+
+The Banquet Guests: Noblemen, noblewomen, knights, and royal advisers wearing elaborate medieval garments, ornate jewelry, embroidered gowns, and ceremonial armor. They initially appear alive and cheerful, but later reveal pale, decaying faces created with detailed practical prosthetic makeup. Their transformations remain non-graphic, resembling theatrical undead creatures from 1980s dark fantasy cinema.
+
+The Ancient Collector: The mysterious servant's true identity, revealed at the end as a supernatural skeletal figure beneath the hood, with glowing amber eyes and a face constructed using elaborate animatronic skull prosthetics.
+
+Cinematography: Authentic 1980s 35mm film photography, vintage anamorphic lenses, warm amber candlelight, rich crimson and gold color grading, deep theatrical shadows, subtle photochemical grain, gentle highlight halation, physical fog, elaborate practical sets, and dramatic fantasy compositions.
+
+Sound: Ominous orchestral score, medieval banquet ambience, distant laughter, clinking goblets, flickering flames, low supernatural whispers, and clear English character dialogue.
+
+[3] TIMESTAMPED STORYBOARD
+
+SHOT 1 | [00:00-00:03] THE CONQUEROR
+
+A magnificent wide cinematic shot reveals the emperor seated at the head of an enormous banquet table, surrounded by laughing nobles and armored knights. Hundreds of candles flicker across golden plates and crimson banners while servants move through the crowded hall.
+
+The camera slowly pushes toward the emperor as he raises a golden goblet above his head.
+
+NARRATOR (deep, ominous voiceover): "He conquered seven kingdoms..."
+
+CUT TO SHOT 2.
+
+SHOT 2 | [00:03-00:06] THE EMPEROR'S PRIDE
+
+A dramatic low-angle close-up captures the emperor laughing arrogantly beneath his enormous golden crown. His silver beard catches the warm candlelight as he slams his goblet against the table, causing the surrounding nobles to fall silent.
+
+EMPEROR (booming voice): "NOT EVEN DEATH CAN COMMAND ME!"
+
+The nobles respond with nervous laughter.
+
+CUT TO SHOT 3.
+
+SHOT 3 | [00:06-00:09] THE UNINVITED GUEST
+
+A slow tracking shot reveals a mysterious hooded servant emerging from the darkness between two enormous stone columns. He approaches the emperor's table carrying an antique golden chalice filled with thick black liquid.
+
+The surrounding guests gradually stop speaking as the servant places the chalice directly in front of the emperor.
+
+SERVANT (quiet, unsettling voice): "Then drink, Your Majesty."
+
+CUT TO SHOT 4.
+
+SHOT 4 | [00:09-00:12] THE FORBIDDEN CHALICE
+
+An intimate close-up shows the emperor studying the black liquid inside the ornate golden chalice. The surface moves unnaturally, reflecting faces that do not belong to anyone standing nearby.
+
+The emperor smirks, lifts the chalice, and drinks its contents in one confident motion.
+
+NARRATOR (voiceover): "But one debt remained unpaid."
+
+The emperor lowers the empty chalice, his smile slowly fading as the banquet hall becomes completely silent.
+
+CUT TO SHOT 5.
+
+SHOT 5 | [00:12-00:16] THE SILENT BANQUET
+
+A wide symmetrical shot reveals the entire banquet table frozen in unnatural stillness. Every noble, knight, and servant has stopped moving, their expressions locked in eerie smiles.
+
+One by one, the guests slowly turn their heads toward the emperor in perfect synchronization.
+
+The emperor looks from side to side, suddenly frightened.
+
+EMPEROR (confused): "What is this?"
+
+The candles flicker violently as a cold wind passes through the hall.
+
+CUT TO SHOT 6.
+
+SHOT 6 | [00:16-00:19] THE DEAD REMEMBER
+
+A terrifying close-up reveals an elderly noblewoman seated beside the emperor. Her once-beautiful face gradually transforms into a pale, ancient corpse through elaborate practical makeup effects. Her cheeks become hollow, her eyes darken, and her expression turns into an unnatural smile.
+
+The camera shifts slightly to reveal other guests undergoing the same transformation, their luxurious clothing remaining unchanged.
+
+NOBLEWOMAN (whispering): "We have waited so long..."
+
+The emperor recoils in horror.
+
+CUT TO SHOT 7.
+
+SHOT 7 | [00:19-00:23] THE TRUTH
+
+A dramatic medium shot shows the emperor rising from his throne, knocking over his chair as he stares at the undead guests surrounding him. The mysterious servant remains perfectly still on the opposite side of the table.
+
+EMPEROR (furious and frightened): "WHO ARE YOU?"
+
+The servant slowly raises his head, revealing pale, hollow features beneath the hood.
+
+SERVANT (calmly): "The one you promised your soul."
+
+The emperor's face drains of color.
+
+CUT TO SHOT 8.
+
+SHOT 8 | [00:23-00:27] THE COLLECTOR
+
+A dramatic close-up captures the mysterious servant slowly pulling back his hood. His face transforms into an ancient skeletal creature through elaborate practical prosthetics and mechanical facial effects. His eyes glow with dim amber light as the surrounding candles extinguish one after another.
+
+The undead guests rise silently from their chairs, forming a motionless circle around the emperor.
+
+NARRATOR (deep voiceover): "And tonight... the collector returned."
+
+The skeletal figure extends one long, bony hand toward the emperor.
+
+CUT TO SHOT 9.
+
+SHOT 9 | [00:27-00:30] THE FINAL PAYMENT
+
+An extreme close-up captures the emperor's terrified face as he backs against his enormous golden throne. His crown slips sideways, and his trembling hands grip the armrests.
+
+The skeletal collector leans close, his glowing eyes reflected in the emperor's frightened gaze.
+
+COLLECTOR (deep whisper): "Your throne is ready... below."
+
+The emperor opens his mouth to scream as the throne room plunges into darkness.
+
+A final metallic clang echoes through the hall.
+
+CUT TO BLACK.
+
+[4] GLOBAL SUPPLEMENT
+
+Nine-shot structure: Use exactly nine cinematic shots, with deliberate cuts at the specified timestamps. Each shot must advance the same continuous story, beginning with the emperor's arrogance, introducing the mysterious servant, revealing the cursed banquet, and ending with the collector demanding payment. Maintain consistent character positions and throne hall geography throughout.
+
+Voiceover and dialogue: Include all narrator lines and character dialogue exactly as written. The narrator has a deep, resonant male voice inspired by classic 1980s fantasy trailers. The emperor speaks with theatrical authority, the servant with unnerving calm, and the undead noblewoman with a soft, hollow whisper. All spoken character dialogue must synchronize accurately with visible mouth movements. Narration remains off-screen and must not overlap important dialogue.
+
+1980s practical effects: The undead guests must resemble actors wearing elaborate latex prosthetics, theatrical corpse makeup, and handcrafted fantasy costumes. The collector's skeletal transformation must resemble a sophisticated animatronic creature effect from an authentic 1980s fantasy production, using mechanical facial appliances, practical makeup, optical dissolves, and controlled theatrical lighting.
+
+Character consistency: Preserve the emperor's silver hair, gray beard, golden crown, crimson cloak, and engraved armor throughout. The mysterious servant must retain his black hooded robe and golden chalice until the final reveal. All banquet guests must remain in their established positions, with their clothing unchanged during their supernatural transformations.
+
+Visual atmosphere: Maintain rich candlelit interiors, deep crimson banners, ornate golden decorations, atmospheric smoke, warm tungsten highlights, dark theatrical shadows, organic film grain, subtle halation, and authentic photochemical softness. The transformation sequence should gradually darken the hall while preserving the visual appearance of vintage fantasy cinema.
+
+Camera movement: Use slow dramatic push-ins, theatrical low-angle compositions, expressive close-ups, and carefully framed wide shots. Avoid excessive handheld movement, modern drone-style cinematography, or impossible camera paths.
+
+Sound design: Begin with lively banquet ambience, clinking goblets, distant laughter, and orchestral medieval music. Gradually remove the background sounds as the curse activates, leaving an unnatural silence broken by whispers, creaking chairs, and the emperor's frightened breathing. Build the final moments with ominous low strings and the collector's deep voice before ending in sudden darkness.
+```
+
+</details>
+
+<details><summary><b>The Digital Frontier: Pixelated Pioneers</b></summary>
+
+```text
+#version 1.0
+root{details,prompt:str}:
+  details{atmosphere,camera_angle:str,color_palette,emotion,environmental_elements:str,genre:str,lighting,location:str,subject1,subject2,year:str}:
+    atmosphere[4]: Playful,Dreamlike,Digital frontier,Calm isolation
+    camera_angle: "High-angle isometric view, emphasizing the island's isolation and the blocky aesthetics, 1:1 cinematic aspect ratio."
+    color_palette[4]: Saturated primary colors,vibrant greens and blues for the island,deep purples and blacks for the void,pixelated orange accents
+    emotion[4]: Wonder,Curiosity,Discovery,Serenity
+    environmental_elements: "Blocky, geometric trees with glowing leaves, pixelated waterfalls cascading into the void, floating abstract digital dust motes, subtle grid lines on the void's floor."
+    genre: Voxel Art
+    lighting[3]: Emissive light from the voxels themselves,"soft, diffuse ambient light from the digital void",subtle rim lighting on the blocky figures
+    location: "A solitary, blocky floating island made of glowing voxels, suspended in an infinite digital void, with sparse, geometric trees and structures."
+    subject1{costume:str,subject_action:str,subject_expression:str}:
+      costume: "Low-polygon adventurer tunic and trousers in muted greens and browns, a blocky utility belt with voxel tools, simple, chunky voxel boots."
+      subject_action: "Standing with one hand lightly resting on a large, blocky, glowing data crystal embedded in the island."
+      subject_expression: "A subtle, curious expression, eyes wide with wonder at the digital landscape."
+    subject2{costume:str,subject_action:str,subject_expression:str}:
+      costume: "A vibrant, pixelated explorer jumpsuit in electric blue, with contrasting orange accents, chunky voxel goggles pushed up on her head, a small blocky digital compass attached to her wrist."
+      subject_action: "Leaning forward slightly, arm outstretched, pointing excitedly towards a cluster of particularly vibrant voxel flora at the island's edge."
+      subject_expression: "An excited, joyful expression, mouth slightly open in awe."
+    year: "Retro-Futuristic, 8-bit aesthetic"
+  prompt: "You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness. Imagine Subject 1 (male) and Subject 2 (female) as blocky, low-polygon explorers discovering a vibrant, floating voxel island in a vast digital void. Subject 1 is contemplative, while Subject 2 is eagerly pointing out a new discovery amidst the pixelated flora."
+```
+
+</details>
+
+<details><summary><b>The Fighter Boxing Video</b></summary>
+
+```text
+[00:00 - 00:2.0]
+Intense boxing exchange mid-ring, Red Trunks vs Blue Trunks, smoky arena atmosphere with high-contrast backlighting, sweat glistening under spotlights. [Audio: Canvas footwork scuffs, leather-on-leather punches, heavy breathing + Tense crowd ambience] --ar 9:16
+
+[00:2.0 - 00:4.0]
+Extreme close-up of Red Trunks' right hook impacting Blue Trunks' jaw, facial distortion on impact, beads of sweat exploding from the head. [Dialogue: (Grit) 'Got you!']. [Audio: Deep bassy thud, slow-motion warp effect, thumping heartbeat] --ar 9:16
+
+[00:4.0 - 00:6.0]
+Blue Trunks reeling back, massive spray of sweat and water hitting the camera lens directly, creating water distortion on the frame, blurred ring background. [Audio: Wet splatter sound on mic, high-pitched tinnitus ringing, explosive crowd roar] --ar 9:16
+```
+
+</details>
+
+<details><summary><b>The Glass Doppelgänger</b></summary>
+
+```text
+{
+  "title": "The Glass Doppelgänger",
+  "description": "A high-octane psychological thriller scene where a woman is engaged in a visceral physical combat with her own sentient reflection emerging from a shattered surface.",
+  "prompt": "You will perform an image edit using the provided photo to create a high-budget movie frame. The scene features the subject in a fierce life-or-death struggle against a supernatural mirror entity. The image must be Ultra-Photorealistic, utilizing cinematic lighting and highly detailed textures. The style is that of a blockbuster film, shot on Arri Alexa with a shallow depth of field to emphasize the intensity. Ensure realistic physics for the flying glass shards.",
+  "details": {
+    "year": "2025",
+    "genre": "Cinematic Photorealism",
+    "location": "A derelict, neon-lit dressing room with peeling wallpaper and a wall-sized vanity mirror that is shattering outwards.",
+    "lighting": [
+      "Volumetric stage lighting from above",
+      "Flickering fluorescent buzz",
+      "Dramatic rim lighting highlighting sweat and glass texture"
+    ],
+    "camera_angle": "Dynamic low-angle medium shot, slightly Dutch tilted to enhance the chaos.",
+    "emotion": [
+      "Ferocity",
+      "Desperation",
+      "Adrenaline"
+    ],
+    "color_palette": [
+      "Electric cyan",
+      "Gritty concrete grey",
+      "Deep shadowy blacks",
+      "Metallic silver"
+    ],
+    "atmosphere": [
+      "Violent",
+      "Surreal",
+      "Claustrophobic",
+      "Kinetic"
+    ],
+    "environmental_elements": "Thousands of micro-shards of glass suspended in the air (bullet-time effect), dust motes dancing in the light beams, overturned furniture.",
+    "subject1": {
+      "costume": "crop top, mini skirt",
+      "subject_expression": "A primal scream of exertion, eyes wide with intensity.",
+      "subject_action": "fighting with mirror"
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "cartoonish effects",
+        "low resolution",
+        "blurry textures",
+        "static pose",
+        "calm demeanor"
+      ],
+      "exclude_styles": [
+        "3D render",
+        "illustration",
+        "painting",
+        "anime"
+      ],
+      "exclude_colors": [
+        "pastel pinks",
+        "sunshine yellow"
+      ],
+      "exclude_objects": [
+        "magical glowing orbs",
+        "wands",
+        "animals"
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>The Gravedigger's Vigil</b></summary>
+
+```text
+{
+  "title": "The Gravedigger's Vigil",
+  "description": "A haunting portrait of a lone Victorian figure standing watch over a misty, decrepit cemetery at midnight.",
+  "prompt": "You will perform an image edit using the person from the provided photo as the main subject. Preserve his core likeness. Transform Subject 1 (male) into a solemn Victorian gravedigger standing amidst a sprawling, fog-choked necropolis. He holds a rusted lantern that casts long, uncanny shadows against the moss-covered mausoleums behind him. The composition adheres to a cinematic 1:1 aspect ratio, framing him tightly against the decaying iron gates.",
+  "details": {
+    "year": "1888",
+    "genre": "Gothic Horror",
+    "location": "An overgrown, crumbling cemetery gate with twisted iron bars and weeping angel statues.",
+    "lighting": [
+      "Pale, cold moonlight cutting through fog",
+      "Flickering, warm amber candlelight from a lantern",
+      "Deep, abyssal shadows"
+    ],
+    "camera_angle": "Eye-level medium shot, creating a direct and confronting connection with the viewer.",
+    "emotion": [
+      "Foreboding",
+      "Solitary",
+      "Melancholic"
+    ],
+    "color_palette": [
+      "Obsidian black",
+      "slate gray",
+      "pale moonlight blue",
+      "sepia tone",
+      "muted moss green"
+    ],
+    "atmosphere": [
+      "Eerie",
+      "Cold",
+      "Silent",
+      "Supernatural",
+      "Decaying"
+    ],
+    "environmental_elements": "Swirling ground mist that obscures the feet, twisted dead oak trees silhouetted against the moon, a lone crow perched on a headstone.",
+    "subject1": {
+      "costume": "A tattered, ankle-length black velvet frock coat, a weathered top hat, and worn leather gloves.",
+      "subject_expression": "A somber, pale visage with a piercing, weary gaze staring into the darkness.",
+      "subject_action": "Raising a lantern high with the right hand while gripping the handle of a spade with the left."
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "sunlight",
+        "blooming flowers",
+        "blue sky",
+        "modern infrastructure",
+        "smiling",
+        "lens flare"
+      ],
+      "exclude_styles": [
+        "cartoon",
+        "cyberpunk",
+        "high fantasy",
+        "anime",
+        "watercolor",
+        "bright pop art"
+      ],
+      "exclude_colors": [
+        "neon",
+        "pastel pink",
+        "vibrant orange",
+        "saturated red"
+      ],
+      "exclude_objects": [
+        "cars",
+        "smartphones",
+        "plastic",
+        "streetlights"
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>The Last Adagio</b></summary>
+
+```text
+{
+  "title": "The Last Adagio",
+  "description": "A hauntingly beautiful scene of a solitary ballerina performing in a flooded, abandoned grand library.",
+  "prompt": "You will perform an image edit using the provided subject. Transform Subject 1 (female) into a survivor in a post-apocalyptic world. She is in a massive, decaying library where the floor is flooded with water. Light spills through the collapsed ceiling, illuminating dust motes and water reflections. The image must be photorealistic, utilizing cinematic lighting, highly detailed textures, shot on Arri Alexa with a shallow depth of field to focus on the subject while the background falls into soft bokeh.",
+  "details": {
+    "year": "Post-Collapse Era",
+    "genre": "Cinematic Photorealism",
+    "location": "A grand, abandoned library with towering shelves, crumbling architecture, and a floor flooded with still, reflective water.",
+    "lighting": [
+      "God rays entering from a collapsed roof",
+      "Soft reflected light from the water",
+      "High contrast cinematic shadows"
+    ],
+    "camera_angle": "Low angle, wide shot, capturing the reflection in the water.",
+    "emotion": [
+      "Melancholic",
+      "Graceful",
+      "Solitary"
+    ],
+    "color_palette": [
+      "Desaturated concrete greys",
+      "Muted teal water",
+      "Vibrant crimson",
+      "Dusty gold light"
+    ],
+    "atmosphere": [
+      "Ethereal",
+      "Lonely",
+      "Quiet",
+      "Majestic"
+    ],
+    "environmental_elements": "Floating pages from old books, dust particles dancing in light shafts, ripples in the water.",
+    "subject1": {
+      "costume": "A distressed, dirty white ballet leotard paired with pristine red gloves.",
+      "subject_expression": "Serene, eyes closed, lost in the movement.",
+      "subject_action": "dancing"
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "bright sunshine",
+        "clean environment",
+        "modern technology",
+        "spectators"
+      ],
+      "exclude_styles": [
+        "cartoon",
+        "painting",
+        "sketch",
+        "3D render"
+      ],
+      "exclude_colors": [
+        "neon green",
+        "bright orange"
+      ],
+      "exclude_objects": [
+        "cars",
+        "animals",
+        "phones"
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>The Midnight Informant</b></summary>
+
+```text
+{
+  "title": "The Midnight Informant",
+  "description": "A tense, film noir moment featuring a female private investigator waiting for a lead in a hazy, underground jazz club.",
+  "prompt": "You will perform an image edit using the person from the provided photo as the main subject. Preserve her core likeness. Transform the subject (female) into a sharp-witted 1950s private investigator seated in a booth at a dimly lit, smoke-filled jazz club. The image must be Ultra-Photorealistic and Movie-Quality, evoking the golden age of Film Noir. Use dramatic lighting to highlight skin texture and fabric details. Keywords: photorealistic, cinematic lighting, highly detailed, shot on Arri Alexa, depth of field, volumetric fog, realistic physics.",
+  "details": {
+    "year": "1954",
+    "genre": "Cinematic Photorealism",
+    "location": "The Velvet Note, a crowded, subterranean jazz lounge in Chicago with red velvet booths and a small stage in the hazy background.",
+    "lighting": [
+      "Chiaroscuro",
+      "Volumetric shafts of light cutting through smoke",
+      "Warm tungsten table lamps",
+      "Rim lighting on hair"
+    ],
+    "camera_angle": "Eye-level medium close-up, shallow depth of field focusing strictly on the subject's eyes.",
+    "emotion": [
+      "Suspicious",
+      "Alert",
+      "Melancholic"
+    ],
+    "color_palette": [
+      "Deep shadow black",
+      "Amber gold",
+      "Burgundy red",
+      "Tobacco brown"
+    ],
+    "atmosphere": [
+      "Sultry",
+      "Mysterious",
+      "Claustrophobic",
+      "Noir"
+    ],
+    "environmental_elements": "Thick swirls of cigarette smoke filling the air, a half-empty glass of amber whiskey on the table, blurred silhouette of a double bass player in the background.",
+    "subject1": {
+      "costume": "A structured beige trench coat worn over a dark cocktail dress, leather gloves, and a wide-brimmed fedora tilted slightly forward.",
+      "subject_expression": "A piercing, guarded gaze, eyes scanning the room, lips pressed in a tight line.",
+      "subject_action": "One hand rests on a manila folder on the table, the other hovers near her whiskey glass."
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "daylight",
+        "modern technology",
+        "smartphones",
+        "casual clothing",
+        "bright sunshine",
+        "blue skies"
+      ],
+      "exclude_styles": [
+        "cartoon",
+        "3D render",
+        "anime",
+        "sketch",
+        "impressionism",
+        "oversaturated"
+      ],
+      "exclude_colors": [
+        "Neon green",
+        "Hot pink",
+        "Cyan"
+      ],
+      "exclude_objects": [
+        "cars",
+        "weapons drawn",
+        "animals"
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>The Midnight Melody Mystery</b></summary>
+
+```text
+{
+  "title": "The Midnight Melody Mystery",
+  "description": "A charming, animated noir scene where a gruff detective questions a glamorous jazz singer in a stylized 1950s club.",
+  "prompt": "You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness but stylized. Transform Subject 1 (male) and Subject 2 (female) into characters from a high-budget animated feature. Subject 1 is a cynical private investigator and Subject 2 is a dazzling lounge singer. They are seated at a curved velvet booth in a smoky, art-deco jazz club. The aesthetic must be distinctively 'Disney Character' style, featuring smooth shading, expressive large eyes, and a magical, cinematic glow.",
+  "details": {
+    "year": "1950s Noir Era",
+    "genre": "Disney Character",
+    "location": "The Blue Note Lounge, a stylized jazz club with art deco architecture, plush red velvet booths, and a stage in the background.",
+    "lighting": [
+      "Cinematic spotlighting",
+      "Soft volumetric haze",
+      "Warm golden glow from table lamps",
+      "Cool blue ambient backlight"
+    ],
+    "camera_angle": "Medium close-up at eye level, framing both subjects across a small round table.",
+    "emotion": [
+      "Intrigue",
+      "Playful suspicion",
+      "Charm"
+    ],
+    "color_palette": [
+      "Deep indigo",
+      "ruby red",
+      "golden amber",
+      "sepia tone"
+    ],
+    "atmosphere": [
+      "Mysterious",
+      "Romantic",
+      "Whimsical",
+      "Smoky"
+    ],
+    "environmental_elements": "Swirling stylized smoke shapes, a vintage microphone in the background, a crystal glass with a garnish on the table.",
+    "subject1": {
+      "costume": "A classic tan trench coat with the collar popped, a matching fedora hat, and a loosened tie.",
+      "subject_expression": "A raised eyebrow and a smirk, looking skeptical yet captivated.",
+      "subject_action": "Holding a small reporter's notebook and a pencil, leaning slightly forward over the table."
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "photorealism",
+        "gritty textures",
+        "blood",
+        "gore",
+        "dirt",
+        "noise"
+      ],
+      "exclude_styles": [
+        "anime",
+        "cyberpunk",
+        "sketch",
+        "horror",
+        "watercolor"
+      ],
+      "exclude_colors": [
+        "neon green",
+        "hot pink"
+      ],
+      "exclude_objects": [
+        "smartphones",
+        "modern technology",
+        "cars"
+      ]
+    },
+    "subject2": {
+      "costume": "A sparkling, floor-length red evening gown with white opera-length gloves and a pearl necklace.",
+      "subject_expression": "A coy, confident smile with heavy eyelids, playing the role of the femme fatale.",
+      "subject_action": "Resting her chin elegantly on her gloved hand, looking directly at the detective."
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>The Red Headscarf</b></summary>
+
+```text
+(Portrait of a beautiful young woman:1.3), (Middle Eastern ethnicity:1.2), (age 20:1.1), (intricate facial features:1.3), (soft natural expression:1.2), wearing a (vibrant red headscarf:1.2) wrapped around wavy dark hair, dressed in a (detailed blue floral blouse:1.2) over a (yellow textured top:1.1), adorned with (ornate turquoise beaded necklace:1.2), (large vintage drop earrings:1.1), and gold bangles. The subject is positioned slightly to the left, (facing the viewer:1.2), resting her arms on a surface. Background features a (distressed turquoise wall:1.2), a (large rustic ceramic vase:1.1) containing yellow wildflowers, and a small painted bowl. (Fine art oil painting style:1.3), rich color palette of teal, gold, and crimson, (soft cinematic lighting:1.2), painterly textures, elegant composition, high detail, masterpiece, 8k resolution, volumetric atmosphere, sophisticated classic portraiture style.
+```
+
+</details>
+
+<details><summary><b>The Room That Forgot Gravity</b></summary>
+
+```text
+Use the uploaded photo as a strict identity reference. Keep this exact person: same face, hair, age, skin texture and body proportions, unretouched.
+
+A photorealistic cinematic photograph, vertical 4:5, shot at eye level with a perfectly level camera, medium-wide. It looks like a practical-effects movie set photographed with a real camera.
+
+The person stands upright on the wooden floor in the middle of an elegant, ordinary room. Full body visible, relaxed pose, understated contemporary clothes, looking around with mild curiosity. The face is clearly visible and softly lit. They are the only person and the main focal point.
+
+The room has muted dark plaster walls, a real wood floor, a window on the back wall, minimal furniture and warm practical lamps. Both side walls, the floor and part of the ceiling are visible. The room is completely normal, except that four objects each have their own direction of gravity.
+
+Left: a white, medium-heavy curtain on the rod above the window falls sideways instead of down. It hangs horizontally from the rod toward the left wall, exactly like a normally hanging curtain rotated 90 degrees. The rod above the window is its only attachment. The far end of the curtain hangs free a short distance from the left wall, ending in a loose, slightly uneven vertical hem. Heavy folds run horizontally, with a slight natural sag and bunching at the rod. The fabric is heavy and completely still.
+
+Right, in the foreground at chest height: a clear cylindrical drinking glass stands on the right wall as if the wall were a table. Its base rests against the wall, held by a small metal ring bracket. Its open end points horizontally into the room. The glass is seen in side profile and is large and sharp in the frame.
+
+The glass holds amber-coloured tea. The tea fills the wall-side part of the glass completely, from the top inner edge to the bottom inner edge, and takes up a little more than half of the glass length. The tea-filled part is clearly longer than the empty part. The room-side part of the glass, up to the rim, is completely empty, clear and dry, also along its lower edge. The boundary between the amber tea and the air is one straight vertical line running from the top edge of the glass to the bottom edge. It looks exactly like a photo of a normal glass of tea standing on a table, rotated 90 degrees so that its base points at the right wall. Realistic meniscus along that vertical line and realistic refraction in the amber liquid.
+
+Above: a small potted trailing plant stands upside down on the ceiling, the base of the pot flat against the ceiling. Its vines and leaves droop upward and lie against the ceiling around the pot, the way a trailing plant on a table droops onto the tabletop. No vines hang down into the room. The plant is smaller and less prominent than the curtain and the glass.
+
+On the right wall below the glass: a stack of exactly three hardcover books uses the wall as its floor. One dark green book lies with its cover flat against the wall. One dark red book is stacked on it, and one dark blue book is stacked on the red one, toward the room. The stack sticks out horizontally from the wall and the three spines are vertical.
+
+Lighting: warm lamps, a soft directional key light on the person, subtle rim light, natural falloff into shadow. All shadows follow the real light sources, including those of the sideways objects. Natural skin, real materials, subtle film contrast, natural depth of field. No text in the image.
+```
+
+</details>
+
+<details><summary><b>The Silent Standoff</b></summary>
+
+```text
+High-angle top-down view of a dimly lit abandoned courtyard, cracked concrete ground, scattered old markings and faded impact dents, long eerie character shadows cast off-frame, no violence depicted, dark Teal palette with a strong golden beam, thick outlines, 2D animated cartoon look, flat shading, extreme contrast, atmospheric tension.
+```
+
+</details>
+
+<details><summary><b>The Solar Priestess of Amun</b></summary>
+
+```text
+{
+  "title": "The Solar Priestess of Amun",
+  "description": "A stunning, stylized portrait of a woman transformed into an Ancient Egyptian priestess, blending photorealism with the texture of tomb paintings.",
+  "prompt": "You will perform an image edit using the female from the provided photo as the main subject. Preserve her core likeness. Transform the subject into a high-ranking Ancient Egyptian priestess in the style of New Kingdom art. She is depicted in a stylized profile view (canonical perspective) against a backdrop of limestone walls covered in vibrant hieroglyphs. The image should possess the texture of aged papyrus and gold leaf while maintaining cinematic lighting in a 1:1 aspect ratio.",
+  "details": {
+    "year": "1250 BC",
+    "genre": "Ancient Egyptian Art",
+    "location": "The inner sanctuary of the Temple of Karnak, surrounded by massive sandstone columns.",
+    "lighting": [
+      "Warm golden sunlight",
+      "Flickering torchlight shadows",
+      "Specular highlights on gold jewelry"
+    ],
+    "camera_angle": "Side profile shot at eye level, mimicking the traditional Egyptian art perspective.",
+    "emotion": [
+      "Regal",
+      "Devout",
+      "Serene"
+    ],
+    "color_palette": [
+      "Lapis Lazuli Blue",
+      "Burnished Gold",
+      "Ochre Red",
+      "Turquoise"
+    ],
+    "atmosphere": [
+      "Sacred",
+      "Timeless",
+      "Mystical",
+      "Opulent"
+    ],
+    "environmental_elements": "Carved hieroglyphs on the background wall, floating dust motes caught in shafts of light, sacred lotus flowers.",
+    "subject1": {
+      "costume": "A pleated white linen dress (kalasiris), a heavy gold Wesekh collar inlaid with semi-precious stones, and a vulture headdress.",
+      "subject_expression": "A stoic, commanding gaze looking forward.",
+      "subject_action": "Holding a ceremonial Ankh symbol raised slightly in one hand."
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "modern fashion",
+        "denim",
+        "digital technology",
+        "cars"
+      ],
+      "exclude_styles": [
+        "3D render",
+        "anime",
+        "impressionism",
+        "cyberpunk"
+      ],
+      "exclude_colors": [
+        "neon green",
+        "electric purple"
+      ],
+      "exclude_objects": [
+        "eyeglasses",
+        "watches",
+        "modern buildings"
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 <details><summary><b>The Summer Detour Anime Short</b></summary>
 
@@ -549,6 +1610,14 @@ Photoreal wide landscape photograph of a tiny Faroese turf-roof village above a 
 
 ```text
 A close-up showcases the exquisite packaging of the tumeric kojic soap, displaying is vibrant orange and yellow designs.
+```
+
+</details>
+
+<details><summary><b>Typical 90s Teen Boy</b></summary>
+
+```text
+A vertical medium shot casual photograph of a young man in his late teens with an average figure, medium-length wavy light brown hair held back by a typical red bandana folded and worn around his head, covering his upper forehead and front of his hairline, with his wavy hair coming out from the back and covering the tops of his ears. He is wearing black Ray-Bans sunglasses, which are partway down his nose and he has his head tilted down slightly so you can see the tops of his hazel eyes as he looks at you with a look of playful annoyance because youre taking another picture of him. He is wearing a well-worn, slightly faded black 'NIRVANA' t-shirt from the album 'SMELLS LIKE TEEN SPIRIT', and faded blue jeans with a rip in the right knee. He is sitting on the floor with his knees bent up, both hands raised at shoulder height showing the middle finger with both hands, black painted nails. He has a SWATCH watch on his left wrist, and thin leather string, and metal bead bracelets on his right wrist. He is wearing dog tags for a necklace. His expression is serious, defiant, and cool, looking directly at the camera through the sunglasses. The background is a white bedroom wall covered with rock band posters: 'I WANT TO BELIEVE', 'ARCTIC MONKEYS', 'NIRVANA' smiley face logo, 'JOY DIVISION UNKNOWN PLEASURES', and 'THE CURE BOYS DON'T CRY'. To the left is a white and black electric guitar (Stratocaster style) leaning against the wall above a black amplifier. To the right are black Dr. Martins combat boots and stacked Vans shoe boxes. Lighting is direct frontal flash creating harsh shadows on the wall behind him and specular highlights on the lenses of the sunglasses. Shot with a disposable camera, eye-level angle, full color, saturated colors, casual grunge aesthetic, rebellious boy vibe, 90s rock revival style, typical spontaneous aesthetic, ultra-realistic.
 ```
 
 </details>
@@ -2458,6 +3527,14 @@ NEGATIVE: text, watermark, logo, blurry, deformed hands, extra fingers, distorte
 
 </details>
 
+<details><summary><b>Watercolor Cutaway of a Busy Harbor Fish Market at Dawn</b></summary>
+
+```text
+A detailed watercolor cutaway of a busy open-air harbor fish market at dawn, landscape 4:3. A long stone pavilion with weathered Romanesque arches and a high timber-framed ceiling runs diagonally through the frame; the dark tiled floor is wet and reflective. Fishmongers in work shirts and aprons sort silver fish on crushed ice in wooden crates and along long tables; brass hanging scales dangle from the stone arches; empty crates stack nearby. Through the arches on the right, warm golden dawn light spreads over a calm harbor with docked fishing boats and a few seagulls in the pale sky. Soft watercolor washes, visible brush texture, cool blue-grey stone contrasted with warm sunrise gold, lively but orderly morning market mood. No readable signs, no logos, no watermarks, no brand names.
+```
+
+</details>
+
 <details><summary><b>Watercolor of a Kingfisher Diving</b></summary>
 
 ```text
@@ -2512,6 +3589,14 @@ Important: Do not change the facial features or identity from the reference imag
 
 Format: 3:4
 Quality: Ultra-realistic, high-quality, sharp 8K photograph, natural skin texture, no artificial or plastic AI look, shot on an iPhone 16 Pro.
+```
+
+</details>
+
+<details><summary><b>Wet Plate Tintype of a Village Cobbler</b></summary>
+
+```text
+A wet plate collodion tintype photograph of an elderly village cobbler at his workbench, portrait 3:4. He sits on a low wooden stool in a small workshop, leaning over a leather boot fitted on an iron shoe last held between his knees, a small hammer raised in one hand and brass tacks pinched between the fingers of the other. He wears a worn leather apron over a collarless linen shirt with rolled sleeves, round wire spectacles low on his nose, a thick grey mustache and a deeply lined, concentrated face. Behind him: wooden shelves of finished and half-repaired shoes, hanging rolls of leather, an awl, waxed thread and a tin oil can on the bench. Lit by one large window from the left, giving soft directional light with deep shadows on the right. Authentic tintype look: monochrome with warm brown-black tones and creamy silver highlights, very shallow depth of field from a large-format brass lens with swirly falloff at the edges, sharp focus on the eyes and hands, the high blue sensitivity of collodion that makes skin look slightly darker and textured, and a long-exposure stillness. Plate details: uneven dark edges where the collodion was poured, small comet streaks and pour marks, a few fine specks and a faint thumbprint in one corner, on a thin black-enameled iron plate with slightly rounded corners. No text, no logos, no color, no modern objects.
 ```
 
 </details>
@@ -3074,6 +4159,14 @@ explain the thinking fast and slow book
     "Text-heavy sections without visual relief"
   ]
 }
+```
+
+</details>
+
+<details><summary><b>Whitewashed Santorini Cliffside Village with Blue Domes at Golden Hour</b></summary>
+
+```text
+High-angle wide view of a whitewashed Santorini cliffside village with blue domes at golden hour, wide landscape 16:9. Deep blue Aegean sea fills the LEFT side with a bright sun low on the horizon casting a gold glitter path across the water; a distant hazy caldera rim sits across the sea. Whitewashed cubic houses cascade down the RIGHT cliff on dark reddish-brown volcanic rock. TWO prominent bright blue church domes stand out - one larger center-right with a white base and small windows, one slightly lower - catching soft warm sunset light on the white walls. Sparse terrace greenery in terracotta pots; a stone path curves into the village. Photoreal travel landscape photography, light golden haze, serene cinematic mood. No large crowds, no close faces, no text, no logos, no watermarks.
 ```
 
 </details>

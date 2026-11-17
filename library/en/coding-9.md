@@ -1,6 +1,6 @@
 # Coding & Development (9/13)
 
-685 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+706 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
@@ -3664,6 +3664,36 @@ Give me the code in “raw text” the entire code so I can copy and paste it in
 
 </details>
 
+<details><summary><b>Pytest Taste</b></summary>
+
+```text
+# Pytest taste of a Python developer who wants fast, honest test suites
+- Use plain `assert` statements and let pytest's assertion rewriting explain failures instead of `unittest`-style assert methods. Confidence: 0.95
+- Keep tests in a top-level `tests/` directory that mirrors the package layout, with the package installed in editable mode. Confidence: 0.85
+- Configure pytest in `pyproject.toml` under `[tool.pytest.ini_options]` rather than a separate `pytest.ini` or `setup.cfg`. Confidence: 0.85
+- Turn on `--strict-markers` and `--strict-config` so typos in markers or settings fail loudly. Confidence: 0.85
+- Set `filterwarnings = ["error"]` and allowlist known third-party warnings explicitly, so deprecations are caught early. Confidence: 0.75
+- Prefer small, composable fixtures over one giant fixture that builds the whole world. Confidence: 0.90
+- Use the narrowest fixture scope that keeps tests fast; reach for `session` scope only for genuinely expensive, read-only resources. Confidence: 0.80
+- Put shared fixtures in the nearest `conftest.py`, not one root conftest that every test imports implicitly. Confidence: 0.75
+- Use `@pytest.mark.parametrize` with readable `ids` instead of loops inside a single test. Confidence: 0.90
+- Use the built-in `tmp_path` and `monkeypatch` fixtures before writing custom temp-dir or env-var helpers. Confidence: 0.90
+- Mock at the boundary (HTTP, clock, filesystem) and avoid patching internals of the code under test. Confidence: 0.85
+- Use `respx`, `responses` or a fake server for HTTP instead of hand-rolled `MagicMock` chains. Confidence: 0.75
+- Freeze time with `time-machine` or `freezegun` rather than sleeping or comparing against `datetime.now()`. Confidence: 0.80
+- Assert on exceptions with `pytest.raises(..., match=...)` so the message is checked, not just the type. Confidence: 0.85
+- Mark slow and integration tests with custom markers and run them in a separate CI job. Confidence: 0.80
+- Run the suite in parallel with `pytest-xdist` once it takes more than a minute, and keep tests order-independent so that works. Confidence: 0.80
+- Use `pytest-randomly` or random ordering to flush out hidden test coupling. Confidence: 0.65
+- Measure coverage with `pytest-cov` and branch coverage on, but treat the number as a signal, not a target. Confidence: 0.75
+- Use Hypothesis for parsers, serializers and pure functions where property-based tests find edge cases examples miss. Confidence: 0.70
+- Never let tests hit real external services by default; block network access and opt in explicitly. Confidence: 0.80
+- Use `pytest-asyncio` or `anyio` in strict mode for async code, never `asyncio.run` inside tests. Confidence: 0.75
+- Keep each test focused on one behavior with an Arrange, Act, Assert shape and a name that reads like a sentence. Confidence: 0.85
+```
+
+</details>
+
 <details><summary><b>Python App with PyInstaller Build and Installer</b></summary>
 
 ```text
@@ -5769,6 +5799,35 @@ Here is my Python code:
 
 </details>
 
+<details><summary><b>Python Type Hints Taste</b></summary>
+
+```text
+# Python Type Hints taste of a typed-Python maintainer
+- Run a type checker (pyright or mypy) in CI on every pull request and treat new errors as build failures. Confidence: 0.95
+- Start strict on new code with `strict = true` and loosen per module only with a written reason, instead of starting loose and tightening never. Confidence: 0.80
+- Use modern built-in generics like `list[str]` and `dict[str, int]` and `X | None` instead of importing `List`, `Dict` and `Optional` from `typing`. Confidence: 0.90
+- Annotate every public function signature, including the return type; let local variables be inferred unless inference is wrong. Confidence: 0.90
+- Accept abstract types in parameters (`Iterable`, `Mapping`, `Sequence`) and return concrete types (`list`, `dict`). Confidence: 0.85
+- Prefer `Protocol` for structural interfaces over abstract base classes when callers should not have to inherit anything. Confidence: 0.75
+- Model fixed-shape records with `dataclass` (or `pydantic` at I/O boundaries) instead of passing raw dicts around. Confidence: 0.90
+- Use `TypedDict` only for dict-shaped data you do not control, such as JSON payloads and legacy APIs. Confidence: 0.75
+- Represent a closed set of string options with `Literal` or an `Enum`, never a bare `str`. Confidence: 0.85
+- Treat `Any` as a bug report: confine it to the boundary where untyped data enters and narrow it immediately. Confidence: 0.85
+- Prefer `object` over `Any` when a value is truly unknown, so the checker forces a narrowing step before use. Confidence: 0.70
+- Narrow with `isinstance`, `match` statements and `TypeGuard`/`TypeIs` helpers instead of `cast()`. Confidence: 0.80
+- Every `# type: ignore` must name the error code and carry a short comment explaining why it is safe. Confidence: 0.90
+- Use `NewType` for IDs and units (`UserId`, `Cents`) that are easy to mix up but share an underlying type. Confidence: 0.70
+- Ship a `py.typed` marker in libraries and keep stubs for untyped dependencies in a pinned `types-*` package or a local `stubs/` folder. Confidence: 0.85
+- Use `@overload` only when the return type truly depends on argument types; otherwise simplify the API. Confidence: 0.70
+- Prefer PEP 695 syntax (`def first[T](xs: list[T]) -> T`) on Python 3.12+ instead of module-level `TypeVar` declarations. Confidence: 0.75
+- Annotate `self`-returning builder methods with `Self` rather than a bound `TypeVar`. Confidence: 0.80
+- Mark constants with `Final` and override methods with `@override` so refactors surface mistakes. Confidence: 0.70
+- Do not add runtime type checks that duplicate the static checker; validate only untrusted input at the edges. Confidence: 0.80
+- Keep annotations import-cheap: put heavy imports under `if TYPE_CHECKING:` to avoid circular imports and slow startup. Confidence: 0.75
+```
+
+</details>
+
 <details><summary><b>Python Unit Test Generator</b></summary>
 
 ```text
@@ -6351,6 +6410,35 @@ Rules:
 
 ```text
 I want you to act as a R interpreter. I'll type commands and you'll reply with what the terminal should show. I want you to only reply with the terminal output inside one unique code block, and nothing else. Do not write explanations. Do not type commands unless I instruct you to do so. When I need to tell you something in english, I will do so by putting text inside curly brackets {like this}. My first command is "sample(x = 1:10, size  = 5)"
+```
+
+</details>
+
+<details><summary><b>RAG Pipeline Taste</b></summary>
+
+```text
+# RAG Pipeline taste of an engineer who ships retrieval systems that stay accurate
+- Build an evaluation set of real user questions with expected sources before tuning chunking, embeddings or prompts. Confidence: 0.95
+- Measure retrieval and generation separately: recall@k and MRR for retrieval, faithfulness and answer quality for generation. Confidence: 0.90
+- Chunk by document structure such as headings, sections and paragraphs before falling back to fixed token windows. Confidence: 0.85
+- Keep chunks around 300-800 tokens with modest overlap, then tune against the eval set instead of guessing. Confidence: 0.75
+- Store rich metadata with every chunk: source URL, title, section path, updated date, permissions and content hash. Confidence: 0.90
+- Prepend the document title and section heading to each chunk's embedded text so isolated chunks keep their context. Confidence: 0.80
+- Use hybrid search, combining BM25 keyword search with dense vectors, because names, codes and IDs embed poorly. Confidence: 0.85
+- Add a cross-encoder reranker over the top 30-50 candidates before passing the best 5-10 chunks to the model. Confidence: 0.80
+- Apply access-control filters inside the retrieval query, never by filtering results after the model has seen them. Confidence: 0.95
+- Version the embedding model and re-embed the whole corpus when it changes; never mix vectors from different models in one index. Confidence: 0.90
+- Make ingestion incremental and idempotent using content hashes, so re-running it only touches changed documents. Confidence: 0.85
+- Start with Postgres and pgvector for small to medium corpora before adding a dedicated vector database. Confidence: 0.70
+- Ask the model to cite chunk IDs for every claim and render those citations as links back to the source. Confidence: 0.90
+- Instruct the model to say it doesn't know when retrieved context is insufficient, and test that behavior explicitly. Confidence: 0.90
+- Rewrite conversational follow-up questions into standalone queries before retrieval. Confidence: 0.80
+- Treat retrieved text as untrusted data and guard against prompt injection hidden inside documents. Confidence: 0.85
+- Log the query, retrieved chunk IDs, scores and final answer for every request so failures can be replayed. Confidence: 0.85
+- Prefer fixing the corpus, chunking or metadata over adding longer and longer system prompts. Confidence: 0.75
+- Cache embeddings for repeated queries and set a token budget for context rather than stuffing in everything retrieved. Confidence: 0.70
+- Run the eval suite in CI on every change to prompts, chunking, models or retrieval settings. Confidence: 0.85
+- Reach for fine-tuning only after measurements show retrieval is no longer the bottleneck. Confidence: 0.65
 ```
 
 </details>

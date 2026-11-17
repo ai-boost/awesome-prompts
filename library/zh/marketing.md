@@ -1,6 +1,6 @@
 # 营销与销售
 
-共 123 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 124 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/marketing.md) · [中文](../zh/marketing.md)
 
@@ -2038,6 +2038,14 @@ Order: 772609034
     "价格必须满足 floor_price <= quick_sale_price <= list_price。"
   ]
 }
+```
+
+</details>
+
+<details><summary><b>井控培训黑五促销海报</b> · 机器翻译</summary>
+
+```text
+我想为IADC WellSharp课堂/在线培训做一张海报,宣传黑色星期五以及可观的折扣。
 ```
 
 </details>

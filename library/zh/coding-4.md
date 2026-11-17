@@ -1,6 +1,6 @@
 # 编程开发 (4/11)
 
-共 685 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 706 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
@@ -2809,6 +2809,36 @@ mcp>=1.1.0
 
 </details>
 
+<details><summary><b>MongoDB 开发偏好</b> · 机器翻译</summary>
+
+```text
+# MongoDB 品味:一位围绕查询来建模文档的后端工程师
+- 先围绕应用的读取模式设计每个集合,再决定哪些数据内嵌、哪些数据引用。Confidence: 0.90
+- 内嵌总是一起读取且大小有界的数据;引用会无限增长或被广泛共享的数据。Confidence: 0.90
+- 绝不让数组在文档内无限增长;把评论、事件或日志移到各自的集合中。Confidence: 0.90
+- 为每个集合定义 `$jsonSchema` 校验器,让错误的写入在数据库层就失败,而不是几周后在某份报表里才暴露。Confidence: 0.80
+- 日期存为 BSON `Date`,金额存为 `Decimal128` 或整数最小货币单位,绝不存为字符串或双精度浮点数。Confidence: 0.90
+- 按照等值、排序、范围规则构建复合索引,并用 `explain("executionStats")` 检查每个热点查询。Confidence: 0.85
+- 将生产查询路径上的 `COLLSCAN` 视为缺陷,并通过性能分析器(profiler)或 Atlas 对慢查询发出告警。Confidence: 0.80
+- 定期删除未使用和冗余的索引,因为每个索引都会拖慢所有写入并占用内存。Confidence: 0.75
+- 每个查询都使用投影,让服务只获取所需的字段。Confidence: 0.80
+- 使用 `_id` 或 `createdAt` 等已索引字段上的范围条件进行分页,而不是使用很大的 `skip` 值。Confidence: 0.85
+- 重要数据使用 `w: "majority"` 写关注,在读到过期数据会造成损害的场景使用 `majority` 读关注。Confidence: 0.80
+- 只有在模型确实需要时才使用多文档事务;结构设计良好的文档通常能让写入本身就是原子的。Confidence: 0.80
+- 优先使用 `$inc`、`$set` 以及带 `$slice` 的 `$push` 等原子更新操作符,而不是在应用代码中做读取-修改-写入循环。Confidence: 0.85
+- 报表使用聚合管道,并把 `$match` 和 `$project` 尽可能放在最前面,让索引发挥作用。Confidence: 0.80
+- 添加 `schemaVersion` 字段,并在读取时惰性迁移文档或通过后台任务迁移,而不是用一个高风险的一次性大脚本。Confidence: 0.70
+- 会话、令牌和临时数据使用 TTL 索引,而不是用定时任务去删除旧文档。Confidence: 0.85
+- 选择基数高且与主要查询过滤条件匹配的分片键,避免单独使用单调递增的键。Confidence: 0.75
+- 通过仓库中带版本的迁移代码创建索引和校验器,而不是在 shell 中手工操作。Confidence: 0.80
+- 本地开发和测试使用容器或副本集中的真实 MongoDB,而不是内存中的仿制品。Confidence: 0.75
+- 每个进程保持一个共享客户端,并调优连接池,而不是为每个请求都打开连接。Confidence: 0.90
+- 在所有环境中启用身份验证、TLS 和最小权限角色,绝不把 27017 端口暴露到公网。Confidence: 0.95
+- 定期测试从备份中恢复,因为一份从未有人恢复过的备份只是一种希望。Confidence: 0.85
+```
+
+</details>
+
 <details><summary><b>Monorepo 偏好</b> · 机器翻译</summary>
 
 ```text
@@ -3639,6 +3669,35 @@ Phase 4：同上，但 FINAL STATUS 为 PROJECT COMPLETE — AWAITING USER REVIE
 - 为按钮、输入框和排版提供统一的设计系统入口,避免在每个页面中堆砌一次性的 Tailwind 类。Confidence: 0.75
 - 在生产环境中度量 Core Web Vitals,并将 LCP 或 INP 的退化视为发布阻塞项。Confidence: 0.80
 - 公开页面优先使用增量静态生成和 ISR;完全动态渲染仅保留给需要认证或高度个性化的视图。Confidence: 0.85
+```
+
+</details>
+
+<details><summary><b>Nginx 配置偏好</b> · 机器翻译</summary>
+
+```text
+# 维护大量虚拟主机的运维工程师的 Nginx 配置品味
+- 在 `sites-available` 或 `conf.d` 下，每个文件只放一个 server 块，并以其所服务的域名命名。置信度：0.85
+- 将共享设置（TLS、安全头、代理默认值）放入片段文件，并用 `include` 引入，而不是复制代码块。置信度：0.90
+- 每次重载前先运行 `nginx -t`，并使用 `nginx -s reload` 或 `systemctl reload` 重载，绝不完整重启。置信度：0.95
+- 将配置纳入版本控制，并通过自动化部署，而不是在服务器上直接编辑文件。置信度：0.90
+- 用一条 `return 301` 把所有明文 HTTP 重定向到 HTTPS，80 端口的块只保留给 ACME 验证使用。置信度：0.90
+- 只允许 TLS 1.2 和 1.3，使用现代加密套件列表，并启用 OCSP stapling。置信度：0.90
+- 用 Certbot 或 acme.sh 自动化证书管理，并在证书到期前很早就发出告警。置信度：0.90
+- 只有在所有地方的 HTTPS 都正常工作之后才添加 HSTS，并先从较短的 `max-age` 开始，再逐步拉长。置信度：0.80
+- 设置 `server_tokens off`，并添加基本的安全头（`X-Content-Type-Options`、`Referrer-Policy`，以及通过 CSP 设置的 `frame-ancestors`）。置信度：0.85
+- 定义一个返回 `444` 的默认 server，使 Host 头未知的请求永远到不了应用。置信度：0.85
+- 重定向时优先使用 `return` 而不是 `rewrite`，并避免在 `location` 内使用 `if`，除非只用于 `return` 或 `rewrite`。置信度：0.85
+- 静态站点和单页应用使用 `try_files`，而不是一长串 rewrite 规则。置信度：0.85
+- 在一个共享的代理片段中，把 `Host`、`X-Forwarded-For`、`X-Forwarded-Proto` 和 `X-Request-ID` 转发给上游。置信度：0.85
+- 后端池使用带 `keepalive` 连接的具名 `upstream` 块。置信度：0.80
+- 按 location 显式设置代理超时和 `client_max_body_size`，而不是依赖默认值。置信度：0.80
+- 带哈希的静态资源使用长期 `Cache-Control` 和 `immutable`，HTML 则使用较短缓存或不缓存。置信度：0.85
+- 只对文本类型启用 gzip 或 Brotli，绝不用于已经压缩过的图片或归档文件。置信度：0.80
+- 用 `limit_req_zone` 对登录和 API 端点限流，并配合 `burst` 和 `nodelay`，以对真实用户保持友好。置信度：0.80
+- 使用 JSON 格式的访问日志，包含请求耗时、上游耗时和请求 ID，方便查询日志。置信度：0.80
+- 仅在 localhost 或内部网络上暴露 `stub_status`，用于指标抓取。置信度：0.75
+- worker 设置尽量保持接近默认值（`worker_processes auto`），只有在掌握测量数据时才进行调优。置信度：0.70
 ```
 
 </details>
@@ -7558,90 +7617,6 @@ description: 用于生成项目全面的产品需求文档（PRD）和技术文�
 - 对于原生 SQL,只使用 `Prisma.sql` 标签模板,绝不使用与用户输入进行字符串拼接的方式。Confidence: 0.95
 - 在 CI 中针对生产环境影子数据库的预期运行 `prisma migrate diff`,让偏差导致构建失败。Confidence: 0.75
 - 在运行手册中记录连接池(PgBouncer / 驱动适配器);没有连接池的 serverless 会耗尽连接。Confidence: 0.85
-```
-
-</details>
-
-<details><summary><b>prompts.chat 项目规范</b></summary>
-
-```text
-# Taste
-
-# github-actions
-- 在 GitHub Actions 工作流中使用 `actions/checkout@v6` 和 `actions/setup-node@v6`（而非 v4）。置信度：0.65
-- 在 GitHub Actions 工作流中使用 Node.js 版本 24（而非 20）。置信度：0.65
-
-# project
-- 本项目为 **prompts.chat** —— 一个用于 AI 提示词的全栈社交平台（由 "Awesome ChatGPT Prompts" GitHub 仓库发展而来）。置信度：0.95
-- 包管理器为 npm（非 pnpm 或 yarn）。置信度：0.95
-
-# architecture
-- 默认使用 Next.js App Router 与 React Server Components；仅对交互式组件添加 `"use client"`。置信度：0.95
-- 通过 `src/lib/db.ts` 中的单例使用 Prisma ORM 与 PostgreSQL 进行所有数据库访问。置信度：0.95
-- 对认证、存储和媒体生成器集成使用插件注册表模式。置信度：0.90
-- 在变更操作后使用 `revalidateTag()` 进行缓存失效。置信度：0.90
-
-# typescript
-- 在整个项目中使用 TypeScript 5 并启用严格模式。置信度：0.95
-
-# styling
-- 所有 UI 组件使用 Tailwind CSS 4 + Radix UI + shadcn/ui。置信度：0.95
-- 使用 `cn()` 工具函数处理条件性或合并的 Tailwind 类名。置信度：0.90
-
-# api
-- 所有 API 路由输入均需使用 Zod 模式进行验证。置信度：0.95
-- 在 `src/app/api/` 下共有 61 个 API 路由，另加位于 `src/pages/api/mcp.ts` 的 MCP 服务器。置信度：0.90
-
-# i18n
-- 所有面向用户的字符串均使用 next-intl 提供的 `useTranslations()`（客户端）和 `getTranslations()`（服务端）。置信度：0.95
-- 支持 17 种语言区域，其中阿拉伯语、希伯来语和波斯语支持 RTL。置信度：0.90
-
-# database
-- 在 Prompt 和 Comment 模型上使用软删除（`deletedAt` 字段）—— 永远不要硬删除这些记录。置信度：0.95
-```
-
-</details>
-
-<details><summary><b>PS5风格作品集</b></summary>
-
-```text
-扮演一名 UI/UX 设计师。你的任务是协助用户设计一个模仿 PS5 界面主题的作品集。
-
-你的任务包括：
-1. 创建一个界面，其首页仅显示一位用户：${username:defaultUser}。
-2. 当点击该用户资料时，以 PS5 游戏封面的样式展示该用户的项目。
-3. 确保设计直观且视觉上富有吸引力，精准捕捉 PS5 界面的核心风格。
-4. 融入可交互元素，模拟 PS5 的导航风格。
-
-你将：
-- 运用现代设计原则，确保整体外观简洁而专业。
-- 提供用于实现该设计的工具与技术建议。
-- 确保作品集具备响应式特性，并可在各类设备上无障碍访问。
-
-规则：
-- 保持一致的配色方案与字体排印，以体现 PS5 主题。
-- 优先考虑用户体验与用户参与度。
-```
-
-</details>
-
-<details><summary><b>Pydroid 3 更新检查脚本</b></summary>
-
-```text
-我希望你扮演一名专业 Python 开发者——业内顶尖水平之一。  
-你目前是自由职业者，而我已聘请你完成一项工作。  
-
-我要你为我实现以下功能：我需要一个能在我的 Android 手机上运行的脚本，我在手机上使用 Pydroid 3。  
-该脚本应提供一个菜单，其中包含若干不同选项。  
-菜单项应涵盖我的手机可能需要的所有类型更新，例如系统更新、安全更新、Google Play 更新等。这些选项必须彼此独立；当我想检查全部更新时，脚本应能一次性检查所有项目；而当我从菜单中选择某一项时，脚本则仅检查该项所对应的更新。  
-
-若检测到更新，我应能选择立即更新该组件。设计需简洁易用。界面需采用美观的配色方案，颜色最好能与各类更新类型形成语义关联（例如蓝色代表系统更新、红色代表安全更新、绿色代表 Google Play 更新等）。  
-我还需能看到进度条，以直观显示当前更新的完成进度、剩余时间、更新包大小，以及实时下载速度（单位为 KB/s 或 MB/s）。  
-
-代码总行数须控制在 300 行以内。请添加充分注释，以便我能理解每一部分逻辑。  
-所有代码必须整合于单个文件中——即全部内容写入一个名为 `app.py` 的文件。  
-
-请以“纯文本”格式提供完整代码，确保我可直接复制粘贴至手机中使用。
 ```
 
 </details>

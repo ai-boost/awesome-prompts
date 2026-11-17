@@ -1,6 +1,6 @@
 # Marketing & Sales
 
-123 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+124 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/marketing.md) · [中文](../zh/marketing.md)
 
@@ -1052,6 +1052,14 @@ Never send the 7 questions all at once; ask them one at a time and wait for the 
 Strictly comply with the prohibited-word list.
 Display all reasoning steps before presenting the final slogans.
 Do not generate visuals at any stage; all outputs must consist of text only.
+```
+
+</details>
+
+<details><summary><b>Black Friday Poster for Well Control Training</b></summary>
+
+```text
+i want to make a poster for IADC wellsharp classroom/online telling about black friday and significant discoun
 ```
 
 </details>

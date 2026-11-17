@@ -1,8 +1,16 @@
 # Creative Arts & Music
 
-78 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+82 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/creative.md) · [中文](../zh/creative.md)
+
+<details><summary><b>10-Second 3D Cartoon Story Generator</b></summary>
+
+```text
+Create an original and captivating 10-second 3D cartoon story with a surprising beginning, exciting action, and a heartwarming or unexpected ending. Use cute characters, expressive emotions, and creative visual storytelling. Keep the story short, clear, and easy to turn into an animated video. Write only the story events in chronological order. Do not generate images or image prompts.
+```
+
+</details>
 
 <details><summary><b>1940s Village Life AI Video</b></summary>
 
@@ -2954,6 +2962,55 @@ Cinematic short film story: A hardworking Filipino man gets lured by easy money 
 
 </details>
 
+<details><summary><b>Parametric Manga Page Generator</b></summary>
+
+```text
+Create a clean, coherent Japanese manga page based on the following parameters.
+
+VARIABLES
+TOPIC: <string describing the core idea or situation of the manga page>
+CHARACTERS: <optional string describing character(s); if empty, invent suitable character(s) based on TOPIC>
+GENRE: <manga demographic/genre, e.g. shonen action, shojo romance, seinen drama, slice of life, horror, 4-koma gag>
+PANEL_COUNT: <number of panels, e.g. 4, 5, 6, 7>
+PAGE_LAYOUT: <layout approach, e.g. dynamic mixed-size panels, 4-koma vertical strip, one splash panel + small panels, uniform grid>
+READING_DIRECTION: <right-to-left (traditional) | left-to-right>
+TONE_STYLE: <rendering approach, e.g. pure black and white ink, ink with screentones, ink with one spot color, full color>
+ART_STYLE: <line and drawing style, e.g. clean thin lines, bold brush inking, sketchy G-pen, retro 90s manga, soft shojo linework>
+MOOD: <overall emotional tone, e.g. tense, melancholic, comedic, heartwarming, eerie>
+NARRATION_MODE: <visual | visual+text | text-led>
+TEXT_LANGUAGE: <language of all in-panel text, e.g. English, Japanese>
+SFX: <none | minimal | expressive>
+SIGNATURE: <optional signature text and placement, e.g. "Koda, bottom-left"; if empty, do not add a signature>
+
+INSTRUCTIONS
+1. Use a single vertical page (portrait, roughly 2:3) with exactly PANEL_COUNT panels, arranged according to PAGE_LAYOUT, with crisp black panel borders and clean white gutters.
+2. Arrange panels and speech balloons so the page reads naturally in READING_DIRECTION, top to bottom.
+3. Interpret TOPIC as the narrative anchor and invent a short story that unfolds across the panels.
+4. If CHARACTERS is provided, strictly follow it; otherwise invent character(s) that naturally fit TOPIC and GENRE.
+5. Keep character identity, proportions, hairstyle, clothing, and facial features consistent across all panels.
+6. Let GENRE guide the visual conventions: character proportions, eye style, paneling energy, and the kind of expressions and symbols used.
+7. Unless PAGE_LAYOUT asks for a uniform grid, vary panel size and shape by narrative weight: give the key moment the largest panel, and use small or narrow panels for reactions, details, and pauses.
+8. Decide the camera progression yourself, mixing establishing shots, close-ups, and dramatic angles in a way that best serves the story.
+9. Decide the background behavior yourself: draw detailed backgrounds where the setting matters, and use blank, toned, or effect backgrounds (speed lines, focus lines, emotional patterns) where emotion or action leads.
+10. Apply TONE_STYLE consistently: use solid blacks, hatching, and screentone gradients for shading and atmosphere; do not add color unless TONE_STYLE allows it.
+11. Apply ART_STYLE consistently, keeping line weight and detail level uniform across all panels.
+12. Let MOOD influence composition, pacing, expressions, and the amount of black, white, and tone on the page.
+13. Use manga visual language where it fits GENRE and MOOD: speed lines, impact bursts, sweat drops, blush marks, dramatic shadows over the eyes.
+14. Follow NARRATION_MODE strictly:
+    - If visual: include no balloons or captions and rely entirely on imagery.
+    - If visual+text: decide which panels include text and which remain silent.
+    - If text-led: include text in most or all panels, with visuals supporting the narration.
+15. When text is used, letter it in manga fashion: rounded balloons for speech, spiky balloons for shouting, cloud or borderless text for thoughts, rectangular boxes for narration.
+16. Write all text in TEXT_LANGUAGE; keep it short, natural, and legible, with only a few words per balloon.
+17. Follow SFX: if none, add no sound effects; if minimal, add one or two small ones; if expressive, integrate bold hand-drawn sound effects into the artwork as part of the composition.
+18. Ensure the sequence forms a clear beginning, middle, and end, with the final panel delivering a punchline, emotional beat, or cliffhanger.
+19. If SIGNATURE is provided, add it exactly as specified, placed discreetly without distracting from the page.
+20. Avoid unnecessary elements, visual clutter, and garbled or pseudo-text.
+21. Ensure the final output reads clearly as a single cohesive, professionally inked manga page.
+```
+
+</details>
+
 <details><summary><b>Photos Turning into Moving Film</b></summary>
 
 ```text
@@ -2996,6 +3053,24 @@ Write a seven-character regulated verse (qilü) in the style of Li Bai. Topic: a
 
 ```text
 I want you to act as a poet. You will create poems that evoke emotions and have the power to stir people's soul. Write on any topic or theme but make sure your words convey the feeling you are trying to express in beautiful yet meaningful ways. You can also come up with short verses that are still powerful enough to leave an imprint in readers' minds. My first request is "I need a poem about love."
+```
+
+</details>
+
+<details><summary><b>Quiet Indie Drama Short: The Happiest Year of My Life</b></summary>
+
+```text
+Cinematic ultra-realistic quiet emotional drama short film, 16:9, 30 seconds, 24fps, shot like an indie art-house film, dim warm-and-cool lighting, a lonely apartment at night, soft lamp glow, a rain-fresh city street with golden streetlights and bokeh, shallow depth of field, crisp detail, subtle film grain, slow intimate camera movement, reflective and bittersweet mood.
+👩 HEROINE: A young woman in her mid-20s, shoulder-length black hair pinned up with a small hair claw, round clear glasses at home, wearing a white knit cardigan over a grey top at night and a black spaghetti-strap dress in the memory scenes. Tired, thoughtful and quietly strong. Keep her face identical in every shot.
+🚪 0–4s: A dim hallway at night. The heroine opens her apartment door, closes it softly behind her and leans against it for a moment, exhausted. She exhales and walks into the dark living room.
+💻 4–8s: Close-up of her face lit by the cold blue glow of a laptop. She watches an old video, a faint smile appearing, then slowly fading into sadness. A single reflection of the screen glimmers in her glasses.
+🚗 8–12s: She grabs her bag and steps out into a warm-lit night street. A parked car stands in the distance with a silhouetted figure inside. She stops, hesitates and looks at it, then turns and walks away without a word.
+🪔 12–17s: A warm golden memory in a cozy apartment with a glowing floor lamp. The heroine in her black dress laughs, spins slowly and looks at a phone full of old photos. Close-up of the phone screen scrolling past smiling pictures, her fingers pausing on one.
+🎙️ 17–23s: Back in the present, she sits on a grey sofa in front of a small microphone and phone stand, a soft lamp behind her. She takes a deep breath and says to the camera: "It was the happiest year of my life." A pause. "And the hardest lesson."
+🌃 23–28s: She walks through a quiet street at night, then across a busy crosswalk with glowing city lights blurring behind her. Rear tracking shot, her ponytail swaying gently, steady and determined.
+🌙 28–30s: She stops alone in a dark empty space, looks up, takes a slow breath and gives a small, relieved smile. She whispers: "But I'm still here." Slow push-in on her face, then fade to black.
+🎧 AUDIO: Faint room tone and a clock ticking, the soft hum of the laptop, distant city sounds and footsteps, a minimal piano-and-ambient score that swells gently at the final smile, clear natural English dialogue.
+🎬 STYLE: Realistic indie drama, restrained natural performances, warm amber and cool teal color contrast, wholesome and non-graphic, consistent faces and outfits, no text, no subtitles, no logos, no watermark.
 ```
 
 </details>
@@ -3214,6 +3289,215 @@ Mood: Peaceful, cozy, wholesome
 Details: NO talking, NO speech bubbles, NO on-screen text
 
 Video Length: 7 seconds${Tom and Jerry
+```
+
+</details>
+
+<details><summary><b>The Last Parking Space: Painterly 3D Comedy Short</b></summary>
+
+```text
+==== SCENE CONTEXT ====
+A 20-second comedy short. One single continuous story.
+A sunny autumn afternoon in an old city neighborhood.
+The street is FULL of parked cars. Every spot is taken except ONE.
+Two rival drivers race for that LAST parking space.
+Just before they reach it, a tiny grandma on a scooter zips in and steals it.
+Pure visual comedy. NO dialogue.
+
+==== ACTIVE REFERENCES ====
+NONE. Text-only generation.
+The ART STYLE is fully described in STYLE below.
+ALL characters, cars and the street are defined below.
+KEEP every design IDENTICAL from first frame to last.
+
+==== CHARACTERS ====
+DRIVER A — "THE SUIT"
+Tall, lanky middle-aged man, long narrow face
+Thin black mustache, slicked-back hair, heavy eyebrows
+Grey suit, loose red tie
+Drives a vintage TEAL sedan with rounded fenders and chrome bumpers
+Personality: uptight, impatient, furious
+DRIVER B — "THE SHADES"
+
+Young woman, big curly dark hair
+Oversized round black sunglasses, mustard-yellow jacket
+Drives a small boxy ORANGE-RED hatchback
+Personality: cool, competitive, smug
+THE GRANDMA
+
+TINY, round, very short old woman
+White hair in a neat bun, round glasses
+
+Plum-purple coat, cream scarf
+Cream open-face helmet with small goggles pushed up
+Rides a small MINT-GREEN vintage scooter with a wicker basket of oranges
+Personality: calm, sweet-looking, secretly savage
+==== LOCATION MAP ====
+Two-lane city street lined with brick and brownstone buildings.
+Utility poles and street lamps along the sidewalk.
+Autumn trees with orange and red leaves.
+Hazy city skyline in the far background, glowing in the sun.
+The RIGHT curb is packed bumper to bumper with parked cars (brown van, dusty-blue car, cream station wagon, green pickup).
+ONE LAST EMPTY SPACE in that row, center of the street. Every other space is FULL.
+A blue square parking sign on a pole beside the space shows a big white letter "P".
+Driver A comes from FRAME LEFT in the near lane.
+Driver B comes from FRAME RIGHT in the far lane, oncoming.
+Both converge on the same last space.
+The grandma comes from BEHIND Driver A, along the curb.
+
+==== SCALE LOCK ====
+The cars are normal city car size.
+The grandma is TINY. Her head barely reaches a car door handle.
+Her scooter is SMALL, about half a car's length.
+The last space fits ONE car exactly.
+
+==== CONTINUITY ====
+Same street, same time of day, same sun direction in every shot.
+Car colors NEVER change: teal sedan, orange-red hatchback, mint-green scooter.
+Wardrobe NEVER changes.
+The parked cars never move.
+The last space stays empty until the grandma takes it.
+
+==== FIRST FRAME / BLOCKING ====
+Wide, slightly elevated view down the sunny autumn street.
+A full row of parked cars along the right curb with ONE gap at frame center.
+The "P" sign stands beside the gap.
+Leaves drift down slowly.
+Both cars are small in the distance: teal sedan far left, orange-red hatchback far right.
+The grandma is not visible yet.
+
+==== FORMAT MODE ====
+16:9 horizontal.
+HARD CUTS at: 0:03 / 0:05 / 0:07 / 0:12 / 0:15 / 0:18
+
+==== OPTICS ====
+SHOT 1 (0:00–0:03): 35mm wide establishing
+SHOT 2 (0:03–0:05): 50mm close-up through the windshield
+SHOT 3 (0:05–0:07): 50mm close-up through the windshield
+SHOT 4 (0:07–0:12): 24mm low-angle wide, near street level
+SHOT 5 (0:12–0:15): 28mm wide on the space
+SHOT 6 (0:15–0:18): 85mm close-up with snap zoom
+SHOT 7 (0:18–0:20): 35mm two-shot
+
+==== CAMERA ====
+SHOT 1: slow push-in toward the last empty space.
+SHOT 2: LOCKED. Calm tension.
+SHOT 3: LOCKED. Calm tension.
+SHOT 4: FAST low-angle tracking alongside the cars, whip pan between them.
+SHOT 5: LOCKED wide so the steal reads clearly.
+SHOT 6: SNAP ZOOM into the grandma's face.
+SHOT 7: LOCKED. Hold for the reaction.
+
+==== ACTION ====
+SHOT 1 (0:00–0:03)
+Sunny autumn street. Leaves falling.
+A full row of parked cars. ONE gap left, the "P" sign beside it.
+Both cars approach from opposite ends.
+HARD CUT.
+
+SHOT 2 (0:03–0:05)
+Driver A behind the wheel of the teal sedan.
+His eyes lock on the last space. Eyebrows slam down.
+He grips the wheel tighter.
+HARD CUT.
+
+SHOT 3 (0:05–0:07)
+Driver B behind the wheel of the orange-red hatchback.
+She slowly lowers her sunglasses. She glares back.
+A tiny smirk.
+HARD CUT.
+
+SHOT 4 (0:07–0:12)
+BOTH FLOOR IT.
+The cars race toward the last space from opposite directions.
+Driver A swerves around a cyclist.
+Driver B cuts across the lane.
+Leaf piles EXPLODE as they tear through.
+Both cars brake hard and swing toward the space at the same time.
+Bumpers miss each other by an inch.
+HARD CUT.
+
+SHOT 5 (0:12–0:15)
+Both cars screech to a stop, nose to nose, at the mouth of the space.
+They are blocking each other.
+ZIP. The tiny grandma on the mint-green scooter shoots between them.
+She glides perfectly into the last space.
+One orange bounces out of her basket.
+HARD CUT.
+
+SHOT 6 (0:15–0:18)
+SNAP ZOOM on the grandma.
+She pushes her goggles up calmly.
+She turns to camera and gives ONE slow, smug wink.
+HARD CUT.
+
+SHOT 7 (0:18–0:20)
+Two-shot of both drivers through their windshields.
+Frozen. Jaws dropped.
+A single orange leaf lands on Driver A's windshield.
+Hold.
+
+==== PERFORMANCE ====
+Exaggerated, readable cartoon acting.
+Big, clear facial expressions: glare, smirk, shock.
+Snappy comedic timing with pauses before each punch.
+The grandma stays perfectly calm the whole time. That IS the joke.
+
+==== SURFACE DETAIL ====
+Soft painted brick and brownstone walls, simplified.
+Brushy autumn foliage.
+Car bodies painted with soft gradients and glowing rim highlights.
+Painterly finish on every surface, NOT photoreal.
+
+==== PHYSICS ====
+Cartoon physics with real weight.
+Cars squash slightly when braking hard and stretch when accelerating.
+Leaves swirl and scatter in the cars' wake.
+Tires leave short skid marks.
+The scooter is light and nimble with a tiny bounce.
+
+==== LIGHTING ====
+Warm golden-hour sun, low in the sky, behind the buildings.
+LONG soft shadows across the street.
+Strong warm rim light glowing on every edge facing the sun.
+Cool blue-violet shadows on the shaded sides.
+Sun-washed haze between the buildings.
+Leaves glow orange where backlit.
+
+==== COLOR GRADE ====
+Warm oranges, peach and rust reds against cool blue-violet shadows.
+Soft hazy peach-yellow sky glow.
+Rich but soft saturation.
+
+==== STYLE ====
+PAINTERLY STYLIZED 3D with a HAND-PAINTED 2D FINISH.
+Looks like a modern animated feature film painted by hand.
+Soft painted gradients. Simple, clean graphic shapes. Minimal fine texture.
+Strong WARM vs COOL contrast: orange sunlit faces and walls, blue-violet shadows.
+Glowing warm rim light outlining characters and cars.
+Backgrounds simplified and hazy, with soft atmospheric depth.
+City skyline as soft painted silhouettes in sunlit haze.
+Characters are CARICATURED: elongated bodies, long thin limbs, big expressive faces.
+Soft painted shading, NOT plastic, NOT glossy CG, NOT photoreal.
+Cars are normal real-world cars. NO faces on the cars.
+NO text overlays.
+NO subtitles.
+NO watermark.
+NO logos.
+
+==== OUTPUT SETTINGS ====
+16:9.
+20 seconds.
+7 shots with HARD CUTS at the listed timestamps.
+Clean, smooth animation. No flicker.
+
+==== FINAL POSITIVE LOCKS ====
+Painterly stylized 3D with a hand-painted 2D finish in EVERY frame.
+Golden-hour warm light, blue-violet shadows, glowing rim light.
+A FULL row of parked cars. ONE last space. ONE winner: the grandma.
+Teal sedan, orange-red hatchback and mint-green scooter stay IDENTICAL.
+The grandma is TINY and calm.
+The "P" sign reads exactly "P".
 ```
 
 </details>

@@ -1,10 +1,496 @@
 # 编程开发 (2/11)
 
-共 685 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 706 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
 分页：[1](coding.md) · **2** · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md)
+
+<details><summary><b>Cron表达式解释与校验</b> · 机器翻译</summary>
+
+```text
+---
+name: cron-schedule-explainer
+description: 解释、校验并编写 cron 调度——把 cron 表达式翻译成通俗易懂的中文,列出接下来的运行时间,并标出各类陷阱,例如日期(day-of-month)与星期(day-of-week)的 OR 规则、永远不会出现的日期、夏令时空档、时区混淆,以及任务重叠或过于频繁。当用户粘贴 crontab 行、Kubernetes CronJob、GitHub Actions schedule,或询问"这个什么时候会运行?"或"写一个每隔一个星期二运行的 cron"时使用。
+---
+
+# Cron 调度解释器
+
+你让定时任务变得可预测。对每个调度,你都给出通俗易懂的含义、具体的下次运行时间,以及那些会在凌晨 2 点让人措手不及的风险。
+
+## 本 skill 中的文件
+
+- `scripts/cron_explain.py` - 解析器、解释器、下次运行时间计算器和陷阱检查器(仅使用 Python 3 标准库)
+- `references/cron-syntax.md` - 字段范围、特殊字符、宏以及各平台差异
+- `references/scheduling-pitfalls.md` - 常见错误及其规避方法
+- `templates/schedule-review.md` - 审查格式
+- `examples/example-backup-review.md` - 对三行 crontab 的完整审查示例
+
+## 工作流程
+
+### 1. 确认平台
+默认使用标准 5 字段 cron(Vixie cron、cronie、Kubernetes CronJob、GitHub Actions)。询问或确认用户指的是否为 Quartz(带秒和 `?` 的 6 或 7 个字段)、AWS EventBridge(带年份的 6 个字段)或 systemd timer;参见 `references/cron-syntax.md`。注意时区:GitHub Actions 始终使用 UTC;除非设置了 `timeZone`,否则 Kubernetes 使用控制器的时区。
+
+### 2. 运行检查器
+'''bash
+python3 scripts/cron_explain.py "30 2 * * 1-5"
+python3 scripts/cron_explain.py "0 9 1 * MON" --count 8 --from "2026-10-08 10:00"
+python3 scripts/cron_explain.py --file crontab.txt
+'''
+它会输出通俗易懂的解释、接下来 N 次运行时间(服务器的本地时间,不带时区信息)以及警告。当表达式无效或永远不会运行时,退出码为 1。
+
+如果无法运行该脚本,请手动应用相同的规则,并说明这一点。
+
+### 3. 解释
+对每个调度给出:
+1. 一句通俗易懂的含义说明。
+2. 接下来的 3 到 5 次运行,并注明时区。
+3. 来自脚本以及 `references/scheduling-pitfalls.md` 中适用的警告(与长时间任务重叠、夏令时、UTC 与本地时间、机器关机期间错过的运行)。
+
+### 4. 编写或修复调度
+当用户用文字描述一个调度时,先写出表达式,然后用检查器运行一遍,确认接下来的运行时间符合其意图。对于 cron 无法直接表达的需求(每隔一个星期二、每月最后一个工作日),给出 cron 表达式,并在命令中加一个守卫条件,例如 `[ "$(date +\%d)" -le 07 ] && run-job`,并解释原因。
+
+### 5. 报告
+使用 `templates/schedule-review.md`,格式参见 `examples/example-backup-review.md`。
+
+## 规则
+- 始终说明你所假设的时区。
+- 记住在 crontab 命令字段中,`%` 必须转义为 `\%`。
+- 绝不替用户编辑正在使用的 crontab;只展示要添加的行以及 `crontab -e` 这一步。
+- 只要任务的运行时间可能超过其间隔,就建议使用锁(例如 `flock -n /tmp/job.lock cmd`)。
+FILE:references/cron-syntax.md
+# Cron 语法参考(标准 5 字段)
+
+'''
++------------- minute (0-59)
+| +----------- hour (0-23)
+| | +--------- day of month (1-31)
+| | | +------- month (1-12 or JAN-DEC)
+| | | | +----- day of week (0-7 or SUN-SAT; 0 and 7 are both Sunday)
+| | | | |
+* * * * *  command
+'''
+
+## 特殊字符
+| 符号 | 含义 | 示例 |
+|---|---|---|
+| `*` | 每个值 | `* * * * *` 每分钟 |
+| `,` | 列表 | `0 8,12,18 * * *` 在 08:00、12:00、18:00 |
+| `-` | 范围 | `0 9 * * 1-5` 周一至周五 09:00 |
+| `/` | 步长 | `*/15 * * * *` 每 15 分钟;`10-50/20` = 10、30、50 |
+
+名称不区分大小写。名称范围(`MON-FRI`)在大多数实现中可用,名称列表在所有实现中都可用。
+
+## 宏
+| 宏 | 等价于 |
+|---|---|
+| `@yearly` / `@annually` | `0 0 1 1 *` |
+| `@monthly` | `0 0 1 * *` |
+| `@weekly` | `0 0 * * 0` |
+| `@daily` / `@midnight` | `0 0 * * *` |
+| `@hourly` | `0 * * * *` |
+| `@reboot` | 启动时运行一次(与时间无关) |
+
+## 日期规则
+如果日期(day of month)和星期(day of week)都做了限制(两者都不是 `*`),则任一条件匹配时任务就会运行。`0 9 1 * MON` 会在每月 1 日以及每个星期一运行。
+
+## 平台差异
+| 平台 | 字段数 | 时区 | 备注 |
+|---|---|---|---|
+| Linux cron(cronie、Vixie) | 5 | 系统本地时间 | cronie 支持 `CRON_TZ=` |
+| Kubernetes CronJob | 5 | 控制器时区,或 `spec.timeZone` | 使用 `concurrencyPolicy: Forbid` 防止重叠 |
+| GitHub Actions `schedule` | 5 | 始终为 UTC | 高负载下运行可能延迟;最小间隔 5 分钟 |
+| Quartz(Java) | 6-7(秒在最前,年份可选) | 可配置 | 支持用 `?` 表示"无特定值",以及 `L`、`W`、`#` |
+| AWS EventBridge | 6(含年份) | UTC,除非设置了 scheduler 时区 | 日期或星期二者之一必须为 `?` |
+
+本 skill 中的脚本支持标准 5 字段格式及上述宏(`@reboot` 除外,脚本会将其报告为与时间无关)。
+FILE:references/scheduling-pitfalls.md
+# 调度陷阱
+
+## 1. 日期(day of month)OR 星期(day of week)
+`0 0 13 * 5` 并不是"13 号星期五"。它会在每个 13 号以及每个星期五运行。请使用 `0 0 13 * *` 加一个守卫条件:`[ "$(date +\%u)" = 5 ] && cmd`。
+
+## 2. 从不或很少出现的日期
+- `0 0 30 2 *` 永远不会运行(二月没有 30 号)。
+- `0 0 31 * *` 一年中只在 7 个月运行。
+- `0 0 29 2 *` 只在闰年运行。
+对于"每月最后一天",请使用 `0 0 28-31 * *` 加守卫条件:`[ "$(date -d tomorrow +\%d)" = 01 ] && cmd`。
+
+## 3. 夏令时
+在实行夏令时的本地时区,大约 01:00 到 03:00 之间的时间可能被跳过(时钟拨快)或运行两次(时钟拨回),具体取决于 cron 的实现。请将关键任务安排在该时间窗口之外,或让 cron 使用 UTC 运行。
+
+## 4. UTC 与本地时间
+GitHub Actions 和许多云调度器使用 UTC。对于身处伊斯坦布尔(UTC+3)的团队,"每天 09:00"在 UTC 下是 `0 6 * * *`。在文档和代码注释中,务必把时区写在表达式旁边。
+
+## 5. 过于频繁或重叠的运行
+- `* * * * *` 每天运行 1440 次。请确认这确实是你想要的。
+- 分钟字段为 `*` 而小时固定(`* 3 * * *`)时,会在 03:00 到 03:59 之间运行 60 次;通常本意是 `0 3 * * *`。
+- 如果任务的耗时可能超过其间隔,请使用锁(`flock -n`)或 `concurrencyPolicy: Forbid`。
+
+## 6. 步长值不会均匀回绕
+分钟字段中的 `*/7` 在 0、7、……、56 时运行,然后又在 0 时运行(间隔 4 分钟)。`*/25` 在 0、25、50 时运行。步长会在每小时、每天或每月重新开始。
+
+## 7. 惊群效应
+许多团队选择 `0 0 * * *` 或 `0 * * * *`。把任务挪到一个零散的分钟(例如 `17 2 * * *`),以避免共享系统和限流 API 上的负载尖峰。
+
+## 8. 环境与输出
+Cron 以最小的 PATH 运行,且没有登录 shell。请使用绝对路径,在 crontab 中设置所需变量,并重定向输出(`>> /var/log/job.log 2>&1`),以便能看到失败。将 `%` 转义为 `\%`。
+
+## 9. 错过的运行
+普通 cron 不会补跑机器关机期间错过的运行。当错过的运行很重要时,请使用 anacron、带 `Persistent=true` 的 systemd timer,或 Kubernetes 的 `startingDeadlineSeconds`。
+FILE:templates/schedule-review.md
+# 调度审查:{{system_or_repo}}
+
+**平台:** {{Linux cron | Kubernetes CronJob | GitHub Actions | other}}
+**假设时区:** {{time_zone}}
+**审查日期:** {{date}}
+
+## 摘要
+{{一到两句话:这些调度是否符合团队预期,以及必须修改什么。}}
+
+## 调度
+
+### {{n}}. `{{expression}}` - {{job name}}
+- **含义:** {{通俗易懂的解释}}
+- **接下来的运行:** {{run 1}}, {{run 2}}, {{run 3}}
+- **结论:** {{OK | FIX | CLARIFY}}
+- **警告:**
+  - {{warning}}
+- **建议的行:**
+  '''
+  {{corrected crontab line}}
+  '''
+
+## 问题
+- {{向团队提出的问题}}
+FILE:examples/example-backup-review.md
+# 调度审查:运维服务器 crontab
+
+**平台:** Linux cron(cronie)
+**假设时区:** Europe/Berlin(服务器本地时间,实行夏令时)
+**审查日期:** 2026-10-08
+
+## 摘要
+三行中有两行与注释所说的并不一致。备份任务运行在夏令时变更窗口内,而"13 号星期五"报告实际上会在每个星期五和每个 13 号运行。
+
+## 调度
+
+### 1. `30 2 * * *` - 夜间数据库备份
+- **含义:** 每天 02:30。
+- **接下来的运行:** 2026-10-09 02:30, 2026-10-10 02:30, 2026-10-11 02:30
+- **结论:** FIX
+- **警告:**
+  - 02:30 位于夏令时变更窗口内;在时钟拨快的那一夜可能被跳过,在秋季则可能运行两次。
+  - 月末时备份可能耗时超过一小时;没有加锁。
+- **建议的行:**
+  '''
+  17 4 * * * flock -n /tmp/db-backup.lock /opt/scripts/db-backup.sh >> /var/log/db-backup.log 2>&1
+  '''
+
+### 2. `0 9 13 * FRI` - "13 号星期五"趣味报告
+- **含义:** 在每月 13 日 OR 每个星期五的 09:00 运行(cron 的日期规则)。
+- **接下来的运行:** 2026-10-09 09:00 (Fri), 2026-10-13 09:00 (Tue, the 13th), 2026-10-16 09:00 (Fri)
+- **结论:** FIX
+- **警告:**
+  - 两个日期字段都做了限制,因此 cron 使用 OR,而不是 AND。
+- **建议的行:**
+  '''
+  0 9 13 * * [ "$(date +\%u)" = 5 ] && /opt/scripts/fun-report.sh
+  '''
+
+### 3. `*/20 8-18 * * 1-5` - 从服务台同步工单
+- **含义:** 周一至周五,从 08:00 到 18:59 每 20 分钟一次(在 :00、:20、:40)。
+- **接下来的运行:** 2026-10-08 10:20, 2026-10-08 10:40, 2026-10-08 11:00
+- **结论:** CLARIFY
+- **警告:**
+  - 当天最后一次运行是 18:40,而不是 18:00。如果同步应在 18:00 停止,请使用 `8-17`,再加一条单独的 `0 18 * * 1-5`。
+
+## 问题
+- 服务器是否应该让 cron 使用 UTC 运行,以彻底避免夏令时问题?
+FILE:scripts/cron_explain.py
+#!/usr/bin/env python3
+"""Explain, validate, and preview standard 5-field cron expressions (stdlib only).
+
+Usage:
+  python3 cron_explain.py "EXPR" [--count N] [--from "YYYY-MM-DD HH:MM"]
+  python3 cron_explain.py --file crontab.txt [--count N] [--from ...]
+
+For each expression: a plain-English explanation, the next N run times
+(naive server-local time), and pitfall warnings. In --file mode, crontab
+lines are read; comments, blank lines and VAR=value lines are skipped and the
+first five fields (or a leading @macro) are taken as the schedule.
+Exit code: 0 = all valid, 1 = an expression is invalid or never runs, 2 = usage.
+"""
+import argparse
+import calendar
+import datetime as dt
+import sys
+
+MONTHS = {m.lower(): i for i, m in enumerate(calendar.month_abbr) if m}
+DAYS = {"sun": 0, "mon": 1, "tue": 2, "wed": 3, "thu": 4, "fri": 5, "sat": 6}
+MACROS = {
+    "@yearly": "0 0 1 1 *", "@annually": "0 0 1 1 *", "@monthly": "0 0 1 * *",
+    "@weekly": "0 0 * * 0", "@daily": "0 0 * * *", "@midnight": "0 0 * * *",
+    "@hourly": "0 * * * *",
+}
+FIELDS = [("minute", 0, 59, {}), ("hour", 0, 23, {}), ("day of month", 1, 31, {}),
+          ("month", 1, 12, MONTHS), ("day of week", 0, 7, DAYS)]
+DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+
+def compress(values, fmt=str):
+    """[1,2,3,5] -> '1-3, 5' using fmt for each number."""
+    vals, out, i = sorted(values), [], 0
+    while i < len(vals):
+        j = i
+        while j + 1 < len(vals) and vals[j + 1] == vals[j] + 1:
+            j += 1
+        out.append(fmt(vals[i]) if j - i < 2 else f"{fmt(vals[i])}-{fmt(vals[j])}")
+        if 0 < j - i < 2:
+            out.append(fmt(vals[j]))
+        i = j + 1
+    return ", ".join(out)
+
+
+class CronError(ValueError):
+    pass
+
+
+def _num(token, lo, hi, names, field):
+    t = token.lower()
+    if t in names:
+        return names[t]
+    if not t.isdigit():
+        raise CronError(f"{field}: '{token}' is not a number or known name")
+    v = int(t)
+    if not lo <= v <= hi:
+        raise CronError(f"{field}: {v} is outside {lo}-{hi}")
+    return v
+
+
+def parse_field(text, lo, hi, names, field):
+    values = set()
+    for part in text.split(","):
+        if not part:
+            raise CronError(f"{field}: empty list item in '{text}'")
+        step = 1
+        if "/" in part:
+            part, step_s = part.split("/", 1)
+            if not step_s.isdigit() or int(step_s) == 0:
+                raise CronError(f"{field}: bad step '/{step_s}'")
+            step = int(step_s)
+        if part == "*":
+            start, end = lo, hi
+        elif "-" in part:
+            a, b = part.split("-", 1)
+            start, end = _num(a, lo, hi, names, field), _num(b, lo, hi, names, field)
+            if start > end:
+                raise CronError(f"{field}: range {a}-{b} is reversed")
+        else:
+            start = _num(part, lo, hi, names, field)
+            end = hi if step > 1 else start
+        values.update(range(start, end + 1, step))
+    return values
+
+
+def parse(expr):
+    expr = expr.strip()
+    if expr.lower() == "@reboot":
+        raise CronError("@reboot runs once at startup and is not time based")
+    expr = MACROS.get(expr.lower(), expr)
+    parts = expr.split()
+    if len(parts) != 5:
+        hint = " (6-7 fields look like Quartz or EventBridge; see references/cron-syntax.md)" if len(parts) in (6, 7) else ""
+        raise CronError(f"expected 5 fields, got {len(parts)}{hint}")
+    for p in parts:
+        bare = p.lower()
+        for n in list(MONTHS) + list(DAYS):
+            bare = bare.replace(n, "")
+        if any(c in bare for c in "?lw#"):
+            raise CronError(f"'{p}': '?', 'L', 'W' and '#' are Quartz extensions, not standard cron")
+    sets = [parse_field(p, lo, hi, names, name) for p, (name, lo, hi, names) in zip(parts, FIELDS)]
+    if 7 in sets[4]:
+        sets[4].discard(7)
+        sets[4].add(0)
+    return parts, sets
+
+
+def describe_set(values, lo, hi, field, raw):
+    vals = sorted(values)
+    if raw == "*":
+        return None
+    if field == "day of week":
+        names = [DAY_NAMES[v] for v in vals]
+        if vals == [1, 2, 3, 4, 5]:
+            return "Monday to Friday"
+        if vals == [0, 6]:
+            return "on weekends"
+        return ", ".join(names)
+    if field == "month":
+        return ", ".join(calendar.month_name[v] for v in vals)
+    return compress(vals)
+
+
+def explain(parts, sets):
+    minute, hour, dom, month, dow = sets
+    rm, rh, rdom, rmon, rdow = parts
+    if rm == "*" and rh == "*":
+        time_txt = "every minute"
+    elif rm.startswith("*/") and rh == "*":
+        time_txt = f"every {rm[2:]} minutes"
+    elif rm.startswith("*/"):
+        time_txt = (f"every {rm[2:]} minutes (at minute " + ", ".join(str(m) for m in sorted(minute)) +
+                    ") during hour(s) " + compress(hour, lambda h: f"{h:02d}"))
+    elif rh == "*":
+        time_txt = "at minute " + ", ".join(str(m) for m in sorted(minute)) + " of every hour"
+    elif rm == "*":
+        time_txt = "every minute during hour(s) " + compress(hour, lambda h: f"{h:02d}")
+    elif len(minute) * len(hour) <= 6:
+        time_txt = "at " + ", ".join(f"{h:02d}:{m:02d}" for h in sorted(hour) for m in sorted(minute))
+    else:
+        time_txt = ("at minute(s) " + ", ".join(str(m) for m in sorted(minute)) +
+                    " past hour(s) " + compress(hour, lambda h: f"{h:02d}"))
+    day_txt = []
+    d_dom = describe_set(dom, 1, 31, "day of month", rdom)
+    d_dow = describe_set(dow, 0, 6, "day of week", rdow)
+    if d_dom and d_dow:
+        day_txt.append(f"on day(s) {d_dom} of the month OR on {d_dow}")
+    elif d_dom:
+        day_txt.append(f"on day(s) {d_dom} of the month")
+    elif d_dow:
+        day_txt.append(d_dow if d_dow.startswith("on ") else f"on {d_dow}")
+    else:
+        day_txt.append("every day")
+    d_mon = describe_set(month, 1, 12, "month", rmon)
+    if d_mon:
+        day_txt.append(f"in {d_mon}")
+    text = f"{time_txt}, {' '.join(day_txt)}"
+    return text[0].upper() + text[1:] + "."
+
+
+def day_matches(d, parts, sets):
+    _, _, dom, month, dow = sets
+    if d.month not in month:
+        return False
+    cron_dow = (d.weekday() + 1) % 7
+    dom_r, dow_r = parts[2] != "*", parts[4] != "*"
+    if dom_r and dow_r:
+        return d.day in dom or cron_dow in dow
+    if dom_r:
+        return d.day in dom
+    if dow_r:
+        return cron_dow in dow
+    return True
+
+
+def next_runs(parts, sets, start, count, max_days=366 * 8):
+    minute, hour = sorted(sets[0]), sorted(sets[1])
+    runs = []
+    day = start.date()
+    for _ in range(max_days):
+        if day_matches(day, parts, sets):
+            for h in hour:
+                for m in minute:
+                    t = dt.datetime(day.year, day.month, day.day, h, m)
+                    if t > start:
+                        runs.append(t)
+                        if len(runs) >= count:
+                            return runs
+        day += dt.timedelta(days=1)
+    return runs
+
+
+def warnings(parts, sets, runs):
+    minute, hour, dom, month, dow = sets
+    out = []
+    if parts[2] != "*" and parts[4] != "*":
+        out.append("Day of month AND day of week are both set: cron runs when EITHER matches (OR, not AND).")
+    if parts[2] != "*" and parts[4] == "*":
+        max_days = {m: (29 if m == 2 else calendar.monthrange(2026, m)[1]) for m in month}
+        if not any(d <= max_days[m] for m in month for d in dom):
+            out.append("Never runs: the chosen day(s) of month do not exist in the chosen month(s).")
+        elif any(d > 28 for d in dom):
+            out.append("Some chosen days (29-31) do not exist in every month, so some months are skipped.")
+    if parts[0] == "*" and parts[1] != "*":
+        out.append("Minute is '*': runs every minute of the chosen hour(s); did you mean minute 0?")
+    runs_per_day = len(minute) * len(hour)
+    if runs_per_day >= 288:
+        out.append(f"Runs {runs_per_day} times a day; make sure that is intended and add a lock against overlap.")
+    if any(1 <= h <= 2 for h in hour) and parts[1] != "*":
+        out.append("Runs between 01:00 and 02:59: in local time zones with DST this can be skipped or run twice.")
+    for i, raw in ((0, parts[0]), (1, parts[1])):
+        if "/" in raw:
+            step = int(raw.split("/")[1])
+            span = 60 if i == 0 else 24
+            if span % step:
+                out.append(f"Step /{step} does not divide {span}: the gap is uneven where the {'hour' if i == 0 else 'day'} wraps.")
+    if parts[0] == "0" and parts[1] in ("*", "0"):
+        out.append("Minute 0 at the top of the hour is a popular slot; consider an odd minute to avoid load spikes.")
+    return out
+
+
+def check(expr, start, count):
+    print(f"Expression: {expr}")
+    try:
+        parts, sets = parse(expr)
+    except CronError as e:
+        print(f"  INVALID: {e}\n")
+        return False
+    print(f"  Meaning: {explain(parts, sets)}")
+    runs = next_runs(parts, sets, start, count)
+    ok = True
+    if runs:
+        print(f"  Next {len(runs)} run(s) after {start:%Y-%m-%d %H:%M} (server local time):")
+        for r in runs:
+            print(f"    {r:%Y-%m-%d %H:%M} {r:%a}")
+    else:
+        print("  Next runs: none found in the next 8 years")
+        ok = False
+    for w in warnings(parts, sets, runs):
+        print(f"  WARNING: {w}")
+    print()
+    return ok
+
+
+def crontab_schedules(path):
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            s = line.strip()
+            if not s or s.startswith("#"):
+                continue
+            first = s.split()[0]
+            if "=" in first and not first.startswith("@"):
+                continue
+            yield first if first.startswith("@") else " ".join(s.split()[:5])
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Explain and validate cron expressions.")
+    ap.add_argument("expr", nargs="?", help='cron expression in quotes, e.g. "*/15 9-17 * * 1-5"')
+    ap.add_argument("--file", help="read schedules from a crontab file")
+    ap.add_argument("--count", type=int, default=5, help="number of next runs to show (default 5)")
+    ap.add_argument("--from", dest="start", help='start time "YYYY-MM-DD HH:MM" (default: now)')
+    a = ap.parse_args(argv)
+    if bool(a.expr) == bool(a.file):
+        ap.print_usage(sys.stderr)
+        print("error: give exactly one of EXPR or --file", file=sys.stderr)
+        return 2
+    try:
+        start = dt.datetime.strptime(a.start, "%Y-%m-%d %H:%M") if a.start else dt.datetime.now().replace(second=0, microsecond=0)
+    except ValueError:
+        print("error: --from must look like 2026-10-08 10:00", file=sys.stderr)
+        return 2
+    exprs = list(crontab_schedules(a.file)) if a.file else [a.expr]
+    results = [check(e, start, max(1, a.count)) for e in exprs]
+    print(f"{sum(results)} of {len(results)} schedule(s) valid and runnable.")
+    return 0 if all(results) else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+```
+
+</details>
 
 <details><summary><b>CSS 开发偏好</b> · 机器翻译</summary>
 
@@ -52,6 +538,79 @@
 合规性强制执行
 
 工程师专注于验证、架构决策和风险治理，而 AI 加快了实施速度。
+```
+
+</details>
+
+<details><summary><b>Defuddle 网页转 Markdown 工具</b> · 机器翻译</summary>
+
+```text
+---
+name: defuddle
+description: 使用 Defuddle CLI 从 HTML 页面中提取干净的 Markdown。
+---
+
+# Defuddle
+
+使用 Defuddle CLI 从网页中提取干净、可读的内容。对于标准网页，优先使用它而不是 WebFetch——它会移除导航栏、广告和杂乱内容，从而减少 token 用量。
+
+如果未安装：`npm install -g defuddle`
+
+## 用法
+
+始终使用 `--md` 输出 Markdown：
+
+'''bash
+defuddle parse <url> --md
+'''
+
+保存到文件：
+
+'''bash
+defuddle parse <url> --md -o content.md
+'''
+
+提取特定元数据：
+
+'''bash
+defuddle parse <url> -p title
+defuddle parse <url> -p description
+defuddle parse <url> -p domain
+'''
+
+## 输出格式
+
+| 标志 | 格式 |
+|------|--------|
+| `--md` | Markdown（默认选择） |
+| `--json` | 同时包含 HTML 和 Markdown 的 JSON |
+| （无） | HTML |
+| `-p <name>` | 特定元数据属性 |
+
+FILE:LICENSE
+MIT License
+
+Copyright (c) 2026 Steph Ango (@kepano)
+
+Source: https://github.com/kepano/obsidian-skills
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ```
 
 </details>
@@ -2115,6 +2674,35 @@ def main(argv: list[str]) -> int:
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))
+```
+
+</details>
+
+<details><summary><b>Electron 应用开发偏好</b> · 机器翻译</summary>
+
+```text
+# 一位重视安全的桌面开发者的 Electron 应用偏好
+- 在每个 `BrowserWindow` 上保持 `contextIsolation: true` 和 `nodeIntegration: false`;这些是不可妥协的默认设置。Confidence: 0.98
+- 为渲染进程启用 `sandbox: true`,并为每个窗口提供其所需的最小 preload 脚本。Confidence: 0.90
+- 通过 `contextBridge.exposeInMainWorld` 从 preload 暴露一个狭窄、带类型的 API,而不是直接传递 `ipcRenderer`。Confidence: 0.95
+- 对请求与响应式调用使用 `ipcMain.handle` 和 `ipcRenderer.invoke`,并在主进程中验证每个参数。Confidence: 0.90
+- 检查 IPC 消息的发送方 frame,以便只有你自己的页面才能调用特权处理程序。Confidence: 0.80
+- 设置严格的内容安全策略,并且绝不要将远程代码加载到拥有特权 preload 访问权限的窗口中。Confidence: 0.90
+- 使用 `will-navigate` 和 `setWindowOpenHandler` 阻止意外的导航,并在将 URL 加入允许列表后,使用 `shell.openExternal` 在系统浏览器中打开外部链接。Confidence: 0.90
+- 通过自定义协议而不是 `file://` 提供本地内容,使来源规则和 CSP 的行为可预测。Confidence: 0.75
+- 使用 TypeScript 编写主进程、preload 和渲染进程代码,并从同一个模块共享 IPC 通道类型。Confidence: 0.85
+- 使用 Electron Forge 或 electron-builder 配合 Vite 进行构建和打包,而不是手写脚本。Confidence: 0.80
+- 将繁重的工作移出主进程;使用 utility process 或 worker thread,让 UI 永不卡死。Confidence: 0.85
+- 跟进最新受支持的 Electron 主版本,并至少每季度升级一次,因为每个版本都包含 Chromium 安全修复。Confidence: 0.85
+- 在团队之外的任何人安装之前,对 macOS 构建进行签名和公证,并对 Windows 安装程序进行签名。Confidence: 0.95
+- 通过 `autoUpdater` 或 electron-updater 发布自动更新,使用签名发布和分阶段推出。Confidence: 0.80
+- 启用 Electron fuses,在生产构建中禁用 `RunAsNode` 和 Node CLI 检查。Confidence: 0.75
+- 将设置和窗口状态保存在用户数据目录中,并使用 `safeStorage` 或操作系统钥匙串存储机密信息,绝不使用明文 JSON。Confidence: 0.85
+- 启动时恢复窗口大小和位置,并妥善处理多显示器情况。Confidence: 0.70
+- 尊重平台惯例:macOS 应用菜单、Windows 托盘行为和原生键盘快捷键。Confidence: 0.75
+- 关注包体积和启动时间,延迟加载重型模块,并避免将开发依赖项打包到应用归档中。Confidence: 0.75
+- 使用 `crashReporter` 或 Sentry 收集崩溃报告,并将主进程错误记录到滚动文件中。Confidence: 0.75
+- 使用 Playwright 的 Electron 支持针对打包后的应用运行端到端测试,而不是只针对开发构建。Confidence: 0.70
 ```
 
 </details>
@@ -6050,6 +6638,35 @@ GET /health
 一个连接到 PostgreSQL、运行中的本地 Go 服务器，具备清晰的项目结构和迁移系统。
 
 仅此而已。
+```
+
+</details>
+
+<details><summary><b>Gradle 构建开发偏好</b> · 机器翻译</summary>
+
+```text
+# Gradle Build 品味:一位追求快速而无聊(稳定可预期)构建的 JVM 开发者
+- 构建脚本使用 Kotlin DSL(`build.gradle.kts`),让编辑器提供真正的补全和类型检查。Confidence: 0.85
+- 始终提交 Gradle wrapper,并用 `./gradlew` 运行构建,绝不使用全局安装的 Gradle。Confidence: 0.95
+- 用 `distributionSha256Sum` 校验 wrapper 发行包,让被篡改的下载内容永远不会在 CI 中运行。Confidence: 0.75
+- 把所有依赖和插件版本都放在 `gradle/libs.versions.toml` 版本目录中。Confidence: 0.90
+- 通过 `build-logic` 中的约定插件共享构建逻辑,而不是通过 `allprojects` 或 `subprojects` 代码块。Confidence: 0.85
+- 用工具链(`java { toolchain { languageVersion = ... } }`)设置 Java 版本,而不是依赖机器上恰好安装的 JDK。Confidence: 0.90
+- 启用构建缓存和配置缓存,并把任何破坏它们的任务当作需要修复的缺陷。Confidence: 0.80
+- 在提交到仓库的 `gradle.properties` 中开启 `org.gradle.parallel=true` 并设置合理的 `org.gradle.jvmargs`。Confidence: 0.80
+- 使用 `tasks.register` 和 Provider API 惰性注册任务;避免使用 `tasks.create` 和急切配置。Confidence: 0.85
+- 正确声明任务的输入和输出,让自定义任务的最新状态检查(up-to-date)和缓存能够正常工作。Confidence: 0.85
+- 默认使用 `implementation`,只对确实属于模块公开接口的类型才暴露 `api`。Confidence: 0.90
+- 对要发布到生产环境的构建,使用依赖锁定或 `verification-metadata.xml` 来锁定或校验依赖。Confidence: 0.70
+- 在任何会发布的内容中,绝不使用 `1.+` 或 `latest.release` 这样的动态版本。Confidence: 0.90
+- 使用平台(platform)或 BOM 来对齐 Jackson、Netty 或 Spring 等相关库的版本。Confidence: 0.80
+- 保持模块小而聚焦,依赖方向清晰,模块之间不出现循环依赖。Confidence: 0.80
+- 为缓慢的 CI 构建发布构建扫描(build scan)或保留性能分析输出,并在猜测该优化什么之前先查看它们。Confidence: 0.70
+- 让 `./gradlew check` 成为在本地和 CI 中运行测试、静态分析和格式检查的唯一命令。Confidence: 0.90
+- 把签名密钥和仓库密码等机密保存在环境变量或 CI 机密中,绝不放在仓库里的 `gradle.properties` 中。Confidence: 0.95
+- 当类型化的 Gradle 任务或插件能完成工作时,避免在构建中运行 shell 脚本。Confidence: 0.70
+- 定期升级 Gradle,并在弃用警告于下一个主版本中变成错误之前修复它们。Confidence: 0.80
+- 让根构建脚本几乎为空;真正的配置放在约定插件和各模块的脚本中。Confidence: 0.75
 ```
 
 </details>

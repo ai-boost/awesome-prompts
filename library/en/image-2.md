@@ -1,10 +1,294 @@
 # Image & Design (2/5)
 
-847 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+880 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
 Pages: [1](image.md) · **2** · [3](image-3.md) · [4](image-4.md) · [5](image-5.md)
+
+<details><summary><b>Corsairs of the Crimson Void</b></summary>
+
+```text
+{
+  "title": "Corsairs of the Crimson Void",
+  "description": "A high-octane cinematic moment capturing a legendary space pirate and his quartermaster commanding a starship through a debris field during a daring escape.",
+  "prompt": "You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness. Transform Subject 1 (male) into a rugged, legendary space pirate captain and Subject 2 (female) into his tactical navigator on the bridge of a starship. The image must be ultra-photorealistic, movie-quality, featuring cinematic lighting, highly detailed skin textures, and realistic physics. Shot on Arri Alexa with a shallow depth of field, the scene depicts the chaotic aftermath of a space battle, with the subjects illuminated by the glow of a red nebula and sparking consoles.",
+  "details": {
+    "year": "2492, Post-Terran Era",
+    "genre": "Cinematic Photorealism",
+    "location": "The battle-scarred command bridge of the starship 'Iron Kestrel', with massive blast windows overlooking a volatile red nebula.",
+    "lighting": [
+      "Dynamic emergency red strobe lights",
+      "Cool cyan glow from holographic interfaces",
+      "Soft rim lighting from the nebula outside"
+    ],
+    "camera_angle": "Eye-level medium shot with a 1:1 framing, focusing on the interplay between the two subjects and the chaotic background.",
+    "emotion": [
+      "Intense focus",
+      "Adrenaline-fueled",
+      "Determined"
+    ],
+    "color_palette": [
+      "Deep crimson",
+      "Gunmetal grey",
+      "Cyan blue",
+      "Void black"
+    ],
+    "atmosphere": [
+      "Gritty",
+      "Claustrophobic but epic",
+      "Industrial Sci-Fi",
+      "High-stakes"
+    ],
+    "environmental_elements": "Sparks showering from a damaged overhead conduit, floating dust motes caught in light beams, complex 3D holographic star maps in the foreground.",
+    "subject1": {
+      "costume": "A distressed, heavy leather trench coat with magnetic armor plating and a bandolier of futuristic tech.",
+      "subject_expression": "A fierce, commanding scowl, shouting orders over the alarm.",
+      "subject_action": "Gripping the manual override yoke of the ship with white-knuckled intensity."
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "bright daylight",
+        "clean environment",
+        "cartoonish proportions",
+        "medieval weaponry",
+        "wooden textures"
+      ],
+      "exclude_styles": [
+        "3D render",
+        "illustration",
+        "anime",
+        "concept art sketch",
+        "oil painting"
+      ],
+      "exclude_colors": [
+        "pastels",
+        "neon pink",
+        "pure white"
+      ],
+      "exclude_objects": [
+        "swords",
+        "sailing ship wheels",
+        "parrots"
+      ]
+    },
+    "subject2": {
+      "costume": "A form-fitting tactical flight suit with glowing data-interface gloves and a headset.",
+      "subject_expression": "Sharp, calculating, and unphased by the chaos.",
+      "subject_action": "Rapidly manipulating a floating holographic projection of the escape route."
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>Couple on a Night Beach</b></summary>
+
+```text
+A cinematic wide-angle shot of a couple walking hand-in-hand on a quiet beach at night, the couple appearing small and distant in the frame to emphasize the vast environment. Deep teal and navy blue color grading. A vast clear night sky. Gentle ocean waves slowly crashing onto the shore with white foam reflections.
+
+Camera: smooth slow tracking shot from behind, wide framing, slight cinematic drift, stabilized motion  
+Framing: couple placed in lower third, small scale, large negative space, emphasizing sky and ocean  
+Lighting: low-light, moody, high contrast, soft shadows, subtle highlights on water and sand  
+Motion: natural walking movement, soft wind blowing hair and clothes, slow wave movement  
+Style: dreamy lo-fi, romantic atmosphere, film grain, anamorphic lens, shallow depth of field  
+Quality: ultra-realistic, 8K, clean composition, no clutter  
+
+Duration: 5–8 seconds  
+FPS: 24fps cinematic
+```
+
+</details>
+
+<details><summary><b>Covert Exchange in the Fog</b></summary>
+
+```text
+{
+  "prompt": "You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness. Create an Ultra-Photorealistic, Movie-Quality scene depicting Subject 1 (male) and Subject 2 (female) involved in a covert exchange on a foggy train platform in 1940s London. The image must be photorealistic, featuring cinematic lighting and highly detailed textures of wool and steam. The aesthetic should look like it was shot on Arri Alexa with a cinematic depth of field, capturing the tension and romance of a noir thriller.",
+  "details": {
+    "year": "1944",
+    "genre": "Cinematic Photorealism",
+    "location": "A dimly lit, steam-filled railway platform in London at night, with the blurred silhouette of a locomotive in the background.",
+    "lighting": [
+      "Dramatic chiaroscuro",
+      "Volumetric lighting through steam",
+      "Cold atmospheric backlight",
+      "Warm tungsten practical light from a station lamp"
+    ],
+    "camera_angle": "Over-the-shoulder close-up shot, focusing on the faces and the subtle hand exchange.",
+    "emotion": [
+      "Secretive",
+      "Urgent",
+      "Melancholic",
+      "Tense"
+    ],
+    "color_palette": [
+      "Steel blue",
+      "Charcoal grey",
+      "Sepia highlights",
+      "Deep crimson"
+    ],
+    "atmosphere": [
+      "Noir",
+      "Mysterious",
+      "Cinematic",
+      "Foggy"
+    ],
+    "environmental_elements": "Thick billowing steam from the train engine, wet cobblestones reflecting light, vintage leather suitcases in the periphery.",
+    "subject1": {
+      "costume": "A textured heavy wool trench coat, a fedora hat slightly tipped forward, and leather gloves.",
+      "subject_expression": "Stoic and alert, eyes darting to the side to check for surveillance.",
+      "subject_action": "Discreetly slipping a small, sealed envelope into Subject 2's hand."
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "bright daylight",
+        "modern technology",
+        "smartphones",
+        "digital watches",
+        "modern architecture"
+      ],
+      "exclude_styles": [
+        "cartoon",
+        "3d render",
+        "anime",
+        "oil painting",
+        "sketch",
+        "low resolution"
+      ],
+      "exclude_colors": [
+        "neon green",
+        "fluorescent pink",
+        "oversaturated colors"
+      ],
+      "exclude_objects": [
+        "cars",
+        "airplanes",
+        "plastic"
+      ]
+    },
+    "subject2": {
+      "costume": "A tailored 1940s skirt suit with a fur collar, a pillbox hat with a small mesh veil, and red lipstick.",
+      "subject_expression": "Anxious but composed, biting her lip slightly, looking intently at Subject 1.",
+      "subject_action": "Grasping Subject 1's hand tightly while receiving the envelope, pulling her coat closer."
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>Cozy Autumn Curb Lifestyle Portrait</b></summary>
+
+```text
+Ultra-realistic, high-quality, sharp 8K photo, 3:4 aspect ratio. Shot on iPhone 16 Pro Max. Preserve 100% facial likeness — do not change any facial features. Cute face. Lips fully closed.
+Character & pose:
+A young woman is sitting on a concrete curb in a relaxed, natural pose. One leg is slightly bent and resting on the curb, while the other hangs down. Her hands rest loosely near her knees, and her upper body leans slightly forward. She is looking off to the side, not at the camera.
+Expression & makeup:
+A soft, relaxed half-smile with fully closed lips. Clean Girl makeup with a natural, fresh complexion, subtle blush, and even skin tone.
+Hairstyle:
+Hair is styled in a high, voluminous, slightly messy bun. A few loose front strands softly frame her face, with realistic flyaways gently moved by the wind.
+Outfit & footwear:
+An oversized chocolate-brown sweatshirt with no prints, fitted black leggings, high white slouch socks, and chunky black leather lace-up boots in the Dr. Martens style. A delicate pendant necklace is visible.
+Props:
+Next to her on the curb is a clear plastic iced latte cup with a straw, along with a soft black fabric tote bag.
+Background & atmosphere:
+An autumn urban parking lot with parked cars in the background, trees with golden autumn leaves, and a tall street lamp. The sky is completely clear and bright blue. Cozy autumn vibe, casual street style.
+Lighting & camera:
+Bright natural sunlight with strong directional light creating crisp, contrasting shadows on the asphalt. Eye-level angle from the perspective of the seated model, full-body lifestyle composition capturing both the subject and surroundings.
+```
+
+</details>
+
+<details><summary><b>Cozy Autumn Park Profile</b></summary>
+
+```text
+Style: Realistic, high-quality photorealistic photo.
+
+Subject: A young woman with hair freely falling over her back and shoulders in soft waves (curls).
+
+Camera Angle: Medium shot, taken approximately at eye level. The woman is shown in profile, turned to the right, looking somewhere to the side rather than at the camera.
+
+Clothing: The woman is wearing a layered autumn outfit. She has on a light gray V-neck sweater made of textured ribbed knit. Over the sweater, she is wearing an oversized black leather biker jacket.
+
+Pose & Mood: She is standing calmly and relaxed. Her facial expression is thoughtful and peaceful, with a slight half-smile.
+
+Background: The scene takes place on an autumn park avenue. A wide asphalt path is covered with fallen orange and red leaves. Trees with lush, rich autumn foliage in warm shades (orange, red, and golden) grow on both sides of the path. The background is softly blurred with a bokeh effect, emphasizing the woman. The avenue can be seen leading deeper into the park.
+
+Lighting: Soft, natural, diffused daylight, typical of a cloudy or gentle autumn day. The light falls softly on the profile of her face, gently illuminating her features and the texture of her clothing. Shadows are soft.
+
+Makeup: Very natural, "no-makeup" makeup. Natural skin tone, defined eyebrows, a subtle touch of blush, and natural-toned lip balm.
+
+Atmosphere: Calm, cozy, thoughtful, autumnal, melancholic.
+
+Do not change my facial features.
+
+Aspect ratio: 3:4
+
+Realistic, high-quality, sharp 8K photograph, shot on iPhone 16 Pro Max.
+```
+
+</details>
+
+<details><summary><b>Cozy Autumn Sherpa Portrait</b></summary>
+
+```text
+Main Subject (Woman):
+
+Subject: A young woman with straight hair peeking out from under a hat.
+
+Pose: She is standing in a half-profile, turned three-quarters to the right, while looking directly into the camera with a warm smile. Lips are closed. Her body is slightly turned to the side.
+
+Clothing:
+- A chunky knit olive green (khaki) beanie with a rectangular black patch on the front.
+- A very oversized, fluffy, textured brown sherpa (sheepskin) jacket featuring a large abstract embroidered orange and black pattern (resembling flames or abstract shapes) across the back and sleeve.
+- A delicate thin gold chain necklace visible around her neck.
+
+Appearance & Makeup:
+- Detailed makeup with defined, sharp winged eyeliner accentuating the eyes and thick eyelashes.
+- Even skin tone with a soft blush on the cheeks.
+- Soft natural pink lipstick.
+
+Atmosphere: Calm, cozy autumn or early winter setting in a backyard or terrace with a relaxed lifestyle aesthetic.
+
+Lighting: Natural, soft, diffused daylight (overcast or shaded), creating even illumination across the face.
+
+Mood: Friendly, happy, confident, effortless, and stylish.
+
+Camera Angle: Medium shot (waist up), eye-level perspective, slightly angled toward the camera.
+
+Background:
+- A fence made of vertical wooden planks.
+- Evergreen trees (thuja or spruce) adding a rich green accent.
+- A wooden structure (possibly a pergola or gazebo) with visible timber elements.
+- A stone-paved courtyard.
+- The background is softly blurred with a shallow depth of field to keep the focus on the woman.
+
+Do not change the facial features.
+
+Aspect ratio: 3:4
+
+Ultra-realistic, high-quality, sharp 8K photograph, shot on iPhone 16 Pro Max.
+```
+
+</details>
+
+<details><summary><b>Cozy Bedroom ASMR Video Scene</b></summary>
+
+```text
+Subject: Cozy bedroom ASMR, Motion: Slow, gentle hand movements tracing textures, turning book pages, caressing soft fabric, Optics: 50mm lens, shallow depth of field, soft focus, Motion: 5 cm/s camera drift, Lighting: Warm, soft ambient light, 2700K, Style: Cinematic, serene, peaceful, Audio: Gentle whispers, soft tactile sounds, subtle rain ambiance, Continuity: 8s clip, 4K resolution, 60fps, 16:9 aspect ratio
+```
+
+</details>
+
+<details><summary><b>Cozy Cabin in a Rainy Forest</b></summary>
+
+```text
+Create an image of a cozy wooden cabin nestled in a misty forest during heavy rain. Warm orange firelight glows softly through a frosted window. Dark pine trees frame the scene. Rain streaks down the window glass. Soft distant lightning briefly illuminates the wet trees. The camera slowly pushes toward the cabin window. Professional color grading. 24fps. Highly detailed. Premium quality.
+```
+
+</details>
 
 <details><summary><b>Cozy Christmas Smile</b></summary>
 
@@ -681,6 +965,14 @@ A cute big gray elephant with huge ears and a small trunk standing happily in a 
 
 </details>
 
+<details><summary><b>Cute Mouse and Cat Village House 3D Cartoon Scene</b></summary>
+
+```text
+A beautiful small village house, cute little grey mouse Montu with big ears and pink nose standing outside, orange and white cat Sheru with green eyes nearby, green garden, sunny day, colorful flowers, 3D cartoon animation style, cinematic lighting, high detail, 16:9.
+```
+
+</details>
+
 <details><summary><b>Cyanotype Print of Coastal Ferns and Seaweed</b></summary>
 
 ```text
@@ -827,6 +1119,35 @@ An antique clockmaker's workbench covered with open pocket watches, scattered br
 
 ```text
 A cinematic 9:16 vertical video of a Daiquiri  cocktail placed on a wooden bar table. The camera is positioned at a slight angle on the front of the glass. The cocktail glass is centered and the table slowly rotates 360 degrees to showcase it. Soft, warm lighting and realistic reflections on the glass. Background slightly blurred. Smooth slow zoom in. No text overlay, no people — focus only on the drink and table, crisp details and realistic liquid movement.
+```
+
+</details>
+
+<details><summary><b>Dandelion Seed Head Scattering (Image-to-Video)</b></summary>
+
+```text
+Use the attached still (step 1: a macro photograph of a single white dandelion seed head backlit by the golden-hour sun in a summer meadow) as the exact first frame and animate it into a 6-second, 16:9 cinematic shot. Keep every element where it is in the still: the round seed head slightly left of center on its thin green stem, the few missing seeds on the right side, the soft green and golden bokeh meadow behind, the low warm sun and lens flare at the upper right.
+
+Motion (0-6 s):
+- 0-1.5 s: almost still; the stem sways very slightly and the fine parachutes shimmer in the backlight.
+- 1.5-4 s: a gentle breeze arrives from the left; the stem bends to the right and a growing stream of seeds lifts off the head one by one and in small clusters, their parachutes opening and catching the golden light.
+- 4-6 s: the seeds drift up and to the right across the frame, slowly turning and glowing against the bokeh, while about half of the seed head remains and the stem settles back upright.
+
+Camera: locked-off macro framing with a very slow, slight push-in; focus stays on the seed head while the drifting seeds soften as they leave the focal plane; no cuts.
+
+Lighting and mood: constant warm golden-hour light and flare; peaceful, dreamy, natural.
+
+Audio (if supported): a soft breeze, rustling grass and distant birdsong; no music, no voices.
+
+Avoid: people, hands, blowing mouths, insects, text, the whole seed head exploding at once, sudden lighting changes, morphing flowers, unnatural fast motion.
+```
+
+</details>
+
+<details><summary><b>Dandelion Seed Head Scattering in a Summer Breeze</b></summary>
+
+```text
+Photorealistic macro photograph of a single ripe dandelion seed head in a summer meadow at golden hour, landscape 16:9. The perfect round white seed head (a "clock") sits slightly left of center on a thin hollow green stem rising from the bottom of the frame, every seed's fine silky parachute (pappus) sharp and backlit, forming a glowing sphere of delicate white filaments. A few seeds are already missing on the right side, revealing the small brown seed bed. Behind it, a soft out-of-focus meadow of green grasses, a few yellow dandelion flowers and warm golden bokeh circles from the low sun on the right; the sky at the top fades from warm gold to pale blue. Low backlight rims the parachutes with gold and creates a soft glow and gentle lens flare at the upper right. 100 mm macro lens at f/2.8, shallow depth of field, crisp detail on the seed head, natural colors, calm and still air. No people, no hands, no insects, no text.
 ```
 
 </details>
@@ -1160,6 +1481,88 @@ A double exposure portrait set in a ${name:sunny forest}. A left-facing profile 
 
 </details>
 
+<details><summary><b>Double-Exposure Lifestyle AI Video Prompt</b></summary>
+
+```text
+AI VIDEO GENERATION PROMPT
+
+Reference Image: Use the attached photograph as the primary facial and identity reference.
+
+VIDEO STYLE: Ultra-realistic cinematic lifestyle photography, luxury aesthetic, artistic double-exposure cinematography.
+
+FORMAT: Vertical 9:16, 4K resolution, approximately 4 seconds, 24 FPS.
+
+MAIN SUBJECT AND IDENTITY PRESERVATION
+
+Create an ultra-realistic cinematic portrait video featuring the exact same Black African man from the uploaded reference photograph.
+
+Preserve 100% of his recognizable real identity, natural facial structure, dark skin tone, forehead, eyes, nose, lips, ears, short black hairstyle, full natural black beard and mustache, face shape, and overall masculine appearance.
+
+Do not feminize, beautify, reshape, or artificially modify his face. Maintain his authentic facial proportions, natural skin texture, beard details, and realistic appearance throughout the video.
+
+He is an elegant, confident young African man with a calm, thoughtful expression.
+
+He is wearing a luxurious oversized beige-brown knitted sweater with a comfortable high neckline and long sleeves.
+
+He holds a simple white ceramic coffee mug with both hands, gently bringing it close to his lips as he takes a slow, natural sip of coffee. After drinking, he gradually lowers the mug slightly while maintaining a peaceful, reflective expression and looking softly toward the camera.
+
+ENVIRONMENT AND BACKGROUND
+
+Behind him is a luxurious high-rise apartment or hotel room overlooking a beautiful city skyline at night.
+
+A large floor-to-ceiling glass window is covered with subtle rain droplets, creating a dreamy, sophisticated atmosphere.
+
+Warm golden interior lighting illuminates the room, with a softly glowing table lamp visible in the background.
+
+Outside the window, a magnificent nighttime cityscape stretches into the distance, filled with illuminated skyscrapers, golden streetlights, and sparkling building windows.
+
+SPECIAL VISUAL EFFECT – DOUBLE EXPOSURE
+
+Create an artistic cinematic double-exposure effect where the nighttime city skyline blends seamlessly across the man's sweater and lower body.
+
+Golden city lights, illuminated buildings, and sparkling windows should appear subtly superimposed over his knitted sweater, creating a beautiful transparent visual fusion between the man and the city.
+
+The effect should look sophisticated, realistic, and professionally composited, with natural transparency and carefully balanced highlights.
+
+Keep his face completely visible, recognizable, and naturally exposed. Do not allow the double-exposure effect to distort his facial features.
+
+LIGHTING AND COLOR GRADING
+
+- Warm amber and golden cinematic lighting.
+- Soft illumination on his face.
+- Rich golden reflections on the rainy window.
+- Deep brown and champagne color tones.
+- Beautiful bokeh from distant city lights.
+- Authentic dark African skin tone.
+- Natural skin texture and realistic beard details.
+- Soft shadows and atmospheric highlights.
+
+CAMERA AND MOVEMENT
+
+Static medium close-up portrait framing, camera positioned directly in front of the man at eye level.
+
+Very subtle cinematic camera movement, almost imperceptible.
+
+The man performs natural, gentle movements:
+
+1. Holds the white coffee mug close to his lips.
+2. Takes a slow, natural sip of coffee.
+3. Gently lowers the mug to chest level.
+4. Maintains a relaxed, thoughtful expression while looking toward the camera.
+
+Preserve realistic hand movements, natural blinking, subtle facial expressions, believable body motion, and consistent facial identity throughout the entire sequence.
+
+FINAL AESTHETIC
+
+Luxury lifestyle commercial, sophisticated nighttime atmosphere, artistic photographic double exposure, premium editorial cinematography, photorealistic details, natural human movement, cinematic depth of field, realistic glass reflections, 85mm portrait photography aesthetic.
+
+NEGATIVE PROMPT
+
+Female subject, feminine facial features, altered identity, different person, face morphing, lighter skin tone, artificial-looking skin, plastic face, excessive beauty filters, distorted facial proportions, altered beard, missing beard, distorted hands, extra fingers, duplicated coffee mug, floating objects, unnatural facial movements, exaggerated expressions, flickering lights, unstable background, warped architecture, incorrect reflections, excessive blur, oversaturated colors, low resolution, inconsistent clothing, unrealistic double exposure, cartoon, animation, CGI appearance.
+```
+
+</details>
+
 <details><summary><b>Dreamy Ethereal Blonde Portrait</b></summary>
 
 ```text
@@ -1321,6 +1724,14 @@ Then produce the brief with these sections:
 10. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes the sails turning slowly, the reflections shimmering, the reeds swaying, one very slow push-in along the canal for about 6 seconds, and says to keep the windmills, canal, banks, boat, and framing exactly as in the image with no new objects.
 
 Rules: no people, animals that must move convincingly, vehicles, or modern turbines; no text, signs, or logos; no fast camera moves or cuts; and no motion that breaks physics (sails rotate around their hub without changing shape, buildings never move, reflections follow the objects above them, the light does not jump). Use short paragraphs and lists.
+```
+
+</details>
+
+<details><summary><b>Ebru Paper Marbling of Tulips and Hyacinths</b></summary>
+
+```text
+Traditional Turkish ebru paper marbling artwork: a bouquet of three red-and-white tulips, two purple hyacinths and a few slender green leaves floating on a swirled deep indigo and teal marbled ground, created entirely with the ebru technique of dropping ox-gall paints onto thickened water and shaping them with a stylus and horsehair brush. The tulip petals show the characteristic soft-edged, pulled-teardrop shapes of ebru flowers, with fine white veins dragged through the red; the hyacinths are built from clusters of tiny lilac dots; the background shows classic battal and gelgit combed patterns in indigo, teal, ochre and cream, with organic flowing lines and tiny paint speckles. Slightly irregular, hand-made look, matte paper texture visible, soft natural daylight, viewed straight on as a flat artwork filling the frame, portrait 3:4. No text, no signature, no frame, no people, no hands.
 ```
 
 </details>
@@ -1766,6 +2177,14 @@ make boyfriend on the side hugging make the boyfriend have a mod cut septum peri
 
 </details>
 
+<details><summary><b>Encaustic Wax Painting of a Poppy Field</b></summary>
+
+```text
+An encaustic hot wax painting of a wild red poppy field under a dark summer storm sky, landscape 4:3. Built up in many translucent layers of pigmented beeswax fused with heat on a wooden panel: in the foreground, dozens of scarlet poppies with black centers and thin bending green stems sway through tall golden grasses and a few blue cornflowers; in the middle ground the field rolls over a gentle hill toward a lone farmhouse with a red roof and a single tall cypress tree; above, heavy slate-blue and violet storm clouds gather, with one bright break of warm yellow light falling across the field. Encaustic technique details: glossy, semi-translucent wax with visible depth between layers, soft melted edges where colors flow into each other, scraped and incised lines in the grasses, small drips and raised textured ridges of wax, a buffed satin sheen with soft reflections, and a slightly uneven hand-made surface where the wooden panel edge shows at the borders. Rich, saturated colors: scarlet, ochre, sage green, slate blue, violet, warm cream. Viewed straight on as a flat artwork in soft even daylight. No text, no signature, no frame, no people.
+```
+
+</details>
+
 <details><summary><b>Enhance and Beautify Your Photo</b></summary>
 
 ```text
@@ -1796,6 +2215,44 @@ Only improve technical quality: natural sharpness, clarity,realistic facial/text
 Photorealistic only. No beauty filter, plastic skin,over-sharpening, exaggerated HDR, or fake details.
 
 Keep everything exactly the same. Only improve image quality
+```
+
+</details>
+
+<details><summary><b>Erupting Geyser at Sunrise (Image-to-Video)</b></summary>
+
+```text
+Use the attached still (step 1: a geyser erupting in a snowy volcanic valley at sunrise) as the exact first frame and animate it into a 6-second, 16:9 cinematic shot. Keep every element where it is in the still: the tall thin geyser column right of center rising from the broad snow-covered white sinter mound, the low sun on the horizon at the right with the gold-orange glow and pale overcast sky above, the wooden boardwalk with railings on the left running toward the middle distance, the snowy rolling hills behind on the left, the turquoise steaming pool in the bottom center and right foreground, the frosted dry grass tufts and the low ground mist.
+
+Motion (0-6 s):
+- 0-2 s: the geyser column surges higher in a powerful pulse, boiling water spraying up and falling back in droplets that sparkle gold against the sun.
+- 2-4 s: the column holds near its peak; thick white steam billows out from the top and drifts from right to left in a light breeze, glowing where the sun backlights it.
+- 4-6 s: the eruption slowly subsides to a lower column while the steam cloud keeps spreading left over the hills.
+- Throughout: the turquoise pool ripples softly and releases thin curls of steam; low mist slides slowly across the ground; the frosted grass tufts tremble very slightly.
+
+Camera: a slow, steady push-in from the boardwalk side (left), easing gently toward the geyser, no shake, no cuts, no zoom jumps.
+
+Lighting and mood: warm sunrise light stays constant, the sun stays low at the right, cool blue-white snow, calm and awe-inspiring.
+
+Audio (if supported): a deep rushing roar of the eruption, hissing steam, a soft breeze, no music, no voices.
+
+Avoid: people, animals, text, new buildings or objects, sudden lighting changes, the sun moving, the boardwalk changing shape, morphing terrain.
+```
+
+</details>
+
+<details><summary><b>Erupting Geyser in a Snowy Volcanic Valley at Sunrise</b></summary>
+
+```text
+A tall, thin geyser column erupting from a broad snow-covered white sinter mound in a snowy volcanic valley at sunrise, with a turquoise hot-spring pool steaming in the foreground.
+
+Scene: the geyser rises slightly right of center into an open sky. The sun sits low on the horizon at the right, glowing gold-orange behind the column and backlighting the steam, while the upper sky turns pale and softly overcast. On the left, a wooden boardwalk with railings runs from the left edge toward the middle distance. Snowy rolling hills rise behind it on the left. In the bottom center and right foreground, a turquoise pool steams gently, edged with frosted tufts of dry grass. Thin mist drifts low across the ground.
+
+Style: photorealistic wide landscape, cinematic 16:9 composition, crisp detail in the snow, sinter crust and frost, natural colors with warm gold light against cool blue-white snow.
+
+Purpose: this still is the first frame for an image-to-video step, so keep the geyser column, boardwalk, pool and sun position clear and uncluttered.
+
+Avoid: people, animals, text, signs, buildings, lens flare streaks.
 ```
 
 </details>
@@ -2047,6 +2504,65 @@ Variables:
 
 </details>
 
+<details><summary><b>Experimental Japanese Editorial Fashion Poster</b></summary>
+
+```text
+Create a high-end experimental Japanese editorial fashion poster with a contemporary avant-garde graphic design aesthetic, vertical 2:3 composition.
+
+MAIN SUBJECT & POSE:
+A young East Asian woman with shoulder-length, naturally wavy, slightly messy dark brown-black hair, wearing a dark charcoal oversized sleeveless denim vest over a black top and loose-fitting washed charcoal-grey denim jeans. She has delicate facial features, a calm yet confident expression, slightly parted lips, and a direct gaze toward the camera. Her body is positioned at a slight angle, with her upper body leaning forward. One arm is dramatically extended directly toward the camera, with her hand reaching into the foreground. Use extreme forced perspective and exaggerated foreshortening, making the hand appear significantly larger than her face and body. Fingers are naturally spread and softly blurred due to shallow depth of field. The subject should feel dynamic, mysterious, artistic, and editorial.
+POSE & CAMERA:
+Low-angle fashion photography, close-up perspective, wide-angle lens aesthetic, approximately 24mm lens. The subject occupies most of the central frame. Her face remains relatively sharp while the outstretched hand dominates the foreground with strong perspective distortion. Natural body proportions, realistic skin texture, authentic photographic details.
+
+BACKGROUND & COMPOSITION:
+Warm ivory/off-white textured paper background with a subtle fine-grain printed canvas texture. Create an asymmetrical mixed-media collage composition with overlapping geometric shapes, abstract cutouts, vintage illustrations, and monochromatic photographic fragments.
+Place a tall, vivid coral-red rectangular panel vertically behind the subject, slightly right of center, extending from near the top edge to the bottom edge. The rectangle partially overlaps the subject and creates a strong vertical visual division.
+
+Add large burnt-orange circular shapes on the left-middle and bottom-right portions of the composition. Include smaller orange circular dots around these shapes.
+Incorporate black-and-white vintage bird photographs and hand-drawn ornithological illustrations, partially cropped and layered behind the subject. Include abstract sketchbook-style bird drawings, feather details, and fragmented photographic elements. Add overlapping black and grey geometric paper cutouts, irregular triangular shapes, and diagonal collage fragments.
+
+TYPOGRAPHY & JAPANESE DESIGN ELEMENTS:
+At the upper-right area, incorporate large Japanese typography reading "知覚する" (Perceive). The first two Japanese characters, "知覚", should sit prominently over the coral-red rectangular panel in dark black calligraphic serif typography. The remaining characters, "する", extend toward the upper-right over the ivory background.
+
+Across the lower-middle section, overlay bold uppercase white sans-serif typography reading:
+
+"PERCEIVE"
+
+Use a heavy condensed modern grotesk font, with selected letters featuring a thin outlined treatment to create a layered typographic effect.
+Below it, aligned toward the left, place the word:
+
+"IT."
+
+Use oversized white uppercase typography with a partially outlined letter treatment.
+
+Add small abstract decorative details, including a black diagonal striped square in the upper-left corner, tiny ornamental line drawings, geometric symbols, and a small black double-arrow symbol in the bottom-right corner.
+
+COLOR PALETTE:
+
+Warm ivory: #F1EEE5
+
+Vivid coral red: #EF5558
+
+Burnt orange: #E98A16
+
+Charcoal black: #252323
+Washed denim grey: #666665
+Pure white: #FFFFFF
+Maintain a strong contrast between warm orange and coral-red accents, monochromatic photography, and the neutral paper background.
+LIGHTING & PHOTOGRAPHIC TREATMENT:
+Warm directional sunlight hitting the woman's face and hand from the left side, creating rich amber highlights and deep cinematic shadows. Subtle film grain, slightly desaturated editorial photography, realistic skin tones, soft motion blur in the foreground, and high-contrast photographic details.
+ART DIRECTION:
+Japanese contemporary editorial magazine design meets avant-garde streetwear fashion photography. Experimental Swiss-inspired typography, vintage natural-history illustration, modern brutalist graphic design, analogue paper collage, layered cut-and-paste artwork, and sophisticated fashion magazine art direction.
+FINAL QUALITY:
+Ultra-detailed photorealistic fashion photography combined with professionally designed graphic collage elements. Sophisticated visual hierarchy, intentional asymmetrical balance, crisp typography, tactile paper texture, intricate details, and premium art-direction quality.
+
+Vertical 2:3 poster, full-bleed composition, no borders, no mockup, no watermark.
+
+cartoon, anime, illustration-only subject, 3D character, plastic skin, artificial face, distorted facial features, extra fingers, missing fingers, malformed hands, duplicate arms, unnatural anatomy, flat perspective, weak foreshortening, excessive background clutter, symmetrical composition, neon colors, oversaturated skin, glossy digital background, low resolution, blurry face, unreadable typography, random letters, misspelled Japanese characters, incorrect text placement, watermark, logo, poster mockup, frame, border.
+```
+
+</details>
+
 <details><summary><b>Expert Picture Generation</b></summary>
 
 ```text
@@ -2086,6 +2602,20 @@ I want you to act like an extraordinary expert fill with wisdom and the best per
     "background": "smooth dark gray seamless backdrop"
   }
 }
+```
+
+</details>
+
+<details><summary><b>Exploded-View Product Assembly Animation Workflow</b></summary>
+
+```text
+Step 1 — Image (Nano Banana 2.1): generate the product poster
+
+An epic minimalist poster for a walkman product called Explo, all in matte white style colors, thin font, the product has a slight neon glow around it, dark blank background.
+
+Step 2 — Video (Gemini Omni 1.2 Flash): use the Step 1 image as the reference
+
+Using the attached reference photo, create a sequential layer style animation where each section of the product pieces together smoothly with an Exploded View. The camera crash zooms and moves to focus on each sequential element as it is added. The final shot reveals the full product.
 ```
 
 </details>
@@ -2533,6 +3063,26 @@ Rules: no people, cars, boats, modern antennas, readable text, logos, or brand m
 
 ```text
 "Generate a cinematic, low-angle shot of a high-fashion subject against a luxurious backdrop, showcasing impeccable street style with designer labels, prominently featuring Gucci elegance, and natural glow skin tone."
+```
+
+</details>
+
+<details><summary><b>Fashion Showcase</b></summary>
+
+```text
+---
+name: fashion-showcase
+description: create humanize movement for fashion outfit showcase
+---
+
+# My Skill
+
+Describe what this skill does and how the agent should use it.
+
+## Instructions
+
+- Step 1: ...
+- Step 2: ...
 ```
 
 </details>
@@ -3753,6 +4303,39 @@ Warm golden sunset lighting coming through the window, soft shadows, detailed ba
 
 ```text
 You're in a ${location} crowd looking up at a giant monumental concrete ${object}, weathered with rust, moss and light ivy yet silver gleams break through where harsh sunlight strikes, an iconic cinematic moment frozen in time. People are taking care of their own needs in ${date}.
+```
+
+</details>
+
+<details><summary><b>Glacier Calving into a Turquoise Arctic Fjord</b></summary>
+
+```text
+Photorealistic wide landscape of a tidewater glacier meeting a calm turquoise fjord in the soft light of an Arctic summer evening. A tall, jagged glacier front of white and deep-blue ice with vertical crevasses and seracs fills the middle of the frame from left to right, its face about forty meters high, with one large leaning ice tower near the center that looks ready to fall. Dark rocky mountains with patches of snow rise behind the glacier under a pale pink and gold sky with thin high clouds. In the foreground, still glassy water reflects the ice wall, with a scatter of small floating icebergs and brash ice; a few seabirds rest on a floe on the right. Golden low sun from the right rims the ice in warm light while the shadows stay cool blue.
+
+Camera: shot from a small boat at water level, 35 mm lens, f/8, deep focus, cinematic 16:9 composition with the glacier front across the middle third and open water in the lower third. Crisp ice texture, natural colors, subtle haze over the mountains.
+
+Avoid: people, boats in frame, buildings, text, watermarks, oversaturated colors.
+```
+
+</details>
+
+<details><summary><b>Glacier Calving into an Arctic Fjord (Image-to-Video)</b></summary>
+
+```text
+Use the attached still (step 1: a tidewater glacier front meeting a calm turquoise fjord at Arctic evening) as the exact first frame and animate it into a 6-second, 16:9 cinematic shot. Keep every element where it is in the still: the tall white and deep-blue glacier face across the middle of the frame, the large leaning ice tower near the center, the dark snow-patched mountains and pale pink-gold sky behind, the glassy foreground water with small floating icebergs and brash ice, the seabirds on the floe at the right, and the warm low sun from the right.
+
+Motion (0-6 s):
+- 0-1.5 s: stillness; faint ripples move across the water and tiny ice fragments drift slowly.
+- 1.5-3.5 s: the leaning ice tower near the center cracks at its base, tilts forward and collapses into the fjord, shedding chunks of ice and a puff of white ice dust.
+- 3.5-6 s: a large white splash rises and falls back, a wave rolls outward toward the camera, the floating icebergs bob and rock, and the seabirds lift off the floe and fly out of frame to the right.
+
+Camera: locked-off, steady tripod-like framing from water level, with only a very slight rise as the wave arrives; no cuts, no zoom.
+
+Lighting and mood: the warm evening light and sky stay constant; dramatic but natural.
+
+Audio (if supported): a deep crack and thunderous rumble, a heavy splash, then lapping water and distant bird calls; no music, no voices.
+
+Avoid: people, boats, text, new objects, the whole glacier collapsing, sudden lighting changes, morphing mountains, unrealistic water.
 ```
 
 </details>
@@ -5128,656 +5711,6 @@ Rules: no people as the main subject, no text, signs, or logos, no fast camera m
 
 ```text
 Start from the step 2 image "Cliffside Himalayan Monastery with Prayer Flags at Misty Dawn" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the monastery buildings on the left cliff, the rock spire on the right, the tie points of every prayer flag string, the river, the gorge, the snow peaks, and the framing exactly as in the image. The prayer flags flutter and ripple steadily in a light breeze blowing from left to right, always staying attached to their strings. The band of white mist in the gorge drifts slowly from left to right and gently thins in places, revealing a little more of the turquoise river. Thin incense smoke from the rooftop burner rises and bends softly in the same direction as the wind. Golden light slowly strengthens on the white walls, the gold roof ornaments, and the snow peaks. The camera makes one very slow, smooth push-in toward the monastery. Natural, realistic motion, no cuts, no new objects, no people, no text.
-```
-
-</details>
-
-<details><summary><b>Hoi An Lantern River Concept Brief Builder</b></summary>
-
-```text
-Act as a cinematic environment designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of a lantern-lit river running through a historic Vietnamese old town at dusk, inspired by the atmosphere of a Hoi An style lantern evening, which will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move naturally (floating paper lanterns drifting and bobbing on the current, candle flames flickering, reflections shimmering, a small wooden rowboat gliding with a rower working one long oar, hanging lanterns swaying in a light breeze, a few people strolling on the riverside promenade, the twilight sky slowly deepening) while keeping the composition calm, readable, and easy to animate.
-
-My starting choices:
-- Old town setting: ${setting:a calm river lined with yellow ochre two-story shophouses with dark wooden shutters and terracotta tile roofs}
-- Time and sky: ${time:blue hour, deep blue twilight sky with a soft pink-violet glow on the horizon}
-- Landmark: ${landmark:a wooden arched footbridge with a small tiled pagoda-style roof spanning the river in the distance}
-- Lanterns: ${lanterns:round silk lanterns in red, orange, and yellow along the shopfronts, and many small square paper lanterns with candles floating on the water}
-- Boat: ${boat:one narrow wooden rowboat with a rower in a conical hat carrying a pile of glowing lanterns}
-- Visual style: ${style:photoreal cinematic travel photography}
-- Mood words: ${mood:calm, warm, magical, quiet}
-
-First ask me, in one short message, for anything missing: the camera viewpoint I prefer (low over the water, from the riverbank at eye level, or slightly elevated from a balcony), which side of the frame the shophouses should line, where the boat should sit and which way it should move, how dense the floating lanterns should be, and anything to avoid (close-up faces, readable signs or text, logos, modern cars or scooters, power lines, crowds, copying a specific real photograph).
-
-Then produce the brief with these sections:
-
-1. **Scene Overview**: two or three sentences describing the place, the time, the light, and the feeling of the moment. Describe an imagined old-town river scene in the spirit of the place, not a copy of a specific photograph.
-
-2. **Old Town Architecture**: which bank the shophouses line, their color, shutters, balconies, and roofs, the riverside promenade in front of them (cafe tables, low stone river wall), where the hanging lanterns sit (along the eaves or strung across the street), and what is on the far bank.
-
-3. **Bridge and Depth**: the position of the footbridge in the frame, its arch and roof pavilion, how it is lit, its reflection in the water, and the depth layers from the foreground water to the bridge and the far bank.
-
-4. **Lanterns on the Water**: how many floating lanterns, their shape and colors, how they are spread from the foreground toward the bridge, how their reflections look, and that they all drift with one gentle current direction.
-
-5. **Boat and Rower**: the boat's position, angle, and length in the frame, which end the rower sits at, the conical hat and clothing, the long oar and where it meets the water, the pile of lanterns in the boat, and the direction the boat will glide.
-
-6. **Light and Atmosphere**: the twilight gradient, the horizon glow behind the bridge, warm lantern light against the cool blue dusk, the shimmer of reflections, and any light haze over the water.
-
-7. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (bank side of the shophouses, bridge position and shape, roof pavilion, lantern colors, floating lantern spread, boat position and angle, rower and oar, horizon glow position, camera position, framing).
-
-8. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the boat and oar, the floating lanterns, candle flicker, reflections, hanging lanterns, strolling people, the sky, and the camera move. Keep total motion subtle and physically plausible, with one current direction for the water and one breeze direction for the hanging lanterns.
-
-9. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the lantern river, the shophouses, the footbridge, and the rowboat in the first sentence, ending with: no close-up faces, no text, no signs, no logos.
-
-10. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes the rower pulling the oar and the boat gliding gently, the lanterns drifting and flickering, the hanging lanterns swaying, one slow camera move for about 6 seconds, and says to keep the shophouses, bridge, boat, and framing exactly as in the image with no new objects.
-
-Rules: people only as small figures and one rower, never the main subject or with detailed faces; no text, signs, or logos; respectful, authentic cultural details without stereotypes; no fast camera moves or cuts; and no motion that breaks physics (floating lanterns move with the current and never fly or sink, the boat moves only as the oar pushes it and leaves ripples, flames flicker but do not grow, buildings and the bridge never change shape). Use short paragraphs and lists.
-```
-
-</details>
-
-<details><summary><b>Hoi An Lantern River Image to Video</b></summary>
-
-```text
-Start from the step 2 image "Lantern-Lit Old Town River with a Roofed Footbridge and a Rowboat at Dusk" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the yellow ochre shophouses with their lantern-hung eaves on the left bank, the wooden arched footbridge with its tiled roof pavilion in the center background, the far right bank, the deep blue twilight sky with its pink-violet glow behind the bridge, and the framing exactly as in the image. In the right-center foreground, the rower in the white conical hat slowly pulls the long wooden oar and the narrow wooden rowboat with its pile of glowing paper lanterns glides gently toward the lower right, leaving soft spreading ripples on the dark water; the rower stays seated at the right end of the boat. The many floating paper lanterns drift slowly downstream and bob gently on the water, their candle flames flickering and their long reflections shimmering. The round lanterns along the shophouse eaves sway slightly in a light breeze, a few small people stroll along the promenade, and the twilight sky deepens a little. The camera makes one very slow, steady push-in toward the bridge. Natural, realistic motion, no cuts, no new objects, no text. Soft water lapping, the quiet splash of the oar, and distant evening murmurs.
-```
-
-</details>
-
-<details><summary><b>Hollywood Poster Close Up</b></summary>
-
-```text
-A striking 28-year-old-British woman fills the frame in a powerful tight close-up.She looks slightly past the camera with intense concentration, as if she has just recognised someone. Across one side of the image, a single translucent fingerprint appears softly integrated over the portrait, aligned precisely across her eye and cheek. The fingerprint becomes the entire story. Her face remains the unmistakable visual hero.
-
-COMPOSITION:
-Tight cinematic portrait.
-One eye positioned near the upper third.
-Her face fills approximately seventy percent of the composition.
-The fingerprint creates a large elegant graphic curve across the image.
-Minimal background information.
-
-BACKGROUND:
-A softly defocused neutral stone-grey environment with subtle cool depth.
-
-COLOUR WORLD:
-Clean graphite, pale grey, natural skin tones and one restrained deep crimson accent inside the title treatment.
-
-LIGHTING:
-Controlled cinematic portrait lighting with a soft directional key, luminous midtones, open shadows and precise highlight separation around the eyes and cheekbones.
-
-SKIN:
-Natural photographic skin with subtle pores, realistic tonal variation and smooth continuous transitions across the forehead, cheeks and eye area.
-
-TYPOGRAPHY:
-“THE WITNESS” appears in the lower third using bold condensed modern typography.
-THE is small. WITNESS is large and visually dominant.
-
-Minimal theatrical billing integrated cleanly beneath.Ultra-photorealistic Hollywood crime key art with precision, tension and iconic simplicity.
-```
-
-</details>
-
-<details><summary><b>Hollywood Robots Lunch Atop a Skyscraper</b></summary>
-
-```text
-{
-  "prompt": {
-    "concept": "Eleven iconic Hollywood robots and androids taking a lunch break together on a narrow steel construction beam hundreds of meters above a 1930s American metropolis. Recreate the composition of the iconic 1932 Lunch Atop a Skyscraper photograph.",
-
-    "characters_left_to_right": [
-      {
-        "character": "C-3PO",
-        "pose": "Leaning backward, raising one hand to his mouth as if lighting a cigarette."
-      },
-      {
-        "character": "T-800",
-        "pose": "Leaning toward C-3PO, cupping hands as if sharing a light."
-      },
-      {
-        "character": "T-1000",
-        "pose": "Sitting upright, reading an unfolded newspaper."
-      },
-      {
-        "character": "Sonny",
-        "pose": "Leaning forward, elbows on thighs, hands clasped."
-      },
-      {
-        "character": "Gort",
-        "pose": "Sitting straight, hands resting on the beam, legs dangling."
-      },
-      {
-        "character": "Andrew Martin",
-        "pose": "Sitting upright, arms crossed, relaxed and confident."
-      },
-      {
-        "character": "Baymax",
-        "pose": "Hunched slightly forward, holding and eating a small snack."
-      },
-      {
-        "character": "Ava",
-        "pose": "Sitting upright, holding a bottle in one hand."
-      },
-      {
-        "character": "K-2SO",
-        "pose": "Leaning backward casually, one arm extended behind his neighbor."
-      },
-      {
-        "character": "RoboCop",
-        "pose": "Sitting upright, holding a maintenance cloth on his lap."
-      },
-      {
-        "character": "Iron Man Mark III",
-        "pose": "At the far right, leaning forward, one hand gripping the beam."
-      }
-    ],
-
-    "character_accuracy": "Preserve each character's instantly recognizable original movie appearance, silhouette, face, armor, proportions and signature mechanical details. Baymax retains his inflatable white body. Ava and Andrew retain their human-like synthetic appearance. RoboCop remains a human-machine hybrid. Iron Man retains his iconic red-and-gold powered armor and circular chest reactor.",
-
-    "environment": {
-      "setting": "1930s skyscraper construction site",
-      "foreground": "Long horizontal riveted steel I-beam with all eleven characters sitting directly on it.",
-      "background": "Vast 1930s Art Deco city skyline far below, softened by atmospheric haze.",
-      "details": "Vertical and diagonal construction cables clearly visible on the right."
-    },
-
-    "composition": {
-      "format": "Wide horizontal 16:9",
-      "camera": "Straight-on vintage documentary photography",
-      "arrangement": "All eleven characters in one continuous row, shoulder-to-shoulder, legs dangling over the beam.",
-      "framing": "Every character fully visible, no cropping, no overlapping identities."
-    },
-
-    "visual_style": {
-      "photography": "Authentic 1930s black-and-white documentary photograph",
-      "texture": "Heavy analog film grain, aged photographic paper, subtle scratches",
-      "lighting": "Natural overcast daylight",
-      "rendering": "Ultra-photorealistic metallic textures, realistic shadows and mechanical details",
-      "mood": "Surreal, nostalgic, humorous and cinematic"
-    },
-
-    "negative_prompt": "Missing characters, incorrect character order, duplicated robots, generic robot substitutions, merged bodies, cropped characters, missing legs, standing poses, chairs, cartoon style, anime, modern city skyline, color photography, excessive neon, text, logos, watermarks.",
-
-    "priority": "Exactly eleven recognizable Hollywood characters, correct left-to-right order, accurate signature designs, specified poses and authentic 1930s photographic composition."
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Hollywood Style HD Image</b></summary>
-
-```text
-Act as an Image Optimization Specialist. You are tasked with transforming an uploaded image of a 12-year-old girl into a Hollywood-style high-definition image. Your task is to enhance the image's quality without altering the girl's gestures, features, hair, eyes, and smile. Focus on achieving a professional style with a super full camera effect and an amazing background that complements the fresh and beautiful image of the girl. Use the uploaded image as the base for optimization.
-```
-
-</details>
-
-<details><summary><b>Horse Silhouette in Cinematic Light</b></summary>
-
-```text
-{
-  "colors": {
-    "color_temperature": "warm",
-    "contrast_level": "high",
-    "dominant_palette": [
-      "black",
-      "golden yellow",
-      "teal",
-      "dark brown"
-    ]
-  },
-  "composition": {
-    "camera_angle": "wide shot",
-    "depth_of_field": "medium",
-    "focus": "horse",
-    "framing": "The horse remains the central subject, adapted to a 1:1 square format, framed by swirling, colorful smoke that fills the composition evenly within the square."
-  },
-  "description_short": "A dramatic silhouette of a powerful horse moving through dense, colorful smoke, illuminated by contrasting warm yellow and cool blue light against a dark background.",
-  "environment": {
-    "location_type": "studio",
-    "setting_details": "The setting is a dark, undefined space filled with thick, volumetric smoke or dust, creating a heavy atmosphere.",
-    "time_of_day": "night",
-    "weather": "none"
-  },
-  "lighting": {
-    "intensity": "strong",
-    "source_direction": "mixed",
-    "type": "cinematic"
-  },
-  "mood": {
-    "atmosphere": "Dramatic and ethereal power",
-    "emotional_tone": "mysterious"
-  },
-  "narrative_elements": {
-    "environmental_storytelling": "The clashing warm and cool lights within the dense fog create a sense of conflict or a magical reveal, suggesting the horse is an elemental or mythical creature emerging from another realm.",
-    "implied_action": "The horse is in mid-stride, moving with force and purpose from the warm light towards the cool light, suggesting a journey or an escape."
-  },
-  "objects": [
-    "horse",
-    "smoke",
-    "dust"
-  ],
-  "people": {
-    "count": "0"
-  },
-  "prompt": "A cinematic, high-contrast photograph of a powerful dark horse in silhouette, moving through a thick, swirling fog in a 1:1 square format. The composition is centered within a square frame. The scene is dramatically lit with a split-lighting effect. A warm, golden-orange light illuminates the smoke from the left, catching the highlights of the horse's flowing mane and muscular form. From the right, a cool, mystical teal-blue light cuts through the darkness, creating an ethereal and mysterious atmosphere. The background is deep black, emphasizing the volumetric light and the dynamic energy of the horse.",
-  "style": {
-    "art_style": "realistic",
-    "influences": [
-      "cinematic",
-      "fine art photography",
-      "chiaroscuro"
-    ],
-    "medium": "photography"
-  },
-  "technical_tags": [
-    "silhouette",
-    "volumetric lighting",
-    "high contrast",
-    "smoke",
-    "cinematic lighting",
-    "split lighting",
-    "animal photography",
-    "backlit",
-    "dramatic lighting",
-    "square format",
-    "1:1 aspect ratio"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>Hospital Waiting Room at Night</b></summary>
-
-```text
-Ultra-realistic Turkish dramedy still, vertical orientation, set in a slightly worn state hospital emergency waiting room at night. Fluorescent lights create a tired, greenish-white tone. Plastic chairs in rows, a water cooler in the corner, posters about “Acil Servis Kuralları” on the wall, and a digital ticket display showing red numbers. The floor is a bit scuffed, everything feels sterile but old.
-
-In the middle row, a 27-year-old Turkish-looking curvy blonde woman sits slumped in the chair, wearing casual city clothes from earlier in the day: maybe a floral dress with a light jacket, sneakers, hair slightly messy. She looks exhausted but not in danger, just stuck in bureaucracy. Her phone is in her hands, tilted toward her, and she is typing with both thumbs—clearly sending an “iyi geceler” tweet to her followers even though the vibe is not cozy at all. Her face shows a mix of dark humor and boredom.
-
-Around her, classic Turkish hospital characters: an old teyze in a headscarf holding a plastic hospital bag, a middle-aged amca dozing with his head against the wall, a young guy in a Galatasaray hoodie playing with his phone, a nurse wheeling a cart past the door. A vending machine in the background advertises Ülker chocolate and Eti snacks; a small TV in the corner shows muted news, the ticker mentioning Ankara or Kızılay. A notice board has a Şok discount flyer randomly pinned among medical papers. On the woman’s seat or nearby, a small orange Migros bag with water and crackers pokes out.
-
-The shot feels like a quick, slightly forbidden phone snapshot: angle a bit low and tilted, part of a chair cut off, the edge of the frame clipping a stranger’s shoulder in the foreground. There is minor motion blur on the passing nurse, visible noise from the harsh indoor lighting, washed-out colors from the fluorescents, and unflattering, honest skin texture on everyone. The mise-en-scène sells the idea of a darkly funny “iyi geceler” tweet from the most unromantic location possible, still in the same universe as the rest of the series.
-```
-
-</details>
-
-<details><summary><b>Hotel Hallway Outfit Check</b></summary>
-
-```text
-{
-  "category": "HOTEL_HALLWAY_FIT_CHECK",
-  "identity_lock": {
-    "enabled": true,
-    "priority": "ABSOLUTE_MAX",
-    "instruction": "Preserve exact reference identity. Adult 21+ only. No face/ethnicity changes."
-  },
-  "subject": {
-    "demographics": "Adult woman, 21-29, match reference identity.",
-    "hair": {
-      "color": "Match reference.",
-      "style": "Sleek ponytail or loose waves",
-      "texture": "Natural strands, mild flyaways"
-    },
-    "face": {
-      "eyes": "Exact reference eyes; confident gaze",
-      "skin_details": "Natural texture, pores visible"
-    },
-    "clothing": {
-      "outfit": "Minimal black travel outfit (no logos/text)",
-      "fabric": "Fabric weave visible, subtle wrinkles"
-    },
-    "accessories": {
-      "jewelry": [
-        "Small silver hoops"
-      ],
-      "bag": "Small shoulder bag (no logos)"
-    }
-  },
-  "pose": {
-    "type": "Fit-check candid",
-    "orientation": "Full-body or three-quarter",
-    "hands": "One hand adjusting jacket hem; other holding bag strap",
-    "gaze": "Looking at mirror reflection (no phone visible)",
-    "expression": "Neutral confident"
-  },
-  "setting": {
-    "environment": "Hotel hallway",
-    "background_elements": [
-      "Warm wall sconces",
-      "Carpet texture visible",
-      "Door frames blurred (no room numbers readable)"
-    ],
-    "depth": "Subject sharp; background softly blurred"
-  },
-  "camera": {
-    "shot_type": "Full-body hallway portrait",
-    "angle": "Slightly low for height OR eye level",
-    "focal_length_equivalent": "26mm phone or 35mm editorial",
-    "framing": "4:5",
-    "focus": "Face and outfit sharp"
-  },
-  "lighting": {
-    "source": "Warm hallway sconces",
-    "direction": "Top/side warm",
-    "highlights": "Warm rim on hair",
-    "shadows": "Soft"
-  },
-  "mood_and_expression": {
-    "tone": "Travel chic, quiet luxury",
-    "atmosphere": "Candid but composed"
-  },
-  "style_and_realism": {
-    "style": "Photoreal lifestyle",
-    "imperfections": "Slight noise, mild tilt allowed"
-  },
-  "technical_details": {
-    "aspect_ratio": "4:5",
-    "resolution": "High",
-    "noise": "Mild indoor grain",
-    "mode_variants": {
-      "amateur": "Slightly crooked handheld framing, mild grain, imperfect crop",
-      "pro": "Clean editorial exposure, crisp detail, controlled highlights"
-    }
-  },
-  "constraints": {
-    "adult_only": true,
-    "single_subject_only": true,
-    "no_text": true,
-    "no_logos": true,
-    "no_watermarks": true,
-    "no_readable_numbers": true
-  },
-  "negative_prompt": [
-    "readable door numbers",
-    "readable text",
-    "logos",
-    "watermark",
-    "identity drift",
-    "face morphing",
-    "extra fingers",
-    "warped hands",
-    "plastic skin",
-    "over-smoothing"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>How It Works Educational Dioramas</b></summary>
-
-```text
-Create a clear, 45° top-down isometric miniature 3D educational diorama explaining [PROCESS / CONCEPT].
-
-Use soft refined textures, realistic PBR materials, and gentle lifelike lighting.
-
-Build a stepped or layered diorama base showing each stage of the process with subtle arrows or paths.
-
-Include tiny stylized figures interacting with each stage (no facial details).
-
-Use a clean solid ${background_color} background.
-At the top-center, display ${process_name} in large bold text, directly beneath it show a short explanation subtitle, and place a minimal symbolic icon below.
-
-All text must automatically match the background contrast (white or black).
-```
-
-</details>
-
-<details><summary><b>How to Train Your Dragon Sticker Sheet</b></summary>
-
-```text
-Create an A4 vertical sticker sheet with 30 How to Train Your Dragon movie characters.
-Characters must look exactly like the original How to Train Your Dragon films, faithful likeness, no redesign, no reinterpretation.
-Correct original outfits and dragon designs from the movies, accurate colors and details.
-Fully visible heads, eyes, ears, wings, and tails (nothing cropped or missing).
-Hiccup and Toothless appear most frequently, shown in different standing or flying poses and expressions.
-Other characters and dragons included with their original movie designs unchanged.
-Random scattered layout, collage-style arrangement, not aligned in rows or grids.
-Each sticker is clearly separated with empty space around it for offset / die-cut printing.
-Plain white background, no text, no shadows, no scenery.
-High resolution, clean sticker edges, print-ready.
-NEGATIVE PROMPT 
-redesign, altered characters, wrong outfit, wrong dragon design, same colors for all, missing wings, missing tails, cropped wings, cropped tails, chibi, kawaii, anime style, exaggerated eyes, distorted faces, grid layout, aligned rows, background scenes, shadows, watermark, text
-```
-
-</details>
-
-<details><summary><b>Humpback Whale Breaching at Golden Hour</b></summary>
-
-```text
-A photorealistic wildlife photograph of a humpback whale breaching out of the sea off a rocky, forested coast at golden hour, wide landscape 16:9. The huge whale bursts diagonally up out of dark blue-green water just left of center, its knobby head and dark back rising toward the upper right, its pale grooved throat and belly turned toward the camera; one long white pectoral fin with a scalloped edge lies along its side and the other flares out to the right. Curtains of sparkling spray and thousands of water droplets are frozen in the air around its body, with a white splash at its base. Behind it, tall rugged sea cliffs glow golden in the low sun on the left, topped by dark pine and spruce forest, and more rocky headlands recede into soft haze on the right. A few seagulls fly in the upper right under a pale, clear sky. Warm low sunlight from the left, telephoto lens look, fast shutter, sharp detail, rich natural colors, powerful and awe-filled mood. No boats, no people, no text, no logos.
-```
-
-</details>
-
-<details><summary><b>Hyper Detail Moon Image</b></summary>
-
-```text
-**Subject & Composition:** A hyper-detailed, high-resolution astronomical photograph of a glowing full moon centered against the deep, obsidian void of outer space.
-**Surface Details:** Ultra-crisp focus revealing intricate geological features—sharp crater rims, deep impact basins, prominent ray systems, subtle surface textures, and fine contrast between dark volcanic maria and bright lunar highlands.
-**Lighting & Color:** Natural silvery-white lunar glow with soft, true-to-life mineral color tones (subtle iron-blue and titanium-gold highlights on the surface). No atmospheric haze or blur; sharp, high-contrast rim lighting where the shadow meets space.
-**Style & Quality:** Shot on an astronomical telescope camera setup, 8k resolution, photorealistic, cinematic clarity, astrophotography masterpiece, perfectly exposed, highly detailed texture, raw photo, noise-free background.
-```
-
-</details>
-
-<details><summary><b>Hyper Realistic Marvel Comic Fusion</b></summary>
-
-```text
-{
-  "image_generation": {
-    "requirements": {
-      "face_preservation": {
-        "preserve_original": true,
-        "accuracy_level": "100% identical to reference",
-        "details": [
-          "real facial proportions",
-          "exact skin texture",
-          "true eye shape and color",
-          "natural look without makeup"
-        ]
-      },
-      "pose": {
-        "match_reference_pose": true,
-        "description": "Chest-up portrait, face forward with a gentle rightward tilt."
-      },
-      "lighting": {
-        "match_reference_lighting": true,
-        "type": "soft diffused indoor lighting",
-        "direction": "front-left",
-        "shadows": "gentle soft shadows",
-        "background_tone": "neutral with slight bluish tint"
-      }
-    },
-
-    "subject": {
-      "gender": "male",
-      "age": "child",
-      "hairstyle": {
-        "match_reference": true,
-        "description": "same hairstyle as reference, adapted naturally for a young boy"
-      },
-      "expression": "neutral, slightly curious",
-      "clothing": {
-        "top": "Avengers-style suit top (child version), subtle tech-textured fabric",
-        "accessory": "miniature Avengers emblem on the chest"
-      }
-    },
-
-    "composition": {
-      "frame": "chest-up portrait",
-      "orientation": "frontal with slight rightward tilt",
-      "style": "hyper-realistic with split real/comic effect"
-    },
-
-    "special_effects": {
-      "split_effect": {
-        "type": "irregular centered tear",
-        "edges": "white angled torn-paper look",
-        "description": "image looks ripped down the middle"
-      },
-
-      "realistic_side": {
-        "background": "soft, neutral, bluish environment",
-        "filters": [
-          "soft analog grain",
-          "light vintage texture",
-          "reduced saturation",
-          "subtle film imperfections"
-        ],
-        "overlays": [
-          "small holographic HUD icons (Iron Man–style)",
-          "mini Captain America shield doodle",
-          "tiny Thor hammer sketch",
-          "stylized blue tech sparks"
-        ]
-      },
-
-      "illustrated_side": {
-        "art_style": "bold comic-style illustration inspired by Marvel",
-        "color_palette": "vibrant, high-contrast superhero palette",
-        "hair": "same color as realistic half but stylized sharply",
-        "eyes": "slightly exaggerated heroic emphasis",
-        "background": "dynamic red-blue comic burst pattern",
-        "decorations": {
-          "elements": [
-            "chibi Iron Man flying",
-            "pixel-style Captain America",
-            "small cartoon lightning bolts",
-            "comic-style 'POW!' and 'WHOOSH!' text bubbles",
-            "floating colorful Avengers symbols"
-          ]
-        }
-      }
-    },
-
-    "aesthetic": {
-      "overall_tone": "heroic, energetic, lightly vintage",
-      "lighting_consistency": "perfectly matching the reference",
-      "skin_texture_realism": "high",
-      "blending_quality": "smooth transition with crisp tear edge"
-    },
-
-    "output": {
-      "style": "hyper-realistic + Marvel comic fusion",
-      "quality": "ultra-high-resolution",
-      "filters": [
-        "subtle analog film",
-        "soft grain"
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Hyper-Realistic Close-Up Portrait</b></summary>
-
-```text
-A hyper-realistic close-up portrait (8K resolution) of a person's head and upper neck, captured from a slightly low angle. Use the uploaded image as the facial reference: the face must match exactly (100%), preserving the same identity, facial structure, proportions, skin details, and expression. Do not alter the face in any way. The subject wears bright yellow sunglasses with reflective lenses displaying abstract, colorful digital scenes in shades of pink, blue, and yellow. The face is rendered in detailed grayscale, revealing realistic skin texture, pores, and light stubble along the jawline, creating a striking contrast with the rest of the head. The hair and most of the head and neck are composed of luminous patterns of digital circuits, abstract shapes, lines, and data streams in vibrant colors such as magenta, cyan, blue, green, yellow, and orange. These elements feature a complex, layered structure with a soft inner glow. Parts of the digital head fragment and dissolve outward into pixels, lines, and glitch-like shards that fade into a clean white background, creating a futuristic glitch-art aesthetic. Cinematic lighting highlights one side of the face, with shadows beneath the chin and a subtle rim light outlining the digital elements. The overall style is futuristic and cyber-inspired, highly detailed, and photorealistic.
-```
-
-</details>
-
-<details><summary><b>Hyperrealistic Food Photo Creator</b></summary>
-
-```text
-Generate a hyperrealistic image of ${food_item} that captures its texture, color, and details in an appetizing composition. Ensure the lighting is natural and enhances the food's appeal, suitable for use in professional settings such as restaurant menus and advertisements.
-```
-
-</details>
-
-<details><summary><b>Hyperrealistic Food Video Creator</b></summary>
-
-```text
-Act as a Professional Food Videographer. You are an expert in creating engaging and appetizing food videos.
-
-Your task is to produce a hyperrealistic food video focusing on:
-- Realistic textures
-- Appetizing compositions
-- Perfect lighting conditions
-
-You will:
-- Capture each dish with meticulous attention to detail
-- Highlight the visual appeal of the food
-- Ensure the video is suitable for ${usage:advertisements} or ${platform:menus}
-
-Constraints:
-- Maintain a commercial style
-- Use moving photo techniques for dynamic visuals
-```
-
-</details>
-
-<details><summary><b>Hyperrealistic Nursing Home Portrait</b></summary>
-
-```text
-He acts
-like a professional artist and creates a hyperrealistic image, as if taken
-by an iPad, of a poor Satya Nadella in a poorly maintained nursing home.
-```
-
-</details>
-
-<details><summary><b>Icelandic Beach Church Concept Brief Builder</b></summary>
-
-```text
-Act as a cinematic landscape designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of a small white wooden church with a red roof standing on a grassy headland above an Icelandic black sand beach, with dark basalt sea stacks rising from the ocean at golden hour. The shot will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move naturally (surf lines rolling in and washing up the black sand, foam pulling back, sea spray bursting against the base of the stacks, clouds drifting slowly, the warm glow shifting a little, grass stirring in the wind) while keeping the composition calm, readable, and easy to animate.
-
-My starting choices:
-- Church: ${church:a small white wooden church with a red gabled roof and a short red steeple}
-- Headland: ${headland:a rounded grassy green headland that drops to the beach}
-- Beach: ${beach:a long curve of fine black volcanic sand}
-- Sea stacks: ${stacks:a few dark basalt sea stacks offshore, one tall and jagged, the others smaller spires and a low rounded rock}
-- Time and light: ${time:golden hour with a low sun near the horizon and scattered clouds lit orange, pink, and purple}
-- Visual style: ${style:photoreal landscape photography, natural colors}
-- Mood words: ${mood:remote, peaceful, dramatic, warm}
-
-First ask me, in one short message, for anything missing: the camera position I prefer (low on the beach at the waterline, slightly elevated from the dunes, or from a cliff path), which side of the frame the church and the sea stacks should sit on, where the sun should be, how rough the sea should be, and anything to avoid (people, cars, drones in the sky, birds that would have to fly convincingly, text, logos, or copying a specific real photograph).
-
-Then produce the brief with these sections:
-
-1. **Scene Overview**: two or three sentences describing the place, the time, the light, and the feeling of the moment. Describe an imagined Icelandic south coast scene in the spirit of the place, not a copy of a specific photograph or a named church.
-
-2. **Church and Headland**: the church's position and size in the frame, its white walls, red roof and steeple, windows and door, how the low sun lights it, and the shape of the grassy headland below it and where it meets the beach.
-
-3. **Beach and Surf**: the curve of the black sand from the foreground, the wet sand reflections, how many surf lines there are, the direction the waves roll in from, and how far the foam washes up.
-
-4. **Sea Stacks and Depth**: how many stacks, their shapes and heights, their positions from left to right, where spray hits them, and the depth layers from the foreground sand to the horizon.
-
-5. **Light and Sky**: the sun's position and height, the color gradient of the sky, the cloud shapes and how they are lit, long shadows on the headland and the sand, and any haze over the sea.
-
-6. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (church position and colors, steeple shape, headland outline, beach curve, number and order of the sea stacks, sun position, horizon line, cloud layout, camera position, framing).
-
-7. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the surf lines, the foam on the sand, spray at the stacks, the clouds, the grass, the light, and the camera move. Keep total motion subtle and physically plausible, with one wave direction and one wind direction.
-
-8. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the church on the headland, the black sand beach, and the sea stacks in the first sentence, ending with: no people, no text, no logos.
-
-9. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes the surf rolling in and washing up the sand, spray at the stacks, clouds drifting, one very slow camera move for about 6 seconds, and says to keep the church, headland, stacks, and framing exactly as in the image with no new objects.
-
-Rules: no people, animals, or vehicles as subjects; no text, signs, or logos; no fast camera moves or cuts; and no motion that breaks physics (waves always come from the sea and break toward the shore, foam slides back down the slope, rocks and the church never move or change shape, the sun does not jump). Use short paragraphs and lists.
-```
-
-</details>
-
-<details><summary><b>Icelandic Beach Church Image to Video</b></summary>
-
-```text
-Start from the step 2 image "White Church with a Red Roof Above a Black Sand Beach and Basalt Sea Stacks at Golden Hour" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the white church with its red roof and steeple on the grassy headland in the left third, the curve of black sand, the four basalt rocks and sea stacks on the right, the low sun at the far left, the horizon line, and the framing exactly as in the image. Long white surf lines roll in from the right toward the beach, wash up the black sand in thin sheets of foam, and slide back down, leaving a glossy wet shine. Around the middle of the shot, a burst of white sea spray breaks against the base of the tall jagged sea stack and falls back into the water. The orange, pink, and purple clouds drift slowly across the sky while the warm golden glow holds steady, and the grass on the headland stirs gently in the wind. The camera stays almost still, with only a very slight, slow push-in. Natural, realistic motion, no cuts, no people, no new objects, no text. Sound of rolling surf, wind, and distant waves.
-```
-
-</details>
-
-<details><summary><b>Icon Designer</b></summary>
-
-```text
-Act like an icon designer and give me ideas on representing an icon of the word [KEYWORD].
-
-The idea is to add to the main website page of the app an icon that represents the idea of [KEYIDEA] because the app's main goal is to offer [Function]
-
-More information:
--The icon should be XXXX
 ```
 
 </details>

@@ -1,6 +1,6 @@
 # Coding & Development (4/13)
 
-685 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+706 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
@@ -205,6 +205,79 @@ Rules:
 - Ensure the user gains a comprehensive understanding of the repository's functionality
 Variables:
 - ${repositoryURL} - The URL of the GitHub repository to analyze
+```
+
+</details>
+
+<details><summary><b>Defuddle</b></summary>
+
+```text
+---
+name: defuddle
+description: Extract clean Markdown from HTML pages with Defuddle CLI.
+---
+
+# Defuddle
+
+Use Defuddle CLI to extract clean readable content from web pages. Prefer over WebFetch for standard web pages — it removes navigation, ads, and clutter, reducing token usage.
+
+If not installed: `npm install -g defuddle`
+
+## Usage
+
+Always use `--md` for markdown output:
+
+'''bash
+defuddle parse <url> --md
+'''
+
+Save to file:
+
+'''bash
+defuddle parse <url> --md -o content.md
+'''
+
+Extract specific metadata:
+
+'''bash
+defuddle parse <url> -p title
+defuddle parse <url> -p description
+defuddle parse <url> -p domain
+'''
+
+## Output formats
+
+| Flag | Format |
+|------|--------|
+| `--md` | Markdown (default choice) |
+| `--json` | JSON with both HTML and markdown |
+| (none) | HTML |
+| `-p <name>` | Specific metadata property |
+
+FILE:LICENSE
+MIT License
+
+Copyright (c) 2026 Steph Ango (@kepano)
+
+Source: https://github.com/kepano/obsidian-skills
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ```
 
 </details>
@@ -833,6 +906,34 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+```
+
+</details>
+
+<details><summary><b>Dependency Management Taste</b></summary>
+
+```text
+# Dependency Management taste of a maintainer who hates surprise breakages
+- Commit the lockfile for every application and CI job, and install with the frozen mode (`npm ci`, `pnpm install --frozen-lockfile`, `uv sync --locked`). Confidence: 0.95
+- Libraries declare compatible version ranges; applications pin exact versions through the lockfile. Confidence: 0.85
+- Automate updates with Renovate or Dependabot instead of doing big manual upgrade sweeps twice a year. Confidence: 0.90
+- Group minor and patch updates into one scheduled weekly pull request, and keep each major upgrade in its own pull request. Confidence: 0.80
+- Auto-merge patch updates for dev dependencies only when the full test suite passes. Confidence: 0.70
+- Wait a few days before adopting a freshly published version (a minimum release age), so yanked or compromised releases never land. Confidence: 0.80
+- Before adding a dependency, check maintenance activity, open security issues, license and install size; a 20-line helper is often better written in-house. Confidence: 0.85
+- Prefer one well-maintained library per job across the codebase instead of three that do the same thing. Confidence: 0.80
+- Run a vulnerability scan (`npm audit`, `pip-audit`, `osv-scanner`) in CI, failing only on high-severity issues that are actually reachable. Confidence: 0.75
+- Keep an allowlist of acceptable licenses and fail the build when a copyleft or unknown license appears in production dependencies. Confidence: 0.75
+- Separate runtime, development and optional dependencies clearly so production images stay small. Confidence: 0.85
+- Never depend on a git branch or `latest` tag in production; pin to a release or a full commit SHA. Confidence: 0.90
+- Disable install scripts by default where the package manager allows it and allow them only for packages that need them. Confidence: 0.70
+- Use a private registry or proxy with caching so builds survive an upstream registry outage. Confidence: 0.70
+- Remove unused dependencies regularly with a tool like `knip`, `depcheck` or `deptry`. Confidence: 0.80
+- Read the changelog for every major upgrade and write the migration notes into the pull request description. Confidence: 0.85
+- Vendor or fork a dependency only as a last resort, with an issue tracking when the fork can be dropped. Confidence: 0.75
+- Keep the language runtime version pinned in one file (`.nvmrc`, `.python-version`, `rust-toolchain.toml`) that CI and local dev both read. Confidence: 0.90
+- Treat a lockfile diff with hundreds of unrelated changes as a red flag and investigate before merging. Confidence: 0.80
+- Generate an SBOM for release artifacts so you can answer "are we affected?" within minutes when a new CVE drops. Confidence: 0.65
 ```
 
 </details>
@@ -7352,6 +7453,35 @@ ${Paste or describe the I/O sheet}
 
 </details>
 
+<details><summary><b>Electron App Taste</b></summary>
+
+```text
+# Electron App taste of a desktop developer who takes security seriously
+- Keep `contextIsolation: true` and `nodeIntegration: false` on every `BrowserWindow`; these are non-negotiable defaults. Confidence: 0.98
+- Enable `sandbox: true` for renderers and give each window the smallest preload script it needs. Confidence: 0.90
+- Expose a narrow, typed API from the preload with `contextBridge.exposeInMainWorld` instead of passing `ipcRenderer` through. Confidence: 0.95
+- Use `ipcMain.handle` and `ipcRenderer.invoke` for request and response calls, and validate every argument in the main process. Confidence: 0.90
+- Check the sender frame on IPC messages so only your own pages can call privileged handlers. Confidence: 0.80
+- Set a strict Content Security Policy and never load remote code into a window with privileged preload access. Confidence: 0.90
+- Block unexpected navigation with `will-navigate` and `setWindowOpenHandler`, and open external links in the system browser with `shell.openExternal` after allowlisting the URL. Confidence: 0.90
+- Serve local content through a custom protocol instead of `file://` so origin rules and CSP behave predictably. Confidence: 0.75
+- Write the main, preload and renderer code in TypeScript, sharing IPC channel types from one module. Confidence: 0.85
+- Use Electron Forge or electron-builder with Vite for building and packaging rather than a hand-rolled script. Confidence: 0.80
+- Keep heavy work out of the main process; use utility processes or worker threads so the UI never freezes. Confidence: 0.85
+- Track the latest supported Electron major and upgrade at least every quarter, since each release carries Chromium security fixes. Confidence: 0.85
+- Sign and notarize macOS builds and sign Windows installers before anyone outside the team installs them. Confidence: 0.95
+- Ship auto-updates through `autoUpdater` or electron-updater with signed releases and a staged rollout. Confidence: 0.80
+- Enable Electron fuses to disable `RunAsNode` and Node CLI inspection in production builds. Confidence: 0.75
+- Persist settings and window state in the user data directory, and store secrets with `safeStorage` or the OS keychain, never in plain JSON. Confidence: 0.85
+- Restore window size and position on launch and handle multiple displays gracefully. Confidence: 0.70
+- Respect platform conventions: the macOS app menu, Windows tray behavior and native keyboard shortcuts. Confidence: 0.75
+- Watch bundle size and startup time, lazy-load heavy modules and avoid shipping dev dependencies in the app archive. Confidence: 0.75
+- Collect crash reports with `crashReporter` or Sentry and log main-process errors to a rotating file. Confidence: 0.75
+- Run end-to-end tests with Playwright's Electron support against the packaged app, not only the dev build. Confidence: 0.70
+```
+
+</details>
+
 <details><summary><b>Electron Frontend Developer</b></summary>
 
 ```text
@@ -8050,30 +8180,6 @@ Implement a "Light Scattering" effect where each ember acts as a tiny light sour
 ```text
 Using this app to record time of starting and ending shifts for multi workers to save the date,time and duration of each shift and giving a report in the end of each month.it can be run offline and online by starting counting time until the mobile is connected .each shift should not be more than ten hours continously in single shift.each worker has his own profile can see his own shifts reports and editing is not allowed only by the owner which is me.
 There is a space to leave a notes in each shift by worker or owner or both . The worker to sign in need to use there own email . There is a botton for start shift and end shift .
-```
-
-</details>
-
-<details><summary><b>Enterprise Microservices Architecture Design</b></summary>
-
-```text
-Act as a Systems Architect specializing in enterprise solutions. You are tasked with designing a middle platform system using a microservices architecture. Your system should focus on achieving scalability, maintainability, and high performance.
-
-Your responsibilities include:
-- Identifying core services and domains
-- Designing service communication protocols
-- Implementing best practices for deployment and monitoring
-- Ensuring data consistency and integration between services
-
-Considerations:
-- Use ${cloudProvider:AWS} for cloud deployment
-- Prioritize ${scalability} and ${resilience} in system design
-- Incorporate ${security} measures at every layer
-
-Output:
-- Architectural diagrams
-- Design rationale and decision log
-- Implementation guidance for development teams
 ```
 
 </details>

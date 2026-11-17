@@ -1,6 +1,6 @@
 # Image & Design (1/5)
 
-847 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+880 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
@@ -672,6 +672,24 @@ Full-body black and white fashion editorial portrait of a young woman with an ho
   },
   "directorial_style": "Denis Villeneuve (Atmospheric mood and pensive composition)"
 }
+```
+
+</details>
+
+<details><summary><b>AAA Game-Engine 3D Environment Scene Template</b></summary>
+
+```text
+Aspect ratio 16:9, 4K. Generate a photorealistic AAA image with a high-end real-time engine look. Emphasize indirect illumination, varied roughness, contact shadows and depth separation. Show only the clean rendered scene in full frame. Scene: [DESCRIBE YOUR SCENE]. All identities and designs are original.
+
+Example scenes (replace [DESCRIBE YOUR SCENE] with one of these):
+
+1. The Valley of Flowers Beneath Two Moons: A rose-gold moon and a violet moon rise over a vast valley of glowing magenta and turquoise flowers, as a white crystal river winds toward floating mountains wrapped in soft pink mist.
+
+2. The Sunken Palace: Rippling sunlight falls through deep turquoise water onto a sunken marble palace wrapped in coral, as small fish drift past its broken columns.
+
+3. The Giant Mushroom Swamp: Soft teal light from glowing giant mushrooms reflects on a misty swamp at night, where a wooden boardwalk winds between twisted roots.
+
+4. The World Tree Above the Cloud Sea: A colossal world tree with glowing cyan veins rises above a sea of peach and lavender sunrise clouds, as waterfalls of light pour from its branches and tiny cities shine along its roots.
 ```
 
 </details>
@@ -1947,6 +1965,14 @@ Camera: Eye-level perspective of a seated person, creating an intimate viewpoint
 
 ```text
 An ultra-realistic 8K cinematic studio portrait framed from mid-thigh up, featuring a figure standing confidently against a vibrant ochre-red background. The subject wears an oversized, highly textured bomber jacket with an eclectic, abstract patchwork pattern in muted and vivid reds, blues, greens, and beiges, paired with loose drab olive cargo pants and a white T-shirt. Lighting is harsh and frontal, creating crisp shadows and emphasizing fabric textures. A defining artistic element is a translucent, motion-blurred ghost duplicate of the subject positioned slightly behind and to the right, streaking horizontally with colorful trails that convey rapid movement or temporal distortion. The background remains uniform but subtly graded, adding depth without distraction. Shot in a high-fashion editorial style with sharp focus on the primary figure, shallow depth of field, and precise studio realism, delivering a bold, experimental, avant-garde mood.
+```
+
+</details>
+
+<details><summary><b>Azulejo Tile Mural of a Sardine Fishing Boat</b></summary>
+
+```text
+Hand-painted azulejo tile mural in traditional blue and white: a small wooden sardine fishing boat with a tall prow and a coiled net rows out of a harbor at dawn, two fishermen at the oars, seagulls overhead, whitewashed houses with tiled roofs and a church tower on the hill behind, and gentle rolling waves in the foreground. Painted in cobalt blue glaze on a white tin-glazed ceramic ground, composed across a visible grid of square tiles with thin grout lines, slight glaze pooling, tiny crazing cracks, hand-brushed line work and soft wash shading, framed by an ornate blue baroque scroll border with acanthus leaves. Glossy ceramic sheen with a soft reflected highlight, viewed straight on in even daylight as a wall mural, landscape 4:3. No text, no lettering, no signature, no modern objects.
 ```
 
 </details>
@@ -4290,6 +4316,14 @@ Photoreal architectural photograph of the same small cedar treehouse cabin and o
 
 </details>
 
+<details><summary><b>Cel-Shaded Retro Hacker at a CRT Keyframe</b></summary>
+
+```text
+Create a stylized 2D Western animated illustration of a mysterious young male hacker sitting at a vintage desktop computer in a cramped retro computer room. He has short black hair with a sharp white fringe, an angular pale face, a large expressive side-profile eye, an oversized dark jacket with geometric markings, and long slender fingers typing on a chunky mechanical keyboard. Extreme low-angle fisheye perspective from desk level, oversized hands dominating the foreground, bulky CRT monitor on the left, curved tiled ceiling, scattered wall posters, and strong architectural depth. Preserve the character's focused typing pose, distinctive facial expression, dramatic camera angle, and coherent spatial arrangement. Render in a sophisticated stylized Western 2D animation aesthetic with delicate hand-drawn comic illustration techniques and refined graphic character design. Thin, confident dark navy ink outlines with subtle organic irregularities, natural line-weight variation, expressive flowing contours, selectively broken edges, and precise facial linework. Simplified geometric anatomy, exaggerated but believable proportions, angular character construction, and distinctive silhouettes. Large uninterrupted flat color regions, clean two-tone cel shading, sharply defined angular shadow blocks, simplified geometric highlights, minimal gradients, and carefully balanced graphic shapes. Subtle short pencil hatching, restrained dry-brush marks along selected edges, imperfect freehand contours, and crisp matte color fills. Sophisticated 2D animation keyframe aesthetics, cinematic spatial perspective, bold editorial illustration composition, expressive character acting, and elegant visual simplicity. Strictly use a cohesive cool blue color palette of cornflower blue, dusty cobalt, slate blue, muted periwinkle, powder blue, pale icy cyan, and deep navy, complemented by tiny muted golden-yellow accents. The ceiling and walls use layered desaturated blues, the CRT monitor displays a flat pale icy-blue screen, the character's clothing is deep navy with angular cobalt shadow planes, and the keyboard uses muted blue-gray tones. Soft cool blue ambient lighting unifies the entire composition, with small warm yellow details creating restrained visual contrast. Harmonious blue-on-blue color separation, strong tonal hierarchy, matte surfaces, and clean graphic lighting. Apply refined localized gradient halftone shading only within selected cel-shaded shadow regions, especially along the character's fingers, cheek shadows, jacket folds, and occasional architectural shadow boundaries. Use extremely fine, tightly arranged halftone microdots in colors matching the underlying shadows, gradually decreasing in size and opacity toward the illuminated areas. The halftone creates elegant soft tonal transitions within small, organically shaped shadow zones, naturally dissolving into clean flat colors. The pattern must be clearly recognizable as delicate traditional comic-print halftone shading at close inspection, never as large individual decorative circles. Keep all other surfaces perfectly clean and solid, without any global texture. Preserve strong cinematic depth through exaggerated fisheye perspective, overlapping graphic shapes, and precise architectural construction rather than realistic lighting gradients. High-end stylized animated film frame, expressive character silhouette, sophisticated handcrafted linework, refined flat-color shading, and cohesive visual design.
+```
+
+</details>
+
 <details><summary><b>Ceramic Pour Over Coffee Set Hero Shot</b></summary>
 
 ```text
@@ -4302,6 +4336,14 @@ Product hero photograph of a matte sand-beige ceramic pour-over coffee set: a ri
 
 ```text
 I want to change the attire of this image to something with good clothes and should change the background to some famous places
+```
+
+</details>
+
+<details><summary><b>Character Lock for Consistent AI Ad Characters</b></summary>
+
+```text
+Lock your AI character before the first clip. Fix the face, outfit, turnaround, locations and light in a character sheet. Then repeat those exact locks word for word in every shot prompt — never re-describe the character from scratch. Check every shot against the sheet before moving on. Proved with a finished 3-minute AI ad (25+ clips, one bear-dad character, no reshoots). Full method: https://hafiz-afaq-portfolio.vercel.app/services/character-lock/
 ```
 
 </details>
@@ -5629,6 +5671,25 @@ Rules:
 
 </details>
 
+<details><summary><b>Consistent Car Block for a Multi-Clip Road Trip Video</b></summary>
+
+```text
+CAR BLOCK (paste into every car clip)
+The car is an old, faded silver Toyota Corolla with a dented front bumper, left-hand drive, as in Nigeria. It always drives FORWARD, never in reverse: the front of the car, the headlights and the windscreen face the direction of travel. Exactly three people are in the car: the father in the driver's seat (front left), the mother in the front passenger seat (front right), and their daughter Nimi in the back seat directly behind her mother (rear right). The rear left seat is empty and piled with plastic buckets and bags. Luggage is tied on the roof rack. No other passengers.
+CLIP 1: The old car on the road
+Photorealistic cinematic live-action, vertical 9:16, bright morning daylight, a road in Nigeria leading toward a university campus. Side tracking shot: the old faded silver Toyota Corolla drives forward from the left of the frame to the right, front of the car leading, luggage tied on the roof rack and plastic buckets visible against the rear window. [Paste CAR BLOCK.] Sound: rattling old engine, birds, distant traffic. No dialogue, no subtitles, no on-screen text. Not cartoon or anime.
+CLIP 2: All three in the car
+Photorealistic cinematic live-action, vertical 9:16, natural daylight. Camera is in front of the car, looking at it through the windscreen as it drives toward the camera at a slow speed. [Paste CAR BLOCK.] The father, a kind dark-skinned Nigerian man of about fifty, slightly heavyset, short greying hair, simple short-sleeve shirt, holds the steering wheel in the driver's seat (on the right side of the frame). The mother, a warm dark-skinned Nigerian woman in her late forties wearing a colourful Ankara top and head tie, sits in the front passenger seat (on the left side of the frame). Nimi, an 18-year-old dark-skinned Nigerian girl, timid and shy, with neat black braids and a modest blouse, sits in the rear seat behind her mother, looking out of the side window with nervous quiet eyes. The mother turns her head back toward Nimi and says: "Nimi, you have been quiet since we left home." Nimi gives a small shy smile and says softly: "I'm just nervous, Mummy." Authentic Nigerian accents, accurate lip sync. Sound: engine hum, light traffic. No subtitles, no on-screen text. Not cartoon or anime.
+CLIP 3: Dad speaks
+Photorealistic cinematic live-action, vertical 9:16, natural daylight, interior of a moving old car in Nigeria. Camera is in the back seat, looking forward between the two front seats. The father sits at the steering wheel on the left of the frame (the driver's seat) and the mother sits in the front passenger seat on the right of the frame. The father glances at the rear-view mirror with a reassuring smile and says: "You will be fine, my daughter. Just focus on your books." The mother nods with a soft smile. Through the windscreen, a Nigerian road moves slowly ahead. Authentic Nigerian accents, accurate lip sync. Sound: engine hum, light traffic. No subtitles, no on-screen text. Not cartoon or anime.
+CLIP 4: Arriving at campus
+Photorealistic cinematic live-action, vertical 9:16, bright morning daylight, entrance area of a Nigerian university campus. Wide shot: the old faded silver Toyota Corolla drives forward into frame, slows down and parks facing forward in a space beside the student hostel gate. Luggage is on the roof rack. Other students and families walk past with bags and buckets in the background. The car never reverses. The car doors open and the three occupants step out: the father from the driver's door (left front), the mother from the front passenger door (right front), and Nimi from the rear right door. Sound: campus chatter, car doors, birds. No dialogue, no subtitles, no on-screen text. Not cartoon or anime.
+CLIP 8: The car leaves
+Photorealistic cinematic live-action, vertical 9:16, bright morning daylight, Nigerian university hostel gate. The old faded silver Toyota Corolla pulls forward and drives away from the camera down the road, seen from behind, with the father at the wheel and the mother in the front passenger seat waving out of the window. The car moves forward only, never in reverse. Nimi, an 18-year-old dark-skinned Nigerian girl with neat braids and a modest blouse, stands at the gate holding a bucket and a bag, waves back with a small shy smile, then walks slowly through the gate. Slow push-in on her back as she goes in, then the shot fades to black. Sound: engine fading, campus chatter softening, birds. No dialogue, no subtitles, no on-screen text. Not cartoon or anime.
+```
+
+</details>
+
 <details><summary><b>Conversational Logo Design</b></summary>
 
 ```text
@@ -5772,290 +5833,6 @@ Color: Cinematic but natural, low saturation, clean contrast.
 
 Rules: No text, no logos, no watermarks, no extra people. Hands/fingers must be natural and correct. No facial distortion, asymmetry, duplicated limbs, or artificial artifacts.
 Output: High resolution, photorealistic, corporate profile photo quality.
-```
-
-</details>
-
-<details><summary><b>Corsairs of the Crimson Void</b></summary>
-
-```text
-{
-  "title": "Corsairs of the Crimson Void",
-  "description": "A high-octane cinematic moment capturing a legendary space pirate and his quartermaster commanding a starship through a debris field during a daring escape.",
-  "prompt": "You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness. Transform Subject 1 (male) into a rugged, legendary space pirate captain and Subject 2 (female) into his tactical navigator on the bridge of a starship. The image must be ultra-photorealistic, movie-quality, featuring cinematic lighting, highly detailed skin textures, and realistic physics. Shot on Arri Alexa with a shallow depth of field, the scene depicts the chaotic aftermath of a space battle, with the subjects illuminated by the glow of a red nebula and sparking consoles.",
-  "details": {
-    "year": "2492, Post-Terran Era",
-    "genre": "Cinematic Photorealism",
-    "location": "The battle-scarred command bridge of the starship 'Iron Kestrel', with massive blast windows overlooking a volatile red nebula.",
-    "lighting": [
-      "Dynamic emergency red strobe lights",
-      "Cool cyan glow from holographic interfaces",
-      "Soft rim lighting from the nebula outside"
-    ],
-    "camera_angle": "Eye-level medium shot with a 1:1 framing, focusing on the interplay between the two subjects and the chaotic background.",
-    "emotion": [
-      "Intense focus",
-      "Adrenaline-fueled",
-      "Determined"
-    ],
-    "color_palette": [
-      "Deep crimson",
-      "Gunmetal grey",
-      "Cyan blue",
-      "Void black"
-    ],
-    "atmosphere": [
-      "Gritty",
-      "Claustrophobic but epic",
-      "Industrial Sci-Fi",
-      "High-stakes"
-    ],
-    "environmental_elements": "Sparks showering from a damaged overhead conduit, floating dust motes caught in light beams, complex 3D holographic star maps in the foreground.",
-    "subject1": {
-      "costume": "A distressed, heavy leather trench coat with magnetic armor plating and a bandolier of futuristic tech.",
-      "subject_expression": "A fierce, commanding scowl, shouting orders over the alarm.",
-      "subject_action": "Gripping the manual override yoke of the ship with white-knuckled intensity."
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "bright daylight",
-        "clean environment",
-        "cartoonish proportions",
-        "medieval weaponry",
-        "wooden textures"
-      ],
-      "exclude_styles": [
-        "3D render",
-        "illustration",
-        "anime",
-        "concept art sketch",
-        "oil painting"
-      ],
-      "exclude_colors": [
-        "pastels",
-        "neon pink",
-        "pure white"
-      ],
-      "exclude_objects": [
-        "swords",
-        "sailing ship wheels",
-        "parrots"
-      ]
-    },
-    "subject2": {
-      "costume": "A form-fitting tactical flight suit with glowing data-interface gloves and a headset.",
-      "subject_expression": "Sharp, calculating, and unphased by the chaos.",
-      "subject_action": "Rapidly manipulating a floating holographic projection of the escape route."
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Couple on a Night Beach</b></summary>
-
-```text
-A cinematic wide-angle shot of a couple walking hand-in-hand on a quiet beach at night, the couple appearing small and distant in the frame to emphasize the vast environment. Deep teal and navy blue color grading. A vast clear night sky. Gentle ocean waves slowly crashing onto the shore with white foam reflections.
-
-Camera: smooth slow tracking shot from behind, wide framing, slight cinematic drift, stabilized motion  
-Framing: couple placed in lower third, small scale, large negative space, emphasizing sky and ocean  
-Lighting: low-light, moody, high contrast, soft shadows, subtle highlights on water and sand  
-Motion: natural walking movement, soft wind blowing hair and clothes, slow wave movement  
-Style: dreamy lo-fi, romantic atmosphere, film grain, anamorphic lens, shallow depth of field  
-Quality: ultra-realistic, 8K, clean composition, no clutter  
-
-Duration: 5–8 seconds  
-FPS: 24fps cinematic
-```
-
-</details>
-
-<details><summary><b>Covert Exchange in the Fog</b></summary>
-
-```text
-{
-  "prompt": "You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness. Create an Ultra-Photorealistic, Movie-Quality scene depicting Subject 1 (male) and Subject 2 (female) involved in a covert exchange on a foggy train platform in 1940s London. The image must be photorealistic, featuring cinematic lighting and highly detailed textures of wool and steam. The aesthetic should look like it was shot on Arri Alexa with a cinematic depth of field, capturing the tension and romance of a noir thriller.",
-  "details": {
-    "year": "1944",
-    "genre": "Cinematic Photorealism",
-    "location": "A dimly lit, steam-filled railway platform in London at night, with the blurred silhouette of a locomotive in the background.",
-    "lighting": [
-      "Dramatic chiaroscuro",
-      "Volumetric lighting through steam",
-      "Cold atmospheric backlight",
-      "Warm tungsten practical light from a station lamp"
-    ],
-    "camera_angle": "Over-the-shoulder close-up shot, focusing on the faces and the subtle hand exchange.",
-    "emotion": [
-      "Secretive",
-      "Urgent",
-      "Melancholic",
-      "Tense"
-    ],
-    "color_palette": [
-      "Steel blue",
-      "Charcoal grey",
-      "Sepia highlights",
-      "Deep crimson"
-    ],
-    "atmosphere": [
-      "Noir",
-      "Mysterious",
-      "Cinematic",
-      "Foggy"
-    ],
-    "environmental_elements": "Thick billowing steam from the train engine, wet cobblestones reflecting light, vintage leather suitcases in the periphery.",
-    "subject1": {
-      "costume": "A textured heavy wool trench coat, a fedora hat slightly tipped forward, and leather gloves.",
-      "subject_expression": "Stoic and alert, eyes darting to the side to check for surveillance.",
-      "subject_action": "Discreetly slipping a small, sealed envelope into Subject 2's hand."
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "bright daylight",
-        "modern technology",
-        "smartphones",
-        "digital watches",
-        "modern architecture"
-      ],
-      "exclude_styles": [
-        "cartoon",
-        "3d render",
-        "anime",
-        "oil painting",
-        "sketch",
-        "low resolution"
-      ],
-      "exclude_colors": [
-        "neon green",
-        "fluorescent pink",
-        "oversaturated colors"
-      ],
-      "exclude_objects": [
-        "cars",
-        "airplanes",
-        "plastic"
-      ]
-    },
-    "subject2": {
-      "costume": "A tailored 1940s skirt suit with a fur collar, a pillbox hat with a small mesh veil, and red lipstick.",
-      "subject_expression": "Anxious but composed, biting her lip slightly, looking intently at Subject 1.",
-      "subject_action": "Grasping Subject 1's hand tightly while receiving the envelope, pulling her coat closer."
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Cozy Autumn Curb Lifestyle Portrait</b></summary>
-
-```text
-Ultra-realistic, high-quality, sharp 8K photo, 3:4 aspect ratio. Shot on iPhone 16 Pro Max. Preserve 100% facial likeness — do not change any facial features. Cute face. Lips fully closed.
-Character & pose:
-A young woman is sitting on a concrete curb in a relaxed, natural pose. One leg is slightly bent and resting on the curb, while the other hangs down. Her hands rest loosely near her knees, and her upper body leans slightly forward. She is looking off to the side, not at the camera.
-Expression & makeup:
-A soft, relaxed half-smile with fully closed lips. Clean Girl makeup with a natural, fresh complexion, subtle blush, and even skin tone.
-Hairstyle:
-Hair is styled in a high, voluminous, slightly messy bun. A few loose front strands softly frame her face, with realistic flyaways gently moved by the wind.
-Outfit & footwear:
-An oversized chocolate-brown sweatshirt with no prints, fitted black leggings, high white slouch socks, and chunky black leather lace-up boots in the Dr. Martens style. A delicate pendant necklace is visible.
-Props:
-Next to her on the curb is a clear plastic iced latte cup with a straw, along with a soft black fabric tote bag.
-Background & atmosphere:
-An autumn urban parking lot with parked cars in the background, trees with golden autumn leaves, and a tall street lamp. The sky is completely clear and bright blue. Cozy autumn vibe, casual street style.
-Lighting & camera:
-Bright natural sunlight with strong directional light creating crisp, contrasting shadows on the asphalt. Eye-level angle from the perspective of the seated model, full-body lifestyle composition capturing both the subject and surroundings.
-```
-
-</details>
-
-<details><summary><b>Cozy Autumn Park Profile</b></summary>
-
-```text
-Style: Realistic, high-quality photorealistic photo.
-
-Subject: A young woman with hair freely falling over her back and shoulders in soft waves (curls).
-
-Camera Angle: Medium shot, taken approximately at eye level. The woman is shown in profile, turned to the right, looking somewhere to the side rather than at the camera.
-
-Clothing: The woman is wearing a layered autumn outfit. She has on a light gray V-neck sweater made of textured ribbed knit. Over the sweater, she is wearing an oversized black leather biker jacket.
-
-Pose & Mood: She is standing calmly and relaxed. Her facial expression is thoughtful and peaceful, with a slight half-smile.
-
-Background: The scene takes place on an autumn park avenue. A wide asphalt path is covered with fallen orange and red leaves. Trees with lush, rich autumn foliage in warm shades (orange, red, and golden) grow on both sides of the path. The background is softly blurred with a bokeh effect, emphasizing the woman. The avenue can be seen leading deeper into the park.
-
-Lighting: Soft, natural, diffused daylight, typical of a cloudy or gentle autumn day. The light falls softly on the profile of her face, gently illuminating her features and the texture of her clothing. Shadows are soft.
-
-Makeup: Very natural, "no-makeup" makeup. Natural skin tone, defined eyebrows, a subtle touch of blush, and natural-toned lip balm.
-
-Atmosphere: Calm, cozy, thoughtful, autumnal, melancholic.
-
-Do not change my facial features.
-
-Aspect ratio: 3:4
-
-Realistic, high-quality, sharp 8K photograph, shot on iPhone 16 Pro Max.
-```
-
-</details>
-
-<details><summary><b>Cozy Autumn Sherpa Portrait</b></summary>
-
-```text
-Main Subject (Woman):
-
-Subject: A young woman with straight hair peeking out from under a hat.
-
-Pose: She is standing in a half-profile, turned three-quarters to the right, while looking directly into the camera with a warm smile. Lips are closed. Her body is slightly turned to the side.
-
-Clothing:
-- A chunky knit olive green (khaki) beanie with a rectangular black patch on the front.
-- A very oversized, fluffy, textured brown sherpa (sheepskin) jacket featuring a large abstract embroidered orange and black pattern (resembling flames or abstract shapes) across the back and sleeve.
-- A delicate thin gold chain necklace visible around her neck.
-
-Appearance & Makeup:
-- Detailed makeup with defined, sharp winged eyeliner accentuating the eyes and thick eyelashes.
-- Even skin tone with a soft blush on the cheeks.
-- Soft natural pink lipstick.
-
-Atmosphere: Calm, cozy autumn or early winter setting in a backyard or terrace with a relaxed lifestyle aesthetic.
-
-Lighting: Natural, soft, diffused daylight (overcast or shaded), creating even illumination across the face.
-
-Mood: Friendly, happy, confident, effortless, and stylish.
-
-Camera Angle: Medium shot (waist up), eye-level perspective, slightly angled toward the camera.
-
-Background:
-- A fence made of vertical wooden planks.
-- Evergreen trees (thuja or spruce) adding a rich green accent.
-- A wooden structure (possibly a pergola or gazebo) with visible timber elements.
-- A stone-paved courtyard.
-- The background is softly blurred with a shallow depth of field to keep the focus on the woman.
-
-Do not change the facial features.
-
-Aspect ratio: 3:4
-
-Ultra-realistic, high-quality, sharp 8K photograph, shot on iPhone 16 Pro Max.
-```
-
-</details>
-
-<details><summary><b>Cozy Bedroom ASMR Video Scene</b></summary>
-
-```text
-Subject: Cozy bedroom ASMR, Motion: Slow, gentle hand movements tracing textures, turning book pages, caressing soft fabric, Optics: 50mm lens, shallow depth of field, soft focus, Motion: 5 cm/s camera drift, Lighting: Warm, soft ambient light, 2700K, Style: Cinematic, serene, peaceful, Audio: Gentle whispers, soft tactile sounds, subtle rain ambiance, Continuity: 8s clip, 4K resolution, 60fps, 16:9 aspect ratio
-```
-
-</details>
-
-<details><summary><b>Cozy Cabin in a Rainy Forest</b></summary>
-
-```text
-Create an image of a cozy wooden cabin nestled in a misty forest during heavy rain. Warm orange firelight glows softly through a frosted window. Dark pine trees frame the scene. Rain streaks down the window glass. Soft distant lightning briefly illuminates the wet trees. The camera slowly pushes toward the cabin window. Professional color grading. 24fps. Highly detailed. Premium quality.
 ```
 
 </details>

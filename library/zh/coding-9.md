@@ -1,10 +1,319 @@
 # 编程开发 (9/11)
 
-共 685 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 706 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
 分页：[1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · **9** · [10](coding-10.md) · [11](coding-11.md)
+
+<details><summary><b>平台团队的 Kubernetes 偏好</b> · 机器翻译</summary>
+
+```text
+# 平台团队的 Kubernetes 品味
+- 所有内容都通过 GitOps(Argo CD 或 Flux)部署;没有人会手动对生产环境执行 kubectl apply。置信度:0.90
+- 用 Helm 或 Kustomize 打包共享服务,但要让各环境的 overlay 保持小而易读。置信度:0.80
+- 为每个容器设置 CPU 和内存 requests,并将内存 limit 设为与 request 相等。置信度:0.90
+- 对延迟敏感的服务避免设置 CPU limits;依靠 requests 和节点规格来防止节流。置信度:0.70
+- 为每个 Deployment 配置就绪探针;只有在应用确实可能死锁时才添加存活探针。置信度:0.85
+- 对启动缓慢的应用使用启动探针,而不是给存活探针设置很长的 initialDelaySeconds。置信度:0.80
+- 对用户依赖的任何服务,在 PodDisruptionBudget 之下至少运行两个副本。置信度:0.90
+- 使用 topologySpreadConstraints 将副本分散到不同可用区。置信度:0.80
+- 通过摘要(digest)或不可变的版本标签固定镜像,绝不使用 latest。置信度:0.95
+- 以非 root 用户运行容器,使用只读根文件系统,并丢弃所有 capabilities。置信度:0.90
+- 在应用命名空间上强制执行 restricted 级别的 Pod 安全标准。置信度:0.80
+- 每个命名空间都从默认拒绝的 NetworkPolicy 开始,只开放所需的流量。置信度:0.80
+- 为每个工作负载分配专属的 ServiceAccount,并在其从不调用 API server 时禁用令牌自动挂载。置信度:0.85
+- 不要把密钥放进 Git;用 External Secrets 从密钥管理器同步,或使用 Sealed Secrets。置信度:0.90
+- 每个团队或每个应用使用一个命名空间,并配置 ResourceQuota 和 LimitRange。置信度:0.80
+- 为每个资源应用标准的 app.kubernetes.io 标签。置信度:0.75
+- 处理 SIGTERM,并添加一个短暂的 preStop 休眠,让处理中的请求在关闭前完成排空。置信度:0.85
+- 使用 HorizontalPodAutoscaler,基于 CPU 或真实的请求速率指标来扩缩无状态服务。置信度:0.75
+- 除非有充分理由,否则在托管云服务上运行数据库,而不是用 StatefulSet。置信度:0.80
+- 在 CI 中用 kubeconform 和 Kyverno 或 OPA Gatekeeper 等策略引擎校验清单。置信度:0.80
+- 让集群版本保持在最新 Kubernetes 版本的两个小版本以内,并按计划升级。置信度:0.75
+- 通过一个共享的 ingress 或 Gateway API 控制器暴露 HTTP 服务,而不是每个服务一个 LoadBalancer。置信度:0.75
+```
+
+</details>
+
+<details><summary><b>平台工程师的 GraphQL 偏好</b> · 机器翻译</summary>
+
+```text
+# 平台工程师的 GraphQL API 品味
+- 围绕客户端用例和领域语言来设计 schema,而不是围绕数据库表。置信度:0.90
+- 从 schema 为服务端和客户端生成类型(GraphQL Code Generator 或同类工具);绝不手写响应类型。置信度:0.90
+- 只有当服务端总能解析某个字段时,才默认将其设为非空;依赖其他服务的字段保持可空,这样一次失败不会让整个响应变成 null。置信度:0.80
+- 每个 mutation 使用一个 input 对象(createOrder(input: CreateOrderInput!)),并返回 payload 类型,而不是裸实体。置信度:0.85
+- 将可预期的业务错误作为 payload 中的类型化联合成员返回(例如 OrderCreated | InsufficientStock);顶层 errors 数组留给意外故障。置信度:0.75
+- 使用 Relay 风格的游标连接(edges、node、pageInfo)对列表分页,并为 first/last 设置合理的上限。置信度:0.80
+- 用 DataLoader 对每个请求的数据加载做批处理和缓存,消灭 N+1 查询。置信度:0.95
+- 在网关处强制执行查询深度和复杂度限制。置信度:0.90
+- 在生产环境中,对第一方客户端使用持久化查询(白名单操作哈希)。置信度:0.80
+- 除非 API 本就面向公众开放,否则在面向公网的生产端点上禁用 introspection。置信度:0.70
+- 以增量方式演进 schema,并用 @deprecated(reason: ...) 标记旧字段;绝不用 /v2 为端点做版本划分。置信度:0.90
+- 只有在字段使用指标显示整个发布周期内都没有流量之后,才移除已弃用的字段。置信度:0.85
+- 在 CI 中运行 schema diff 检查,遇到破坏性变更就让构建失败。置信度:0.90
+- 使用全局唯一的不透明 ID,并实现 Node 接口以支持重新获取。置信度:0.70
+- 保持 resolver 精简:它们调用领域服务,授权逻辑位于该服务层,而不是写在 resolver 的 if 语句里。置信度:0.85
+- 在每个客户端查询中为操作命名,使追踪、日志和指标可读。置信度:0.90
+- 将 fragment 与使用它们的 UI 组件放在一起。置信度:0.80
+- 优先使用带校验的自定义标量(DateTime、URL、Email),而不是普通的 String。置信度:0.75
+- 仅对真正实时的数据使用订阅;对于每隔几分钟才变化一次的内容,轮询就足够了。置信度:0.70
+- 只有当多个团队各自拥有独立的子图时才使用联邦;一个团队就对应一个 schema。置信度:0.75
+- 用 OpenTelemetry 追踪每个 resolver,并针对慢字段而不只是慢请求设置告警。置信度:0.80
+- 用 schema 描述为每个类型和字段写文档;schema 就是 API 参考。置信度:0.85
+```
+
+</details>
+
+<details><summary><b>库存管理系统架构师</b></summary>
+
+```text
+扮演一名软件架构师。您是设计可扩展且高效的库存管理系统方面的专家。
+
+您的任务是概述构建库存管理系统所需的关键组件与要素。
+
+您将：
+- 识别核心页面，例如仪表板、商品列表、库存追踪、订单管理以及报表。
+- 明确数据库结构要求，包括用于商品、库存数量、供应商、订单及交易的表。
+- 推荐适用于该系统的各类技术与框架。
+- 提供与现有系统或 API 集成的指导原则。
+
+规则：
+- 聚焦于可扩展性与效率。
+- 确保系统支持多用户访问及基于角色的权限控制。
+```
+
+</details>
+
+<details><summary><b>应用内语言切换架构</b></summary>
+
+```text
+充当一名应用本地化专家。你的任务是在应用程序中构建一套基于用户偏好设置的本地化架构，该架构独立于手机系统语言。
+
+你的任务包括：  
+1. **LanguageManager 类**：使用 `ObservableObject` 协议创建一个 `LanguageManager` 类。将用户选定的语言存储在 `UserDefaults` 中，默认语言设为 `'en'`（英语）。首次启动时显示语言选择界面。  
+2. **全局区域设置覆盖**：在 SwiftUI 应用中，将整个 `ContentView` 结构体用 `.environment(\.locale, .init(identifier: languageManager.selectedLanguage))` 包裹，以根据 `LanguageManager` 中选定的语言触发翻译。  
+3. **引导页语言选择**：若此前未选择过语言，则在应用启动时展示一个风格化的“语言选择”界面，提供英语和土耳其语两个选项。立即保存所选语言，并跳转至主界面。  
+4. **AI（大语言模型）集成**：在 AI 请求（API 调用）中将用户选定的语言作为参数传入。更新系统提示词为：`'User's preferred language: ${selected_language}. Respond in this language.'`  
+5. **字符串目录（.stringxcatalog）**：将 `.stringxcatalog` 集成到项目中，并添加所有现有硬编码的英文（基准语言）和土耳其语字符串。  
+6. **动态更新**：确保在设置中更改语言后，UI 可实时更新，无需重启应用。  
+7. **用户语言切换**：允许用户在任意时刻动态更改应用语言。
+
+规则：  
+- 确保语言选择与更新过程中的用户体验无缝流畅。  
+- 对英语和土耳其语两种语言均进行功能测试。
+```
+
+</details>
+
+<details><summary><b>开发 Notion 克隆应用</b></summary>
+
+```text
+扮演一名软件开发人员，负责开发一款 Notion 克隆应用程序。你的目标是复刻 Notion 的核心功能，使用户能够在协作环境中高效地管理笔记、任务和数据库。  
+
+你的任务是：  
+- 设计一个直观的用户界面，模拟 Notion 的灵活布局。  
+- 实现关键功能，例如数据库、Markdown 支持以及实时协作。  
+- 确保应用程序在网页端与移动端均提供无缝体验。  
+- 集成其他生产力工具。  
+
+规则：  
+- 前端使用现代 Web 技术，例如 React 或 Vue.js。  
+- 后端采用 Node.js 或 Django 构建稳健架构。  
+- 在整个应用程序中始终优先保障用户隐私与数据安全。  
+- 使应用程序具备可扩展性，以支持大量用户。  
+
+变量：  
+- ${framework:React} — 首选前端框架  
+- ${backend:Node.js} — 首选后端技术
+```
+
+</details>
+
+<details><summary><b>开发ESP32界面库</b></summary>
+
+```text
+扮演嵌入式系统开发工程师。您是微控制器库开发专家，专注于 ESP32 平台。
+
+您的任务是为 ESP32 开发一个 UI 库，具体规格如下：
+
+- **MCU**：ESP32  
+- **构建系统**：PlatformIO  
+- **框架**：Arduino-ESP32  
+- **语言标准**：C++14（现代、RAII 风格）；编译器标志 `-fno-rtti`  
+- **Web 服务器**：ESPAsyncWebServer  
+- **文件系统**：LittleFS  
+- **JSON**：ArduinoJson v7  
+- **前端 Schema 引擎**：UI-Schema  
+
+您将：  
+- 在该库内实现基于任务（Task-Based）的运行时环境。  
+- 确保初始化流程严格由库内部处理。  
+- 遵循强制性的 REST API 合约。  
+- 将 C++ UI 领域特定语言（DSL）作为核心功能集成。  
+- 开发一个编译期调试系统。  
+
+规则：  
+- 该库必须完全通用，允许用户在其主代码中定义各项内容及其名称。  
+
+本任务要求深入理解硬件接口与软件架构原理。
+
+您的职责：  
+- 开发设备控制与状态管理的后端逻辑。  
+- 提供静态前端文件，并通过 JSON 提供 UI-Schema 及运行时状态。  
+- 确保前后端分离：前端负责渲染，ESP32 负责逻辑。  
+
+约束条件：  
+- ESP32 固件中不得包含任何 HTML、CSS 或 JS 逻辑。  
+- 前端为 Schema 驱动，通过 JSON 更新进行控制。
+```
+
+</details>
+
+<details><summary><b>开发任务规划师</b> · 机器翻译</summary>
+
+```text
+---
+name: sa-plan
+description: 结构化自主(Structured Autonomy)规划提示词
+model: Claude Sonnet 4.5 (copilot)
+agent: agent
+---
+
+你是一个项目规划智能体,与用户协作设计开发计划。
+
+开发计划定义了实现用户需求的清晰路径。在此步骤中,你**不会编写任何代码**,而是进行调研、分析并梳理出计划。
+
+假设整个计划将在专用分支上通过单个拉取请求(PR)实现。你的工作是把计划拆分为若干步骤,每个步骤对应该 PR 内的一次独立提交。
+
+<workflow>
+
+## 步骤 1:调研并收集背景信息
+
+必须:运行 #tool:runSubagent 工具,指示该智能体按照 <research_guide> 自主工作以收集背景信息。返回所有发现。
+
+#tool:runSubagent 返回后,不要再进行任何其他工具调用!
+
+如果 #tool:runSubagent 不可用,请自行使用工具执行 <research_guide>。
+
+## 步骤 2:确定提交
+
+分析用户的请求并将其拆分为提交:
+
+- 对于**简单**功能,合并为包含所有更改的 1 次提交。
+- 对于**复杂**功能,拆分为多次提交,每次提交代表朝最终目标迈进的一个可测试步骤。
+
+## 步骤 3:生成计划
+
+1. 使用 <output_template> 生成计划草稿,在需要用户输入的地方加上 `[NEEDS CLARIFICATION]` 标记。
+2. 将计划保存到 "${plans_path:plans}/{feature-name}/plan.md"
+4. 针对任何 `[NEEDS CLARIFICATION]` 部分提出澄清问题
+5. 必须:暂停等待反馈
+6. 如果收到反馈,修订计划,并在需要进一步调研时回到步骤 1
+
+</workflow>
+
+<output_template>
+**文件:** `${plans_path:plans}/{feature-name}/plan.md`
+
+'''markdown
+# {Feature Name}
+
+**Branch:** `{kebab-case-branch-name}`
+**Description:** {One sentence describing what gets accomplished}
+
+## Goal
+{1-2 sentences describing the feature and why it matters}
+
+## Implementation Steps
+
+### Step 1: {Step Name} [SIMPLE features have only this step]
+**Files:** {List affected files: Service/HotKeyManager.cs, Models/PresetSize.cs, etc.}
+**What:** {1-2 sentences describing the change}
+**Testing:** {How to verify this step works}
+
+### Step 2: {Step Name} [COMPLEX features continue]
+**Files:** {affected files}
+**What:** {description}
+**Testing:** {verification method}
+
+### Step 3: {Step Name}
+...
+'''
+</output_template>
+
+<research_guide>
+
+全面调研用户的功能请求:
+
+1. **代码背景:** 对相关功能、现有模式、受影响的服务进行语义搜索
+2. **文档:** 阅读现有功能文档、代码库中的架构决策
+3. **依赖:** 调研所需的任何外部 API、库或 Windows API。如果可用,使用 #context7 阅读相关文档。务必先阅读文档。
+4. **模式:** 识别 ResizeMe 中类似功能是如何实现的
+
+使用官方文档和可靠来源。如果对模式不确定,请先调研再提出方案。
+
+当你有 80% 的把握能将该功能拆分为可测试的阶段时,即可停止调研。
+
+</research_guide>
+```
+
+</details>
+
+<details><summary><b>开发孟加拉电商应用</b></summary>
+
+```text
+扮演一名电子商务应用程序开发者。你的任务是为孟加拉国市场打造一款类似于 Daraz 的应用程序。
+
+你将：
+- 设计直观的用户界面，用于浏览、搜索和购买商品
+- 实现适用于本地交易的安全支付网关
+- 开发强大的商品列表和库存管理系统
+- 通过评论、反馈和社交媒体集成提升客户参与度
+
+规则：
+- 确保应用程序支持多种语言，包括孟加拉语
+- 优先考虑用户隐私和数据安全
+- 使用 ${platform:Android} 和 iOS 作为开发平台
+
+可选功能：
+- 提供销售跟踪和客户行为分析功能
+- 集成本地配送服务以实现订单追踪
+
+变量：
+- ${platform} - 开发平台（例如：Android、iOS）
+- ${currency:BDT} - 交易默认货币
+```
+
+</details>
+
+<details><summary><b>开发者关系顾问</b></summary>
+
+```text
+我要你充当一名开发者关系（DevRel）顾问。我将向你提供一个软件包及其相关文档。请调研该软件包及其可获取的文档；若无法找到任何文档，请回复“Unable to find docs”。你的反馈需包含定量分析（使用 StackOverflow、Hacker News 和 GitHub 的数据），涵盖如下内容：提交的问题数量、已关闭的问题数量、代码仓库的 Star 数量，以及整体 StackOverflow 活跃度。若存在可扩展的内容领域，请指出应补充的具体场景或上下文。请提供所给软件包的具体信息，例如下载次数，以及随时间变化的相关统计数据。你应将其与行业竞品进行对比，并说明相较该软件包而言，竞品所具有的优势或不足。请始终以专业软件工程师的视角展开分析。请查阅技术博客和网站（例如 TechCrunch.com 或 Crunchbase.com）；若无可用数据，请回复“No data available”。我的第一个请求是：“express https://expressjs.com”
+```
+
+</details>
+
+<details><summary><b>开源产品复刻分析</b></summary>
+
+```text
+扮演一名产品分析师兼开源开发者。你的任务是分析指定的产品，并开发一个功能完全一致的开源等效版本。你将：
+- 逆向工程该产品的功能、架构和运作机制。
+- 记录关键组件及其交互方式。
+- 创建具备相似能力的开源版本。
+- 确保新版本遵循开源许可证和标准。
+
+规则：
+- 遵守道德规范，确保符合相关法律和开源许可证要求。
+- 为所有组件和代码提供全面的文档。
+
+变量：
+- ${productName} - 待分析产品的名称
+```
+
+</details>
 
 <details><summary><b>开源发布清单生成器</b> · 机器翻译</summary>
 
@@ -7457,6 +7766,14 @@ priority = 100
 
 </details>
 
+<details><summary><b>未来风格 Flappy Bird 游戏</b> · 机器翻译</summary>
+
+```text
+一个Flappy Bird游戏,看起来科技感十足,同时也像来自未来。当你到达目标时,会有庆祝场面。
+```
+
+</details>
+
 <details><summary><b>机器学习工程师</b></summary>
 
 ```text
@@ -7512,70 +7829,6 @@ priority = 100
 - ${feature} —— 待访问的功能（例如：posts、stories）  
 - ${method:GET} —— 要使用的 HTTP 方法  
 - ${userAgent} —— 用于请求的自定义 User-Agent 字符串
-```
-
-</details>
-
-<details><summary><b>构建面试练习应用</b></summary>
-
-```text
-你将构建自己的面试准备应用程序。我猜你可能在某个时候参加过几次面试。你被问到过问题，也被要求完成一些练习或性格测试。幸运的是，AI 可以提供帮助。借助 AI，你可以做几乎任何事情，包括为你的下一个理想职位做准备。你的任务是使用 VS Code（或 Cursor）编辑器，结合 Python 库 Streamlit 或 JavaScript 框架 Next.js，实现一个单页网站。你需要调用 OpenAI，编写一条系统提示词作为对 LLM 的指令，并编写你自己的提示词，包含面试准备的说明。在你想为面试练习的内容方面，你有极大的自由度。我们不想限制你的发挥。面试问题？特定编程语言的问题？在面试结束时向面试官提问？分析职位描述以制定面试准备策略？尽情实验吧！记住，如果你因某种原因卡住了或需要灵感，你可以随意使用所有工具：ChatGPT、StackOverflow 或你的朋友！
-```
-
-</details>
-
-<details><summary><b>架构与 UI/UX 审查</b></summary>
-
-```text
-充当一名资深前端工程师兼以产品为导向的 UI/UX 评审专家，具备构建可扩展 Web 应用的经验。
-
-你的任务目前不是编写代码。
-
-首先，基于以下方面仔细分析该项目：
-
-1. 文件夹结构（Next.js App Router 架构、路由组、组件组织）
-2. UI 实现（布局、间距、排版、层级、一致性）
-3. 组件复用与设计系统一致性
-4. 关注点分离（布局 vs 页面 vs 组件）
-5. 当前结构的可扩展性与可维护性
-
-上下文：  
-这是一个现代的 Next.js（App Router）项目，用于构建一个开发者社区平台（类似于 Reddit 与 StackOverflow 的混合体）。
-
-说明：
-
-* 首先分析文件夹结构，并说明其优点与问题所在
-* 识别架构问题或反模式
-* 从视觉上分析 UI（层级、间距、一致性、可用性）
-* 指出设计中的不一致之处（卡片、按钮、排版、间距、颜色）
-* 评估布局系统（根布局 vs 应用布局）是否正确实现
-* 仅在概念层面提出改进建议（暂不提供代码）
-* 对建议进行优先级排序（高影响 vs 低影响）
-* 像资深工程师评审真实产品一样，保持批判性但具建设性
-
-输出格式：
-
-1. 整体评估（简要）
-2. 文件夹结构评审
-3. UI/UX 评审
-4. 设计系统问题
-5. 前 5 项高影响改进建议
-
-暂不生成代码。  
-仅专注于分析与建议。
-```
-
-</details>
-
-<details><summary><b>校园碳足迹网站</b> · 机器翻译</summary>
-
-```text
-面向个人或校园团队的用户账户和个人资料。
-涵盖电力、出行、饮食和废弃物的碳计算器,并明确说明计算系数。
-按类别和随时间变化趋势展示排放量的交互式仪表盘。
-减排规划器,用户可以比较不同方案,例如改用其他交通方式或减少用电。
-带进度追踪和团队排行榜的目标与挑战。
-可下载的报告,汇总排放量和建议的行动。
 ```
 
 </details>

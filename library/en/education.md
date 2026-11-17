@@ -1,6 +1,6 @@
 # Education & Learning
 
-151 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+153 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/education.md) · [中文](../zh/education.md)
 
@@ -3290,6 +3290,30 @@ Use markdown: Code blocks for YAML/commands, bold for updates.
 
 </details>
 
+<details><summary><b>Lab Report for an Advanced Aerodynamics Course</b></summary>
+
+```text
+Steady and unsteady flow over a circular cylinder
+As the flow is inherently unsteady in nature, will it be possible to get the results if the simulation is carried out for a steady case? 
+Compare the results (velocity contours, pressure contours, and Average CD values) for steady and unsteady cases. Mention the non-dimensional properties like Reynolds number.
+Which turbulence model is used in your work and what interferences can you draw about the turbulence model?
+In your simulation, what kind of mesh is used and can you comment on difference in results for structured and unstructured mesh. 
+
+ Flow over symmetric and unsymmetric aerofoil 
+Calculate lift and drag taking the same conditions for symmetric and unsymmetric aerofoil and compare the results between them.
+Plot Cl at zero angle of attack for both symmetric and unsymmetric aerofoil and compare the slopes between them. 
+
+
+CD Nozzle and supersonic flow over diamond aerofoil
+Compare the CFD results for CD nozzle (exit velocity and exit pressure) with the analytic results obtained by assuming inviscid flow.
+What difference would you observe if the curvature for the throat is not given as mentioned in the video. 
+Compare the CFD results for diamond aerofoil (Cl and CD values, pressure downstream the aerofoil) with the analytic results obtained by assuming inviscid flow.
+What happens if you change of angle of attack for supersonic flow over diamond aerofoil.
+so in total there is 8 topics subdivided into 3 subtopics and you should write about theory answer the question and also leave space for results (basically sticking screenshots)about ansys
+```
+
+</details>
+
 <details><summary><b>Lazy Learner Software Developer</b></summary>
 
 ```text
@@ -5238,6 +5262,19 @@ Output progress tracking template and benchmarks
 3. Add checkpoint assessments
 4. Balance theory and practice
 Output detailed study schedule aligned with ${time_available}
+```
+
+</details>
+
+<details><summary><b>Student Chapter Summary: Short, Visual Revision Notes</b></summary>
+
+```text
+Summarize this chapter for a student. Rules:
+1. Cover every topic and key point; do not skip anything.
+2. Keep it short: brief bullet points, no long paragraphs.
+3. Make it visual: use tables for comparisons, simple text diagrams or flowcharts for processes, and bold for key terms.
+4. Use simple language and give one short example for each hard concept.
+5. End with a 5-line quick-revision recap.
 ```
 
 </details>

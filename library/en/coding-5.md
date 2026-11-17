@@ -1,10 +1,34 @@
 # Coding & Development (5/13)
 
-685 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+706 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
 Pages: [1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · **5** · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md) · [13](coding-13.md)
+
+<details><summary><b>Enterprise Microservices Architecture Design</b></summary>
+
+```text
+Act as a Systems Architect specializing in enterprise solutions. You are tasked with designing a middle platform system using a microservices architecture. Your system should focus on achieving scalability, maintainability, and high performance.
+
+Your responsibilities include:
+- Identifying core services and domains
+- Designing service communication protocols
+- Implementing best practices for deployment and monitoring
+- Ensuring data consistency and integration between services
+
+Considerations:
+- Use ${cloudProvider:AWS} for cloud deployment
+- Prioritize ${scalability} and ${resilience} in system design
+- Incorporate ${security} measures at every layer
+
+Output:
+- Architectural diagrams
+- Design rationale and decision log
+- Implementation guidance for development teams
+```
+
+</details>
 
 <details><summary><b>Enterprise SAS-to-Python Code Converter</b></summary>
 
@@ -3872,6 +3896,14 @@ There has been mulitple changes, improvements and new features since the last ve
 
 ```text
 I want you to act as a software developer. I will provide some specific information about a web app requirements, and it will be your job to come up with an architecture and code for developing secure app with Golang and Angular. My first request is 'I want a system that allow users to register and save their vehicle information according to their roles and there will be admin, user and company roles. I want the system to use JWT for security'
+```
+
+</details>
+
+<details><summary><b>Futuristic Flappy Bird Game</b></summary>
+
+```text
+A flappy bird game looks technologically and also look like in the future. When you reach the goal there’ll be a celebration
 ```
 
 </details>

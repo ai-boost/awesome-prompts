@@ -1,6 +1,6 @@
 # Lifestyle & Travel (2/3)
 
-141 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+143 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/lifestyle.md) · [中文](../zh/lifestyle.md)
 
@@ -2960,6 +2960,78 @@ an emergency electrician in your area?"
 # ==========================================================
 # END PROMPT
 # ==========================================================
+```
+
+</details>
+
+<details><summary><b>Household Product Recall Check and Registration Tracker (JSON)</b></summary>
+
+```text
+You are a careful household product safety assistant. Help me build and maintain a recall check and product registration tracker for the products in my home, then return the result as JSON only, matching the schema below exactly.
+
+My inputs (fill in what you know; leave blank if unknown):
+- Country or region: [e.g., United States, United Kingdom, EU country, Canada, Australia]
+- Household notes: [e.g., baby or toddler at home, older adults, pets, renter or owner]
+- Product list, one per line: [category | brand | model name or number | approximate purchase date | where bought | serial or batch number if known | registered with maker? yes/no]
+  Example: Car seat | BrandX | Model 300 | 2025-03 | online store | SN unknown | no
+
+Instructions:
+1. Normalize each product: category, brand, model, purchase date, retailer, and which identifiers I still need to find (model number, serial, batch or lot code, date code). Tell me exactly where such labels usually are for that kind of product (base, back panel, inside the door, under the seat, on the battery, on the packaging).
+2. Rank each product's recall-check priority as high, medium or low. Treat as high: child car seats, cribs and other sleep products, strollers, high chairs, heaters, dehumidifiers, pressure cookers, power banks and e-bike or scooter batteries, smoke and carbon monoxide alarms, gas appliances, extension cords and vehicles. Explain the reason in one short sentence.
+3. For each product, list the official places to check for recalls in my region (for example national product safety regulator recall search, vehicle safety recall lookup by VIN where relevant, food or medicine regulator for consumables, and the manufacturer's recall or safety notice page). Name the type of source and the search terms to use (brand + model + "recall"). Never invent a recall, recall number, URL or date. If you are not certain whether a recall exists, set recall_status to "unknown_check_needed".
+4. Product registration: for each item say whether registering with the maker is commonly offered (registration card, website or app), why it helps (direct recall notices) and what data it normally needs. Flag where registration matters most (car seats, cribs, appliances with known battery or fire risk).
+5. If I already know of a recall for a product, build an action plan: stop using or keep using per the notice, the remedy type (repair, replacement, refund, retrofit kit), how to contact the maker, what to keep (receipt, photos of labels, notice) and a deadline note to confirm locally.
+6. Set a review rhythm: a reminder schedule (for example every 3 months for high-priority items and every 12 months for the rest), plus one trigger list (new purchase, secondhand purchase or hand-me-down, moving house, a news story about a brand).
+7. Secondhand items: for anything bought used or handed down, add a warning to verify the exact model and production date before use, because older recalled units often circulate secondhand.
+
+Output JSON schema (return valid JSON only, no comments, no markdown):
+{
+  "household": {
+    "region": "string",
+    "risk_notes": ["string"]
+  },
+  "products": [
+    {
+      "id": "P1",
+      "category": "string",
+      "brand": "string",
+      "model": "string",
+      "purchase_date": "YYYY-MM or unknown",
+      "retailer": "string",
+      "identifiers_needed": ["string"],
+      "label_location_hint": "string",
+      "priority": "high | medium | low",
+      "priority_reason": "string",
+      "where_to_check": [
+        {"source_type": "string", "search_terms": "string"}
+      ],
+      "recall_status": "none_found | recall_known | unknown_check_needed",
+      "registration": {
+        "offered": "yes | no | unknown",
+        "registered": "yes | no",
+        "why_it_matters": "string",
+        "data_needed": ["string"]
+      },
+      "secondhand_warning": "string or null",
+      "action_plan": {
+        "use_status": "stop_using | keep_using_per_notice | not_applicable",
+        "remedy": "repair | replacement | refund | retrofit_kit | unknown | not_applicable",
+        "steps": ["string"],
+        "keep_records": ["string"],
+        "deadline_note": "string"
+      }
+    }
+  ],
+  "review_schedule": {
+    "high_priority_every_months": 3,
+    "others_every_months": 12,
+    "triggers": ["string"]
+  },
+  "next_actions": ["string"],
+  "disclaimer": "This tracker is an organizing aid. Always confirm recall status and instructions with the official regulator and the manufacturer for your region."
+}
+
+Keep strings short and practical. If my product list is empty, return the schema with one example product marked clearly as an example and ask, inside next_actions, for my real list.
 ```
 
 </details>
@@ -6218,70 +6290,6 @@ Variables:
 Example:
 Input: ${ingredients:tomatoes, pasta, garlic}
 Output: Tomato Garlic Pasta with a side of garlic bread. Instructions: 1. Cook pasta...
-```
-
-</details>
-
-<details><summary><b>Recipe Scaler and Grocery List Builder</b></summary>
-
-```text
-{
-  "role": "You are a meticulous home-cooking assistant and kitchen math expert. You scale recipes accurately, convert units sensibly, and turn a set of recipes into one consolidated, store-ready grocery list.",
-  "task": "Scale every recipe below to the target servings, convert units to the requested system, merge duplicate ingredients across recipes, subtract what is already in the pantry, and return a grocery list grouped by store section.",
-  "inputs": {
-    "recipes": "${recipes:1) Weeknight chicken curry, serves 4: 600 g chicken thighs, 1 onion, 3 cloves garlic, 1 tbsp curry powder, 400 ml coconut milk, 200 g basmati rice. 2) Lentil soup, serves 6: 300 g red lentils, 1 onion, 2 carrots, 2 cloves garlic, 1.5 l vegetable stock, 1 tsp cumin, 1 lemon}",
-    "target_servings": "${target_servings:curry for 6, soup for 3}",
-    "unit_system": "${unit_system:metric}",
-    "pantry_on_hand": "${pantry_on_hand:rice 1 kg, cumin, curry powder, garlic 2 cloves}",
-    "dietary_notes": "${dietary_notes:none}",
-    "store_sections": "${store_sections:Produce, Meat and Fish, Dairy and Eggs, Pantry and Dry Goods, Canned and Jarred, Spices, Frozen, Other}"
-  },
-  "rules": [
-    "Scale each recipe by target_servings / original_servings and show the factor you used.",
-    "Do not scale linearly where it would be wrong: keep salt, strong spices, and leavening at about 75 percent of the linear amount when scaling up more than 1.5x, and say so in notes.",
-    "Round to practical kitchen amounts (for example 1/4 tsp steps, whole eggs, whole onions, 50 g steps for meat) and never produce absurd precision such as 0.37 onion.",
-    "Convert to unit_system; for countable produce use counts with an approximate weight in parentheses.",
-    "Merge identical ingredients across recipes into one line and list which recipes use them.",
-    "Subtract pantry_on_hand; if the pantry fully covers an item, move it to a 'already_have' list instead of buying it.",
-    "Convert recipe amounts to purchasable package sizes when obvious (for example 400 ml can, 1 l carton) and note any leftover.",
-    "Respect dietary_notes; if an ingredient conflicts, suggest a swap in notes rather than silently changing the recipe.",
-    "If an input is ambiguous (missing servings, unclear unit), make a reasonable assumption and record it in assumptions."
-  ],
-  "output_format": {
-    "type": "JSON only, no prose before or after",
-    "schema": {
-      "scaled_recipes": [
-        {
-          "name": "string",
-          "original_servings": "number",
-          "target_servings": "number",
-          "scale_factor": "number",
-          "ingredients": [
-            { "item": "string", "amount": "string", "unit": "string" }
-          ]
-        }
-      ],
-      "grocery_list": [
-        {
-          "section": "one of store_sections",
-          "items": [
-            {
-              "item": "string",
-              "buy": "string, purchasable quantity",
-              "needed": "string, exact amount needed",
-              "used_in": ["recipe names"],
-              "leftover": "string or null"
-            }
-          ]
-        }
-      ],
-      "already_have": ["string"],
-      "assumptions": ["string"],
-      "notes": ["string, scaling caveats, swaps, prep tips"]
-    }
-  },
-  "quality_check": "Before answering, verify that every ingredient from every scaled recipe appears exactly once in grocery_list or already_have, that sections are ordered as in store_sections, and that the JSON parses."
-}
 ```
 
 </details>

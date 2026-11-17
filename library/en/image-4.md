@@ -1,10 +1,952 @@
 # Image & Design (4/5)
 
-847 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+880 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
 Pages: [1](image.md) · [2](image-2.md) · [3](image-3.md) · **4** · [5](image-5.md)
+
+<details><summary><b>Petrykivka Folk Painting of Twin Firebirds</b></summary>
+
+```text
+A traditional Ukrainian Petrykivka folk painting in a wide landscape 16:9 composition on a warm cream paper background, a perfectly symmetrical decorative ornament mirrored down the vertical center line. At the center, two firebirds face each other with their beaks almost touching, perched on curling leafy stems, their flame-like crests, raised wings, and long trailing tail feathers painted in fiery red, orange, and golden yellow with layered comma-stroke feathers. Below them, a large sunflower with bright yellow petals and a dark brown seed center sits in the middle of the lower half on broad green leaves. On both sides, sweeping S-curves of foliage frame the birds: heavy clusters of glossy red guelder-rose (viburnum) berries in the upper and lower corners, two cobalt blue cornflowers on each side, golden wheat ears arching outward, emerald green viburnum leaves, and small yellow buds and tendrils filling the gaps. Flat hand-painted gouache brushstrokes with clearly visible single-stroke "grass" and "comma" petals, fine dark detailing, rich saturated red, orange, cobalt blue, emerald green, and golden yellow, crisp paint texture on paper, plenty of breathing space between motifs. Festive, joyful, handcrafted folk-art mood. No text, no signature, no frame, no people.
+```
+
+</details>
+
+<details><summary><b>Phantom Strike</b></summary>
+
+```text
+{
+  "title": "Phantom Strike",
+  "description": "An intense, high-octane action shot of a lone warrior battling supernatural entities in a decayed industrial setting.",
+  "prompt": "You will perform an image edit transforming the subject into an action hero in a supernatural thriller. The image must be photorealistic, highly detailed, and emulate a frame shot on Arri Alexa with cinematic lighting and a shallow depth of field. The scene depicts the female subject in a derelict, flooded subway tunnel, engaged in mortal combat. She is fighting with shadows that seem to manifest as physical, smoky tendrils extending from the darkness. The lighting is dramatic, highlighting the texture of her skin and the splashing water.",
+  "details": {
+    "year": "Modern Day Urban Fantasy",
+    "genre": "Cinematic Photorealism",
+    "location": "An abandoned, flooded subway maintenance tunnel with peeling paint and flickering overhead industrial lights.",
+    "lighting": [
+      "High-contrast chiaroscuro",
+      "Cold overhead fluorescent flicker",
+      "Volumetric god rays through steam"
+    ],
+    "camera_angle": "Low-angle dynamic action shot, 1:1 aspect ratio, focusing on the impact of the movement.",
+    "emotion": [
+      "Fierce",
+      "Adrenaline-fueled",
+      "Desperate"
+    ],
+    "color_palette": [
+      "Desaturated concrete greys",
+      "Vibrant crimson",
+      "Abyssal black",
+      "Cold cyan"
+    ],
+    "atmosphere": [
+      "Kinetic",
+      "Claustrophobic",
+      "Gritty",
+      "Supernatural"
+    ],
+    "environmental_elements": "Splashing dirty water, floating dust particles, semi-corporeal shadow creatures, sparks falling from a broken light fixture.",
+    "subject1": {
+      "costume": "red mini skirt, black fingerless gloves, a torn white tactical tank top, and heavy laced combat boots.",
+      "subject_expression": "Teeth gritted in exertion, eyes locked on the target with intense focus.",
+      "subject_action": "fighting with shadows"
+    },
+    "negative_prompt": {
+      "exclude_visuals": [
+        "sunlight",
+        "blue skies",
+        "static poses",
+        "smiling",
+        "cleanliness"
+      ],
+      "exclude_styles": [
+        "cartoon",
+        "anime",
+        "3D render",
+        "oil painting",
+        "sketch"
+      ],
+      "exclude_colors": [
+        "pastel pink",
+        "warm orange",
+        "spring green"
+      ],
+      "exclude_objects": [
+        "guns",
+        "swords",
+        "modern vehicles",
+        "bystanders"
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>Photo ID Editor</b></summary>
+
+```text
+Professional photo editor you understand what i need And your very good at making photo IDs
+```
+
+</details>
+
+<details><summary><b>Photo Pose and Setting Transformation Editor</b></summary>
+
+```text
+Act as a Photo Pose Transformation Editor. You are an AI specialized in transforming the pose of individuals in selfies. Your task is to edit uploaded selfies to change the subject's pose into various positions such as ${pose:standing}, leaning on something, laying down, kneeling, looking over the shoulder, walking toward the viewer, or a shy pose. You will:
+- Analyze the uploaded selfie image
+- Modify the pose while maintaining the natural look and feel
+- Ensure the background and lighting remain consistent with the new pose
+Rules:
+- Maintain the quality and resolution of the original image
+- Preserve facial expressions and details
+- Provide options for different poses as requested by the user${Setting:Femboy bedroom}${Facial expression:Soft smile}
+```
+
+</details>
+
+<details><summary><b>Photo Restoration and Colorization Expert</b></summary>
+
+```text
+Act as a professional photo restoration expert. You are tasked with performing a high-precision conservative restoration and historical colorization of a degraded vintage photograph. The final image should resemble a perfectly preserved original print.
+
+**IMAGE ANALYSIS & RESTORATION:**
+
+1. **Surface Repair:** 
+   - Digitally remove deep scratches, dust, fingerprints, and moisture stains.
+   - Reconstruct missing areas or tears at the edges while preserving the texture of the photographic paper.
+
+2. **Structural Fidelity:** 
+   - Correct geometric distortion.
+   - Restore the original contrast without overexposing highlights or excessively darkening shadows.
+
+3. **Facial Clarity:** 
+   - Recover facial features with extreme precision.
+   - Avoid the "wax skin" effect; maintain the natural grain and original micro-expressions.
+
+**CHROMATIC & AESTHETIC STYLE:**
+
+1. **Historical Color Palette:** 
+   - Apply a realistic colorization inspired by the Kodachrome process of the 1940s.
+   - Use soft, warm, and desaturated tones.
+
+2. **Skin Tones:** 
+   - Render skin tones naturally, considering the period's ambient lighting.
+   - Avoid uniform digital saturation.
+
+3. **Authentic Grain:** 
+   - Preserve a fine, organic photographic grain typical of 35mm analog film.
+
+**NEGATIVE PROMPT / WHAT TO AVOID:**
+
+- Do not apply modern filters such as Instagram.
+- Avoid "smooth" or "plastic skin" effects.
+- Refrain from using neon colors, excessive saturation, or sharpening artifacts (e.g., white halos).
+- Prevent the appearance of a digital painting or 3D illustration.
+
+**FINAL OUTPUT QUALITY:**
+
+- Achieve a photorealistic, museum-quality finish with ultra-defined detail (8k resolution style) and absolute historical fidelity.
+```
+
+</details>
+
+<details><summary><b>Photo to 90s Cult Movie Scene</b></summary>
+
+```text
+Using the provided image of the man, create an ultra-realistic action scene in the gritty visual style of the Russian crime film Bumer. Keep his face completely unchanged — same proportions, features, expression, and skin texture. Show him in an intense moment: standing outdoors on a cold gray street, holding a pistol with an extended arm, aiming forward with urgency. Outfit: black jacket, slightly messy shirt, bruises or dirt marks for realism. Background: Soviet-era apartment buildings, winter atmosphere, muted colors. Lighting: natural overcast daylight with cold tones. Mood: raw, dangerous, chaotic, handheld-camera aesthetic. Capture mid-action tension, sharp details, realistic motion feel. Ensure perfect integration of his real face into the scene.
+```
+
+</details>
+
+<details><summary><b>Photo to Isometric City Slice</b></summary>
+
+```text
+{
+  "prompt": "Create an ultra realistic isometric diorama based strictly on the uploaded image. Analyze the image to extract dominant architecture style, building age, materials, street layout, objects, vehicles and urban density. Rebuild the same scene as a single sliced city block floating on a pure white background. Preserve the original atmosphere, proportions and spatial logic while converting it into a miniature architectural maquette. Use mid rise buildings if present, matching facade textures, balconies, windows, storefronts and street elements seen in the image. Keep only elements visible in the source image. Remove anything not present. Apply 45 degree isometric angle, tilt shift miniature effect, soft natural daylight matching the original lighting conditions, global illumination, PBR materials, extreme micro detail, architectural visualization quality. Clean studio lighting. No sky, no horizon.",
+  "negative_prompt": "invented objects, extra buildings, fantasy elements, cartoon, anime, illustration, low poly, flat shading, fisheye, distortion, surreal details, inconsistent scale, random props",
+  "aspect_ratio": "1:1",
+  "style": "photorealistic",
+  "quality": "high"
+}
+```
+
+</details>
+
+<details><summary><b>Photo to LEGO Minifigure</b></summary>
+
+```text
+{
+  "prompt": {
+    "title": "Personalized LEGO Minifigure Collectible Generator",
+    "concept": "Transform the person in the reference image into a premium, highly detailed, classic LEGO minifigure collectible. The result must look like a professionally manufactured physical LEGO toy photographed in a high-end product photography studio.",
+
+    "reference_image_analysis": {
+      "instruction": "Analyze the reference photograph before designing the minifigure.",
+      "identify_and_preserve": [
+        "Distinctive facial characteristics",
+        "Face shape and proportions",
+        "Hair color, hairstyle, and hair volume",
+        "Eyebrows and characteristic expression",
+        "Glasses and eyewear",
+        "Facial hair, beard, and moustache",
+        "Original clothing and dominant colors",
+        "Logos, typography, and recognizable clothing graphics",
+        "Jewelry, watches, bags, and personal accessories",
+        "Other distinctive visual characteristics"
+      ],
+      "identity_priority": "The resulting minifigure should be immediately recognizable as the person in the reference image, despite the simplified LEGO facial design."
+    },
+
+    "character_construction": {
+      "design_language": "Authentic classic LEGO minifigure construction with premium collectible detailing.",
+      "head": {
+        "shape": "Classic cylindrical LEGO minifigure head",
+        "material": "Glossy injection-molded plastic",
+        "color": "Traditional LEGO yellow or appropriate LEGO skin-tone color",
+        "face": "Printed LEGO facial graphics",
+        "eyes": "Classic expressive LEGO eyes with black pupils and white highlights",
+        "eyebrows": "Printed eyebrows matching the subject",
+        "expression": "Friendly, confident, natural expression",
+        "facial_hair": "Precisely printed stubble, beard, or moustache when present"
+      },
+
+      "hair": {
+        "construction": "Separate molded LEGO hairpiece",
+        "material": "Glossy ABS plastic",
+        "style": "Reproduce the reference hairstyle using recognizable molded hair geometry",
+        "details": "Individual molded hair sections, realistic plastic reflections, accurate hair color"
+      },
+
+      "eyewear": {
+        "instruction": "Reproduce glasses and sunglasses as separate miniature LEGO-compatible accessories when present.",
+        "style": "Accurate frame shape, color, and proportions."
+      },
+
+      "torso": {
+        "shape": "Classic LEGO minifigure torso",
+        "clothing": "Reproduce the original outfit using clean printed graphics.",
+        "graphics": "Preserve recognizable logos, lettering, color combinations, pockets, collars, and clothing details.",
+        "texture": "Smooth plastic with printed designs. Never use realistic fabric textures.",
+        "finish": "Premium glossy molded plastic."
+      },
+
+      "arms": {
+        "shape": "Classic cylindrical LEGO arms",
+        "proportions": "Authentic minifigure dimensions",
+        "color": "Match the reference clothing"
+      },
+
+      "hands": {
+        "shape": "Traditional C-shaped LEGO hands",
+        "color": "Match the minifigure head color"
+      },
+
+      "legs": {
+        "shape": "Classic rigid LEGO minifigure legs",
+        "proportions": "Short, blocky, connected LEGO legs",
+        "details": "Printed trousers, shoes, and other recognizable clothing details where appropriate"
+      },
+
+      "accessories": {
+        "instruction": "Recreate recognizable personal accessories as miniature molded LEGO elements.",
+        "examples": [
+          "Glasses",
+          "Watches",
+          "Headphones",
+          "Backpacks",
+          "Bags",
+          "Hats",
+          "Jewelry",
+          "Professional equipment",
+          "Personal objects"
+        ],
+        "rule": "Only include accessories supported by the reference photograph."
+      }
+    },
+
+    "material_and_rendering": {
+      "material": "High-quality injection-molded ABS plastic",
+      "surface": "Smooth, polished, glossy plastic",
+      "reflections": "Subtle controlled studio reflections",
+      "edges": "Precise molded edges and authentic LEGO geometry",
+      "printing": "Sharp, clean, high-resolution printed graphics",
+      "realism": "Photorealistic physical toy rendering",
+      "quality": "Premium collectible product visualization"
+    },
+
+    "composition": {
+      "subject_count": 1,
+      "position": "Precisely centered in the frame",
+      "pose": "Standing upright in a natural neutral minifigure pose",
+      "orientation": "Front-facing with a subtle three-quarter angle",
+      "framing": "Complete character visible from hair to feet",
+      "scale": "Character occupies approximately 75 to 85 percent of the image height",
+      "symmetry": "Balanced composition with equal visual breathing room",
+      "camera": "Professional product photography, slightly elevated three-quarter perspective"
+    },
+
+    "background": {
+      "type": "Pure white seamless studio background",
+      "color": "#FFFFFF",
+      "environment": "No scenery, no diorama, no LEGO bricks, no furniture, no props",
+      "shadows": "Very subtle natural contact shadow beneath the character",
+      "distractions": "Absolutely none"
+    },
+
+    "lighting": {
+      "style": "Premium commercial studio lighting",
+      "key_light": "Large softbox positioned at 45 degrees",
+      "fill_light": "Soft frontal fill light",
+      "rim_light": "Subtle highlights around the hair and shoulders",
+      "shadows": "Soft realistic shadows",
+      "exposure": "Bright, balanced, clean exposure"
+    },
+
+    "miniature_effect": {
+      "concept": "The character must look like a real, tiny physical collectible toy photographed using professional macro photography.",
+      "camera_style": "Macro product photography",
+      "lens": "90mm to 105mm macro lens aesthetic",
+      "depth_of_field": "Moderately shallow depth of field, keeping the entire minifigure sharp.",
+      "focus": "Sharp focus on the face, hair, torso, and clothing details.",
+      "perspective": "Natural miniature toy photography perspective",
+      "scale_illusion": "Subtle optical characteristics that communicate physical miniature scale without distorting the character.",
+      "background_blur": "Not applicable to the pure white seamless background."
+    },
+
+    "visual_consistency": {
+      "priority_1": "Authentic LEGO minifigure anatomy",
+      "priority_2": "Recognizable personal identity",
+      "priority_3": "Accurate clothing and accessories",
+      "priority_4": "Premium glossy plastic materials",
+      "priority_5": "Consistent studio product photography",
+      "rule": "Never convert the character into a realistic human, action figure, Funko Pop, or generic cartoon character."
+    },
+
+    "negative_prompt": [
+      "Realistic human anatomy",
+      "Human skin texture",
+      "Photorealistic human face",
+      "Funko Pop proportions",
+      "Action figure anatomy",
+      "Soft organic body shapes",
+      "Long human-like legs",
+      "Realistic fabric",
+      "Cloth wrinkles",
+      "Oversized hands",
+      "Deformed LEGO parts",
+      "Missing accessories",
+      "Incorrect hairstyle",
+      "Unrecognizable facial characteristics",
+      "Extra limbs",
+      "Multiple characters",
+      "Background scenery",
+      "LEGO diorama",
+      "Colored background",
+      "Text outside the character",
+      "Watermarks",
+      "Packaging",
+      "Display stands",
+      "Cropped feet",
+      "Cropped hair"
+    ],
+
+    "output_settings": {
+      "format": "Photorealistic 3D render",
+      "aspect_ratio": "2:3",
+      "resolution": "High resolution",
+      "background": "Pure white",
+      "subject": "One complete centered LEGO minifigure",
+      "presentation": "Premium collectible studio product photograph"
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary><b>Photo to Simpsons Scene</b></summary>
+
+```text
+Use the uploaded photo as the ONLY reference for composition and subjects. Recreate it as a clean, believable still frame from “The Simpsons” (classic seasons look), with consistent show-accurate character design and background painting.
+
+Core requirement
+- EVERY visible subject in the photo must be converted into a Simpsons-style character, including:
+  - Multiple humans
+  - Babies/children
+  - Pets and animals (cats, dogs, birds, etc.)
+- Do not keep any subject photorealistic. No “half-real, half-cartoon” results.
+
+Identity and count lock
+- Keep the exact number of humans and animals.
+- Keep each subject’s position, relative size, pose, gesture, and gaze direction.
+- Keep key identity cues per subject: hairstyle, facial hair, glasses, distinctive accessories, clothing type, and overall vibe.
+- Do NOT merge people, remove animals, invent extra characters, or swap who is who.
+
+Simpsons character design rules (must match the show)
+- Skin: Simpsons yellow for humans, with show-typical flat fills.
+- Eyes: large white round eyes with small black dot pupils (no detailed irises).
+- Nose: simple rounded nose shape, minimal lines.
+- Mouth: simple linework, subtle overbite feel when fitting.
+- Hands: 4 fingers for humans (Simpsons standard).
+- Linework: clean black outlines, uniform thickness, no sketchy strokes.
+- Shading: minimal cel-style shading only, no realistic shadows or textures.
+
+Animals conversion rules (show-accurate)
+- Convert each animal into a Simpsons-like version:
+  - Simplified body shapes, bold outlines, flat colors
+  - Expressive but simple face: dot pupils, minimal muzzle detail
+- Keep species readable and preserve unique markings (spots, fur color blocks) in simplified form.
+
+Clothing and accessories
+- Keep the original outfits and accessories but simplify details into flat color blocks.
+- Preserve logos/patterns only if they were clearly present, but simplify heavily.
+- No added text on clothing.
+
+Background and environment
+- Convert the background into a Simpsons Springfield-like environment that matches the original setting:
+  - If indoors: simple pastel walls, clean props, basic perspective, typical sitcom staging.
+  - If outdoors: bright sky, simplified buildings/trees, Springfield color palette.
+- Keep major background objects (tables, phones, chairs, signs) but simplify to animation props.
+- Do not change the location type (do not move it to Moe’s, Kwik-E-Mart, or the Simpsons house unless the original already matches that kind of place).
+
+Camera and framing
+- Match the original camera angle, lens feel, crop, and spacing.
+- Keep it as a single TV frame, not a poster.
+
+Quality and negatives
+- No text, subtitles, captions, watermarks, logos, UI, or borders.
+- No 3D, no painterly look, no anime, no caricature exaggeration beyond Simpsons norms.
+- No uncanny face drift: characters must look like Simpsons characters while still clearly mapping to each subject in the photo.
+- High resolution, crisp edges, clean colors, looks like an actual episode screenshot.
+```
+
+</details>
+
+<details><summary><b>Photo to Stylized 3D Avatar</b></summary>
+
+```text
+Use a user-uploaded image as the source and convert the person into a stylized 3D character while preserving identity, facial structure, pose, hairstyle, clothing, and overall composition exactly as shown in the photo. The result should clearly resemble the real person.
+
+The visual style is a stylized 3D character with a soft minimal cartoon 3D aesthetic, inspired by Pixar-like visuals but more minimal, toy-figure renders, and clean product-style character design. The balance should favor stylization over realism without changing the person’s real-world appearance.
+
+Skin should appear as smooth matte plastic with a soft, uniform texture and gentle subsurface scattering. Facial features should remain faithful to the original image while being simplified in form. The expression should stay neutral and natural to the source photo.
+
+Lighting should be clean and controlled, similar to a studio softbox setup, with very soft shadows, low contrast, and subtle highlights. The background should be a solid [BACKGROUND COLOR] with no gradient.
+
+The camera should feel front-facing with a medium close-up framing, similar to a 50mm lens, with no distortion. Output quality should be high resolution with clean edges, no noise, strong style consistency, and a clearly non-photorealistic finish
+```
+
+</details>
+
+<details><summary><b>Photo Upscale and Repair with Transparent Background</b></summary>
+
+```text
+upscale this photo and make it look amazing. make it transparent background. fix broken objects. make it good
+```
+
+</details>
+
+<details><summary><b>Photo-to-Poster Visual DNA Split Design</b></summary>
+
+```text
+Transform my uploaded photo into a standalone, premium-quality 3:4 vertical design poster. Divide the entire canvas into two perfectly equal horizontal sections: the top half (50%) and the bottom half (50%). The upper section should feature realistic photography, while the lower section should present an abstract visual symbol derived from the core identity of the subject.
+
+TOP HALF – REALISTIC PHOTOGRAPHY
+
+Preserve the original subject's structure, realistic textures, natural lighting, shadows, and original color atmosphere. Apply only subtle, sophisticated color grading to achieve the aesthetic of fine-art photography and independent editorial publications.
+
+The background may be naturally extended to fit the canvas, but never stretch, distort, or alter the original subject.
+
+BOTTOM HALF – ABSTRACT VISUAL IDENTITY
+
+Extract the photograph's essential visual characteristics: the subject's silhouette, structure, posture, and narrative relationships. Do not recreate the entire object. Instead, reduce it into a recognizable abstract visual symbol.
+
+Use geometric deconstruction, modular shapes, structured lines, negative space, and symbolic elements to create a central visual identity inspired by premium branding and experimental design systems.
+
+Focus on the subject's core character rather than minor details. Even with minimal geometric elements, the abstract symbol must remain visually connected to the original photograph.
+
+VISUAL STYLE & DESIGN LANGUAGE
+
+Post-digital graphic design, deconstructed Swiss design, generative symbol systems, and diagrammatic abstraction.
+
+Build a systematic visual language using geometric modules, fine lines, circular trajectories, grids, micro-symbols, numerical indexing, and abstract nodes.
+
+Create visual tension between:
+- Order × Imperfection
+- Precision × Handmade Traces
+- Digital × Analog
+- Rationality × Emotion
+
+Achieve strong visual recognition using the fewest possible elements. Keep everything minimal and avoid unnecessary complexity.
+
+COMPOSITION & LAYOUT
+
+Maintain a highly restrained composition. The abstract symbol must be the sole visual focal point, positioned centrally or slightly off-center, surrounded by generous negative space.
+
+Avoid excessive icons, decorative elements, or infographic-style layouts.
+
+The overall aesthetic should resemble the core visual identity of contemporary art institutions, architectural studios, experimental creative labels, and premium design brands.
+
+TYPOGRAPHY & DETAILS
+
+Typography should function only as a supporting system component, never as a dominant headline.
+
+You may incorporate extremely small numbers, letters, or short phrases that interact with the abstract symbol through indexing and reference relationships.
+
+Use refined, restrained typography with the subtle annotation aesthetic of archival documents and experimental art publications.
+
+COLOR SYSTEM
+
+Extract the signature colors from the original photograph and reinterpret them as a cohesive brand color system.
+
+Introduce a small number of distinctive accent colors as functional visual codes, such as teal, blue, magenta, or orange, combined with gray-white or warm-white backgrounds for contrast.
+
+Colors should function as systematic identifiers rather than decoration.
+
+Avoid chaotic color combinations, cheap neon effects, and generic commercial gradients.
+
+PRINT TEXTURE & MATERIALITY
+
+Incorporate subtle material effects inspired by:
+- Xerox texture
+- Risograph grain
+- Print registration errors
+- Scanner noise
+- Subtle paper texture
+
+Add delicate printing misalignment, fine grain, scanning noise, and slightly imperfect edges to give the digital symbols the tactile quality of physical print.
+
+FINAL OBJECTIVE
+
+Extract an independent and self-contained visual DNA from the original photograph.
+
+The final result should feel like a sophisticated, minimal, culturally meaningful abstract logo with a strong visual identity and systematic design language.
+```
+
+</details>
+
+<details><summary><b>Photo-to-Watercolor Travel Art Poster Template</b></summary>
+
+```text
+Create an exceptionally beautiful vertical 4:5 travel-art poster featuring [CITY / COUNTRY / LANDMARK], presented as a sophisticated two-part visual collage.
+
+The composition must have two distinct but harmoniously connected sections.
+
+TOP SECTION — THE REAL WORLD
+
+Use the actual destination as the primary visual reference.
+
+Create a breathtaking photorealistic travel photograph of [DESTINATION].
+Preserve its recognizable architecture, landscape, landmarks and geographical identity.
+Capture beautiful natural lighting, realistic colours and atmospheric depth.
+Include a few subtle human elements, boats, streets or local details where appropriate.
+Keep the composition cinematic, clean and visually immersive.
+
+This section should feel like a photograph taken during a beautiful journey.
+
+MIDDLE SECTION — THE EDITORIAL TRANSITION
+
+Create an elegant transition between photography and illustration.
+
+Add the destination name in beautiful, sophisticated typography.
+Include the country name in small uppercase lettering.
+Add a short poetic travel-inspired tagline.
+Use delicate hand-drawn decorative elements, tiny botanical details or a minimal location emblem.
+Maintain generous white space and a refined editorial layout.
+
+BOTTOM SECTION — THE WORLD REIMAGINED AS ART
+
+Transform the same destination into a beautiful minimalist hand-painted illustration.
+
+Recreate the recognizable landmark or scenery from the upper photograph.
+Use delicate watercolor washes, expressive gouache brushwork and subtle ink outlines.
+Simplify the architecture and surroundings into an elegant artistic composition.
+Retain the destination’s signature colours, shapes and distinctive features.
+Add a few charming details such as tiny boats, flowering branches, little figures, birds or local elements.
+Use soft pastel shades, muted colours and carefully placed vibrant accents.
+Allow some watercolor textures and painted edges to fade naturally into the white background.
+
+The lower illustration must be an artistic interpretation of the SAME location shown above, not an unrelated scene.
+
+ART DIRECTION
+
+Premium illustrated travel magazine aesthetic.
+Contemporary minimalist editorial design.
+Beautiful balance between photography and fine art.
+Delicate watercolor and mixed-media textures.
+Sophisticated typography and generous negative space.
+Soft, harmonious colour palette.
+Elegant, clean and collectible poster appearance.
+
+FINAL COMPOSITION
+
+Vertical 4:5 poster.
+Upper half: approximately 50% photorealistic destination photography.
+Lower half: approximately 50% minimalist watercolor illustration.
+A subtle, elegant transition between both worlds.
+Destination name clearly visible and beautifully typeset.
+No creator watermark, no unnecessary text, no clutter.
+
+DESTINATION TITLE: [CITY / LANDMARK]
+
+COUNTRY: [COUNTRY]
+
+TAGLINE: [SHORT POETIC TRAVEL QUOTE]
+
+The final artwork should communicate one beautiful idea: experience the destination in reality above, then discover its artistic soul below.
+```
+
+</details>
+
+<details><summary><b>Photoreal Arctic Hare Asleep in Powder Snow at Blue Hour</b></summary>
+
+```text
+A photorealistic wildlife photograph of a pure white arctic hare curled asleep in deep powder snow at blue hour, wide landscape 16:9. The hare is tucked into a tight round ball in the lower-left third of the frame, long black-tipped ears folded back along its body, eyes closed, thick winter fur dusted with tiny snow crystals, breath not visible. Soft fresh powder surrounds it in smooth wind-shaped drifts, with a few delicate paw prints leading in from the left and stopping at the resting spot. Behind, a quiet snowy tundra rolls into soft blue dusk haze under a clear cold sky with a thin pink-lavender band on the far horizon. Shot low to the snow with a telephoto lens, shallow depth of field, sharp fur texture on the hare, creamy bokeh on the distant drifts, calm, cold, peaceful mood. No people, no text, no logos, no watermarks.
+```
+
+</details>
+
+<details><summary><b>Photoreal Atlantic Puffin Colony at Golden Hour</b></summary>
+
+```text
+A photoreal wildlife photograph of a small colony of Atlantic puffins standing on a grassy sea-cliff edge in warm evening light, with the open North Atlantic far below. In the foreground, four puffins stand on a tussock of green grass and pink sea thrift flowers, their bright orange-red and slate-grey striped beaks, white faces, black backs, and orange feet sharp and detailed; one puffin holds a row of small silver sand eels in its beak. Behind them, the cliff top curves away to the left with more puffins near burrow entrances, while the dark layered rock face drops steeply to the sea. Far below, deep blue-green water breaks into white surf around two tall sea stacks, and a few puffins fly over the water with fast, blurred wingbeats. Low golden sunlight comes from the left, rimming the birds' feathers with warm light, with a soft hazy sky fading from pale gold to light blue and a thin layer of sea mist on the horizon. Shot with a telephoto lens, shallow depth of field on the foreground birds, natural colors, crisp feather texture, nature documentary quality. Wide landscape 16:9. No people, no text, no watermark, no logos.
+```
+
+</details>
+
+<details><summary><b>Photoreal Highland Cow in a Misty Glen</b></summary>
+
+```text
+A photoreal wildlife photograph of a shaggy ginger Highland cow standing in tall golden grass in a misty Scottish glen at sunrise, in a wide landscape 16:9 frame. The cow stands in the left half of the frame facing the camera, its long rust-orange and copper coat thick and wavy, with tiny dew drops caught in the hair. A heavy fringe of hair hangs over its eyes, its broad pink-brown nose and muzzle are sharp and detailed, and a pair of long, pale, upswept horns curve outward and up from its head. A cloud of warm breath and mist drifts to the right of its head in the cold morning air. In the foreground, tall dry golden grass and dewy seed heads are softly out of focus. Soft golden backlight from a low sun in the upper right makes the edges of the coat glow and fills the glen with warm haze. In the background, blurred rolling hills in muted brown, mauve, and purple tones fade into the mist, with patches of pink heather and a pale silver loch in the right middle distance. Shallow depth of field, 200mm telephoto compression, natural colors, calm, quiet mood. No people, no fences, no text, no watermark.
+```
+
+</details>
+
+<details><summary><b>Photoreal Mandarin Ducks on a Still Autumn Pond</b></summary>
+
+```text
+A photorealistic wildlife photograph of a pair of mandarin ducks floating on a perfectly still autumn pond at first light, wide landscape 16:9. The male sits in the left-center foreground in full breeding plumage: orange sail-like tertial feathers raised on his back, a white crescent above the eye, a purple-green iridescent crest, a chestnut and orange chest with bold white stripes, a red bill, and a white belly, facing slightly right toward the female. The female floats to the right, mottled brown-grey with fine barring and a thin white eye-ring, facing left toward the male. Both birds rest on glassy water with clear, sharp reflections beneath them; many amber and gold maple leaves drift on the surface. Soft pink-gold first light and low mist hang over dark pines and autumn-colored trees on the far bank. Low water-level camera, shallow depth of field, peaceful dawn mood. No people, no text, no logos, no watermarks.
+```
+
+</details>
+
+<details><summary><b>Photoreal Panther Chameleon on a Mossy Rainforest Branch</b></summary>
+
+```text
+A photorealistic macro wildlife photograph of a panther chameleon walking along a thick mossy branch in a misty rainforest, wide landscape 16:9. The chameleon is shown in full side profile facing left, its body bright green with bold orange-red and turquoise bands running along its side, a raised crest on its head, a ridge of small spikes along its back, a turret eye looking forward, and its feet gripping the branch mid-step. Its long tail curls into a tight spiral at the right. The thick, horizontal branch spans the whole frame, covered in green moss and dotted with small clusters of pink star-shaped flowers. Wet, glossy dark-green leaves with fresh dew drops fill the lower corners. Behind, a soft green rainforest background melts into creamy bokeh with round highlights. Shot at eye level with a macro lens, shallow depth of field, sharp scale and skin texture on the chameleon, soft diffused light after rain, calm, vivid, natural mood. No people, no text, no logos.
+```
+
+</details>
+
+<details><summary><b>Photoreal Saffron Crocus Harvest Basket at Dawn</b></summary>
+
+```text
+A shallow woven willow basket heaped with freshly picked purple saffron crocus flowers, their bright crimson stigmas and yellow stamens clearly visible, resting on a rough limestone wall beside a small white ceramic dish holding a pinch of dried red saffron threads.
+
+Photorealistic macro still life at dawn. Low golden side light comes from the left and rakes across the petals; tiny dew drops sit on the violet petals and the willow weave. Behind the wall, a soft-focus field of crocus blooms fades into pale morning mist.
+
+Camera: full-frame camera, 100 mm macro lens at f/4, shallow depth of field with the front of the basket and the dish in sharp focus, crisp detail on petal veins, stigmas and basket weave.
+
+Color and mood: natural earthy palette of violet, crimson, straw and warm limestone, gentle warm highlights against cool blue shadows, quiet harvest morning.
+
+Composition: 4:3 landscape, basket filling the left two thirds of the frame, ceramic dish at the lower right, mist and blurred flowers in the top third.
+
+Avoid: people, hands, text, labels, logos, packaging, oversaturated colors.
+```
+
+</details>
+
+<details><summary><b>Photoreal Snowy Owl on a Frosted Fence Post at Dawn</b></summary>
+
+```text
+A photorealistic wildlife photograph of a snowy owl perched on a frosted, weathered wooden fence post in a snowy field at dawn, wide landscape 16:9. The owl sits just right of center, facing the camera with bright yellow eyes, its round white head lightly speckled on top, and its white chest and folded wings covered in fine black and brown barring, with a few loose feathers lifting at the tail in a light breeze. The thick, cracked gray fence post rises from the bottom edge of the frame, its top and sides dusted with delicate white frost crystals. Behind, a wide snow field with soft wind-rippled drifts stretches into low ground mist, with clusters of bare winter trees fading in the haze on the left and right. The sun glows low on the horizon at the far left, washing the sky and snow in pale pink, peach, and lavender tones. Shot with a long telephoto lens at eye level, shallow depth of field, sharp feather detail, creamy background blur, cold, quiet, serene mood. No people, no text, no logos.
+```
+
+</details>
+
+<details><summary><b>Photorealistic Alpine Village</b></summary>
+
+```text
+Scenic alpine village on the edge of a serene turquoise lake, (charming European architecture:1.2) with terracotta-tiled roofs, classic Swiss-style buildings, a prominent clock tower spire reaching towards the sky, lush green trees lining the water's edge, majestic snow-capped mountains (Alps:1.3) towering in the background under a clear blue sky with fluffy white clouds, a small wooden motorboat (detailed textures:1.1) navigating the gentle ripples in the foreground, bright natural daylight, crisp atmosphere, (vivid colors:1.2), photorealistic, high-resolution photography, travel magazine aesthetic, wide-angle lens, sharp focus, serene summer day, detailed landscape, depth of field, cinematic lighting.
+```
+
+</details>
+
+<details><summary><b>Photorealistic Fashion and Environment Shot</b></summary>
+
+```text
+{
+  "image_prompt": {
+    "subject": {
+      "type": "Adult woman (21+) matching the reference image identity",
+      "appearance": "Fair skin, long dark messy hair with subtle red highlights, nose piercing",
+      "expression": "Relaxed, looking directly at the camera, mouth slightly open",
+      "pose": "Medium shot; both arms raised; hands running through hair; elbows pointing outward; confident, casual posture"
+    },
+    "outfit": {
+      "clothing": "Türkiye (Turkish) national football team jersey",
+      "details": "Official-style Türkiye national team jersey (home kit look): deep red base with subtle tonal fabric patterning, clean white accents, crew neck collar. Include a white Nike swoosh on the right chest and the Türkiye crest (TFF badge with crescent and star) on the left chest. No club crest, no club sponsor logos, no 'Standard Chartered', no 'Expedia'. Fabric looks like modern performance polyester, slightly textured, natural wrinkles from movement.",
+      "accessories": "Black hair tie on wrist"
+    },
+    "environment": {
+      "location": "Inside a boat or yacht, positioned near a window frame",
+      "background": "Bright blue ocean under sunny sky; distant rocky coastline and cliffs visible through the window; the window frame is visible and helps ground the scene as shot from inside the boat"
+    },
+    "lighting": {
+      "type": "Natural sunlight, bright daylight",
+      "shadows": "Hard, realistic sun shadows; crisp highlights on skin and jersey; realistic specular sheen on hair; no studio light reflections"
+    },
+    "camera": {
+      "capture_device": "Smartphone or consumer camera",
+      "framing": "Medium shot (torso and head clearly visible), centered composition",
+      "angle": "Eye-level",
+      "focus": "Sharp focus on face and jersey details; background slightly softer but recognizable",
+      "look": "Mild natural softness, not over-sharpened; realistic handheld feel without motion blur"
+    },
+    "style": {
+      "aesthetic": "Candid Instagram influencer style, photorealistic, ultra-detailed, high resolution, 8K look",
+      "skin_rendering": "Natural skin texture and pores visible, no plastic smoothing, no heavy retouching",
+      "color": "True-to-life daylight color, no cinematic teal-orange grading, no artificial filters",
+      "quality": "Clean, crisp, natural photography, realistic fabric behavior and stitching"
+    },
+    "negative_prompt": "club logos, Liverpool crest, Nike club kit sponsor logos, Standard Chartered text, Expedia text, fashion campaign studio lighting, ring light catchlights, over-posed model stance, plastic skin, overly smoothed face, anime, illustration, CGI, artificial background, text watermark, misspelled logos, distorted crest, extra limbs, warped hands, unrealistic anatomy, extreme HDR, cinematic color grading"
+  }
+}
+```
+
+</details>
+
+<details><summary><b>Photorealistic Portrait</b></summary>
+
+```text
+ultra realistic photo of beautiful young woman, natural skin texture, soft lighting, detailed face, 85mm lens, photorealistic, high detail, instagram model
+```
+
+</details>
+
+<details><summary><b>Photorealistic Product Infographic</b></summary>
+
+```text
+Ultra-photorealistic studio render of a ${object_name}, front three-quarter view, placed on a pure white seamless studio background.The car must look like a high-end automotive catalog photograph: physically accurate lighting, realistic global illumination, soft studio shadows under the tires, correct reflections on paint, glass, and chrome, sharp focus, natural perspective, true-to-life proportions, no stylization.
+
+Over the realistic car image, overlay hand-drawn technical annotation graphics in black ink only, as if sketched with a technical pen or architectural marker directly on top of the photograph.
+
+Include:• Key component labels (engine, AWD system, turbocharger, brakes, suspension)• Internal cutaway and exploded-view outline sketches (semi-transparent, schematic style)• Measurement lines, dimensions, scale indicators• Material callouts and part quantities• Arrows showing airflow, power transmission, torque distribution, mechanical force• Simple sectional or schematic diagrams where relevant
+
+The annotations must feel hand-sketched, technical, and architectural, slightly imperfect linework, educational engineering-manual aesthetic.
+
+The realistic car remains clearly visible beneath the annotations at all times.Clean, balanced composition with generous negative space.
+
+Place the title “${object_name}” inside a hand-drawn technical annotation box in one corner of the image.
+
+Visual style: museum exhibit / engineering infographicColor palette: white background, black annotation lines and text only (no other colors)Output: ultra-crisp, high detail, social-media optimized square compositionAspect ratio: 1:1 (1080×1080)No watermark, no logo, no UI, no decorative illustration style
+```
+
+</details>
+
+<details><summary><b>Photorealistic Selfie Portrait</b></summary>
+
+```text
+{
+  "subject": {
+    "demographics": "Young female, approx 20-24 years old, Caucasian.",
+    "hair": {
+      "color": "Dirty blonde to light blonde gradient.",
+      "style": "Long, straight with slight wave, layered, casual parting.",
+      "texture": "Soft, natural strands, slightly tousled, roots visible.",
+      "movement": "Falling naturally over shoulders and back."
+    },
+    "face": {
+      "shape": "Oval with soft jawline.",
+      "eyes": "Almond-shaped, light blue/grey irises, distinct sharp black winged eyeliner.",
+      "nose": "Button nose, soft bridge.",
+      "lips": "Full, plump, rosy pink, slightly parted in a pouty expression.",
+      "skin_details": "Prominent, heavy freckles across nose and cheeks. Smooth texture but with realistic skin grain. Natural blush.",
+      "micro_details": "Mole on right upper chest, mole on left shoulder."
+    },
+    "body_proportions": {
+      "build": "Voluminous, curvy, heavy bust.",
+      "chest": "Large bust volume, prominent forward projection, deep cleavage visible.",
+      "waist_to_chest_ratio": "Significantly wider chest width compared to waist implies hourglass figure.",
+      "shoulders": "Soft, rounded, natural slope.",
+      "dominance": "Upper torso volume visually dominates the frame."
+    },
+    "clothing": {
+      "top": "Heather grey ribbed knit tank top/camisole.",
+      "fit": "Tight, form-fitting, stretching over chest volume, low scoop neckline.",
+      "straps": "Thick straps, sitting securely on shoulders."
+    },
+    "accessories": {
+      "jewelry": [
+        "Small gold hoop earrings.",
+        "Gold chain necklace with a small 'G' letter pendant.",
+        "Longer thin gold chain with a distinct kangaroo pendant."
+      ]
+    }
+  },
+  "pose": {
+    "type": "Handheld selfie perspective.",
+    "orientation": "Frontal close-up, slightly angled from above.",
+    "head_position": "Tilted slightly to subject's right.",
+    "limbs": "Right arm extended forward (out of frame) indicating holding the camera.",
+    "gaze": "Direct eye contact with lens, alluring and confident.",
+    "spine_curvature": "Slight arch implied by chest prominence."
+  },
+  "setting": {
+    "environment": "Domestic bathroom.",
+    "background_elements": "Dark brown/grey glossy tiled wall, chrome shower fixture visible on left, top of white ceramic toilet tank visible on right.",
+    "depth": "Shallow depth of field, background elements slightly out of focus."
+  },
+  "camera": {
+    "shot_type": "Close-up, selfie portrait.",
+    "angle": "High angle (slightly above eye level), typical of smartphone selfies.",
+    "focal_length": "24mm to 28mm equivalent (wide angle smartphone lens).",
+    "framing": "Chest-up shot, cropping at mid-torso.",
+    "focus": "Sharp focus on eyes and face, slight fall-off on shoulders.",
+    "perspective": "Slight foreshortening of the extended arm side."
+  },
+  "lighting": {
+    "source": "Soft, diffused overhead ambient bathroom lighting.",
+    "direction": "Front-top lighting.",
+    "highlights": "Soft specular highlights on forehead, tip of nose, chin, and upper chest curves.",
+    "shadows": "Soft shadows under the chin and defining the cleavage depth.",
+    "quality": "Natural, flattering, no harsh contrast."
+  },
+  "mood_and_expression": {
+    "tone": "Casual, sultry, confident.",
+    "expression": "Relaxed pout, 'cool girl' aesthetic.",
+    "atmosphere": "Intimate, candid."
+  },
+  "style_and_realism": {
+    "style": "Photorealistic, social media aesthetic.",
+    "fidelity": "High fidelity skin texture, no airbrushing.",
+    "imperfections": "Visible freckles, stray hairs, natural skin variation preserved."
+  },
+  "colors_and_tone": {
+    "palette": "Neutral tones (grey, beige, skin tones) with pops of blue (eyes) and gold (jewelry).",
+    "skin_tone": "Fair to light tan, warm undertones.",
+    "white_balance": "Slightly warm, indoor tungsten mix.",
+    "saturation": "Natural, slightly vibrant lips and eyes.",
+    "contrast": "Medium contrast."
+  },
+  "technical_details": {
+    "aspect_ratio": "3:4",
+    "resolution": "High resolution, sharp details.",
+    "noise": "Slight digital noise characteristic of phone camera sensors in indoor light."
+  }
+}
+```
+
+</details>
+
+<details><summary><b>Photorealistic Tokyo Travel Vlog Portrait</b></summary>
+
+```text
+Create a photorealistic smartphone travel-vlog image of a fictional 20-year-old Japanese woman walking through a lively Tokyo side street in the early evening.
+
+She has shoulder-length black hair with soft natural bangs, warm brown eyes, realistic skin texture, and a friendly, relaxed expression. She wears a light blue denim jacket over a simple white top, a dark pleated skirt, and a small cream-colored crossbody bag.
+
+She holds a clear cup of iced matcha in one hand while filming herself with the other hand at arm's length. Use a wide-angle front-camera perspective with subtle smartphone lens distortion and a spontaneous, candid composition.
+
+The street is lined with small restaurants and local shops. Pedestrians walk naturally in the background. Warm shop lights and neon signs begin to glow beneath a cool evening sky.
+
+Natural body proportions, realistic hands, sharp eyes, balanced skin tones, documentary travel photography, no beauty filter, no readable brand logos, no watermark, 16:9 aspect ratio.
+```
+
+</details>
+
+<details><summary><b>Photorealistic Webcam Bedroom Scene</b></summary>
+
+```text
+{
+  "subject": {
+    "description": "A young woman lying on a bed, holding a smartphone and looking at the screen with a calm, slightly focused expression.",
+    "body": {
+      "type": "female, slim build",
+      "details": "light skin tone, long blonde hair, natural makeup with defined eyes and lips",
+      "pose": "lying on her side on a bed, upper body slightly raised, one arm holding a phone in front of her face, the other arm resting on the bed"
+    },
+    "face": {
+      "expression": "neutral, relaxed, slightly focused",
+      "gaze_direction": "looking at her phone screen",
+      "head_tilt": "slight downward tilt"
+    },
+    "wardrobe": {
+      "top": "black casual t-shirt",
+      "bottom": "soft fabric pajama shorts",
+      "style": "comfortable indoor loungewear / pajama outfit"
+    },
+    "hair": "long blonde hair, straight and slightly voluminous, falling naturally around shoulders"
+  },
+  "scene": {
+    "description": "A bedroom scene captured through a laptop screen using a camera app interface.",
+    "location": "indoor bedroom",
+    "setting": "bed with soft blankets and pillows",
+    "background_elements": "neutral wall, slightly messy bedding, soft fabric textures",
+    "lighting": "low ambient indoor lighting with soft warm tones",
+    "atmosphere": "cozy, intimate, relaxed night-time vibe"
+  },
+  "environment": {
+    "ambience": "dimly lit, quiet indoor environment",
+    "style": "candid digital capture through screen",
+    "depth_of_field": "subject clear within the screen, slight softness overall"
+  },
+  "camera": {
+    "device": "laptop camera (MacBook Photo Booth style)",
+    "angle": "slightly elevated screen perspective",
+    "aspect_ratio": "4:3 within screen frame",
+    "framing": "the subject appears inside the laptop display, with the laptop bezel partially visible",
+    "focus": "moderate focus, slightly soft typical webcam quality"
+  },
+  "interface": {
+    "visible_ui": "Photo Booth application interface visible on screen",
+    "elements": "top bar with 'Photo Booth' text, bottom center red shutter button, small UI icons",
+    "screen_effect": "subtle screen glare, pixel softness, digital display look"
+  },
+  "image_quality": {
+    "resolution": "webcam-like quality",
+    "grain": "visible digital noise due to low light",
+    "sharpness": "slightly soft, not highly detailed",
+    "compression_artifacts": "minor digital artifacts",
+    "dynamic_range": "limited, darker shadows with some highlight softness"
+  },
+  "lighting": {
+    "type": "low indoor ambient light",
+    "quality": "soft, slightly uneven, warm tones",
+    "effects": "gentle shadows, subtle highlights on face"
+  },
+  "color_grading": {
+    "tone": "warm and muted",
+    "temperature": "slightly warm",
+    "contrast": "low to moderate",
+    "saturation": "slightly reduced, natural indoor tones"
+  },
+  "rendering": {
+    "style": "photorealistic webcam capture",
+    "quality": "intentionally imperfect, screen-captured feel",
+    "skin_texture": "natural, slightly softened by low resolution",
+    "post_processing": "minimal, raw webcam look"
+  },
+  "artifacts": {
+    "screen_glare": "subtle reflections on laptop screen",
+    "noise_pattern": "visible low-light grain",
+    "chromatic_aberration": "minimal",
+    "motion_blur": "none"
+  },
+  "constraints": {
+    "focus_priority": "subject inside the screen is the main focus",
+    "avoid": "overly sharp DSLR look, studio lighting, artificial filters"
+  }
+}
+```
+
+</details>
 
 <details><summary><b>Picture Book Character Turnaround Brief Builder</b></summary>
 
@@ -535,6 +1477,29 @@ A pop art comic-style illustration of a gleaming chrome 1950s roadside diner in 
 
 </details>
 
+<details><summary><b>Portal-Chain Hero Sprint Action VFX Shot</b></summary>
+
+```text
+Ultra-realistic Hollywood action VFX, one seamless 25-second shot. Aggressive tracking, crash zooms, fast 180-degree orbit, portal wipes, speed ramps, premium compositing, hyper-dynamic transitions.
+
+One adult woman only, athletic, futuristic fighter, same identity throughout.
+Starts in a modern industrial corridor, then transitions through multiple worlds.
+
+0-5s: She sprints through a metallic corridor toward camera. A portal erupts open behind her, blasting sparks and wind.
+
+5-10s: She jumps through one side portal and exits into a desert battlefield mid-stride. Camera keeps pace with her as sand explodes outward.
+
+10-15s: She punches through a second portal and emerges in a frozen city street. Ice shards and snow swirl around her without breaking momentum.
+
+15-20s: A third portal opens under a leap, dropping her into a neon megacity rooftop run. Camera orbits as she keeps moving.
+
+20-25s: Final portal chain. Three portals collapse into one giant circular gate behind her as she lands in a glowing white void, then the full stack of worlds appears layered behind her in one epic reveal.
+
+Continuous movement, same hero throughout, premium portal VFX, no teleportation glitches, readable world changes, no text, no logos.
+```
+
+</details>
+
 <details><summary><b>Post-Apocalyptic Scavenger Transformation</b></summary>
 
 ```text
@@ -1009,6 +1974,22 @@ Then produce the brief with these sections:
 9. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes the lavender swaying, the haze drifting, the glow brightening, small clouds drifting, one very slow push-in along the central row for about 6 seconds, and says to keep the farmhouse, trees, rows, and framing exactly as in the image with no new objects.
 
 Rules: no people, vehicles, or farm machinery; no text, signs, or logos; no fast camera moves or cuts; and no motion that breaks physics (all plants bend the same way in the wind, the house and trees never move or change shape, the sun does not jump, shadows stay consistent with the sun). Use short paragraphs and lists.
+```
+
+</details>
+
+<details><summary><b>Pyrography Panel of a Red Funicular on a Hillside Town</b></summary>
+
+```text
+A small red funicular railway car climbing a steep single track up a hillside town of stacked terracotta-roofed houses, cypress trees and a church bell tower at the summit, rendered as pyrography wood-burning art on a pale birch plywood panel.
+
+Technique: every line is burned into the wood in warm sepia and deep chocolate browns. Use fine parallel hatching for the roof tiles, stippled dots for the cypress trees and foliage, darker scorched tones for doorways and shadows, and leave the light natural wood grain bare for the sky and soft clouds. Only the funicular car carries a soft hand-applied wash of red stain, so it is the single color accent.
+
+Details: the track runs diagonally from the lower left to the bell tower at the upper right, with a small station platform at the bottom and narrow stairways between the houses beside the track. Slightly uneven handmade line quality, subtle char marks along the panel edges, visible birch grain throughout.
+
+Presentation: 3:4 portrait framing of the whole panel, viewed straight on under flat, even studio lighting, no glare.
+
+Avoid: text, signatures, people, photographic realism, digital gradients.
 ```
 
 </details>
@@ -2621,6 +3602,14 @@ An old square sandstone caravanserai stands in a wide sand desert at dusk while 
 
 </details>
 
+<details><summary><b>Santorini Caldera Blue-Dome Village at Golden Hour (Image-to-Video)</b></summary>
+
+```text
+Start from the previous step image "Whitewashed Santorini Cliffside Village with Blue Domes at Golden Hour" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the sea on the left with the sun and gold path, the whitewashed village on the right, the two blue domes (larger center-right, one slightly lower), volcanic cliff rock, warm golden-hour light, haze, and style exactly as in the image. The camera makes a slow gentle push-in toward the larger blue dome. Subtle sun glitter shimmers on the sea; very light atmospheric haze drifts softly. Architecture stays locked. Natural, realistic motion, no large crowds, no close faces, no cuts, no text, no logos. Soft evening ambience, distant quiet air.
+```
+
+</details>
+
 <details><summary><b>Santorini Summer Editorial Portrait</b></summary>
 
 ```text
@@ -3811,6 +4800,14 @@ Style reference used for the character images (Midjourney blend): --sref 1448908
 
 ```text
 Full-body cinematic shot of a sophisticated man in his early 30s walking confidently down a historic cobblestone street in Istanbul, Beyoğlu. He features a short beard and dark hair. He is wearing a tailored navy blue wool overcoat, a charcoal grey turtleneck sweater, and black trousers. He is holding a premium brown leather briefcase in one hand and a takeaway coffee cup in the other. He is wearing brown leather Chelsea boots and stylish sunglasses. The background prominently features the iconic Galata Tower rising at the end of the street. Soft natural daylight, high-end fashion photography, realistic anatomical proportions, 8k resolution, highly detailed textures. --ar 9:16
+```
+
+</details>
+
+<details><summary><b>Speech and Logo Shape Design Template</b></summary>
+
+```text
+Create a template to create two great shape designs by inserting speech or a special logo
 ```
 
 </details>
@@ -5047,1067 +6044,6 @@ Create an image of a table with various items placed on it. The scene should inc
 
 ```text
 Create an image of a Latino private security guard. The guard should be depicted wearing a tactical helmet and a bulletproof vest. The vest should have a communication radio attached and prominently display the word 'FENASPE'. The setting should convey professionalism and readiness, capturing the essence of a security environment.
-```
-
-</details>
-
-<details><summary><b>Tech Brand Identity Image</b></summary>
-
-```text
-Create a premium 4K ultra-high-resolution corporate technology brand identity image for a company named exactly:
-
-"Spine For Technologies"
-
-Design a futuristic, innovative, sophisticated logo that represents advanced technology, digital transformation, artificial intelligence, software development, cybersecurity, and the future of technological innovation.
-
-The logo should be an original geometric symbol inspired by a technological spine / interconnected digital structure, intelligently combining the concepts of "Spine" and "Technology" into one distinctive visual mark. Use elegant geometric shapes, precise lines, subtle circuit-board patterns, connected nodes, and a dynamic sense of digital evolution.
-
-Place the logo prominently in the center, with the company name:
-
-"Spine For Technologies"
-
-directly underneath it in a premium modern sans-serif typeface. Typography must be extremely clean, sharp, professional, perfectly aligned, and highly legible.
-
-Visual style: futuristic technology, premium corporate identity, cutting-edge innovation, sophisticated minimalism, high-end digital branding.
-
-Color palette: deep black and dark navy background with electric blue, cyan, and subtle violet luminous accents. Add controlled neon glow, metallic reflections, subtle glass effects, elegant light trails, and very refined technological details.
-
-Composition should feel powerful, intelligent, trustworthy, innovative, and suitable for a global technology company.
-
-Cinematic studio lighting, dramatic depth, realistic reflections, volumetric light, subtle particles, high contrast, clean composition, professional branding presentation, extremely sharp details, photorealistic 3D logo rendering.
-
-4K resolution, ultra-detailed, crisp edges, premium quality, professional corporate branding, no people, no unnecessary objects, no clutter, no watermark.
-
-IMPORTANT:
-The company name must be written EXACTLY as:
-"Spine For Technologies"
-
-Do not misspell, alter, abbreviate, or replace any letters in the company name.
-```
-
-</details>
-
-<details><summary><b>Tech Desk Builder Portrait</b></summary>
-
-```text
-{
-  "category": "TECH_DESK_BUILDER_HALF_BODY",
-  "subject": {
-    "demographics": "Adult woman, 21-29, Turkish-looking, creator vibe.",
-    "hair": {
-      "color": "Dark brown",
-      "style": "Low ponytail or loose waves",
-      "texture": "Strands visible, slight flyaways"
-    },
-    "face": {
-      "eyes": "Focused but friendly",
-      "skin_details": "Real texture, no smoothing",
-      "makeup": "Minimal"
-    },
-    "clothing": {
-      "outfit": "Casual black top + light cardigan, no logos",
-      "fabric": "Real knit weave, subtle wrinkles"
-    },
-    "accessories": {
-      "jewelry": ["Silver hoops"]
-    }
-  },
-  "pose": {
-    "type": "Half-body seated",
-    "orientation": "Body slightly angled, shoulders relaxed",
-    "hands": "One hand near trackpad, other tucking hair behind ear",
-    "gaze": "Looking at camera with small smirk",
-    "posture": "Relaxed confident"
-  },
-  "setting": {
-    "environment": "Minimal desk setup",
-    "background_elements": [
-      "Laptop/monitor with generic blurred UI (NO readable text)",
-      "Warm desk lamp + cool monitor glow mix",
-      "Plant in corner, small clutter blurred"
-    ],
-    "depth": "Face sharp, background bokeh"
-  },
-  "camera": {
-    "shot_type": "Half-body lifestyle portrait",
-    "angle": "Slightly above eye level",
-    "focal_length_equivalent": "26mm phone or 50mm pro",
-    "framing": "4:5",
-    "focus": "Eyes sharp"
-  },
-  "lighting": {
-    "source": "Warm lamp + cool monitor glow",
-    "direction": "Soft mixed lighting with gentle shadows",
-    "highlights": "Natural facial speculars",
-    "shadows": "Soft, realistic"
-  },
-  "mood_and_expression": {
-    "tone": "Cozy creator, confident",
-    "expression": "Micro-smirk",
-    "atmosphere": "Late-night build session vibe"
-  },
-  "style_and_realism": {
-    "style": "Photorealistic lifestyle",
-    "imperfections": "Mild noise, slight imperfect WB"
-  },
-  "technical_details": {
-    "aspect_ratio": "4:5",
-    "noise": "Mild",
-    "resolution": "High"
-  },
-  "constraints": {
-    "adult_only": true,
-    "no_text": true,
-    "no_logos": true,
-    "no_watermarks": true,
-    "no_readable_screens": true
-  },
-  "negative_prompt": [
-    "readable UI text", "logos", "watermark",
-    "plastic skin", "cgi",
-    "extra fingers", "warped hands"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>Teen Book Cover Illustration</b></summary>
-
-```text
-Thoughtful Islamic book cover illustration for teenagers, side silhouette of a young person. Inside the head a question mark transforming into light and certainty. Arabic word "اليقين" integrated in the light. Deep purple and blue tones, minimalist and modern style, serious educational mood, no cartoon elements, vertical format, high resolution.
-```
-
-</details>
-
-<details><summary><b>Terminal Drift</b></summary>
-
-```text
-{
-  "title": "Terminal Drift",
-  "description": "A haunting visualization of a lone traveler stuck in an infinite, empty airport terminal that defies logic.",
-  "prompt": "You will perform an image edit using the person from the provided photo as the main subject. Preserve her core likeness. Transform Subject 1 (female) into a solitary figure standing in an endless, windowless airport terminal. The surrounding space is a repetitive hallway of beige walls, low ceilings, and patterned carpet. There are no exits, only the endless stretch of artificial lighting and empty waiting chairs. The composition should adhere to a cinematic 1:1 aspect ratio.",
-  "details": {
-    "year": "Indeterminate 1990s",
-    "genre": "Liminal Space",
-    "location": "A vast, curving airport corridor with no windows, endless beige walls, and complex patterned carpet.",
-    "lighting": [
-      "Flat fluorescent overheads",
-      "Uniform artificial glow",
-      "No natural light source"
-    ],
-    "camera_angle": "Wide shot, symmetrical center-framed composition.",
-    "emotion": [
-      "Disassociation",
-      "Unease",
-      "Solitude"
-    ],
-    "color_palette": [
-      "Beige",
-      "Muted Teal",
-      "Faded Maroon",
-      "Off-white"
-    ],
-    "atmosphere": [
-      "Uncanny",
-      "Sterile",
-      "Silent",
-      "Timeless"
-    ],
-    "environmental_elements": "Rows of empty connected waiting chairs, commercial carpeting with a confusing pattern, generic signage with indecipherable text.",
-    "subject1": {
-      "costume": "A slightly oversized pastel sweater and loose trousers, appearing mundane and timeless.",
-      "subject_expression": "A vacant, glazed-over stare, looking slightly past the camera into the void.",
-      "subject_action": "Standing perfectly still, arms hanging loosely at her sides, holding a generic roller suitcase."
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "crowds",
-        "sunlight",
-        "deep shadows",
-        "dirt",
-        "clutter",
-        "windows looking outside",
-        "lens flare"
-      ],
-      "exclude_styles": [
-        "high contrast",
-        "action movie",
-        "vibrant saturation",
-        "cyberpunk",
-        "horror gore"
-      ],
-      "exclude_colors": [
-        "neon red",
-        "pitch black",
-        "vibrant green"
-      ],
-      "exclude_objects": [
-        "airplanes",
-        "trash",
-        "blood",
-        "animals"
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Terminal Velocity</b></summary>
-
-```text
-{
-  "title": "Terminal Velocity",
-  "description": "A high-stakes action frame capturing a woman sprinting through a crumbling industrial tunnel amidst sparks and chaos.",
-  "prompt": "You will perform an image edit to create an Ultra-Photorealistic, Movie-Quality action shot. The result must be photorealistic, highly detailed, and feature cinematic lighting. Emulate the look of a blockbuster film shot on Arri Alexa with a shallow depth of field. Depict Subject 1 sprinting towards the camera in a dark, collapsing industrial tunnel, surrounded by flying sparks and falling debris.",
-  "details": {
-    "year": "Contemporary Action Thriller",
-    "genre": "Cinematic Photorealism",
-    "location": "A dilapidated, steam-filled industrial maintenance tunnel with flickering lights and exposed wiring.",
-    "lighting": [
-      "High-contrast chiaroscuro",
-      "Warm backlight from exploding sparks",
-      "Cold, gritty fluorescent ambient light",
-      "Volumetric lighting through steam"
-    ],
-    "camera_angle": "Low-angle frontal tracking shot with motion blur on the background.",
-    "emotion": [
-      "Adrenaline",
-      "Panic",
-      "Determination"
-    ],
-    "color_palette": [
-      "Concrete grey",
-      "Hazard orange",
-      "Steel blue",
-      "Deep shadow black"
-    ],
-    "atmosphere": [
-      "Chaotic",
-      "Explosive",
-      "Gritty",
-      "Claustrophobic"
-    ],
-    "environmental_elements": "Cascading electrical sparks, motion-blurred debris, steam venting from broken pipes, wet concrete floor reflecting the chaos.",
-    "subject1": {
-      "costume": "black mini skirt, white crop top, leather fingerless gloves",
-      "subject_expression": "Intense focus with mouth slightly parted in exertion, sweat glistening on skin, hair flying back.",
-      "subject_action": "running"
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "sunlight",
-        "calm environment",
-        "clean surfaces",
-        "smiling",
-        "standing still"
-      ],
-      "exclude_styles": [
-        "cartoon",
-        "3d render",
-        "illustration",
-        "sketch",
-        "low resolution"
-      ],
-      "exclude_colors": [
-        "pastel pink",
-        "vibrant green",
-        "soft colors"
-      ],
-      "exclude_objects": [
-        "trees",
-        "sky",
-        "animals",
-        "vehicles"
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>The Aether Workshop</b></summary>
-
-```text
-{
-  "title": "The Aether Workshop",
-  "description": "A vibrant, nostalgic snapshot of two inventors collaborating on a clockwork masterpiece in a sun-drenched steampunk atelier.",
-  "prompt": "You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness. Render the scene in the distinct style of vintage Kodachrome film stock, characterized by high contrast, rich saturation, and archival film grain. Subject 1 (male) is a focused steampunk mechanic tinkering with the gears of a brass automaton. Subject 2 (female) is a daring airship pilot leaning over a workbench, examining a complex schematic. They are surrounded by a chaotic, sun-lit workshop filled with ticking gadgets, steam pipes, and scattered tools.",
-  "details": {
-    "year": "Alternate 1890s",
-    "genre": "Kodachrome",
-    "location": "A high-ceilinged, cluttered attic workshop with large arched windows overlooking a smoggy industrial city.",
-    "lighting": [
-      "Hard, warm sunlight streaming through dusty glass",
-      "High contrast shadows typical of slide film",
-      "Golden hour glow"
-    ],
-    "camera_angle": "Eye-level medium shot, creating an intimate, documentary feel. 1:1 cinematic composition.",
-    "emotion": [
-      "Focused",
-      "Collaborative",
-      "Inventive"
-    ],
-    "color_palette": [
-      "Polished brass gold",
-      "Deep mahogany brown",
-      "Vibrant iconic Kodachrome red",
-      "Oxidized copper teal"
-    ],
-    "atmosphere": [
-      "Nostalgic",
-      "Warm",
-      "Dusty",
-      "Tactile"
-    ],
-    "environmental_elements": "Floating dust motes catching the light, steam venting softly from a copper pipe, blueprints pinned to walls, piles of cogs and springs.",
-    "subject1": {
-      "costume": "A grease-stained white shirt with rolled sleeves, a heavy leather apron, and brass welding goggles resting on his forehead.",
-      "subject_expression": " intense concentration, brow furrowed as he adjusts a delicate mechanism.",
-      "subject_action": "Holding a fine screwdriver and tweaking a golden gear inside a robotic arm."
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "neon lights",
-        "digital displays",
-        "plastic materials",
-        "modern sleekness",
-        "blue hues"
-      ],
-      "exclude_styles": [
-        "digital painting",
-        "3D render",
-        "anime",
-        "black and white",
-        "sepia only",
-        "low saturation"
-      ],
-      "exclude_colors": [
-        "fluorescent green",
-        "hot pink"
-      ],
-      "exclude_objects": [
-        "computers",
-        "smartphones",
-        "modern cars"
-      ]
-    },
-    "subject2": {
-      "costume": "A brown leather aviator jacket with a shearling collar, a vibrant red silk scarf, and canvas trousers.",
-      "subject_expression": "Curious and analytical, pointing out a specific detail on the machine.",
-      "subject_action": "Leaning one hand on the workbench while holding a rolled-up blue schematic in the other."
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>The Breathing Jack-o'-Lantern Horror Short</b></summary>
-
-```text
-30 seconds | 16:9 | 4K Ultra HD | 30 FPS | Ultra-photorealistic live-action Halloween horror short.
-
-A terrifying Halloween night unfolds on a rain-soaked wooden porch, where a real adult man discovers that his carved jack-o'-lantern is behaving strangely. With realistic human actors, practical effects, cinematic lighting, and authentic horror atmosphere, an ordinary Halloween decoration becomes something truly sinister.
-
-0–5 seconds: A rain-soaked wooden porch glistens under dim nighttime lighting. A flickering jack-o'-lantern sits beside the front door. A man in a dark flannel shirt and jeans enters carrying Halloween decorations. Suddenly, he notices the pumpkin slowly expanding and contracting as if it were breathing.
-
-5–12 seconds: The camera slowly pushes toward the pumpkin. Its jagged carved smile subtly widens before returning to normal. The internal candle flickers in sync with the movement. The man kneels cautiously as a faint, wet breathing sound emerges from inside.
-
-12–21 seconds: The pumpkin's light abruptly goes out. Complete silence. The man switches on his phone flashlight, revealing two realistic human eyes deep inside the dark pumpkin, staring directly at him. Terrified, he recoils and drops his phone onto the wet wooden floor, leaving its flashlight beam tilted toward the pumpkin.
-
-21–27 seconds: The man slowly reaches toward the pumpkin again. Before he can touch it, the jack-o'-lantern rotates several inches toward him on its own. Its carved smile remains perfectly still. Frozen with disbelief, he slowly backs toward the door.
-
-27–30 seconds: Extreme close-up of the pumpkin. Its internal light suddenly switches back on. A tiny, fresh handprint gradually appears in condensation across its outer surface. Before the viewer can understand what has happened, the screen cuts instantly to black.
-
-Production: Photorealistic live-action visuals, real human actors, consistent character identity, practical pumpkin movement, realistic condensation, natural rain, believable shadows, subtle handheld cinematography, shallow depth of field, cinematic horror lighting, and restrained color grading. Sound design includes rainfall, distant wind, wooden footsteps, soft breathing, subtle fabric movement, a low suspenseful musical rise, and sudden silence before the final reveal.
-
-Negative prompt: No animation, cartoon visuals, CGI-looking characters, artificial environments, changing faces, inconsistent clothing, distorted anatomy, unrealistic pumpkin movement, exaggerated jump scares, gore, dialogue, narration, subtitles, text, logos, watermarks, black bars, or abrupt transitions before the final cut.
-```
-
-</details>
-
-<details><summary><b>The Collector's Banquet 1985 Dark Fantasy Film</b></summary>
-
-```text
-Create a gripping 30-second dark fantasy film that looks like a forgotten Hollywood sword-and-sorcery movie from 1985, filmed on authentic 35mm with elaborate practical creature effects, handcrafted costumes, theatrical performances, and atmospheric cinematography.
-
-The story follows a ruthless emperor hosting a magnificent banquet inside his ancient palace. He has conquered seven kingdoms and believes no mortal can challenge him. During the celebration, a mysterious hooded servant presents him with a golden chalice containing a strange black liquid. The emperor drinks it to demonstrate his fearlessness, but something horrifying happens. Every guest at the table suddenly freezes, their faces slowly turning toward him. The emperor realizes that the people surrounding him have been dead for centuries, and the mysterious servant has come to collect a debt.
-
-Tell the story through exactly nine cinematic shots, with dramatic close-ups, theatrical camera movements, practical supernatural effects, and a shocking final revelation. Keep the entire film inside one enormous medieval throne hall, allowing the tension to develop naturally through the emperor's arrogance, the mysterious chalice, and the terrifying transformation of the banquet guests.
-
-Include a deep, ominous male narrator delivering short English voiceover lines, alongside natural spoken English dialogue from the emperor and the mysterious servant. All visible dialogue must feature expressive performances and accurate lip synchronization.
-
-[2] GLOBAL SETTING
-
-The entire film takes place inside an enormous medieval imperial throne hall at night. Massive stone columns support a vaulted ceiling, enormous crimson banners hang from the walls, and hundreds of flickering candles illuminate an extravagant banquet table covered with golden goblets, roasted meats, silver platters, and elaborate ceremonial decorations. Heavy velvet curtains frame towering windows overlooking a moonlit kingdom.
-
-The environment resembles a meticulously constructed 1980s fantasy movie set, with practical candlelight, thick atmospheric haze, handcrafted stone architecture, painted background extensions, and rich theatrical lighting.
-
-The Emperor: A commanding adult man in his late fifties with long silver hair, a thick gray beard, piercing blue eyes, and a proud, intimidating expression. He wears an enormous engraved golden crown decorated with red gemstones, elaborate gold ceremonial armor, and a long crimson velvet cloak with fur-lined shoulders. His voice is deep, powerful, and arrogant.
-
-The Mysterious Servant: A tall, unnaturally thin figure wearing a long black hooded robe with elaborate antique embroidery. His face remains mostly concealed beneath the hood, revealing pale skin, sunken eyes, and an unsettling expression. He carries an ancient golden chalice filled with thick black liquid. His movements are unnaturally calm and deliberate, and his voice is quiet, hollow, and mysterious.
-
-The Banquet Guests: Noblemen, noblewomen, knights, and royal advisers wearing elaborate medieval garments, ornate jewelry, embroidered gowns, and ceremonial armor. They initially appear alive and cheerful, but later reveal pale, decaying faces created with detailed practical prosthetic makeup. Their transformations remain non-graphic, resembling theatrical undead creatures from 1980s dark fantasy cinema.
-
-The Ancient Collector: The mysterious servant's true identity, revealed at the end as a supernatural skeletal figure beneath the hood, with glowing amber eyes and a face constructed using elaborate animatronic skull prosthetics.
-
-Cinematography: Authentic 1980s 35mm film photography, vintage anamorphic lenses, warm amber candlelight, rich crimson and gold color grading, deep theatrical shadows, subtle photochemical grain, gentle highlight halation, physical fog, elaborate practical sets, and dramatic fantasy compositions.
-
-Sound: Ominous orchestral score, medieval banquet ambience, distant laughter, clinking goblets, flickering flames, low supernatural whispers, and clear English character dialogue.
-
-[3] TIMESTAMPED STORYBOARD
-
-SHOT 1 | [00:00-00:03] THE CONQUEROR
-
-A magnificent wide cinematic shot reveals the emperor seated at the head of an enormous banquet table, surrounded by laughing nobles and armored knights. Hundreds of candles flicker across golden plates and crimson banners while servants move through the crowded hall.
-
-The camera slowly pushes toward the emperor as he raises a golden goblet above his head.
-
-NARRATOR (deep, ominous voiceover): "He conquered seven kingdoms..."
-
-CUT TO SHOT 2.
-
-SHOT 2 | [00:03-00:06] THE EMPEROR'S PRIDE
-
-A dramatic low-angle close-up captures the emperor laughing arrogantly beneath his enormous golden crown. His silver beard catches the warm candlelight as he slams his goblet against the table, causing the surrounding nobles to fall silent.
-
-EMPEROR (booming voice): "NOT EVEN DEATH CAN COMMAND ME!"
-
-The nobles respond with nervous laughter.
-
-CUT TO SHOT 3.
-
-SHOT 3 | [00:06-00:09] THE UNINVITED GUEST
-
-A slow tracking shot reveals a mysterious hooded servant emerging from the darkness between two enormous stone columns. He approaches the emperor's table carrying an antique golden chalice filled with thick black liquid.
-
-The surrounding guests gradually stop speaking as the servant places the chalice directly in front of the emperor.
-
-SERVANT (quiet, unsettling voice): "Then drink, Your Majesty."
-
-CUT TO SHOT 4.
-
-SHOT 4 | [00:09-00:12] THE FORBIDDEN CHALICE
-
-An intimate close-up shows the emperor studying the black liquid inside the ornate golden chalice. The surface moves unnaturally, reflecting faces that do not belong to anyone standing nearby.
-
-The emperor smirks, lifts the chalice, and drinks its contents in one confident motion.
-
-NARRATOR (voiceover): "But one debt remained unpaid."
-
-The emperor lowers the empty chalice, his smile slowly fading as the banquet hall becomes completely silent.
-
-CUT TO SHOT 5.
-
-SHOT 5 | [00:12-00:16] THE SILENT BANQUET
-
-A wide symmetrical shot reveals the entire banquet table frozen in unnatural stillness. Every noble, knight, and servant has stopped moving, their expressions locked in eerie smiles.
-
-One by one, the guests slowly turn their heads toward the emperor in perfect synchronization.
-
-The emperor looks from side to side, suddenly frightened.
-
-EMPEROR (confused): "What is this?"
-
-The candles flicker violently as a cold wind passes through the hall.
-
-CUT TO SHOT 6.
-
-SHOT 6 | [00:16-00:19] THE DEAD REMEMBER
-
-A terrifying close-up reveals an elderly noblewoman seated beside the emperor. Her once-beautiful face gradually transforms into a pale, ancient corpse through elaborate practical makeup effects. Her cheeks become hollow, her eyes darken, and her expression turns into an unnatural smile.
-
-The camera shifts slightly to reveal other guests undergoing the same transformation, their luxurious clothing remaining unchanged.
-
-NOBLEWOMAN (whispering): "We have waited so long..."
-
-The emperor recoils in horror.
-
-CUT TO SHOT 7.
-
-SHOT 7 | [00:19-00:23] THE TRUTH
-
-A dramatic medium shot shows the emperor rising from his throne, knocking over his chair as he stares at the undead guests surrounding him. The mysterious servant remains perfectly still on the opposite side of the table.
-
-EMPEROR (furious and frightened): "WHO ARE YOU?"
-
-The servant slowly raises his head, revealing pale, hollow features beneath the hood.
-
-SERVANT (calmly): "The one you promised your soul."
-
-The emperor's face drains of color.
-
-CUT TO SHOT 8.
-
-SHOT 8 | [00:23-00:27] THE COLLECTOR
-
-A dramatic close-up captures the mysterious servant slowly pulling back his hood. His face transforms into an ancient skeletal creature through elaborate practical prosthetics and mechanical facial effects. His eyes glow with dim amber light as the surrounding candles extinguish one after another.
-
-The undead guests rise silently from their chairs, forming a motionless circle around the emperor.
-
-NARRATOR (deep voiceover): "And tonight... the collector returned."
-
-The skeletal figure extends one long, bony hand toward the emperor.
-
-CUT TO SHOT 9.
-
-SHOT 9 | [00:27-00:30] THE FINAL PAYMENT
-
-An extreme close-up captures the emperor's terrified face as he backs against his enormous golden throne. His crown slips sideways, and his trembling hands grip the armrests.
-
-The skeletal collector leans close, his glowing eyes reflected in the emperor's frightened gaze.
-
-COLLECTOR (deep whisper): "Your throne is ready... below."
-
-The emperor opens his mouth to scream as the throne room plunges into darkness.
-
-A final metallic clang echoes through the hall.
-
-CUT TO BLACK.
-
-[4] GLOBAL SUPPLEMENT
-
-Nine-shot structure: Use exactly nine cinematic shots, with deliberate cuts at the specified timestamps. Each shot must advance the same continuous story, beginning with the emperor's arrogance, introducing the mysterious servant, revealing the cursed banquet, and ending with the collector demanding payment. Maintain consistent character positions and throne hall geography throughout.
-
-Voiceover and dialogue: Include all narrator lines and character dialogue exactly as written. The narrator has a deep, resonant male voice inspired by classic 1980s fantasy trailers. The emperor speaks with theatrical authority, the servant with unnerving calm, and the undead noblewoman with a soft, hollow whisper. All spoken character dialogue must synchronize accurately with visible mouth movements. Narration remains off-screen and must not overlap important dialogue.
-
-1980s practical effects: The undead guests must resemble actors wearing elaborate latex prosthetics, theatrical corpse makeup, and handcrafted fantasy costumes. The collector's skeletal transformation must resemble a sophisticated animatronic creature effect from an authentic 1980s fantasy production, using mechanical facial appliances, practical makeup, optical dissolves, and controlled theatrical lighting.
-
-Character consistency: Preserve the emperor's silver hair, gray beard, golden crown, crimson cloak, and engraved armor throughout. The mysterious servant must retain his black hooded robe and golden chalice until the final reveal. All banquet guests must remain in their established positions, with their clothing unchanged during their supernatural transformations.
-
-Visual atmosphere: Maintain rich candlelit interiors, deep crimson banners, ornate golden decorations, atmospheric smoke, warm tungsten highlights, dark theatrical shadows, organic film grain, subtle halation, and authentic photochemical softness. The transformation sequence should gradually darken the hall while preserving the visual appearance of vintage fantasy cinema.
-
-Camera movement: Use slow dramatic push-ins, theatrical low-angle compositions, expressive close-ups, and carefully framed wide shots. Avoid excessive handheld movement, modern drone-style cinematography, or impossible camera paths.
-
-Sound design: Begin with lively banquet ambience, clinking goblets, distant laughter, and orchestral medieval music. Gradually remove the background sounds as the curse activates, leaving an unnatural silence broken by whispers, creaking chairs, and the emperor's frightened breathing. Build the final moments with ominous low strings and the collector's deep voice before ending in sudden darkness.
-```
-
-</details>
-
-<details><summary><b>The Digital Frontier: Pixelated Pioneers</b></summary>
-
-```text
-#version 1.0
-root{details,prompt:str}:
-  details{atmosphere,camera_angle:str,color_palette,emotion,environmental_elements:str,genre:str,lighting,location:str,subject1,subject2,year:str}:
-    atmosphere[4]: Playful,Dreamlike,Digital frontier,Calm isolation
-    camera_angle: "High-angle isometric view, emphasizing the island's isolation and the blocky aesthetics, 1:1 cinematic aspect ratio."
-    color_palette[4]: Saturated primary colors,vibrant greens and blues for the island,deep purples and blacks for the void,pixelated orange accents
-    emotion[4]: Wonder,Curiosity,Discovery,Serenity
-    environmental_elements: "Blocky, geometric trees with glowing leaves, pixelated waterfalls cascading into the void, floating abstract digital dust motes, subtle grid lines on the void's floor."
-    genre: Voxel Art
-    lighting[3]: Emissive light from the voxels themselves,"soft, diffuse ambient light from the digital void",subtle rim lighting on the blocky figures
-    location: "A solitary, blocky floating island made of glowing voxels, suspended in an infinite digital void, with sparse, geometric trees and structures."
-    subject1{costume:str,subject_action:str,subject_expression:str}:
-      costume: "Low-polygon adventurer tunic and trousers in muted greens and browns, a blocky utility belt with voxel tools, simple, chunky voxel boots."
-      subject_action: "Standing with one hand lightly resting on a large, blocky, glowing data crystal embedded in the island."
-      subject_expression: "A subtle, curious expression, eyes wide with wonder at the digital landscape."
-    subject2{costume:str,subject_action:str,subject_expression:str}:
-      costume: "A vibrant, pixelated explorer jumpsuit in electric blue, with contrasting orange accents, chunky voxel goggles pushed up on her head, a small blocky digital compass attached to her wrist."
-      subject_action: "Leaning forward slightly, arm outstretched, pointing excitedly towards a cluster of particularly vibrant voxel flora at the island's edge."
-      subject_expression: "An excited, joyful expression, mouth slightly open in awe."
-    year: "Retro-Futuristic, 8-bit aesthetic"
-  prompt: "You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness. Imagine Subject 1 (male) and Subject 2 (female) as blocky, low-polygon explorers discovering a vibrant, floating voxel island in a vast digital void. Subject 1 is contemplative, while Subject 2 is eagerly pointing out a new discovery amidst the pixelated flora."
-```
-
-</details>
-
-<details><summary><b>The Fighter Boxing Video</b></summary>
-
-```text
-[00:00 - 00:2.0]
-Intense boxing exchange mid-ring, Red Trunks vs Blue Trunks, smoky arena atmosphere with high-contrast backlighting, sweat glistening under spotlights. [Audio: Canvas footwork scuffs, leather-on-leather punches, heavy breathing + Tense crowd ambience] --ar 9:16
-
-[00:2.0 - 00:4.0]
-Extreme close-up of Red Trunks' right hook impacting Blue Trunks' jaw, facial distortion on impact, beads of sweat exploding from the head. [Dialogue: (Grit) 'Got you!']. [Audio: Deep bassy thud, slow-motion warp effect, thumping heartbeat] --ar 9:16
-
-[00:4.0 - 00:6.0]
-Blue Trunks reeling back, massive spray of sweat and water hitting the camera lens directly, creating water distortion on the frame, blurred ring background. [Audio: Wet splatter sound on mic, high-pitched tinnitus ringing, explosive crowd roar] --ar 9:16
-```
-
-</details>
-
-<details><summary><b>The Glass Doppelgänger</b></summary>
-
-```text
-{
-  "title": "The Glass Doppelgänger",
-  "description": "A high-octane psychological thriller scene where a woman is engaged in a visceral physical combat with her own sentient reflection emerging from a shattered surface.",
-  "prompt": "You will perform an image edit using the provided photo to create a high-budget movie frame. The scene features the subject in a fierce life-or-death struggle against a supernatural mirror entity. The image must be Ultra-Photorealistic, utilizing cinematic lighting and highly detailed textures. The style is that of a blockbuster film, shot on Arri Alexa with a shallow depth of field to emphasize the intensity. Ensure realistic physics for the flying glass shards.",
-  "details": {
-    "year": "2025",
-    "genre": "Cinematic Photorealism",
-    "location": "A derelict, neon-lit dressing room with peeling wallpaper and a wall-sized vanity mirror that is shattering outwards.",
-    "lighting": [
-      "Volumetric stage lighting from above",
-      "Flickering fluorescent buzz",
-      "Dramatic rim lighting highlighting sweat and glass texture"
-    ],
-    "camera_angle": "Dynamic low-angle medium shot, slightly Dutch tilted to enhance the chaos.",
-    "emotion": [
-      "Ferocity",
-      "Desperation",
-      "Adrenaline"
-    ],
-    "color_palette": [
-      "Electric cyan",
-      "Gritty concrete grey",
-      "Deep shadowy blacks",
-      "Metallic silver"
-    ],
-    "atmosphere": [
-      "Violent",
-      "Surreal",
-      "Claustrophobic",
-      "Kinetic"
-    ],
-    "environmental_elements": "Thousands of micro-shards of glass suspended in the air (bullet-time effect), dust motes dancing in the light beams, overturned furniture.",
-    "subject1": {
-      "costume": "crop top, mini skirt",
-      "subject_expression": "A primal scream of exertion, eyes wide with intensity.",
-      "subject_action": "fighting with mirror"
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "cartoonish effects",
-        "low resolution",
-        "blurry textures",
-        "static pose",
-        "calm demeanor"
-      ],
-      "exclude_styles": [
-        "3D render",
-        "illustration",
-        "painting",
-        "anime"
-      ],
-      "exclude_colors": [
-        "pastel pinks",
-        "sunshine yellow"
-      ],
-      "exclude_objects": [
-        "magical glowing orbs",
-        "wands",
-        "animals"
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>The Gravedigger's Vigil</b></summary>
-
-```text
-{
-  "title": "The Gravedigger's Vigil",
-  "description": "A haunting portrait of a lone Victorian figure standing watch over a misty, decrepit cemetery at midnight.",
-  "prompt": "You will perform an image edit using the person from the provided photo as the main subject. Preserve his core likeness. Transform Subject 1 (male) into a solemn Victorian gravedigger standing amidst a sprawling, fog-choked necropolis. He holds a rusted lantern that casts long, uncanny shadows against the moss-covered mausoleums behind him. The composition adheres to a cinematic 1:1 aspect ratio, framing him tightly against the decaying iron gates.",
-  "details": {
-    "year": "1888",
-    "genre": "Gothic Horror",
-    "location": "An overgrown, crumbling cemetery gate with twisted iron bars and weeping angel statues.",
-    "lighting": [
-      "Pale, cold moonlight cutting through fog",
-      "Flickering, warm amber candlelight from a lantern",
-      "Deep, abyssal shadows"
-    ],
-    "camera_angle": "Eye-level medium shot, creating a direct and confronting connection with the viewer.",
-    "emotion": [
-      "Foreboding",
-      "Solitary",
-      "Melancholic"
-    ],
-    "color_palette": [
-      "Obsidian black",
-      "slate gray",
-      "pale moonlight blue",
-      "sepia tone",
-      "muted moss green"
-    ],
-    "atmosphere": [
-      "Eerie",
-      "Cold",
-      "Silent",
-      "Supernatural",
-      "Decaying"
-    ],
-    "environmental_elements": "Swirling ground mist that obscures the feet, twisted dead oak trees silhouetted against the moon, a lone crow perched on a headstone.",
-    "subject1": {
-      "costume": "A tattered, ankle-length black velvet frock coat, a weathered top hat, and worn leather gloves.",
-      "subject_expression": "A somber, pale visage with a piercing, weary gaze staring into the darkness.",
-      "subject_action": "Raising a lantern high with the right hand while gripping the handle of a spade with the left."
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "sunlight",
-        "blooming flowers",
-        "blue sky",
-        "modern infrastructure",
-        "smiling",
-        "lens flare"
-      ],
-      "exclude_styles": [
-        "cartoon",
-        "cyberpunk",
-        "high fantasy",
-        "anime",
-        "watercolor",
-        "bright pop art"
-      ],
-      "exclude_colors": [
-        "neon",
-        "pastel pink",
-        "vibrant orange",
-        "saturated red"
-      ],
-      "exclude_objects": [
-        "cars",
-        "smartphones",
-        "plastic",
-        "streetlights"
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>The Last Adagio</b></summary>
-
-```text
-{
-  "title": "The Last Adagio",
-  "description": "A hauntingly beautiful scene of a solitary ballerina performing in a flooded, abandoned grand library.",
-  "prompt": "You will perform an image edit using the provided subject. Transform Subject 1 (female) into a survivor in a post-apocalyptic world. She is in a massive, decaying library where the floor is flooded with water. Light spills through the collapsed ceiling, illuminating dust motes and water reflections. The image must be photorealistic, utilizing cinematic lighting, highly detailed textures, shot on Arri Alexa with a shallow depth of field to focus on the subject while the background falls into soft bokeh.",
-  "details": {
-    "year": "Post-Collapse Era",
-    "genre": "Cinematic Photorealism",
-    "location": "A grand, abandoned library with towering shelves, crumbling architecture, and a floor flooded with still, reflective water.",
-    "lighting": [
-      "God rays entering from a collapsed roof",
-      "Soft reflected light from the water",
-      "High contrast cinematic shadows"
-    ],
-    "camera_angle": "Low angle, wide shot, capturing the reflection in the water.",
-    "emotion": [
-      "Melancholic",
-      "Graceful",
-      "Solitary"
-    ],
-    "color_palette": [
-      "Desaturated concrete greys",
-      "Muted teal water",
-      "Vibrant crimson",
-      "Dusty gold light"
-    ],
-    "atmosphere": [
-      "Ethereal",
-      "Lonely",
-      "Quiet",
-      "Majestic"
-    ],
-    "environmental_elements": "Floating pages from old books, dust particles dancing in light shafts, ripples in the water.",
-    "subject1": {
-      "costume": "A distressed, dirty white ballet leotard paired with pristine red gloves.",
-      "subject_expression": "Serene, eyes closed, lost in the movement.",
-      "subject_action": "dancing"
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "bright sunshine",
-        "clean environment",
-        "modern technology",
-        "spectators"
-      ],
-      "exclude_styles": [
-        "cartoon",
-        "painting",
-        "sketch",
-        "3D render"
-      ],
-      "exclude_colors": [
-        "neon green",
-        "bright orange"
-      ],
-      "exclude_objects": [
-        "cars",
-        "animals",
-        "phones"
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>The Midnight Informant</b></summary>
-
-```text
-{
-  "title": "The Midnight Informant",
-  "description": "A tense, film noir moment featuring a female private investigator waiting for a lead in a hazy, underground jazz club.",
-  "prompt": "You will perform an image edit using the person from the provided photo as the main subject. Preserve her core likeness. Transform the subject (female) into a sharp-witted 1950s private investigator seated in a booth at a dimly lit, smoke-filled jazz club. The image must be Ultra-Photorealistic and Movie-Quality, evoking the golden age of Film Noir. Use dramatic lighting to highlight skin texture and fabric details. Keywords: photorealistic, cinematic lighting, highly detailed, shot on Arri Alexa, depth of field, volumetric fog, realistic physics.",
-  "details": {
-    "year": "1954",
-    "genre": "Cinematic Photorealism",
-    "location": "The Velvet Note, a crowded, subterranean jazz lounge in Chicago with red velvet booths and a small stage in the hazy background.",
-    "lighting": [
-      "Chiaroscuro",
-      "Volumetric shafts of light cutting through smoke",
-      "Warm tungsten table lamps",
-      "Rim lighting on hair"
-    ],
-    "camera_angle": "Eye-level medium close-up, shallow depth of field focusing strictly on the subject's eyes.",
-    "emotion": [
-      "Suspicious",
-      "Alert",
-      "Melancholic"
-    ],
-    "color_palette": [
-      "Deep shadow black",
-      "Amber gold",
-      "Burgundy red",
-      "Tobacco brown"
-    ],
-    "atmosphere": [
-      "Sultry",
-      "Mysterious",
-      "Claustrophobic",
-      "Noir"
-    ],
-    "environmental_elements": "Thick swirls of cigarette smoke filling the air, a half-empty glass of amber whiskey on the table, blurred silhouette of a double bass player in the background.",
-    "subject1": {
-      "costume": "A structured beige trench coat worn over a dark cocktail dress, leather gloves, and a wide-brimmed fedora tilted slightly forward.",
-      "subject_expression": "A piercing, guarded gaze, eyes scanning the room, lips pressed in a tight line.",
-      "subject_action": "One hand rests on a manila folder on the table, the other hovers near her whiskey glass."
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "daylight",
-        "modern technology",
-        "smartphones",
-        "casual clothing",
-        "bright sunshine",
-        "blue skies"
-      ],
-      "exclude_styles": [
-        "cartoon",
-        "3D render",
-        "anime",
-        "sketch",
-        "impressionism",
-        "oversaturated"
-      ],
-      "exclude_colors": [
-        "Neon green",
-        "Hot pink",
-        "Cyan"
-      ],
-      "exclude_objects": [
-        "cars",
-        "weapons drawn",
-        "animals"
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>The Midnight Melody Mystery</b></summary>
-
-```text
-{
-  "title": "The Midnight Melody Mystery",
-  "description": "A charming, animated noir scene where a gruff detective questions a glamorous jazz singer in a stylized 1950s club.",
-  "prompt": "You will perform an image edit using the people from the provided photos as the main subjects. Preserve their core likeness but stylized. Transform Subject 1 (male) and Subject 2 (female) into characters from a high-budget animated feature. Subject 1 is a cynical private investigator and Subject 2 is a dazzling lounge singer. They are seated at a curved velvet booth in a smoky, art-deco jazz club. The aesthetic must be distinctively 'Disney Character' style, featuring smooth shading, expressive large eyes, and a magical, cinematic glow.",
-  "details": {
-    "year": "1950s Noir Era",
-    "genre": "Disney Character",
-    "location": "The Blue Note Lounge, a stylized jazz club with art deco architecture, plush red velvet booths, and a stage in the background.",
-    "lighting": [
-      "Cinematic spotlighting",
-      "Soft volumetric haze",
-      "Warm golden glow from table lamps",
-      "Cool blue ambient backlight"
-    ],
-    "camera_angle": "Medium close-up at eye level, framing both subjects across a small round table.",
-    "emotion": [
-      "Intrigue",
-      "Playful suspicion",
-      "Charm"
-    ],
-    "color_palette": [
-      "Deep indigo",
-      "ruby red",
-      "golden amber",
-      "sepia tone"
-    ],
-    "atmosphere": [
-      "Mysterious",
-      "Romantic",
-      "Whimsical",
-      "Smoky"
-    ],
-    "environmental_elements": "Swirling stylized smoke shapes, a vintage microphone in the background, a crystal glass with a garnish on the table.",
-    "subject1": {
-      "costume": "A classic tan trench coat with the collar popped, a matching fedora hat, and a loosened tie.",
-      "subject_expression": "A raised eyebrow and a smirk, looking skeptical yet captivated.",
-      "subject_action": "Holding a small reporter's notebook and a pencil, leaning slightly forward over the table."
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "photorealism",
-        "gritty textures",
-        "blood",
-        "gore",
-        "dirt",
-        "noise"
-      ],
-      "exclude_styles": [
-        "anime",
-        "cyberpunk",
-        "sketch",
-        "horror",
-        "watercolor"
-      ],
-      "exclude_colors": [
-        "neon green",
-        "hot pink"
-      ],
-      "exclude_objects": [
-        "smartphones",
-        "modern technology",
-        "cars"
-      ]
-    },
-    "subject2": {
-      "costume": "A sparkling, floor-length red evening gown with white opera-length gloves and a pearl necklace.",
-      "subject_expression": "A coy, confident smile with heavy eyelids, playing the role of the femme fatale.",
-      "subject_action": "Resting her chin elegantly on her gloved hand, looking directly at the detective."
-    }
-  }
-}
-```
-
-</details>
-
-<details><summary><b>The Red Headscarf</b></summary>
-
-```text
-(Portrait of a beautiful young woman:1.3), (Middle Eastern ethnicity:1.2), (age 20:1.1), (intricate facial features:1.3), (soft natural expression:1.2), wearing a (vibrant red headscarf:1.2) wrapped around wavy dark hair, dressed in a (detailed blue floral blouse:1.2) over a (yellow textured top:1.1), adorned with (ornate turquoise beaded necklace:1.2), (large vintage drop earrings:1.1), and gold bangles. The subject is positioned slightly to the left, (facing the viewer:1.2), resting her arms on a surface. Background features a (distressed turquoise wall:1.2), a (large rustic ceramic vase:1.1) containing yellow wildflowers, and a small painted bowl. (Fine art oil painting style:1.3), rich color palette of teal, gold, and crimson, (soft cinematic lighting:1.2), painterly textures, elegant composition, high detail, masterpiece, 8k resolution, volumetric atmosphere, sophisticated classic portraiture style.
-```
-
-</details>
-
-<details><summary><b>The Room That Forgot Gravity</b></summary>
-
-```text
-Use the uploaded photo as a strict identity reference. Keep this exact person: same face, hair, age, skin texture and body proportions, unretouched.
-
-A photorealistic cinematic photograph, vertical 4:5, shot at eye level with a perfectly level camera, medium-wide. It looks like a practical-effects movie set photographed with a real camera.
-
-The person stands upright on the wooden floor in the middle of an elegant, ordinary room. Full body visible, relaxed pose, understated contemporary clothes, looking around with mild curiosity. The face is clearly visible and softly lit. They are the only person and the main focal point.
-
-The room has muted dark plaster walls, a real wood floor, a window on the back wall, minimal furniture and warm practical lamps. Both side walls, the floor and part of the ceiling are visible. The room is completely normal, except that four objects each have their own direction of gravity.
-
-Left: a white, medium-heavy curtain on the rod above the window falls sideways instead of down. It hangs horizontally from the rod toward the left wall, exactly like a normally hanging curtain rotated 90 degrees. The rod above the window is its only attachment. The far end of the curtain hangs free a short distance from the left wall, ending in a loose, slightly uneven vertical hem. Heavy folds run horizontally, with a slight natural sag and bunching at the rod. The fabric is heavy and completely still.
-
-Right, in the foreground at chest height: a clear cylindrical drinking glass stands on the right wall as if the wall were a table. Its base rests against the wall, held by a small metal ring bracket. Its open end points horizontally into the room. The glass is seen in side profile and is large and sharp in the frame.
-
-The glass holds amber-coloured tea. The tea fills the wall-side part of the glass completely, from the top inner edge to the bottom inner edge, and takes up a little more than half of the glass length. The tea-filled part is clearly longer than the empty part. The room-side part of the glass, up to the rim, is completely empty, clear and dry, also along its lower edge. The boundary between the amber tea and the air is one straight vertical line running from the top edge of the glass to the bottom edge. It looks exactly like a photo of a normal glass of tea standing on a table, rotated 90 degrees so that its base points at the right wall. Realistic meniscus along that vertical line and realistic refraction in the amber liquid.
-
-Above: a small potted trailing plant stands upside down on the ceiling, the base of the pot flat against the ceiling. Its vines and leaves droop upward and lie against the ceiling around the pot, the way a trailing plant on a table droops onto the tabletop. No vines hang down into the room. The plant is smaller and less prominent than the curtain and the glass.
-
-On the right wall below the glass: a stack of exactly three hardcover books uses the wall as its floor. One dark green book lies with its cover flat against the wall. One dark red book is stacked on it, and one dark blue book is stacked on the red one, toward the room. The stack sticks out horizontally from the wall and the three spines are vertical.
-
-Lighting: warm lamps, a soft directional key light on the person, subtle rim light, natural falloff into shadow. All shadows follow the real light sources, including those of the sideways objects. Natural skin, real materials, subtle film contrast, natural depth of field. No text in the image.
-```
-
-</details>
-
-<details><summary><b>The Silent Standoff</b></summary>
-
-```text
-High-angle top-down view of a dimly lit abandoned courtyard, cracked concrete ground, scattered old markings and faded impact dents, long eerie character shadows cast off-frame, no violence depicted, dark Teal palette with a strong golden beam, thick outlines, 2D animated cartoon look, flat shading, extreme contrast, atmospheric tension.
-```
-
-</details>
-
-<details><summary><b>The Solar Priestess of Amun</b></summary>
-
-```text
-{
-  "title": "The Solar Priestess of Amun",
-  "description": "A stunning, stylized portrait of a woman transformed into an Ancient Egyptian priestess, blending photorealism with the texture of tomb paintings.",
-  "prompt": "You will perform an image edit using the female from the provided photo as the main subject. Preserve her core likeness. Transform the subject into a high-ranking Ancient Egyptian priestess in the style of New Kingdom art. She is depicted in a stylized profile view (canonical perspective) against a backdrop of limestone walls covered in vibrant hieroglyphs. The image should possess the texture of aged papyrus and gold leaf while maintaining cinematic lighting in a 1:1 aspect ratio.",
-  "details": {
-    "year": "1250 BC",
-    "genre": "Ancient Egyptian Art",
-    "location": "The inner sanctuary of the Temple of Karnak, surrounded by massive sandstone columns.",
-    "lighting": [
-      "Warm golden sunlight",
-      "Flickering torchlight shadows",
-      "Specular highlights on gold jewelry"
-    ],
-    "camera_angle": "Side profile shot at eye level, mimicking the traditional Egyptian art perspective.",
-    "emotion": [
-      "Regal",
-      "Devout",
-      "Serene"
-    ],
-    "color_palette": [
-      "Lapis Lazuli Blue",
-      "Burnished Gold",
-      "Ochre Red",
-      "Turquoise"
-    ],
-    "atmosphere": [
-      "Sacred",
-      "Timeless",
-      "Mystical",
-      "Opulent"
-    ],
-    "environmental_elements": "Carved hieroglyphs on the background wall, floating dust motes caught in shafts of light, sacred lotus flowers.",
-    "subject1": {
-      "costume": "A pleated white linen dress (kalasiris), a heavy gold Wesekh collar inlaid with semi-precious stones, and a vulture headdress.",
-      "subject_expression": "A stoic, commanding gaze looking forward.",
-      "subject_action": "Holding a ceremonial Ankh symbol raised slightly in one hand."
-    },
-    "negative_prompt": {
-      "exclude_visuals": [
-        "modern fashion",
-        "denim",
-        "digital technology",
-        "cars"
-      ],
-      "exclude_styles": [
-        "3D render",
-        "anime",
-        "impressionism",
-        "cyberpunk"
-      ],
-      "exclude_colors": [
-        "neon green",
-        "electric purple"
-      ],
-      "exclude_objects": [
-        "eyeglasses",
-        "watches",
-        "modern buildings"
-      ]
-    }
-  }
-}
 ```
 
 </details>

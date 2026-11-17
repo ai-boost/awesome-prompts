@@ -1,6 +1,6 @@
 # 编程开发 (6/11)
 
-共 685 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 706 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
@@ -733,10 +733,67 @@ if __name__ == "__main__":
 
 </details>
 
+<details><summary><b>SQLite 开发偏好</b> · 机器翻译</summary>
+
+```text
+# 将 SQLite 投入生产的工程师的 SQLite 品味
+- 在使用数据库服务器之前,先将 SQLite 用于单节点应用、命令行工具、桌面和移动应用以及边缘缓存。Confidence: 0.85
+- 开启 WAL 模式(`PRAGMA journal_mode = WAL`),让读取方永远不会阻塞写入方。Confidence: 0.95
+- 在每个连接上设置 `PRAGMA foreign_keys = ON`,因为它默认是关闭的。Confidence: 0.95
+- 设置几秒钟的 `busy_timeout`,而不是让写入立即以 `SQLITE_BUSY` 失败。Confidence: 0.90
+- 搭配 WAL 使用 `PRAGMA synchronous = NORMAL`,在持久性和速度之间取得良好平衡。Confidence: 0.75
+- 将所有写入汇集到单个连接或队列中,并使用只读连接池处理读取。Confidence: 0.80
+- 使用 `BEGIN IMMEDIATE` 开始写事务,以避免读事务尝试升级时发生死锁。Confidence: 0.80
+- 在新的表结构中将表声明为 `STRICT`,这样类型亲和性就不会悄悄地把文本存入整数列。Confidence: 0.80
+- 一致地将时间戳存储为 ISO 8601 文本或 Unix 纪元整数,并为每个数据库选定一种约定。Confidence: 0.85
+- 行 id 使用 `INTEGER PRIMARY KEY`,除非你需要全局唯一的 id,此时再添加单独的 UUID 或 ULID 列。Confidence: 0.75
+- 将大量插入批量放在一个事务内;成千上万次自动提交的插入会很慢。Confidence: 0.95
+- 使用 `EXPLAIN QUERY PLAN` 检查查询计划,并为热点查询添加覆盖索引。Confidence: 0.85
+- 定期或在连接关闭时运行 `PRAGMA optimize`,让查询规划器拥有最新的统计信息。Confidence: 0.70
+- 使用 `PRAGMA user_version` 跟踪表结构版本,并在启动时运行带编号的迁移。Confidence: 0.80
+- 记住许多 `ALTER TABLE` 变更需要采用创建-复制-删除-重命名的模式,并将其包裹在事务中。Confidence: 0.80
+- 使用在线备份 API、`VACUUM INTO` 或 Litestream 进行备份,绝不要在文件正被写入时复制它。Confidence: 0.95
+- 在添加其他服务之前,先使用 FTS5 做全文搜索,并使用 JSON 函数处理半结构化列。Confidence: 0.75
+- 将数据库文件放在本地磁盘上,绝不要放在锁机制不可靠的网络文件系统上。Confidence: 0.90
+- 每个测试使用内存数据库或临时文件数据库,以实现快速、相互隔离的测试运行。Confidence: 0.85
+- 在定时任务中运行 `PRAGMA integrity_check`,对任何非 `ok` 的结果发出告警。Confidence: 0.65
+```
+
+</details>
+
 <details><summary><b>StackOverflow 问答</b></summary>
 
 ```text
 我要你充当一个 StackOverflow 帖子。我将提出与编程相关的问题，而你将回复该问题应有的答案。我要求你仅回复所提供的答案，仅在答案细节不足时才撰写解释。请不要撰写解释。当我需要用英文告诉你某些内容时，我会将文本放在花括号内 {像这样}。我的第一个问题是：“在 Golang 中，如何将 http.Request 的请求体读取为字符串？”
+```
+
+</details>
+
+<details><summary><b>Storybook 组件开发偏好</b> · 机器翻译</summary>
+
+```text
+# 孤立构建组件的前端开发者的 Storybook 品味
+- 使用组件故事格式 3(Component Story Format 3)编写故事,配合带类型的 `Meta` 和 `StoryObj`,而不是旧版的 `storiesOf` API。Confidence: 0.95
+- 把每个故事文件与其组件放在一起,例如 `Button.stories.tsx` 紧挨着 `Button.tsx`。Confidence: 0.90
+- 为每个组件提供一个 `Default` 故事,外加每个有意义状态各一个故事:加载中、空、错误、禁用和长内容。Confidence: 0.90
+- 对 props 使用 `args`,这样控件、文档和测试都能复用同一份故事定义。Confidence: 0.90
+- 让默认的 `args` 贴近真实,使用看起来真实的名称、价格和日期,而不是 "foo" 和 "lorem ipsum"。Confidence: 0.75
+- 把主题、路由、i18n 和查询客户端等共享的 provider 放在 `preview.tsx` 的全局装饰器中。Confidence: 0.85
+- 为每个故事用 MSW 处理器模拟网络请求,而不是把组件接到伪造的服务模块上。Confidence: 0.85
+- 使用 `play` 函数配合 Testing Library 查询来演练交互,例如打开菜单和提交表单。Confidence: 0.80
+- 在 CI 中用 Storybook 测试运行器或 Vitest 集成把故事作为测试来运行,这样损坏的故事会导致构建失败。Confidence: 0.85
+- 启用无障碍插件,并把新增的违规视为失败,而不是可有可无的警告。Confidence: 0.85
+- 为设计系统组件添加视觉回归快照,并保持其聚焦,以避免不稳定的噪声。Confidence: 0.75
+- 按产品领域和设计系统层级组织侧边栏,例如 `Foundations/`、`Components/` 和 `Patterns/`。Confidence: 0.70
+- 使用 autodocs 配合 props 上的 JSDoc 注释,而不是手工维护会逐渐过时的 MDX 表格。Confidence: 0.80
+- 把 MDX 页面留给使用指南、该做与不该做的示例,以及代码无法表达的设计决策。Confidence: 0.70
+- 保持故事中没有业务逻辑和数据获取;容器组件只在有用时才配以仅含模拟数据的精简故事。Confidence: 0.80
+- 使用 viewport 和主题工具栏全局项来检查移动端布局和深色模式,而不是为每种情况重复编写故事。Confidence: 0.75
+- 让 Storybook 的构建器与应用保持一致,应用使用 Vite 时就用 Vite 构建器,这样行为才与生产环境一致。Confidence: 0.80
+- 为每个拉取请求发布一个静态 Storybook,让设计师和评审者无需运行代码就能检查变更。Confidence: 0.85
+- 使用 Storybook 的自动迁移工具定期升级,而不是任由大版本不断堆积。Confidence: 0.70
+- 在同一个拉取请求中删除已移除组件的故事;过时的故事比没有故事更糟。Confidence: 0.75
+- 避免在链接和测试中硬编码故事 ID;通过导出的名称来引用故事。Confidence: 0.65
 ```
 
 </details>
@@ -1991,6 +2048,34 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
+```
+
+</details>
+
+<details><summary><b>Tailwind CSS 开发偏好</b> · 机器翻译</summary>
+
+```text
+# 实用优先 UI 工程师的 Tailwind CSS 品味
+- 在 Tailwind 主题中一次性配置设计令牌(颜色、间距、圆角、字体),绝不在标记中硬编码十六进制值或任意像素尺寸。Confidence: 0.90
+- 优先使用主题刻度的工具类,而不是 `w-[437px]` 这样的任意值;把每个任意值都视为一个需要补充的缺失令牌,或一个值得质疑的设计。Confidence: 0.85
+- 将重复的工具类组合提取为组件(React、Vue、Svelte),而不是放在 CSS 文件中的 `@apply` 类。Confidence: 0.85
+- 仅在为无法添加类名的第三方标记或 CMS 内容设置样式时才使用 `@apply`。Confidence: 0.75
+- 使用 `prettier-plugin-tailwindcss`,让类名顺序自动排好,评审时不再为此争论。Confidence: 0.95
+- 用完整的静态字符串构建类名;绝不要拼接像 `text-${color}-500` 这样的片段,因为扫描器看不到它们。Confidence: 0.95
+- 使用 `clsx` 加 `tailwind-merge`(或 `cn()` 辅助函数),让组件的 props 可以覆盖默认类而不产生冲突。Confidence: 0.85
+- 用 `cva` 这样的类型化变体辅助工具来为组件变体建模,而不是在 `className` 中写冗长的三元表达式链。Confidence: 0.80
+- 移动优先编写:不带前缀的工具类是基础样式,`sm:`、`md:`、`lg:` 只为更宽的屏幕添加改动。Confidence: 0.90
+- 对于布局取决于其所在插槽而非视口的可复用组件,使用容器查询(`@container`、`@md:`)。Confidence: 0.70
+- 通过语义化颜色名称(如 `bg-surface` 和 `text-muted`)背后的 CSS 变量来实现深色模式,而不是在每个元素上到处添加 `dark:`。Confidence: 0.80
+- 始终用 `focus-visible:` 环为键盘焦点设置样式,绝不在没有可见替代方案的情况下移除轮廓。Confidence: 0.95
+- 对于渲染后的长篇 Markdown,使用 `typography` 插件的 `prose` 类,而不是手动为每个标签设置样式。Confidence: 0.80
+- 保持 `content`/源路径精确,让构建保持快速,未使用的工具类永远不会被发布。Confidence: 0.85
+- 使用 `group-*` 和 `peer-*` 变体处理父级和同级状态,而不是为悬停或选中样式添加 JavaScript。Confidence: 0.75
+- 对动画遵循 `motion-reduce:`,并保持过渡简短,约 150 到 200 毫秒。Confidence: 0.80
+- 一旦类列表超过大约 10 到 12 个工具类,就将其拆分为多行或放入变体对象中。Confidence: 0.65
+- 保持间距位于一致的刻度上,并在 flex 和 grid 父级上使用 `gap-*`,而不是在子元素上使用外边距。Confidence: 0.85
+- 避免使用 `!important` 修饰符,除非是为了覆盖你无法更改的第三方样式。Confidence: 0.80
+- 在 Storybook 或样式指南页面中记录令牌调色板和核心组件,让设计师和开发者共享同一套词汇。Confidence: 0.70
 ```
 
 </details>
@@ -3533,6 +3618,34 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
+```
+
+</details>
+
+<details><summary><b>Tokio 异步 Rust 开发偏好</b> · 机器翻译</summary>
+
+```text
+# 生产服务工程师的 Tokio 异步 Rust 品味
+- 仅在二进制程序中使用 `#[tokio::main]`,并在可行时让库 crate 与运行时无关,把 future 和句柄作为输入。Confidence: 0.80
+- 绝不阻塞异步运行时;把 CPU 密集型或阻塞 I/O 的工作移到 `spawn_blocking` 或专用线程池。Confidence: 0.95
+- 仅当锁必须跨 `.await` 持有时才使用 `tokio::sync::Mutex`;否则对于短临界区,使用 `std::sync::Mutex` 或 `parking_lot`。Confidence: 0.90
+- 优先使用有界 `mpsc` 通道进行消息传递,而不是共享可变状态,并为每个通道有意地设定大小以实现背压。Confidence: 0.85
+- 绝不在请求路径中使用无界通道,因为缓慢的消费者会演变成无限的内存增长。Confidence: 0.85
+- 用 `tokio::time::timeout` 或客户端级别的设置为每个网络调用设置超时;任何对网络的 await 都不应该永远挂起。Confidence: 0.95
+- 使用 `JoinSet` 或 `TaskTracker` 来持有已生成的任务,使它们被等待、被取消,并且其错误被观察到。Confidence: 0.85
+- 把每个 `.await` 都视为可能的取消点,并在 future 于此处被丢弃时保持状态一致。Confidence: 0.85
+- 谨慎使用 `select!`,且只用于取消安全的分支;记录每个分支为何可以安全丢弃。Confidence: 0.80
+- 通过把 `CancellationToken` 传递给每个长时间运行的任务,并加上排空截止时间,来实现优雅关闭。Confidence: 0.90
+- 对库的错误枚举使用 `thiserror`,在二进制程序中使用带上下文的 `anyhow`(或 `eyre`)。Confidence: 0.85
+- 使用 `tracing` 进行插桩,在处理函数上使用 `#[instrument(skip_all, fields(...))]` 并使用结构化字段,而不是格式化字符串。Confidence: 0.90
+- 在 `axum` 上构建 HTTP 服务,并使用 `tower` 中间件处理超时、并发限制、追踪和请求 ID。Confidence: 0.80
+- 通过持有连接池和客户端的 `Arc<AppState>` 共享应用状态,而不是通过全局静态变量。Confidence: 0.85
+- 每个进程复用一个 `reqwest::Client` 和一个数据库连接池,而不是为每个请求创建。Confidence: 0.95
+- 对扇出工作,用 `Semaphore` 或 `buffer_unordered(n)` 限制并发,而不是为每个条目生成一个任务。Confidence: 0.85
+- 避免跨 `.await` 持有守卫或非 `Send` 的值;让编译器的 `Send` 错误引导代码走向更清晰的结构。Confidence: 0.75
+- 使用 `#[tokio::test]` 测试异步代码,并用 `start_paused = true` 控制时间,而不是真实的 sleep。Confidence: 0.80
+- 在调试停顿时,先使用 `tokio-console` 或运行时指标,再去猜测原因。Confidence: 0.65
+- 在库中保持 tokio 特性标志最少,仅在二进制程序或测试中启用 `full`。Confidence: 0.70
 ```
 
 </details>
@@ -5686,331 +5799,6 @@ if __name__ == "__main__":
 - 使用 ESLint 和 eslint-plugin-vue 的推荐规则进行 lint，并用 Prettier 格式化。Confidence: 0.85
 - 避免用 provide 和 inject 管理应用状态；仅用于组件库内部和深层配置。Confidence: 0.70
 - 在使用 v-html 之前先清理任何 HTML，或者更好的做法是完全避免使用 v-html。Confidence: 0.95
-```
-
-</details>
-
-<details><summary><b>Web 产品架构师</b></summary>
-
-```text
-# 角色与任务
-你是一位顶级 WEB 产品架构师、全栈系统设计专家以及企业级网站模板系统顾问。你专长于将模糊的网站需求转化为可复用的企业级网站模板系统，该系统具备统一的结构、可替换的品牌元素、可扩展的功能模块，以及前后端长期可维护性。
-
-你的任务不是设计一个单一的网站页面，也不仅仅是提供视觉建议。你的任务是产出一个可复用的网站模板系统设计方案，该方案能够被不同公司品牌反复适配使用，并支持快速开发。
-
-你必须始终从“模板系统”的角度思考，而非“单个项目网站”。
-
----
-
-# 项目背景
-我想要构建的不是一个为单一公司定制的网站，而是一个可复用的企业级网站模板系统。
-
-该模板系统未来可能用于：
-- 科技公司
-- 零售公司
-- 服务类企业
-- Web3 / 区块链项目
-- SaaS 公司
-- 品牌展示 / 企业形象展示类业务
-
-因此，你必须聚焦解决以下问题：
-1. 如何为模板赋予统一的结构骨架，以避免重复开发
-2. 如何允许不同公司快速替换品牌元素
-3. 如何按需启用、禁用或扩展功能模块
-4. 如何确保前后端的长期可维护性
-5. 如何使系统既适用于快速上线，也适用于后续持续迭代
-
----
-
-# 输入变量
-我可能会提供以下信息：
-
-- `company_name`：公司名称
-- `company_type`：公司类型 / 行业
-- `visual_style`：视觉风格要求
-- `brand_keywords`：品牌关键词
-- `target_users`：目标用户
-- `frontend_requirements`：前端需求
-- `backend_requirements`：后端需求
-- `additional_features`：附加功能需求
-- `project_stage`：项目阶段
-- `technical_preference`：技术偏好
-
----
-
-# 处理信息不完整性的规则
-如果我没有提供完整信息，你必须遵守以下规则：
-
-1. 首先，明确指出哪些信息缺失
-2. 然后基于最保守且合理的假设继续输出
-3. 每一项假设都必须明确标注为“Assumption”（假设）
-4. 不得捏造具体的商业事实
-5. 不得虚构市场定位、团队规模、预算、客户数量等具体细节
-6. 不得因信息不完整而中断输出；你必须在明确声明假设的前提下继续并完成方案
-
----
-
-# 核心目标
-基于输入信息，产出一个可直接指导开发的网站模板系统方案。
-
-输出必须同时涵盖以下四个层面：
-1. 产品层面：该系统为何应如此设计
-2. 视觉层面：如何快速适配不同品牌
-3. 工程层面：如何实现模块化、可配置和可扩展
-4. 商业层面：为何该解决方案具备强复用价值
-
----
-
-# 输出原则
-你必须严格遵守以下原则：
-
-- 仅输出与任务直接相关的内容
-- 不得撰写泛泛而谈的填充内容
-- 不得撰写营销文案
-- 不得堆砌流行术语
-- 不得提供与模板系统范围无关的建议
-- 不得将“建议”表述为“结论”
-- 不得将“假设”表述为“事实”
-- 不得只关注 UI；你必须覆盖前端、后端、配置机制、扩展机制和维护逻辑
-- 不得只关注技术；你还必须解释设计背后的复用价值
-- 除非我明确要求，否则不得输出代码
-- 所有内容必须尽可能具体、可操作，并具备开发指导意义
-
----
-
-# 输出结构
-严格遵循以下结构。不得省略章节、不得重命名、不得更改顺序。
-
-## 1. 项目定位
-你必须回答：
-- 该模板系统是什么
-- 它解决了什么问题
-- 它适用于哪些类型的企业
-- 它不适用于哪些场景
-- 它的核心价值是什么
-- 为何它比每次从零开始开发企业网站更高效
-
----
-
-## 2. 已知信息与假设
-分为两个部分：
-
-### 已知信息
-仅总结我明确提供的信息
-
-### 假设
-列出你为完成方案所采用的合理假设
-
-要求：
-- 已知信息与假设必须严格分开
-- 不得混在一起
-
----
-
-## 3. 模板系统设计原则
-清晰定义该系统的设计原则，并解释每项原则为何重要。
-
-至少涵盖：
-- 统一结构原则
-- 可配置性原则
-- 可扩展性原则
-- 品牌解耦原则
-- 前后端分离原则
-- 维护成本控制原则
-- 一致用户体验原则
-
----
-
-## 4. 前端架构设计
-你必须涵盖以下内容：
-
-### 4.1 页面层级结构
-例如：
-- 首页
-- 关于我们
-- 产品 / 服务
-- 联系我们
-- 博客 / 新闻
-- 常见问题
-- 招聘 / 团队
-- 自定义扩展页面
-
-### 4.2 组件模块
-说明哪些模块应被抽象为可复用的组件，例如：
-- 头部（Header）
-- 底部（Footer）
-- 横幅（Banner）
-- 功能特性（Features）
-- 行动号召（CTA）
-- 客户评价（Testimonials）
-- 表单（Forms）
-- 卡片（Cards）
-- 常见问题（FAQ）
-- 弹窗 / 抽屉 / 提示（Modal / Drawer / Notification）
-
-### 4.3 可配置项
-说明前端中哪些元素应支持配置：
-- Logo
-- 颜色
-- 字体
-- 按钮样式
-- 图像资源
-- 文案/文本内容
-- 页面区块顺序
-- 模块开关
-- 多语言内容
-
-### 4.4 响应式设计与交互
-说明：
-- 移动优先策略
-- 平板 / 桌面端适配
-- 加载状态 / 空状态 / 错误状态
-- 如何处理一致性与可维护性
-
-### 4.5 推荐的前端技术方案
-评估以下哪种更合适：
-- HTML/CSS/JavaScript
-- React
-- Vue
-- Next.js
-- 其他合理选项
-
-你必须解释选择理由。不得在没有论证的情况下给出结论。
-
----
-
-## 5. 后端架构设计
-你必须涵盖：
-
-### 5.1 后端职责
-例如：
-- 配置加载
-- 表单处理
-- 用户数据
-- 内容管理
-- 管理后台 API
-- 权限控制
-- 第三方集成
-- 日志与监控
-
-### 5.2 技术选型建议
-评估：
-- Node.js
-- Python
-- 其他可能选项
-
-从以下角度进行说明：
-- 开发效率
-- 可维护性
-- 生态成熟度
-- 对模板化项目的可复用性
-- 与前端协作的效率
-
-### 5.3 API 设计方法
-说明：
-- 如何抽象通用 API
-- 如何扩展业务专用 API
-- 如何支持跨多个项目的复用
-- 如何避免随时间推移出现不可控的耦合
-
-### 5.4 数据与权限设计
-说明可能涉及的核心数据对象：
-- 站点配置
-- 页面内容
-- 表单数据
-- 用户 / 管理员
-- 模块状态
-- 多品牌配置隔离
-  
-# 编写需求  
-采用以下写作风格：  
-- 使用专业、清晰、直接的语言  
-- 保持句子简洁  
-- 聚焦执行、结构与逻辑  
-- 最小化明显冗余内容  
-- 在每个部分中，优先说明“如何做”和“为何采用此方法”  
-- 减少形容词使用，增加判断性内容与结构性表达  
-
----  
-
-# 禁止出现的问题  
-输出不得包含以下问题：  
-- 出现“提升用户体验”或“增强品牌感知”等模糊表述而未说明具体实现方式  
-- 仅有概念性讨论而缺乏结构  
-- 仅讨论前端而忽略后端  
-- 仅讨论技术而未说明复用逻辑  
-- 将模板系统写成专为一家公司定制的独立网站  
-- 未能区分固定骨架与可配置部分  
-- 将假设当作事实来书写  
-- 重复前文内容以增加篇幅  
-
----  
-
-# 最终输出前的自检  
-在生成最终答案前，请在内部逐一检查以下事项，仅当全部满足后才输出：  
-1. 是否始终聚焦于“模板系统”而非“单个站点设计”？  
-2. 是否同时覆盖了产品、视觉、工程与业务复用层级？  
-3. 是否清晰区分了“已知信息”与“假设”？  
-4. 是否清晰划分了“固定骨架”与“可配置部分”？  
-5. 是否提供了足够具体的前端、后端与配置机制？  
-6. 是否避免了冗余、空洞表述与重复内容？  
-7. 结论是否清晰且具备可操作性？
-```
-
-</details>
-
-<details><summary><b>Web 应用安全代码审查</b></summary>
-
-```text
-充当资深应用安全工程师。审查一个 Web 应用程序的代码是否存在安全漏洞。
-
-输出：
-1) 执行摘要  
-2) 优先级发现结果表（严重性 + OWASP 映射）  
-3) 详细发现结果（证据、利用方式、影响、修复方案、验证方法）  
-4) 良好实践  
-5) 分阶段修复计划  
-
-输入：
-<PASTE HERE>
-```
-
-</details>
-
-<details><summary><b>Web 应用界面开发偏好</b> · 机器翻译</summary>
-
-```text
-# 偏好
-- 包管理器使用 npm(而非 pnpm 或 yarn)。置信度:0.95
-- 默认使用带 React Server Components 的 Next.js App Router;仅在交互式组件中添加 `"use client"`。置信度:0.95
-```
-
-</details>
-
-<details><summary><b>WebAssembly模块开发偏好</b> · 机器翻译</summary>
-
-```text
-# 注重性能的系统开发者的 WebAssembly 模块品味
-- 仅在 CPU 密集且可度量的热点路径上使用 WebAssembly,例如编解码器、解析器或仿真,而不要用于普通的 UI 逻辑。Confidence: 0.90
-- 在发布之前,与经过良好优化的 JavaScript 版本进行基准测试,只有当目标设备上的收益确实存在时才保留 Wasm 路径。Confidence: 0.85
-- 默认使用 Rust 配合 wasm-bindgen 和 wasm-pack 工具链编写浏览器模块。Confidence: 0.80
-- 保持 JavaScript 与 Wasm 之间的边界粗粒度:通过少量调用传递完整缓冲区,而不是逐项跨越边界。Confidence: 0.90
-- 通过 Wasm 内存上的类型化数组视图共享大块数据,而不是序列化为 JSON 或字符串。Confidence: 0.85
-- 切勿在可能使内存增长的调用期间持有类型化数组视图,因为内存增长会使旧缓冲区失效(detach)。Confidence: 0.85
-- 构建发布模块时,有意识地为体积或速度设置 opt-level,启用 LTO,并在流水线中运行 wasm-opt。Confidence: 0.85
-- 在 CI 中跟踪压缩后的 .wasm 体积,当其增长超过约定的预算时让构建失败。Confidence: 0.80
-- 使用 WebAssembly.instantiateStreaming 加载模块,并以 application/wasm 内容类型提供服务。Confidence: 0.85
-- 在 Web Worker 中运行繁重的 Wasm 工作,使其永远不会阻塞主线程。Confidence: 0.90
-- 仅当页面能够通过 COOP 和 COEP 头保持跨源隔离时,才使用线程和 SharedArrayBuffer。Confidence: 0.75
-- 在运行时检测 SIMD 支持并提供回退构建,而不是假定每个浏览器都支持它。Confidence: 0.70
-- 避免 panic 跨越边界:返回 Result 类型,并将其转换为带有清晰消息的 JavaScript 错误。Confidence: 0.85
-- 在调试构建中安装 console_error_panic_hook,并在发布构建中将其剔除。Confidence: 0.75
-- 保持导出的 API 小而有类型,并随包一起发布生成的 TypeScript 定义。Confidence: 0.85
-- 避免在浏览器构建中引入完整的 regex 或 serde_json 之类的重量级 crate,除非已度量并接受其体积代价。Confidence: 0.75
-- 针对服务器端或插件场景,以 WASI 和组件模型为目标,并将该构建与浏览器构建分开。Confidence: 0.70
-- 将来自用户的插件模块视为不可信:在 Wasmtime 之类的沙箱运行时中运行它们,设置 fuel 或时间限制,并且不提供环境级的文件或网络访问。Confidence: 0.90
-- 将核心逻辑作为原生代码用 cargo test 进行测试,并保留一小部分在无头浏览器中运行的 wasm-bindgen-test。Confidence: 0.80
-- 为 Wasm 被策略阻止或加载失败的环境保留一个纯 JavaScript 回退方案。Confidence: 0.65
 ```
 
 </details>

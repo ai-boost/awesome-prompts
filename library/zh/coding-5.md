@@ -1,10 +1,124 @@
 # 编程开发 (5/11)
 
-共 685 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 706 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
 分页：[1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · **5** · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md)
+
+<details><summary><b>prompts.chat 项目规范</b></summary>
+
+```text
+# Taste
+
+# github-actions
+- 在 GitHub Actions 工作流中使用 `actions/checkout@v6` 和 `actions/setup-node@v6`（而非 v4）。置信度：0.65
+- 在 GitHub Actions 工作流中使用 Node.js 版本 24（而非 20）。置信度：0.65
+
+# project
+- 本项目为 **prompts.chat** —— 一个用于 AI 提示词的全栈社交平台（由 "Awesome ChatGPT Prompts" GitHub 仓库发展而来）。置信度：0.95
+- 包管理器为 npm（非 pnpm 或 yarn）。置信度：0.95
+
+# architecture
+- 默认使用 Next.js App Router 与 React Server Components；仅对交互式组件添加 `"use client"`。置信度：0.95
+- 通过 `src/lib/db.ts` 中的单例使用 Prisma ORM 与 PostgreSQL 进行所有数据库访问。置信度：0.95
+- 对认证、存储和媒体生成器集成使用插件注册表模式。置信度：0.90
+- 在变更操作后使用 `revalidateTag()` 进行缓存失效。置信度：0.90
+
+# typescript
+- 在整个项目中使用 TypeScript 5 并启用严格模式。置信度：0.95
+
+# styling
+- 所有 UI 组件使用 Tailwind CSS 4 + Radix UI + shadcn/ui。置信度：0.95
+- 使用 `cn()` 工具函数处理条件性或合并的 Tailwind 类名。置信度：0.90
+
+# api
+- 所有 API 路由输入均需使用 Zod 模式进行验证。置信度：0.95
+- 在 `src/app/api/` 下共有 61 个 API 路由，另加位于 `src/pages/api/mcp.ts` 的 MCP 服务器。置信度：0.90
+
+# i18n
+- 所有面向用户的字符串均使用 next-intl 提供的 `useTranslations()`（客户端）和 `getTranslations()`（服务端）。置信度：0.95
+- 支持 17 种语言区域，其中阿拉伯语、希伯来语和波斯语支持 RTL。置信度：0.90
+
+# database
+- 在 Prompt 和 Comment 模型上使用软删除（`deletedAt` 字段）—— 永远不要硬删除这些记录。置信度：0.95
+```
+
+</details>
+
+<details><summary><b>PS5风格作品集</b></summary>
+
+```text
+扮演一名 UI/UX 设计师。你的任务是协助用户设计一个模仿 PS5 界面主题的作品集。
+
+你的任务包括：
+1. 创建一个界面，其首页仅显示一位用户：${username:defaultUser}。
+2. 当点击该用户资料时，以 PS5 游戏封面的样式展示该用户的项目。
+3. 确保设计直观且视觉上富有吸引力，精准捕捉 PS5 界面的核心风格。
+4. 融入可交互元素，模拟 PS5 的导航风格。
+
+你将：
+- 运用现代设计原则，确保整体外观简洁而专业。
+- 提供用于实现该设计的工具与技术建议。
+- 确保作品集具备响应式特性，并可在各类设备上无障碍访问。
+
+规则：
+- 保持一致的配色方案与字体排印，以体现 PS5 主题。
+- 优先考虑用户体验与用户参与度。
+```
+
+</details>
+
+<details><summary><b>Pydroid 3 更新检查脚本</b></summary>
+
+```text
+我希望你扮演一名专业 Python 开发者——业内顶尖水平之一。  
+你目前是自由职业者，而我已聘请你完成一项工作。  
+
+我要你为我实现以下功能：我需要一个能在我的 Android 手机上运行的脚本，我在手机上使用 Pydroid 3。  
+该脚本应提供一个菜单，其中包含若干不同选项。  
+菜单项应涵盖我的手机可能需要的所有类型更新，例如系统更新、安全更新、Google Play 更新等。这些选项必须彼此独立；当我想检查全部更新时，脚本应能一次性检查所有项目；而当我从菜单中选择某一项时，脚本则仅检查该项所对应的更新。  
+
+若检测到更新，我应能选择立即更新该组件。设计需简洁易用。界面需采用美观的配色方案，颜色最好能与各类更新类型形成语义关联（例如蓝色代表系统更新、红色代表安全更新、绿色代表 Google Play 更新等）。  
+我还需能看到进度条，以直观显示当前更新的完成进度、剩余时间、更新包大小，以及实时下载速度（单位为 KB/s 或 MB/s）。  
+
+代码总行数须控制在 300 行以内。请添加充分注释，以便我能理解每一部分逻辑。  
+所有代码必须整合于单个文件中——即全部内容写入一个名为 `app.py` 的文件。  
+
+请以“纯文本”格式提供完整代码，确保我可直接复制粘贴至手机中使用。
+```
+
+</details>
+
+<details><summary><b>Pytest 测试开发偏好</b> · 机器翻译</summary>
+
+```text
+# 一位追求快速、可靠测试套件的 Python 开发者的 Pytest 偏好
+- 使用普通的 `assert` 语句,让 pytest 的断言重写来解释失败原因,而不是使用 `unittest` 风格的断言方法。Confidence: 0.95
+- 将测试放在顶层 `tests/` 目录中,并与包的布局保持对应,同时以可编辑模式安装该包。Confidence: 0.85
+- 在 `pyproject.toml` 的 `[tool.pytest.ini_options]` 下配置 pytest,而不是使用单独的 `pytest.ini` 或 `setup.cfg`。Confidence: 0.85
+- 开启 `--strict-markers` 和 `--strict-config`,让标记或设置中的拼写错误能够明显地失败。Confidence: 0.85
+- 设置 `filterwarnings = ["error"]`,并显式地将已知的第三方警告加入允许列表,以便及早发现弃用问题。Confidence: 0.75
+- 偏好小巧、可组合的 fixture,而不是构建整个世界的一个巨型 fixture。Confidence: 0.90
+- 使用能保持测试快速的最窄 fixture 作用域;仅对确实开销昂贵且只读的资源才使用 `session` 作用域。Confidence: 0.80
+- 将共享 fixture 放在最近的 `conftest.py` 中,而不是放在每个测试都会隐式导入的单个根目录 conftest 中。Confidence: 0.75
+- 使用带有可读 `ids` 的 `@pytest.mark.parametrize`,而不是在单个测试内使用循环。Confidence: 0.90
+- 在编写自定义临时目录或环境变量辅助工具之前,先使用内置的 `tmp_path` 和 `monkeypatch` fixture。Confidence: 0.90
+- 在边界处(HTTP、时钟、文件系统)进行模拟,避免给被测代码的内部实现打补丁。Confidence: 0.85
+- 对 HTTP 使用 `respx`、`responses` 或伪造服务器,而不是手工拼凑的 `MagicMock` 链。Confidence: 0.75
+- 使用 `time-machine` 或 `freezegun` 冻结时间,而不是使用 sleep 或与 `datetime.now()` 比较。Confidence: 0.80
+- 使用 `pytest.raises(..., match=...)` 断言异常,以便检查消息,而不仅仅是类型。Confidence: 0.85
+- 使用自定义标记来标记慢速测试和集成测试,并在单独的 CI 作业中运行它们。Confidence: 0.80
+- 一旦测试套件耗时超过一分钟,就用 `pytest-xdist` 并行运行,并保持测试与顺序无关,以便并行可行。Confidence: 0.80
+- 使用 `pytest-randomly` 或随机顺序来暴露隐藏的测试耦合。Confidence: 0.65
+- 使用 `pytest-cov` 并开启分支覆盖率来衡量覆盖率,但将该数字视为信号,而不是目标。Confidence: 0.75
+- 对于解析器、序列化器和纯函数使用 Hypothesis,基于属性的测试能发现示例遗漏的边界情况。Confidence: 0.70
+- 默认绝不让测试访问真实的外部服务;阻止网络访问并显式选择启用。Confidence: 0.80
+- 对异步代码,在严格模式下使用 `pytest-asyncio` 或 `anyio`,绝不在测试内部使用 `asyncio.run`。Confidence: 0.75
+- 让每个测试专注于一个行为,采用 Arrange、Act、Assert 的结构,并使用读起来像句子的名称。Confidence: 0.85
+```
+
+</details>
 
 <details><summary><b>Python 代码库深度审查</b></summary>
 
@@ -836,6 +950,35 @@ Rules:
 - The script must run without manual keyboard interaction
 - Ensure the interval and text are easy to update
 - The script should be efficient and lightweight
+```
+
+</details>
+
+<details><summary><b>Python 类型注解开发偏好</b> · 机器翻译</summary>
+
+```text
+# 类型化 Python 维护者的 Python 类型提示品味
+- 在 CI 中对每个拉取请求运行类型检查器（pyright 或 mypy），并将新增错误视为构建失败。置信度：0.95
+- 新代码从 `strict = true` 的严格模式开始，仅在有书面理由时才按模块放宽，而不是一开始宽松、之后再也不收紧。置信度：0.80
+- 使用现代内置泛型，如 `list[str]`、`dict[str, int]` 和 `X | None`，而不是从 `typing` 导入 `List`、`Dict` 和 `Optional`。置信度：0.90
+- 为每个公共函数签名添加注解，包括返回类型；除非类型推断有误，否则让局部变量自行推断。置信度：0.90
+- 参数接受抽象类型（`Iterable`、`Mapping`、`Sequence`），返回具体类型（`list`、`dict`）。置信度：0.85
+- 当调用方不应被迫继承任何东西时，结构化接口优先使用 `Protocol` 而非抽象基类。置信度：0.75
+- 用 `dataclass`（或在 I/O 边界使用 `pydantic`）为固定结构的记录建模，而不是到处传递原始字典。置信度：0.90
+- 仅对你无法控制的字典形状数据使用 `TypedDict`，例如 JSON 载荷和遗留 API。置信度：0.75
+- 用 `Literal` 或 `Enum` 表示封闭的字符串选项集合，绝不使用裸 `str`。置信度：0.85
+- 把 `Any` 当作一份缺陷报告：将它限制在无类型数据进入的边界处，并立即收窄。置信度：0.85
+- 当某个值确实未知时，优先使用 `object` 而非 `Any`，这样类型检查器会强制在使用前先进行收窄。置信度：0.70
+- 使用 `isinstance`、`match` 语句以及 `TypeGuard`/`TypeIs` 辅助函数来收窄类型，而不是使用 `cast()`。置信度：0.80
+- 每个 `# type: ignore` 都必须写明错误代码，并附上简短注释说明为何安全。置信度：0.90
+- 对容易混淆但底层类型相同的 ID 和单位（`UserId`、`Cents`）使用 `NewType`。置信度：0.70
+- 在库中附带 `py.typed` 标记文件，并将无类型依赖的存根保存在固定版本的 `types-*` 包或本地 `stubs/` 文件夹中。置信度：0.85
+- 仅当返回类型确实取决于参数类型时才使用 `@overload`；否则简化 API。置信度：0.70
+- 在 Python 3.12+ 上优先使用 PEP 695 语法（`def first[T](xs: list[T]) -> T`），而不是模块级的 `TypeVar` 声明。置信度：0.75
+- 对返回 `self` 的构建器方法使用 `Self` 注解，而不是绑定的 `TypeVar`。置信度：0.80
+- 用 `Final` 标记常量，用 `@override` 标记重写方法，让重构时的错误浮现出来。置信度：0.70
+- 不要添加与静态检查器重复的运行时类型检查；只在边缘处验证不可信的输入。置信度：0.80
+- 保持注解导入开销低：把重量级导入放在 `if TYPE_CHECKING:` 下，以避免循环导入和启动缓慢。置信度：0.75
 ```
 
 </details>
@@ -1938,6 +2081,35 @@ description: A skill for building and managing workflows using Python. Useful fo
 
 ```text
 我需要你扮演一个 R 解释器。我会输入命令，而你会回复终端应当显示的内容。你只需在一个唯一的代码块内回复终端输出，其他内容一概不要写。不要写任何解释。除非我明确指示，否则不要输入命令。当我需要用英文向你传达某些信息时，我会将文本放在花括号内 {像这样}。我的第一个命令是 "sample(x = 1:10, size  = 5)"
+```
+
+</details>
+
+<details><summary><b>RAG 检索管线开发偏好</b> · 机器翻译</summary>
+
+```text
+# 交付能长期保持准确的检索系统的工程师的 RAG 流水线品味
+- 在调优分块、嵌入或提示词之前,先用真实用户问题及其预期来源构建评估集。Confidence: 0.95
+- 分别衡量检索和生成:检索用 recall@k 和 MRR,生成用忠实度和答案质量。Confidence: 0.90
+- 优先按文档结构(如标题、章节和段落)分块,然后才退回到固定 token 窗口。Confidence: 0.85
+- 让分块保持在大约 300-800 个 token,并带有适度重叠,然后根据评估集调优,而不是靠猜。Confidence: 0.75
+- 为每个分块存储丰富的元数据:来源 URL、标题、章节路径、更新日期、权限和内容哈希。Confidence: 0.90
+- 把文档标题和章节标题添加到每个分块的嵌入文本之前,使孤立的分块保留其上下文。Confidence: 0.80
+- 使用混合搜索,将 BM25 关键词搜索与稠密向量结合,因为名称、代码和 ID 的嵌入效果较差。Confidence: 0.85
+- 在把最好的 5-10 个分块交给模型之前,先对前 30-50 个候选项加一个交叉编码器重排序器。Confidence: 0.80
+- 在检索查询内部应用访问控制过滤,绝不要在模型已经看到结果之后再过滤。Confidence: 0.95
+- 为嵌入模型打版本号,并在其变化时对整个语料库重新嵌入;绝不在同一个索引中混用来自不同模型的向量。Confidence: 0.90
+- 使用内容哈希让摄取过程增量且幂等,这样重新运行时只会处理发生变化的文档。Confidence: 0.85
+- 对中小型语料库,先使用 Postgres 和 pgvector,再考虑添加专用的向量数据库。Confidence: 0.70
+- 要求模型为每个论断引用分块 ID,并把这些引用渲染为指回来源的链接。Confidence: 0.90
+- 指示模型在检索到的上下文不足时说明自己不知道,并明确测试这一行为。Confidence: 0.90
+- 在检索之前,把对话式的后续问题改写为独立的查询。Confidence: 0.80
+- 把检索到的文本视为不可信数据,并防范隐藏在文档中的提示词注入。Confidence: 0.85
+- 为每个请求记录查询、检索到的分块 ID、分数和最终答案,以便重放失败的情况。Confidence: 0.85
+- 优先修复语料库、分块或元数据,而不是添加越来越长的系统提示词。Confidence: 0.75
+- 缓存重复查询的嵌入,并为上下文设置 token 预算,而不是把检索到的所有内容都塞进去。Confidence: 0.70
+- 每当提示词、分块、模型或检索设置发生变更时,都在 CI 中运行评估套件。Confidence: 0.85
+- 只有在测量表明检索不再是瓶颈之后,才考虑微调。Confidence: 0.65
 ```
 
 </details>

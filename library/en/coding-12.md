@@ -1,6 +1,6 @@
 # Coding & Development (12/13)
 
-685 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+706 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
@@ -945,6 +945,34 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
+```
+
+</details>
+
+<details><summary><b>Tailwind CSS Taste</b></summary>
+
+```text
+# Tailwind CSS taste of a utility-first UI engineer
+- Configure design tokens (colors, spacing, radii, fonts) once in the Tailwind theme and never hardcode hex values or arbitrary pixel sizes in markup. Confidence: 0.90
+- Prefer theme-scale utilities over arbitrary values like `w-[437px]`; treat each arbitrary value as a missing token to add or a design to question. Confidence: 0.85
+- Extract repeated utility groups into components (React, Vue, Svelte) rather than `@apply` classes in CSS files. Confidence: 0.85
+- Reserve `@apply` for styling third-party markup or CMS content you cannot add classes to. Confidence: 0.75
+- Use `prettier-plugin-tailwindcss` so class order is automatic and never argued about in review. Confidence: 0.95
+- Build class names from complete static strings; never concatenate fragments like `text-${color}-500`, because the scanner cannot see them. Confidence: 0.95
+- Use `clsx` plus `tailwind-merge` (or a `cn()` helper) so component props can override default classes without conflicts. Confidence: 0.85
+- Model component variants with a typed variant helper such as `cva` instead of long ternary chains in `className`. Confidence: 0.80
+- Write mobile-first: unprefixed utilities are the base and `sm:`, `md:`, `lg:` only add changes for wider screens. Confidence: 0.90
+- Use container queries (`@container`, `@md:`) for reusable components whose layout depends on their slot, not the viewport. Confidence: 0.70
+- Implement dark mode with CSS variables behind semantic color names like `bg-surface` and `text-muted`, rather than sprinkling `dark:` on every element. Confidence: 0.80
+- Always style keyboard focus with `focus-visible:` rings and never remove outlines without a visible replacement. Confidence: 0.95
+- Use the `typography` plugin's `prose` classes for long-form rendered Markdown instead of hand-styling every tag. Confidence: 0.80
+- Keep `content`/source paths tight so builds stay fast and unused utilities never ship. Confidence: 0.85
+- Use `group-*` and `peer-*` variants for parent and sibling state instead of adding JavaScript for hover or checked styles. Confidence: 0.75
+- Respect `motion-reduce:` for animations and keep transitions short, around 150 to 200 ms. Confidence: 0.80
+- Split a class list over several lines or into a variant object once it passes roughly 10 to 12 utilities. Confidence: 0.65
+- Keep spacing on a consistent scale and use `gap-*` on flex and grid parents instead of margins on children. Confidence: 0.85
+- Avoid `!important` modifiers except to override third-party styles you cannot change. Confidence: 0.80
+- Document the token palette and the core components in Storybook or a styleguide page so designers and developers share one vocabulary. Confidence: 0.70
 ```
 
 </details>
@@ -3591,6 +3619,34 @@ if __name__ == "__main__":
 
 ```text
 Create a responsive todo app with HTML5, CSS3 and vanilla JavaScript. The app should have a modern, clean UI using CSS Grid/Flexbox with intuitive controls. Implement full CRUD functionality (add/edit/delete/complete tasks) with smooth animations. Include task categorization with color-coding and priority levels (low/medium/high). Add due dates with a date-picker component and reminder notifications. Use localStorage for data persistence between sessions. Implement search functionality with filters for status, category, and date range. Add drag and drop reordering of tasks using the HTML5 Drag and Drop API. Ensure the design is fully responsive with appropriate breakpoints using media queries. Include a dark/light theme toggle that respects user system preferences. Add subtle micro-interactions and transitions for better UX.
+```
+
+</details>
+
+<details><summary><b>Tokio Async Rust Taste</b></summary>
+
+```text
+# Tokio Async Rust taste of a production service engineer
+- Use `#[tokio::main]` only in the binary and keep library crates runtime-agnostic where practical, taking futures and handles as inputs. Confidence: 0.80
+- Never block the async runtime; move CPU-heavy or blocking I/O work to `spawn_blocking` or a dedicated thread pool. Confidence: 0.95
+- Use `tokio::sync::Mutex` only when a lock must be held across an `.await`; otherwise use `std::sync::Mutex` or `parking_lot` for short critical sections. Confidence: 0.90
+- Prefer message passing with bounded `mpsc` channels over shared mutable state, and size every channel deliberately for backpressure. Confidence: 0.85
+- Never use unbounded channels in request paths, because a slow consumer turns into unbounded memory growth. Confidence: 0.85
+- Put a timeout on every network call with `tokio::time::timeout` or a client-level setting; no await on the network should be able to hang forever. Confidence: 0.95
+- Use `JoinSet` or `TaskTracker` to own spawned tasks so they are awaited, cancelled and their errors are observed. Confidence: 0.85
+- Treat every `.await` as a possible cancellation point and keep state consistent if the future is dropped there. Confidence: 0.85
+- Use `select!` carefully and only with cancel-safe branches; document why each branch is safe to drop. Confidence: 0.80
+- Implement graceful shutdown with a `CancellationToken` passed to every long-running task, plus a drain deadline. Confidence: 0.90
+- Use `thiserror` for library error enums and `anyhow` (or `eyre`) with context in binaries. Confidence: 0.85
+- Instrument with `tracing`, using `#[instrument(skip_all, fields(...))]` on handlers and structured fields instead of formatted strings. Confidence: 0.90
+- Build HTTP services on `axum` with `tower` middleware for timeouts, concurrency limits, tracing and request IDs. Confidence: 0.80
+- Share application state through an `Arc<AppState>` holding pools and clients, not through global statics. Confidence: 0.85
+- Reuse one `reqwest::Client` and one database pool per process instead of creating them per request. Confidence: 0.95
+- Bound concurrency for fan-out work with a `Semaphore` or `buffer_unordered(n)` rather than spawning a task per item. Confidence: 0.85
+- Avoid holding guards or non-`Send` values across `.await`; let the compiler's `Send` errors guide the code toward a cleaner structure. Confidence: 0.75
+- Test async code with `#[tokio::test]` and control time with `start_paused = true` instead of real sleeps. Confidence: 0.80
+- Use `tokio-console` or runtime metrics when debugging stalls, before guessing at the cause. Confidence: 0.65
+- Keep tokio feature flags minimal in libraries and enable `full` only in binaries or tests. Confidence: 0.70
 ```
 
 </details>

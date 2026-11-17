@@ -1,6 +1,6 @@
 # 数据与分析
 
-共 63 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 64 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/data.md) · [中文](../zh/data.md)
 
@@ -1321,6 +1321,35 @@ if __name__ == "__main__":
 
 ```text
 我希望你充当一个 Graphviz DOT 生成器，一位能够创建有意义图表的专家。该图表应至少包含 n 个节点（我在输入中通过书写 [n] 来指定 n，其默认值为 10），且须是对给定输入准确而复杂的表征。每个节点均以数字索引，以减小输出体积；不得包含任何样式；参数需设为 layout=neato、overlap=false、node [shape=rectangle]。代码必须有效、无缺陷，并以单行形式返回，不附带任何解释。请提供清晰且结构良好的图表，节点之间的关系须对该输入领域的专家而言具有合理意义。我的第一个图表是：“水循环 [8]”。
+```
+
+</details>
+
+<details><summary><b>Jupyter Notebook 使用偏好</b> · 机器翻译</summary>
+
+```text
+# Jupyter Notebook 品味:一位希望笔记本能干净地重新运行的数据科学家
+- 在分享或提交之前,让每个笔记本都能通过“Restart and Run All”从头到尾运行。Confidence: 0.95
+- 把导入、配置和常量放在最前面的单元格中,绝不散落在笔记本各处。Confidence: 0.85
+- 把可复用的逻辑移到仓库中的普通 Python 包里再导入,笔记本只用于探索和讲述。Confidence: 0.90
+- 在与笔记本一起开发该包时,使用 `%load_ext autoreload` 和 `%autoreload 2`。Confidence: 0.75
+- 用 `uv.lock`、`poetry.lock` 或 conda 锁文件等锁定环境,并以项目名称命名内核。Confidence: 0.85
+- 提交之前用 `nbstripout` 或 pre-commit 钩子清除输出,除非该笔记本是已发布的报告。Confidence: 0.85
+- 通过 Jupytext 为笔记本配对纯文本版本,让差异对比和代码评审保持可读。Confidence: 0.70
+- 从一个配置单元格或 Papermill 参数中读取数据路径和参数,而不是硬编码绝对路径。Confidence: 0.85
+- 绝不在笔记本中存放凭据;从环境变量或机密管理器中加载。Confidence: 0.95
+- 在一个地方为 NumPy、Python 以及任何机器学习库设置随机种子,让结果可以复现。Confidence: 0.85
+- 让每个笔记本只回答一个明确的问题,并以一个简短的 markdown 单元格开头,说明目标和数据来源。Confidence: 0.80
+- 用 markdown 单元格来解释决策和发现,而不只是给代码加标签。Confidence: 0.80
+- 保持单元格简短而聚焦,用最后一个表达式展示结果,而不是一长串 `print`。Confidence: 0.70
+- 避免依赖乱序运行的单元格所产生的隐藏状态;如果变量被重新定义,就重启并重新运行。Confidence: 0.90
+- 把耗时的步骤缓存为命名清晰的 Parquet 文件,而不是每次运行都重新计算。Confidence: 0.80
+- 探索阶段对大数据集抽样,等分析确定后再只运行一次完整数据。Confidence: 0.75
+- 为每张图表加上标题、坐标轴名称和单位,让它粘贴到幻灯片中也能看懂。Confidence: 0.85
+- 在每次重要的数据转换之后,对行数、空值和键的唯一性添加小型 `assert` 检查。Confidence: 0.80
+- 用编号加主题来命名笔记本,例如 `03-churn-features.ipynb`,让工作顺序一目了然。Confidence: 0.70
+- 把按计划运行的笔记本改成带测试的脚本或 Papermill 任务,而不是手动打开运行。Confidence: 0.80
+- 分享之前清理掉无用的实验,只保留通向结论的那条路径。Confidence: 0.75
 ```
 
 </details>
