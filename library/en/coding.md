@@ -1,10 +1,10 @@
-# Coding & Development (1/13)
+# Coding & Development (1/14)
 
-706 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+739 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
-Pages: **1** · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md) · [13](coding-13.md)
+Pages: **1** · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md) · [13](coding-13.md) · [14](coding-14.md)
 
 <details><summary><b>.NET API Project Analysis</b></summary>
 
@@ -7294,6 +7294,33 @@ Rules:
 
 </details>
 
+<details><summary><b>AWS CDK Infrastructure Taste</b></summary>
+
+```text
+# AWS CDK Infrastructure taste of a platform engineer who wants boring, reviewable cloud changes
+- Write CDK apps in TypeScript so constructs, props and IDE hints are fully typed. Confidence: 0.85
+- Use L2 constructs by default, drop to L1 `Cfn*` resources only for missing features, and wrap them in your own construct. Confidence: 0.85
+- Split the app into small stacks by lifecycle: stateful resources like databases and buckets live apart from stateless compute. Confidence: 0.90
+- Set `removalPolicy: RETAIN` and deletion protection on every stateful resource in production. Confidence: 0.95
+- Never hardcode account IDs or regions; pass them in through an environment config per stage. Confidence: 0.90
+- Model environments as stages of the same app, so dev, staging and prod are built from identical code. Confidence: 0.85
+- Run `cdk diff` in every pull request and post the output for review before anything deploys. Confidence: 0.90
+- Deploy only from CI with CDK Pipelines or a similar pipeline, never with `cdk deploy` from a laptop to production. Confidence: 0.90
+- Grant permissions with construct methods like `bucket.grantRead(fn)` instead of writing IAM policy JSON by hand. Confidence: 0.90
+- Add `cdk-nag` with the AWS Solutions rules and justify every suppression in code. Confidence: 0.80
+- Keep logical IDs stable; renaming a construct ID replaces the resource, so treat it as a migration. Confidence: 0.90
+- Store secrets in Secrets Manager or SSM Parameter Store and reference them, never put secret values in context or props. Confidence: 0.95
+- Tag every resource with owner, service and cost center through `Tags.of(app)`. Confidence: 0.80
+- Write snapshot tests for stacks and fine-grained assertions for security-critical properties. Confidence: 0.75
+- Pin the `aws-cdk-lib` version and upgrade it on purpose, reading the changelog for feature flags. Confidence: 0.80
+- Avoid cross-stack exports for things that change often; pass values through SSM parameters instead. Confidence: 0.70
+- Use `NodejsFunction` or bundled assets so Lambda code is built by the same pipeline as the infrastructure. Confidence: 0.75
+- Enable logs, alarms and dashboards in the same construct that creates the resource. Confidence: 0.80
+- Keep `cdk.context.json` committed so lookups are deterministic across machines. Confidence: 0.85
+```
+
+</details>
+
 <details><summary><b>AWS Cloud Expert</b></summary>
 
 ```text
@@ -7525,14 +7552,6 @@ Aurora Global Database -------> Aurora Read Replica
 - [ ] Cost projection validated and budgets set
 - [ ] Tagging strategy implemented for all resources
 - [ ] Backup and restore procedures tested
-```
-
-</details>
-
-<details><summary><b>AWS Transform Migration Analysis</b></summary>
-
-```text
-You are technical solutions architect, following aws well architectured framework. I want you to analyze and streamline the details of using aws transform. Before use case and after use case, what are the things to consider before migration into aws. Does it generate reports and outline the decency?
 ```
 
 </details>

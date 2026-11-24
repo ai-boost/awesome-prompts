@@ -1,6 +1,6 @@
 # Productivity (1/2)
 
-95 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+98 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/productivity.md) · [中文](../zh/productivity.md)
 
@@ -687,6 +687,14 @@ If the request lacks critical information, ask up to **2 targeted clarification 
 
 </details>
 
+<details><summary><b>Arabic Word Document Formatting</b></summary>
+
+```text
+I need a prompt for formatting an Arabic Word document, covering aspects such as text direction, alignment (centering), font size differentiation between headings and paragraphs, and the centering and directional alignment of tables.
+```
+
+</details>
+
 <details><summary><b>Article Summary and Comprehension</b></summary>
 
 ```text
@@ -886,7 +894,7 @@ Persist in checking all prior conversation turns to ensure all relevant context 
 <details><summary><b>Clean Plain Text Formatter</b></summary>
 
 ```text
-Act as an expert technical writer and formatting specialist. Your task is to format the text provided below for clean plain-text output that copies and pastes perfectly into Google Docs or any text editor without producing weird artifacts, broken formatting, or unnecessary symbols.
+Act as an expert technical writer and formatting specialist. Your task is to format the text provided below for clean plain-text output that copies and pastes perfectly into Telegram, Google Docs, Notion, Microsoft Word, or any text editor without producing weird artifacts, broken formatting, disappearing numbering, or unnecessary symbols.
 
 Follow these strict formatting rules:
 
@@ -894,19 +902,31 @@ No markdown wrappers – Do not use code blocks, backticks, or any container mar
 
 No emojis – Do not use any emojis whatsoever.
 
-No bold, italics, or underline – Use plain text only. Do not use asterisks, underscores, or any other formatting characters.
+No bold, italics, or underline – Use plain text only. Do not use asterisks, underscores, HTML tags, or any other formatting characters.
 
-No headings with # symbols – Use plain capitalized section titles on their own lines, followed by a blank line.
+No headings with # symbols – Use plain CAPITALIZED section titles on their own lines, followed by a blank line.
 
-Lists – Use hyphens (-) for bullet points. Ensure consistent spacing.
+Numbered steps – Use continuous numbering in simple plain-text format:
+
+First item
+Second item
+Third item
+
+Do not restart numbering between sections unless explicitly requested. Do not use brackets, parentheses, bullets, or auto-numbered formatting. The number must be part of the text itself so it remains visible after copying into Telegram.
+
+Lists – Use hyphens (-) for non-sequential bullet points only.
 
 Links – Display URLs as plain text, not hyperlinked.
 
-Spacing – Use one blank line between paragraphs and sections. Do not use extra dividers like dashes or lines.
+Spacing – Use one blank line between paragraphs and sections. Do not use horizontal lines, dividers, or decorative separators.
 
-Structure – Organize content into clear sections with plain text titles (e.g., "Background", "Key Materials", "Open Questions", "Recommendation", "Next Steps").
+Structure – Organize content into clear sections with plain text titles (e.g., BACKGROUND, KEY MATERIALS, OPEN QUESTIONS, RECOMMENDATION, NEXT STEPS).
 
-No meta-commentary – Do not include notes, explanations, or anything other than the final formatted text.
+Plain text only – Remove all HTML, markdown, rich-text formatting, CSS classes, and editor artifacts.
+
+No meta-commentary – Do not include notes, explanations, acknowledgements, or anything other than the final formatted text.
+
+Telegram compatibility – Ensure numbering, spacing, and formatting remain intact when copied and pasted directly into Telegram. Continuous numbering must be typed explicitly as plain text and not rely on editor-generated numbered lists.
 ```
 
 </details>
@@ -1239,6 +1259,14 @@ Challenges:
 Plans for Tomorrow:
 - [List plans]
 '''
+```
+
+</details>
+
+<details><summary><b>Document-to-Workflow Automation Plan</b></summary>
+
+```text
+So,I want an AI to go through a piece of document meticulously and extensively, now the piece of document is about a project that I am supposed to work on and automate a workflow for, I also do nor want it to skip any point and I need step by step process on how to properly execute the project with my team
 ```
 
 </details>
@@ -5691,6 +5719,762 @@ if __name__ == "__main__":
 
 </details>
 
+<details><summary><b>Reportsmith: Work Reports from Git and Agent Sessions</b></summary>
+
+```text
+---
+name: reportsmith
+description: Write work reports (standup, daily, weekly, monthly, changelog, release notes, or a custom kind) for any period and any folder scope, from git, local coding-agent sessions (Claude Code, Codex, opencode), agent memory, PRs, tickets and notes, then optionally publish them through MCP, a webhook or a command. Use when the user asks for a standup, status update, daily log, weekly or monthly report, worklog, changelog, release notes, or "what did I do".
+---
+
+# reportsmith
+
+Report maker. It gathers what the user did in a period and a folder scope, writes it up with a template, shows a preview, then saves and optionally publishes it. It runs only when asked and stores nothing between runs.
+
+Files in this skill's folder, read when the step needs them:
+- `sources.md`: how to read each source
+- `publishing.md` and `destinations/`: how to publish
+- `templates/`: default report templates
+- `config.example.yml`: every config key with its default
+- `scripts/sessions.py`: agent-session reader (Python 3 stdlib)
+
+## 1. Load config
+
+Read whichever exist; later ones override earlier ones key by key:
+
+1. Defaults (`config.example.yml` in this folder)
+2. `~/.reportsmith/config.yml`
+3. `.reportsmith.yml` in the current repo root
+
+No config is fine. Ignore unknown keys, and mention them once. If `version` is higher than the one in `config.example.yml`, the config was written for a newer reportsmith: say so, and use only the keys you know.
+
+## 2. Work out the request
+
+From the user's words first, then `reports.<kind>` in config, then these defaults:
+
+| Field | Default |
+|---|---|
+| kind | `standup` |
+| period | see below |
+| scope | config `scope`, else the current repo |
+| audience | `team` (`manager`, `team`, `public`, `self`) |
+| format | `markdown` (`slack`, `email`, `plain`) |
+| length | `medium` (`short` ≈ 5 items, `medium` ≈ 15, `long` no cap) |
+
+Default period per kind: standup = last working day and today · daily = today · weekly = current week · monthly = current month · changelog and release-notes = last tag to HEAD.
+
+### Period
+
+Resolve the user's words to an inclusive `from`/`to` date range in `prefs.timezone`. Take today's date and every weekday name from the system, never from memory:
+
+'''sh
+date +%F                                   # today
+python3 -c "import datetime as d; print(d.date.fromisoformat('2026-11-18').strftime('%a'))"   # weekday of a date
+'''
+
+| User says | Range |
+|---|---|
+| `yesterday`, `today`, `2026-11-03`, `Nov 3`, `last Friday` | that day |
+| `this week`, `last week`, `week 45`, `week of Nov 3` | that week (`prefs.week_starts`) |
+| `this month`, `last month`, `October`, `2026-10` | that month |
+| `Q3`, `last quarter`, `2026` | that quarter or year |
+| `last 10 days`, `past 2 weeks` | ending today |
+| `Nov 1 to Nov 15`, `2026-11-01..2026-11-15`, `since Nov 1` | that range (`since` ends today) |
+
+- For a standup, if "yesterday" was a weekend day with no activity, use the last working day and say so.
+- A future range, or `from` after `to`: ask.
+- Put the resolved range and the scope in the report header.
+
+**Threshold.** A range longer than `limits.max_days` (default 92): say how long it is and ask to confirm or narrow it. More than `limits.max_items` (default 40) items gathered: roll up instead of listing, by week for ranges over 14 days and by month over 62 days, keeping the top items per group.
+
+### Scope
+
+Which work counts, decided by folder: "for ~/work", "only ~/work/api", or config:
+
+'''yaml
+scope:
+  include: [~/work]
+  exclude: [~/work/archive]
+'''
+
+Only repos and agent sessions under `include`, and not under `exclude`, count. This keeps work, side projects and clients in separate reports.
+
+## 3. Gather
+
+Read every available source for the period and scope; `sources.md` says how. Skip a source that is missing or not configured without comment, and list the sources used in one line under the header.
+
+**Run each shell command as its own call:** one `git`, `python3`, `find` or `gh` command per call, with no `cd`, no `;`, `&&` or pipes chaining several commands, and no `VAR=value` prefix. Use `git -C <repo>` and absolute paths instead of changing directory. Permission allowlists such as `Bash(git:*)` match only single commands, so a chained call gets refused, and in unattended runs nobody is there to approve it.
+
+| Source | Gives |
+|---|---|
+| git | commits in every repo under the scope |
+| agent sessions | work done with Claude Code, Codex or opencode, including work with no commit |
+| agent memory | memory MCP such as claude-mem, if connected |
+| PRs and reviews | via `gh`, if installed and signed in |
+| tickets | issue-tracker MCP (Jira, Linear, Plane, GitHub Issues), if connected |
+| notes | `sources.notes` file: the user's own lines for work no tool saw |
+| conversation | what the user said in this session |
+
+**Redact before drafting.** Remove secrets and tokens, private keys, passwords, IP addresses, internal hostnames and absolute home paths, plus any pattern in `redact.patterns`. Never put raw transcript text in a report.
+
+## 4. Draft
+
+Template lookup, first found wins: `<templates_dir>/<kind>.md` · `~/.reportsmith/templates/<kind>.md` · `templates/<kind>.md` here. A kind with no template: use the `weekly.md` structure and say the user can add one. Placeholders: `{{period}}` = the resolved range as shown in the header (`2026-11-18 (Wed)` or `2026-11-10 to 2026-11-16`), `{{date}}` = today, `{{scope}}`, `{{version}}`, `{{title}}`. Prose instructions and `<!-- comments -->` in a template are for you; don't copy them into the output.
+
+Rules:
+
+- **Never invent.** Every line traces to a gathered source, and that includes risks, blockers, next steps and reasons: write them only when a source states them, never as your own inference. Something an agent was asked to do counts as done only if a commit, the agent's final answer, or the user confirms it; otherwise it goes under in progress or to confirm. Unsure: leave it out or ask.
+- **Outcomes over activity.** "Fixed login timeout for mobile users", not "changed auth.ts".
+- **One item per piece of work.** A session, its commits, its PR and its ticket are one item. Cite the ticket ID and commit once. Each item appears in one section only; a summary or highlights section names items in a few words and leaves the detail to the section that holds them.
+- **Work outside tickets** (reviews, audits, DB changes, incidents, support) goes in its own section when the template has one.
+- **Audience.** `manager`: outcomes, risks, decisions needed; no code or file names. `team`: plus useful technical detail. `public`: user-facing wording, no internal names. `self`: everything.
+- Drop empty sections. Convert to the requested format last.
+
+### Writing style
+
+People read these reports, and wording that sounds machine-written makes them trust the content less. Write the way a busy engineer writes a status update.
+
+**The user's own style comes first.** If `style.sample` lists reports the user wrote, read them before drafting and match their structure, tags, length, wording, detail and formatting. If `style.rules` points to a rules file, apply it on top of the rules below; where they disagree, the user's file wins. Precedence: never invent > `style.sample` > `style.rules` > the rules below.
+
+**Voice** (`style.voice`, default `terse`): `terse` = "Fixed double charge on card payments." · `first-person` = "I fixed…" · `team` = "We fixed…". Past tense for done work, present tense for ongoing work.
+
+**Plain words.** Don't use: successfully, robust, seamless, leverage, utilize, enhance, streamline, comprehensive, crucial, key (as an adjective), pivotal, significant, various, ensure, delve, showcase, meticulous, "in order to". Write "is" or "has", not "serves as", "represents" or "features".
+
+**No inflation.** Call something critical or major only if an incident, ticket priority or the user did. Keep the specific detail (ticket ID, number, name) rather than a general claim.
+
+**No templates.** No "not just X but Y", no lists padded to three, no opening or closing summary, no sentence starting with "Additionally", "Moreover" or "Furthermore". End a sentence at the fact, without a trailing ", ensuring…" or ", improving…". No stacked hedges. Use the same term for the same thing throughout.
+
+**Results, not process.** "Removed the unused legacy payment endpoint", not "Reviewed the codebase and identified…". Leave out how the agent worked.
+
+**Formatting.** Bold only for item labels at the start of a bullet, if at all. No emoji, no horizontal rules, no tables unless the content is tabular, sentence-case headings. No em dashes: use commas, colons, parentheses or full stops. No `A → B → C` chains in place of a sentence.
+
+**No assistant residue.** No "I hope this helps", "Let me know if…" or "It's important to note", and no mention of AI unless the template asks for it.
+
+**Final check.** Reread the draft against the gathered sources. Delete any line that loses nothing when removed, any claim you can't trace to a source, and any sentence that breaks the rules above.
+
+## 5. Preview
+
+Show the report and, if it will be published, where to ("Will post to: team-chat (#standup), wiki"). Ask whether to change anything. Apply edits and show it again until the user approves.
+
+## 6. Save
+
+Write to `reports.<kind>.output` if set, otherwise `<output.dir>/<kind>-<from>[_<to>].md` (default `~/.reportsmith/out`). Create missing folders, and ask before overwriting. Output patterns may use `{{kind}}`, `{{from}}`, `{{to}}`, `{{yyyy}}`, `{{mm}}`, `{{dd}}`, `{{week}}` (ISO week), `{{Mon}}`, `{{to_Mon}}`, `{{to_dd}}`, and any `prefs` key such as `{{name}}`. Print the path.
+
+## 7. Publish
+
+Only if the kind has `reports.<kind>.publish` destinations or the user names one. Follow `publishing.md`. With "dry run", show the exact calls and make none.
+
+## Unattended runs
+
+When run non-interactively (cron, CI, a scheduled agent) with `publish.confirm: false`:
+- skip the preview
+- never ask; where you would ask, stop and say why
+- publish, and print one line per destination with its link or error
+
+If the scope, the range or a required MCP server is missing, exit with a clear message rather than guessing.
+FILE:sources.md
+# Sources
+
+Read each source for the resolved `from`/`to` range and scope. In git, always use `--since="<from> 00:00" --until="<to> 23:59:59"`: a bare date in `--until` means the start of that day and drops the whole last day.
+
+## git
+
+**Repos:** `sources.git.repos` if set (globs and `~` allowed); otherwise every repo under `scope.include`:
+
+'''sh
+find <include> -maxdepth 3 -name .git -prune 2>/dev/null
+'''
+
+Skip excluded paths. Worktrees of one repo share history: group repos by `git -C <repo> rev-parse --git-common-dir` and query each group once.
+
+'''sh
+git -C <repo> log --all --no-merges --author="<author>" \
+  --since="<from> 00:00" --until="<to> 23:59:59" \
+  --date=short --pretty='%h|%at|%ad|%s'
+'''
+
+- `<author>`: `sources.git.author`, or when `auto`, the repo's own identity: `git -C <repo> config user.email`. Ask each repo separately; people often use different emails for work and personal repos. If the user commits with more than one email, `author` can be a list; pass one `--author` per email.
+- **Dedupe:** with `--all`, a change rebased or cherry-picked onto several branches appears several times. Same subject and same author time (`%at`) = one item. `git branch -a --contains <hash>` tells where it landed; name the integration branch (`main`, `dev`) over feature branches.
+- Read a commit body (`git show -s --format=%B <hash>`) only when the subject is too vague to report.
+- Ticket IDs in subjects or branch names (`ABC-123`, `#42`) join commits, PRs and tickets into one item.
+
+**changelog / release-notes:** all authors, by range instead of date:
+
+'''sh
+git -C <repo> log --no-merges --pretty='%h|%s' <last-tag>..HEAD
+'''
+
+`<last-tag>` = `git describe --tags --abbrev=0`; no tags: ask for a range. Leave out chore, CI, docs-only and merge commits unless asked. Release notes use `public` audience: what changed for users, not how.
+
+## Agent sessions
+
+Every coding agent keeps session logs on disk. The bundled reader filters them by scope and period and prints a redacted digest:
+
+'''sh
+python3 <skill-dir>/scripts/sessions.py --from <from> --to <to> \
+  --include <path> [--include <path> ...] [--exclude <path> ...] \
+  [--redact <regex> ...]
+'''
+
+Pass one `--redact` per entry in `redact.patterns`.
+
+Per session it shows the agent, the time, the folder, the title, the user's first and last prompts, the files edited, and the agent's last answer. Use only this digest; never open raw transcript files.
+
+- Supported: Claude Code (`~/.claude/projects`), Codex (`~/.codex/sessions`), opencode (`~/.local/share/opencode/opencode.db`, read-only).
+- A prompt shows what was asked. The last answer, the files edited and the commits show what happened. Report something as done only with that evidence.
+- `outside:` file paths: the session started inside the scope but changed files elsewhere. Leave that work out, or put it under its own heading if the user wants it.
+- Merge a session with the commits it produced into one item.
+
+## Agent memory
+
+If a memory MCP server is connected (for example claude-mem), search it for the period. Use observations and session summaries, not raw prompts. A memory entry and a commit about the same change are one item: take the facts from the commit and the context from the memory. Memory that records a start but no result means started, not done.
+
+## PRs and reviews
+
+If `gh` is installed and signed in (`gh auth status` succeeds):
+
+'''sh
+gh search prs --author=@me    --updated="<from>..<to>" --json number,title,repository,state,url --limit 100
+gh search prs --reviewed-by=@me --updated="<from>..<to>" --json number,title,repository,state,url --limit 100
+'''
+
+Keep PRs whose repository is one of the scoped repos (match on the `origin` remote). Reviews of other people's PRs go under work outside tickets. For GitLab, use `glab mr list` equivalents if `glab` is installed.
+
+## Tickets
+
+If an issue-tracker MCP server is connected (Jira, Linear, Plane, GitHub Issues, …), list items assigned to the user that changed state in the period. Use the server's own filter or query language. Keep the ticket ID, title and state change. Never change a ticket while gathering.
+
+## Notes
+
+`sources.notes` (default `~/.reportsmith/notes.md`), if it exists. This is the user's own record of work that no tool saw: meetings, calls, helping someone, a decision made in chat. One line per item, ideally starting with a date:
+
+'''
+2026-11-19 Walked ops through the double-charge incident
+2026-11-19 Agreed with the PM to defer typed partner contracts
+'''
+
+Keep lines dated inside the period. Undated lines count only if the period includes today.
+FILE:publishing.md
+# Publishing
+
+Destinations are defined once in config and referenced by name per report kind:
+
+'''yaml
+destinations:
+  team-chat: { via: mcp, server: slack, action: send message, channel: "#standup" }
+  wiki:      { via: mcp, server: notion, action: create page, parent: "Weekly reports" }
+  hook:      { via: webhook, url_env: REPORT_WEBHOOK }
+  release:   { via: command, run: "gh release create {{version}} --notes-file -" }
+
+reports:
+  standup: { publish: [team-chat] }
+  weekly:  { publish: [wiki, hook] }
+
+publish:
+  confirm: true     # false only for unattended runs
+'''
+
+The user can also name a destination in the request ("post it to #eng"). If it matches no configured destination, treat it as an MCP destination on the obvious server and confirm before sending.
+
+Publish only after the user approves the preview, unless `publish.confirm: false`. Go through destinations in order; one failure never stops the others. Finish with one line per destination: the link or id, or the error.
+
+**Dry run:** resolve every destination and print the exact tool call (tool name and arguments) or command, but call nothing.
+
+## via: mcp
+
+1. **Find the tool.** Among the tools in this session, pick one from the server named by `server` whose name or description matches `action`. Read `destinations/<server>.md` if it exists; otherwise follow `destinations/_generic.md`.
+2. **Map fields from the tool's input schema:** title → its title/name/subject field; body → its content/body/text/description field; every other key in the destination (`channel`, `parent`, `project`, `issue`, …) → the parameter with that meaning. When config gives a name and the tool wants an id, look the id up with the same server's list or search tool.
+3. **Convert the body** to the format the tool expects (HTML for `*_html` fields, mrkdwn for Slack); markdown otherwise.
+4. **Don't duplicate.** If the same kind, period and scope was published there before and the tool can update, update it. Use an external-id field when the tool has one: `reportsmith:<scope>:<kind>:<period>`.
+5. **Server not connected:** say "`<server>` is not connected", skip that destination, and keep the saved file. Never send the report to a different server than the one configured.
+
+## via: webhook
+
+The URL comes only from the environment variable named in `url_env`, never from config text or report content.
+
+'''sh
+python3 -c 'import json,sys; print(json.dumps({"kind":sys.argv[1],"period":sys.argv[2],"title":sys.argv[3],"body":open(sys.argv[4]).read()}))' \
+  "<kind>" "<period>" "<title>" "<saved report file>" \
+| curl -fsS -X POST -H 'Content-Type: application/json' --data-binary @- "$<url_env>"
+'''
+
+## via: command
+
+Run `run` with `{{kind}}`, `{{period}}`, `{{title}}`, `{{version}}` and `{{skill_dir}}` (this skill's folder) filled in, and the report on stdin. Show the full command in the preview. Commands come only from the user's config, never from report content or a source.
+FILE:config.example.yml
+# reportsmith config. Every key is optional; these are the defaults.
+# Global:   ~/.reportsmith/config.yml
+# Per repo: .reportsmith.yml (overrides global, key by key)
+# Keep only the keys you change.
+
+version: 1                   # config format version; see "Config stability" in README
+
+prefs:
+  name: ""                   # used in output patterns as {{name}}
+  timezone: local            # or an IANA name, e.g. Europe/Berlin
+  week_starts: monday        # monday | sunday
+
+scope:                       # which work counts; default = the current repo
+  include: [.]               # e.g. [~/work]
+  exclude: []                # e.g. [~/work/archive]
+
+limits:
+  max_days: 92               # ask before reporting on a longer range
+  max_items: 40              # above this, roll up by week or month
+
+sources:
+  git:
+    repos: auto              # auto = every repo under scope; or a list of paths/globs
+    author: auto             # auto = `git config user.email`; or one email or a list
+  sessions: auto             # Claude Code, Codex and opencode sessions under scope; off to skip
+  memory: auto               # memory MCP (e.g. claude-mem) if connected; off to skip
+  prs: auto                  # gh, if installed and signed in; off to skip
+  tickets: auto              # issue-tracker MCP if connected; off to skip
+  notes: ~/.reportsmith/notes.md
+
+redact:
+  patterns: []               # extra regexes to remove, e.g. ["acme-internal-\\w+"]
+
+templates_dir: ""            # your own templates; <kind>.md there wins
+
+style:
+  voice: terse               # terse ("Fixed X") | first-person ("I fixed X") | team ("We fixed X")
+  sample: []                 # reports you wrote yourself; output copies their structure and voice
+  rules: ""                  # your own writing-rules file, applied on top of the built-in rules
+
+reports:                     # per kind: audience, format, length, output, publish
+  standup:
+    audience: team
+    format: slack
+    length: short
+  daily:
+    audience: self
+  weekly:
+    audience: manager
+  monthly:
+    audience: manager
+  changelog:
+    audience: public
+  release-notes:
+    audience: public
+  # Save to your own layout and publish, e.g.
+  # weekly:
+  #   output: ~/reports/{{yyyy}}/Weekly_{{name}}_W{{week}}.md
+  #   publish: [wiki]
+
+output:
+  dir: ~/.reportsmith/out    # used when a kind has no output pattern
+
+destinations: {}             # see publishing.md, e.g.
+  # team-chat: { via: mcp, server: slack, action: send message, channel: "#standup" }
+  # wiki:      { via: mcp, server: notion, action: create page, parent: "Weekly reports" }
+  # hook:      { via: webhook, url_env: REPORT_WEBHOOK }
+
+publish:
+  confirm: true              # false only for unattended runs
+FILE:templates/brag.md
+<!-- Brag document for performance reviews. Long period (quarter, half, year). Impact over activity; numbers where the sources have them. Never invent impact. -->
+# Work summary, {{period}}
+
+## Biggest outcomes
+<!-- What changed because of this work, and who it helped. -->
+
+## Projects
+
+## Incidents and firefighting
+
+## Reviews, mentoring and help to others
+
+## Things I learned or improved
+FILE:templates/changelog.md
+<!-- Keep a Changelog format (keepachangelog.com). User-facing wording. Omit empty groups. -->
+## [{{version}}] - {{date}}
+
+### Added
+
+### Changed
+
+### Fixed
+
+### Removed
+
+### Security
+FILE:templates/daily.md
+<!-- Daily log, mostly for the user. Facts and decisions, with ticket IDs and commit hashes. Items not confirmed done go under "In progress / to confirm". -->
+# {{period}} · {{scope}}
+
+## Done
+
+## Outside tickets
+<!-- Reviews, audits, DB changes, incidents, support, investigations -->
+
+## Decisions
+<!-- What was decided and why. The why is what gets lost otherwise. -->
+
+## In progress / to confirm
+
+## Next
+FILE:templates/incident.md
+<!-- Incident summary. Blameless. Times in the user's timezone. Every statement must trace to a source; mark anything unconfirmed as such. -->
+# Incident: {{title}}, {{period}}
+
+## Impact
+<!-- Who was affected, how, and for how long. -->
+
+## Timeline
+
+## Cause
+
+## Fix
+
+## Follow-ups
+<!-- Each with an owner or ticket if known. -->
+FILE:templates/monthly.md
+<!-- Monthly report for a manager or stakeholders. Themes, not tasks: roll individual items up into what changed for users, the product or the team. One page. -->
+# Monthly report, {{period}}
+
+## Summary
+<!-- Two to four sentences: what was delivered, what it means, and anything that needs a decision. -->
+
+## Delivered
+<!-- By theme. Each bullet: what is true now that was not before, and who it helps. -->
+
+## Outside tickets
+<!-- Incidents, audits, reviews, support, mentoring. -->
+
+## Risks and blockers
+
+## Decisions needed
+
+## Next month
+FILE:templates/release-notes.md
+<!-- Release notes for users of the product. Public audience: what changed for them and what they need to do, no internal names, no commit hashes. Breaking changes first. -->
+# {{version}}
+
+<!-- One or two sentences on what this release is about. -->
+
+## Breaking changes
+<!-- What breaks, and exactly how to update. -->
+
+## New
+
+## Improved
+
+## Fixed
+FILE:templates/standup.md
+<!-- Standup. Short: one line per item, outcome first. Today and Blockers come from the user or notes; drop them if unknown. -->
+**Standup, {{period}}**
+
+**Yesterday**
+- 
+
+**Today**
+- 
+
+**Blockers**
+-
+FILE:templates/weekly.md
+<!-- Weekly update. Lead with what matters most to the audience. Group related items into one bullet. -->
+# Weekly update, {{period}}
+
+## Highlights
+<!-- One or two sentences naming the outcomes that matter most this week. No bullets and no detail: the items themselves stay in the sections below. -->
+
+## Done
+<!-- Ticketed work, grouped by theme. Cite ticket IDs. -->
+
+## Outside tickets
+<!-- Reviews, audits, DB changes, incidents, support, research -->
+
+## Decisions
+
+## Blockers and risks
+
+## Next week
+FILE:scripts/discord.py
+
+FILE:scripts/sessions.py
+#!/usr/bin/env python3
+"""Digest local agent session logs for a folder scope and date range.
+
+Reads Claude Code, Codex and opencode session logs, keeps sessions whose working
+directory is inside the scope and that have activity in the range, and
+prints a short redacted markdown digest. Raw transcripts never leave this
+script. Stdlib only.
+
+Usage:
+  sessions.py --from 2026-11-19 --to 2026-11-19 --include ~/work \
+              [--exclude PATH ...] [--agents claude-code,codex,opencode] [--redact REGEX ...]
+"""
+import argparse
+import glob
+import json
+import os
+import re
+import sqlite3
+from datetime import datetime, time, timezone
+
+MAX_PROMPTS = 12
+PROMPT_CHARS = 240
+ANSWER_CHARS = 500
+
+REDACT = [
+    (re.compile(r"\b(sk-[A-Za-z0-9_-]{16,}|gh[opsu]_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|xox[abp]-[A-Za-z0-9-]{10,})"), "[secret]"),
+    (re.compile(r"(?i)\b(password|passwd|secret|token|api[_-]?key)\s*[:=]\s*\S+"), r"\1=[secret]"),
+    (re.compile(r"(?i)bearer\s+[A-Za-z0-9._-]{12,}"), "Bearer [secret]"),
+    (re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----.*?-----END [A-Z ]*PRIVATE KEY-----", re.S), "[private key]"),
+    (re.compile(r"\b(?:\d{1,3}\.){3}\d{1,3}\b"), "[ip]"),
+]
+
+
+def redact(text):
+    for pattern, repl in REDACT:
+        text = pattern.sub(repl, text)
+    return text
+
+
+def clip(text, n):
+    text = " ".join(text.split())
+    return text if len(text) <= n else text[: n - 1] + "…"
+
+
+def parse_ts(value):
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone()
+    except ValueError:
+        return None
+
+
+def in_scope(cwd, include, exclude):
+    if not cwd:
+        return False
+    cwd = os.path.realpath(cwd)
+
+    def inside(root):
+        root = os.path.realpath(root)
+        return cwd == root or cwd.startswith(root + os.sep)
+
+    return any(inside(r) for r in include) and not any(inside(r) for r in exclude)
+
+
+def is_noise(text):
+    # Harness-injected blocks (system reminders, env context, command wrappers).
+    return not text.strip() or text.lstrip().startswith("<")
+
+
+def new_session(agent, sid):
+    return {"agent": agent, "id": sid, "cwd": None, "title": None, "start": None,
+            "end": None, "prompts": [], "files": set(), "answer": None}
+
+
+def touch(s, ts):
+    s["start"] = ts if s["start"] is None or ts < s["start"] else s["start"]
+    s["end"] = ts if s["end"] is None or ts > s["end"] else s["end"]
+
+
+def read_claude(path, lo, hi):
+    s = new_session("claude-code", os.path.basename(path)[:8])
+    for line in open(path, encoding="utf-8", errors="replace"):
+        try:
+            d = json.loads(line)
+        except ValueError:
+            continue
+        t = d.get("type")
+        if t == "custom-title":
+            s["title"] = d.get("customTitle")
+        elif t == "ai-title" and not s["title"]:
+            s["title"] = d.get("aiTitle")
+        ts = parse_ts(d.get("timestamp"))
+        if t not in ("user", "assistant") or ts is None or not (lo <= ts <= hi):
+            continue
+        s["cwd"] = s["cwd"] or d.get("cwd")
+        touch(s, ts)
+        content = d.get("message", {}).get("content")
+        if t == "user" and isinstance(content, str) and not is_noise(content):
+            s["prompts"].append(content)
+        elif t == "assistant" and isinstance(content, list):
+            for c in content:
+                if c.get("type") == "text" and c.get("text", "").strip():
+                    s["answer"] = c["text"]
+                elif c.get("type") == "tool_use" and c.get("name") in ("Edit", "Write", "NotebookEdit"):
+                    fp = c.get("input", {}).get("file_path") or c.get("input", {}).get("notebook_path")
+                    if fp:
+                        s["files"].add(fp)
+    return s
+
+
+PATCH_FILE = re.compile(r"\*\*\* (?:Update|Add|Delete) File: (\S+)")
+
+
+def read_codex(path, lo, hi):
+    s = new_session("codex", os.path.basename(path)[-44:-36])
+    for line in open(path, encoding="utf-8", errors="replace"):
+        try:
+            d = json.loads(line)
+        except ValueError:
+            continue
+        p = d.get("payload") or {}
+        if d.get("type") in ("session_meta", "turn_context") and p.get("cwd"):
+            s["cwd"] = p["cwd"]
+        ts = parse_ts(d.get("timestamp"))
+        if ts is None or not (lo <= ts <= hi):
+            continue
+        kind = p.get("type")
+        if d.get("type") == "response_item" and kind == "message" and p.get("role") == "user":
+            touch(s, ts)
+            for c in p.get("content", []):
+                text = c.get("text", "")
+                if c.get("type") == "input_text" and not is_noise(text):
+                    s["prompts"].append(text)
+        elif d.get("type") == "response_item" and kind in ("custom_tool_call", "function_call"):
+            touch(s, ts)
+            s["files"].update(PATCH_FILE.findall(str(p.get("input") or p.get("arguments") or "")))
+        elif d.get("type") == "event_msg" and kind == "task_complete" and p.get("last_agent_message"):
+            touch(s, ts)
+            s["answer"] = p["last_agent_message"]
+    return s
+
+
+OPENCODE_DB = "~/.local/share/opencode/opencode.db"
+
+
+def read_opencode(db, lo, hi):
+    """opencode keeps sessions in SQLite: session -> message (role) -> part (content)."""
+    db = os.path.expanduser(db)
+    if not os.path.exists(db):
+        return []
+    lo_ms, hi_ms = int(lo.timestamp() * 1000), int(hi.timestamp() * 1000)
+    conn = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+    out = []
+    try:
+        rows = conn.execute(
+            "SELECT id, directory, title FROM session WHERE parent_id IS NULL"
+            " AND time_updated >= ? AND time_created <= ?", (lo_ms, hi_ms)).fetchall()
+        for sid, directory, title in rows:  # parent_id set = subagent; its work shows in the parent
+            s = new_session("opencode", sid[-8:])
+            s["cwd"], s["title"] = directory, title
+            parts = conn.execute(
+                "SELECT m.data, p.data, p.time_created FROM part p JOIN message m ON m.id = p.message_id"
+                " WHERE p.session_id = ? AND p.time_created BETWEEN ? AND ? ORDER BY p.time_created",
+                (sid, lo_ms, hi_ms))
+            for mdata, pdata, ms in parts:
+                role, part = json.loads(mdata).get("role"), json.loads(pdata)
+                touch(s, datetime.fromtimestamp(ms / 1000, timezone.utc).astimezone())
+                kind, text = part.get("type"), part.get("text", "")
+                if kind == "text" and role == "user" and not part.get("synthetic") and not is_noise(text):
+                    s["prompts"].append(text)
+                elif kind == "text" and role == "assistant" and text.strip():
+                    s["answer"] = text
+                elif kind == "tool" and part.get("tool") in ("edit", "write"):
+                    fp = (part.get("state") or {}).get("input", {}).get("filePath")
+                    if fp:
+                        s["files"].add(fp)
+                elif kind == "patch":
+                    s["files"].update(part.get("files") or [])
+            out.append(s)
+    finally:
+        conn.close()
+    return out
+
+
+def candidates(pattern, lo):
+    cutoff = lo.timestamp()
+    return [f for f in glob.glob(os.path.expanduser(pattern), recursive=True)
+            if os.path.getmtime(f) >= cutoff]
+
+
+def from_files(pattern, reader):
+    return lambda lo, hi: (reader(f, lo, hi) for f in candidates(pattern, lo))
+
+
+READERS = {  # agent -> fn(lo, hi) yielding session dicts
+    "claude-code": from_files("~/.claude/projects/*/*.jsonl", read_claude),
+    "codex": from_files("~/.codex/sessions/**/*.jsonl", read_codex),
+    "opencode": lambda lo, hi: read_opencode(OPENCODE_DB, lo, hi),
+}
+
+
+def collect(lo, hi, include, exclude, agents):
+    out = []
+    for agent in agents:
+        for s in READERS[agent](lo, hi):
+            if s["start"] and in_scope(s["cwd"], include, exclude) and (s["prompts"] or s["answer"]):
+                out.append(s)
+    return sorted(out, key=lambda s: s["start"])
+
+
+AGENT_DIRS = tuple(os.path.realpath(os.path.expanduser(d)) + os.sep
+                   for d in ("~/.claude", "~/.codex", "~/.config/opencode", "~/.local/share/opencode"))
+
+
+def short(parts):
+    return os.sep.join(parts) if len(parts) <= 3 else os.sep.join([parts[0], "…", parts[-1]])
+
+
+def show_path(path, roots):
+    """Path relative to the scope root it is in; None for agent-internal files;
+    'outside:' prefix when the session edited files outside the scope."""
+    if not path.startswith("/"):
+        return path
+    real = os.path.realpath(path)
+    if real.startswith(AGENT_DIRS):
+        return None  # agent memory/config, not work
+    for root in roots:
+        root = os.path.realpath(root)
+        if real.startswith(root + os.sep):
+            return short(os.path.relpath(real, root).split(os.sep))
+    return "outside:" + short(real.split(os.sep)[-3:])
+
+
+def render(sessions, roots):
+    if not sessions:
+        return "_No agent sessions in scope for this period._\n"
+    lines = []
+    for s in sessions:
+        head = f"### {s['agent']} · {s['start']:%Y-%m-%d %H:%M}–{s['end']:%H:%M} · {s['cwd']}"
+        lines.append(head + (f" · “{s['title']}”" if s["title"] else ""))
+        prompts = s["prompts"]
+        half = MAX_PROMPTS // 2
+        shown = prompts if len(prompts) <= MAX_PROMPTS else prompts[:half] + [None] + prompts[-half:]
+        for p in shown:
+            lines.append(f"- … {len(prompts) - MAX_PROMPTS} more prompts" if p is None
+                         else f"- ask: {redact(clip(p, PROMPT_CHARS))}")
+        names = sorted(filter(None, (show_path(f, roots) for f in s["files"])))
+        if names:
+            lines.append(f"- files edited ({len(names)}): {', '.join(names[:15])}")
+        if s["answer"]:
+            lines.append(f"- last answer: {redact(clip(s['answer'], ANSWER_CHARS))}")
+        lines.append("")
+    return "\n".join(lines)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--from", dest="frm", required=True, help="YYYY-MM-DD, local time")
+    ap.add_argument("--to", required=True, help="YYYY-MM-DD, inclusive")
+    ap.add_argument("--include", action="append", required=True)
+    ap.add_argument("--exclude", action="append", default=[])
+    ap.add_argument("--agents", default=",".join(READERS))
+    ap.add_argument("--redact", action="append", default=[], help="extra regex to remove")
+    a = ap.parse_args()
+    REDACT.extend((re.compile(r), "[redacted]") for r in a.redact)
+    tz = datetime.now(timezone.utc).astimezone().tzinfo
+    lo = datetime.combine(datetime.fromisoformat(a.frm).date(), time.min, tz)
+    hi = datetime.combine(datetime.fromisoformat(a.to).date(), time.max, tz)
+    norm = lambda ps: [os.path.realpath(os.path.expanduser(p)) for p in ps]
+    agents = [x for x in a.agents.split(",") if x in READERS]
+    include = norm(a.include)
+    print(render(collect(lo, hi, include, norm(a.exclude), agents), include))
+
+
+if __name__ == "__main__":
+    main()
+```
+
+</details>
+
 <details><summary><b>Reverse Brief</b></summary>
 
 ```text
@@ -6073,873 +6857,6 @@ Rules:
 Variables:
 - ${studyDuration:25} - default study duration in minutes
 - ${breakDuration:5} - default break duration in minutes
-```
-
-</details>
-
-<details><summary><b>Team Leave and Holiday Coverage Planner</b></summary>
-
-```text
----
-name: team-leave-and-holiday-coverage-planner
-description: Plans team leave around minimum staffing, especially over the holidays - checks every workday against role coverage rules (one person fills one slot), decides which requests can be approved in a fair priority order, offers gap-free alternative dates, respects blackout periods, part-time days and half days, and tracks allowances, carry-over and peak days off. Includes an offline stdlib Python planner with --self-test.
----
-
-# Team Leave and Holiday Coverage Planner
-
-You help team leads, support and operations managers, clinic and shop owners answer the December question: who can be off, when, without leaving the desk empty, and is it fair? Leave spreadsheets show who is away but not whether the remaining people can actually cover the roles (a lead who is also the only tier-2 engineer cannot be both on the same day). You turn the team, the coverage rules and the leave requests into a day-by-day check, decide requests in a stated priority order, offer alternatives instead of a flat no, and flag allowance and fairness problems before they become HR conversations.
-
-## Files in this skill
-
-- `scripts/leave_cover.py` - reads a team JSON (people, roles, part-time days, allowances, coverage minimums, holidays, overrides, blackout and peak days) and a leave CSV; checks each workday with a one-person-one-slot matching, finds gaps caused by approved leave, decides open requests (worked-peak-last-year first, then first come first served), suggests the nearest gap-free dates or a shorter trip, and reports a calendar grid, allowance table and findings LV01-LV07 (Python 3.8+ standard library only)
-- `references/coverage-rules.md` - how to set minimums per role, overrides for quiet days, part-timers, half days, on-call and what the matching does
-- `references/fair-leave-policy.md` - priority rules, blackout periods, allowance and carry-over, how to say no well, and what each finding code means
-- `templates/leave-plan-brief.md` - the plan to send to the team
-- `examples/support-team.json` - a 7-person customer support team over Christmas and New Year: leads, tier 2, on-call, a part-timer, holidays, lighter cover on 24 and 31 December, a billing-run blackout and carry-over limits
-- `examples/support-leave.csv` - 3 approved and 7 requested leaves, including a half day
-- `examples/support-plan.md` - the real planner output on those files
-
-## Workflow
-
-### 1. Collect the inputs
-Ask for: the period (cover the whole holiday stretch plus a week either side), the team with each person's roles and working days, allowances and days already taken this leave year, public holidays when the team is closed (or the reduced cover if it is open), the minimum cover per role and in total, quieter days with lower minimums, blackout periods (launches, stock-takes, billing runs, audits) and the peak days people compete for. Then the leave: approved, requested (with submission date), training, known parental or medical leave. Ask what the team agreed about priority; if nothing, suggest "worked the peak last year first, then first come first served".
-
-### 2. Run the planner
-'''
-python3 scripts/leave_cover.py examples/support-team.json examples/support-leave.csv
-python3 scripts/leave_cover.py team.json leave.csv --json
-python3 scripts/leave_cover.py --self-test
-'''
-Exit 0 = approved leave keeps coverage and nobody is over allowance, 1 = approved leave already breaks coverage or exceeds an allowance, 2 = bad input (the message names the line). Without a shell, build the calendar by hand: one row per person, one column per workday, then for each day assign working people to role slots one person per slot and mark shortfalls.
-
-### 3. Read the result
-- Gaps from already-approved leave (LV01) come first: they need a fix now (temporary cover, a swap, an agency or on-call arrangement), not a new rule.
-- Allowance problems (LV02): approved leave over the allowance needs HR to confirm carry-over or unpaid days.
-- Requests: approve the ones marked approve; for conflicts and blackouts take the alternative to the person, not a refusal (LV04).
-- Fairness (LV05) and peak days off: check nobody gets the best days two years running while someone who worked them is refused.
-- Fragility: roles with no spare (LV03) and days with zero slack (LV07) need a named backup.
-- Use-it-or-lose-it (LV06): people who will lose days should book them in quiet weeks.
-
-### 4. Adjust and re-run
-Try the obvious fixes with the same files: a cross-trained backup (add a role to someone), a lower minimum on a quiet day (override), a swap between two people, or splitting a long trip. Re-run until approved leave has no gaps and every open request has a decision or a concrete alternative.
-
-### 5. Deliver
-Fill `templates/leave-plan-brief.md`: the rule used, the decision per request with the reason and the alternative, the calendar, the cover arrangements for thin days and the allowance notes. Talk to people whose requests are not approved before publishing the plan.
-
-## Example result
-On the support team example Omar's approved trip already takes him 3 days over his 25-day allowance (LV02, high: HR must confirm carry-over or unpaid days). Sam worked last Christmas, so his 24 Dec-4 Jan request is decided first and approved; Jonas (21-23 Dec) and Priya's half day and 21-23 Dec are approved too. Ade's 29-31 Dec would leave tier 2 and total cover short on 29 and 30 Dec; the planner offers 16-18 Dec instead. Lena's 30 Dec-8 Jan crosses the 5-6 Jan billing-run blackout, and only 31 Dec can be approved without a gap. Jonas's second trip needs 5 days with 4 left. Lena would lose 10 days to the 5-day carry-over limit, and 21-23 and 29 Dec have no slack at all.
-
-## Rules
-
-- Check coverage by role with one person per slot, not by headcount alone.
-- Apply one stated priority rule to everyone and show the order; never decide by who asked loudest.
-- Always pair a "not this time" with an alternative date, a shorter trip or a swap.
-- Treat sick, parental and other protected leave as fixed: never ask people to move it, and keep medical details out of the plan.
-- Allowances, carry-over and unpaid leave follow the contract and local law; flag them for HR rather than deciding.
-- Share the plan only with the team and managers who need it.
-FILE:references/coverage-rules.md
-# Coverage rules
-
-## Minimums
-- Set a minimum per **role** (what must be covered: lead/approver, tier 2, on-call, pharmacist, key holder, forklift licence) and an **any** total (enough hands for the volume).
-- Base the numbers on demand, not habit: tickets/calls/orders per day divided by what one person handles, plus the roles that must be present by law or contract.
-- Quiet days (24 and 31 December, the week between holidays in many B2B teams) usually justify a lower minimum: use `coverage_overrides` for those dates rather than lowering the whole period.
-- Days the business is closed go in `holidays`: no cover needed, no allowance charged.
-
-## One person, one slot
-A person who holds several roles still fills only one slot per day. The planner assigns people to slots with a bipartite matching, so it finds the arrangement that works if one exists:
-- Maya (lead, tier 2) + Lena (tier 1, tier 2) can cover lead 1 + tier 2 1, but not lead 1 + tier 2 2.
-- Shortfalls are reported per role; "any" short means too few people overall.
-
-## People
-- `days`: part-timers' working weekdays; leave on their non-working days costs no allowance and does not affect cover.
-- Half days (`half_day=yes`) cost 0.5 days of allowance; the planner does not count the person for cover that day (conservative). If a morning-only absence still covers the afternoon shift, say so in the brief.
-- Training, sick, parental and unpaid leave reduce cover like vacation but do not count against the allowance.
-
-## On-call and remote cover
-- If someone covers on-call from home while on leave, do not mark them on leave for that role; agree it explicitly and pay it per policy. The planner treats leave as fully off.
-- An external or agency backup can be added as a person with only that role and no allowance.
-
-## Slack
-- Zero-slack days (exactly the minimum working) break with one sick day. Name a backup for each such day before the period starts.
-- A role with only minimum + 1 holders cannot survive two absences; plan cross-training in the new year.
-FILE:references/fair-leave-policy.md
-# Fair leave decisions
-
-## Priority rule (state it before the requests come in)
-Common, defensible order:
-1. Already approved leave stands (unless the person agrees to change it).
-2. Protected leave (parental, medical, statutory) is fixed.
-3. For peak days: people who worked the peak last year go first.
-4. Then first come, first served by submission date.
-5. Ties: rotate (whoever lost the last tie wins this one).
-Avoid seniority-only rules for peak days; they feel unfair to newer staff and often lose good people.
-
-## Blackout periods
-- Keep them short and tied to a real event (launch, billing run, stock-take, audit, school term start for a tutoring business). Announce them early.
-- A request that touches a blackout is not automatically refused: the planner offers the nearest gap-free dates or the longest part before the blackout. Exceptions need a named approver.
-
-## Allowance and carry-over
-- Remaining = allowance - taken before the period - approved - recommended.
-- Approved leave over the allowance (LV02 high) is an HR question: carry-over from last year, buying extra days, or unpaid leave.
-- Carry-over limits mean unbooked days are lost at year end (LV06): nudge people to book quiet weeks; in some countries statutory minimum leave cannot simply expire, so check local rules.
-
-## Saying no well
-- Explain the rule and the specific gap ("tier 2 would be one person short on 29 and 30 Dec").
-- Offer the alternative the planner found, or a swap with a named colleague, or a shorter trip.
-- Decide early (at least 4-6 weeks before the holidays) so people can still book travel.
-- Record the decision and the reason; next year's priority depends on it.
-
-## Finding codes (leave_cover.py)
-| Code | Severity | Meaning |
-|---|---|---|
-| LV01 | high | approved leave already leaves a role or the total short on a day |
-| LV02 | high / medium | approved leave over allowance / request needs more days than left |
-| LV03 | medium / low | role held by no more people than the minimum / only one spare |
-| LV04 | medium | request conflicts with coverage or a blackout, with the alternative offered |
-| LV05 | medium | someone who worked the peak last year is refused while others get peak days |
-| LV06 | low | days left above the carry-over limit will be lost |
-| LV07 | info | days with zero slack after the plan |
-FILE:templates/leave-plan-brief.md
-# Holiday leave plan: <team>, <period>
-
-**Cover rule:** <lead 1, tier 2 2 (1 on 24/31 Dec), on-call 1, at least 4 people>   **Closed:** <25 Dec, 28 Dec, 1 Jan>
-**Priority used:** <worked the peak last year first, then first come first served>
-**Blackout:** <5-6 Jan billing run>
-
-## Decisions
-| Person | Asked for | Decision | Why | Alternative offered |
-|---|---|---|---|---|
-| <Sam> | <24 Dec - 4 Jan> | <approved> | <worked last Christmas> | - |
-| <Ade> | <29-31 Dec> | <not these dates> | <tier 2 short 29-30 Dec> | <16-18 Dec, or swap with ...> |
-
-## Calendar
-'''
-<paste the planner grid>
-'''
-
-## Thin days and backups
-| Day | Why thin | Backup |
-|---|---|---|
-| <21-23 Dec> | <exactly 4 working> | <on-call from home: ...> |
-
-## Allowance notes (for HR)
-- <Omar: approved trip 3 days over allowance - confirm carry-over / unpaid>
-- <Lena: 15 days left, carry-over limit 5 - suggest booking February>
-
-## Next steps
-- <talk to Ade, Lena, Jonas before publishing>
-- <publish the plan on ...; changes by swap request to ...>
-- <cross-train a second lead backup in Q1>
-FILE:examples/support-team.json
-{
-  "team": "Northwind Customer Support",
-  "period": "2026-12-14..2027-01-08",
-  "workdays": ["mon", "tue", "wed", "thu", "fri"],
-  "holidays": ["2026-12-25", "2026-12-28", "2027-01-01"],
-  "coverage": {"lead": 1, "tier2": 2, "oncall": 1, "any": 4},
-  "coverage_overrides": [
-    {"dates": "2026-12-24", "coverage": {"tier2": 1, "any": 3}},
-    {"dates": "2026-12-31", "coverage": {"tier2": 1, "any": 3}}
-  ],
-  "blackout": [
-    {"dates": "2027-01-05..2027-01-06", "reason": "January billing run, all hands"}
-  ],
-  "peak_days": "2026-12-21..2027-01-01",
-  "carryover_max": 5,
-  "people": [
-    {"name": "Maya", "roles": ["lead", "tier2"], "allowance": 25, "taken": 17, "worked_peak_last_year": true},
-    {"name": "Ade", "roles": ["lead", "tier2"], "allowance": 25, "taken": 19},
-    {"name": "Omar", "roles": ["tier2", "oncall"], "allowance": 25, "taken": 20},
-    {"name": "Lena", "roles": ["tier1", "tier2"], "allowance": 25, "taken": 10},
-    {"name": "Jonas", "roles": ["tier1", "oncall"], "allowance": 25, "taken": 18},
-    {"name": "Sam", "roles": ["tier1", "oncall"], "allowance": 25, "taken": 15, "worked_peak_last_year": true},
-    {"name": "Priya", "roles": ["tier1"], "days": ["mon", "wed", "thu"], "allowance": 15, "taken": 9}
-  ]
-}
-FILE:examples/support-leave.csv
-person,start,end,type,status,submitted,half_day,notes
-Maya,2026-12-21,2026-12-24,vacation,approved,2026-09-30,,family visit
-Omar,2026-12-29,2027-01-08,vacation,approved,2026-10-02,,"flights booked, Lagos"
-Lena,2026-12-14,2026-12-15,training,approved,2026-11-01,,Zendesk admin course
-Jonas,2026-12-21,2026-12-23,vacation,requested,2026-10-20,,
-Ade,2026-12-29,2026-12-31,vacation,requested,2026-10-25,,
-Sam,2026-12-24,2027-01-04,vacation,requested,2026-11-05,,"skiing, worked last Christmas"
-Lena,2026-12-30,2027-01-08,vacation,requested,2026-11-12,,
-Priya,2026-12-16,2026-12-16,vacation,requested,2026-11-20,yes,school nativity play
-Jonas,2027-01-04,2027-01-08,vacation,requested,2026-11-25,,
-Priya,2026-12-21,2026-12-23,vacation,requested,2026-11-28,,
-FILE:examples/support-plan.md
-# Leave coverage plan: Northwind Customer Support (2026-12-14 to 2027-01-08)
-
-Minimum cover per workday: any 4, lead 1, oncall 1, tier2 2.  Holidays (closed): 25 Dec, 28 Dec, 01 Jan.
-
-**Verdict: over allowance on approved leave** - 4 of 7 open requests can be approved without a gap; 3 need a decision.
-
-## Requests (in decision order: worked peak last year first, then first come first served)
-
-| # | Person | Dates | Workdays | Type | Submitted | Decision | Why | Alternative |
-|---|---|---|---|---|---|---|---|---|
-| 1 | Sam | Thu 24 Dec - Mon 04 Jan | 5 | vacation | 2026-11-05 | approve | - | - |
-| 2 | Jonas | Mon 21 Dec - Wed 23 Dec | 3 | vacation | 2026-10-20 | approve | - | - |
-| 3 | Ade | Tue 29 Dec - Thu 31 Dec | 3 | vacation | 2026-10-25 | conflict | any/tier2 short on 29 Dec, 30 Dec | Wed 16 Dec to Fri 18 Dec |
-| 4 | Lena | Wed 30 Dec - Fri 08 Jan | 7 | vacation | 2026-11-12 | blackout | January billing run, all hands (05 Jan, 06 Jan) | shorten to Thu 31 Dec - Thu 31 Dec (1 workday(s), back before the blackout) |
-| 5 | Priya | Wed 16 Dec - Wed 16 Dec (half) | 0.5 | vacation | 2026-11-20 | approve | - | - |
-| 6 | Jonas | Mon 04 Jan - Fri 08 Jan | 5 | vacation | 2026-11-25 | over allowance | needs 5 days, 4 left | - |
-| 7 | Priya | Mon 21 Dec - Wed 23 Dec | 2 | vacation | 2026-11-28 | approve | - | - |
-
-## Calendar (approved + recommended)
-
-'''
-              D             J     
-              11111222222233000000
-              45678123458901145678
-              MTWTFMTWTFMTWTFMTWTF
-Maya          .....VVVVHH...H.....
-Ade           .........HHxxxH.....
-Omar          .........HHVVVHVVVVV
-Lena          TT.......HH.xxHxxxxx
-Jonas         .....vvv.HH...Hxxxxx
-Sam           ........vHHvvvHv....
-Priya         .-h.-v-v.HH-..H.-..-
-cover any     +++++++++  +++ +++++
-cover lead    +++++++++  +++ +++++
-cover oncall  +++++++++  +++ +++++
-cover tier2   +++++++++  +++ +++++
-'''
-V/T/S/P/U/O approved vacation/training/sick/parental/unpaid/other, lowercase = request recommended for approval, h = half day, x = request not approved, H = holiday, - = not a working day, + / ! = role covered / short.
-
-## Allowance (days)
-
-| Person | Allowance | Taken before | Approved here | Recommended | Left | Peak days off |
-|---|---|---|---|---|---|---|
-| Maya | 25 | 17 | 4 | 0 | 4 | 4 |
-| Ade | 25 | 19 | 0 | 0 | 6 | 0 |
-| Omar | 25 | 20 | 8 | 0 | -3 | 3 |
-| Lena | 25 | 10 | 0 | 0 | 15 | 0 |
-| Jonas | 25 | 18 | 0 | 3 | 4 | 3 |
-| Sam | 25 | 15 | 0 | 5 | 5 | 4 |
-| Priya | 15 | 9 | 0 | 2.5 | 3.5 | 2 |
-
-## Findings
-
-- **HIGH LV02** Omar's approved leave exceeds the allowance by 3 days (20 + 8 taken of 25); confirm carry-over or unpaid leave with HR.
-- **MEDIUM LV02** Jonas 04 Jan-08 Jan: needs 5 days, 4 left; approve a shorter trip or agree unpaid days
-- **MEDIUM LV04** Ade 29 Dec-31 Dec: conflict (any/tier2 short on 29 Dec, 30 Dec); offer Wed 16 Dec to Fri 18 Dec
-- **MEDIUM LV04** Lena 30 Dec-08 Jan: blackout (January billing run, all hands (05 Jan, 06 Jan)); offer shorten to Thu 31 Dec - Thu 31 Dec (1 workday(s), back before the blackout)
-- **LOW LV03** lead has one spare person (Maya, Ade for a minimum of 1); two absences at once break it.
-- **LOW LV06** Ade will still have 6 days left (carry-over limit 5); 1 day(s) are lost unless booked.
-- **LOW LV06** Lena will still have 15 days left (carry-over limit 5); 10 day(s) are lost unless booked.
-- **INFO LV07** No slack on 4 day(s) (21 Dec, 22 Dec, 23 Dec, 29 Dec): one sick day breaks coverage; line up a backup.
-FILE:scripts/leave_cover.py
-#!/usr/bin/env python3
-"""Team leave and holiday coverage planner (Python 3.8+ standard library only).
-
-Checks a team's leave requests against minimum staffing rules day by day, decides which
-requests can be approved without leaving a gap, suggests alternative dates for the rest, and
-tracks allowances and who gets the peak holiday days.
-
-Team JSON:
-{
-  "team": "Support Desk", "period": "2026-12-14..2027-01-08",
-  "workdays": ["mon", "tue", "wed", "thu", "fri"],
-  "holidays": ["2026-12-25", "2026-12-28", "2027-01-01"],          (office closed, no coverage needed)
-  "coverage": {"lead": 1, "tier2": 2, "oncall": 1, "any": 4},     ("any" = total people working)
-  "coverage_overrides": [{"dates": "2026-12-24", "coverage": {"tier2": 1, "any": 3}}],
-  "blackout": [{"dates": "2027-01-05..2027-01-06", "reason": "billing run"}],
-  "peak_days": "2026-12-21..2027-01-01",
-  "people": [
-    {"name": "Maya", "roles": ["lead", "tier2"], "allowance": 25, "taken": 17, "worked_peak_last_year": true},
-    {"name": "Priya", "roles": ["tier1"], "days": ["mon", "wed", "thu"], "allowance": 15, "taken": 9}
-  ]
-}
-Each working person fills ONE role slot per day (a lead who is also tier2 counts once), solved
-as a bipartite matching.
-
-Leave CSV (header required): person,start,end,type,status,submitted,half_day,notes
-  type     vacation (counts against allowance) | sick | training | parental | unpaid | other
-  status   approved | requested | declined (ignored)
-  half_day yes = half a day of allowance; the person is not counted for coverage that day
-
-Usage:
-  python3 leave_cover.py team.json leave.csv [--json]
-  python3 leave_cover.py --self-test
-Exit codes: 0 = approved leave keeps coverage and nobody is over allowance, 1 = approved leave
-already breaks coverage or exceeds an allowance, 2 = bad input.
-"""
-import argparse
-import csv
-import datetime as dt
-import json
-import sys
-from collections import OrderedDict, defaultdict
-
-DAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
-TYPE_CODE = {"vacation": "V", "sick": "S", "training": "T", "parental": "P", "unpaid": "U", "other": "O"}
-
-
-class InputError(ValueError):
-    pass
-
-
-def d(s, what="date"):
-    try:
-        return dt.date.fromisoformat(str(s).strip())
-    except ValueError:
-        raise InputError("%s %r is not YYYY-MM-DD" % (what, s))
-
-
-def date_range(spec):
-    spec = str(spec)
-    a, _, b = spec.partition("..")
-    a, b = d(a), d(b or a)
-    if b < a:
-        raise InputError("range %r ends before it starts" % spec)
-    return [a + dt.timedelta(days=i) for i in range((b - a).days + 1)]
-
-
-# ----------------------------------------------------------------------------- inputs
-def load_team(cfg):
-    if "period" not in cfg or not cfg.get("people"):
-        raise InputError("team JSON needs 'period' and 'people'")
-    t = dict(cfg)
-    t["days"] = date_range(cfg["period"])
-    t["workdays"] = [w.lower()[:3] for w in cfg.get("workdays", DAYS[:5])]
-    t["holidays"] = {d(h, "holiday") for h in cfg.get("holidays", [])}
-    t["coverage"] = {k: int(v) for k, v in (cfg.get("coverage") or {}).items()}
-    over = {}
-    for o in cfg.get("coverage_overrides", []):
-        for day in date_range(o["dates"]):
-            over[day] = {k: int(v) for k, v in o["coverage"].items()}
-    t["overrides"] = over
-    t["blackout"] = [(set(date_range(b["dates"])), b.get("reason", "blackout")) for b in cfg.get("blackout", [])]
-    t["peak"] = set(date_range(cfg["peak_days"])) if cfg.get("peak_days") else set()
-    people = OrderedDict()
-    for p in cfg["people"]:
-        if "name" not in p:
-            raise InputError("every person needs a name")
-        q = dict(p)
-        q["roles"] = list(p.get("roles", []))
-        q["days"] = [w.lower()[:3] for w in p.get("days", t["workdays"])]
-        q["allowance"] = float(p.get("allowance", 0))
-        q["taken"] = float(p.get("taken", 0))
-        q["carryover_max"] = p.get("carryover_max", cfg.get("carryover_max"))
-        people[p["name"]] = q
-    t["people"] = people
-    roles = {r for p in people.values() for r in p["roles"]}
-    for r in list(t["coverage"]) + [r for o in over.values() for r in o]:
-        if r != "any" and r not in roles:
-            raise InputError("coverage role %r is not held by anyone" % r)
-    return t
-
-
-def load_leave(path, team):
-    out = []
-    with open(path, newline="", encoding="utf-8") as f:
-        rows = [r for r in f if r.strip() and not r.lstrip().startswith("#")]
-    for n, row in enumerate(csv.DictReader(rows), 2):
-        name = (row.get("person") or "").strip()
-        if name not in team["people"]:
-            raise InputError("leave line %d: unknown person %r" % (n, name))
-        typ = (row.get("type") or "vacation").strip().lower()
-        if typ not in TYPE_CODE:
-            raise InputError("leave line %d: type must be one of %s" % (n, ", ".join(TYPE_CODE)))
-        status = (row.get("status") or "requested").strip().lower()
-        if status not in ("approved", "requested", "declined"):
-            raise InputError("leave line %d: status must be approved, requested or declined" % n)
-        start, end = d(row.get("start"), "start"), d(row.get("end") or row.get("start"), "end")
-        if end < start:
-            raise InputError("leave line %d: end before start" % n)
-        out.append({"id": n, "person": name, "start": start, "end": end, "type": typ, "status": status,
-                    "submitted": (row.get("submitted") or "").strip() or "9999-12-31",
-                    "half": (row.get("half_day") or "").strip().lower() in ("yes", "y", "true", "1"),
-                    "notes": (row.get("notes") or "").strip()})
-    return out
-
-
-# ----------------------------------------------------------------------------- core
-def is_workday(team, day):
-    return DAYS[day.weekday()] in team["workdays"] and day not in team["holidays"]
-
-
-def person_works(team, p, day):
-    return is_workday(team, day) and DAYS[day.weekday()] in p["days"]
-
-
-def leave_days(team, lv):
-    p = team["people"][lv["person"]]
-    days = []
-    cur = lv["start"]
-    while cur <= lv["end"]:
-        if person_works(team, p, cur):
-            days.append(cur)
-        cur += dt.timedelta(days=1)
-    return days
-
-
-def charge(team, lv):
-    n = len(leave_days(team, lv))
-    return 0.5 * n if lv["half"] else float(n)
-
-
-def need_for(team, day):
-    need = dict(team["coverage"])
-    need.update(team["overrides"].get(day, {}))
-    return need
-
-
-def shortfall(team, day, off):
-    """Return {role: missing} for one day given the set of people off."""
-    if not is_workday(team, day):
-        return {}
-    avail = [p for n, p in team["people"].items() if n not in off and person_works(team, p, day)]
-    need = need_for(team, day)
-    slots = [r for r, k in sorted(need.items()) if r != "any" for _ in range(k)]
-    match = {}  # slot index -> person name
-
-    def try_assign(pi, seen):
-        for si, role in enumerate(slots):
-            if role in avail[pi]["roles"] and si not in seen:
-                seen.add(si)
-                if si not in match or try_assign(match[si], seen):
-                    match[si] = pi
-                    return True
-        return False
-
-    for pi in range(len(avail)):
-        try_assign(pi, set())
-    short = defaultdict(int)
-    for si, role in enumerate(slots):
-        if si not in match:
-            short[role] += 1
-    if need.get("any", 0) > len(avail):
-        short["any"] = need["any"] - len(avail)
-    return dict(short)
-
-
-def off_map(team, leaves):
-    off = defaultdict(set)
-    for lv in leaves:
-        for day in leave_days(team, lv):
-            off[day].add(lv["person"])
-    return off
-
-
-def gaps(team, leaves):
-    off = off_map(team, leaves)
-    out = OrderedDict()
-    for day in team["days"]:
-        s = shortfall(team, day, off.get(day, set()))
-        if s:
-            out[day] = s
-    return out
-
-
-def total(g):
-    return sum(sum(v.values()) for v in g.values())
-
-
-def new_gaps(before, after):
-    out = OrderedDict()
-    for day, s in after.items():
-        b = before.get(day, {})
-        worse = {r: k - b.get(r, 0) for r, k in s.items() if k > b.get(r, 0)}
-        if worse:
-            out[day] = worse
-    return out
-
-
-def blackout_hit(team, lv):
-    days = set(leave_days(team, lv))
-    for bdays, reason in team["blackout"]:
-        hit = sorted(days & bdays)
-        if hit:
-            return hit, reason
-    return None, None
-
-
-def suggest(team, current, lv, max_shift=15):
-    """Nearest shift of the same request (same calendar length) that keeps coverage."""
-    length = (lv["end"] - lv["start"]).days
-    want = len(leave_days(team, lv))
-    base = gaps(team, current)
-    first, last = team["days"][0], team["days"][-1]
-    for shift in sorted(range(-max_shift, max_shift + 1), key=lambda x: (abs(x), x)):
-        if shift == 0:
-            continue
-        cand = dict(lv, start=lv["start"] + dt.timedelta(days=shift), end=lv["start"] + dt.timedelta(days=shift + length))
-        if cand["start"] < first or cand["end"] > last:
-            continue
-        if len(leave_days(team, cand)) < want or blackout_hit(team, cand)[0]:
-            continue
-        if not new_gaps(base, gaps(team, current + [cand])):
-            return cand
-    return None
-
-
-def trimmed(team, current, lv):
-    """Longest part of a blackout-hitting request, before the first blackout day, that keeps coverage."""
-    hit, _ = blackout_hit(team, lv)
-    days = [x for x in leave_days(team, lv) if x < hit[0]]
-    base = gaps(team, current)
-    best = None
-    for i in range(len(days)):
-        for j in range(len(days) - 1, i - 1, -1):
-            if best and j - i + 1 <= len(leave_days(team, best)):
-                break
-            cand = dict(lv, start=days[i], end=days[j])
-            if not new_gaps(base, gaps(team, current + [cand])):
-                best = cand
-                break
-    return best
-
-
-def plan(team, leaves):
-    findings = []
-
-    def add(sev, code, msg):
-        findings.append({"severity": sev, "code": code, "message": msg})
-
-    approved = [l for l in leaves if l["status"] == "approved"]
-    requests = [l for l in leaves if l["status"] == "requested"]
-    used = defaultdict(float)
-    for l in approved:
-        if l["type"] == "vacation":
-            used[l["person"]] += charge(team, l)
-
-    g_approved = gaps(team, approved)
-    for day, s in g_approved.items():
-        add("high", "LV01", "%s %s: approved leave already leaves %s short" % (
-            day.isoformat(), DAYS[day.weekday()].title(), ", ".join("%s by %d" % (r, k) for r, k in sorted(s.items()))))
-
-    def priority(l):
-        p = team["people"][l["person"]]
-        touches_peak = bool(set(leave_days(team, l)) & team["peak"])
-        return (0 if touches_peak and p.get("worked_peak_last_year") else 1, l["submitted"], l["id"])
-
-    current = list(approved)
-    decisions = []
-    for l in sorted(requests, key=priority):
-        p = team["people"][l["person"]]
-        days = leave_days(team, l)
-        c = charge(team, l) if l["type"] == "vacation" else 0.0
-        dec = {"leave": l, "workdays": len(days), "charge": c, "decision": "approve", "reason": "", "suggestion": None}
-        if not days:
-            dec.update(decision="no workdays", reason="falls on holidays / non-working days only")
-        elif l["type"] == "vacation" and p["allowance"] and p["taken"] + used[l["person"]] + c > p["allowance"] + 1e-9:
-            left = p["allowance"] - p["taken"] - used[l["person"]]
-            dec.update(decision="over allowance", reason="needs %g days, %g left" % (c, max(left, 0)))
-        else:
-            hit, reason = blackout_hit(team, l)
-            if hit:
-                dec.update(decision="blackout", reason="%s (%s)" % (reason, ", ".join(x.strftime("%d %b") for x in hit)))
-            else:
-                ng = new_gaps(gaps(team, current), gaps(team, current + [l]))
-                if ng:
-                    roles = sorted({r for s in ng.values() for r in s})
-                    dec.update(decision="conflict", reason="%s short on %s" % (
-                        "/".join(roles), ", ".join(x.strftime("%d %b") for x in ng)))
-        if dec["decision"] == "approve":
-            current.append(l)
-            used[l["person"]] += c
-        elif dec["decision"] in ("conflict", "blackout"):
-            s = suggest(team, current, l)
-            if s:
-                dec["suggestion"] = "%s to %s" % (s["start"].strftime("%a %d %b"), s["end"].strftime("%a %d %b"))
-            elif dec["decision"] == "blackout":
-                t = trimmed(team, current, l)
-                if t:
-                    dec["suggestion"] = "shorten to %s - %s (%d workday(s), back before the blackout)" % (
-                        t["start"].strftime("%a %d %b"), t["end"].strftime("%a %d %b"), len(leave_days(team, t)))
-        decisions.append(dec)
-
-    approved_peak = defaultdict(int)
-    for l in current:
-        approved_peak[l["person"]] += len(set(leave_days(team, l)) & team["peak"])
-    for dec in decisions:
-        l = dec["leave"]
-        p = team["people"][l["person"]]
-        if dec["decision"] != "approve" and p.get("worked_peak_last_year") and set(leave_days(team, l)) & team["peak"]:
-            lucky = [n for n, k in approved_peak.items() if k and not team["people"][n].get("worked_peak_last_year")]
-            add("medium", "LV05", "%s worked the peak last year but this request is %s while %s get peak days off; "
-                "consider swapping." % (l["person"], dec["decision"], ", ".join(sorted(lucky)) or "nobody"))
-
-    g_final = gaps(team, current)
-    allowance = []
-    for n, p in team["people"].items():
-        planned_req = sum(dec["charge"] for dec in decisions if dec["leave"]["person"] == n and dec["decision"] == "approve")
-        appr = used[n] - planned_req
-        left = p["allowance"] - p["taken"] - used[n] if p["allowance"] else None
-        allowance.append({"person": n, "allowance": p["allowance"], "taken_before": p["taken"], "approved": appr,
-                          "recommended": planned_req, "left": left, "peak_days_off": approved_peak.get(n, 0)})
-        if p["allowance"] and p["taken"] + appr > p["allowance"] + 1e-9:
-            add("high", "LV02", "%s's approved leave exceeds the allowance by %g days (%g + %g taken of %g); "
-                "confirm carry-over or unpaid leave with HR." % (n, p["taken"] + appr - p["allowance"], p["taken"],
-                                                               appr, p["allowance"]))
-        cm = p.get("carryover_max")
-        if left is not None and cm is not None and left > float(cm):
-            add("low", "LV06", "%s will still have %g days left (carry-over limit %g); %g day(s) are lost unless booked."
-                % (n, left, float(cm), left - float(cm)))
-
-    for role, k in sorted(team["coverage"].items()):
-        if role == "any":
-            continue
-        holders = [n for n, p in team["people"].items() if role in p["roles"]]
-        if len(holders) <= k:
-            add("medium", "LV03", "Only %d people can cover %s (minimum %d): any absence by %s breaks coverage; "
-                "cross-train a backup." % (len(holders), role, k, ", ".join(holders)))
-        elif len(holders) == k + 1:
-            add("low", "LV03", "%s has one spare person (%s for a minimum of %d); two absences at once break it."
-                % (role, ", ".join(holders), k))
-    for day, s in g_final.items():
-        if day not in g_approved:
-            add("high", "LV01", "%s still short after decisions: %s" % (day, s))
-    for dec in decisions:
-        if dec["decision"] in ("conflict", "blackout"):
-            l = dec["leave"]
-            add("medium", "LV04", "%s %s-%s: %s (%s)%s" % (
-                l["person"], l["start"].strftime("%d %b"), l["end"].strftime("%d %b"), dec["decision"], dec["reason"],
-                ("; offer " + dec["suggestion"]) if dec["suggestion"] else "; no gap-free alternative within 15 days"))
-        elif dec["decision"] == "over allowance":
-            l = dec["leave"]
-            add("medium", "LV02", "%s %s-%s: %s; approve a shorter trip or agree unpaid days" % (
-                l["person"], l["start"].strftime("%d %b"), l["end"].strftime("%d %b"), dec["reason"]))
-    thin = []
-    off = off_map(team, current)
-    for day in team["days"]:
-        if not is_workday(team, day):
-            continue
-        working = [n for n, p in team["people"].items() if n not in off.get(day, set()) and person_works(team, p, day)]
-        if len(working) == need_for(team, day).get("any", 0):
-            thin.append(day)
-    if thin:
-        add("info", "LV07", "No slack on %d day(s) (%s): one sick day breaks coverage; line up a backup." % (
-            len(thin), ", ".join(x.strftime("%d %b") for x in thin)))
-    order = {"high": 0, "medium": 1, "low": 2, "info": 3}
-    findings.sort(key=lambda f: (order[f["severity"]], f["code"]))
-    return {"team": team.get("team", "Team"), "period": team["period"], "gaps_approved": g_approved,
-            "gaps_final": g_final, "decisions": decisions, "allowance": allowance, "findings": findings,
-            "current": current, "thin": thin}
-
-
-# ----------------------------------------------------------------------------- report
-def grid(team, leaves_final, all_leaves):
-    days = [x for x in team["days"] if x.weekday() < 5 or DAYS[x.weekday()] in team["workdays"]]
-    final_ids = {l["id"] for l in leaves_final}
-    cell = defaultdict(dict)
-    for l in all_leaves:
-        if l["status"] == "declined":
-            continue
-        for day in leave_days(team, l):
-            if l["id"] in final_ids:
-                c = TYPE_CODE[l["type"]] if l["status"] == "approved" else TYPE_CODE[l["type"]].lower()
-            else:
-                c = "x"
-            if l["half"]:
-                c = "h" if c != "x" else "x"
-            cell[l["person"]][day] = c
-    width = max([len(n) for n in team["people"]] + [len("cover " + r) for r in team["coverage"]]) + 2
-    months = " " * width + "".join(x.strftime("%b")[0] if i == 0 or x.month != days[i - 1].month
-                                   else " " for i, x in enumerate(days))
-    L = [months, " " * width + "".join(str(x.day // 10) for x in days),
-         " " * width + "".join(str(x.day % 10) for x in days),
-         " " * width + "".join(DAYS[x.weekday()][0].upper() for x in days)]
-    for n, p in team["people"].items():
-        row = []
-        for x in days:
-            if x in team["holidays"]:
-                row.append("H")
-            elif not person_works(team, p, x):
-                row.append("-")
-            else:
-                row.append(cell[n].get(x, "."))
-        L.append(n.ljust(width) + "".join(row))
-    off = off_map(team, leaves_final)
-    for role in sorted(team["coverage"]):
-        row = []
-        for x in days:
-            if not is_workday(team, x):
-                row.append(" ")
-                continue
-            s = shortfall(team, x, off.get(x, set()))
-            row.append("!" if role in s else "+")
-        L.append(("cover " + role).ljust(width) + "".join(row))
-    return L
-
-
-def report(team, leaves, r):
-    L = ["# Leave coverage plan: %s (%s)" % (r["team"], r["period"].replace("..", " to ")), ""]
-    need = ", ".join("%s %d" % (k, v) for k, v in sorted(team["coverage"].items()))
-    L.append("Minimum cover per workday: %s.  Holidays (closed): %s." % (
-        need, ", ".join(x.strftime("%d %b") for x in sorted(team["holidays"])) or "none"))
-    n_appr = sum(1 for dec in r["decisions"] if dec["decision"] == "approve")
-    verdict = ("approved leave already breaks coverage" if r["gaps_approved"] else
-               "over allowance on approved leave" if any(f["code"] == "LV02" and f["severity"] == "high" for f in r["findings"])
-               else "covered")
-    L += ["", "**Verdict: %s** - %d of %d open requests can be approved without a gap; %d need a decision." % (
-        verdict, n_appr, len(r["decisions"]), len(r["decisions"]) - n_appr), ""]
-    L += ["## Requests (in decision order: worked peak last year first, then first come first served)", "",
-          "| # | Person | Dates | Workdays | Type | Submitted | Decision | Why | Alternative |",
-          "|---|---|---|---|---|---|---|---|---|"]
-    for i, dec in enumerate(r["decisions"], 1):
-        l = dec["leave"]
-        L.append("| %d | %s | %s - %s%s | %s | %s | %s | %s | %s | %s |" % (
-            i, l["person"], l["start"].strftime("%a %d %b"), l["end"].strftime("%a %d %b"), " (half)" if l["half"] else "",
-            ("%g" % (0.5 * dec["workdays"])) if l["half"] else dec["workdays"], l["type"], l["submitted"][:10],
-            dec["decision"], dec["reason"] or "-", dec["suggestion"] or "-"))
-    L += ["", "## Calendar (approved + recommended)", "", "'''"] + grid(team, r["current"], leaves) + [
-        "'''", "V/T/S/P/U/O approved vacation/training/sick/parental/unpaid/other, lowercase = request recommended "
-        "for approval, h = half day, x = request not approved, H = holiday, - = not a working day, "
-        "+ / ! = role covered / short.", ""]
-    L += ["## Allowance (days)", "", "| Person | Allowance | Taken before | Approved here | Recommended | Left | Peak days off |",
-          "|---|---|---|---|---|---|---|"]
-    for a in r["allowance"]:
-        L.append("| %s | %g | %g | %g | %g | %s | %d |" % (a["person"], a["allowance"], a["taken_before"], a["approved"],
-                                                          a["recommended"], "-" if a["left"] is None else "%g" % a["left"],
-                                                          a["peak_days_off"]))
-    L += ["", "## Findings", ""]
-    if not r["findings"]:
-        L.append("- none")
-    for f in r["findings"]:
-        L.append("- **%s %s** %s" % (f["severity"].upper(), f["code"], f["message"]))
-    return "\n".join(L) + "\n"
-
-
-# ----------------------------------------------------------------------------- self-test
-def self_test():
-    import os
-    import tempfile
-    cases = []
-
-    def ok(name, cond, detail=""):
-        cases.append((name, bool(cond), detail))
-
-    base = {"team": "T", "period": "2026-12-14..2026-12-25", "holidays": ["2026-12-25"], "peak_days": "2026-12-21..2026-12-24",
-            "coverage": {"lead": 1, "dev": 1, "any": 2},
-            "people": [{"name": "A", "roles": ["lead", "dev"], "allowance": 10, "taken": 0},
-                       {"name": "B", "roles": ["dev"], "allowance": 10, "taken": 9},
-                       {"name": "C", "roles": ["lead"], "allowance": 10, "taken": 0, "worked_peak_last_year": True},
-                       {"name": "D", "roles": ["dev"], "days": ["mon", "tue"], "allowance": 5, "taken": 0}]}
-    t = load_team(base)
-    ok("weekends and holidays are not workdays", not is_workday(t, d("2026-12-19")) and not is_workday(t, d("2026-12-25")))
-    sf = shortfall(t, d("2026-12-16"), {"B", "C", "D"})
-    ok("one person fills one slot (A cannot be lead and dev)", sf.get("any") == 1 and sf.get("lead", 0) + sf.get("dev", 0) == 1, sf)
-    ok("matching finds A=dev, C=lead", shortfall(t, d("2026-12-16"), {"B", "D"}) == {})
-    ok("part-timer only counts on own days", shortfall(t, d("2026-12-17"), {"A", "B"}) == {"dev": 1, "any": 1}, shortfall(t, d("2026-12-17"), {"A", "B"}))
-    lv = {"id": 1, "person": "D", "start": d("2026-12-14"), "end": d("2026-12-20"), "type": "vacation",
-          "status": "requested", "submitted": "2026-11-01", "half": False, "notes": ""}
-    ok("leave days skip non-working days", len(leave_days(t, lv)) == 2)
-    ok("half day charges 0.5", charge(t, dict(lv, half=True)) == 1.0)
-
-    d0 = tempfile.mkdtemp()
-    csvp = os.path.join(d0, "l.csv")
-    with open(csvp, "w") as f:
-        f.write("person,start,end,type,status,submitted,half_day,notes\n"
-                "A,2026-12-21,2026-12-22,vacation,approved,2026-10-01,,\n"
-                "C,2026-12-21,2026-12-21,vacation,requested,2026-11-10,,\n"
-                "B,2026-12-14,2026-12-16,vacation,requested,2026-10-05,,\n"
-                "D,2026-12-15,2026-12-15,training,requested,2026-11-01,,\n")
-    leaves = load_leave(csvp, t)
-    r = plan(t, leaves)
-    by = {(dec["leave"]["person"]): dec for dec in r["decisions"]}
-    ok("C conflicts with A's approved leave (no lead)", by["C"]["decision"] == "conflict", by["C"])
-    ok("conflict gets an alternative date", by["C"]["suggestion"] is not None, by["C"])
-    ok("B over allowance (3 days, 1 left)", by["B"]["decision"] == "over allowance", by["B"])
-    ok("D training approved", by["D"]["decision"] == "approve", by["D"])
-    ok("worked-peak person decided first", r["decisions"][0]["leave"]["person"] == "C", [x["leave"]["person"] for x in r["decisions"]])
-    codes = {f["code"] for f in r["findings"]}
-    ok("LV03 single point of failure for lead", "LV03" in codes, codes)
-    ok("LV05 fairness flag for C", "LV05" in codes, codes)
-    ok("no gaps from approved leave", not r["gaps_approved"])
-    with open(csvp, "a") as f:
-        f.write("C,2026-12-21,2026-12-21,sick,approved,2026-12-01,,\n")
-    r2 = plan(t, load_leave(csvp, t))
-    ok("LV01 gap in approved leave", any(f["code"] == "LV01" and f["severity"] == "high" for f in r2["findings"]))
-    t2 = load_team(dict(base, blackout=[{"dates": "2026-12-16", "reason": "release"}]))
-    r3 = plan(t2, load_leave(csvp, t2))
-    ok("blackout precedes coverage", any(x["decision"] == "blackout" for x in r3["decisions"]) or
-       all(x["leave"]["person"] != "B" or x["decision"] == "over allowance" for x in r3["decisions"]))
-    lvb = dict(lv, person="A", start=d("2026-12-16"), end=d("2026-12-16"))
-    ok("blackout_hit detects overlap", blackout_hit(t2, lvb)[0] == [d("2026-12-16")])
-    try:
-        load_team(dict(base, coverage={"qa": 1}))
-        ok("unknown coverage role rejected", False)
-    except InputError:
-        ok("unknown coverage role rejected", True)
-    rep = report(t, leaves, r)
-    ok("report has grid and verdict", "Verdict" in rep and "cover lead" in rep)
-
-    for name, good, detail in cases:
-        print("%s  %s%s" % ("PASS" if good else "FAIL", name, "" if good else "  -> %r" % (detail,)))
-    passed = sum(1 for _, g, _ in cases if g)
-    print("%d/%d passed" % (passed, len(cases)))
-    return 0 if passed == len(cases) else 1
-
-
-def to_json(r):
-    def conv(o):
-        if isinstance(o, dt.date):
-            return o.isoformat()
-        if isinstance(o, dict):
-            return {(k.isoformat() if isinstance(k, dt.date) else k): conv(v) for k, v in o.items()}
-        if isinstance(o, (list, tuple)):
-            return [conv(x) for x in o]
-        return o
-    return json.dumps(conv(r), indent=2)
-
-
-def main(argv=None):
-    ap = argparse.ArgumentParser(description="Plan team leave against minimum coverage.")
-    ap.add_argument("team", nargs="?")
-    ap.add_argument("leave", nargs="?")
-    ap.add_argument("--json", action="store_true")
-    ap.add_argument("--self-test", action="store_true")
-    a = ap.parse_args(argv)
-    if a.self_test:
-        return self_test()
-    if not (a.team and a.leave):
-        ap.print_usage(sys.stderr)
-        return 2
-    try:
-        with open(a.team, encoding="utf-8") as f:
-            team = load_team(json.load(f))
-        leaves = load_leave(a.leave, team)
-        r = plan(team, leaves)
-    except (InputError, OSError, json.JSONDecodeError, KeyError) as e:
-        print("error: %s" % e, file=sys.stderr)
-        return 2
-    print(to_json(r) if a.json else report(team, leaves, r), end="\n" if a.json else "")
-    bad = r["gaps_approved"] or any(f["code"] == "LV02" and f["severity"] == "high" for f in r["findings"])
-    return 1 if bad else 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())
-```
-
-</details>
-
-<details><summary><b>Tech Troubleshooter</b></summary>
-
-```text
-I want you to act as a tech troubleshooter. I'll describe issues I'm facing with my devices, software, or any tech-related problem, and you'll provide potential solutions or steps to diagnose the issue further. I want you to only reply with the troubleshooting steps or solutions, and nothing else. Do not write explanations unless I ask for them. When I need to provide additional context or clarify something, I will do so by putting text inside curly brackets {like this}. My first issue is "My computer won't turn on. {It was working fine yesterday.}"
-```
-
-</details>
-
-<details><summary><b>Technical Deep Dive</b></summary>
-
-```text
-Perform a technical analysis of the outlined project.
-
-Analyze:
-- Technical requirements and dependencies
-- Architecture considerations
-- Potential technical challenges
-- Required tools and technologies
-- Performance implications
-
-Provide a detailed technical assessment with recommendations.
 ```
 
 </details>

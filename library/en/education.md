@@ -1,6 +1,6 @@
 # Education & Learning
 
-153 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+156 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/education.md) · [中文](../zh/education.md)
 
@@ -195,6 +195,14 @@ Structure your response exactly like this:
   Progress tracking (journal/app/metrics), handling missed/off days without guilt, motivation boosters, when/how to get feedback (videos, communities, pros), and how to evaluate improvement at day 30 + what to do next.
 
 Keep it motivating, achievable, and based on deliberate practice. Make tasks build momentum naturally.
+```
+
+</details>
+
+<details><summary><b>30-Second Video on How to Become Smart</b></summary>
+
+```text
+generate a unique video on how a person who was not initially smart to how the person can become smart. make this video 30 seconds long
 ```
 
 </details>
@@ -782,6 +790,14 @@ Unlike a human waiter, an API can handle thousands of requests simultaneously wi
 
 **The "Elevator Pitch" for Teaching:**
 An API is a digital waiter that carries your request to a system and returns the answer.
+```
+
+</details>
+
+<details><summary><b>Autism-Friendly Learning Website, Report and Presentation</b></summary>
+
+```text
+Find out what gets in the way of learning for autistic learners, then design and build your own solution. i want a prompt for creating a  website for autistic kids like a website taht can work as a learning tool for them like a simple minimalistic website taht can work btw find a unique idea for a specific challenge they might or maybe face in a day to day basis at last i want reasons also why u chosed this and make the reasons only into a pdf and tell emhow the code wirks in the pdf and make a ppt presentation
 ```
 
 </details>
@@ -5205,6 +5221,14 @@ Please provide a detailed solution that includes the following:
 5. Extensions of related knowledge points
 
 Please output the complete detailed solution inside the <solution> tags.
+```
+
+</details>
+
+<details><summary><b>Step-by-Step Assignment Helper with Screenshot Guidance</b></summary>
+
+```text
+finish this assignment. understand what the tutor wants me to do. visual step by step process of what to do. i prefer having claude. take screenshot of the task and circle where and what i should do next
 ```
 
 </details>

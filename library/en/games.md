@@ -1,6 +1,6 @@
 # Games & Fun
 
-71 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+72 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/games.md) · [中文](../zh/games.md)
 
@@ -379,6 +379,14 @@ This skill allows AI agents to function as virtual chess coaches, helping users 
 ## Variables
 - **${currentBoardState}**: A representation of the current board layout.
 - **${opponentStrategy}**: Insights into the opponent's strategy based on their previous moves.
+```
+
+</details>
+
+<details><summary><b>Classic GTA-Style Game with Missions and Storyline</b></summary>
+
+```text
+make a game like gta the first one with missions and good storyline with great hud and gr5ahics
 ```
 
 </details>

@@ -1,10 +1,1137 @@
-# Coding & Development (5/13)
+# Coding & Development (5/14)
 
-706 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+739 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
-Pages: [1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · **5** · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md) · [13](coding-13.md)
+Pages: [1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · **5** · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md) · [13](coding-13.md) · [14](coding-14.md)
+
+<details><summary><b>Dotenv Config and Secrets Linter</b></summary>
+
+```text
+---
+name: dotenv-config-linter
+description: Lints .env and .env.example files for secrets committed by mistake, weak names, duplicate keys, export prefixes, spaces around equals, empty required values, and unsafe interpolation, then suggests a cleaned example file. Use when a user asks "is this .env safe to commit?", "why won't dotenv load?", or "diff my .env.example". Includes a tested stdlib Python linter.
+---
+
+# Dotenv Config and Secrets Linter
+
+You help people keep environment files correct and safe. You distinguish secrets that must never be committed from placeholders that belong in `.env.example`, catch parse problems that break `dotenv` loaders, and propose a cleaned example file. You never ask the user to paste production secrets into chat if a redacted sample will do.
+
+## Files in this skill
+
+- `scripts/dotenv_lint.py` - parses dotenv syntax, reports HIGH/WARN/INFO findings, and can emit a sanitized `.env.example` (Python 3 standard library only)
+- `references/dotenv-rules.md` - syntax and safety rules the linter encodes
+- `references/secret-patterns.md` - common secret shapes and how to replace them with placeholders
+- `templates/lint-report.md` - the report shape to return
+- `examples/example-webapp-env-review.md` - a worked review of a messy web app env file
+
+## Workflow
+
+### 1. Collect the facts
+- Whether the file is `.env` (local secrets), `.env.example` (placeholders), or CI env config.
+- Which keys are required at boot.
+- Whether the repo already has a secret scanner (gitleaks, trufflehog).
+
+### 2. Run the linter
+'''bash
+python3 scripts/dotenv_lint.py .env
+python3 scripts/dotenv_lint.py .env.example --example-mode
+python3 scripts/dotenv_lint.py app.env --emit-example cleaned.env.example
+python3 scripts/dotenv_lint.py - --json < sample.env
+'''
+Prefer redacted samples. If the user pastes real secrets, warn them to rotate anything that may have leaked.
+
+### 3. Fix
+1. Treat HIGH findings (likely real secrets in an example file, duplicate keys, unquoted values with spaces) first.
+2. Align `.env.example` with required keys using placeholders from `references/secret-patterns.md`.
+3. Deliver with `templates/lint-report.md`.
+
+## Rules
+- Never recommend committing a real `.env` with live credentials.
+- Do not print full secret values in summaries; show masked forms (`sk-…XXXX`).
+- Keep key names stable unless the user wants a rename for clarity.
+FILE:references/dotenv-rules.md
+# Dotenv rules this skill enforces
+
+## Syntax
+- One `KEY=VALUE` per line; `#` starts a comment.
+- Prefer no spaces around `=`. `KEY = VALUE` is WARN (some loaders accept it, many do not).
+- Values with spaces or `#` should be single- or double-quoted.
+- `export KEY=VALUE` is INFO (works in shells, redundant for most dotenv parsers).
+- Duplicate keys: last one wins in many loaders — flag as HIGH because intent is unclear.
+
+## Safety
+- `.env.example` must not contain values that look like live secrets (long random tokens, private keys, `sk-`/`ghp_` prefixes, AWS-shaped keys).
+- Empty values for keys listed as required → WARN.
+- Interpolation `${OTHER}` is INFO; confirm the referenced key exists.
+
+## Naming
+- Prefer `SCREAMING_SNAKE_CASE`.
+- Avoid generic names like `PASSWORD` without a service prefix (`DB_PASSWORD`).
+FILE:references/secret-patterns.md
+# Secret patterns → placeholders
+
+| Looks like | Placeholder |
+|---|---|
+| `sk-` + long alnum | `sk-your-openai-key` |
+| `ghp_` / `github_pat_` | `ghp_your_token` |
+| `AKIA` + 16 chars | `AKIA_YOUR_ACCESS_KEY` |
+| `-----BEGIN` private key block | omit from example; document path instead |
+| Long base64-ish 32+ chars | `replace-me` or `changeme_<purpose>` |
+| Database URLs with passwords | `postgres://USER:PASSWORD@host:5432/db` |
+
+When emitting an example file, replace secret-looking values with placeholders and keep non-secret config (ports, feature flags, public URLs) as-is if they are clearly non-sensitive.
+FILE:templates/lint-report.md
+# Dotenv lint report
+
+## File reviewed
+- Path / role: `.env` | `.env.example` | other
+
+## Summary
+- HIGH: …
+- WARN: …
+- INFO: …
+
+## Findings
+| Severity | Line | Key | Issue | Fix |
+|---|---|---|---|---|
+
+## Suggested `.env.example`
+'''dotenv
+…
+'''
+
+## Rotate if exposed
+- …
+FILE:examples/example-webapp-env-review.md
+# Example: messy webapp `.env.example`
+
+**Input (bad):**
+'''
+export DB_URL=postgres://app:SuperSecret123@db:5432/app
+API_KEY = sk-proj-abcdefghijklmnopqrstuvwxyz012345
+PORT=3000
+PORT=3001
+FEATURE_X=true
+'''
+
+**Findings:**
+- HIGH: `API_KEY` looks like a live OpenAI-style key in an example file.
+- HIGH: duplicate `PORT`.
+- WARN: spaces around `=` on `API_KEY`.
+- INFO: `export` prefix on `DB_URL`.
+- HIGH: database password embedded in example URL.
+
+**Cleaned example:**
+'''
+DB_URL=postgres://USER:PASSWORD@db:5432/app
+API_KEY=sk-your-openai-key
+PORT=3000
+FEATURE_X=true
+'''
+FILE:scripts/dotenv_lint.py
+#!/usr/bin/env python3
+"""Lint .env / .env.example files for syntax and likely secrets.
+
+Usage:
+  python3 dotenv_lint.py .env
+  python3 dotenv_lint.py .env.example --example-mode
+  python3 dotenv_lint.py app.env --emit-example cleaned.env.example
+  python3 dotenv_lint.py - --json < sample.env
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+SECRET_RES = [
+    (re.compile(r"sk-[A-Za-z0-9-]{20,}"), "openai-like key"),
+    (re.compile(r"ghp_[A-Za-z0-9]{20,}"), "github token"),
+    (re.compile(r"github_pat_[A-Za-z0-9_]{20,}"), "github pat"),
+    (re.compile(r"AKIA[0-9A-Z]{16}"), "aws access key id"),
+    (re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"), "private key block"),
+    (re.compile(r"(?i)password=([^&\s]{8,})"), "password in URL"),
+    (re.compile(r"(?i)://[^:/@]+:[^@/]{8,}@"), "credentials embedded in URL"),
+]
+LINE_RE = re.compile(
+    r"^(?P<export>export\s+)?(?P<key>[A-Za-z_][A-Za-z0-9_]*)\s*=\s*(?P<val>.*)$"
+)
+
+
+def mask(val: str) -> str:
+    if len(val) <= 8:
+        return "***"
+    return val[:3] + "…" + val[-4:]
+
+
+def looks_placeholder(val: str) -> bool:
+    v = val.strip().strip("'\"")
+    low = v.lower()
+    if (
+        not v
+        or "your-" in low
+        or "changeme" in low
+        or "replace" in low
+        or "example" in low
+        or low in {"password", "user", "todo", "xxx"}
+        or "user:password@" in low
+        or "://user:password@" in low
+    ):
+        return True
+    # URL with obvious placeholders
+    if "://" in v and "@" in v:
+        if re.search(r"://(USER|user|USERNAME|username):(PASSWORD|password|PASS|pass|secret)@", v):
+            return True
+    return False
+
+
+def parse_file(text: str) -> tuple[list[dict], list[dict]]:
+    findings = []
+    entries = []
+    seen = {}
+    for i, line in enumerate(text.splitlines(), 1):
+        raw = line.rstrip("\n")
+        stripped = raw.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        m = LINE_RE.match(stripped)
+        if not m:
+            findings.append({"severity": "HIGH", "line": i, "key": None,
+                             "issue": "unparseable line", "fix": "use KEY=VALUE"})
+            continue
+        key, val, export = m.group("key"), m.group("val"), m.group("export")
+        if re.search(r"\s=\s|=\s|\s=", raw.split("#")[0]) and " = " in raw:
+            findings.append({"severity": "WARN", "line": i, "key": key,
+                             "issue": "spaces around equals", "fix": f"{key}={val.strip()}"})
+        if export:
+            findings.append({"severity": "INFO", "line": i, "key": key,
+                             "issue": "export prefix", "fix": "drop export for dotenv parsers"})
+        if key in seen:
+            findings.append({"severity": "HIGH", "line": i, "key": key,
+                             "issue": f"duplicate key (also line {seen[key]})",
+                             "fix": "keep a single definition"})
+        seen[key] = i
+        # strip inline comments for unquoted values
+        store_val = val
+        if val and not (val.startswith("'") or val.startswith('"')):
+            if " #" in val:
+                store_val = val.split(" #", 1)[0].rstrip()
+        entries.append({"line": i, "key": key, "value": store_val, "raw": raw})
+    return findings, entries
+
+
+def secret_findings(entries: list[dict], example_mode: bool) -> list[dict]:
+    out = []
+    for e in entries:
+        val = e["value"].strip().strip("'\"")
+        if looks_placeholder(val):
+            continue
+        for rx, label in SECRET_RES:
+            if rx.search(val):
+                sev = "HIGH" if example_mode else "WARN"
+                out.append({"severity": sev, "line": e["line"], "key": e["key"],
+                            "issue": f"likely secret ({label}): {mask(val)}",
+                            "fix": "replace with placeholder in example files; rotate if committed"})
+                break
+        else:
+            # long random-ish token
+            if example_mode and len(val) >= 32 and re.fullmatch(r"[A-Za-z0-9+/=_-]+", val):
+                out.append({"severity": "HIGH", "line": e["line"], "key": e["key"],
+                            "issue": f"long token-like value: {mask(val)}",
+                            "fix": "use a placeholder like replace-me"})
+    return out
+
+
+def emit_example(entries: list[dict]) -> str:
+    lines = []
+    seen = set()
+    for e in entries:
+        if e["key"] in seen:
+            continue
+        seen.add(e["key"])
+        val = e["value"].strip().strip("'\"")
+        secret = False
+        if not looks_placeholder(val):
+            for rx, _ in SECRET_RES:
+                if rx.search(val):
+                    secret = True
+                    break
+            if len(val) >= 32 and re.fullmatch(r"[A-Za-z0-9+/=_-]+", val):
+                secret = True
+        if secret or (val and not looks_placeholder(val) and re.search(r"(?i)secret|password|token|api[_-]?key", e["key"])):
+            if re.search(r"(?i)api[_-]?key|token", e["key"]):
+                new_v = "replace-me-token"
+            elif re.search(r"(?i)password|secret", e["key"]):
+                new_v = "changeme"
+            elif "://" in val and "@" in val:
+                new_v = re.sub(r"://([^:/@]+):([^@/]+)@", r"://USER:PASSWORD@", val)
+            else:
+                new_v = "replace-me"
+        else:
+            new_v = val
+        lines.append(f"{e['key']}={new_v}")
+    return "\n".join(lines) + ("\n" if lines else "")
+
+
+def main(argv: list[str]) -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("path", help="Env file path, or - for stdin")
+    ap.add_argument("--example-mode", action="store_true",
+                    help="Treat file as .env.example (secrets are HIGH)")
+    ap.add_argument("--emit-example", metavar="PATH", help="Write sanitized example file")
+    ap.add_argument("--json", action="store_true")
+    args = ap.parse_args(argv)
+
+    if args.path == "-":
+        text = sys.stdin.read()
+    else:
+        path = Path(args.path)
+        if not path.is_file():
+            print(f"error: file not found: {args.path}", file=sys.stderr)
+            return 2
+        text = path.read_text(encoding="utf-8")
+    example_mode = args.example_mode or (args.path != "-" and Path(args.path).name.endswith(".example"))
+    findings, entries = parse_file(text)
+    findings.extend(secret_findings(entries, example_mode))
+    findings.sort(key=lambda f: ({"HIGH": 0, "WARN": 1, "INFO": 2}[f["severity"]], f["line"] or 0))
+
+    example = emit_example(entries)
+    if args.emit_example:
+        Path(args.emit_example).write_text(example, encoding="utf-8")
+
+    summary = {"HIGH": 0, "WARN": 0, "INFO": 0}
+    for f in findings:
+        summary[f["severity"]] += 1
+
+    if args.json:
+        json.dump({"summary": summary, "findings": findings, "example": example}, sys.stdout, indent=2)
+        sys.stdout.write("\n")
+    else:
+        print(f"summary: HIGH={summary['HIGH']} WARN={summary['WARN']} INFO={summary['INFO']}")
+        for f in findings:
+            key = f["key"] or "-"
+            print(f"[{f['severity']}] line {f['line']}: {key}: {f['issue']} → {f['fix']}")
+        if args.emit_example:
+            print(f"wrote example: {args.emit_example}")
+    return 1 if summary["HIGH"] else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
+```
+
+</details>
+
+<details><summary><b>Draft PR to Ready for Review</b></summary>
+
+```text
+How do I transition a draft PR to a ready to review to allow my team to review it before merging it into the main branch?
+```
+
+</details>
+
+<details><summary><b>Drawing App</b></summary>
+
+```text
+Create an interactive drawing application using HTML5 Canvas, CSS3, and JavaScript. Build a clean interface with intuitive tool selection. Implement multiple drawing tools including brush, pencil, shapes, text, and eraser. Add color selection with recent colors, color picker, and palettes. Include layer support with opacity and blend mode options. Implement undo/redo functionality with history states. Add image import and export in multiple formats (PNG, JPG, SVG). Support canvas resizing and rotation. Implement zoom and pan navigation. Add selection tools with move, resize, and transform capabilities. Include keyboard shortcuts for common actions.
+```
+
+</details>
+
+<details><summary><b>Dynamic Ad Integration for Live Broadcasts</b></summary>
+
+```text
+Generate a Prompt and Act as an expert full-stack web developer and UI/UX designer. Help me build modern, responsive, and professional websites using HTML, CSS, JavaScript, React, Node.js, and databases when needed. Generate clean, optimized, and well-structured code with proper comments and best practices and generate it for a Full Hackathon basis so that It will build best web developed app or the topic "To Develop an AI-powered dynamic content integration system for live IPL broadcasts that identifies traditional ad breaks and seamlessly overlays contextually relevant products related to the foods items , or the sports essentials ,etc for placements directly into scene backgrounds or objects, creating a continuous and non-disruptive viewing experience for the audience . or you can create on the basis of "Design a real-time contextual ad insertion engine that leverages computer vision to analyze live IPL broadcasts, identifying optimal surface areas for virtual signage and dynamically rendering brand-aligned graphics that blend seamlessly with the action."
+```
+
+</details>
+
+<details><summary><b>Elasticsearch Search Project with FastAPI</b></summary>
+
+```text
+Act as a proficient software developer. You are tasked with building a comprehensive Elasticsearch search project using FastAPI. Your project should:
+
+- Support various search methods: keyword, semantic, and vector search.
+- Implement data splitting and importing functionalities for efficient data management.
+- Include mechanisms to synchronize data from PostgreSQL to Elasticsearch.
+- Design the system to be extensible, allowing for future integration with Kafka.
+
+Responsibilities:
+- Use FastAPI to create a robust and efficient API for search functionalities.
+- Ensure Elasticsearch is optimized for various search queries (keyword, semantic, vector).
+- Develop a data pipeline that handles data splitting and imports seamlessly.
+- Implement synchronization features that keep Elasticsearch in sync with PostgreSQL databases.
+- Plan and document potential integration points for Kafka to transport data.
+
+Rules:
+- Adhere to best practices in API development and Elasticsearch usage.
+- Maintain code quality and documentation for future scalability.
+- Consider performance impacts and optimize accordingly.
+
+Use variables such as:
+- ${searchMethod:keyword} to specify the type of search.
+- ${databaseType:PostgreSQL} for database selection.
+- ${integration:kafka} to indicate future integration plans.
+```
+
+</details>
+
+<details><summary><b>Electrical Drawing to I/O List</b></summary>
+
+```text
+I want you to act as a controls technician building an I/O list from electrical drawings. Below is the PLC I/O sheet, typed or pasted as printed: ${Drawing number and revision}. Target platform: ${Platform:any}.
+
+Transcribe it into a table with one row per channel:
+Rack/Slot/Channel | Address as printed | Wire number | Terminal | Field device tag | Description as printed | Device type | NO/NC | Signal type and range | Proposed PLC tag name | Notes
+
+Rules:
+1. Copy text exactly as printed. Do not correct spelling, tag names or wire numbers. Mark anything unreadable as ILLEGIBLE.
+2. Do not fill NO/NC, signal type or range from typical values. If the sheet does not state it, write NOT ON DRAWING.
+3. Spare channels get their own rows marked SPARE.
+4. Proposed tag names follow this convention: ${Tag naming convention:Area_Device_Function}. Keep them separate from the printed text.
+5. After the table, list: duplicate addresses or wire numbers, channels with a device but no description, redlines or clouded changes you noticed, and questions for the drawing owner.
+Give the table as CSV as well, so I can import it.
+
+=== DRAWING SHEET ===
+${Paste or describe the I/O sheet}
+```
+
+</details>
+
+<details><summary><b>Electron App Taste</b></summary>
+
+```text
+# Electron App taste of a desktop developer who takes security seriously
+- Keep `contextIsolation: true` and `nodeIntegration: false` on every `BrowserWindow`; these are non-negotiable defaults. Confidence: 0.98
+- Enable `sandbox: true` for renderers and give each window the smallest preload script it needs. Confidence: 0.90
+- Expose a narrow, typed API from the preload with `contextBridge.exposeInMainWorld` instead of passing `ipcRenderer` through. Confidence: 0.95
+- Use `ipcMain.handle` and `ipcRenderer.invoke` for request and response calls, and validate every argument in the main process. Confidence: 0.90
+- Check the sender frame on IPC messages so only your own pages can call privileged handlers. Confidence: 0.80
+- Set a strict Content Security Policy and never load remote code into a window with privileged preload access. Confidence: 0.90
+- Block unexpected navigation with `will-navigate` and `setWindowOpenHandler`, and open external links in the system browser with `shell.openExternal` after allowlisting the URL. Confidence: 0.90
+- Serve local content through a custom protocol instead of `file://` so origin rules and CSP behave predictably. Confidence: 0.75
+- Write the main, preload and renderer code in TypeScript, sharing IPC channel types from one module. Confidence: 0.85
+- Use Electron Forge or electron-builder with Vite for building and packaging rather than a hand-rolled script. Confidence: 0.80
+- Keep heavy work out of the main process; use utility processes or worker threads so the UI never freezes. Confidence: 0.85
+- Track the latest supported Electron major and upgrade at least every quarter, since each release carries Chromium security fixes. Confidence: 0.85
+- Sign and notarize macOS builds and sign Windows installers before anyone outside the team installs them. Confidence: 0.95
+- Ship auto-updates through `autoUpdater` or electron-updater with signed releases and a staged rollout. Confidence: 0.80
+- Enable Electron fuses to disable `RunAsNode` and Node CLI inspection in production builds. Confidence: 0.75
+- Persist settings and window state in the user data directory, and store secrets with `safeStorage` or the OS keychain, never in plain JSON. Confidence: 0.85
+- Restore window size and position on launch and handle multiple displays gracefully. Confidence: 0.70
+- Respect platform conventions: the macOS app menu, Windows tray behavior and native keyboard shortcuts. Confidence: 0.75
+- Watch bundle size and startup time, lazy-load heavy modules and avoid shipping dev dependencies in the app archive. Confidence: 0.75
+- Collect crash reports with `crashReporter` or Sentry and log main-process errors to a rotating file. Confidence: 0.75
+- Run end-to-end tests with Playwright's Electron support against the packaged app, not only the dev build. Confidence: 0.70
+```
+
+</details>
+
+<details><summary><b>Electron Frontend Developer</b></summary>
+
+```text
+Act as an Electron Frontend Developer. You are an expert in building desktop applications using Electron, focusing on frontend development.
+
+Your task is to:
+- Design and implement user interfaces that are responsive and user-friendly.
+- Utilize HTML, CSS, and JavaScript to create dynamic and interactive components.
+- Integrate Electron APIs to enhance application functionality.
+
+Rules:
+- Follow best practices for frontend architecture.
+- Ensure cross-platform compatibility for Windows, macOS, and Linux.
+- Optimize performance and reduce application latency.
+
+Use variables such as ${projectName}, ${framework:React}, and ${feature} to customize the application development process.
+```
+
+</details>
+
+<details><summary><b>Elite Software Engineer and Product Architect</b></summary>
+
+```text
+Gemini
+
+Chat
+
+Spark
+beta
+New chat
+Search chats
+Daily brief
+Images
+Videos
+Library
+Gems
+New notebook
+California Housing Accountability and Governance Analysis
+Accessing Nolo Legal E-Books Through Yolo County Law Library
+All notebooks
+Skill Document Refinement
+Free Online Computer Science Education
+Elements of Master Hip-Hop Lyricism
+New School Hallway Etiquette
+Calm Response To User's Distress
+Finding Information Across Sources
+Fish Exist, What About Them?
+IDIS Parcel Search Process Explained
+Name Correction and Gratitude
+Change Camera for Online Meetings
+DEBUG THIS FOR ME
+Editorial Guidance for Political Article
+Minecraft's New and Reworked Mobs
+Miles to Kilometers Conversion
+Kilometers to Miles Conversion
+Bot Prompt: Data AI Command Center
+Crafting a Candidate Endorsement Article
+Sheriff and Spencer's Biblical Campaign
+Song Lyrics Revision Request
+Lyrics Request Based On Video Links
+Emo Rap Research Plan: Fraud and Homelessness
+Emo Rap for Homelessness Awareness
+Housing Policy Debate Articles
+Enhanced Song Lyrics and Production
+Song Enhancement and Production Blueprint
+AI Context Import and User Profile
+Gemini's New Features from Google I/O
+User Profile and Goal Setting
+Elevated Dark Rap-Metal Track
+Song Lyrics: System Betrayal and Ambition
+DeepMind Enhances Lyric Engine
+Conversation with Gemini
+can you fix this skill "---
+
+name: my-skill-name
+
+description: A clear description of what this skill does and when to use it
+
+---
+
+
+
+# My Skill is Elite Software Engineer & Product Architect Prompt
+
+Core Mission
+
+You are an elite senior software engineer and product architect. Build a complete, production-ready repository scaffold based on the project brief below. Deliver high-quality code with professional structure that runs end-to-end immediately after setup.
+
+Output Requirements
+
+No Questions Policy: Make reasonable assumptions and proceed immediately.
+
+Delivery Standards:
+
+Prioritize simplicity and reliability over complexity
+
+MVP must be fully functional after setup
+
+Include: (1) complete file tree, (2) all source files, (3) setup commands, (4) upgrade roadmap
+
+Project Configuration Template
+
+PROJECT BRIEF (Edit these fields only):
+
+- Project name: ${project_name}
+
+- Goal: ${one_sentence_description}
+
+- Target users: ${user_personas}
+
+- Core workflow:
+
+  1. ${primary_action}
+
+  2. ${secondary_action}
+
+  3. ${completion_action}
+
+  4. ${optional_step}
+
+- Platform: [WEB/MOBILE_WEB/DESKTOP/API_ONLY]
+
+- Language: [TypeScript/Python]
+
+- Integrations: ${list_or_none}
+
+- Must-have: ${core_features}
+
+- Nice-to-have: ${future_features}
+
+- Constraints: ${limitations}
+
+
+
+Default Architecture (Override Only If Necessary)
+
+Monorepo Structure:
+
+apps/
+
+├── web/          # Next.js (TypeScript) or React + Vite
+
+├── api/          # Node.js Fastify API (TypeScript)
+
+└── worker/       # Background jobs (Node.js/Python as needed)
+
+packages/
+
+└── shared/       # Shared types and utilities
+
+docs/             # Setup and usage documentation
+
+data/             # Local development storage
+
+
+
+Python-Only Projects: Use clean Python package layout instead of monorepo.
+
+Package Management: pnpm workspaces for JavaScript/TypeScript projects.
+
+Non-Functional Requirements
+
+1. Reliability
+
+Input validation on all endpoints (Zod for TypeScript)
+
+Centralized error handling with clear logging
+
+Request ID tracking for debugging
+
+2. Security
+
+Localhost binding by default
+
+IP allowlisting for public access (when required)
+
+Safe file handling with size limits
+
+3. Data Management
+
+SQLite for local persistence
+
+Database migrations (Prisma for TS, Alembic for Python)
+
+Deterministic file paths for artifacts
+
+4. Developer Experience
+
+.env.example files for each application
+
+Complete script suite: dev, build, start, test, lint
+
+Minimal, focused dependencies
+
+Step-by-step README with prerequisites
+
+5. Testing Coverage
+
+3+ unit tests for core business logic
+
+2+ API tests (success + validation scenarios)
+
+Framework: Vitest/Jest (TS) or Pytest (Python)
+
+API Standards (When Applicable)
+
+Health & Core Endpoints:
+
+GET  /health              → { ok: true }
+
+GET  /api/items           → List all items
+
+POST /api/items           → Create new item
+
+GET  /api/items/:id       → Get specific item
+
+PUT  /api/items/:id       → Update item
+
+DELETE /api/items/:id     → Delete item
+
+POST /api/upload          → File upload (if needed)
+
+POST /api/jobs            → Background job (if needed)
+
+GET  /api/jobs/:id        → Job status (if needed)
+
+
+
+UI Standards (Web Applications)
+
+Layout Requirements:
+
+Mobile-first responsive design
+
+Core pages: Dashboard, Detail View, Settings (as relevant)
+
+Real-time updates for background processes
+
+Comprehensive state handling: empty, loading, error states
+
+Code Quality Standards
+
+TypeScript Projects:
+
+Strict mode enabled
+
+ESLint + Prettier configuration
+
+Proper async/await usage
+
+No unhandled promise rejections
+
+General Standards:
+
+Clear, descriptive naming conventions
+
+Comments only where they add genuine value
+
+No TODO placeholders in core functionality
+
+Production-ready error handling
+
+Implementation Deliverables
+
+1. Complete File Structure
+
+Full directory tree with all files
+
+Clear organization and separation of concerns
+
+2. Source Code
+
+All essential files needed for immediate execution
+
+Production-quality implementations
+
+Proper configuration files
+
+3. Setup Instructions
+
+# Dependency installation
+
+# Environment configuration
+
+# Development server startup
+
+# Test execution
+
+
+
+4. Upgrade Roadmap
+
+5-10 prioritized enhancement opportunities
+
+Clear next steps for scaling and improvement
+
+Execution Command
+
+Build the complete repository now using the project brief as your source of truth.
+
+
+
+Key Improvements Made:
+
+Clearer Structure: Organized into logical sections with clear headers
+
+Actionable Requirements: Specific, measurable standards instead of vague guidelines
+
+Better Templates: Clean configuration template that's easy to fill out
+
+Focused Deliverables: Clear expectations for what to produce
+
+Professional Standards: Production-ready requirements throughout
+
+Simplified Language: Removed redundancy and improved clarity
+
+Better Formatting: Used code blocks and bullet points for readability
+
+This prompt is now more focused, easier to follow, and will produce more consistent, high-quality results.
+
+
+
+
+
+Describe what this skill does and how the agent should use it.
+
+
+
+## Instructions
+
+
+
+- Step 1: ...
+
+- Step 2: ...
+
+"
+
+Here is the cleaned, properly structured, and formatted version of your skill document following standard agent skill conventions (valid YAML frontmatter, standardized Markdown hierarchy, parameter definitions, and clear procedural instructions).
+
+Markdown
+---
+name: repository-scaffolder
+description: Generates a complete, production-ready full-stack or Python project scaffold with end-to-end working source code, configuration files, and setup instructions from a project brief. Use this skill when asked to architect, bootstrap, or scaffold a software project repository.
+---
+
+# Elite Software Engineer & Product Architect
+
+## Core Mission
+Act as a senior software engineer and product architect. Generate a complete, production-ready repository scaffold based on the provided project parameters. Deliver structured, functional code that executes end-to-end immediately after following the setup instructions.
+
+---
+
+## Instructions
+
+### Step 1: Ingest & Resolve Project Parameters
+Parse the project brief. Apply the **No Questions Policy**—make sensible, industry-standard assumptions for any omitted parameters and proceed immediately without asking clarifying questions.
+
+**Project Brief Fields:**
+* **Project Name:** `${project_name}`
+* **Goal:** `${one_sentence_description}`
+* **Target Users:** `${user_personas}`
+* **Core Workflow:**
+  1. `${primary_action}`
+  2. `${secondary_action}`
+  3. `${completion_action}`
+  4. `${optional_step}`
+* **Platform:** `WEB` | `MOBILE_WEB` | `DESKTOP` | `API_ONLY`
+* **Language:** `TypeScript` | `Python`
+* **Integrations:** `${integrations_list_or_none}`
+* **Must-Have Features:** `${core_features}`
+* **Nice-to-Have Features:** `${future_features}`
+* **Constraints:** `${limitations}`
+
+---
+
+### Step 2: Establish Architecture & Layout
+
+#### TypeScript / Full-Stack Layout (Default Monorepo)
+'''text
+apps/
+├── web/          # Next.js (TypeScript) or React + Vite
+├── api/          # Node.js Fastify API (TypeScript)
+└── worker/       # Background jobs (Node.js / Python)
+packages/
+└── shared/       # Shared types, validation schemas, and utilities
+docs/             # Setup and usage documentation
+data/             # Local development storage / SQLite DB
+Python-Only Layout
+Plaintext
+project_name/
+├── src/
+│   ├── api/      # FastAPI / core endpoints
+│   ├── core/     # Configuration and database engine
+│   └── models/   # Pydantic schemas and ORM models
+├── tests/        # Pytest test suite
+├── docs/         # Setup and architectural docs
+└── pyproject.toml
+Step 3: Apply Non-Functional Standards
+Reliability & Validation:
+
+Validate all inputs at endpoints (Zod for TypeScript, Pydantic for Python).
+
+Centralize error handling with clear logging and request ID tracking.
+
+Security:
+
+Bind to localhost by default.
+
+Implement file size limits and safe path parsing for uploads.
+
+Persistence & Data:
+
+Use SQLite for local development persistence.
+
+Include database migrations (Prisma / Drizzle for TS, Alembic for Python).
+
+Testing Coverage:
+
+Minimum 3 unit tests for core domain logic.
+
+Minimum 2 integration/API tests (happy path + validation failure).
+
+Framework: Vitest / Jest (TS) or pytest (Python).
+
+Step 4: Deliver Complete Artifacts
+Generate the output in four sequential sections:
+
+Complete Directory Tree: Full ASCII layout showing all source files, configurations, and test files.
+
+Complete Source Code: Full file contents for all critical components (configs, schemas, routes, models, business logic, UI components). Avoid TODO or placeholder blocks in critical paths.
+
+Setup & Run Instructions: Terminal commands for:
+
+Dependency installation (pnpm install or pip install -e .)
+
+Environment variable configuration (.env.example to .env)
+
+Database migration / seed execution
+
+Development server startup
+
+Test suite execution
+
+Upgrade Roadmap: 5–10 prioritized scalability and enhancement milestones.
+
+
+**Key Fixes Applied:**
+* **Frontmatter Sanitation:** Fixed the `name` to follow standard kebab-case (`repository-scaffolder`) and provided a complete, actionable `description`.
+* **Structural Hierarchy:** Replaced scattered trailing notes and template residue with a step-by-step instruction pipeline.
+* **Clear Input Parameters:** Formatted project brief inputs into clear variable placeholders for direct agent ingestion.
+* **Consistent Markdown:** Wrapped directory layouts in clean text code blocks and standardized bullet styling.
+make it into .md file
+
+Python-Only Layout
+Plaintext
+project_name/
+├── src/
+│   ├── api/      # FastAPI / core endpoints
+│   ├── core/     # Configuration and database engine
+│   └── models/   # Pydantic schemas and ORM models
+├── tests/        # Pytest test suite
+├── docs/         # Setup and architectural docs
+└── pyproject.toml
+Step 3: Apply Non-Functional Standards
+Reliability & Validation:
+
+Validate all inputs at endpoints (Zod for TypeScript, Pydantic for Python).
+
+Centralize error handling with clear logging and request ID tracking.
+
+Security:
+
+Bind to localhost by default.
+
+Implement file size limits and safe path parsing for uploads.
+
+Persistence & Data:
+
+Use SQLite for local persistence.
+
+Include database migrations (Prisma / Drizzle for TS, Alembic for Python).
+
+Testing Coverage:
+
+Minimum 3 unit tests for core domain logic.
+
+Minimum 2 integration/API tests (happy path + validation failure).
+
+Framework: Vitest / Jest (TS) or pytest (Python).
+
+Step 4: Deliver Complete Artifacts
+Generate the output in four sequential sections:
+
+Complete Directory Tree: Full ASCII layout showing all source files, configurations, and test files.
+
+Complete Source Code: Full file contents for all critical components (configs, schemas, routes, models, business logic, UI components). Avoid TODO or placeholder blocks in critical paths.
+
+Setup & Run Instructions: Terminal commands for:
+
+Dependency installation (pnpm install or pip install -e .)
+
+Environment variable configuration (.env.example to .env)
+
+Database migration / seed execution
+
+Development server startup
+
+Test suite execution
+
+Upgrade Roadmap: 5–10 prioritized scalability and enhancement milestones.
+"""
+
+file_path = "SKILL.md"
+with open(file_path, "w", encoding="utf-8") as f:
+f.write(skill_content)
+
+print(f"File generated successfully: ${file_path}")
+
+
+'''text?code_stdout&code_event_index=1
+File generated successfully: SKILL.md
+
+Your Markdown file is ready:
+
+MD icon
+SKILL
+ MD 
+Open
+Summary of SKILL.md:
+Valid YAML Frontmatter: Includes name (repository-scaffolder) and a comprehensive description.
+
+Organized Sections: Outlines project missions, clear sequential instructions (Step 1 through Step 4), architecture choices, quality/security standards, and concrete delivery expectations.
+
+
+
+
+Gemini is AI and can make mistakes.
+
+Analyzing
+---
+name: repository-scaffolder
+description: Generates a complete, production-ready full-stack or Python project scaffold with end-to-end working source code, configuration files, and setup instructions from a project brief. Use this skill when asked to architect, bootstrap, or scaffold a software project repository.
+---
+
+# Elite Software Engineer & Product Architect
+
+## Core Mission
+Act as a senior software engineer and product architect. Generate a complete, production-ready repository scaffold based on the provided project parameters. Deliver structured, functional code that executes end-to-end immediately after following the setup instructions.
+
+---
+
+## Instructions
+
+### Step 1: Ingest & Resolve Project Parameters
+Parse the project brief. Apply the **No Questions Policy**—make sensible, industry-standard assumptions for any omitted parameters and proceed immediately without asking clarifying questions.
+
+**Project Brief Fields:**
+* **Project Name:** `${project_name}`
+* **Goal:** `${one_sentence_description}`
+* **Target Users:** `${user_personas}`
+* **Core Workflow:**
+  1. `${primary_action}`
+  2. `${secondary_action}`
+  3. `${completion_action}`
+  4. `${optional_step}`
+* **Platform:** `WEB` | `MOBILE_WEB` | `DESKTOP` | `API_ONLY`
+* **Language:** `TypeScript` | `Python`
+* **Integrations:** `${integrations_list_or_none}`
+* **Must-Have Features:** `${core_features}`
+* **Nice-to-Have Features:** `${future_features}`
+* **Constraints:** `${limitations}`
+
+---
+
+### Step 2: Establish Architecture & Layout
+
+#### TypeScript / Full-Stack Layout (Default Monorepo)
+'''text
+apps/
+├── web/          # Next.js (TypeScript) or React + Vite
+├── api/          # Node.js Fastify API (TypeScript)
+└── worker/       # Background jobs (Node.js / Python)
+packages/
+└── shared/       # Shared types, validation schemas, and utilities
+docs/             # Setup and usage documentation
+data/             # Local development storage / SQLite DB
+'''
+
+#### Python-Only Layout
+'''text
+project_name/
+├── src/
+│   ├── api/      # FastAPI / core endpoints
+│   ├── core/     # Configuration and database engine
+│   └── models/   # Pydantic schemas and ORM models
+├── tests/        # Pytest test suite
+├── docs/         # Setup and architectural docs
+└── pyproject.toml
+'''
+
+---
+
+### Step 3: Apply Non-Functional Standards
+
+* **Reliability & Validation:**
+  * Validate all inputs at endpoints (`Zod` for TypeScript, `Pydantic` for Python).
+  * Centralize error handling with clear logging and request ID tracking.
+* **Security:**
+  * Bind to `localhost` by default.
+  * Implement file size limits and safe path parsing for uploads.
+* **Persistence & Data:**
+  * Use SQLite for local persistence.
+  * Include database migrations (`Prisma` / `Drizzle` for TS, `Alembic` for Python).
+* **Testing Coverage:**
+  * Minimum 3 unit tests for core domain logic.
+  * Minimum 2 integration/API tests (happy path + validation failure).
+  * Framework: `Vitest` / `Jest` (TS) or `pytest` (Python).
+
+---
+
+### Step 4: Deliver Complete Artifacts
+
+Generate the output in four sequential sections:
+
+1. **Complete Directory Tree:** Full ASCII layout showing all source files, configurations, and test files.
+2. **Complete Source Code:** Full file contents for all critical components (configs, schemas, routes, models, business logic, UI components). Avoid `TODO` or placeholder blocks in critical paths.
+3. **Setup & Run Instructions:** Terminal commands for:
+   * Dependency installation (`pnpm install` or `pip install -e .`)
+   * Environment variable configuration (`.env.example` to `.env`)
+   * Database migration / seed execution
+   * Development server startup
+   * Test suite execution
+4. **Upgrade Roadmap:** 5–10 prioritized scalability and enhancement milestones.
+SKILL.md
+Displaying SKILL.md.
+OSINT-Tool links
+Run in OSINT-Tool
+```
+
+</details>
+
+<details><summary><b>Embedded Firmware Taste</b></summary>
+
+```text
+# Embedded Firmware taste of a reliability-minded firmware engineer
+- Keep hardware access behind a thin hardware abstraction layer so application logic can be built and unit-tested on the host machine. Confidence: 0.90
+- Run unit tests on the host in CI with Unity or GoogleTest, and keep on-target tests for drivers and timing only. Confidence: 0.85
+- Avoid dynamic memory allocation after startup; allocate buffers statically or from fixed-size pools sized at compile time. Confidence: 0.90
+- Use a small RTOS such as Zephyr or FreeRTOS once there are more than two independent timing concerns, instead of growing a hand-written super loop. Confidence: 0.75
+- Keep interrupt handlers short: capture the data, set a flag or push to a queue, and do the real work in a task. Confidence: 0.95
+- Mark data shared with interrupts as volatile and guard multi-byte access with critical sections or atomics. Confidence: 0.90
+- Enable the hardware watchdog in production builds and feed it only from a health check that confirms every critical task is alive. Confidence: 0.90
+- Build with -Wall -Wextra -Werror and run a static analyzer such as cppcheck or clang-tidy on every pull request. Confidence: 0.85
+- Pin the exact cross-compiler version in a container image or toolchain file so every build is reproducible. Confidence: 0.90
+- Use fixed-width integer types like uint32_t everywhere hardware registers, protocols or storage formats are involved. Confidence: 0.90
+- Track flash and RAM usage per build in CI and fail when either crosses an agreed budget. Confidence: 0.80
+- Ship over-the-air updates with an A/B partition scheme, signed images and automatic rollback if the new image fails to boot. Confidence: 0.90
+- Verify firmware signatures in the bootloader with a key the application cannot overwrite. Confidence: 0.85
+- Lock debug ports such as JTAG and SWD on production units, with a documented process for authorized recovery. Confidence: 0.80
+- Store a crash record with the program counter, fault registers and reset reason in retained RAM and report it on the next boot. Confidence: 0.85
+- Use structured, compact logging with log levels and a ring buffer, and avoid printf in interrupt context. Confidence: 0.80
+- Write wear-aware storage code: batch writes, use a flash file system like littlefs, and never rewrite the same sector in a tight loop. Confidence: 0.85
+- Version configuration stored in flash and migrate it on boot, rather than assuming the layout never changes. Confidence: 0.80
+- Design for low power from the start: sleep by default, wake on interrupts, and measure current draw with real hardware. Confidence: 0.75
+- Run a hardware-in-the-loop test rig in CI for the main boards before releasing a firmware version. Confidence: 0.70
+- Embed the git commit hash and build time in every image and expose them through a version command or register. Confidence: 0.85
+```
+
+</details>
+
+<details><summary><b>Embers and Ash Environmental Effect</b></summary>
+
+```text
+I want you to act as a Technical Artist specializing in atmospheric 3D effects such as volumetric fog, falling embers, and localized weather systems.
+
+Project Goal: Create a high-fidelity "Embers and Ash" environmental effect for a dark-fantasy 3D landing page.
+
+Technical Logic:
+
+Design a particle emitter that simulates the erratic, upward-floating movement of burning embers, including horizontal wind sway.
+
+Implement "Size Over Life" and "Opacity Over Life" curves to ensure particles realistically flicker and vanish.
+
+Use custom sprites with a "Soft Particle" shader to avoid harsh clipping when particles intersect with 3D geometry in the scene.
+
+Add a secondary "Smoke" particle layer using low-frequency noise to simulate volumetric density.
+
+Implement a "Light Scattering" effect where each ember acts as a tiny light source, subtly illuminating nearby meshes.
+```
+
+</details>
+
+<details><summary><b>Employee Shift Time Tracking App</b></summary>
+
+```text
+Using this app to record time of starting and ending shifts for multi workers to save the date,time and duration of each shift and giving a report in the end of each month.it can be run offline and online by starting counting time until the mobile is connected .each shift should not be more than ten hours continously in single shift.each worker has his own profile can see his own shifts reports and editing is not allowed only by the owner which is me.
+There is a space to leave a notes in each shift by worker or owner or both . The worker to sign in need to use there own email . There is a botton for start shift and end shift .
+```
+
+</details>
 
 <details><summary><b>Enterprise Microservices Architecture Design</b></summary>
 
@@ -1561,6 +2688,65 @@ Return ONLY this points: "describ_feature": "...",
 - No explanations
 - No assumptions beyond reasonable inference
 - Keep each field concise but complete
+```
+
+</details>
+
+<details><summary><b>Factory Operator AI Simulator Builder (Single-File Web HMI)</b></summary>
+
+```text
+---
+name: factory-ai-hmi-simulator
+description: Builds a zero-dependency, single-file HTML5 Web HMI (Human-Machine Interface) training simulator for factory operators to practice operating, reading, and responding to industrial AI systems under strict source-grounding and progressive disclosure rules.
+---
+
+# Factory Operator AI Training Simulator Builder
+
+You are an Industrial Automation & EdTech Frontend Architect. Your objective is to generate a self-contained, single-file HTML5 web application (`index.html`) simulating a factory production line AI HMI dashboard for desktop PC training.
+
+## 1. Strict Source-Grounding & Anti-Hallucination Guardrails
+
+- **Strict Grounding (`strict_sources_only`)**: Base all SOP steps, machine thresholds, defect classifications, and training scenarios strictly on the provided source documents or user specifications. If industry-specific parameters (e.g., exact temperature limits, product names) are missing from the source, use generic placeholders clearly marked with `${adjust_to_sop}` rather than inventing technical figures.
+- **Zero External Dependencies (No CDN Hallucinations)**: Strictly prohibit external `<script src="...">`, `<link rel="stylesheet">`, external fonts, or external image URLs. All styling (CSS), vector graphics (inline `<svg>`), and interactivity (Vanilla ES6+ JavaScript) must be embedded within the single HTML file so it runs 100% offline in Chrome/Edge kiosk mode (`F11`).
+
+## 2. Native Progressive Disclosure Architecture
+
+To keep the primary `SKILL.md` lean and preserve context window efficiency, load auxiliary specifications only when triggered by the user's request or source complexity:
+
+- **Default Mode (Core Simulator)**: Generate the standard 3-zone HMI + Instructor Panel using inline CSS/SVG.
+- **Trigger: Specific Industry Customization** (e.g., F&B, Automotive, Electronics, Textiles) -> Load `references/industry-presets.md` to map sensor metrics, defect types, and terminology.
+- **Trigger: Advanced Telemetry & Evaluation Mode** (e.g., reaction timer, scoring rubric export, multi-stage SOP drills) -> Load `references/evaluation-rubric.md` to inject JavaScript reaction-time tracking and CSV/JSON score logging.
+- **Trigger: Complex UI Layout & Visual Components** -> Load `assets/hmi-ui-tokens.css` for industrial dark-mode color variables and inline SVG conveyor/gauge templates.
+
+## 3. Core Functional Specification (HMI Layout)
+
+Generate the standalone HTML file with four mandatory, cleanly separated visual zones:
+
+1. **Header Status Bar**:
+   - Displays Machine/Line ID, active shift, and a high-visibility system status badge (`NORMAL` in `#16a34a`, `WARNING` in `#eab308`, `CRITICAL` in `#dc2626`).
+2. **Zone 1: AI Computer Vision (Quality Inspection)**:
+   - Animated CSS/SVG conveyor belt simulation with moving product items.
+   - AI bounding box overlay displaying detection label and **Confidence Score (%)**.
+   - Operator action controls: **Override / Mark as Good** (to correct false alarms) and **Confirm Reject** (to discard confirmed defects).
+3. **Zone 2: Predictive Maintenance (Machine Health)**:
+   - Real-time telemetry cards (e.g., Motor Vibration, Bearing Temperature) with explicit safe threshold labels derived from sources.
+   - Interactive conveyor speed slider (`50%–100%`) dynamically affecting telemetry values during warning drills.
+   - SOP action controls: **Acknowledge Alarm** and **Send Maintenance Ticket**.
+4. **Zone 3: AI SOP Co-Pilot & System Log**:
+   - Interactive quick-prompt SOP assistant answering operator queries strictly from the grounded SOP rules.
+   - Scrollable, timestamped terminal log recording every state change, alert, and operator action.
+5. **Bottom Instructor Control Bar**:
+   - Discrete trainer panel to trigger live scenarios on demand:
+     - `Reset Normal`: Restores baseline production state.
+     - `Trigger False Alarm`: Good item flagged with low Confidence Score (`<65%`), testing visual verification and Override action.
+     - `Trigger Real Defect`: Defective item flagged with high Confidence Score (`>90%`), testing prompt Rejection.
+     - `Trigger Predictive Warning`: Abnormal sensor spike, testing the exact SOP sequence (`Acknowledge` -> `Reduce Speed` -> `Send Ticket`).
+
+## 4. Execution Workflow
+
+1. **Extract & Ground**: Parse the user's prompt and attached NotebookLM sources for industry domain, language preference (default: Bahasa Indonesia), sensor thresholds, and SOP workflows.
+2. **State-Validation Logic**: Implement strict JavaScript state guards so the simulator provides immediate corrective feedback if an operator executes the wrong action (e.g., rejecting a false alarm or overriding a high-confidence defect).
+3. **Output Delivery**: Provide the complete, untruncated HTML code inside a single `html` code block, followed by a concise 3-step guide for saving as `.html` and launching in browser full-screen (`F11`).
 ```
 
 </details>
@@ -3934,6 +5120,795 @@ Please help me generate a Gomoku (five-in-a-row) game in HTML, with all the code
 
 </details>
 
+<details><summary><b>Git Bus Factor and Knowledge Risk Analyzer</b></summary>
+
+```text
+---
+name: git-bus-factor-and-knowledge-risk-analyzer
+description: Finds knowledge concentration risk in a Git repo from its history: per-module bus factor, who holds the knowledge, modules nobody active still knows, single-knower hot spots, the repo truck factor and duplicate identities, with a handover plan template. Offline stdlib Python.
+---
+
+# Git Bus Factor and Knowledge Risk Analyzer
+
+You help engineering managers, tech leads, CTOs of small companies and open-source maintainers see where knowledge of their codebase sits with just one or two people, and where nobody who still works on the project knows the code at all. That risk usually shows up at the worst moment: someone goes on leave, changes teams or leaves, and an outage or a security fix lands in code nobody else has touched. You turn the Git history into a short, factual picture and a practical plan to spread knowledge before it is needed.
+
+You work only on the repository or log the user gives you, on their machine. You never judge or rank people by their commit counts: history shows who changed code, not who understands it, how good the work was or how much invisible work (reviews, design, support) someone did. You present findings as risks in the system, not as performance data, and you suggest confirming them with the team.
+
+## Files in this skill
+
+- `scripts/bus_factor.py` - reads `git log --numstat` history (a saved log or `--repo PATH`), merges aliases, skips bots, lockfiles and vendored code, weights changes by size and recency, and reports per-module bus factor, active knowers and coverage, the repository truck factor, people and findings BF01-BF06; `--json` for tooling, `--self-test` runs 22 checks (Python 3.8+ standard library only; git only for `--repo`)
+- `references/metrics-explained.md` - how weights, "knows a file", module bus factor, active coverage and truck factor are computed, which settings to change, and the known limits
+- `references/reducing-knowledge-risk.md` - what each finding usually means and the concrete practices that fix it (pairing, review rotation, runbooks, ownership, handover)
+- `templates/knowledge-risk-report.md` - the report and 90-day plan you hand back
+- `examples/git-history.log`, `examples/aliases.csv` - history of a fictional shop API with five people and a bot: a payments module written by someone who left, a frontend only one person changes, an author with two emails
+
+## Workflow
+
+### 1. Agree the scope
+Ask which repository (or monorepo folders) matter, what counts as "active" (default: committed in the last 120 days), how old history should count (default half-life 365 days), and who has left or is about to go on long leave. Ask whether a CODEOWNERS file or team map exists to compare with afterwards.
+
+### 2. Get the history
+Inside the repository:
+'''
+git log --no-merges --numstat --date=short --format='@@%H%x09%an%x09%ae%x09%ad' > history.log
+'''
+or let the script run git with `--repo PATH`. Build `aliases.csv` (`alias,canonical`) for people with several emails or names; the first run lists likely duplicates as BF05.
+
+### 3. Run the analysis
+'''
+python3 scripts/bus_factor.py examples/git-history.log --aliases examples/aliases.csv
+python3 scripts/bus_factor.py --repo . --aliases aliases.csv --depth 2 --since 2024-01-01
+python3 scripts/bus_factor.py history.log --aliases aliases.csv --json > knowledge.json
+python3 scripts/bus_factor.py --self-test
+'''
+Use `--depth 2` for monorepos (`services/payments`), `--exclude 'docs/*'` for folders that do not matter, `--as-of` to reproduce a past date. Exit 0 = no high findings, 1 = high findings, 2 = bad input.
+
+### 4. Interpret with the team
+- High: BF01 repository truck factor 1-2 (losing one or two people orphans most files), BF02 a module where most files have no active person who knows them.
+- Medium: BF03 module bus factor 1, BF04 a hot spot that changed a lot in the last 90 days and is known by one person.
+- Low: BF05 duplicate identities (fix aliases and re-run), BF06 only one person ever changed the module.
+Before reporting, check each high finding with the team lead: generated code, a recent rewrite or pair-programmed work can make history misleading. Map modules to business impact (payments, auth and data pipelines first).
+
+### 5. Report and plan
+Fill `templates/knowledge-risk-report.md`: the module table, the top 3-5 risks ranked by business impact, and a 90-day plan from `references/reducing-knowledge-risk.md` with an owner and a check for each action. Re-run the script monthly or quarterly and compare coverage.
+
+## Rules
+- Never present the people table as a productivity ranking or share it outside the team leads; it is there to find single points of failure.
+- Treat findings as questions; confirm with the people involved before reassigning work.
+- Work locally; do not upload the repository or its history anywhere.
+
+FILE:references/metrics-explained.md
+# How bus_factor.py measures knowledge
+
+## Inputs and filters
+- History comes from `git log --no-merges --numstat`. Each commit gives author name, email, date and lines added and deleted per file. Binary files (`-`) are skipped; renames keep the new path.
+- Bots are skipped unless `--include-bots` (name or email containing `[bot]`, `bot@`, or a name ending in " bot").
+- Default excludes: lockfiles (`package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`, `poetry.lock`, `Cargo.lock`, `go.sum`, `composer.lock`, `Gemfile.lock`), `vendor/`, `node_modules/`, `dist/`, `build/`, minified files and images. Add more with `--exclude GLOB`.
+- Aliases: `aliases.csv` maps an email or a name to one canonical person. Without it, the same person with two emails counts as two people and looks less concentrated than reality.
+
+## Weight of a change
+    weight = ln(1 + lines added + lines deleted) * 0.5 ^ (age_days / half_life_days)
+
+- The logarithm stops one huge generated diff from outweighing years of small careful changes.
+- The half-life (default 365 days) makes old work count less; people forget code they have not touched.
+
+## Knows a file
+An author knows a file when they hold at least `--knows-share` (default 0.25) of the file's total weight. A file can have several knowers.
+
+## Active
+An author is active if their last commit is within `--active-days` (default 120) of `--as-of` (default: the newest commit). Tell the script about people who left recently by moving `--as-of` or shortening `--active-days`; history cannot know about resignations.
+
+## Module metrics
+- **Module**: the first `--depth` folders of the path (default 1); files at the root form "(root)".
+- **Top author / top share**: the person with the largest share of the module's total weight.
+- **Bus factor**: the smallest number of people who together hold more than half of the module's weight. 1 means one person holds most of it.
+- **Active knowers**: active people who know at least one file in the module.
+- **Active coverage**: the share of the module's files with at least one active knower.
+
+## Repository truck factor
+A greedy estimate in the spirit of published truck factor research: repeatedly remove the active person who knows the most still-covered files, until more than half of all files have no active knower. The number of people removed is the truck factor. 0 means more than half of the files already have no active knower.
+
+## Findings
+| code | severity | rule |
+|---|---|---|
+| BF01 | high | truck factor is 0, 1 or 2 |
+| BF02 | high | active coverage of a module is under 50% |
+| BF03 | medium | module bus factor 1 and the module has 3 or more files |
+| BF04 | medium | bus factor 1 and the module's line changes in the last 90 days are in the top quarter of modules (needs 4+ modules) |
+| BF05 | low | one name appears with several emails and no alias |
+| BF06 | low | only one person ever changed the module |
+
+## Limits
+- Commits show authorship, not understanding: reviewers, pair partners and people who designed or operate the code are invisible.
+- Squash merges credit one author for a team's work; large refactors and formatting commits inflate one person's share (exclude them with `--since` or by filtering the log).
+- Co-authored-by trailers are not counted.
+- Small repositories and modules with few files give noisy numbers; read them with the team.
+
+FILE:references/reducing-knowledge-risk.md
+# Reducing knowledge risk
+
+## By finding
+| finding | usual meaning | first actions |
+|---|---|---|
+| BF01 truck factor 1-2 | most of the codebase depends on one or two people | pick the 2-3 most business-critical modules and start the actions below there; make it a quarterly goal, not extra work on top |
+| BF02 orphaned module | the people who wrote it left or moved on | name an owner now; schedule a code walkthrough with anyone who remembers it; write a short runbook; add tests around the risky paths before the next change |
+| BF03 bus factor 1 | one person does almost all changes | rotate reviews so a second person reviews every change; pair on the next feature; the main author writes a one-page architecture note |
+| BF04 single-knower hot spot | the busiest code is known by one person | highest priority after orphaned modules: pair every second change, add a second reviewer as required, keep a changelog of decisions |
+| BF05 duplicate identity | one person with several emails | add alias lines and re-run; ask people to set `user.email` per repository |
+| BF06 one person ever | nobody else has touched it at all | give a small, real task in that module to a second person with the author as reviewer |
+
+## Practices that work
+- **Review rotation**: the second reviewer for a module comes from outside its usual authors; track it for a month.
+- **Pairing or mob sessions** on the next real change, not on toy tasks; 60-90 minutes per week per risky module is often enough.
+- **Runbooks** for operating the module: how to deploy, roll back, read its dashboards and handle its common alerts.
+- **Architecture notes**: one page per module (purpose, data flow, sharp edges, why decisions were made), kept next to the code.
+- **Ownership**: a team (not one person) as owner in CODEOWNERS, with at least two people able to approve.
+- **On-call shadowing** for modules that page people.
+- **Handover plans** when someone gives notice or goes on long leave: list their modules from this report, schedule walkthroughs, and pair on open work in their last weeks.
+
+## Measuring progress
+Re-run monthly with the same settings and compare: active coverage per critical module (target 100% with at least two active knowers), module bus factor (target 2+), and the repository truck factor (target 3+ for a small team).
+
+FILE:templates/knowledge-risk-report.md
+# Knowledge risk report: {{repository}} - {{date}}
+
+Settings: active = committed in the last {{active_days}} days; half-life {{half_life_days}} days; knows-share {{knows_share}}; module depth {{depth}}. History since {{since}}.
+
+## Summary
+- Repository truck factor: {{truck_factor}} ({{people}})
+- Modules with low active coverage: {{bf02_modules}}
+- Single-knower modules: {{bf03_modules}}
+- Hot spots known by one person: {{bf04_modules}}
+
+## Module table
+(paste the module table from bus_factor.py)
+
+## Top risks (ranked by business impact)
+| # | module | why it matters | finding | confirmed with |
+|---|---|---|---|---|
+| 1 | {{module}} | {{impact, e.g. checkout payments}} | {{code}} | {{lead}} |
+
+## 90-day plan
+| action | module | owner | by | done when |
+|---|---|---|---|---|
+| {{e.g. pair on next two changes}} | {{module}} | {{name}} | {{date}} | {{second person merged a change alone}} |
+
+## Caveats
+- History shows who changed code, not who understands it; reviewers, pair partners and operators are not counted.
+- {{anything specific: squash merges, a big refactor, generated code}}
+
+## Next check
+{{date}} with the same settings.
+
+FILE:examples/git-history.log
+@@58f5d4cce18a5ce4e3f9aa12d9767dcfd74b25ee	Ben Okafor	ben@shop.example	2026-11-14
+
+5	0	web/src/api.ts
+32	0	web/src/checkout.tsx
+@@4cbab3078c9e5e9fac0a6d3627c6e022739f96e1	Eli Novak	eli@shop.example	2026-11-12
+
+12	0	core/config.py
+40	0	core/db.py
+@@a0d3945429639f6c562a88444476839744d9453e	Ana Silva	ana.silva@shop.example	2026-11-10
+
+10	0	core/db.py
+29	0	orders/api.py
+@@faa0aacf2cd46c8e74c9bd98cf5921fb50dd6c6b	Ana Silva	ana.silva@shop.example	2026-10-20
+
+15	0	payments/webhooks.py
+@@b579089fdf73b4d2bc6598a4ee680b3839743088	Ben Okafor	ben@shop.example	2026-10-11
+
+9	0	web/src/cart.tsx
+6	0	web/src/checkout.tsx
+@@50b03245d12d83ddb1e9ae1c66a2d45178051021	Eli Novak	eli@shop.example	2026-10-10
+
+15	0	core/config.py
+11	0	search/query.py
+@@7214f7c5b6154585c695eaf02e978b3464b8dc02	dependabot[bot]	49699333+dependabot[bot]@users.noreply.github.com	2026-10-01
+
+150	0	web/package-lock.json
+150	0	web/package.json
+@@16652d4b388444019ca413263b86cbfd87baed7a	Ana Silva	ana.silva@shop.example	2026-09-24
+
+37	0	orders/api.py
+7	0	orders/service.py
+@@8290901896c8e9f9611cff8466cf7966b25eb76d	Ben Okafor	ben@shop.example	2026-09-15
+
+5	0	README.md
+@@fffb9688a48be4a6e95b08b16cba70e17e9f4b9b	Eli Novak	eli@shop.example	2026-09-07
+
+15	0	orders/api.py
+31	0	search/query.py
+@@e841c7d0bbed56f4725d681b6587a1808123c893	Ben Okafor	ben@shop.example	2026-09-07
+
+24	0	web/src/api.ts
+25	0	web/src/cart.tsx
+@@88ccae50a361536da22fe6b5e96cc008385ccccb	Ana Silva	ana.silva@shop.example	2026-08-09
+
+25	0	orders/models.py
+14	0	orders/service.py
+@@000ed52a381b54ba901092d2050c6165b8441de8	Eli Novak	eli@shop.example	2026-08-06
+
+37	0	core/db.py
+27	0	orders/api.py
+@@c548efcb90ebc04644b4f9d761bb0a96bc9be56d	Ben Okafor	ben@shop.example	2026-08-04
+
+4	0	web/src/api.ts
+13	0	web/src/checkout.tsx
+@@b9a4d1e4e28cda2113d8ac51cdff3389910dc14e	Eli Novak	eli@shop.example	2026-07-04
+
+32	0	core/config.py
+15	0	core/db.py
+@@a003bffd397e386e00c745b4393ca3c509859e35	Ben O.	ben.okafor@gmail.example	2026-07-01
+
+3	0	web/src/cart.tsx
+9	0	web/src/checkout.tsx
+@@10e0e7b09f2d37b0c7055c4a7a17af09dc945e91	Ana Silva	ana.silva@shop.example	2026-06-24
+
+18	0	core/db.py
+28	0	orders/models.py
+@@d0076f938d1899cc368d2cc627220682762e6516	Eli Novak	eli@shop.example	2026-06-02
+
+35	0	core/config.py
+15	0	search/query.py
+@@b70911cb2b187c324a78b2af770bff9c354ed222	Ben Okafor	ben@shop.example	2026-05-29
+
+28	0	web/src/api.ts
+6	0	web/src/cart.tsx
+@@c77843f7c87f8d6ad35d107e4ad625e4559cf306	Chen Wei	chen@shop.example	2026-05-15
+
+30	0	core/config.py
+9	0	search/query.py
+@@faeb60ed9f9ec1faaf33e8393463027d45666e4a	Ana Silva	ana.silva@shop.example	2026-05-09
+
+25	0	core/db.py
+31	0	orders/api.py
+@@09c4044f954ffd84dc15713518cc1532a6c5cc6f	Ben Okafor	ben@shop.example	2026-04-25
+
+8	0	web/src/api.ts
+8	0	web/src/checkout.tsx
+@@efcdcc32cc592412a5a7dd1796fa0149aff7094a	dependabot[bot]	49699333+dependabot[bot]@users.noreply.github.com	2026-04-01
+
+150	0	web/package-lock.json
+150	0	web/package.json
+@@ae3fc07a50e237c4a8b98c1df55da1f5e8155aa6	Ana Silva	ana.silva@shop.example	2026-03-24
+
+30	0	orders/api.py
+36	0	orders/service.py
+@@eb7130d2a61f5f297762462e5ea807f5c601b827	Ben Okafor	ben@shop.example	2026-03-22
+
+36	0	web/src/cart.tsx
+30	0	web/src/checkout.tsx
+@@bdadf66c0528166414b20facd6e0bc6490dc50c4	Chen Wei	chen@shop.example	2026-03-14
+
+38	0	search/index.py
+37	0	search/query.py
+@@9dd045964286f69e2630aa8d2492d9cb8b126f45	Ben Okafor	ben@shop.example	2026-02-16
+
+22	0	web/src/api.ts
+39	0	web/src/cart.tsx
+@@e5b16b9f4a0600bb1303545da56d8ec5b775a71d	Ana Silva	ana.silva@shop.example	2026-02-06
+
+40	0	orders/models.py
+4	0	orders/service.py
+@@9f3ce69e27b7d9c169f07879450c79faffb917e9	Ben Okafor	ben@shop.example	2026-01-14
+
+28	0	web/src/api.ts
+26	0	web/src/checkout.tsx
+@@87c36c4896129acc5b4dacb88498e10394a0dfaf	Chen Wei	chen@shop.example	2026-01-11
+
+22	0	core/config.py
+39	0	search/index.py
+@@8ef82e501b1097d202e79c324d4a6118e855f852	Ana Silva	ana.silva@shop.example	2025-12-22
+
+28	0	core/db.py
+14	0	orders/models.py
+@@3433f75f61d9493c5cb9d48d7a5fb86ef241bea0	Ben Okafor	ben@shop.example	2025-12-11
+
+36	0	web/src/cart.tsx
+29	0	web/src/checkout.tsx
+@@304e9fd851a7b0cdd05780fe452310a5d3d86abc	Chen Wei	chen@shop.example	2025-11-11
+
+21	0	core/config.py
+35	0	search/query.py
+@@98d8c4bbb5f3b6604cfd38bc5dda9f08736c64ed	Ben Okafor	ben@shop.example	2025-11-07
+
+29	0	web/src/api.ts
+19	0	web/src/cart.tsx
+@@03290d9ed4de0c842c7b378220f9a385b4135a4d	Ana Silva	ana@personal.example	2025-11-06
+
+5	0	core/db.py
+37	0	orders/api.py
+@@f1e157a039fbe041730b8f1137c684027f0e7c32	Ben Okafor	ben@shop.example	2025-10-04
+
+24	0	web/src/api.ts
+6	0	web/src/checkout.tsx
+@@5622224adaa507aa5490d234b1840d20477c3575	dependabot[bot]	49699333+dependabot[bot]@users.noreply.github.com	2025-09-30
+
+150	0	web/package-lock.json
+150	0	web/package.json
+@@f658dbaddfcc5963b8e27a6f36a1903d4b3db6e6	Ana Silva	ana.silva@shop.example	2025-09-21
+
+30	0	orders/api.py
+14	0	orders/service.py
+@@bac00f633bef75ed05866ccc8d6d31fb9e071e3e	Chen Wei	chen@shop.example	2025-09-10
+
+20	0	search/index.py
+20	0	search/query.py
+@@c460c69d03be963f77b2524616dfde637254e72f	Ben Okafor	ben@shop.example	2025-09-01
+
+35	0	web/src/cart.tsx
+12	0	web/src/checkout.tsx
+@@65153a48d22bf9b981f3680e6f9917b64a43ec35	Ana Silva	ana.silva@shop.example	2025-08-06
+
+28	0	orders/models.py
+22	0	orders/service.py
+@@bc8cbd6bf9daee0d05449afbbaccb64f56bfb29a	Chen Wei	chen@shop.example	2025-07-11
+
+19	0	core/config.py
+14	0	search/index.py
+@@6a34d862b912eb393cf7f8ca55c028b9010173be	Ana Silva	ana.silva@shop.example	2025-06-21
+
+23	0	core/db.py
+24	0	orders/models.py
+@@6059e786b3ab3482031920657fecf929a4a58bd4	Dana Kim	dana@shop.example	2025-05-20
+
+6	0	payments/stripe_client.py
+39	0	payments/webhooks.py
+@@e7cb62d4ed5198d9ce0a3fe0b1c938113a67ad97	Chen Wei	chen@shop.example	2025-05-10
+
+36	0	core/config.py
+40	0	search/query.py
+@@9fd0749dd73e35beb76f65b7e3657463d44c7e54	Ana Silva	ana.silva@shop.example	2025-05-06
+
+10	0	core/db.py
+14	0	orders/api.py
+@@a0c736ff9075a594896ca5bf024440a12c35c115	Dana Kim	dana@shop.example	2025-05-03
+
+29	0	payments/refunds.py
+15	0	payments/webhooks.py
+@@1e40d5f4b152a88dbd317ede961bf06ae2a0a742	Dana Kim	dana@shop.example	2025-04-17
+
+22	0	payments/refunds.py
+19	0	payments/stripe_client.py
+@@ab3f7a3a2d1bea59b43fc959a0b3e1116dcf247f	dependabot[bot]	49699333+dependabot[bot]@users.noreply.github.com	2025-04-01
+
+150	0	web/package-lock.json
+150	0	web/package.json
+@@fb0a311f7267f495367425518ef25dbf365f5ae1	Dana Kim	dana@shop.example	2025-03-31
+
+40	0	payments/stripe_client.py
+4	0	payments/webhooks.py
+@@cd493d2263836828dcb0be8e4c4140125c965850	Ana Silva	ana.silva@shop.example	2025-03-21
+
+39	0	orders/api.py
+6	0	orders/service.py
+@@3c743484d0dd4bca3905f9686bba1f48b22de580	Dana Kim	dana@shop.example	2025-03-15
+
+38	0	payments/refunds.py
+30	0	payments/webhooks.py
+@@981e4f06309729c1da359503aed2ba7acd1a8e8b	Chen Wei	chen@shop.example	2025-03-10
+
+23	0	search/index.py
+14	0	search/query.py
+@@c9168c14828d2c382e334aa604064471d5d0cd63	Dana Kim	dana@shop.example	2025-02-26
+
+6	0	payments/refunds.py
+20	0	payments/stripe_client.py
+@@4e20074f7f1b7bddfda1949cc23b0852c36ec61a	Dana Kim	dana@shop.example	2025-02-10
+
+17	0	payments/stripe_client.py
+8	0	payments/webhooks.py
+@@d53da3ddd6680b9335a63352e7b365c79f62c028	Ana Silva	ana.silva@shop.example	2025-02-03
+
+10	0	orders/models.py
+25	0	orders/service.py
+@@3e657197ddd176ccb02ab859abd3f8416459b665	Dana Kim	dana@shop.example	2025-01-24
+
+31	0	payments/refunds.py
+14	0	payments/webhooks.py
+@@8590bef42bccc66937a1dcbc79275ed93099cef7	Dana Kim	dana@shop.example	2025-01-08
+
+4	0	payments/refunds.py
+18	0	payments/stripe_client.py
+@@f67141a910fd0594c02e23adbc41e740d373506c	Ana Silva	ana.silva@shop.example	2025-01-06
+
+11	0	README.md
+
+FILE:examples/aliases.csv
+alias,canonical
+ben.okafor@gmail.example,Ben Okafor
+Ben O.,Ben Okafor
+
+FILE:scripts/bus_factor.py
+#!/usr/bin/env python3
+"""bus_factor.py - find knowledge concentration ("bus factor") risk in a Git repository from its history.
+
+Reads `git log --numstat` history (from a saved log file or by running git on a repo), merges author
+aliases, skips bots, lockfiles and vendored code, and weights each change by lines touched and how
+recent it is. Per module (top-level folder by default) it reports who holds the knowledge, the module
+bus factor (fewest people holding more than half of it), whether any active person still knows it,
+and the repository truck factor (how many people would have to leave before more than half of the
+files have no active person who knows them). Standard library only.
+
+Usage:
+  python3 bus_factor.py LOGFILE [options]
+  python3 bus_factor.py --repo PATH [options]          (runs git log for you)
+  python3 bus_factor.py --self-test
+Make LOGFILE with:
+  git log --no-merges --numstat --date=short --format='@@%H%x09%an%x09%ae%x09%ad' > history.log
+Options:
+  --aliases FILE       CSV alias,canonical  (alias = an email or a name; canonical = the person's name)
+  --depth N            module = first N folders of the path (default 1; root files = "(root)")
+  --since YYYY-MM-DD   ignore older commits
+  --as-of YYYY-MM-DD   reference date (default: newest commit in the log)
+  --active-days N      an author is active if they committed within N days of --as-of (default 120)
+  --half-life-days N   a change loses half its weight after N days (default 365)
+  --knows-share X      an author "knows" a file when they hold at least X of its weight (default 0.25)
+  --exclude GLOB       extra path pattern to skip (repeatable); defaults skip lockfiles, vendor, dist, minified
+  --include-bots       keep authors whose name or email contains [bot] or "bot@"
+  --json               machine-readable output
+Exit codes: 0 no high findings, 1 high findings, 2 bad input.
+"""
+import csv, datetime as dt, fnmatch, json, math, os, subprocess, sys
+from collections import defaultdict
+
+DEFAULT_EXCLUDES = ["*package-lock.json", "*yarn.lock", "*pnpm-lock.yaml", "*poetry.lock", "*Cargo.lock", "*go.sum",
+                    "*composer.lock", "*Gemfile.lock", "vendor/*", "*/vendor/*", "node_modules/*", "dist/*",
+                    "build/*", "*.min.js", "*.min.css", "*.svg", "*.png", "*.jpg", "*.pdf"]
+SEV = {"BF01": "high", "BF02": "high", "BF03": "medium", "BF04": "medium", "BF05": "low", "BF06": "low"}
+NAMES = {"BF01": "repository truck factor is 1 or 2",
+         "BF02": "orphaned module: most files have no active person who knows them",
+         "BF03": "module bus factor 1: one person holds most of the knowledge",
+         "BF04": "hot spot with a single knower (busy recently, one person)",
+         "BF05": "possible duplicate identity (same name, different emails)",
+         "BF06": "only one person has ever changed this module"}
+
+
+class InputError(Exception):
+    pass
+
+
+def parse_date(s, what):
+    try:
+        return dt.date.fromisoformat(s.strip()[:10])
+    except (ValueError, AttributeError):
+        raise InputError("bad %s date: %r" % (what, s))
+
+
+def parse_log(lines):
+    """Return list of commits: dict(sha, name, email, date, files=[(path, added, deleted)])."""
+    commits, cur = [], None
+    for n, raw in enumerate(lines, 1):
+        line = raw.rstrip("\n")
+        if line.startswith("@@"):
+            parts = line[2:].split("\t")
+            if len(parts) < 4:
+                raise InputError("line %d: header needs sha, name, email, date separated by tabs" % n)
+            cur = {"sha": parts[0], "name": parts[1].strip(), "email": parts[2].strip().lower(),
+                   "date": parse_date(parts[3], "commit"), "files": []}
+            commits.append(cur)
+        elif line.strip():
+            if cur is None:
+                raise InputError("line %d: numstat line before any @@ commit header (wrong --format?)" % n)
+            parts = line.split("\t")
+            if len(parts) != 3:
+                raise InputError("line %d: expected 'added<TAB>deleted<TAB>path'" % n)
+            a, d, path = parts
+            if a == "-" or d == "-":      # binary file
+                continue
+            path = path.strip()
+            if " => " in path:            # rename: keep the new path
+                if "{" in path:
+                    pre, rest = path.split("{", 1)
+                    mid, post = rest.split("}", 1)
+                    path = (pre + mid.split(" => ")[1] + post).replace("//", "/")
+                else:
+                    path = path.split(" => ")[1]
+            try:
+                cur["files"].append((path, int(a), int(d)))
+            except ValueError:
+                raise InputError("line %d: added/deleted must be numbers" % n)
+    if not commits:
+        raise InputError("no commits found (expected lines starting with @@)")
+    return commits
+
+
+def git_log(repo, since=None):
+    cmd = ["git", "-C", repo, "log", "--no-merges", "--numstat", "--date=short", "--format=@@%H%x09%an%x09%ae%x09%ad"]
+    if since:
+        cmd.append("--since=" + since)
+    try:
+        out = subprocess.run(cmd, capture_output=True, text=True, check=True).stdout
+    except (OSError, subprocess.CalledProcessError) as e:
+        raise InputError("git log failed: %s" % (getattr(e, "stderr", "") or e))
+    return out.splitlines()
+
+
+def load_aliases(path):
+    m = {}
+    if not path:
+        return m
+    try:
+        for row in csv.DictReader(open(path, encoding="utf-8", newline="")):
+            a, c = (row.get("alias") or "").strip(), (row.get("canonical") or "").strip()
+            if a and c:
+                m[a.lower()] = c
+    except OSError as e:
+        raise InputError("cannot read aliases: %s" % e)
+    return m
+
+
+def module_of(path, depth):
+    parts = path.split("/")
+    if len(parts) == 1:
+        return "(root)"
+    return "/".join(parts[:min(depth, len(parts) - 1)])
+
+
+def analyse(commits, aliases=None, depth=1, since=None, as_of=None, active_days=120, half_life=365,
+            knows_share=0.25, excludes=None, include_bots=False):
+    aliases = aliases or {}
+    pats = DEFAULT_EXCLUDES + list(excludes or [])
+    since_d = parse_date(since, "--since") if since else None
+    as_of_d = parse_date(as_of, "--as-of") if as_of else max(c["date"] for c in commits)
+    emails_by_name = defaultdict(set)
+    last_seen = {}
+    fw = defaultdict(lambda: defaultdict(float))       # file -> author -> weight
+    f_last = {}
+    f_recent = defaultdict(float)                       # lines in last 90 days
+    commits_per_module = defaultdict(set)
+    authors_ever = defaultdict(set)                     # module -> authors (unweighted)
+    used = 0
+    for c in commits:
+        if since_d and c["date"] < since_d:
+            continue
+        if c["date"] > as_of_d:
+            continue
+        if not include_bots and ("[bot]" in c["name"].lower() or "bot@" in c["email"] or c["name"].lower().endswith(" bot")):
+            continue
+        who = aliases.get(c["email"]) or aliases.get(c["name"].lower()) or c["name"]
+        if who == c["name"] and not aliases.get(c["email"]):
+            emails_by_name[c["name"]].add(c["email"])
+        last_seen[who] = max(last_seen.get(who, c["date"]), c["date"])
+        age = (as_of_d - c["date"]).days
+        w = 0.5 ** (age / float(half_life)) if half_life > 0 else 1.0
+        touched = False
+        for path, a, d in c["files"]:
+            if any(fnmatch.fnmatch(path, p) for p in pats):
+                continue
+            lines = a + d
+            if lines == 0:
+                continue
+            touched = True
+            fw[path][who] += math.log1p(lines) * w     # log damps huge generated diffs
+            f_last[path] = max(f_last.get(path, c["date"]), c["date"])
+            if age <= 90:
+                f_recent[path] += lines
+            mod = module_of(path, depth)
+            commits_per_module[mod].add(c["sha"])
+            authors_ever[mod].add(who)
+        used += touched
+    if not fw:
+        raise InputError("no usable file changes after filters")
+    active = {a for a, d in last_seen.items() if (as_of_d - d).days <= active_days}
+
+    def knowers(path):
+        tot = sum(fw[path].values())
+        return {a for a, v in fw[path].items() if v / tot >= knows_share}
+
+    files = sorted(fw)
+    mods = defaultdict(list)
+    for p in files:
+        mods[module_of(p, depth)].append(p)
+    recent_by_mod = {m: sum(f_recent[p] for p in ps) for m, ps in mods.items()}
+    hot_cut = sorted(recent_by_mod.values())[int(len(recent_by_mod) * 0.75)] if recent_by_mod else 0
+    out_mods, findings = [], []
+    for m in sorted(mods):
+        ps = mods[m]
+        aw = defaultdict(float)
+        for p in ps:
+            for a, v in fw[p].items():
+                aw[a] += v
+        tot = sum(aw.values())
+        ranked = sorted(aw.items(), key=lambda x: -x[1])
+        acc, bf = 0.0, 0
+        for a, v in ranked:
+            acc += v; bf += 1
+            if acc > tot / 2:
+                break
+        kn = set().union(*(knowers(p) for p in ps))
+        act_kn = sorted(kn & active)
+        covered = sum(1 for p in ps if knowers(p) & active)
+        top, share = ranked[0][0], ranked[0][1] / tot
+        row = {"module": m, "files": len(ps), "commits": len(commits_per_module[m]), "authors": len(aw),
+               "top_author": top, "top_share": round(share, 3), "bus_factor": bf,
+               "active_knowers": act_kn, "active_coverage": round(covered / len(ps), 3),
+               "last_change": max(f_last[p] for p in ps).isoformat(), "recent_lines_90d": int(recent_by_mod[m]),
+               "top_author_active": top in active, "findings": []}
+        if covered / len(ps) < 0.5:
+            row["findings"].append("BF02")
+        if bf == 1 and len(ps) >= 3:
+            row["findings"].append("BF03")
+        if bf == 1 and recent_by_mod[m] > 0 and recent_by_mod[m] >= hot_cut and len(mods) >= 4:
+            row["findings"].append("BF04")
+        if len(authors_ever[m]) == 1:
+            row["findings"].append("BF06")
+        out_mods.append(row)
+    # repository truck factor: greedily remove the author who knows most still-covered files
+    file_kn = {p: knowers(p) & active for p in files}
+    removed, tf = [], 0
+    remaining = {p: set(k) for p, k in file_kn.items()}
+    def orphaned():
+        return sum(1 for k in remaining.values() if not k)
+    if orphaned() > len(files) / 2:
+        tf = 0
+    else:
+        while orphaned() <= len(files) / 2:
+            cnt = defaultdict(int)
+            for k in remaining.values():
+                for a in k:
+                    cnt[a] += 1
+            if not cnt:
+                break
+            a = sorted(cnt.items(), key=lambda x: (-x[1], x[0]))[0][0]
+            removed.append(a); tf += 1
+            for k in remaining.values():
+                k.discard(a)
+    if tf <= 2:
+        findings.append({"code": "BF01", "detail": "truck factor %d (%s)" % (tf, ", ".join(removed) or "already orphaned")})
+    for name, em in sorted(emails_by_name.items()):
+        if len(em) > 1:
+            findings.append({"code": "BF05", "detail": "%s uses %s; add an alias line" % (name, ", ".join(sorted(em)))})
+    for r in out_mods:
+        for code in r["findings"]:
+            findings.append({"code": code, "module": r["module"], "detail": "top %s %.0f%%, active knowers: %s" % (
+                r["top_author"], r["top_share"] * 100, ", ".join(r["active_knowers"]) or "none")})
+    people = sorted(({"author": a, "last_commit": d.isoformat(), "active": a in active,
+                      "files_known": sum(1 for p in files if a in knowers(p))} for a, d in last_seen.items()),
+                    key=lambda x: -x["files_known"])
+    return {"as_of": as_of_d.isoformat(), "commits_used": used, "files": len(files), "modules": out_mods,
+            "truck_factor": tf, "truck_factor_people": removed, "people": people,
+            "settings": {"depth": depth, "active_days": active_days, "half_life_days": half_life, "knows_share": knows_share},
+            "findings": findings}
+
+
+def render(a):
+    L = ["# Knowledge risk report (as of %s)" % a["as_of"], "",
+         "Commits used: %d | files: %d | repository truck factor: %d (%s)" % (
+             a["commits_used"], a["files"], a["truck_factor"], ", ".join(a["truck_factor_people"]) or "-"), "",
+         "| module | files | commits | authors | top author | top share | bus factor | active knowers | active coverage | last change |",
+         "|---|---|---|---|---|---|---|---|---|---|"]
+    for r in a["modules"]:
+        L.append("| %s | %d | %d | %d | %s%s | %.0f%% | %d | %s | %.0f%% | %s |" % (
+            r["module"], r["files"], r["commits"], r["authors"], r["top_author"], "" if r["top_author_active"] else " (inactive)",
+            r["top_share"] * 100, r["bus_factor"], ", ".join(r["active_knowers"]) or "none", r["active_coverage"] * 100,
+            r["last_change"]))
+    L += ["", "## People", "", "| author | last commit | active | files known |", "|---|---|---|---|"]
+    for p in a["people"]:
+        L.append("| %s | %s | %s | %d |" % (p["author"], p["last_commit"], "yes" if p["active"] else "no", p["files_known"]))
+    L += ["", "## Findings"]
+    order = {"high": 0, "medium": 1, "low": 2}
+    for f in sorted(a["findings"], key=lambda f: (order[SEV[f["code"]]], f["code"], f.get("module", ""))):
+        L.append("- [%s] %s %s%s: %s" % (SEV[f["code"]], f["code"], NAMES[f["code"]],
+                                         (" - " + f["module"]) if f.get("module") else "", f["detail"]))
+    if not a["findings"]:
+        L.append("- none")
+    L += ["", "History shows who changed code, not who understands it; confirm with the team before acting."]
+    return "\n".join(L)
+
+
+def self_test():
+    T = []
+    def check(name, cond):
+        T.append((name, bool(cond)))
+    log = """@@a1\tAna\tana@x.io\t2026-01-10
+10\t2\tapi/orders.py
+5\t0\tapi/users.py
+@@a2\tBen\tben@x.io\t2026-03-01
+20\t5\tweb/app.js
+3\t1\tapi/orders.py
+@@a3\tAna\tana@home.io\t2026-06-01
+4\t4\tapi/users.py
+-\t-\tweb/logo.png
+@@a4\tdependabot[bot]\t49699333+dependabot[bot]@users.noreply.github.com\t2026-06-02
+200\t180\tpackage-lock.json
+1\t1\tweb/package.json
+@@a5\tCara\tcara@x.io\t2025-01-05
+50\t0\tbilling/{old => new}/invoice.py
+@@a6\tBen\tben@x.io\t2026-06-10
+2\t2\tREADME.md
+""".splitlines()
+    c = parse_log(log)
+    check("parses 6 commits", len(c) == 6)
+    check("binary numstat rows skipped", all(f[0] != "web/logo.png" for x in c for f in x["files"]))
+    check("brace rename resolved to new path", c[4]["files"][0][0] == "billing/new/invoice.py")
+    check("module of root file is (root)", module_of("README.md", 1) == "(root)")
+    check("module depth 2", module_of("src/api/x/y.py", 2) == "src/api")
+    a = analyse(c, as_of="2026-06-10")
+    mods = {m["module"]: m for m in a["modules"]}
+    check("bot commits skipped", "web" in mods and mods["web"]["authors"] == 1)
+    check("lockfile excluded", all(m["module"] != "(root)" or m["files"] == 1 for m in a["modules"]))
+    check("duplicate identity flagged BF05", any(f["code"] == "BF05" and "Ana" in f["detail"] for f in a["findings"]))
+    a2 = analyse(c, aliases={"ana@home.io": "Ana"}, as_of="2026-06-10")
+    check("alias removes BF05", not any(f["code"] == "BF05" for f in a2["findings"]))
+    check("inactive author makes billing orphaned BF02", "BF02" in mods["billing"]["findings"])
+    check("single-author module flagged BF06", "BF06" in mods["web"]["findings"])
+    check("api bus factor is 1 (Ana holds most)", mods["api"]["bus_factor"] == 1 and mods["api"]["top_author"] == "Ana")
+    check("truck factor small -> BF01", any(f["code"] == "BF01" for f in a["findings"]))
+    a3 = analyse(c, as_of="2026-06-10", since="2026-02-01")
+    check("--since drops older commits", a3["commits_used"] == 3)
+    a4 = analyse(c, as_of="2026-06-10", active_days=600)
+    check("long active window: billing has an active knower", "BF02" not in {m["module"]: m for m in a4["modules"]}["billing"]["findings"])
+    check("BF02 uses active coverage under 50%", all(("BF02" in m["findings"]) == (m["active_coverage"] < 0.5) for m in a["modules"]))
+    check("recency weight halves after half-life", abs(0.5 ** (365 / 365.0) - 0.5) < 1e-9)
+    for bad, label in [(["10\t2\tx.py"], "numstat before header rejected"), (["@@x\tA\ta@b\tnot-a-date"], "bad date rejected"),
+                       (["@@x\tA\ta@b\t2026-01-01", "ten\t2\tx.py"], "non-numeric counts rejected"), ([], "empty log rejected")]:
+        try:
+            parse_log(bad); check(label, False)
+        except InputError:
+            check(label, True)
+    try:
+        analyse(parse_log(["@@x\tA\ta@b\t2026-01-01", "3\t1\tyarn.lock"])); check("only excluded files rejected", False)
+    except InputError:
+        check("only excluded files rejected", True)
+    for name, ok in T:
+        print(("PASS  " if ok else "FAIL  ") + name)
+    good = all(ok for _, ok in T)
+    print("ALL PASS" if good else "SOME FAILED", "(%d/%d)" % (sum(ok for _, ok in T), len(T)))
+    return 0 if good else 1
+
+
+def main(argv):
+    if "--self-test" in argv:
+        return self_test()
+    opts = {"aliases": None, "depth": "1", "since": None, "as-of": None, "active-days": "120", "half-life-days": "365",
+            "knows-share": "0.25", "repo": None}
+    excludes, pos, i = [], [], 0
+    while i < len(argv):
+        x = argv[i]
+        if x in ("--json", "--include-bots"):
+            i += 1; continue
+        if x.startswith("--"):
+            k = x[2:]
+            if i + 1 >= len(argv) or (k not in opts and k != "exclude"):
+                print("error: unknown or incomplete option %s" % x, file=sys.stderr); return 2
+            if k == "exclude":
+                excludes.append(argv[i + 1])
+            else:
+                opts[k] = argv[i + 1]
+            i += 2; continue
+        pos.append(x); i += 1
+    try:
+        if opts["repo"]:
+            lines = git_log(opts["repo"], opts["since"])
+        elif len(pos) == 1:
+            try:
+                lines = open(pos[0], encoding="utf-8", errors="replace").read().splitlines()
+            except OSError as e:
+                raise InputError("cannot read %s: %s" % (pos[0], e))
+        else:
+            print(__doc__, file=sys.stderr); return 2
+        try:
+            depth, ad, hl, ks = int(opts["depth"]), int(opts["active-days"]), int(opts["half-life-days"]), float(opts["knows-share"])
+        except ValueError:
+            raise InputError("--depth, --active-days and --half-life-days need whole numbers, --knows-share a decimal")
+        if depth < 1 or not 0 < ks <= 1:
+            raise InputError("--depth must be >= 1 and --knows-share between 0 and 1")
+        a = analyse(parse_log(lines), load_aliases(opts["aliases"]), depth, opts["since"], opts["as-of"], ad, hl, ks,
+                    excludes, "--include-bots" in argv)
+    except InputError as e:
+        print("error: %s" % e, file=sys.stderr); return 2
+    print(json.dumps(a, indent=2) if "--json" in argv else render(a))
+    return 1 if any(SEV[f["code"]] == "high" for f in a["findings"]) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
+```
+
+</details>
+
 <details><summary><b>Git Commit Message Quality Coach</b></summary>
 
 ```text
@@ -5364,1647 +7339,6 @@ git@github.com:USERNAME/REPOSITORY.git
 
 # SUCCESS OUTPUT (WRITE THIS EXACTLY)
 All checks passed, the repository is ready for push.
-```
-
-</details>
-
-<details><summary><b>Gitignore Pattern Tester and Reviewer</b></summary>
-
-```text
----
-name: gitignore-pattern-tester-and-reviewer
-description: Explains every line of a .gitignore, tests it against paths that must be ignored or must stay committable, names the rule that decides each path, and flags mistakes such as negations blocked by an excluded parent folder, inline comments, leading spaces, backslashes, stray **, secrets not covered and .env.example ignored. Returns a fixed file. Includes a stdlib Python checker with --self-test, matched against real git.
----
-
-# Gitignore Pattern Tester and Reviewer
-
-You help developers understand and fix `.gitignore` files. You explain what each pattern really matches, prove it with path tests, and find the mistakes that make git ignore source files or commit secrets and build output. You return a corrected file with tests that pass, not just advice.
-
-## Files in this skill
-
-- `scripts/gitignore_check.py` - explains each rule, runs "+ path" (must be ignored) and "- path" (must be kept) tests, names the deciding line for each path, and reports HIGH, MEDIUM, LOW and INFO findings (Python 3 standard library only)
-- `references/gitignore-rules.md` - how git reads ignore files: sources and priority, line syntax, anchoring, wildcards, the parent-directory rule, tracked files and commands to confirm
-- `references/common-pitfalls.md` - every finding code with its fix, pitfalls the script cannot see (broad names, tracked files, nested files, case sensitivity, lock files, .dockerignore differences) and good starting blocks
-- `templates/gitignore-review.md` - the review to hand back
-- `examples/webapp.gitignore` - a web app ignore file with six real bugs
-- `examples/webapp-fixed.gitignore` - the corrected file (all tests pass)
-- `examples/webapp-paths.txt` - 19 path tests used with both files
-
-## Workflow
-
-### 1. Collect the inputs
-Ask for the `.gitignore` (and any nested ones), the stack, and the paths that matter: what must be ignored (build output, dependencies, logs, secrets) and what must stay committable (source folders with common names like `build/` or `lib/`, `.gitkeep` files, `.env.example`, lock files). If the user only asks "why is X ignored?" ask for the path and use `git check-ignore -v X` output if they have it.
-
-### 2. Run the checker
-'''
-python3 scripts/gitignore_check.py examples/webapp.gitignore --test examples/webapp-paths.txt
-python3 scripts/gitignore_check.py .gitignore --test paths.txt --json
-python3 scripts/gitignore_check.py --self-test
-'''
-Paths file: `+ path` must be ignored, `- path` must be kept, end directories with `/`. Exit 1 means a HIGH finding or a failed test, 2 means unreadable input. The checker models one ignore file at the repo root; for a nested file, give paths relative to its folder.
-
-### 3. Explain and fix
-- Walk through the Rules table in plain words, especially anchoring (slash at start or middle = relative to the .gitignore folder) and the parent-directory rule (see `references/gitignore-rules.md`).
-- For each FAIL, quote the deciding line from the "Decided by" column and give the smallest change that fixes it.
-- Fix every HIGH and MEDIUM finding; explain any INFO you leave in place.
-- Add `- path` tests for source folders with common names so over-broad rules show up.
-- Re-run the checker on the fixed file until all tests pass, and show the diff.
-
-### 4. Deliver
-Fill `templates/gitignore-review.md`: what the current file does, the test table, findings, the full fixed file, a diff, and the commands to confirm (`git check-ignore -v`, `git status --ignored`) and to untrack files that were already committed (`git rm --cached`).
-
-## Example result
-For `examples/webapp.gitignore` with `examples/webapp-paths.txt`: 13/19 tests pass, 1 HIGH, 4 MEDIUM, 2 LOW, 1 INFO. HIGH NEGATION_BLOCKED: `logs/` excludes the folder, so `!logs/.gitkeep` can never apply (fix: `logs/*`). MEDIUM: `config/secrets.yml # never commit` is one pattern, so the secrets file would be committed; ` Thumbs.db` has a leading space; `src\generated` is read as `srcgenerated`; and `*.key`, `*.pem` and `id_rsa` files are not covered. LOW: `.env*` hides `.env.example`; `*.log` is listed twice. The unanchored `build` also hides `src/build/README.md` (fix: `/build/`). `examples/webapp-fixed.gitignore` passes 19/19 with no HIGH, MEDIUM or LOW findings.
-
-## Rules
-
-- Last matching line wins; a file inside an excluded folder can never be re-included. Say this whenever a `!` line is involved.
-- Never suggest ignoring lock files (`package-lock.json`, `poetry.lock`, `go.sum`, app `Cargo.lock`) or shared config the team commits on purpose.
-- If a secret was already committed, say that ignoring it is not enough: rotate it and consider rewriting history.
-- Prefer anchored root patterns (`/dist/`, `/build/`) for output folders, and put personal editor and OS files in the global ignore file when the team agrees.
-- Confirm on the real repository with `git check-ignore -v`: the script follows git's documented rules for one file, but nested files, `.git/info/exclude`, the global file and `core.ignorecase` can change the result.
-FILE:references/gitignore-rules.md
-# How git reads .gitignore
-
-Source: the gitignore(5) manual (`git help gitignore`). The checker implements these rules and was compared with real git 2.47 on 6,956 path checks with no differences.
-
-## Where rules come from (highest priority first)
-1. Command-line `--exclude` options (rare; used by some tools).
-2. `.gitignore` files: the one in the same folder as the path wins over the ones above it. Patterns are relative to the folder that holds that `.gitignore`.
-3. `.git/info/exclude` - local to one clone, never committed. Good for personal scratch files.
-4. The global file in `core.excludesFile` (default `~/.config/git/ignore`) - good for editor and OS files such as `.DS_Store` and `*.swp`.
-
-Inside one file, the LAST matching line decides.
-
-## Line syntax
-| Line | Meaning |
-|---|---|
-| empty | ignored, use as a separator |
-| `# text` | comment; only at the very start of a line. `foo # bar` is the pattern `foo # bar` |
-| `\#file` | a name that starts with `#` |
-| `!pattern` | re-include something an earlier line excluded |
-| `\!file` | a name that starts with `!` |
-| `name   ` | trailing spaces are dropped unless escaped (`name\ `) |
-| `  name` | leading spaces are KEPT and become part of the name |
-| `\` | escapes the next character; it is never a path separator |
-
-## Slashes decide where a pattern matches
-| Pattern | Matches | Does not match |
-|---|---|---|
-| `build` | `build`, `src/build`, `a/b/build/x.js` (any file or folder named build) | `build.sh` |
-| `build/` | folders named build at any depth | a FILE named build |
-| `/build` | `build` next to the .gitignore only | `src/build` |
-| `doc/frotz` | `doc/frotz` next to the .gitignore (a slash in the middle anchors like a leading slash) | `a/doc/frotz` |
-| `**/doc/frotz` | `doc/frotz` at any depth | |
-
-Rule of thumb: no slash (or only a trailing one) = any depth; a slash at the start or middle = relative to the .gitignore folder.
-
-## Wildcards
-| Wildcard | Meaning |
-|---|---|
-| `*` | any characters except `/` (`*.log`, `/a*z` does not match `ab/cz`) |
-| `?` | exactly one character except `/` |
-| `[abc]`, `[a-z]`, `[!0-9]`, `[^0-9]` | one character from (or not from) the set; `[[:digit:]]` style classes work |
-| `**/name` | `name` in any folder, including the top |
-| `dir/**` | everything inside `dir`, but not `dir` itself |
-| `a/**/b` | `a/b`, `a/x/b`, `a/x/y/b` |
-| `foo**`, `**bar` | `**` not next to slashes acts like a single `*` |
-
-## The parent-directory rule (the most common surprise)
-"It is not possible to re-include a file if a parent directory of that file is excluded." Git does not even list the contents of an excluded folder, so a later `!` line never gets a chance.
-
-'''gitignore
-# does NOT work: logs/ is excluded as a folder
-logs/
-!logs/.gitkeep
-
-# works: exclude the folder's contents, keep the folder visible
-logs/*
-!logs/.gitkeep
-
-# works for deeper files: re-include each folder level
-/assets/*
-!/assets/icons/
-/assets/icons/*
-!/assets/icons/app.svg
-'''
-
-## Whitelist style
-Ignore everything, then allow what you want:
-'''gitignore
-*
-!*/
-!*.md
-!src/**
-'''
-`!*/` re-includes every folder so the later `!` lines can reach files inside them.
-
-## Already tracked files
-.gitignore only affects untracked files. A file that is already committed stays tracked:
-'''
-git rm --cached path/to/file        # keep it on disk, stop tracking it
-git rm -r --cached build/           # same for a folder
-'''
-If it was a secret, removing it from tracking is not enough: rotate the secret, because it is still in history.
-
-## Commands to confirm
-'''
-git check-ignore -v path/to/file          # prints the file, line and pattern that ignores it (nothing = not ignored)
-git check-ignore -v --no-index path       # also for files that are tracked
-git status --ignored --short              # lists ignored files as "!!"
-git ls-files --others --ignored --exclude-standard   # every ignored untracked file
-'''
-FILE:references/common-pitfalls.md
-# Common .gitignore pitfalls and the checker's codes
-
-| Code | Severity | What goes wrong | Fix |
-|---|---|---|---|
-| NEGATION_BLOCKED | HIGH | `!path/file` after a rule that excludes a parent folder (`logs/`, `dist`, `a/*` for `a/b/c`) never takes effect, so the file you meant to commit stays ignored | Exclude contents (`logs/*` or `logs/**`) instead of the folder, or re-include each folder level (`!a/b/`) |
-| SECRETS_NOT_COVERED | MEDIUM | typical secret files (`.env`, `*.pem`, `*.key`, `id_rsa`) would be committed by `git add .` | Add `.env`, `.env.*`, `*.pem`, `*.key`, `id_rsa*`; also use a secret scanner in CI |
-| INLINE_COMMENT | MEDIUM | `secrets.yml # never commit` is one pattern including the comment text, so `secrets.yml` is NOT ignored | Put comments on their own line |
-| LEADING_SPACE | MEDIUM | ` Thumbs.db` matches only a name that starts with a space | Remove the space |
-| BACKSLASH_SEPARATOR | MEDIUM | `src\generated` means "src" + escaped "g" + "enerated" = `srcgenerated` | Always use `/`, also on Windows |
-| ENV_EXAMPLE_IGNORED | LOW | `.env*` also hides `.env.example`, the template other developers need | Add `!.env.example` after it |
-| DUPLICATE | LOW | the same line twice; harmless but a sign of copy-paste merges | Delete one |
-| DOUBLE_STAR | LOW | `foo**` is just `foo*`; the author probably meant `foo/**` | Use `**` only as `**/x`, `x/**` or `a/**/b` |
-| TRAILING_SPACE | LOW | trailing spaces are silently dropped; if they were meant, the file will not match | Remove or escape them |
-| CRLF | LOW | Windows line endings in .gitignore | Save as LF; add `* text=auto` to .gitattributes |
-| ANCHORED_BY_SLASH | INFO | `src/gen` only matches next to the .gitignore, not `packages/a/src/gen` | Add `/` to show intent or `**/` to match at any depth |
-
-## Pitfalls the script cannot see (check them by hand)
-- **Unanchored names that are too broad.** `build` also hides `src/build/` and `docs/build/`; `lib` hides every `lib` folder including source code. Use `/build/` for the root output folder. Write a `- path` test for any source folder with a common name.
-- **Tracked files.** Adding a rule does not untrack files already committed. Run `git ls-files -ci --exclude-standard` to list tracked files that match the ignore rules, then `git rm --cached`.
-- **Nested .gitignore files.** A `.gitignore` in a subfolder adds rules relative to that subfolder and can re-include what the root file excluded (unless a parent folder is excluded). Run the checker on each file with paths relative to its folder, or confirm with `git check-ignore -v`.
-- **Case sensitivity.** On macOS and Windows `core.ignorecase=true` makes `*.JPG` match `photo.jpg`; on Linux CI it does not. Write both cases or use `*.[jJ][pP][gG]`.
-- **Personal files in the shared file.** `.idea/`, `.vscode/`, `*.swp`, `.DS_Store` belong in the global ignore file (`core.excludesFile`), though many teams keep them in the repo file for convenience. Do not ignore `.vscode/settings.json` if the team shares it on purpose.
-- **Lock files.** Do not ignore `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`, `poetry.lock`, `Cargo.lock` (for applications) or `go.sum`: they make builds reproducible.
-- **Ignoring then committing anyway.** `git add -f` overrides ignore rules; reviewers should check for force-added build output or secrets.
-- **Other ignore files use different rules.** `.dockerignore` uses Go filepath.Match plus `**` and is always anchored at the build context root (no "any depth" for plain names). `.npmignore`, `.eslintignore` and `.prettierignore` follow gitignore-like rules but not always every detail. Test them with their own tools.
-
-## Good starting blocks
-'''gitignore
-# Node
-node_modules/
-/dist/
-/build/
-npm-debug.log*
-.npm/
-
-# Python
-__pycache__/
-*.py[cod]
-.venv/
-.pytest_cache/
-/dist/
-*.egg-info/
-
-# Secrets
-.env
-.env.*
-!.env.example
-*.pem
-*.key
-id_rsa*
-
-# Logs that keep their folder
-logs/*
-!logs/.gitkeep
-'''
-FILE:templates/gitignore-review.md
-# .gitignore review: <repository or folder>
-
-**Stack:** <Node 20 + Vite / Python 3.12 / monorepo with pnpm workspaces>
-**Files reviewed:** <.gitignore at root, packages/api/.gitignore>
-**Summary:** <one sentence: the most important problem and what the fix changes>
-
-## What the current file does
-| Line | Pattern | Meaning |
-|---|---|---|
-| <9> | <`logs/`> | <ignores every folder named logs, at any depth, and everything in it> |
-
-## Path tests
-| Result | Path | Expected | Actual | Decided by |
-|---|---|---|---|---|
-| <FAIL> | <`logs/.gitkeep`> | <kept> | <ignored> | <parent logs/ excluded by L9; L10 cannot re-include it> |
-
-## Findings
-| # | Severity | Code | Line | Problem | Fix |
-|---|---|---|---|---|---|
-| 1 | <HIGH> | <NEGATION_BLOCKED> | <10> | <...> | <use logs/* instead of logs/> |
-
-## Proposed .gitignore
-'''gitignore
-<full fixed file, with comments on their own lines>
-'''
-
-## Changes
-'''diff
-- logs/
-+ logs/*
-'''
-
-## Apply and confirm
-1. Replace the file, then run: `git check-ignore -v <each path from the tests>`
-2. `git status --ignored --short` and check nothing important shows as `!!`
-3. Untrack files that are now ignored but were committed: `git rm --cached <path>` (rotate any secret that was committed)
-4. Commit: `chore: fix .gitignore (<short reason>)`
-
-## Follow-ups
-- <move editor files to the global ignore file>
-- <add a secret scanner (gitleaks, trufflehog) to CI>
-FILE:examples/webapp.gitignore
-# Dependencies
-node_modules
-/vendor/
-
-# Build output
-dist/
-build
-*.log
-logs/
-!logs/.gitkeep
-
-# Environment
-.env*
-config/secrets.yml # never commit
-
-# OS and editor files
-.DS_Store
-.idea/
-*.swp
- Thumbs.db
-
-# Test coverage
-coverage/**
-!coverage/README.md
-
-# Generated code
-src\generated
-*.log
-FILE:examples/webapp-fixed.gitignore
-# Dependencies
-node_modules/
-/vendor/
-
-# Build output (root only, so src/build/ stays tracked)
-/dist/
-/build/
-*.log
-# ignore the contents of logs/, not the folder, so the negation can work
-logs/*
-!logs/.gitkeep
-
-# Environment and secrets
-.env
-.env.*
-!.env.example
-*.pem
-*.key
-id_rsa*
-# never commit
-config/secrets.yml
-
-# OS and editor files
-.DS_Store
-Thumbs.db
-.idea/
-*.swp
-
-# Test coverage
-coverage/**
-!coverage/README.md
-
-# Generated code
-/src/generated/
-FILE:examples/webapp-paths.txt
-# Paths for examples/webapp.gitignore and webapp-fixed.gitignore
-# "+ path" = must be ignored, "- path" = must stay committable
-+ node_modules/react/index.js
-+ packages/api/node_modules/lodash/lodash.js
-+ vendor/autoload.php
-- packages/vendor/README.md
-+ dist/app.js
-+ build/output.js
-- src/build/README.md
-+ logs/app.log
-- logs/.gitkeep
-+ .env
-+ .env.local
-- .env.example
-+ config/secrets.yml
-+ .DS_Store
-+ Thumbs.db
-+ coverage/lcov.info
-- coverage/README.md
-+ src/generated/types.ts
-- src/index.ts
-FILE:scripts/gitignore_check.py
-#!/usr/bin/env python3
-"""Gitignore pattern tester and reviewer (Python 3 standard library only).
-
-Explains every rule in a .gitignore file, tests the file against paths that must be
-ignored ("+ path") or must stay committable ("- path"), names the rule that decides
-each path, and flags common mistakes: negations that cannot work because a parent
-directory is excluded, inline comments, leading spaces, Windows backslashes, stray
-"**", duplicates, secrets that are not covered and .env.example being ignored.
-
-Matching follows git's documented gitignore rules for a single .gitignore at the
-repository root: last matching rule wins, "!" re-includes, a trailing "/" matches
-directories only, a "/" at the start or in the middle anchors the pattern to the
-.gitignore's directory, "*" "?" "[...]" never match "/", "**" spans directories,
-and a file can never be re-included if a parent directory is excluded.
-
-Usage:
-  python3 gitignore_check.py .gitignore [--test paths.txt] [--json]
-  python3 gitignore_check.py --self-test
-Paths file: one path per line, "+ path" = must be ignored, "- path" = must NOT be
-ignored, end a path with "/" if it is a directory, "#" starts a comment.
-Exit codes: 0 = no HIGH findings and all tests pass, 1 = HIGH finding or failed test,
-2 = unreadable input.
-"""
-import argparse, json, re, sys
-
-SEV_ORDER = {"HIGH": 0, "MEDIUM": 1, "LOW": 2, "INFO": 3}
-SECRET_PROBES = [".env", "config/.env.production", "certs/server.key", "deploy/id_rsa",
-                 "secrets/service-account.pem"]
-POSIX_CLASSES = {"alnum": "a-zA-Z0-9", "alpha": "a-zA-Z", "digit": "0-9", "lower": "a-z",
-                 "upper": "A-Z", "space": " \\t\\n\\r\\f\\v", "xdigit": "0-9A-Fa-f",
-                 "punct": re.escape("!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"), "blank": " \\t"}
-
-
-class Rule:
-    def __init__(self, line_no, raw, negate, dir_only, anchored, body, regex):
-        self.line_no, self.raw, self.negate, self.dir_only = line_no, raw, negate, dir_only
-        self.anchored, self.body, self.regex = anchored, body, regex
-
-    def matches(self, rel_path, is_dir):
-        if self.dir_only and not is_dir:
-            return False
-        target = rel_path if self.anchored else rel_path.rsplit("/", 1)[-1]
-        return self.regex.fullmatch(target) is not None
-
-    def label(self):
-        return f"L{self.line_no} `{self.raw}`"
-
-
-def strip_trailing_spaces(s):
-    """git drops trailing spaces unless the last one is escaped with a backslash."""
-    end = len(s)
-    while end > 0 and s[end - 1] == " ":
-        bs, k = 0, end - 2
-        while k >= 0 and s[k] == "\\":
-            bs += 1; k -= 1
-        if bs % 2 == 1:
-            break
-        end -= 1
-    return s[:end]
-
-
-def class_to_regex(body):
-    out, m = "", 0
-    while m < len(body):
-        ch = body[m]
-        if ch == "[" and body.startswith("[:", m):
-            end = body.find(":]", m + 2)
-            if end != -1 and body[m + 2:end] in POSIX_CLASSES:
-                out += POSIX_CLASSES[body[m + 2:end]]; m = end + 2; continue
-        if ch == "\\" and m + 1 < len(body):
-            out += re.escape(body[m + 1]); m += 2; continue
-        if ch == "-" and 0 < m < len(body) - 1:
-            out += "-"; m += 1; continue
-        out += re.escape(ch); m += 1
-    return out
-
-
-def glob_to_regex(p):
-    out, i, n = "", 0, len(p)
-    while i < n:
-        c = p[i]
-        if c == "\\":
-            if i + 1 < n:
-                out += re.escape(p[i + 1]); i += 2
-            else:
-                i += 1  # a lone trailing backslash matches nothing extra
-            continue
-        if c == "*":
-            j = i
-            while j < n and p[j] == "*":
-                j += 1
-            if j - i >= 2 and (i == 0 or p[i - 1] == "/") and (j == n or p[j] == "/"):
-                if j == n:
-                    out += ".*"; i = j
-                else:
-                    out += "(?:.*/)?"; i = j + 1
-                continue
-            out += "[^/]*"; i = j; continue
-        if c == "?":
-            out += "[^/]"; i += 1; continue
-        if c == "[":
-            j = i + 1
-            neg = j < n and p[j] in "!^"
-            if neg:
-                j += 1
-            k = j + 1 if j < n and p[j] == "]" else j
-            while k < n and p[k] != "]":
-                if p[k] == "[" and p.startswith("[:", k):
-                    end = p.find(":]", k + 2)
-                    if end != -1:
-                        k = end + 2; continue
-                k += 2 if p[k] == "\\" else 1
-            if k >= n:
-                out += re.escape("["); i += 1; continue
-            cls = class_to_regex(p[j:k])
-            out += ("[^/" + cls + "]") if neg else ("(?!/)[" + cls + "]")
-            i = k + 1; continue
-        out += re.escape(c); i += 1
-    return out
-
-
-def parse_rules(text):
-    rules, findings, seen = [], [], {}
-    for no, raw in enumerate(text.split("\n"), 1):
-        if raw.endswith("\r"):
-            findings.append(("LOW", "CRLF", no, "line ends with CR (Windows line ending)",
-                             "Save the file with LF line endings; set `* text=auto` in .gitattributes."))
-            raw = raw[:-1]
-        if not raw.strip() or raw.startswith("#"):
-            continue
-        line = strip_trailing_spaces(raw)
-        if line != raw:
-            findings.append(("LOW", "TRAILING_SPACE", no, f"`{raw}` has trailing spaces, which git drops",
-                             "Delete them; escape a real trailing space as `\\ `."))
-        if raw[0] in " \t":
-            findings.append(("MEDIUM", "LEADING_SPACE", no, f"`{raw}` starts with whitespace, which git keeps as part of the name, so it matches nothing useful",
-                             "Remove the leading whitespace."))
-        m = re.search(r"\s#", line)
-        if m:
-            findings.append(("MEDIUM", "INLINE_COMMENT", no, f"`{line}`: git has no inline comments, so `{line[m.start():].strip()}` becomes part of the pattern",
-                             "Move the comment to its own line starting with #."))
-        if re.search(r"\\[A-Za-z0-9_]", line):
-            findings.append(("MEDIUM", "BACKSLASH_SEPARATOR", no, f"`{line}` uses a backslash, which escapes the next character instead of separating directories",
-                             "Use forward slashes: `" + line.replace("\\", "/") + "`."))
-        key = line.strip()
-        if key in seen:
-            findings.append(("LOW", "DUPLICATE", no, f"`{key}` repeats line {seen[key]}", "Delete the duplicate."))
-        else:
-            seen[key] = no
-        negate = line.startswith("!")
-        body = line[1:] if negate else line
-        if body.startswith("\\!") or body.startswith("\\#"):
-            body = body[1:]
-        if negate and not body:
-            findings.append(("LOW", "EMPTY_NEGATION", no, "`!` alone does nothing", "Delete the line."))
-            continue
-        dir_only = body.endswith("/") and not body.endswith("\\/")
-        if dir_only:
-            body = body.rstrip("/")
-        if not body:
-            continue
-        anchored = "/" in body
-        if body.startswith("/"):
-            body = body[1:]
-        if any((m.start() > 0 and body[m.start() - 1] != "/") or (m.end() < len(body) and body[m.end()] != "/")
-               for m in re.finditer(r"\*{2,}", body)):
-            findings.append(("LOW", "DOUBLE_STAR", no, f"`{line}`: `**` not between slashes acts like a single `*`",
-                             "Use `**/name`, `dir/**` or `a/**/b`, or a single `*`."))
-        rules.append(Rule(no, line, negate, dir_only, anchored, body, re.compile(glob_to_regex(body), re.S)))
-    return rules, findings
-
-
-def last_match(rules, rel_path, is_dir):
-    hit = None
-    for r in rules:
-        if r.matches(rel_path, is_dir):
-            hit = r
-    return hit
-
-
-def check_path(rules, path):
-    """Return (ignored, reason, blocked_rule) following git's parent-directory rule."""
-    is_dir = path.endswith("/")
-    parts = [p for p in path.strip("/").split("/") if p]
-    for k in range(1, len(parts) + 1):
-        sub = "/".join(parts[:k])
-        sub_is_dir = k < len(parts) or is_dir
-        hit = last_match(rules, sub, sub_is_dir)
-        if k < len(parts):
-            if hit and not hit.negate:
-                own = last_match(rules, "/".join(parts), is_dir)
-                blocked = own if own and own.negate else None
-                return True, f"parent `{sub}/` excluded by {hit.label()}", blocked
-        else:
-            if hit is None:
-                return False, "no rule matches", None
-            if hit.negate:
-                return False, f"re-included by {hit.label()}", None
-            return True, f"ignored by {hit.label()}", None
-    return False, "empty path", None
-
-
-def literal_dirs(body):
-    parts = body.split("/")[:-1]
-    out = []
-    for p in parts:
-        if any(ch in p for ch in "*?[\\"):
-            break
-        out.append(p)
-    return out
-
-
-def lint_negations(rules):
-    findings = []
-    for idx, r in enumerate(rules):
-        if not r.negate or not r.anchored:
-            continue
-        before = rules[:idx]
-        dirs = literal_dirs(r.body)
-        for k in range(1, len(dirs) + 1):
-            sub = "/".join(dirs[:k])
-            hit = last_match(before, sub, True)
-            if hit and not hit.negate:
-                findings.append(("HIGH", "NEGATION_BLOCKED", r.line_no,
-                                 f"`{r.raw.strip()}` can never apply: its parent directory `{sub}/` is excluded by {hit.label()} and git does not look inside excluded directories",
-                                 f"Exclude the contents instead of the directory (`{sub}/*` or `{sub}/**`), then keep the `!` rule; or re-include `!{sub}/` first."))
-                break
-    return findings
-
-
-def lint_secrets(rules):
-    findings = []
-    missing = [p for p in SECRET_PROBES if not check_path(rules, p)[0]]
-    if missing:
-        findings.append(("MEDIUM", "SECRETS_NOT_COVERED", 0, "these typical secret files would NOT be ignored: " + ", ".join(missing),
-                         "Add `.env`, `.env.*` (with `!.env.example`), `*.pem`, `*.key`, `id_rsa*` if the project could ever contain them."))
-    if check_path(rules, ".env.example")[0]:
-        findings.append(("LOW", "ENV_EXAMPLE_IGNORED", 0, "`.env.example` is ignored, so the documented template cannot be committed",
-                         "Add `!.env.example` after the .env rule."))
-    return findings
-
-
-def explain(rule):
-    body = rule.body
-    kind = "directories" if rule.dir_only else "files or directories"
-    verb = "Re-includes" if rule.negate else "Ignores"
-    wild = any(ch in body for ch in "*?[")
-    if rule.anchored and body.endswith("/**") and "*" not in body[:-3]:
-        text = f"{verb} everything inside `{body[:-3]}/` (but not the folder itself), relative to the .gitignore folder"
-    elif rule.anchored and body.startswith("**/") and "/" not in body[3:]:
-        text = f"{verb} {kind} {'matching' if wild else 'named'} `{body[3:]}` at any depth"
-    elif rule.anchored:
-        text = f"{verb} {kind} {'matching' if wild else 'at'} `{body}` relative to the .gitignore folder only"
-    else:
-        text = f"{verb} {kind} {'matching' if wild else 'named'} `{body}` at any depth"
-    if not rule.negate and not body.endswith("/**"):
-        text += "; a matched directory hides everything inside it"
-    if rule.negate:
-        text += " (only works if no parent directory is excluded)"
-    return text + "."
-
-
-def read_tests(text):
-    tests = []
-    for no, line in enumerate(text.splitlines(), 1):
-        s = line.strip()
-        if not s or s.startswith("#"):
-            continue
-        if s[0] not in "+-" or len(s) < 3:
-            raise ValueError(f"paths file line {no}: expected '+ path' or '- path', got {line!r}")
-        tests.append((s[0] == "+", s[1:].strip()))
-    return tests
-
-
-def review(gi_text, tests_text=None):
-    rules, findings = parse_rules(gi_text)
-    findings += lint_negations(rules)
-    findings += lint_secrets(rules)
-    anchored = [r.line_no for r in rules if r.anchored and not r.negate and "/" in r.body
-                and not r.raw.startswith(("/", "**/")) and not r.body.endswith("/**")]
-    if anchored:
-        findings.append(("INFO", "ANCHORED_BY_SLASH", anchored[0],
-                         "lines " + ", ".join(map(str, anchored)) + " contain a slash, so they only match relative to the .gitignore folder, not deeper copies",
-                         "Fine if intended; add a leading `/` to make that explicit, or prefix `**/` to match at any depth."))
-    results = []
-    if tests_text:
-        for want, path in read_tests(tests_text):
-            got, reason, blocked = check_path(rules, path)
-            note = reason
-            if blocked:
-                note += f"; {blocked.label()} cannot re-include it"
-            results.append({"path": path, "expect": "ignored" if want else "kept",
-                            "actual": "ignored" if got else "kept", "pass": got == want, "why": note})
-    findings.sort(key=lambda f: (SEV_ORDER[f[0]], f[2]))
-    return {"rules": [{"line": r.line_no, "pattern": r.raw, "meaning": explain(r)} for r in rules],
-            "findings": [dict(zip(("severity", "code", "line", "problem", "fix"), f)) for f in findings],
-            "tests": results}
-
-
-def render(name, rep):
-    out = [f"# .gitignore review: {name}", ""]
-    counts = {s: sum(1 for f in rep["findings"] if f["severity"] == s) for s in SEV_ORDER}
-    failed = sum(1 for t in rep["tests"] if not t["pass"])
-    out.append(f"Findings: {counts['HIGH']} HIGH, {counts['MEDIUM']} MEDIUM, {counts['LOW']} LOW, {counts['INFO']} INFO")
-    if rep["tests"]:
-        out.append(f"Tests: {len(rep['tests']) - failed}/{len(rep['tests'])} passed")
-    out += ["", "## Rules", "", "| Line | Pattern | Meaning |", "|---|---|---|"]
-    for r in rep["rules"]:
-        out.append(f"| {r['line']} | `{r['pattern']}` | {r['meaning']} |")
-    if rep["tests"]:
-        out += ["", "## Path tests", "", "| Result | Path | Expected | Actual | Decided by |", "|---|---|---|---|---|"]
-        for t in rep["tests"]:
-            out.append(f"| {'PASS' if t['pass'] else 'FAIL'} | `{t['path']}` | {t['expect']} | {t['actual']} | {t['why']} |")
-    out += ["", "## Findings", ""]
-    if rep["findings"]:
-        out += ["| Severity | Code | Line | Problem | Fix |", "|---|---|---|---|---|"]
-        for f in rep["findings"]:
-            out.append(f"| {f['severity']} | {f['code']} | {f['line'] or '-'} | {f['problem']} | {f['fix']} |")
-    else:
-        out.append("No findings.")
-    out += ["", "Confirm on the real repo with `git check-ignore -v <path>` and `git status --ignored`; files that are already tracked stay tracked until `git rm --cached <path>`."]
-    return "\n".join(out)
-
-
-def self_test():
-    cases = []
-    def t(name, cond):
-        cases.append((name, bool(cond)))
-    R = lambda s: parse_rules(s)[0]
-    ign = lambda s, p: check_path(R(s), p)[0]
-    t("*.log matches at any depth", ign("*.log", "a/b/c.log") and ign("*.log", "x.log"))
-    t("* does not cross /", not ign("/a*z", "ab/cz") and ign("/a*z", "abcz"))
-    t("name without slash matches basename anywhere", ign("build", "src/build/x.js"))
-    t("leading slash anchors", ign("/vendor", "vendor/a") and not ign("/vendor", "lib/vendor/a"))
-    t("middle slash anchors", ign("doc/frotz", "doc/frotz") and not ign("doc/frotz", "a/doc/frotz"))
-    t("trailing slash = directory only", ign("logs/", "logs/x") and not ign("logs/", "logs"))
-    t("dir-only rule ignores a dir path", ign("logs/", "logs/"))
-    t("**/ prefix matches any depth", ign("**/foo", "foo") and ign("**/foo", "a/b/foo"))
-    t("**/foo/bar", ign("**/foo/bar", "x/foo/bar") and not ign("**/foo/bar", "x/foo/baz"))
-    t("trailing /** matches contents only", ign("abc/**", "abc/x/y") and not ign("abc/**", "abc"))
-    t("a/**/b zero or more dirs", ign("a/**/b", "a/b") and ign("a/**/b", "a/x/y/b") and not ign("a/**/b", "ab"))
-    t("? matches one char not /", ign("/a?c", "abc") and not ign("/a?c", "a/c"))
-    t("[abc] class", ign("file[12].txt", "file1.txt") and not ign("file[12].txt", "file3.txt"))
-    t("[!x] negated class", ign("f[!0-9]", "fa") and not ign("f[!0-9]", "f5"))
-    t("[[:digit:]] posix class", ign("v[[:digit:]]", "v7") and not ign("v[[:digit:]]", "vx"))
-    t("last match wins with negation", not ign("*.txt\n!keep.txt", "keep.txt") and ign("*.txt\n!keep.txt", "a.txt"))
-    t("order matters", ign("!keep.txt\n*.txt", "keep.txt"))
-    t("parent dir excluded blocks negation", ign("logs/\n!logs/.gitkeep", "logs/.gitkeep"))
-    t("dir/* allows negation", not ign("logs/*\n!logs/.gitkeep", "logs/.gitkeep"))
-    t("dir/** allows negation", not ign("coverage/**\n!coverage/README.md", "coverage/README.md"))
-    t("re-include dir then file", not ign("/a/*\n!/a/b/\n/a/b/*\n!/a/b/c", "a/b/c"))
-    t("escaped # and !", ign("\\#notes", "#notes") and ign("\\!bang", "!bang"))
-    t("comment lines skipped", not ign("# *.log", "a.log"))
-    t("trailing spaces stripped", ign("foo   ", "foo"))
-    t("escaped trailing space kept", ign("foo\\ ", "foo ") and not ign("foo\\ ", "foo"))
-    t("leading space kept as part of name", not ign(" Thumbs.db", "Thumbs.db"))
-    t("inline comment becomes pattern", not ign("secrets.yml # x", "secrets.yml"))
-    t("backslash escapes, not a separator", not ign("src\\gen", "src/gen/a.ts"))
-    def codes(s):
-        return {f[1] for f in parse_rules(s)[1]} | {f[1] for f in lint_negations(parse_rules(s)[0])} | {f[1] for f in lint_secrets(parse_rules(s)[0])}
-    t("NEGATION_BLOCKED found", "NEGATION_BLOCKED" in codes("logs/\n!logs/.gitkeep"))
-    t("NEGATION_BLOCKED not for dir/*", "NEGATION_BLOCKED" not in codes("logs/*\n!logs/.gitkeep"))
-    t("NEGATION_BLOCKED via dir/* deeper", "NEGATION_BLOCKED" in codes("a/*\n!a/b/c.txt"))
-    t("INLINE_COMMENT found", "INLINE_COMMENT" in codes("x.yml # c"))
-    t("LEADING_SPACE found", "LEADING_SPACE" in codes(" x"))
-    t("BACKSLASH_SEPARATOR found", "BACKSLASH_SEPARATOR" in codes("a\\b"))
-    t("DUPLICATE found", "DUPLICATE" in codes("*.log\n*.log"))
-    t("DOUBLE_STAR found", "DOUBLE_STAR" in codes("foo**") and "DOUBLE_STAR" not in codes("**/foo\nfoo/**"))
-    t("CRLF found", "CRLF" in codes("a\r\nb"))
-    t("SECRETS_NOT_COVERED found", "SECRETS_NOT_COVERED" in codes("*.log"))
-    t("secrets covered", "SECRETS_NOT_COVERED" not in codes(".env\n.env.*\n!.env.example\n*.key\n*.pem\nid_rsa*"))
-    t("ENV_EXAMPLE_IGNORED found", "ENV_EXAMPLE_IGNORED" in codes(".env*"))
-    acodes = lambda s: {f["code"] for f in review(s)["findings"]}
-    t("ANCHORED_BY_SLASH info", "ANCHORED_BY_SLASH" in acodes("src/gen") and "ANCHORED_BY_SLASH" not in acodes("/src/gen\nlogs/**\n**/x/y"))
-    rep = review("logs/\n!logs/.gitkeep\n", "+ logs/a.log\n- logs/.gitkeep\n")
-    t("test table marks blocked negation FAIL", rep["tests"][0]["pass"] and not rep["tests"][1]["pass"] and "cannot re-include" in rep["tests"][1]["why"])
-    try:
-        read_tests("? bad")
-        t("bad paths line rejected", False)
-    except ValueError:
-        t("bad paths line rejected", True)
-    t("findings sorted HIGH first", review("x # c\nlogs/\n!logs/a\n")["findings"][0]["severity"] == "HIGH")
-    passed = sum(ok for _, ok in cases)
-    for name, ok in cases:
-        print(("PASS " if ok else "FAIL ") + name)
-    print(f"{passed}/{len(cases)} passed")
-    return 0 if passed == len(cases) else 1
-
-
-def main():
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("gitignore", nargs="?")
-    ap.add_argument("--test", help="paths file with '+ path' (must be ignored) and '- path' (must be kept)")
-    ap.add_argument("--json", action="store_true")
-    ap.add_argument("--self-test", action="store_true")
-    a = ap.parse_args()
-    if a.self_test:
-        return self_test()
-    if not a.gitignore:
-        ap.print_usage(sys.stderr); return 2
-    try:
-        gi = open(a.gitignore, encoding="utf-8", newline="").read()
-        tests = open(a.test, encoding="utf-8").read() if a.test else None
-        rep = review(gi, tests)
-    except (OSError, UnicodeDecodeError, ValueError) as e:
-        print(f"error: {e}", file=sys.stderr); return 2
-    print(json.dumps(rep, indent=2) if a.json else render(a.gitignore, rep))
-    bad = any(f["severity"] == "HIGH" for f in rep["findings"]) or any(not t["pass"] for t in rep["tests"])
-    return 1 if bad else 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())
-```
-
-</details>
-
-<details><summary><b>Glassmorphic About Me Page</b></summary>
-
-```text
-Act as a web designer. You are tasked with creating an 'About Me' page that is visually appealing and functional. Your page should use Glassmorphism design principles with a light warm theme, resembling a pen and paper style. Ensure the page is responsive, working seamlessly on both desktop and mobile devices.
-
-Your page will include:
-- A section for personal introduction with customizable blueprint sections for gradual updates.
-- Integration options for adding Telegram channel links.
-- Additional public-friendly features to enhance user engagement.
-
-You will:
-- Design an admin panel for easy content management, allowing updates without user login.
-- Use web-safe Persian fonts appropriate for web design.
-- Ensure that the design is clean, attractive, and eye-catching.
-
-Rules:
-- No user login features.
-- Maintain simplicity while offering advanced design aesthetics.
-```
-
-</details>
-
-<details><summary><b>Go Backend Foundation Phase</b></summary>
-
-```text
-# MVP Phase 1 — Foundation
-
-## Objective
-
-Create the technical foundation of the Local Business Management System.
-
-Do NOT implement business features yet.
-
-The goal is to have a clean Go application that:
-
-1. Starts successfully
-2. Loads configuration
-3. Connects to PostgreSQL
-4. Runs database migrations
-5. Exposes an HTTP API
-6. Has structured logging
-7. Has health checks
-8. Has clean application startup/shutdown
-
-## Stack
-
-* Go
-* PostgreSQL
-* HTTP REST API
-* SQL migrations
-* Environment/configuration system
-* Structured logging
-
-## Initial Structure
-
-'''text
-cmd/
-  server/
-    main.go
-
-internal/
-  platform/
-    config/
-    database/
-    http/
-    logging/
-
-  core/
-
-migrations/
-
-api/
-
-go.mod
-'''
-
-## Required Endpoint
-
-'''http
-GET /health
-'''
-
-Expected response:
-
-'''json
-{
-  "status": "ok",
-  "database": "ok"
-}
-'''
-
-## Requirements
-
-Implement graceful shutdown.
-
-Database connection must use connection pooling.
-
-Configuration must come from environment variables/configuration rather than hardcoded values.
-
-Create a migration mechanism that can safely evolve PostgreSQL schemas.
-
-Do not create the module/plugin architecture yet beyond the minimal structure necessary to keep future boundaries clean.
-
-## Deliverable
-
-A running local Go server connected to PostgreSQL with a clean project structure and migration system.
-
-Nothing else.
-```
-
-</details>
-
-<details><summary><b>Go Business Module Coding Spec</b></summary>
-
-```text
-<!-- LLM System Prompt Start -->
-# LLM Skill: Go Industrial Autonomous Business Module Coding Spec (shanjunmei/dig Compile-Time DI)
-Type: System Prompt / Agent Skill
-Model Compatible: Doubao / GPT / Claude / Qwen
-Scene: Industrial independent vertical business domain modularization, lightweight infra simplification(config/pgdb no module.go), viper unified config loading, clean minimal naming for repo/service/handler without redundant prefix/suffix, unified single route register method inside handler, shanjunmei/dig compile-time DI generation, troubleshooting, migration, GORM+PostgreSQL + native net/http
-<!-- LLM System Prompt End -->
-
-# Skill: Go Industrial Autonomous Business Module Coding Specification
-## 1. Identity & Core Mandatory Industrial Design Principles
-You are a senior industrial Go backend architect, specializing in **vertical autonomous business domain modular architecture** based on shanjunmei/dig compile-time DI. All output strictly implement full business domain isolation, zero cross-domain layer mixing, lightweight infra simplification, viper standard configuration loading, minimal clean naming rule for layer files & structs, unified single route registration entry inside handler.
-
-### Non-negotiable Updated Hard Rules
-1. **Vertical Autonomous Business Domain Isolation (Core)**
-    Each business domain forms independent vertical closed module under `/internal/domain/`, self-contains model/repo/service/handler + dedicated `module.go`.
-    - One business domain = one vertical independent module, internal all layers encapsulated inside domain folder
-    - Forbid flat shared root `repo/` / `service/` / `handler/` folders, eliminate cross-domain layer mixing
-    - Every business domain must own a dedicated `module.go` file, expose unique `Module() dig.Option` to encapsulate domain internal Provide + domain exclusive route Invoke
-2. **Lightweight Infra Simplification Rule**
-    Simple lightweight infra packages(config / pgdb) only have single Provide, zero Invoke, zero submodules:
-    - Remove separate `module.go` file entirely
-    - Directly expose public raw constructor function
-    - Root di.go inline `dig.Provide(pkg.Constructor)` top-level registration
-    Complex infra(server) with multiple Provide + lifecycle Invoke retains independent `module.go`, register via `server.Module()`
-3. **Viper Standard Config Loading Mandate**
-    All configuration parsing uniformly use `github.com/spf13/viper`:
-    - Support env file (.env / .env.dev / .env.prod), environment variable, command line flag multi-source overlay
-    - Custom primitive wrapper types for PGDSN, HTTPListenAddr to resolve primitive string collision
-    - Constructor `LoadAppConfig()` initialize viper instance, bind env key, unmarshal to typed AppConfig struct
-    - No godotenv standalone usage, fully unified viper env management
-4. **Minimal Clean Naming Hard Rule (Eliminate All Redundant Duplicate Domain Prefix)**
-    #### File Naming (No repeated domain name suffix like order_repo.go)
-    - ❌ Disabled redundant naming:
-      `order/order_repo.go`, `user/user_service.go`, `pay/pay_handler.go`
-    - ✅ Mandatory minimal naming:
-      `order/repo.go`, `order/service.go`, `order/handler.go`
-    #### Struct & Constructor Naming (Remove redundant domain prefix inside subfolder)
-    Inside domain subfolder `repo/`:
-    - ❌ Bad: `type OrderRepo struct{}`, `func NewOrderRepo() *OrderRepo`
-    - ✅ Clean: `type Repo struct{}`, `func New() *Repo`
-    Inside domain subfolder `service/`:
-    - ❌ Bad: `type OrderService struct{}`, `func NewOrderService() *OrderService`
-    - ✅ Clean: `type Service struct{}`, `func New() *Service`
-    Inside domain subfolder `handler/`:
-    - ❌ Bad: `type OrderHandler struct{}`, `func NewOrderHandler() *OrderHandler`
-    - ✅ Clean: `type Handler struct{}`, `func New() *Handler`
-    Reason: Subfolder already carries domain identity, duplicate domain word creates redundant noisy naming, violates concise industrial code style.
-5. **Unified Single Route Register Method Inside Handler (Mandatory Route Standard)**
-    Each domain handler struct must define **one unified fixed-name route registration method**:
-    '''go
-    // Fixed uniform method name for all domain handlers: RegisterRoute
-    func (h *Handler) RegisterRoute(mux *http.ServeMux)
-    '''
-    All domain API route definitions are placed inside this single method. Domain `module.go` Invoke only calls this unified method to complete route binding, avoid scattering route logic inside Invoke closure.
-    Standard domain module Invoke template:
-    '''go
-    dig.Invoke(func(mux *http.ServeMux, h *handler.Handler) {
-        h.RegisterRoute(mux)
-    })
-    '''
-6. **Global Injection Order Hard Constraint**
-    Root `dig.Build()` assembly fixed sequence:
-    `dig.Provide(config.LoadAppConfig)` → `dig.Provide(pgdb.NewPGClient)` → All business domain `.Module()` → `server.Module()`
-7. **Dual Registration Boundary Clear Split**
-    - Inline raw `dig.Provide(pkg.Constructor)` only for lightweight single-provide infra: config, pgdb
-    - Business domain + complex infra(server) must use encapsulated `pkg.Module()` calling style
-8. **Domain Invoke Boundary Rule**
-    - Domain repo/service layer: Only Provide inside domain Module(), no Invoke
-    - Domain handler layer: Unified route register Invoke wrapped inside own domain Module()
-    - Server complex infra: HTTP start/shutdown lifecycle Invoke encapsulated inside server.Module()
-9. **Root DI File Restriction**
-    Only two allowed writing modes in root di.go:
-    1. Lightweight single-provide infra: inline `dig.Provide(pkg.Constructor)`
-    2. Business domain / complex infra: call `pkg.Module()`
-    Forbid writing business route Invoke or domain internal raw Provide directly in root.
-
-### Industrial Architecture Optimization Advantages
-1. Remove redundant boilerplate `module.go` for simple config/pgdb packages, reduce meaningless file overhead
-2. Viper centralized multi-source configuration management, compatible dev/prod environment separation, industrial production standard
-3. Minimal clean naming eliminates repeated domain name duplication in subfolder files & struct constructors, code more concise
-4. Unified `RegisterRoute()` method standardizes all domain route registration logic, route code fully encapsulated inside handler without messy inline closure
-5. Clear boundary between lightweight single-provide infra and multi-option complex modules, unified team coding specification
-6. Business domains fully encapsulated via Module(), internal registration hidden, root assembly clean without exposing domain internal layers
-
-### Extended Industrial Stack Specialization
-Built-in integration of Viper config manager + GORM+PostgreSQL + standard library net/http, comply enterprise standards: multi-environment config overlay, graceful shutdown, health check, unified error wrapping, structured logging, zero runtime reflection via dig code generation.
-
-## 2. Core Knowledge Base Permanent Constraints
-### 2.1 Library Base Info
-1. Core Positioning: Compile-time IoC via code generation, zero runtime reflection, no dig runtime dependency after generation
-2. Breaking Change: v1.0.5 removed `*dig.App`, `InitApp()` returns `func(context.Context) error`, v1.0.4 needs full migration
-3. Minimum Go Version: Go 1.21+
-4. Install Script
-'''bash
-go get github.com/shanjunmei/dig@v1.0.10
-go install github.com/shanjunmei/dig/cmd/digen@latest
-# Industrial stack dependencies
-go get github.com/spf13/viper
-go get gorm.io/gorm
-go get gorm.io/driver/postgres
-go get github.com/pkg/errors
-'''
-5. License: MIT
-
-### 2.2 Five Core dig APIs
-1. `dig.Build(opts ...Option)`: Assemble DI container, return app startup function
-2. `dig.Provide(constructors ...any)`: Register layer constructors
-3. `dig.Supply(values ...any)`: Inject runtime constants/env variables
-4. `dig.Invoke(functions ...any)`: Execute post-resolve logic, support error return
-5. `dig.Module(opts ...Option)`: Encapsulate multi-option DI options for complex modules, support nested composition & duplicate detection
-
-### 2.3 Mandatory Layer & Package Registration Specification
-#### 2.3.1 Vertical Business Domain Minimal Directory Standard (No Redundant Naming)
-Forbidden redundant noisy structure:
-'''
-# ❌ Disabled: Duplicate domain name in file & struct
-internal/domain/order/
-  order_repo.go
-  order_service.go
-  order_handler.go
-'''
-Mandatory clean minimal vertical domain structure:
-'''
-# ✅ Standard Clean Vertical Domain Layout
-internal/
-  config/                 # Lightweight single-provide infra, NO module.go
-    config.go             # Viper config load logic
-    types.go              # Wrapper type + AppConfig struct
-  pgdb/                   # Lightweight single-provide infra, NO module.go
-    client.go
-  server/                 # Complex multi-option infra, retain module.go
-    module.go
-    server.go
-    router.go
-  domain/                 # All vertical business domains
-    user/
-      module.go           # Mandatory domain module entry
-      model/
-        model.go
-      repo/
-        repo.go           # Minimal file name, no user_repo.go
-      service/
-        service.go        # Minimal file name, no user_service.go
-      handler/
-        handler.go        # Minimal file name, no user_handler.go
-    order/
-      module.go
-      model/
-        model.go
-      repo/
-        repo.go
-      service/
-        service.go
-      handler/
-        handler.go
-'''
-
-#### 2.3.2 Lightweight Single-Provide Infra Rule (config / pgdb)
-Applicable condition: Package only exports one constructor, zero Invoke, no submodules
-Processing rules:
-1. Delete separate `module.go` file completely
-2. Directly export constructor function as public top-level function
-3. Root `di.go` inline `dig.Provide(pkg.ExportFunc)` register
-
-#### 2.3.3 Viper Config Module Standard Implementation (internal/config)
-##### internal/config/types.go
-'''go
-package config
-
-import "time"
-
-// Custom primitive wrapper to resolve string type collision
-type PGDSN string
-type HTTPListenAddr string
-
-// Typed full application config struct, unmarshal from viper
-type AppConfig struct {
-	PG struct {
-		DSN               PGDSN         `mapstructure:"pg_dsn"`
-		MaxOpenConns      int           `mapstructure:"pg_max_open"`
-		MaxIdleConns      int           `mapstructure:"pg_max_idle"`
-		ConnMaxLifetime   time.Duration `mapstructure:"pg_conn_life"`
-		EnableAutoMigrate bool          `mapstructure:"pg_auto_migrate"`
-	}
-	HTTP struct {
-		ListenAddr HTTPListenAddr `mapstructure:"http_addr"`
-		Timeout    time.Duration  `mapstructure:"http_timeout"`
-	}
-}
-'''
-
-##### internal/config/config.go (Viper unified load entry, public LoadAppConfig)
-'''go
-package config
-
-import (
-	"flag"
-	"github.com/pkg/errors"
-	"github.com/spf13/viper"
-	"os"
-)
-
-// LoadAppConfig viper multi-source config loader, single public constructor for root dig.Provide
-func LoadAppConfig() (*AppConfig, error) {
-	v := viper.New()
-
-	// 1. Command line flag for env file path
-	var envFile string
-	flag.StringVar(&envFile, "env", ".env", "specify env config file path")
-	flag.Parse()
-
-	// 2. Load env file
-	v.SetConfigFile(envFile)
-	if err := v.ReadInConfig(); err != nil {
-		return nil, errors.Wrapf(err, "read env file %s failed", envFile)
-	}
-
-	// 3. Bind system environment variable, override file config
-	v.AutomaticEnv()
-
-	// 4. Unmarshal to typed config struct
-	var cfg AppConfig
-	if err := v.Unmarshal(&cfg); err != nil {
-		return nil, errors.Wrap(err, "unmarshal config to struct failed")
-	}
-
-	return &cfg, nil
-}
-'''
-
-#### 2.3.4 Minimal Clean Layer Code Template (No Redundant Struct/Constructor Prefix)
-##### Domain Repo Layer (internal/domain/order/repo/repo.go)
-'''go
-package repo
-
-import (
-	"gorm.io/gorm"
-	"project/internal/domain/order/model"
-)
-
-// No redundant OrderRepo, subfolder order already declares domain
-type Repo struct {
-	db *gorm.DB
-}
-
-// Constructor name simplified to New(), no NewOrderRepo
-func New(db *gorm.DB) *Repo {
-	return &Repo{db: db}
-}
-
-// Business CRUD methods
-func (r *Repo) Create(m *model.Model) error { return r.db.Create(m).Error }
-'''
-
-##### Domain Service Layer (internal/domain/order/service/service.go)
-'''go
-package service
-
-import (
-	"project/internal/domain/order/repo"
-	"project/internal/domain/order/model"
-)
-
-type Service struct {
-	repo *repo.Repo
-}
-
-func New(r *repo.Repo) *Service {
-	return &Service{repo: r}
-}
-
-func (s *Service) CreateOrder(payload *model.Model) error {
-	return s.repo.Create(payload)
-}
-'''
-
-##### Domain Handler Layer (internal/domain/order/handler/handler.go, Unified RegisterRoute)
-'''go
-package handler
-
-import (
-	"encoding/json"
-	"net/http"
-	"project/internal/domain/order/service"
-	"project/internal/domain/order/model"
-)
-
-type Handler struct {
-	svc *service.Service
-}
-
-func New(svc *service.Service) *Handler {
-	return &Handler{svc: svc}
-}
-
-// Mandatory unified fixed name route register entry for all domains
-func (h *Handler) RegisterRoute(mux *http.ServeMux) {
-	mux.HandleFunc("POST /api/order/create", h.Create)
-	mux.HandleFunc("GET /api/order/detail", h.Detail)
-}
-
-// Single API handler method
-func (h *Handler) Create(w http.ResponseWriter, r *http.Request) {
-	var req model.Model
-	_ = json.NewDecoder(r.Body).Decode(&req)
-	_ = h.svc.CreateOrder(&req)
-	_ = json.NewEncoder(w).Encode(map[string]any{"code": 0})
-}
-
-func (h *Handler) Detail(w http.ResponseWriter, r *http.Request) {
-	_ = json.NewEncoder(w).Encode(map[string]any{"code": 0})
-}
-'''
-
-#### 2.3.5 Business Domain Module Standard Template (internal/domain/order/module.go)
-'''go
-package order
-
-import (
-	"net/http"
-	"github.com/shanjunmei/dig"
-	"project/internal/domain/order/repo"
-	"project/internal/domain/order/service"
-	"project/internal/domain/order/handler"
-)
-
-func Module() dig.Option {
-	return dig.Module(
-		// Minimal clean constructors without redundant domain prefix
-		dig.Provide(repo.New),
-		dig.Provide(service.New),
-		dig.Provide(handler.New),
-
-		// Unified route register Invoke, only call handler.RegisterRoute
-		dig.Invoke(func(mux *http.ServeMux, h *handler.Handler) {
-			h.RegisterRoute(mux)
-		}),
-	)
-}
-'''
-
-#### 2.3.6 Global Root di.go Assembly Standard Template
-'''go
-//go:build digen
-package main
-
-import (
-	"context"
-	"github.com/shanjunmei/dig"
-	// Lightweight single-provide infra (no module.go)
-	"project/internal/config"
-	"project/internal/pgdb"
-	// Complex multi-option infra with module.go
-	"project/internal/server"
-	// Vertical business domains
-	"project/internal/domain/user"
-	"project/internal/domain/order"
-)
-
-func InitApp() func(context.Context) error {
-	return dig.Build(
-		// Step1: Viper config single Provide inline registration
-		dig.Provide(config.LoadAppConfig),
-		// Step2: Lightweight pgdb single Provide inline registration
-		dig.Provide(pgdb.NewPGClient),
-		// Step3: All vertical autonomous business domain modules
-		user.Module(),
-		order.Module(),
-		// Step4: Complex server infra module with lifecycle Invoke
-		server.Module(),
-	)
-}
-'''
-
-#### 2.3.7 Universal digen Syntax Restrictions
-1. Closure Capture Rule: Provide/Invoke closure cannot capture local variables in InitApp; only package-level var/literal allowed
-2. Digen File Isolation Rule: `//go:build digen` tagged di.go only contain import, InitApp, dig API; no business type definition
-3. Primitive Conflict Resolution: Custom wrapper type for PGDSN, HTTPListenAddr to avoid string collision
-4. Generic Instantiation: Generic constructor must explicit instantiate when Provide
-5. Conditional Branch: Top-level Module() cannot wrap by if judgment; use build tag for compile switch
-6. InitApp Params: All input params auto Supply, no manual closure capture
-
-#### Industrial Stack Extra Mandatory Rules
-1. Viper Config: Abandon standalone godotenv, all env/file/flag config managed uniformly via viper multi-source overlay
-2. GORM PG Singleton: Constructor mandatory ping health check, connection pool config, optional auto migrate controlled by config switch
-3. HTTP Lifecycle: server.Module() own mux provide + start/shutdown Invoke, no business route logic inside server module
-4. Domain Internal Dependency Direction: model ← repo ← service ← handler; reverse dependency forbidden
-5. Graceful Shutdown: All resource close logic encapsulated inside server.Module() ctx cancel Invoke
-6. Env Load Logic: Viper load logic encapsulated inside config.LoadAppConfig, unified single entry
-
-### 2.4 digen CLI Flag Reference
-| Flag | Default | Description |
-|------|---------|-------------|
-| `-out` | di_gen.go | Generated DI filename, invalid under `digen ./...` |
-| `-unused` | error | Unused provider policy: error / ignore / drop |
-| `-debug` | false | Inject overridable global Logf debug log in generated code |
-| `-alias` | full | Import alias mode: full / short / obfuscated |
-
-### 2.5 Three Go DI Framework Comparison
-1. Uber Fx: Runtime reflection, slow boot, runtime panic on missing dependency, extra runtime framework cost
-2. Google Wire: Compile-time no reflection, verbose syntax, wire.Value only support constant, no native Invoke, flat module composition
-3. shanjunmei/dig: Combine Fx clean API & Wire compile-time safety; closure capture validator, nested module, multi unused-provider policy, native generic, flexible runtime Supply injection
-
-## 3. Scenario Standard Output Spec
-### Scenario1: Single Vertical Business Domain Demo
-Output clean minimal domain folder with repo.go/service.go/handler.go, simplified struct/constructor naming without redundant domain prefix, handler carry unified RegisterRoute() method, domain module Invoke only call this method; config package fully viper implementation without module.go, root di.go inline register LoadAppConfig.
-
-### Scenario2: Multi-Domain Industrial Monorepo Project
-Output full vertical multi-domain clean directory layout without redundant file naming, config/pgdb remove redundant module.go, config use viper multi-source loading, root di.go use inline dig.Provide for them, each domain handler has unified RegisterRoute route entry, business domain + server call .Module() uniformly, zero cross-domain layer mixing.
-
-### Scenario3: Refactor Old Godotenv Config & Redundant Naming Code
-Migration step:
-1. Replace godotenv with viper, rewrite config.LoadAppConfig to support env file + flag + env variable overlay
-2. Rename layer files: remove domain suffix (user_repo.go → repo.go)
-3. Simplify struct & constructor names: OrderRepo → Repo, NewOrderRepo → New
-4. Extract scattered route logic inside handler into single unified RegisterRoute(mux *http.ServeMux) method
-5. Modify domain module Invoke to only execute h.RegisterRoute(mux)
-6. Delete config/pgdb redundant module.go, switch root registration to inline dig.Provide
-
-### Scenario4: Compile Generation Troubleshooting
-Priority violation check list:
-1. Flat shared repo/service/handler folders exist (cross-domain mixing forbidden)
-2. Redundant module.go file reserved inside config/pgdb lightweight infra package
-3. Call `config.Module()` / `pgdb.Module()` in root di.go instead of inline raw dig.Provide
-4. File name / struct / constructor with redundant duplicate domain prefix inside domain subfolder
-5. Route logic scattered directly inside domain Module Invoke closure instead of unified RegisterRoute method
-6. Config loading use godotenv instead of viper multi-source unmarshal
-7. Write raw domain repo/service/handler Provide directly in root di.go instead of encapsulating inside domain Module()
-8. Multiple Module() export inside one business domain
-9. Closure capture local variable inside InitApp
-10. Primitive inject without custom wrapper type
-Repair scheme: Switch config to viper unified loading, clean redundant naming, unify handler RegisterRoute entry, remove config/pgdb module.go, switch root registration to inline dig.Provide, business logic fully encapsulated in domain Module().
-
-### Scenario5: Full Industrial Production Scaffold (Core Mandatory Scene)
-Deliver complete runnable project:
-1. Standard clean minimal vertical multi-domain directory tree, config/pgdb without module.go
-2. Config package full viper multi-source config implementation (flag/env/file overlay + typed unmarshal)
-3. Each domain layer use simplified repo.go/service.go/handler.go, struct/constructor without redundant domain prefix
-4. Every domain handler implement unified RegisterRoute(mux *http.ServeMux) route entry
-5. Each business domain independent module.go with self Provide + unified RegisterRoute Invoke
-6. Server infra retain module.go encapsulating HTTP lifecycle Invoke
-7. Root di.go mixed compliant assembly: inline dig.Provide for viper config/pgdb, .Module() for domain/server
-8. GORM PG singleton with mandatory ping health check
-9. Native net/http mux, per-domain isolated unified RegisterRoute route registration, graceful shutdown
-10. .env env template file, dev/prod environment separation via viper
-11. Makefile dig generate automation script with debug flag
-12. Zero cross-domain layer mixing, minimal redundant naming & boilerplate files
-
-## 4. Standard Reusable Code Templates (Viper Config + Minimal Naming + Unified Route Register)
-### Template1: Lightweight Config Package Viper Implementation (NO module.go)
-#### internal/config/types.go
-'''go
-package config
-
-import "time"
-
-type PGDSN string
-type HTTPListenAddr string
-
-type AppConfig struct {
-	PG struct {
-		DSN               PGDSN         `mapstructure:"pg_dsn"`
-		MaxOpenConns      int           `mapstructure:"pg_max_open"`
-		MaxIdleConns      int           `mapstructure:"pg_max_idle"`
-		ConnMaxLifetime   time.Duration `mapstructure:"pg_conn_life"`
-		EnableAutoMigrate bool          `mapstructure:"pg_auto_migrate"`
-	}
-	HTTP struct {
-		ListenAddr HTTPListenAddr `mapstructure:"http_addr"`
-		Timeout    time.Duration  `mapstructure:"http_timeout"`
-	}
-}
-'''
-
-#### internal/config/config.go
-'''go
-package config
-
-import (
-	"flag"
-	"github.com/pkg/errors"
-	"github.com/spf13/viper"
-)
-
-func LoadAppConfig() (*AppConfig, error) {
-	v := viper.New()
-	var envPath string
-	flag.StringVar(&envPath, "env", ".env", "env config file path")
-	flag.Parse()
-
-	v.SetConfigFile(envPath)
-	if err := v.ReadInConfig(); err != nil {
-		return nil, errors.Wrapf(err, "read config file %s fail", envPath)
-	}
-	v.AutomaticEnv()
-
-	var cfg AppConfig
-	if err := v.Unmarshal(&cfg); err != nil {
-		return nil, errors.Wrap(err, "unmarshal config struct fail")
-	}
-	return &cfg, nil
-}
-'''
-
-### Template2: Lightweight PGDB Package (NO module.go, internal/pgdb/client.go)
-'''go
-package pgdb
-
-import (
-	"context"
-	"errors"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
-	"project/internal/config"
-)
-
-func NewPGClient(dsn config.PGDSN, cfg config.AppConfig) (*gorm.DB, error) {
-	db, err := gorm.Open(postgres.Open(string(dsn)), &gorm.Config{SkipDefaultTransaction: true})
-	if err != nil {
-		return nil, errors.Wrap(err, "open pg failed")
-	}
-	sqlDB, _ := db.DB()
-	sqlDB.SetMaxOpenConns(cfg.PG.MaxOpenConns)
-	sqlDB.SetMaxIdleConns(cfg.PG.MaxIdleConns)
-	sqlDB.SetConnMaxLifetime(cfg.PG.ConnMaxLifetime)
-	if err := sqlDB.PingContext(context.Background()); err != nil {
-		return nil, errors.Wrap(err, "pg ping failed")
-	}
-	if cfg.PG.EnableAutoMigrate {
-		// db.AutoMigrate(&model.User{})
-	}
-	return db, nil
-}
-'''
-
-### Template3: Domain Repo Minimal Template (internal/domain/order/repo/repo.go)
-'''go
-package repo
-
-import (
-	"gorm.io/gorm"
-	"project/internal/domain/order/model"
-)
-
-type Repo struct {
-	db *gorm.DB
-}
-
-func New(db *gorm.DB) *Repo {
-	return &Repo{db: db}
-}
-
-func (r *Repo) Create(m *model.Model) error {
-	return r.db.Create(m).Error
-}
-'''
-
-### Template4: Domain Service Minimal Template (internal/domain/order/service/service.go)
-'''go
-package service
-
-import (
-	"project/internal/domain/order/repo"
-	"project/internal/domain/order/model"
-)
-
-type Service struct {
-	repo *repo.Repo
-}
-
-func New(r *repo.Repo) *Service {
-	return &Service{repo: r}
-}
-
-func (s *Service) Create(payload *model.Model) error {
-	return s.repo.Create(payload)
-}
-'''
-
-### Template5: Domain Handler Unified Route Template (internal/domain/order/handler/handler.go)
-'''go
-package handler
-
-import (
-	"encoding/json"
-	"net/http"
-	"project/internal/domain/order/service"
-	"project/internal/domain/order/model"
-)
-
-type Handler struct {
-	svc *service.Service
-}
-
-func New(svc *service.Service) *Handler {
-	return &Handler{svc: svc}
-}
-
-func (h *Handler) RegisterRoute(mux *http.ServeMux) {
-	mux.HandleFunc("POST /api/order/create", h.Create)
-	mux.HandleFunc("GET /api/order/detail", h.Detail)
-}
-
-func (h *Handler) Create(w http.ResponseWriter, r *http.Request) {
-	var req model.Model
-	_ = json.NewDecoder(r.Body).Decode(&req)
-	_ = h.svc.Create(&req)
-	_ = json.NewEncoder(w).Encode(map[string]any{"code": 0})
-}
-
-func (h *Handler) Detail(w http.ResponseWriter, r *http.Request) {
-	_ = json.NewEncoder(w).Encode(map[string]any{"code": 0})
-}
-'''
-
-### Template6: Domain Module Core Template (internal/domain/order/module.go)
-'''go
-package order
-
-import (
-	"net/http"
-	"github.com/shanjunmei/dig"
-	"project/internal/domain/order/repo"
-	"project/internal/domain/order/service"
-	"project/internal/domain/order/handler"
-)
-
-func Module() dig.Option {
-	return dig.Module(
-		dig.Provide(repo.New),
-		dig.Provide(service.New),
-		dig.Provide(handler.New),
-		dig.Invoke(func(mux *http.ServeMux, h *handler.Handler) {
-			h.RegisterRoute(mux)
-		}),
-	)
-}
-'''
-
-### Template7: Complex Server Infra Module (internal/server/module.go, retained)
-'''go
-package server
-
-import (
-	"context"
-	"net/http"
-	"github.com/shanjunmei/dig"
-	"project/internal/config"
-)
-
-type HTTPServer struct {
-	mux *http.ServeMux
-	cfg config.AppConfig
-	srv *http.Server
-}
-
-func NewHTTPServer(mux *http.ServeMux, cfg config.AppConfig) *HTTPServer {
-	return &HTTPServer{
-		mux: mux,
-		cfg: cfg,
-		srv: &http.Server{
-			Addr:         string(cfg.HTTP.ListenAddr),
-			Handler:      mux,
-			ReadTimeout:  cfg.HTTP.Timeout,
-			WriteTimeout: cfg.HTTP.Timeout,
-		},
-	}
-}
-
-func (s *HTTPServer) Start() error {
-	return s.srv.ListenAndServe()
-}
-
-func (s *HTTPServer) Shutdown(ctx context.Context) error {
-	return s.srv.Shutdown(ctx)
-}
-
-func Module() dig.Option {
-	return dig.Module(
-		dig.Provide(http.NewServeMux),
-		dig.Provide(NewHTTPServer),
-		dig.Invoke(func(srv *HTTPServer) error {
-			return srv.Start()
-		}),
-		dig.Invoke(func(ctx context.Context, srv *HTTPServer) error {
-			<-ctx.Done()
-			if err := srv.Shutdown(ctx); err != nil {
-				Logf("server shutdown err: %v", err)
-			}
-			return nil
-		}),
-	)
-}
-'''
-
-### Template8: DI Generate & Run Script
-'''bash
-# Generate compile-time DI code with debug log
-digen -debug -unused error ./...
-# Dev environment start with dev env file
-go run . --env=.env.dev
-# Prod environment
-go run . --env=.env.prod
-'''
-
-### Template9: Industrial Makefile
-'''makefile
-digen:
-	digen -debug -unused error ./...
-
-run-dev: digen
-	go run . --env=.env.dev
-
-build-prod: digen
-	CGO_ENABLED=0 go build -o app ./main.go
-'''
-
-### Template10: Standard .env File Template
-'''env
-# Postgres
-pg_dsn=postgres://user:pass@127.0.0.1:5432/dbname?sslmode=disable
-pg_max_open=20
-pg_max_idle=5
-pg_conn_life=1h
-pg_auto_migrate=true
-
-# HTTP Server
-http_addr=0.0.0.0:8080
-http_timeout=30s
-'''
-
-## 5. Global Hard Forbidden Behaviors (Focus Viper Config + Naming + Unified Route Violations)
-1. Never confuse `go.uber.org/dig` runtime DI with target shanjunmei/dig compile-time DI
-2. Do not use Wire/Fx exclusive proprietary APIs in dig demonstration code
-3. Prohibit code violating digen closure capture constraints
-4. Forbid deprecated v1.0.4 `app.Run()` legacy syntax
-5. Do not fabricate non-existent dig APIs or digen CLI flags
-
-### Zero Tolerance Industrial Specification Violations
-6. ❌ Forbidden flat shared root `repo/` / `service/` / `handler/` folders causing cross-domain layer mixing
-7. ❌ Forbidden creating redundant `module.go` file inside config / pgdb lightweight single-provide infra packages
-8. ❌ Forbidden calling `config.Module()` / `pgdb.Module()` in root di.go assembly; must use inline `dig.Provide(pkg.Constructor)`
-9. ❌ Forbidden redundant noisy naming: file `order_repo.go`, struct `OrderRepo`, constructor `NewOrderRepo` inside domain subfolder
-10. ❌ Forbidden scattering route definitions directly inside domain Module Invoke closure without unified `RegisterRoute()` handler method
-11. ❌ Forbidden naming handler route register method with inconsistent custom names (must be fixed `RegisterRoute(mux *http.ServeMux)`)
-12. ❌ Forbidden using standalone godotenv instead of viper multi-source unified config loading
-13. ❌ Forbidden splitting business domain internal repo/service/handler raw Provide into root di.go; all business logic must be encapsulated inside domain own Module()
-14. ❌ Forbidden aggregate cross-domain or infra modules inside any business domain Module()
-15. ❌ Forbidden multiple exported Module() functions inside one business domain package
-16. ❌ Forbidden adding Invoke inside domain repo/service layer
-17. ❌ Raw PGDSN / HTTP listen addr inject without custom wrapper type, trigger primitive collision compile error
-18. ❌ Reverse internal domain dependency (handler imported into service/repo) forbidden
-19. ❌ Omit PG connection ping health check in pgdb NewPGClient constructor
-
-## 6. Interaction Execution Rules
-All requests for code generation, troubleshooting, architecture design, migration must strictly follow all updated rules:
-1. Config lightweight infra no module.go, use viper full multi-source config load in LoadAppConfig(), root inline dig.Provide register
-2. pgdb lightweight infra no module.go, root inline dig.Provide register
-3. Vertical business domains under `/internal/domain/` retain dedicated module.go encapsulating domain internal Provide + unified route Invoke
-4. Layer file minimal naming rule: repo.go / service.go / handler.go, struct & constructor remove redundant domain prefix
-5. Every domain handler must implement fixed unified `RegisterRoute(mux *http.ServeMux)` method to hold all domain API routes
-6. Domain module Invoke only call `h.RegisterRoute(mux)`, no inline scattered route code
-7. Server infra package with multiple Provide and lifecycle Invoke retains module.go, use `server.Module()` registration mode
-8. Root di.go assembly fixed order: viper config inline Provide → pgdb inline Provide → business domain.Module() → server.Module()
-9. Zero cross-domain layer mixing, minimal redundant naming & boilerplate files, unified viper config standard, standardized route registration flow
-
-### Extended Scaffold Output Rule
-When requesting full GORM+PG + native http industrial project:
-1. Output clean minimal directory tree without redundant file names under domain subfolders, config/pgdb no module.go
-2. Config package full viper implementation with env file + flag + system env three-layer overlay, typed AppConfig + custom wrapper types
-3. Show simplified repo/service/handler struct & constructor code without duplicate domain prefix
-4. Each handler include mandatory `RegisterRoute` unified route entry, domain module Invoke only invoke this method
-5. Root di.go mixed compliant assembly code with inline dig.Provide for viper config/pgdb
-6. Attach standard .env template file
-7. Annotate core compliance points: viper unified multi-source config, minimal non-redundant naming, unified standard route register entry, lightweight infra remove redundant module.go, vertical business domain full encapsulated Module(), dual registration mode clear separation.
 ```
 
 </details>

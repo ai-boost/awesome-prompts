@@ -1,10 +1,10 @@
-# 编程开发 (1/11)
+# 编程开发 (1/12)
 
-共 706 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 739 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
-分页：**1** · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md)
+分页：**1** · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md)
 
 <details><summary><b>.NET API 项目分析</b></summary>
 
@@ -4712,6 +4712,33 @@ ${repeat_for_each_requirement}
 
 </details>
 
+<details><summary><b>AWS CDK 基础设施偏好</b> · 机器翻译</summary>
+
+```text
+# AWS CDK 基础设施品味:一位追求平淡、易于评审的云变更的平台工程师
+- 用 TypeScript 编写 CDK 应用,让 construct、props 和 IDE 提示都有完整的类型。置信度:0.85
+- 默认使用 L2 construct,仅在缺少功能时才退回到 L1 `Cfn*` 资源,并将其包装在你自己的 construct 中。置信度:0.85
+- 按生命周期将应用拆分为若干小型 stack:数据库、存储桶这类有状态资源与无状态计算资源分开存放。置信度:0.90
+- 在生产环境中,对每个有状态资源设置 `removalPolicy: RETAIN` 和删除保护。置信度:0.95
+- 绝不硬编码账号 ID 或区域;通过每个 stage 的环境配置传入。置信度:0.90
+- 将各环境建模为同一应用的 stage,这样 dev、staging 和 prod 都由完全相同的代码构建。置信度:0.85
+- 在每个拉取请求中运行 `cdk diff`,并在任何部署之前贴出输出供评审。置信度:0.90
+- 只通过 CI 使用 CDK Pipelines 或类似的流水线部署,绝不从个人笔记本用 `cdk deploy` 部署到生产环境。置信度:0.90
+- 用 `bucket.grantRead(fn)` 这类 construct 方法授予权限,而不是手写 IAM 策略 JSON。置信度:0.90
+- 添加 `cdk-nag` 并启用 AWS Solutions 规则,并在代码中为每一处抑制给出理由。置信度:0.80
+- 保持逻辑 ID 稳定;重命名 construct ID 会替换资源,因此要把它当作一次迁移。置信度:0.90
+- 将密钥存放在 Secrets Manager 或 SSM Parameter Store 中并通过引用使用,绝不要把密钥值放进 context 或 props。置信度:0.95
+- 通过 `Tags.of(app)` 为每个资源打上负责人、服务和成本中心标签。置信度:0.80
+- 为 stack 编写快照测试,并为对安全至关重要的属性编写细粒度断言。置信度:0.75
+- 固定 `aws-cdk-lib` 版本,并有意识地升级,同时阅读变更日志中的功能标志。置信度:0.80
+- 对经常变化的内容避免使用跨 stack 导出;改为通过 SSM 参数传递值。置信度:0.70
+- 使用 `NodejsFunction` 或打包的资源,使 Lambda 代码与基础设施由同一条流水线构建。置信度:0.75
+- 在创建资源的同一个 construct 中启用日志、告警和仪表盘。置信度:0.80
+- 将 `cdk.context.json` 提交到版本库,使查询结果在不同机器上保持确定。置信度:0.85
+```
+
+</details>
+
 <details><summary><b>AWS Transform迁移分析</b></summary>
 
 ```text
@@ -5881,6 +5908,34 @@ Include these if detected (list actual names found):
 - 每次变更时检查包体积;删除未使用的依赖,避免使用不需要的 Node polyfill。Confidence: 0.80
 - 在 Worker 入口文件顶部记录每个绑定及其用途,使新人上手无需依赖口口相传的知识。Confidence: 0.75
 - 将 cron Triggers 和 Queue 消费者视为一等入口点,采用与 HTTP 相同的校验和日志标准。Confidence: 0.80
+```
+
+</details>
+
+<details><summary><b>CMake C++ 项目偏好</b> · 机器翻译</summary>
+
+```text
+# 想要干净、可移植构建的系统开发者的 CMake C++ 项目偏好
+- 要求使用现代 CMake(3.24 或更新版本),并且只编写基于目标的 CMake,绝不使用全局的 `include_directories` 或 `add_definitions`。置信度：0.90
+- 使用 `target_*` 命令,并配合正确的 `PUBLIC`、`PRIVATE` 或 `INTERFACE` 作用域,将包含路径、编译选项和宏定义附加到目标上。置信度：0.90
+- 始终进行源码外构建,使用被 git 忽略的 `build/` 目录。置信度：0.95
+- 提交一个包含 debug、release 和 sanitizer 预设的 `CMakePresets.json`,让所有人都以相同方式配置。置信度：0.85
+- 使用 `target_compile_features(... cxx_std_20)` 设置语言标准,而不是使用原始的 `-std=` 标志。置信度：0.85
+- 通过一个共享的接口目标启用 `-Wall -Wextra -Wpedantic` 或 `/W4` 之类的严格警告,并在 CI 中将警告视为错误。置信度：0.85
+- 绝不使用 `file(GLOB)` 生成源文件列表;请显式列出源文件,这样文件变化时构建会重新运行。置信度：0.75
+- 使用由 vcpkg 或 Conan 支持的 `find_package` 获取第三方库,仅对小型且已固定版本的依赖使用 `FetchContent`。置信度：0.80
+- 将每个获取的依赖固定到某个标签或提交哈希,绝不使用会变动的分支。置信度：0.90
+- 没有清晰的补丁文件以及说明原因的备注,绝不要内置经过修改的库副本。置信度：0.75
+- 使用 CTest 运行测试,并通过 `add_test` 或 `gtest_discover_tests` 注册每个测试可执行文件。置信度：0.85
+- 设置一个 CI 任务,使用 AddressSanitizer 和 UndefinedBehaviorSanitizer 进行构建并运行完整的测试套件。置信度：0.85
+- 通过 `CMAKE_EXPORT_COMPILE_COMMANDS` 导出 `compile_commands.json`,让 clangd 和 clang-tidy 开箱即用。置信度：0.90
+- 使用已提交的 `.clang-format` 进行格式化并在 CI 中检查,而不是在评审中争论代码风格。置信度：0.85
+- 默认使用 Ninja 作为生成器以实现快速增量构建,并在 CI 中使用 ccache 或 sccache。置信度：0.80
+- 提供完善的 `install()` 规则和导出的包配置,让其他项目可以对该库使用 `find_package`。置信度：0.75
+- 为导出的目标添加命名空间,如 `mylib::mylib`,并为树内使用创建一个同名的别名目标。置信度：0.80
+- 保持选项数量少,并加上项目名前缀,例如 `MYLIB_BUILD_TESTS`,并在作为子项目使用时默认关闭测试。置信度：0.75
+- 避免在 `CMakeLists.txt` 中直接设置 `CMAKE_CXX_FLAGS`;全局标志留给预设和工具链文件处理。置信度：0.80
+- 如果项目声称可移植,就在 CI 中于 Linux、macOS 和 Windows 上测试构建。置信度：0.80
 ```
 
 </details>

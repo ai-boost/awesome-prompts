@@ -1,10 +1,83 @@
-# 编程开发 (5/11)
+# 编程开发 (5/12)
 
-共 706 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 739 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
-分页：[1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · **5** · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md)
+分页：[1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · [4](coding-4.md) · **5** · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md)
+
+<details><summary><b>PRD 与技术文档生成器</b></summary>
+
+```text
+---
+name: prd-and-technical-documentation-generator
+description: 用于生成项目全面的产品需求文档（PRD）和技术文档的技能。
+---
+
+# PRD 与技术文档生成器
+
+该技能旨在协助创建详细的产品需求文档（PRD）以及配套的技术文档。
+
+## 指令
+
+1. **定义产品或功能**：明确指定正在为其创建文档的产品或功能。
+2. **收集需求**：识别并列出所有必要需求，包括功能性和非功能性方面。
+3. **构建 PRD 结构**：
+   - **引言**：提供产品或功能的简要概述。
+   - **问题陈述**：描述该产品或功能旨在解决的问题。
+   - **目标**：概述主要目标和目的。
+   - **范围**：定义范围，包括包含和不包含的内容。
+   - **需求**：详细说明功能性和非功能性需求。
+   - **用户故事**：包含用户故事以说明使用场景。
+4. **技术文档**：
+   - **架构概述**：提供架构图和描述。
+   - **技术规格**：详细说明技术要求和规格。
+   - **API 与接口**：列出 API 和接口，包括用法和示例。
+   - **安全与合规**：概述安全措施和合规要求。
+
+## 示例
+
+- **示例输入**： "为一个新的电子商务平台功能创建 PRD"
+- **示例输出**： 一份结构化的文档，其中所有部分均已填充相关信息。
+
+## 变量
+
+- ${productFeature} - 特定的产品功能或计划。
+- ${documentType:PRD} - 要生成的文档类型（PRD 或 技术文档）。
+
+利用此技能高效地生成全面的文档，以支持项目目标和利益相关者的需求。
+```
+
+</details>
+
+<details><summary><b>Prisma ORM编码偏好</b> · 机器翻译</summary>
+
+```text
+# 类型安全的数据库实用主义者的 Prisma ORM 品味
+- 将 `schema.prisma` 视为模型的唯一事实来源,并在 CI 中生成客户端,这样 `node_modules/.prisma` 就永远不会出现偏差。Confidence: 0.95
+- 每个可部署服务优先使用一个 Prisma schema;只有当有界上下文确实拥有各自独立的数据库时才拆分。Confidence: 0.85
+- 模型使用大驼峰(PascalCase)单数命名(`User`、`OrderItem`),当数据库已存在时,显式映射表名。Confidence: 0.80
+- 对外公开的 ID 使用带 `cuid()` 或 `uuid()` 的 `@id`;如果必须使用自增整数,则仅限用于内部专用的键。Confidence: 0.75
+- 每个关系都要声明双方,并显式指定 `onDelete` / `onUpdate`,让级联行为绝不是偶然产生的。Confidence: 0.90
+- 对你所依赖的每种查询模式,都在 schema 中添加 `@@index` 和 `@@unique`,并在预发布环境中用 `EXPLAIN` 验证。Confidence: 0.85
+- 以 Prisma Migrate 迁移的方式交付 schema 变更,并将其提交到 git;绝不要对生产环境使用 `db push`。Confidence: 0.95
+- 合并之前审查每个迁移文件中生成的 SQL,尤其是删除、重命名和类型变更。Confidence: 0.90
+- 在滚动部署期间保持迁移向后兼容:先添加可为空的列,然后回填数据,最后再收紧约束。Confidence: 0.85
+- 仅在 schema 发生变化时,才在 Docker 构建和 postinstall 中使用 `prisma generate`;避免出人意料的本地重新生成。Confidence: 0.75
+- 优先使用 `findMany`,并通过 `select` 或 `include` 只列出所需字段;默认绝不向 API 返回完整的行。Confidence: 0.85
+- 将多步骤写入包装在 `prisma.$transaction` 中,并保持事务简短,事务内不要发起外部 HTTP 请求。Confidence: 0.90
+- 谨慎使用交互式事务;对于简单的批量操作,优先使用 `$transaction` 的数组形式。Confidence: 0.80
+- 将数据库访问放在小型的 repository 或数据模块之后,而不是散落在 React Server Components 和路由处理器中。Confidence: 0.80
+- 使用 `prisma db seed` 配合幂等的 upsert 进行数据填充,让预览环境可以安全地重建。Confidence: 0.80
+- 在开发环境启用查询日志,在生产环境启用慢查询日志;将 N+1 模式视为缺陷。Confidence: 0.85
+- 对共享的查询结构使用 Prisma 带类型的 `Prisma.XxxGetPayload` 辅助类型,而不是手写的、容易偏离的接口。Confidence: 0.80
+- 将 Prisma CLI 与引擎版本一起锁定,并在阅读发布说明之后,通过专门的 PR 进行升级。Confidence: 0.85
+- 对于原生 SQL,只使用 `Prisma.sql` 标签模板,绝不使用与用户输入进行字符串拼接的方式。Confidence: 0.95
+- 在 CI 中针对生产环境影子数据库的预期运行 `prisma migrate diff`,让偏差导致构建失败。Confidence: 0.75
+- 在运行手册中记录连接池(PgBouncer / 驱动适配器);没有连接池的 serverless 会耗尽连接。Confidence: 0.85
+```
+
+</details>
 
 <details><summary><b>prompts.chat 项目规范</b></summary>
 
@@ -116,6 +189,34 @@
 - 默认绝不让测试访问真实的外部服务;阻止网络访问并显式选择启用。Confidence: 0.80
 - 对异步代码,在严格模式下使用 `pytest-asyncio` 或 `anyio`,绝不在测试内部使用 `asyncio.run`。Confidence: 0.75
 - 让每个测试专注于一个行为,采用 Arrange、Act、Assert 的结构,并使用读起来像句子的名称。Confidence: 0.85
+```
+
+</details>
+
+<details><summary><b>Python Asyncio 编码偏好</b> · 机器翻译</summary>
+
+```text
+# 从不阻塞事件循环的后端开发者的 Python Asyncio 偏好
+- 仅将 asyncio 用于 I/O 密集型工作,如网络调用和数据库;CPU 密集型工作交给进程池。Confidence: 0.90
+- 程序以单个 `asyncio.run(main())` 启动,绝不手动创建或管理事件循环。Confidence: 0.90
+- 使用 `asyncio.TaskGroup` 一起运行任务,这样一个任务失败会取消其他同级任务,也不会有任何泄漏。Confidence: 0.85
+- 绝不在不保留引用的情况下对 `create_task` 做"发出即忘";丢失的任务会被垃圾回收,错误也会随之消失。Confidence: 0.90
+- 用 `asyncio.timeout()` 为每个网络调用设置超时;永远等待就是一个 bug。Confidence: 0.90
+- 用 `Semaphore` 限制并发,而不是一次启动成千上万个请求。Confidence: 0.85
+- 绝不在协程内调用 `requests` 或 `time.sleep` 这类阻塞库。Confidence: 0.95
+- 将不可避免的阻塞调用包装在 `asyncio.to_thread` 中,并保持其简短。Confidence: 0.80
+- 使用 `httpx` 或 `asyncpg` 这类原生异步客户端,并且每个应用共享一个客户端,而不是每个请求一个。Confidence: 0.85
+- 将 `CancelledError` 视为正常情况:在 `finally` 中清理并重新抛出它,绝不吞掉它。Confidence: 0.90
+- 对于彼此独立、其中一个失败不应掩盖其他任务的作业,避免使用不带 `return_exceptions` 的 `asyncio.gather`。Confidence: 0.70
+- 对生产者和消费者流水线,使用 `asyncio.Queue` 搭配固定数量的工作任务。Confidence: 0.80
+- 用 `async with` 关闭客户端、会话和连接,以便干净地关停。Confidence: 0.85
+- 在开发环境中开启 asyncio 调试模式,以发现缓慢的回调和从未被 await 的协程。Confidence: 0.75
+- 将同步和异步代码路径分开,而不是编写能同时运行两者的巧妙包装器。Confidence: 0.75
+- 除非有意使用 `run_coroutine_threadsafe`,否则不要混用线程和事件循环。Confidence: 0.80
+- 使用 `pytest-asyncio` 或 `anyio` 测试异步代码,并为测试设置各自较短的超时。Confidence: 0.80
+- 用 `contextvars` 保存请求 ID 和追踪数据,而不是使用全局变量。Confidence: 0.75
+- 只有在测量之后才考虑 `uvloop`;默认的事件循环对大多数服务已经足够快。Confidence: 0.65
+- 处理 SIGTERM 时,取消主任务,并等待工作任务完成正在处理的作业。Confidence: 0.80
 ```
 
 </details>
@@ -773,6 +874,36 @@ ${paste_your_code_here}
 这是我的 Python 代码：
 
 [PASTE YOUR CODE HERE]
+```
+
+</details>
+
+<details><summary><b>Python 命令行工具偏好</b> · 机器翻译</summary>
+
+```text
+# 发布小巧、行为良好的命令行应用的工具开发者的 Python CLI 品味
+- 使用 Typer 构建带类型的命令行,需要精细控制解析时使用 Click;多命令工具避免手写 `argparse` 树。置信度:0.80
+- 通过 `pyproject.toml` 中的 `[project.scripts]` 暴露命令,使其安装为真正的可执行文件。置信度:0.95
+- 推荐使用 `pipx` 或 `uv tool install` 安装,绝不使用 `sudo pip install`。置信度:0.90
+- 保持 `main()` 精简:解析参数,调用普通的库函数,将其结果映射为退出码。置信度:0.90
+- 成功返回退出码 0,预期内的失败返回 1,用法错误返回 2,并且绝不在库代码深处调用 `sys.exit`。置信度:0.90
+- 结果写入 stdout,日志、进度和错误写入 stderr,使输出便于管道处理。置信度:0.95
+- 提供 `--json` 输出以便脚本调用,默认输出保持人类可读。置信度:0.85
+- 在打印颜色、旋转指示器或进度条之前检测 TTY,并遵守 `NO_COLOR`。置信度:0.90
+- 仅在交互模式下使用 Rich 输出表格和进度;通过管道时使用纯文本。置信度:0.75
+- 每个破坏性命令都支持 `--dry-run`,并在未传入 `--yes` 时要求确认。置信度:0.90
+- 按固定顺序读取配置:命令行参数,然后环境变量,然后 XDG 配置目录中的配置文件,最后是默认值。置信度:0.85
+- 使用 `--verbose`/`-v`(可重复)和 `--quiet`/`-q`,映射到标准的 `logging` 级别。置信度:0.80
+- 默认显示友好的单行错误,仅在使用 `--debug` 时显示完整回溯。置信度:0.85
+- 干净地处理 `KeyboardInterrupt`,退出码为 130,且不输出回溯。置信度:0.85
+- 保持启动迅速:在需要的命令内部延迟导入较重的模块。置信度:0.80
+- 提供从 `importlib.metadata` 读取的 `--version`,而不是硬编码字符串。置信度:0.90
+- 文件参数接受 `-` 表示 stdin/stdout,并且处处使用 `pathlib.Path`。置信度:0.80
+- 使用 Typer 或 Click 的 `CliRunner` 测试命令,分别对退出码、stdout 和 stderr 进行断言。置信度:0.90
+- 对帮助文本做快照测试,使意外的选项重命名在评审中暴露出来。置信度:0.65
+- 通过框架内置的补全支持,提供 bash、zsh 和 fish 的 shell 补全。置信度:0.75
+- 为每个命令的帮助文本配一个简短示例;示例胜过冗长的选项说明。置信度:0.80
+- 发布时锁定依赖,但保持运行时需求最小化,最好只有寥寥几个包。置信度:0.75
 ```
 
 </details>
@@ -2022,6 +2153,619 @@ description: A skill for building and managing workflows using Python. Useful fo
 - 进一步学习的资源列表，包括教程、文档和社区论坛。
 
 该技能非常适合希望借助 Python 自动化来优化操作的开发人员和 IT 专业人员。
+```
+
+</details>
+
+<details><summary><b>Python循环导入检测器</b> · 机器翻译</summary>
+
+```text
+---
+name: python-import-cycle-detector
+description: 离线查找 Python 项目中的循环导入：将文件映射为模块，用 ast 解析导入，报告每个循环组及其最短回路、精确到 file:line 的导入位置、导入时 vs 延迟 vs TYPE_CHECKING 的区分、建议打断的边以及修复模式。仅用标准库 Python，附带自测。
+---
+
+# Python Import Cycle Detector
+
+你帮助开发者在 Python 代码库中发现并理顺循环导入。循环导入会引发经典的 `ImportError: cannot import name 'X' from partially initialized module`，以及只在某些入口或测试顺序下才出现的 `AttributeError: partially initialized module` 错误，还会让包变得缓慢、纠缠、难以拆分。你需要绘制项目内部的导入图，准确指出构成每个回路的导入行，并提出能打断回路的最小安全改动。
+
+你在用户本地处理其代码，绝不上传。脚本只用 `ast` 解析文件；它从不导入或运行项目代码。你用通俗的语言解释结果并建议重构，但未经用户同意，不会大幅改写代码库的大部分内容。
+
+## 本 skill 中的文件
+
+- `scripts/import_cycles.py` - 遍历项目（跳过 venv、构建和缓存文件夹；检测 `src/` 布局），解析绝对导入、相对导入以及 `from pkg import submodule`，找出强连通分量（Tarjan 算法）、每个分量中的最短回路，以及发现项 IC00-IC06；`--json` 供工具使用，`--include-type-checking` 用于计入 `if TYPE_CHECKING:` 导入，`--root` 用于设置存放顶层包的文件夹，`--self-test` 运行 18 项检查（仅需 Python 3.8+ 标准库）
+- `references/how-cycles-break.md` - 为什么有些循环会在导入时崩溃而另一些不会，Python 如何在模块处于半初始化状态时执行它，以及每个发现项的含义
+- `references/fix-patterns.md` - 打断循环的七种方式，从移动一个常量到依赖反转，附前后对比代码片段和各自的适用场景
+- `templates/cycle-report.md` - 交还给用户的摘要
+- `examples/shop/` - 一个虚构的六模块包，含一个真实的导入时循环（`models` <-> `orders`）、一个经由延迟导入的更长回路、一个 `TYPE_CHECKING` 导入和一个 `__init__` 重导出；在 `examples/` 内运行 `python3 -c "import shop"` 可复现该 ImportError
+
+## 工作流程
+
+### 1. 了解症状
+询问确切的错误和 traceback（如果有）、失败的入口或测试、Python 版本，以及包所在位置（仓库根目录或 `src/`）。只在某一个入口失败的循环，通常意味着各入口之间的导入顺序不同。
+
+### 2. 运行检测器
+'''
+python3 scripts/import_cycles.py path/to/project
+python3 scripts/import_cycles.py path/to/project --root path/to/project/src
+python3 scripts/import_cycles.py path/to/project --json > cycles.json
+python3 scripts/import_cycles.py --self-test
+'''
+退出码 0 = 没有导入时循环，1 = 至少有一个导入时循环（IC01），2 = 输入有误。如果没有 shell，就阅读 traceback 中所列模块顶部的导入行，手动顺着它们追踪，直到回到第一个模块。
+
+### 3. 阅读报告
+- **组（Group）**：通过导入彼此可达的模块。逐组修复，先修导入时的组（IC01）。
+- **最短回路（Shortest cycle）**：最小的回路，每个导入都附带文件和行号；通常是最佳的切入点。
+- **类型（Kind）**：`top` 在模块被导入时运行；`deferred` 在函数内部运行（IC02：目前能用，但有人把它移到顶部时就会崩）；`type_checking` 永不运行（IC06，除非使用 `--include-type-checking`，否则忽略）。
+- **建议打断的位置（Suggested place to break）**：最短回路中导入名称最少的顶层边。它只是起点，而非定论：优先选择方向对架构而言“不对”的那条边（例如 `models` 这样的低层模块导入了 `orders` 这样的高层模块）。
+- IC03 标记 5 个以上模块的纠缠（规划分层重构），IC04 标记把包拉入回路的 `__init__.py` 重导出，IC05 标记回路内的星号导入，IC00 标记无法解析的文件。
+
+### 4. 选择修复方式
+使用 `references/fix-patterns.md`。默认顺序：把共享的常量或类型移到更低层的模块；导入模块而不是名称（`from shop import orders`，然后 `orders.ORDER_STATUSES`），仅作权宜之计；仅用于类型时，使用 `TYPE_CHECKING` 导入加字符串注解；把逻辑移到拥有它的模块；用参数、回调或注册表反转依赖。除非是经过注释说明的刻意例外，否则避免用函数内导入来掩盖循环。
+
+### 5. 验证
+重新运行检测器，直到该组消失或只剩有文档说明的延迟边，然后在全新的解释器中导入每个顶层模块（`python3 -c "import pkg.module"`）并运行测试套件。建议把检测器加入 CI，退出码为 1 时使构建失败。
+
+### 6. 汇报
+填写 `templates/cycle-report.md`：发现的组、每组的修复方式、改动的文件，以及验证了哪些内容。
+
+## 规则
+- 分析时绝不执行或导入用户的项目；解析器就足够了。
+- 保持改动小而易于审查：每次提交只处理一个循环，不改变行为。
+- 动态导入（`importlib.import_module`、插件、`__import__`）对静态分析不可见；项目使用它们时要明确说明。
+
+FILE:references/how-cycles-break.md
+# 循环导入如何出错（以及何时不会）
+
+## 执行 `import a` 时 Python 做了什么
+1. 在 `sys.modules` 中查找。如果 `a` 在其中，即使只初始化了一半，也会立即返回它。
+2. 否则创建一个空的模块对象，放入 `sys.modules["a"]`，然后从上到下运行 `a.py`。
+3. 只有定义某个名称的那一行运行之后，该名称才存在于 `a` 中。
+
+所以在循环 `a -> b -> a` 中：
+- `import a` 开始运行 `a.py`，执行到 `import b`。
+- `b.py` 运行，执行到 `import a`；`a` 已在 `sys.modules` 中（半初始化），因此立即返回。
+- 如果 `b` 接着在 `a` 定义 `X` 之前执行 `from a import X`（或在顶层使用 `a.X`），就会得到
+  `ImportError: cannot import name 'X' from partially initialized module 'a'` 或
+  `AttributeError: partially initialized module 'a' has no attribute 'X'`。
+
+是否崩溃取决于**哪个模块先被导入**以及**双方在导入时各自触及了什么**。这就是为什么一个循环可以通过测试套件，却在生产环境中从另一个入口崩溃。
+
+## 脚本报告的边的类型
+| 类型 | 导入所在位置 | 运行时机 | 风险 |
+|---|---|---|---|
+| `top` | 模块层级（也包括 `if`、`try`、`class` 代码块内） | 模块被导入时 | 可能在导入时崩溃 |
+| `deferred` | 函数或方法内部 | 函数被调用时 | 若届时另一个模块已完成则可用；脆弱 |
+| `type_checking` | `if TYPE_CHECKING:` 内部 | 运行时从不运行 | 无运行时影响；默认忽略 |
+
+## 发现项
+| 代码 | 严重程度 | 含义 | 第一步 |
+|---|---|---|---|
+| IC00 | 低 | 文件无法解析（语法错误、编码问题） | 修复或排除该文件，重新运行 |
+| IC01 | 高 | 组内某处存在仅由导入时的边构成的循环 | 立即修复；见 fix-patterns.md 中的 1-5 |
+| IC02 | 中 | 每个回路都至少包含一个延迟导入 | 为其写文档说明，或彻底移除该循环 |
+| IC03 | 中 | 5 个以上模块的组 | 画出预期的分层；修复指向上层的边 |
+| IC04 | 中 | `__init__.py` 重导出位于最短回路中 | 停止重导出，或直接导入子模块 |
+| IC05 | 中 | 循环内存在 `from x import *` | 替换为显式名称 |
+| IC06 | 信息 | 仅 TYPE_CHECKING 的导入被忽略 | 无需处理；使用 `--include-type-checking` 查看 |
+
+## 模块如何解析
+- 根目录下的文件 `pkg/sub/mod.py` 变为 `pkg.sub.mod`；`pkg/__init__.py` 变为 `pkg`。
+- 若 `<project>/src` 存在，则根目录为它，否则为 `<project>`；可用 `--root` 覆盖。
+- `from pkg import name` 在 `pkg.name` 是模块时映射到 `pkg.name`，否则映射到 `pkg`。
+- `from . import x` 和 `from ..core import y` 相对于导入方模块所在的包解析。
+- 第三方和标准库导入被忽略（它们不是根目录下的文件）。
+- 局限：`import a.b` 同时会运行 `a/__init__.py`；脚本只记录指向 `a.b` 的边。如果某个包的 `__init__` 导入很多内容，请手动检查。
+
+## 实例演练（examples/shop）
+`shop.orders` 第 3 行从 `shop.models` 导入 `Customer`；`shop.models` 第 3 行从 `shop.orders` 导入 `ORDER_STATUSES`。导入 `shop` 会运行 `__init__` -> `orders` -> `models`，而 `models` 在 `orders` 定义 `ORDER_STATUSES` 之前就请求它，因此 `python3 -c "import shop"` 会以 ImportError 失败。较长的回路 `orders -> payments -> notifications -> orders` 之所以能存活，只是因为 `notifications` 在 `send_receipt()` 内部才导入 `orders`。
+
+FILE:references/fix-patterns.md
+# 循环导入的修复模式
+
+选择能让依赖单向流动的最小改动：从高层模块（服务、视图、CLI）指向低层模块（模型、常量、工具）。
+
+## 1. 把共享部分下移
+当两个模块共用一个常量、枚举、异常或小型类型时，把它移到一个两者都不导入的更低层模块。
+'''python
+# before: models.py -> orders.py for ORDER_STATUSES, orders.py -> models.py for Customer
+# after: shop/constants.py
+ORDER_STATUSES = ["new", "paid", "shipped", "cancelled"]
+# models.py and orders.py both: from shop.constants import ORDER_STATUSES
+'''
+首选方案：不改变行为，易于审查。
+
+## 2. 仅类型的导入
+如果一方只为注解而需要另一方：
+'''python
+from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from shop.models import Customer
+def greet(customer: Customer) -> str: ...
+'''
+该导入永不运行，因此运行时的循环消失。
+
+## 3. 把函数移到它的所有者
+`orders.py` 中只处理客户的辅助函数应属于 `models.py`（或 `customers.py`）。循环往往说明某个函数放错了模块。
+
+## 4. 依赖反转
+低层模块不应调用高层模块。改为把它需要的东西传进去：
+'''python
+# payments.py
+def charge(order, on_success=None):
+    ...
+    if on_success:
+        on_success(order)
+# orders.py
+payments.charge(order, on_success=notifications.send_receipt)
+'''
+替代方案：小型注册表或信号（`events.subscribe("order_paid", send_receipt)`），或放在更低层模块中的 protocol/ABC。
+
+## 5. 拆分身兼两职的模块
+如果 `utils.py` 导入了半个项目，而半个项目又导入 `utils.py`，就按主题拆分（`utils/text.py`、`utils/money.py`），让每一部分依赖更少。
+
+## 6. 导入模块，而非名称（权宜之计）
+`from shop import orders`，然后在函数内部使用 `orders.ORDER_STATUSES`。属性查找发生在稍后，因此某些循环不再崩溃。这掩盖了设计问题；请留下 TODO 并规划模式 1-5。
+
+## 7. 延迟导入（最后手段）
+'''python
+def send_receipt(order):
+    from shop.orders import ORDER_STATUSES  # deliberate: breaks cycle orders -> payments -> notifications
+'''
+适用于很少使用的路径或可选的重型依赖。务必添加注释写明该循环；检测器会继续将其报告为 IC02。
+
+## 包的 `__init__.py` 重导出（IC04）
+`__init__.py` 中的 `from .orders import Order` 会使 `import shop.models` 先运行 `orders.py`。可选做法：保持 `__init__.py` 轻量，只重导出叶子模块，或为便利名称使用惰性的 `__getattr__`（PEP 562）。
+
+## 每次修复之后
+1. `python3 scripts/import_cycles.py <project>` - 该组应当消失或变小。
+2. 在全新的解释器中对每个顶层模块执行 `python3 -c "import <each top-level module>"`。
+3. 运行测试，包括以不同顺序导入模块的测试。
+4. 把检测器加入 CI：非零退出码使构建失败。
+
+FILE:templates/cycle-report.md
+# 导入循环报告 - {{project}} ({{date}})
+
+**范围：** `{{root}}` 下的 {{modules}} 个模块，{{edges}} 个内部导入。命令：`python3 scripts/import_cycles.py {{project}}`
+**症状：** {{error_or_reason}}
+
+## 摘要
+- 循环组：{{group_count}}（{{import_time_count}} 个在导入时出错，{{deferred_count}} 个仅为延迟导入）
+- 修复后状态：{{status}}
+
+## 各组
+| # | 模块 | 最短回路 | 类型 | 选用的修复 | 状态 |
+|---|---|---|---|---|---|
+| 1 | {{modules_1}} | {{cycle_1}} | {{kind_1}} | {{fix_1}} | {{status_1}} |
+
+## 改动
+| 文件 | 改动 | 模式（fix-patterns.md） |
+|---|---|---|
+| {{file}} | {{change}} | {{pattern}} |
+
+## 验证
+- 重新运行检测器：{{detector_result}}
+- 全新解释器中的导入：{{import_check}}
+- 测试：{{tests}}
+
+## 遗留事项与备注
+- 已有文档说明的延迟导入（IC02）：{{deferred_notes}}
+- 静态分析未覆盖的动态导入：{{dynamic_imports}}
+- 建议的 CI 步骤：`python3 scripts/import_cycles.py . || exit 1`
+
+FILE:examples/shop/__init__.py
+"""Fictional demo package for the import cycle detector (not a real shop)."""
+from .orders import Order, place_order
+
+__all__ = ["Order", "place_order"]
+
+FILE:examples/shop/models.py
+from dataclasses import dataclass
+
+from shop.orders import ORDER_STATUSES
+
+
+@dataclass
+class Customer:
+    id: int
+    email: str
+    status: str = ORDER_STATUSES[0]
+
+FILE:examples/shop/orders.py
+from dataclasses import dataclass, field
+
+from shop.models import Customer
+from shop import payments
+
+ORDER_STATUSES = ["new", "paid", "shipped", "cancelled"]
+
+
+@dataclass
+class Order:
+    id: int
+    customer: Customer
+    total_cents: int
+    status: str = "new"
+    lines: list = field(default_factory=list)
+
+
+def place_order(order):
+    payments.charge(order)
+    order.status = "paid"
+    return order
+
+FILE:examples/shop/payments.py
+from shop.notifications import send_receipt
+
+
+def charge(order):
+    # pretend to call a payment provider here
+    send_receipt(order)
+    return True
+
+FILE:examples/shop/notifications.py
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from shop.models import Customer
+
+
+def send_receipt(order):
+    from shop.orders import ORDER_STATUSES  # deferred import, runs only when called
+    return "Receipt for order %s (%s)" % (order.id, ORDER_STATUSES[1])
+
+
+def greet(customer: "Customer"):
+    return "Hello " + customer.email
+
+FILE:examples/shop/utils.py
+def cents_to_text(cents):
+    return "%d.%02d" % divmod(cents, 100)
+
+FILE:scripts/import_cycles.py
+#!/usr/bin/env python3
+"""import_cycles.py - find circular imports in a Python project (stdlib only, Python 3.8+).
+
+Usage:
+  python3 scripts/import_cycles.py <project_dir> [--root PKG_PARENT] [--json] [--include-type-checking]
+  python3 scripts/import_cycles.py --self-test
+
+Reads every .py file under <project_dir> (skipping venvs, build and cache folders), maps files to
+module names, parses imports with ast (absolute, relative, `from pkg import submodule`), builds the
+import graph between project modules and reports each strongly connected component (a group of
+modules that import each other directly or indirectly) with its shortest cycle, the exact import
+lines, whether each import runs at import time (top level) or later (inside a function), and a
+suggested edge to break. Findings IC01-IC06. Exit 0 = no import-time cycles, 1 = import-time
+cycle or other high finding, 2 = bad input.
+"""
+import argparse, ast, json, os, sys
+from collections import deque
+
+SKIP_DIRS = {".git", ".hg", ".venv", "venv", "env", "__pycache__", "build", "dist", "node_modules",
+             ".tox", ".nox", ".mypy_cache", ".pytest_cache", "site-packages", ".eggs"}
+
+
+def module_name(path, root):
+    rel = os.path.relpath(path, root)[:-3].replace(os.sep, ".")
+    if rel.endswith(".__init__"):
+        rel = rel[: -len(".__init__")]
+    return rel
+
+
+def find_root(project):
+    """Use project/src if it exists (src layout), else the project dir itself."""
+    src = os.path.join(project, "src")
+    return src if os.path.isdir(src) else project
+
+
+def collect_files(root):
+    out = []
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = sorted(d for d in dirnames if d not in SKIP_DIRS and not d.endswith(".egg-info"))
+        for f in sorted(filenames):
+            if f.endswith(".py"):
+                out.append(os.path.join(dirpath, f))
+    return out
+
+
+class ImportVisitor(ast.NodeVisitor):
+    """Collect (target, line, kind, names) where kind is top, deferred or type_checking."""
+
+    def __init__(self, modname, is_pkg):
+        self.mod, self.is_pkg, self.depth, self.tc = modname, is_pkg, 0, 0
+        self.found = []
+
+    def _kind(self):
+        if self.tc:
+            return "type_checking"
+        return "deferred" if self.depth else "top"
+
+    def visit_FunctionDef(self, node):
+        self.depth += 1; self.generic_visit(node); self.depth -= 1
+    visit_AsyncFunctionDef = visit_FunctionDef
+    visit_Lambda = visit_FunctionDef
+
+    def visit_If(self, node):
+        t = node.test
+        is_tc = (isinstance(t, ast.Name) and t.id == "TYPE_CHECKING") or \
+                (isinstance(t, ast.Attribute) and t.attr == "TYPE_CHECKING")
+        if is_tc:
+            self.tc += 1
+            for n in node.body:
+                self.visit(n)
+            self.tc -= 1
+            for n in node.orelse:
+                self.visit(n)
+        else:
+            self.generic_visit(node)
+
+    def visit_Import(self, node):
+        for a in node.names:
+            self.found.append((a.name, node.lineno, self._kind(), []))
+
+    def visit_ImportFrom(self, node):
+        if node.level:
+            parts = self.mod.split(".")
+            base = parts if self.is_pkg else parts[:-1]
+            up = node.level - 1
+            if up > len(base):
+                return
+            base = base[: len(base) - up] if up else base
+            target = ".".join(base + ([node.module] if node.module else []))
+        else:
+            target = node.module or ""
+        names = [a.name for a in node.names]
+        self.found.append((target, node.lineno, self._kind(), names))
+
+
+def resolve(target, names, modules):
+    """Map an import target to project modules: the deepest existing module, plus submodules named in `from x import y`."""
+    hits = []
+    if names:
+        for n in names:
+            sub = target + "." + n if target else n
+            if sub in modules:
+                hits.append(sub)
+    if len(hits) < len(names) or not names:
+        t = target
+        while t and t not in modules:
+            t = t.rpartition(".")[0]
+        if t:
+            hits.append(t)
+    return sorted(set(hits))
+
+
+def build_graph(project, root=None):
+    root = root or find_root(project)
+    files = collect_files(root)
+    if not files:
+        raise ValueError("no .py files under " + root)
+    modules = {module_name(f, root): f for f in files}
+    edges, errors = {}, []
+    for mod, path in modules.items():
+        try:
+            tree = ast.parse(open(path, encoding="utf-8").read(), filename=path)
+        except (SyntaxError, UnicodeDecodeError) as e:
+            errors.append((mod, str(e).splitlines()[0])); continue
+        v = ImportVisitor(mod, path.endswith("__init__.py")); v.visit(tree)
+        for target, line, kind, names in v.found:
+            for dst in resolve(target, names, modules):
+                if dst == mod:
+                    continue
+                key = (mod, dst)
+                rank = {"top": 0, "deferred": 1, "type_checking": 2}
+                old = edges.get(key)
+                if old is None or rank[kind] < rank[old["kind"]]:
+                    edges[key] = {"line": line, "kind": kind, "names": names, "file": os.path.relpath(path, project)}
+    return root, modules, edges, errors
+
+
+def sccs(nodes, adj):
+    """Tarjan's algorithm, iterative."""
+    index, low, onstack, stack, out, counter = {}, {}, set(), [], [], [0]
+    for start in sorted(nodes):
+        if start in index:
+            continue
+        work = [(start, iter(sorted(adj.get(start, ()))))]
+        index[start] = low[start] = counter[0]; counter[0] += 1; stack.append(start); onstack.add(start)
+        while work:
+            v, it = work[-1]
+            for w in it:
+                if w not in index:
+                    index[w] = low[w] = counter[0]; counter[0] += 1; stack.append(w); onstack.add(w)
+                    work.append((w, iter(sorted(adj.get(w, ())))))
+                    break
+                if w in onstack:
+                    low[v] = min(low[v], index[w])
+            else:
+                work.pop()
+                if work:
+                    low[work[-1][0]] = min(low[work[-1][0]], low[v])
+                if low[v] == index[v]:
+                    comp = []
+                    while True:
+                        w = stack.pop(); onstack.discard(w); comp.append(w)
+                        if w == v:
+                            break
+                    if len(comp) > 1:
+                        out.append(sorted(comp))
+    return out
+
+
+def shortest_cycle(comp, adj):
+    best = None
+    cs = set(comp)
+    for s in comp:
+        prev, q = {s: None}, deque([s])
+        while q:
+            v = q.popleft()
+            for w in sorted(adj.get(v, ())):
+                if w not in cs:
+                    continue
+                if w == s:
+                    path = [v]
+                    while prev[path[-1]] is not None:
+                        path.append(prev[path[-1]])
+                    cyc = list(reversed(path)) + [s]
+                    if best is None or len(cyc) < len(best):
+                        best = cyc
+                    q.clear(); break
+                if w not in prev:
+                    prev[w] = v; q.append(w)
+    return best
+
+
+def analyze(project, root=None, include_tc=False):
+    root, modules, edges, errors = build_graph(project, root)
+    use = {k: v for k, v in edges.items() if include_tc or v["kind"] != "type_checking"}
+    top = {k: v for k, v in use.items() if v["kind"] == "top"}
+    def adj_of(es):
+        a = {}
+        for (s, d) in es:
+            a.setdefault(s, set()).add(d)
+        return a
+    adj_all, adj_top = adj_of(use), adj_of(top)
+    groups, findings = [], []
+    top_sccs = [set(c) for c in sccs(modules, adj_top)]
+    for comp in sccs(modules, adj_all):
+        cyc = shortest_cycle(comp, adj_all)
+        cyc_edges = [dict(src=a, dst=b, **use[(a, b)]) for a, b in zip(cyc, cyc[1:])]
+        import_time = any(set(comp) & t for t in top_sccs)
+        inner = [dict(src=s, dst=d, **e) for (s, d), e in use.items() if s in comp and d in comp]
+        # break candidate: top-level edge in the shortest cycle importing the fewest names, prefer non-__init__ sources
+        cands = [e for e in cyc_edges if e["kind"] == "top"] or cyc_edges
+        brk = min(cands, key=lambda e: (len(e["names"]) or 1, e["file"].endswith("__init__.py"), e["src"]))
+        g = dict(modules=comp, size=len(comp), shortest_cycle=cyc, cycle_edges=cyc_edges,
+                 import_time=import_time, edges_inside=len(inner), other_edges=[e for e in sorted(inner, key=lambda e: (e["src"], e["dst"])) if (e["src"], e["dst"]) not in set(zip(cyc, cyc[1:]))], break_candidate=brk)
+        groups.append(g)
+        label = " -> ".join(cyc)
+        if import_time:
+            findings.append(("high", "IC01", "import-time cycle: " + label))
+        else:
+            findings.append(("medium", "IC02", "cycle only through imports inside functions (works, but fragile): " + label))
+        if len(comp) >= 5:
+            findings.append(("medium", "IC03", "large tangle of %d modules: %s" % (len(comp), ", ".join(comp))))
+        for e in cyc_edges:
+            if e["file"].endswith("__init__.py") and e["kind"] == "top":
+                findings.append(("medium", "IC04", "package __init__ re-exports into the cycle: %s line %d" % (e["file"], e["line"])))
+            if e["kind"] == "top" and e["names"] == ["*"]:
+                findings.append(("medium", "IC05", "star import inside a cycle: %s line %d" % (e["file"], e["line"])))
+    tc_only = [k for k, v in edges.items() if v["kind"] == "type_checking"]
+    if tc_only and not include_tc:
+        findings.append(("info", "IC06", "%d TYPE_CHECKING-only import(s) ignored (they never run)" % len(tc_only)))
+    for mod, err in errors:
+        findings.append(("low", "IC00", "could not parse %s: %s" % (mod, err)))
+    return dict(project=project, root=root, modules=len(modules), edges=len(use), groups=groups,
+                findings=[dict(severity=s, code=c, message=m) for s, c, m in findings])
+
+
+def render(res):
+    L = ["# Import cycle report", "",
+         "Project: %s (modules from %s): %d modules, %d internal imports, %d cycle group(s)" %
+         (res["project"], res["root"], res["modules"], res["edges"], len(res["groups"])), ""]
+    for i, g in enumerate(res["groups"], 1):
+        L.append("## Group %d: %d modules (%s)" % (i, g["size"], "breaks at import time" if g["import_time"] else "deferred imports only"))
+        L.append("Modules: " + ", ".join(g["modules"]))
+        L.append("Shortest cycle: " + " -> ".join(g["shortest_cycle"]))
+        for e in g["cycle_edges"]:
+            L.append("  - %s line %d: %s imports %s%s [%s]" % (e["file"], e["line"], e["src"], e["dst"],
+                     (" (" + ", ".join(e["names"]) + ")") if e["names"] else "", e["kind"]))
+        if g["other_edges"]:
+            L.append("Other imports inside this group:")
+            for e in g["other_edges"]:
+                L.append("  - %s line %d: %s imports %s [%s]" % (e["file"], e["line"], e["src"], e["dst"], e["kind"]))
+        b = g["break_candidate"]
+        L.append("Suggested place to break: %s line %d (%s -> %s)" % (b["file"], b["line"], b["src"], b["dst"]))
+        L.append("")
+    if not res["groups"]:
+        L += ["No import cycles between project modules.", ""]
+    L.append("## Findings")
+    order = {"high": 0, "medium": 1, "low": 2, "info": 3}
+    for f in sorted(res["findings"], key=lambda f: (order[f["severity"]], f["code"])):
+        L.append("- [%s] %s %s" % (f["severity"], f["code"], f["message"]))
+    if not res["findings"]:
+        L.append("- none")
+    return "\n".join(L)
+
+
+def self_test():
+    import tempfile
+    ok = [0, 0]
+    def check(name, cond):
+        ok[0 if cond else 1] += 1
+        print(("PASS  " if cond else "FAIL  ") + name)
+    def proj(files):
+        d = tempfile.mkdtemp()
+        for rel, txt in files.items():
+            p = os.path.join(d, rel); os.makedirs(os.path.dirname(p), exist_ok=True)
+            open(p, "w").write(txt)
+        return d
+    r = analyze(proj({"a.py": "import b\n", "b.py": "x = 1\n"}))
+    check("no cycle in a -> b", not r["groups"])
+    r = analyze(proj({"a.py": "import b\n", "b.py": "import a\n"}))
+    check("direct cycle a <-> b found", len(r["groups"]) == 1 and r["groups"][0]["size"] == 2)
+    check("direct cycle is import-time IC01", any(f["code"] == "IC01" for f in r["findings"]))
+    r = analyze(proj({"a.py": "import b\n", "b.py": "import c\n", "c.py": "import a\n"}))
+    check("three-module cycle shortest path length 4", r["groups"][0]["shortest_cycle"] == ["a", "b", "c", "a"])
+    r = analyze(proj({"a.py": "import b\n", "b.py": "def f():\n    import a\n"}))
+    check("function-level import gives IC02 not IC01", [f["code"] for f in r["findings"]] == ["IC02"])
+    r = analyze(proj({"a.py": "import b\n", "b.py": "from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    import a\n"}))
+    check("TYPE_CHECKING import ignored by default", not r["groups"] and r["findings"][0]["code"] == "IC06")
+    r = analyze(proj({"a.py": "import b\n", "b.py": "from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    import a\n"}), include_tc=True)
+    check("TYPE_CHECKING import counted with flag", len(r["groups"]) == 1)
+    r = analyze(proj({"pkg/__init__.py": "", "pkg/x.py": "from . import y\n", "pkg/y.py": "from .x import thing\n"}))
+    check("relative imports resolved", r["groups"] and r["groups"][0]["modules"] == ["pkg.x", "pkg.y"])
+    r = analyze(proj({"pkg/__init__.py": "from .x import X\n", "pkg/x.py": "from pkg import helpers\nX = 1\n", "pkg/helpers.py": "import pkg\n"}))
+    check("__init__ re-export flagged IC04", any(f["code"] == "IC04" for f in r["findings"]))
+    r = analyze(proj({"pkg/__init__.py": "", "pkg/x.py": "from pkg import y\n", "pkg/y.py": "x = 1\n"}))
+    check("from pkg import submodule maps to the submodule", not r["groups"])
+    r = analyze(proj({"src/app/__init__.py": "", "src/app/a.py": "from app import b\n", "src/app/b.py": "from app.a import f\n"}))
+    check("src layout root detected", r["root"].endswith("src") and len(r["groups"]) == 1)
+    r = analyze(proj({"a.py": "from b import *\n", "b.py": "import a\n"}))
+    check("star import in cycle flagged IC05", any(f["code"] == "IC05" for f in r["findings"]))
+    files = {"m%d.py" % i: "import m%d\n" % ((i + 1) % 5) for i in range(5)}
+    r = analyze(proj(files))
+    check("five-module ring flagged IC03", any(f["code"] == "IC03" for f in r["findings"]))
+    r = analyze(proj({"a.py": "import os, json\nimport b\n", "b.py": "import sys\n"}))
+    check("stdlib imports ignored", r["edges"] == 1)
+    r = analyze(proj({"a.py": "import b\n", "b.py": "def (:\n"}))
+    check("syntax error reported IC00", any(f["code"] == "IC00" for f in r["findings"]))
+    r = analyze(proj({"venv/lib/x.py": "import y\n", "venv/lib/y.py": "import x\n", "a.py": "x=1\n"}))
+    check("venv folder skipped", r["modules"] == 1)
+    r = analyze(proj({"a.py": "import b\n", "b.py": "import a\n"}))
+    b = r["groups"][0]["break_candidate"]
+    check("break candidate is an edge of the cycle", (b["src"], b["dst"]) in [("a", "b"), ("b", "a")])
+    try:
+        analyze(proj({"README.md": "x"})); check("empty project rejected", False)
+    except ValueError:
+        check("empty project rejected", True)
+    print("ALL PASS (%d/%d)" % (ok[0], sum(ok)) if not ok[1] else "FAILED %d of %d" % (ok[1], sum(ok)))
+    return 0 if not ok[1] else 1
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("project", nargs="?")
+    ap.add_argument("--root", help="folder that contains the top-level packages (default: <project>/src if present, else <project>)")
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument("--include-type-checking", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args()
+    if a.self_test:
+        return self_test()
+    if not a.project or not os.path.isdir(a.project):
+        print("error: give a project directory", file=sys.stderr); return 2
+    try:
+        res = analyze(a.project, a.root, a.include_type_checking)
+    except ValueError as e:
+        print("error:", e, file=sys.stderr); return 2
+    print(json.dumps(res, indent=2) if a.json else render(res))
+    return 1 if any(f["severity"] == "high" for f in res["findings"]) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
 ```
 
 </details>
@@ -3544,6 +4288,35 @@ git status --short
 - 在 CI 中运行 cargo clippy 并将警告视为错误,同时运行 cargo fmt --check。Confidence: 0.90
 - 在 release profile 中设置 opt-level、lto 和 strip,以保持二进制文件小巧。Confidence: 0.70
 - 用 ctrlc crate 干净地处理 Ctrl+C,并且不留下写到一半的文件。Confidence: 0.80
+```
+
+</details>
+
+<details><summary><b>Rust库crate最佳实践</b> · 机器翻译</summary>
+
+```text
+# 发布可复用 crate 的维护者的 Rust 库 crate 品味
+- 保持公共 API 精简,并从 crate 根重新导出重要类型。Confidence: 0.85
+- 每个 crate 使用 `thiserror` 定义一个错误枚举,绝不要从库中返回 `anyhow::Error`。Confidence: 0.90
+- 当很可能新增变体或字段时,将公共枚举和配置结构体标记为 `#[non_exhaustive]`。Confidence: 0.80
+- 接受灵活的输入,如 `impl AsRef<str>` 或 `impl Into<String>`,并返回具体类型。Confidence: 0.80
+- 对具有多个可选设置的类型使用构建器模式。Confidence: 0.80
+- 将可选集成放在可叠加的 cargo feature 之后;绝不要让某个 feature 移除功能。Confidence: 0.90
+- 保持默认 feature 集最小化,并在领域允许时支持 `no_std`。Confidence: 0.70
+- 将 `serde` 派生放在 `serde` feature 之后,而不是将其作为硬性依赖。Confidence: 0.85
+- 在 Cargo.toml 中声明 `rust-version`,并在 CI 中测试 MSRV。Confidence: 0.85
+- 在每个 PR 上运行 `cargo clippy -- -D warnings`、`cargo fmt --check` 和 `cargo test --all-features`。Confidence: 0.90
+- 每次发布前使用 `cargo-semver-checks` 检查 semver 破坏性变更。Confidence: 0.85
+- 为每个公共项编写带可运行示例的文档注释;文档测试是测试套件的一部分。Confidence: 0.90
+- 添加 `#![deny(missing_docs)]` 和 `#![forbid(unsafe_code)]`,除非该 crate 确实需要 unsafe。Confidence: 0.80
+- 需要 unsafe 时,将其包装在一个极小的模块中并添加 `// SAFETY:` 注释,同时在 CI 中运行 Miri。Confidence: 0.85
+- 在合理的情况下,为公共类型实现 `Debug`、`Clone`、`PartialEq` 和 `Default` 等常用 trait。Confidence: 0.85
+- 尽可能让公共类型满足 `Send` 和 `Sync`,并在测试中加以断言。Confidence: 0.75
+- 避免强迫用户使用某个异步运行时;保持核心逻辑与运行时无关。Confidence: 0.80
+- 为解析器和编码器使用 `proptest` 添加属性测试。Confidence: 0.75
+- 在声称性能提升之前,先用 `criterion` 对热点路径做基准测试。Confidence: 0.75
+- 使用 `cargo-release` 或 release-plz 发布,并以 Keep a Changelog 格式维护 CHANGELOG.md。Confidence: 0.80
+- 采用 MIT OR Apache-2.0 双重许可,以与 Rust 生态保持一致。Confidence: 0.80
 ```
 
 </details>
@@ -6266,1121 +7039,6 @@ ${prompt:请用纯英文描述您所需的数据}
 
 可选偏好：  
 ${preferences:可选 — 偏好使用 JOIN 还是子查询、是否使用 CTE、性能优化提示等}
-```
-
-</details>
-
-<details><summary><b>SQL 索引建议审查</b> · 机器翻译</summary>
-
-```text
----
-name: sql-index-recommendation-reviewer
-description: 审查表结构和慢 SQL 查询，按正确的列顺序（等值、排序、范围）提出复合索引建议，并给出覆盖列和取舍说明；标出不可走索引（non-sargable）的过滤条件，例如对列使用函数、以通配符开头的 LIKE；同时警告重复索引、冗余索引和低选择性索引。当用户分享慢查询、EXPLAIN 输出或表结构，并问"我需要什么索引？"或"索引是不是太多了？"时使用。附带一个经过测试的、仅依赖标准库的 Python 辅助脚本。
----
-
-# SQL 索引建议审查器
-
-你帮助开发者让慢查询变快，又不让表被索引淹没。你像数据库工程师一样阅读表结构和查询：哪些列用等值比较，哪些列用范围比较，查询按什么排序，按什么关联，已经有哪些索引。你提出能满足该工作负载的最小索引集合，列顺序正确，并且坦率说明：只有在真实数据上运行 EXPLAIN 才能确认效果。
-
-## 本技能包含的文件
-
-- `scripts/suggest_indexes.py` - 解析 CREATE TABLE / CREATE INDEX 语句以及 SELECT、UPDATE、DELETE 查询（子查询和 CTE 主体单独分析），然后输出候选索引，包括 DDL、每个索引服务的查询、覆盖列、重叠情况和表结构问题（仅使用 Python 3 标准库；无需连接数据库）
-- `references/indexing-rules.md` - 列顺序、覆盖索引、部分索引与表达式索引、可走索引性（sargability）以及过度索引的规则
-- `references/explain-reading-guide.md` - 如何在 PostgreSQL、MySQL 和 SQLite 中阅读 EXPLAIN，以确认或否定某条建议
-- `templates/index-review.md` - 需要返回的审查报告模板
-- `examples/example-shop-orders-review.md` - 一个在线商店慢查询的完整审查示例
-
-## 工作流程
-
-### 1. 收集事实
-询问，或者先做假设并明确说明：
-- 数据库引擎及版本（PostgreSQL、MySQL/MariaDB、SQLite、SQL Server），以及包含现有索引的表结构（`\d table`、`SHOW CREATE TABLE` 或迁移文件）。
-- 应用实际发送的慢查询原文、典型参数值、每个查询的运行频率和耗时。
-- 表的规模（行数）、每张表的写入压力，以及已有的 EXPLAIN 或 EXPLAIN ANALYZE 输出。
-- 约束条件：团队能否在线建索引、磁盘空间，以及复制延迟方面的顾虑。
-
-### 2. 运行辅助脚本
-'''bash
-python3 scripts/suggest_indexes.py --schema schema.sql slow-queries.sql
-python3 scripts/suggest_indexes.py all-in-one.sql --dialect mysql
-python3 scripts/suggest_indexes.py --schema schema.sql - --json < query.sql
-python3 scripts/suggest_indexes.py --schema schema.sql queries.sql --strict   # exit 1 on non-sargable filters or duplicate indexes
-'''
-该脚本是启发式解析器，不是查询规划器：它不知道行数、数据分布，也不知道数据库会选择哪种执行计划。对于复杂 SQL，它可能漏掉某些谓词（会将其列为"未理解"）。请自己阅读每一条查询，并把每条建议都当作待测试的候选。如果无法运行脚本，请按相同顺序手动应用 `references/indexing-rules.md`。
-
-### 3. 决策
-1. 先修改查询，再考虑加索引：重写不可走索引的过滤条件（对列使用函数、算术运算、以通配符开头的 LIKE、跨列的 OR），让索引至少有可能被使用。
-2. 对每条查询选择列顺序：先是等值列（已知时选择性最高的放前面），然后如果查询带 LIMIT 并排序，放 ORDER BY 或 GROUP BY 的列，最后放一个范围列。
-3. 合并：当多个查询共享最左侧的列时，一个复合索引可以服务它们。优先扩展现有索引，而不是新增索引。
-4. 只为读多的热点查询添加覆盖（INCLUDE）列，并且数量要少。
-5. 先删后加：在检查使用统计（`pg_stat_user_indexes`、`sys.schema_unused_indexes`）之后，删除重复索引和冗余前缀索引。
-6. 计算成本：每个索引都会拖慢其所含列的插入和更新，并占用磁盘和内存。写入密集的表应该用更少、更宽泛的索引。
-
-### 4. 交付
-填写 `templates/index-review.md`：逐条查询的诊断、按创建顺序排列的推荐 DDL 及其服务的查询、要删除的索引、查询重写、取舍，以及如何在前后用 EXPLAIN 验证（见 `references/explain-reading-guide.md`）。遵循 `examples/example-shop-orders-review.md` 的风格。
-
-## 规则
-- 声称提速时，必须同时说明如何度量；给出预期的执行计划变化（"用索引扫描代替顺序扫描加排序"），不要编造耗时数字。
-- 生产环境使用安全的建索引命令：PostgreSQL 用 `CREATE INDEX CONCURRENTLY`，MySQL 用在线 DDL（`ALGORITHM=INPLACE, LOCK=NONE`），SQLite 则安排在维护窗口。
-- 不要只在低选择性的列（状态、布尔值）上推荐索引；把它放进复合索引，或用作部分索引的条件。
-- 保留主键和唯一约束；绝不要为了消除"冗余"而建议删除它们。
-- 告诉用户一次只建一个索引并对比执行计划，并删除 EXPLAIN 从未使用的索引。
-FILE:references/indexing-rules.md
-# 索引规则
-
-辅助脚本所应用的规则，以及它无法做出的判断。除非另有说明，示例使用 PostgreSQL 语法。
-
-## 1. 复合索引中的列顺序
-
-B-tree 索引先按第一列排序，再按第二列排序，依此类推。查询可以在最左侧连续的、使用等值比较的列上定位，然后再用一个额外的列做范围查找或排序。
-
-顺序：**等值列，然后排序列，然后一个范围列**。
-'''sql
--- WHERE customer_id = ? AND status = 'paid' ORDER BY created_at DESC LIMIT 20
-CREATE INDEX ON orders (customer_id, status, created_at);
-'''
-- 在多个等值列之间，把被最多查询使用的那个放在最前面，让索引服务尽可能多的查询；当所有列都是等值比较时，复用度比选择性更重要。
-- 在范围列（`>`、`<`、`BETWEEN`、`LIKE 'abc%'`）之后，后面的列不能再用于定位，只能在索引内部做过滤。
-- 只有当每个 ORDER BY 列都来自索引、顺序相同，并且方向全部相同（或全部相反）时，排序才能使用索引。方向混合时需要匹配的索引定义（`created_at DESC, id ASC`）。
-- 当存在范围条件，而 ORDER BY 针对另一列时，数据库必须选择：用范围定位后再排序，或者沿排序顺序遍历并过滤。带 LIMIT 时，沿排序顺序遍历往往更优。
-
-## 2. 最左前缀与合并
-
-`(a, b, c)` 上的索引可以服务只涉及 `a`、涉及 `a, b` 以及涉及 `a, b, c` 的查询，但不能服务只涉及 `b` 或 `c` 的查询。如果两个候选索引中一个是另一个的最左前缀，就合并成一个索引。一旦存在 `(a, b)`，现有的 `(a)` 索引就是冗余的，除非它是唯一索引、部分索引，或者体积小得多且访问非常频繁。
-
-## 3. 关联与外键
-
-- 给被查找的一侧的列建索引：通常是外键（`orders.customer_id`）。主键一侧已经有索引。
-- PostgreSQL 不会自动为外键建索引（MySQL InnoDB 会）。缺少外键索引还会让父表上的删除变慢。
-- 关联列加上该表自身的过滤条件可以组成一个复合索引：`(customer_id, created_at)`。
-
-## 4. 覆盖索引
-
-如果索引包含查询读取的所有列，数据库就可以跳过回表（index-only scan，仅索引扫描）。
-- PostgreSQL 11+ 和 SQL Server：`INCLUDE (col, ...)` 存储额外的列，但不按它们排序。
-- MySQL 和 SQLite：把这些列追加到索引键中；InnoDB 的二级索引本身已经带有主键。
-- 用于读多写少、选取列很少的热点查询。过宽的覆盖索引体积大、写入慢。
-- PostgreSQL 的仅索引扫描还要求表被良好地 vacuum（可见性映射）。
-
-## 5. 部分索引与表达式索引
-
-- 部分索引（PostgreSQL、SQLite；SQL Server 中称为过滤索引）：`CREATE INDEX ON orders (created_at) WHERE status = 'paid' AND shipped_at IS NULL;` 当条件匹配的行很少时，索引既小又快。查询必须重复相同的条件。
-- 表达式索引：`CREATE INDEX ON users (lower(email));` 可服务 `WHERE lower(email) = ?`。MySQL 8 支持函数索引 `((lower(email)))`，也可以使用带索引的生成列。
-
-## 6. 可走索引性（Sargability）：索引无法使用的过滤条件
-
-| 模式 | 问题 | 修复 |
-|---|---|---|
-| `WHERE date(created_at) = '2026-10-12'` | 对列使用函数 | `created_at >= '2026-10-12' AND created_at < '2026-10-13'` |
-| `WHERE YEAR(updated_at) = 2026` | 对列使用函数 | 对该列使用范围条件 |
-| `WHERE price * 1.2 > 100` | 对列做算术运算 | `price > 100 / 1.2` |
-| `WHERE name LIKE '%lamp%'` | 以通配符开头 | 全文搜索，或 `pg_trgm` GIN 索引 |
-| `WHERE lower(name) = ?` | 函数 | 在 `lower(name)` 上建表达式索引，或使用不区分大小写的排序规则 |
-| `WHERE a = 1 OR b = 2` | 跨列的 OR | 对两个有索引的查询做 `UNION`，或每列各建一个索引（PostgreSQL 中为位图 OR） |
-| `WHERE status <> 'done'`, `NOT IN` | 否定过滤 | 正向列表 `IN (...)` 或部分索引 |
-| 对整数列使用 `WHERE id = '42'` | 隐式类型转换（MySQL 在字符串列与数字比较时可能跳过索引） | 用正确的类型比较 |
-
-## 7. 过度索引
-
-- 每个索引在 INSERT、DELETE 以及其所含列被 UPDATE 时都要更新；它还占用磁盘、内存（缓冲区缓存），以及备份和复制带宽。
-- 重复索引（相同的列、相同的条件）纯属成本：删除其中一个。
-- 低选择性列（布尔值、状态、类型）上的单列索引很少被用到；当某个值匹配超过约 5% 到 20% 的行时，规划器更倾向于扫描。请把它们放进复合索引，或用作部分索引的条件。
-- 经验法则：写入密集的表超过 5 或 6 个索引就值得审查；读多的表可以承载更多。
-- 删除之前先找出未使用的索引：PostgreSQL 的 `pg_stat_user_indexes.idx_scan = 0`（自上次统计重置以来，且要在每个副本上检查），MySQL 的 `sys.schema_unused_indexes`。在 PostgreSQL 中用 `DROP INDEX CONCURRENTLY` 删除。
-
-## 8. 安全地创建
-
-- PostgreSQL：`CREATE INDEX CONCURRENTLY` 不阻塞写入；它不能在事务内运行，失败时会留下 INVALID 索引（删除后重试）。
-- MySQL 8：`ALTER TABLE ... ADD INDEX ..., ALGORITHM=INPLACE, LOCK=NONE`；大表要留意复制延迟。
-- SQLite：建索引会锁住数据库；请在低流量时段运行。
-- 一次只建一个索引，检查执行计划，再建下一个。
-FILE:references/explain-reading-guide.md
-# 通过 EXPLAIN 确认索引
-
-始终在接近生产的数据上、用真实的参数值，对比前后的执行计划。小的测试表会让规划器选择对小表而言正确的扫描方式。
-
-## PostgreSQL
-
-'''sql
-EXPLAIN (ANALYZE, BUFFERS) SELECT ...;   -- runs the query; wrap writes in BEGIN ... ROLLBACK
-'''
-| 计划节点 | 含义 |
-|---|---|
-| Seq Scan | 读取整张表；对小表或大多数行都匹配的情况没问题 |
-| Index Scan | 先在索引中定位，再读取匹配的表行 |
-| Index Only Scan | 直接从索引得到结果；检查 "Heap Fetches" 是否很低（否则需要 vacuum） |
-| Bitmap Index Scan + Bitmap Heap Scan | 先收集大量匹配项，再按顺序读取页面；常见于中等选择性和 OR 的情况 |
-| Sort（带 "external merge"） | 排序溢出到磁盘；与 ORDER BY 顺序一致的索引可以消除排序 |
-| Rows Removed by Filter | 被读取后又丢弃的行；数值很高说明索引没有覆盖该过滤条件 |
-
-关注：顶层节点的 actual time、估计行数与实际行数的对比（相差 10 倍说明统计信息过期：运行 `ANALYZE table`），以及 shared hit/read 缓冲区。经过一天的流量后，用 `pg_stat_user_indexes.idx_scan` 确认新索引被使用。
-
-## MySQL 8
-
-'''sql
-EXPLAIN FORMAT=TREE SELECT ...;
-EXPLAIN ANALYZE SELECT ...;               -- 8.0.18+, runs the query
-'''
-在经典的 `EXPLAIN` 输出中检查：`type`（ALL = 全表扫描，ref/eq_ref/range = 使用了索引，index = 全索引扫描）、`key`（选中的索引）、`rows`（估计值）以及 `Extra`（"Using index" = 覆盖索引，"Using filesort" = 额外排序，"Using temporary" = GROUP BY 或 DISTINCT 使用了临时表）。用 `ANALYZE TABLE t` 刷新统计信息。
-
-## SQLite
-
-'''sql
-EXPLAIN QUERY PLAN SELECT ...;
-'''
-"SCAN t" 表示全表扫描；"SEARCH t USING INDEX idx (a=? AND b>?)" 显示哪些列用于定位；"USING COVERING INDEX" 表示无需访问表；"USE TEMP B-TREE FOR ORDER BY" 表示有额外的排序。运行 `ANALYZE;` 让规划器拥有统计信息。
-
-## 成功是什么样子
-
-- 慢查询的执行计划从全表扫描加排序，变成不带排序的索引（仅索引）扫描，并且读取的行数接近返回的行数。
-- 表上的写入没有明显变慢（上线后检查插入和更新的 p95 延迟）。
-- 其他重要查询的执行计划没有变差；在前后分别检查总耗时最高的查询（`pg_stat_statements`、MySQL performance schema 的 digest 表）。
-
-## 索引没有被使用时
-
-1. 统计信息过期：运行 ANALYZE。
-2. 过滤条件不可走索引（见 indexing-rules.md 第 6 节）。
-3. 该值匹配的行太多；规划器选择扫描是对的。
-4. 查询与列之间的列类型或排序规则不一致（隐式类型转换）。
-5. 参数化查询使用了通用计划；用真实的预处理语句测试。
-6. 索引的列顺序与查询不匹配。
-FILE:templates/index-review.md
-# 索引审查：${app_or_service}
-
-**引擎：** ${engine_and_version} | **表：** ${tables_with_row_counts} | **写入负载：** ${write_profile}
-**辅助脚本：** 分析了 ${n_queries} 条查询，${n_suggested} 个候选索引，${n_findings} 个表结构问题
-
-## 摘要
-
-两到三句话：慢的主要原因、要添加和删除的索引，以及预期的执行计划变化。
-
-## 逐条查询诊断
-
-| 查询 | 运行频率 | 现状（计划 / 耗时） | 问题 | 修复 |
-|---|---|---|---|---|
-| Q1 | ${per_minute} | Seq Scan + Sort | | |
-
-## 查询重写（先做这些）
-
-'''sql
--- before
--- after
-'''
-
-## 要添加的索引（按此顺序创建）
-
-| # | DDL | 服务的查询 | 为什么是这个列顺序 | 成本 |
-|---|---|---|---|---|
-| 1 | | | | |
-
-## 要删除的索引（检查使用情况之后）
-
-| 索引 | 原因 | 先检查 |
-|---|---|---|
-| | 重复 / 冗余前缀 / 未使用 / 低选择性 | 主库和副本上的 `idx_scan` |
-
-## 每张表的净效果
-
-| 表 | 之前的索引数 | 之后 | 备注 |
-|---|---|---|---|
-
-## 如何验证
-
-1. 先为每条查询捕获 `EXPLAIN (ANALYZE, BUFFERS)`（修改前）。
-2. 创建一个索引（`CONCURRENTLY` / 在线 DDL），运行 `ANALYZE`，再次捕获执行计划。
-3. 预期：（每条查询的计划变化）。
-4. 观察一天的写入延迟和复制延迟；然后删除上面列出的索引。
-
-## 注意事项
-
-- 这些建议仅来自查询文本和表结构；行数和数据倾斜可能改变最佳选择。
-FILE:examples/example-shop-orders-review.md
-# 示例：在线商店的索引审查
-
-## 用户请求
-
-"我们的 PostgreSQL 16 商店数据库越来越慢了。orders 有 1200 万行，每秒大约 40 次插入，customers 有 90 万行，products 有 2 万行。下面是表结构，以及在 pg_stat_statements 中出现的六条查询。我们应该加哪些索引？我们现有的索引是不是已经太多了？"
-
-## 辅助脚本运行结果
-
-'''
-$ python3 scripts/suggest_indexes.py --schema shop-schema.sql slow-queries.sql
-Schema: 4 table(s), 12 existing index(es) incl. keys | dialect: postgres
-Queries analyzed: 7
-
-Q1 SELECT: SELECT o.id, o.total, o.created_at FROM orders o WHERE o.customer_id = $1 AND o.status = 'paid' ORDER BY o.cre...
-  equality: orders.customer_id (=), orders.status (=)
-  order by: orders.created_at DESC  (LIMIT)
-Q2 SELECT: SELECT c.email, count(*) AS orders FROM customers c JOIN orders o ON o.customer_id = c.id WHERE c.country = 'D...
-  equality: customers.country (=)
-  range: orders.created_at (range)
-  joins: orders.customer_id = customers.id
-  group by: customers.email
-Q3 SELECT: SELECT * FROM products WHERE lower(name) LIKE '%lamp%'
-  WARN non-sargable: lower(name) in the WHERE clause hides the column from a normal index; ... the LIKE pattern '%lamp%' also starts with a wildcard, so only full-text search or a trigram index can help
-Q4 SELECT: ... WHERE oi.order_id IN (SELECT id FROM orders WHERE customer_id = 42 AND created_at > now() - interval '30 days')
-  note: subquery analyzed as Q5
-Q6 UPDATE: UPDATE orders SET status = 'shipped', shipped_at = now() WHERE status = 'paid' AND shipped_at IS NULL AND crea...
-Q7 SELECT: SELECT id FROM customers WHERE email = 'ann@example.com' OR phone = '+491701234567'
-  WARN OR across different columns (...): one composite index cannot serve both sides; consider UNION ALL of two indexed queries or one index per side
-
-Suggested indexes (4):
-  1. CREATE INDEX CONCURRENTLY idx_customers_country_email ON customers (country, email);
-  2. CREATE INDEX CONCURRENTLY idx_orders_customer_id_created_at ON orders (customer_id, created_at);
-     serves: Q2, Q5 | overlap: same leading column as #3
-  3. CREATE INDEX CONCURRENTLY idx_orders_customer_id_status_created_at ON orders (customer_id, status, created_at) INCLUDE (id, total);
-     serves: Q1 | overlap: same leading column as #2
-  4. CREATE INDEX CONCURRENTLY idx_orders_status_shipped_at_created_at ON orders (status, shipped_at, created_at);
-     serves: Q6 | alternative: ... ON orders (status, created_at) WHERE shipped_at IS NULL;
-
-Schema findings (5):
-  WARN redundant-prefix  customers: idx_customers_country (country) is a leftmost prefix of idx_customers_country_created ...
-  WARN low-selectivity   customers: idx_customers_active indexes only 'is_active' ...
-  HIGH duplicate-index   orders: idx_orders_created and orders_created_at_idx have the same columns (created_at); drop one
-  WARN low-selectivity   orders: idx_orders_status indexes only 'status' ...
-  WARN many-indexes      orders: 4 existing + 3 suggested = 7 indexes (limit 6) ...
-'''
-
-## 审查（已填写的模板，有删节）
-
-**摘要：** orders 上没有任何以 customer_id 开头的索引，因此订单历史页面（Q1）和最近订单查询（Q5）要扫描数百万行；它现有的四个索引中，有一个是重复索引，还有一个是低选择性的 status 索引。在 orders 上添加一个复合索引和一个部分索引，在其他表上添加一个 phone 索引和一个 trigram 索引，并删除三个索引：orders 最终仍是 4 个索引，但每一个都有用。
-
-| 查询 | 问题 | 修复 |
-|---|---|---|
-| Q1 订单历史 | customer_id 上没有索引；按 created_at 排序 | `(customer_id, created_at)`，并 include status 和 total：取该客户最新的行，在索引内过滤 status，LIMIT 在 20 行后停止 |
-| Q2 国家报表 | 关联需要 orders.customer_id；customers.country 已由 idx_customers_country_created 服务 | 使用同一个 orders 索引；不新增 customers 索引（脚本的 #1 只对 GROUP BY 有帮助，而该报表每晚只运行一次） |
-| Q3 商品搜索 | `lower(name) LIKE '%lamp%'` 无法使用 B-tree | 在 lower(name) 上建 pg_trgm GIN 索引 |
-| Q4/Q5 最近商品 | 子查询需要 (customer_id, created_at)；order_items 的主键 (order_id, product_id) 服务 IN | 同一个 orders 索引 |
-| Q6 发货任务 | 按 status 扫描 | 仅针对已支付、未发货订单的 created_at 部分索引 |
-| Q7 客服查询 | 跨 email 和 phone 的 OR | 对两个查询做 UNION；email 已经是唯一的，添加一个 phone 索引 |
-
-为什么也不采用脚本的 #3：#2 和 #3 共享 customer_id，而在每秒 40 次插入的表上，一个索引好过两个。用户确认约 95% 的订单是已支付状态，所以 Q1 丢弃的行很少，而 `(customer_id, created_at)` 加上 INCLUDE 中的 status 就能保持 Q1 的速度。如果未支付订单的占比上升，则改用 #3 的列顺序。
-
-**要添加的索引（按此顺序）：**
-
-'''sql
-CREATE INDEX CONCURRENTLY idx_orders_customer_created
-    ON orders (customer_id, created_at) INCLUDE (id, status, total);        -- Q1, Q2, Q5
-CREATE INDEX CONCURRENTLY idx_orders_paid_unshipped
-    ON orders (created_at) WHERE status = 'paid' AND shipped_at IS NULL;    -- Q6, holds only paid, unshipped orders
-CREATE INDEX CONCURRENTLY idx_customers_phone ON customers (phone);       -- Q7 after the rewrite
-CREATE EXTENSION IF NOT EXISTS pg_trgm;
-CREATE INDEX CONCURRENTLY idx_products_name_trgm
-    ON products USING gin (lower(name) gin_trgm_ops);                      -- Q3, query unchanged
-'''
-
-**查询重写（Q7）：**
-
-'''sql
-SELECT id FROM customers WHERE email = 'ann@example.com'
-UNION
-SELECT id FROM customers WHERE phone = '+491701234567';
-'''
-
-**要删除的索引（在检查主库和两个副本上的 `pg_stat_user_indexes.idx_scan` 之后）：**
-
-| 索引 | 原因 |
-|---|---|
-| orders_created_at_idx | idx_orders_created 的重复索引 |
-| idx_orders_status | 低选择性；Q6 现在使用部分索引 |
-| idx_customers_country | idx_customers_country_created 的最左前缀 |
-| idx_customers_active（待检查） | 布尔列；只有 idx_scan 显示确有使用时才保留 |
-
-**净效果：** orders 4 -> 4 个索引（两个被更好的索引替换），customers 5 -> 5（删除一个，添加 phone；如果 is_active 也删除则为 4），products 2 -> 3。
-
-**用辅助脚本复查**（变更后的表结构，重写后的查询；查询编号遵循新文件，所以 Q3 是旧的 Q5，Q4/Q5 是 UNION 的两个分支）：
-
-'''
-$ python3 scripts/suggest_indexes.py --schema shop-schema-after.sql shop-queries-after.sql --no-covering
-Already served by existing indexes (5):
-  customers (email) -> customers_email_key (Q4)
-  customers (id, country) -> customers_pkey (Q2)
-  customers (phone) -> idx_customers_phone (Q5)
-  orders (created_at) -> idx_orders_created (Q2)
-  orders (customer_id, created_at) -> idx_orders_customer_created (Q2, Q3)
-'''
-脚本仍然为 Q1 列出 (customer_id, status, created_at)，为 Q2 列出 (country, email)；出于上述原因，这两个都被有意否决了。已经没有重复索引或冗余前缀方面的问题。
-
-**如何验证：** 在每次创建索引之前和之后，用真实的 customer id 对 Q1 运行 `EXPLAIN (ANALYZE, BUFFERS)`。预期看到 "Index Scan using idx_orders_customer_created"（或 Index Only Scan），没有 Sort 节点，读取约 20 行，而不是对数千行做 Bitmap Heap Scan。在删除旧索引之前，观察 orders 的插入延迟一天。
-FILE:scripts/suggest_indexes.py
-#!/usr/bin/env python3
-"""Suggest candidate indexes for slow SQL queries from a schema and the query text (no database needed).
-
-Usage:
-  python3 suggest_indexes.py --schema schema.sql queries.sql [options]
-  python3 suggest_indexes.py all-in-one.sql                 (CREATE statements and queries in one file)
-  python3 suggest_indexes.py --schema schema.sql - < slow.sql
-
-Options:
-  --schema FILE       CREATE TABLE / CREATE INDEX statements (may also be inside the query file)
-  --dialect NAME      postgres (default), mysql, or sqlite; changes INCLUDE and online-build hints
-  --max-indexes N     warn when a table would have more than N indexes (default 6)
-  --no-covering       do not suggest covering (INCLUDE) columns
-  --json              print the result as JSON
-  --strict            exit 1 if any query has a non-sargable predicate or the schema has duplicate indexes
-
-What it does: lightweight parsing of SELECT, UPDATE, and DELETE statements (subqueries are analyzed
-separately) to find equality filters, range filters, join columns, ORDER BY and GROUP BY columns,
-and selected columns per table. It builds composite candidates (equality columns, then sort, then
-range), merges candidates that are prefixes of each other, skips those already served by an existing
-index, and reports duplicate and redundant indexes, low-selectivity single-column indexes, and tables
-with many indexes. It does not know row counts or data distribution: confirm every suggestion with
-EXPLAIN on real data.
-Exit codes: 0 ok, 1 --strict findings, 2 usage or read error.
-Python 3 standard library only.
-"""
-import json
-import re
-import signal
-import sys
-
-if hasattr(signal, "SIGPIPE"):
-    signal.signal(signal.SIGPIPE, signal.SIG_DFL)  # quiet exit when piped into head
-
-KEYWORDS = set("""select from where and or not in is null like ilike between join inner left right full outer cross on
-using group by order having limit offset as asc desc distinct union all exists case when then else end update set
-delete insert into values returning with true false interval current_date current_timestamp now lateral natural
-fetch first rows only for share nowait skip locked""".split())
-LOW_CARD = re.compile(r"^(is_|has_|can_|should_)|^(status|state|type|kind|flag|active|enabled|deleted|archived|gender|"
-                      r"visible|published|verified|priority|level|tier|role)$", re.I)
-CLAUSE_END = r"(?=\b(?:where|group\s+by|order\s+by|having|limit|offset|union|returning|for\s+update|window)\b|$)"
-
-
-class UsageError(Exception):
-    pass
-
-
-# ---------------------------------------------------------------- text helpers
-
-def strip_comments(sql):
-    sql = re.sub(r"/\*.*?\*/", " ", sql, flags=re.S)
-    return re.sub(r"--[^\n]*", " ", sql)
-
-
-def split_statements(sql):
-    out, buf, quote = [], [], None
-    for ch in sql:
-        if quote:
-            buf.append(ch)
-            if ch == quote:
-                quote = None
-            continue
-        if ch in "'\"`":
-            quote = ch
-        if ch == ";":
-            out.append("".join(buf))
-            buf = []
-        else:
-            buf.append(ch)
-    out.append("".join(buf))
-    return [s.strip() for s in out if s.strip()]
-
-
-def unquote_idents(sql):
-    sql = re.sub(r'"([A-Za-z_][\w$]*)"', r"\1", sql)
-    sql = re.sub(r"`([A-Za-z_][\w$]*)`", r"\1", sql)
-    return re.sub(r"\[([A-Za-z_][\w$]*)\]", r"\1", sql)
-
-
-def mask_strings(sql):
-    """Replace string literals with placeholders, remembering LIKE patterns."""
-    lits = []
-    def rep(m):
-        lits.append(m.group(0)[1:-1])
-        return f" __lit{len(lits) - 1}__ "
-    return re.sub(r"'(?:[^']|'')*'", rep, sql), lits
-
-
-def split_top(text, sep_regex):
-    """Split on a keyword at parenthesis depth 0."""
-    parts, depth, last = [], 0, 0
-    for m in re.finditer(r"\(|\)|" + sep_regex, text, flags=re.I):
-        tok = m.group(0)
-        if tok == "(":
-            depth += 1
-        elif tok == ")":
-            depth -= 1
-        elif depth == 0:
-            parts.append(text[last:m.start()])
-            last = m.end()
-    parts.append(text[last:])
-    return [p.strip() for p in parts if p.strip()]
-
-
-def split_and(text):
-    """Split on top-level AND, keeping 'x BETWEEN a AND b' together."""
-    parts = split_top(text, r"\band\b")
-    out = []
-    for part in parts:
-        if out and re.search(r"\bbetween\s+[^\s]+$", out[-1], re.I):
-            out[-1] = f"{out[-1]} AND {part}"
-        else:
-            out.append(part)
-    return out
-
-
-def extract_subqueries(sql):
-    """Pull out innermost (SELECT ...) blocks; return (outer_sql, [subqueries])."""
-    subs = []
-    pattern = re.compile(r"\(\s*(select\b[^()]*(?:\([^()]*\)[^()]*)*)\)", re.I)
-    while True:
-        m = pattern.search(sql)
-        if not m:
-            break
-        subs.append(m.group(1))
-        sql = sql[:m.start()] + " __subq__ " + sql[m.end():]
-    return sql, subs
-
-
-# ---------------------------------------------------------------- schema
-
-def parse_columns_list(text):
-    return [re.sub(r"\s+(asc|desc)\b.*$", "", c.strip(), flags=re.I).strip().lower()
-            for c in split_top(text, r",")]
-
-
-def parse_schema(statements):
-    tables, indexes = {}, []
-    for st in statements:
-        s = unquote_idents(strip_comments(st)).strip()
-        m = re.match(r"create\s+table\s+(?:if\s+not\s+exists\s+)?([\w.]+)\s*\((.*)\)\s*[^)]*$", s, re.I | re.S)
-        if m:
-            name = m.group(1).split(".")[-1].lower()
-            cols, pk = [], None
-            for part in split_top(m.group(2), r","):
-                p = part.strip()
-                low = p.lower()
-                c = re.match(r"(?:constraint\s+\w+\s+)?primary\s+key\s*\(([^)]*)\)", low)
-                if c:
-                    pk = parse_columns_list(c.group(1))
-                    continue
-                c = re.match(r"(?:constraint\s+(\w+)\s+)?unique\s*(?:key\s+\w+\s*)?\(([^)]*)\)", low)
-                if c:
-                    indexes.append({"name": c.group(1) or f"{name}_unique", "table": name,
-                                    "columns": parse_columns_list(c.group(2)), "unique": True, "kind": "unique"})
-                    continue
-                c = re.match(r"(?:key|index)\s+(\w+)\s*\(([^)]*)\)", low)
-                if c:
-                    indexes.append({"name": c.group(1), "table": name, "columns": parse_columns_list(c.group(2)),
-                                    "unique": False, "kind": "index"})
-                    continue
-                if re.match(r"(constraint|foreign\s+key|check|exclude)\b", low):
-                    continue
-                col = re.match(r"([a-z_][\w$]*)\s+", low + " ")
-                if col:
-                    cols.append(col.group(1))
-                    if re.search(r"\bprimary\s+key\b", low):
-                        pk = [col.group(1)]
-                    elif re.search(r"\bunique\b", low):
-                        indexes.append({"name": f"{name}_{col.group(1)}_key", "table": name,
-                                        "columns": [col.group(1)], "unique": True, "kind": "unique"})
-            tables[name] = {"columns": cols}
-            if pk:
-                indexes.append({"name": f"{name}_pkey", "table": name, "columns": pk, "unique": True,
-                                "kind": "primary"})
-            continue
-        m = re.match(r"create\s+(unique\s+)?index\s+(?:concurrently\s+)?(?:if\s+not\s+exists\s+)?(\w+)\s+on\s+"
-                     r"([\w.]+)\s*(?:using\s+\w+\s*)?\(([^;]*?)\)\s*(include\s*\(([^)]*)\))?\s*(where\s+.*)?$",
-                     s, re.I | re.S)
-        if m:
-            cols = parse_columns_list(m.group(4))
-            indexes.append({"name": m.group(2), "table": m.group(3).split(".")[-1].lower(), "columns": cols,
-                            "unique": bool(m.group(1)), "kind": "index",
-                            "include": parse_columns_list(m.group(6)) if m.group(6) else [],
-                            "partial": (m.group(7) or "").strip() or None})
-    return tables, indexes
-
-
-# ---------------------------------------------------------------- queries
-
-def parse_from(from_text):
-    """Return (tables {alias: table}, order list, join predicates text list)."""
-    aliases, order, ons = {}, [], []
-    pieces = re.split(r"\b((?:natural\s+)?(?:inner\s+|left\s+(?:outer\s+)?|right\s+(?:outer\s+)?|full\s+(?:outer\s+)?|"
-                      r"cross\s+)?join)\b", from_text, flags=re.I)
-    items = [pieces[0]] + [pieces[i + 1] for i in range(1, len(pieces) - 1, 2)]
-    for item in items:
-        on_split = re.split(r"\bon\b", item, maxsplit=1, flags=re.I)
-        using = re.search(r"\busing\s*\(([^)]*)\)", on_split[0], re.I)
-        head = re.sub(r"\busing\s*\([^)]*\)", "", on_split[0], flags=re.I)
-        for ref in head.split(","):
-            toks = [t for t in re.split(r"\s+", ref.strip()) if t and t.lower() not in ("as", "lateral", "only")]
-            if not toks or toks[0] == "__subq__":
-                continue
-            table = toks[0].split(".")[-1].lower()
-            alias = toks[1].lower() if len(toks) > 1 else table
-            aliases[alias] = table
-            order.append(alias)
-        if len(on_split) > 1:
-            ons.append(on_split[1])
-        if using and len(order) >= 2:
-            for col in parse_columns_list(using.group(1)):
-                ons.append(f"{order[-2]}.{col} = {order[-1]}.{col}")
-    return aliases, order, ons
-
-
-COL = r"((?:[a-z_][\w$]*\.)?[a-z_][\w$]*)"
-VALUE = r"(?:__lit\d+__|\?|:\w+|\$\d+|@\w+|%s|-?\d+(?:\.\d+)?|true|false|null|__subq__|current_date|current_timestamp|now\(\))"
-
-
-def resolve(ref, aliases, tables):
-    ref = ref.lower()
-    if "." in ref:
-        a, c = ref.split(".", 1)
-        return (aliases.get(a, a), c)
-    if len(set(aliases.values())) == 1:
-        return (next(iter(aliases.values())), ref)
-    owners = [t for t in set(aliases.values()) if ref in tables.get(t, {}).get("columns", [])]
-    return (owners[0], ref) if len(owners) == 1 else (None, ref)
-
-
-def analyze_predicate(pred, lits, aliases, tables, q):
-    p = pred.strip()
-    while p.startswith("(") and p.endswith(")") and len(split_top(p[1:-1], r"\band\b")) >= 1 and \
-            p.count("(") == p.count(")") and _balanced_wrap(p):
-        p = p[1:-1].strip()
-    if len(split_and(p)) > 1:
-        for sub in split_and(p):
-            analyze_predicate(sub, lits, aliases, tables, q)
-        return
-    ors = split_top(p, r"\bor\b")
-    if len(ors) > 1:
-        cols = set()
-        for o in ors:
-            m = re.match(rf"^\(?\s*{COL}\s*(=|in\b)", o.strip(), re.I)
-            cols.add(m.group(1).lower() if m else None)
-        if len(cols) == 1 and None not in cols:
-            t, c = resolve(cols.pop(), aliases, tables)
-            q["filters"].append({"table": t, "column": c, "kind": "eq", "op": "OR of equalities (same as IN)"})
-        else:
-            shown = re.sub(r"__lit(\d+)__", lambda m: "'" + lits[int(m.group(1))] + "'", p)
-            shown = shown if len(shown) <= 70 else shown[:67] + "..."
-            q["warnings"].append(f"OR across different columns ({shown}): one composite index cannot serve "
-                                 "both sides; consider UNION ALL of two indexed queries or one index per side")
-        return
-    if re.match(r"^not\b", p, re.I) or re.search(r"(<>|!=|\bnot\s+in\b|\bnot\s+like\b)", p, re.I):
-        m = re.match(rf"^(?:not\s+)?{COL}", p, re.I)
-        shown = re.sub(r"__lit(\d+)__", lambda m: "'" + lits[int(m.group(1))] + "'", p)[:50]
-        q["notes"].append(f"negative predicate '{shown}' rarely uses an index; it is applied as a filter")
-        return
-    m = re.match(rf"^{COL}\s*(=|<=>)\s*{COL}$", p, re.I)
-    if m and not re.fullmatch(VALUE, m.group(3), re.I) and m.group(3).lower() not in KEYWORDS:
-        left, right = resolve(m.group(1), aliases, tables), resolve(m.group(3), aliases, tables)
-        if left[0] and right[0] and left[0] != right[0]:
-            q["joins"].append((left, right))
-            return
-    m = re.match(rf"^{VALUE}\s*(=|<|>|<=|>=)\s*{COL}$", p, re.I)
-    if m:
-        flip = {"<": ">", ">": "<", "<=": ">=", ">=": "<=", "=": "="}
-        p = f"{m.group(2)} {flip[m.group(1)]} __v__"
-    m = re.match(rf"^{COL}\s*(=|<=>)\s*(.+)$", p, re.I)
-    if m and m.group(1).lower() not in KEYWORDS:
-        t, c = resolve(m.group(1), aliases, tables)
-        q["filters"].append({"table": t, "column": c, "kind": "eq", "op": "="})
-        return
-    m = re.match(rf"^{COL}\s+in\s+__subq__$", p, re.I)
-    if m:
-        t, c = resolve(m.group(1), aliases, tables)
-        q["filters"].append({"table": t, "column": c, "kind": "eq", "op": "IN (subquery)"})
-        return
-    m = re.match(rf"^{COL}\s+in\s*\((.*)\)$", p, re.I | re.S)
-    if m:
-        t, c = resolve(m.group(1), aliases, tables)
-        q["filters"].append({"table": t, "column": c, "kind": "eq", "op": "IN"})
-        return
-    m = re.match(rf"^{COL}\s+is\s+(not\s+)?null$", p, re.I)
-    if m:
-        t, c = resolve(m.group(1), aliases, tables)
-        if m.group(2):
-            q["notes"].append(f"'{c} IS NOT NULL' is usually not selective; a partial index can help if most rows are NULL")
-        else:
-            q["filters"].append({"table": t, "column": c, "kind": "eq", "op": "IS NULL"})
-        return
-    m = re.match(rf"^{COL}\s*(<|>|<=|>=)\s*(.+)$", p, re.I) or re.match(rf"^{COL}\s+between\s+(.+)\s+and\s+(.+)$", p, re.I)
-    if m and m.group(1).lower() not in KEYWORDS:
-        t, c = resolve(m.group(1), aliases, tables)
-        q["filters"].append({"table": t, "column": c, "kind": "range", "op": "range"})
-        return
-    m = re.match(rf"^{COL}\s+(i?like)\s+__lit(\d+)__", p, re.I)
-    if m:
-        t, c = resolve(m.group(1), aliases, tables)
-        pattern = lits[int(m.group(3))]
-        if pattern.startswith(("%", "_")):
-            q["warnings"].append(f"non-sargable: {c} {m.group(2).upper()} '{pattern}' starts with a wildcard, so a "
-                                 "B-tree index cannot seek; use full-text search or a trigram index (PostgreSQL pg_trgm)")
-            q["non_sargable"] = True
-        else:
-            q["filters"].append({"table": t, "column": c, "kind": "range", "op": f"LIKE '{pattern}'"})
-            if m.group(2).lower() == "ilike":
-                q["notes"].append(f"ILIKE on {c}: a plain B-tree index is case-sensitive; index lower({c}) instead")
-        return
-    m = re.match(rf"^([a-z_]+)\s*\(\s*{COL}[^)]*\)\s*(=|<|>|<=|>=|like|between)", p, re.I)
-    if m and m.group(1).lower() not in KEYWORDS:
-        func, col = m.group(1).lower(), m.group(2)
-        t, c = resolve(col, aliases, tables)
-        wild = re.search(r"like\s+__lit(\d+)__", p, re.I)
-        extra = ""
-        if wild and lits[int(wild.group(1))].startswith(("%", "_")):
-            extra = (f"; the LIKE pattern '{lits[int(wild.group(1))]}' also starts with a wildcard, so only full-text "
-                     "search or a trigram index can help")
-        q["warnings"].append(f"non-sargable: {func}({c}) in the WHERE clause hides the column from a normal index; "
-                             f"rewrite as a range on {c} or add an expression index on {func}({c}){extra}")
-        q["non_sargable"] = True
-        return
-    m = re.match(rf"^{COL}\s*[-+*/]\s*\S+\s*(=|<|>|<=|>=)", p, re.I)
-    if m:
-        t, c = resolve(m.group(1), aliases, tables)
-        q["warnings"].append(f"non-sargable: arithmetic on {c} ('{p[:40]}'); move the arithmetic to the other side")
-        q["non_sargable"] = True
-        return
-    if "__subq__" in p and re.search(r"\bexists\b", p, re.I):
-        return
-    q["notes"].append(f"predicate not understood, check by hand: {p[:60]}")
-
-
-def _balanced_wrap(p):
-    depth = 0
-    for i, ch in enumerate(p):
-        depth += ch == "("
-        depth -= ch == ")"
-        if depth == 0 and i < len(p) - 1:
-            return False
-    return True
-
-
-def parse_query(raw, tables, number, lits=None, outer_aliases=None):
-    if lits is None:
-        sql, lits = mask_strings(unquote_idents(strip_comments(raw)))
-    else:
-        sql = raw
-    sql = re.sub(r"\s+", " ", sql).strip()
-    outer, subs = extract_subqueries(sql)
-    shown = re.sub(r"__lit(\d+)__", lambda m: "'" + lits[int(m.group(1))] + "'", re.sub(r"\s+", " ", raw.strip()))
-    shown = re.sub(r"\s+", " ", shown)
-    q = {"n": number, "text": shown[:110] + ("..." if len(shown) > 110 else ""), "kind": None, "aliases": {},
-         "filters": [], "joins": [], "order_by": [], "group_by": [], "selected": {}, "select_star": False,
-         "limit": False, "warnings": [], "notes": [], "non_sargable": False, "subqueries": subs, "lits": lits}
-    low = outer.lower()
-    cte_names = set()
-    if low.startswith("with "):
-        cte_names = {n.lower() for n in re.findall(r"(?:with|,)\s*(?:recursive\s+)?(\w+)\s+as\b", outer, re.I)}
-        q["notes"].append(f"CTE {', '.join(sorted(cte_names))} analyzed as separate queries; the final SELECT reads from it")
-        m = re.search(r"(?:\)|__subq__)\s*((?:select|update|delete)\b.*)$", outer, re.I)
-        outer = m.group(1) if m else outer
-        low = outer.lower()
-    if low.startswith("select"):
-        q["kind"] = "SELECT"
-        m = re.match(r"select\s+(?:distinct\s+)?(.*?)\s+from\s+(.*?)" + CLAUSE_END, outer, re.I)
-        if not m:
-            q["notes"].append("no FROM clause found")
-            return q
-        select_list, from_text = m.group(1), m.group(2)
-    elif low.startswith("update"):
-        q["kind"] = "UPDATE"
-        m = re.match(r"update\s+(.*?)\s+set\s+", outer, re.I)
-        select_list, from_text = "", m.group(1) if m else ""
-    elif low.startswith("delete"):
-        q["kind"] = "DELETE"
-        m = re.match(r"delete\s+from\s+(.*?)" + CLAUSE_END, outer, re.I)
-        select_list, from_text = "", m.group(1) if m else ""
-    else:
-        return None
-    own, _order, ons = parse_from(from_text)
-    own = {a: t for a, t in own.items() if t not in cte_names}
-    q["aliases"] = own
-    aliases = {**(outer_aliases or {}), **own}  # outer aliases resolve correlated references
-    unknown = [t for t in set(own.values()) if tables and t not in tables]
-    if unknown:
-        q["notes"].append(f"table(s) not in the schema: {', '.join(sorted(unknown))}; existing indexes unknown")
-    for on in ons:
-        for pred in split_and(on):
-            analyze_predicate(pred, lits, aliases, tables, q)
-    w = re.search(r"\bwhere\b(.*?)(?=\b(?:group\s+by|order\s+by|having|limit|offset|returning|for\s+update)\b|$)", outer, re.I)
-    if w:
-        for pred in split_and(w.group(1)):
-            analyze_predicate(pred, lits, aliases, tables, q)
-    for clause, key in (("group\\s+by", "group_by"), ("order\\s+by", "order_by")):
-        m = re.search(rf"\b{clause}\b(.*?)(?=\b(?:having|order\s+by|limit|offset|for\s+update)\b|$)", outer, re.I)
-        if m:
-            for item in split_top(m.group(1), r","):
-                mm = re.match(rf"^{COL}\s*(asc|desc)?(?:\s+nulls\s+(?:first|last))?$", item.strip(), re.I)
-                if mm:
-                    t, c = resolve(mm.group(1), aliases, tables)
-                    q[key].append({"table": t, "column": c, "dir": (mm.group(2) or "asc").lower()})
-                else:
-                    q["notes"].append(f"{key.replace('_', ' ')} expression '{item.strip()[:40]}' cannot use a plain column index")
-    q["limit"] = bool(re.search(r"\b(limit|fetch\s+first)\b", outer, re.I))
-    if select_list:
-        if re.search(r"(^|,)\s*(\w+\.)?\*\s*(,|$)", select_list):
-            q["select_star"] = True
-        for ref in re.findall(rf"\b{COL}\b(?!\s*\()", select_list, re.I):
-            if ref.lower() in KEYWORDS or ref.startswith("__") or re.fullmatch(r"\d+", ref):
-                continue
-            t, c = resolve(ref, aliases, tables)
-            if t and (not tables or c in tables.get(t, {}).get("columns", [c])):
-                q["selected"].setdefault(t, [])
-                if c not in q["selected"][t]:
-                    q["selected"][t].append(c)
-    for f in q["filters"]:
-        if f["table"] is None:
-            q["notes"].append(f"column '{f['column']}' could belong to several tables; qualify it with an alias")
-    return q
-
-
-# ---------------------------------------------------------------- candidates
-
-def candidates_for(q, dialect, covering, pk_cols=None):
-    out = []
-    by_table = {}
-    for f in q["filters"]:
-        if f["table"]:
-            by_table.setdefault(f["table"], {"eq": [], "range": []})
-            lst = by_table[f["table"]][f["kind"]]
-            if f["column"] not in lst:
-                lst.append(f["column"])
-    tables_in_q = set(q["aliases"].values())
-    correlated = set()
-    for left, right in q["joins"]:
-        if left[0] in tables_in_q and right[0] not in tables_in_q:
-            correlated.add(left[0])
-        if right[0] in tables_in_q and left[0] not in tables_in_q:
-            correlated.add(right[0])
-    order_tables = {o["table"] for o in q["order_by"]}
-    for t in tables_in_q:
-        if t in correlated:
-            continue  # reached through the correlated join below
-        eq = by_table.get(t, {}).get("eq", [])
-        rng = [c for c in by_table.get(t, {}).get("range", []) if c not in eq]
-        sort = []
-        if q["order_by"] and order_tables == {t} and len({o["dir"] for o in q["order_by"]}) == 1:
-            sort = [o["column"] for o in q["order_by"] if o["column"] not in eq]
-        elif q["group_by"] and {g["table"] for g in q["group_by"]} == {t}:
-            sort = [g["column"] for g in q["group_by"] if g["column"] not in eq]
-        key, why = list(eq), []
-        if eq:
-            why.append(f"equality on {', '.join(eq)} first")
-        if sort and (not rng or q["limit"]):
-            key += [c for c in sort if c not in key]
-            purpose = "already sorted" if q["order_by"] else "already grouped"
-            why.append(f"then {', '.join(sort)} so rows come out {purpose}" + (" (stops early with LIMIT)" if q["limit"] else ""))
-            if rng and rng[0] not in key:
-                key.append(rng[0])
-                why.append(f"{rng[0]} last as an in-index filter")
-        elif rng:
-            key.append(rng[0])
-            why.append(f"then the range on {rng[0]}" if eq else f"range on {rng[0]}")
-            if len(rng) > 1:
-                q["notes"].append(f"several range filters on {t} ({', '.join(rng)}): only the first can seek; the rest filter")
-            if sort:
-                q["notes"].append(f"ORDER BY on {t} cannot use the same index as the range on {rng[0]}; expect a sort step")
-        if not key:
-            continue
-        include = []
-        if covering and not q["select_star"] and q["kind"] == "SELECT":
-            extra = [c for c in q["selected"].get(t, []) if c not in key
-                     and not (dialect == "mysql" and c in (pk_cols or {}).get(t, []))]
-            if 0 < len(extra) <= 3:
-                include = extra
-        out.append({"table": t, "columns": key, "include": include, "why": "; ".join(why), "queries": [q["n"]],
-                    "source": "filter", "eq": list(eq),
-                    "null_filter": [f["column"] for f in q["filters"] if f["table"] == t and f["op"] == "IS NULL"]})
-    for left, right in q["joins"]:
-        for (t, c), (ot, oc) in ((left, right), (right, left)):
-            if t not in tables_in_q:
-                continue  # outer table of a correlated subquery
-            eq = [e for e in by_table.get(t, {}).get("eq", []) if e != c]
-            rng = [r for r in by_table.get(t, {}).get("range", []) if r != c and r not in eq][:1]
-            why = f"join column {t}.{c} = {ot}.{oc} first (lets the planner look up matching rows)"
-            if eq or rng:
-                why += f", then {', '.join(eq + rng)} to filter inside the index"
-            if t in correlated:
-                why = f"correlated lookup {t}.{c} = outer {ot}.{oc} first" + (f", then {', '.join(eq + rng)}" if eq or rng else "")
-            out.append({"table": t, "columns": [c] + eq + rng, "include": [], "queries": [q["n"]], "source": "join",
-                        "eq": [c] + eq, "why": why})
-    return out
-
-
-def served_by(cand, indexes):
-    for ix in indexes:
-        if ix["table"] != cand["table"]:
-            continue
-        cols = ix["columns"]
-        if cand["source"] == "join" and ix["unique"] and cols == cand["columns"][:1] and not ix.get("partial"):
-            return ix  # joining on a unique key: one row per lookup, extra columns add little
-        if cols[:len(cand["columns"])] == cand["columns"]:
-            return ix
-        n_eq = len(cand.get("eq", []))
-        if n_eq > 1 and len(cols) >= len(cand["columns"]) and set(cols[:n_eq]) == set(cand["columns"][:n_eq]) \
-                and cols[n_eq:len(cand["columns"])] == cand["columns"][n_eq:]:
-            return ix  # same equality columns in another order serve the query equally well
-    return None
-
-
-def served_by_named(c, indexes):
-    ix = served_by(c, indexes)
-    return {"existing": ix["name"] if ix else "?"}
-
-
-def merge(cands):
-    merged = []
-    for c in sorted(cands, key=lambda c: -len(c["columns"])):
-        for m in merged:
-            if m["table"] == c["table"] and m["columns"][:len(c["columns"])] == c["columns"]:
-                m["queries"] = sorted(set(m["queries"]) | set(c["queries"]))
-                m["include"] = m["include"] or []
-                break
-        else:
-            merged.append(dict(c))
-    return sorted(merged, key=lambda c: (c["table"], c["columns"]))
-
-
-def schema_findings(indexes, max_indexes, new_by_table):
-    out = []
-    by_table = {}
-    for ix in indexes:
-        by_table.setdefault(ix["table"], []).append(ix)
-    for t, ixs in by_table.items():
-        for i, a in enumerate(ixs):
-            for b in ixs[i + 1:]:
-                if a["columns"] == b["columns"] and (a.get("partial") == b.get("partial")):
-                    out.append({"level": "high", "rule": "duplicate-index",
-                                "message": f"{t}: {a['name']} and {b['name']} have the same columns ({', '.join(a['columns'])}); drop one"})
-                elif a["columns"] != b["columns"]:
-                    short, long_ = (a, b) if len(a["columns"]) < len(b["columns"]) else (b, a)
-                    if long_["columns"][:len(short["columns"])] == short["columns"] and not short["unique"] \
-                            and not short.get("partial"):
-                        out.append({"level": "warn", "rule": "redundant-prefix",
-                                    "message": f"{t}: {short['name']} ({', '.join(short['columns'])}) is a leftmost prefix of "
-                                               f"{long_['name']} ({', '.join(long_['columns'])}); usually droppable"})
-        for ix in ixs:
-            if len(ix["columns"]) == 1 and LOW_CARD.search(ix["columns"][0]) and ix["kind"] == "index" and not ix.get("partial"):
-                out.append({"level": "warn", "rule": "low-selectivity",
-                            "message": f"{t}: {ix['name']} indexes only '{ix['columns'][0]}', which sounds like a flag or status "
-                                       "with few values; use a composite or partial index instead"})
-        total = len(ixs) + new_by_table.get(t, 0)
-        if total > max_indexes:
-            out.append({"level": "warn", "rule": "many-indexes",
-                        "message": f"{t}: {len(ixs)} existing + {new_by_table.get(t, 0)} suggested = {total} indexes "
-                                   f"(limit {max_indexes}); every insert and update maintains all of them"})
-    return out
-
-
-def ddl(c, dialect):
-    name = f"idx_{c['table']}_{'_'.join(c['columns'])}"[:63]
-    cols = ", ".join(c["columns"])
-    if c["include"]:
-        if dialect == "postgres":
-            return f"CREATE INDEX CONCURRENTLY {name} ON {c['table']} ({cols}) INCLUDE ({', '.join(c['include'])});"
-        cols += ", " + ", ".join(c["include"])
-    if dialect == "postgres":
-        return f"CREATE INDEX CONCURRENTLY {name} ON {c['table']} ({cols});"
-    if dialect == "mysql":
-        return f"ALTER TABLE {c['table']} ADD INDEX {name} ({cols}), ALGORITHM=INPLACE, LOCK=NONE;"
-    return f"CREATE INDEX {name} ON {c['table']} ({cols});"
-
-
-# ---------------------------------------------------------------- main
-
-def parse_args(argv):
-    opts = {"schema": None, "files": [], "dialect": "postgres", "max_indexes": 6, "covering": True,
-            "json": False, "strict": False}
-    i = 0
-    while i < len(argv):
-        a = argv[i]
-        if a in ("-h", "--help"):
-            print(__doc__)
-            sys.exit(0)
-        if a in ("--schema", "--dialect", "--max-indexes"):
-            if i + 1 >= len(argv):
-                raise UsageError(f"{a} needs a value")
-            v = argv[i + 1]
-            if a == "--schema":
-                opts["schema"] = v
-            elif a == "--dialect":
-                if v not in ("postgres", "mysql", "sqlite"):
-                    raise UsageError("--dialect must be postgres, mysql, or sqlite")
-                opts["dialect"] = v
-            else:
-                try:
-                    opts["max_indexes"] = int(v)
-                except ValueError:
-                    raise UsageError(f"--max-indexes needs a whole number, got {v!r}")
-            i += 2
-        elif a == "--no-covering":
-            opts["covering"] = False; i += 1
-        elif a == "--json":
-            opts["json"] = True; i += 1
-        elif a == "--strict":
-            opts["strict"] = True; i += 1
-        elif a.startswith("--"):
-            raise UsageError(f"unknown option {a}")
-        else:
-            opts["files"].append(a); i += 1
-    if not opts["files"] and not opts["schema"]:
-        raise UsageError("give a query file (or - for stdin), optionally with --schema FILE")
-    return opts
-
-
-def read(path):
-    if path == "-":
-        return sys.stdin.read()
-    with open(path, encoding="utf-8") as f:
-        return f.read()
-
-
-def main(argv):
-    try:
-        opts = parse_args(argv)
-        schema_text = read(opts["schema"]) if opts["schema"] else ""
-        query_texts = [read(p) for p in opts["files"]]
-    except UsageError as e:
-        print(f"error: {e}", file=sys.stderr)
-        return 2
-    except OSError as e:
-        print(f"error: cannot read {e.filename}: {e.strerror}", file=sys.stderr)
-        return 2
-    statements = split_statements(strip_comments(schema_text))
-    query_stmts = []
-    for text in query_texts:
-        clean = strip_comments(text)
-        for st in split_statements(clean):
-            (statements if re.match(r"\s*create\s", st, re.I) else query_stmts).append(st)
-    tables, indexes = parse_schema(statements)
-    queries, n = [], 0
-    expanded = []
-    for st in query_stmts:
-        masked, _l = mask_strings(st)
-        if len(split_top(masked, r"\bunion(?:\s+all)?\b")) > 1:  # a real top-level UNION, not one inside a string
-            expanded.extend(split_top(st, r"\bunion(?:\s+all)?\b"))  # each branch is analyzed as its own query
-        else:
-            expanded.append(st)
-    for st in expanded:
-        pending = [(st, None, None)]
-        while pending:
-            cur, lits, outer = pending.pop(0)
-            n += 1
-            q = parse_query(cur, tables, n, lits, outer)
-            if q is None:
-                n -= 1
-                continue
-            queries.append(q)
-            for sub in q["subqueries"]:
-                pending.append((sub, q["lits"], {**(outer or {}), **q["aliases"]}))
-                q["notes"].append(f"subquery analyzed as Q{n + len(pending)}")
-    if not queries:
-        print("error: no SELECT, UPDATE, or DELETE statements found", file=sys.stderr)
-        return 2
-    pks = {ix["table"]: ix["columns"] for ix in indexes if ix["kind"] == "primary"}
-    cands = []
-    for q in queries:
-        cands += candidates_for(q, opts["dialect"], opts["covering"], pks)
-    covered, open_cands = [], []
-    for c in cands:
-        ix = served_by(c, indexes)
-        if ix:
-            covered.append({**c, "existing": ix["name"]})
-        else:
-            open_cands.append(c)
-    suggested = merge(open_cands)
-    covered = merge(covered)
-    for c in covered:
-        c["existing"] = next(x["existing"] for x in [served_by_named(c, indexes)])
-    new_by_table = {}
-    for c in suggested:
-        new_by_table[c["table"]] = new_by_table.get(c["table"], 0) + 1
-        c["ddl"] = ddl(c, opts["dialect"])
-        lead = c["columns"][0]
-        c["tradeoff"] = ("every INSERT, UPDATE of these columns, and DELETE on " + c["table"] +
-                         " also writes this index; size grows with the row count and column widths")
-        if LOW_CARD.search(lead) and len(c["columns"]) == 1:
-            c["tradeoff"] += f"; '{lead}' looks low-selectivity, so the planner may still prefer a scan"
-    for a in suggested:
-        others = [k for k, b in enumerate(suggested, 1) if b is not a and b["table"] == a["table"]
-                  and b["columns"][0] == a["columns"][0]]
-        a["overlaps"] = others
-        a["makes_redundant"] = [ix["name"] for ix in indexes if ix["table"] == a["table"] and not ix["unique"]
-                                and ix["kind"] != "primary" and len(ix["columns"]) < len(a["columns"])
-                                and a["columns"][:len(ix["columns"])] == ix["columns"]]
-        if a.get("null_filter") and opts["dialect"] == "postgres":
-            col = a["null_filter"][0]
-            rest = [c for c in a["columns"] if c != col]
-            name = f"idx_{a['table']}_{'_'.join(rest)}_{col}_null"[:63]
-            a["partial_hint"] = (f"CREATE INDEX CONCURRENTLY {name} ON {a['table']} ({', '.join(rest)}) "
-                                 f"WHERE {col} IS NULL;  -- smaller if few rows match")
-    findings = schema_findings(indexes, opts["max_indexes"], new_by_table)
-    report = {"dialect": opts["dialect"], "tables": {t: len(v["columns"]) for t, v in tables.items()},
-              "existing_indexes": indexes, "queries": [{k: v for k, v in q.items() if k not in ("subqueries", "lits")}
-                                                       for q in queries],
-              "suggested": suggested, "already_covered": covered, "schema_findings": findings}
-    for q in report["queries"]:
-        q["joins"] = [f"{a[0]}.{a[1]} = {b[0]}.{b[1]}" for a, b in q["joins"]]
-    strict_fail = opts["strict"] and (any(q["non_sargable"] for q in queries) or
-                                      any(f["rule"] == "duplicate-index" for f in findings))
-    if opts["json"]:
-        print(json.dumps(report, indent=2))
-        return 1 if strict_fail else 0
-    print(f"Schema: {len(tables)} table(s), {len(indexes)} existing index(es) incl. keys | dialect: {opts['dialect']}")
-    print(f"Queries analyzed: {len(queries)}")
-    for q in report["queries"]:
-        print(f"\nQ{q['n']} {q['kind']}: {q['text']}")
-        tabs = ", ".join(f"{t} {a}" if a != t else t for a, t in q["aliases"].items())
-        print(f"  tables: {tabs or '-'}")
-        eqs = [f"{f['table'] or '?'}.{f['column']} ({f['op']})" for f in q["filters"] if f["kind"] == "eq"]
-        rngs = [f"{f['table'] or '?'}.{f['column']} ({f['op']})" for f in q["filters"] if f["kind"] == "range"]
-        if eqs:
-            print(f"  equality: {', '.join(eqs)}")
-        if rngs:
-            print(f"  range: {', '.join(rngs)}")
-        if q["joins"]:
-            print(f"  joins: {', '.join(q['joins'])}")
-        if q["order_by"]:
-            print("  order by: " + ", ".join(f"{o['table']}.{o['column']} {o['dir'].upper()}" for o in q["order_by"])
-                  + ("  (LIMIT)" if q["limit"] else ""))
-        if q["group_by"]:
-            print("  group by: " + ", ".join(f"{g['table']}.{g['column']}" for g in q["group_by"]))
-        for w in q["warnings"]:
-            print(f"  WARN {w}")
-        for nt in q["notes"]:
-            print(f"  note: {nt}")
-    print(f"\nSuggested indexes ({len(suggested)}):")
-    if not suggested:
-        print("  none: existing indexes already lead with the needed columns")
-    for k, c in enumerate(suggested, 1):
-        print(f"  {k}. {c['ddl']}")
-        print(f"     serves: {', '.join('Q' + str(x) for x in c['queries'])} | why: {c['why']}")
-        if c["include"]:
-            print(f"     covering: {', '.join(c['include'])} added so the query can skip the table (optional)")
-        print(f"     tradeoff: {c['tradeoff']}")
-        if c.get("overlaps"):
-            print(f"     overlap: same leading column as #{', #'.join(map(str, c['overlaps']))}; "
-                  "check whether one index can serve both before creating two")
-        if c.get("makes_redundant"):
-            print(f"     makes redundant: {', '.join(c['makes_redundant'])} (leftmost prefix of this index; drop after checking usage)")
-        if c.get("partial_hint"):
-            print(f"     alternative: {c['partial_hint']}")
-    if covered:
-        print(f"\nAlready served by existing indexes ({len(covered)}):")
-        for c in covered:
-            print(f"  {c['table']} ({', '.join(c['columns'])}) -> {c['existing']} (Q{', Q'.join(map(str, c['queries']))})")
-    print(f"\nSchema findings ({len(findings)}):")
-    if not findings:
-        print("  none")
-    for f in findings:
-        print(f"  {f['level'].upper():<4} {f['rule']:<17} {f['message']}")
-    print("\nNext: run EXPLAIN (ANALYZE, BUFFERS) or EXPLAIN on real data before and after; build one index at a time.")
-    return 1 if strict_fail else 0
-
-
-if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
-```
-
-</details>
-
-<details><summary><b>SQL 终端模拟</b></summary>
-
-```text
-我希望你充当一个示例数据库前的 SQL 终端。该数据库包含名为 “Products”、“Users”、“Orders” 和 “Suppliers” 的表。我将输入查询语句，而你将回复终端实际会显示的内容。我希望你仅以单个代码块的形式回复查询结果表格，除此之外不要输出任何其他内容。不要撰写解释性文字。除非我明确指示，否则不要输入任何命令。当我需要用英文向你传达某些信息时，我会将其放在花括号中 {像这样}。我的第一条命令是 'SELECT TOP 10 * FROM Products ORDER BY Id DESC'
 ```
 
 </details>

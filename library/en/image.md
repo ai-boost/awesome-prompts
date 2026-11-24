@@ -1,15 +1,33 @@
-# Image & Design (1/5)
+# Image & Design (1/6)
 
-880 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+928 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
-Pages: **1** · [2](image-2.md) · [3](image-3.md) · [4](image-4.md) · [5](image-5.md)
+Pages: **1** · [2](image-2.md) · [3](image-3.md) · [4](image-4.md) · [5](image-5.md) · [6](image-6.md)
 
 <details><summary><b>16-Bit Pixel Art Cozy Bookshop</b></summary>
 
 ```text
 A 16-bit pixel art scene of a cozy little bookshop on a rainy autumn night, square 1:1, crisp retro game art with a limited, moody palette. The shop fills the right two thirds of the frame: a small dark-green wooden storefront with a dark tiled roof scattered with orange leaves and a green-and-cream striped scalloped awning, water drops dripping from its edge. A big multi-pane front window glows warm yellow, showing wooden shelves and stacks of books inside, green ivy hanging down behind the glass, a small potted fern, and a ginger cat curled up asleep on the inside window sill. On the right, a green door with a small four-pane glass window and a brass knob sits above two stone steps, with climbing ivy on the brick corner of the building. Outside the window stand a blank chalkboard A-frame sign, potted plants in terracotta pots, and a big pile of orange autumn leaves. On the left, an ornate black street lamp with a glowing lantern lights the scene. Wet dark cobblestones shine with golden reflections and scattered leaves, diagonal rain streaks fall across a dark blue cloudy sky and dark trees. Warm light against cool night blues, calm and inviting mood. No people, no text, no logos.
+```
+
+</details>
+
+<details><summary><b>1840s Salted Paper Print of a Stone Harbor at Low Tide</b></summary>
+
+```text
+An authentic 1840s salted paper print, the early calotype-era photographic process, of a quiet stone harbor at low tide, landscape 4:3. Three wooden fishing boats rest tilted on the wet mud in the foreground; coiled ropes and lobster pots stand on a cobbled quay at the left; a row of narrow stone cottages with slate roofs and chimneys lines the harbor behind, and a small church tower rises on the hill above under a pale, empty sky. Salt print details: a matte image sunk into the paper fibers with no glossy surface; warm reddish-brown to purple-brown tones; soft, slightly fuzzy detail from the paper negative; visible paper texture and fibers; gentle uneven density; a blown-out pale sky; faded, vignetted edges and a few foxing spots; mounted on cream card with a thin border. Long-exposure stillness with no motion blur. Quiet, timeless coastal mood. Viewed straight on as a flat print in soft even light. No text, no signature, no frame, no people.
+```
+
+</details>
+
+<details><summary><b>1910s Autochrome of a Blossoming Apple Orchard</b></summary>
+
+```text
+A 1910s Autochrome Lumière color photograph of an old apple orchard in full blossom on a calm, overcast spring afternoon. In the right foreground stands a weathered wooden picnic table with attached benches, its grey planks cracked and silvered with age. A purple-and-white gingham cloth is draped across it, hanging over the near edge, and on it rest a large woven wicker picnic basket with a looped handle and a plain white enamel jug. Behind and to the left, gnarled apple trees with dark twisting trunks are covered in pale pink and white blossom and recede in soft, even rows into a hazy distance; the grass between them is carpeted with small violet wildflowers.
+
+Render it exactly like a real Autochrome glass plate: muted, faded sepia-pastel colors (dusty pinks, mauve and violet, soft olive and sage greens, warm brown shadows, a pale milky sky), the visible random grain of dyed potato-starch particles that makes every area look softly speckled, fine dust specks across the surface, gentle soft focus from a long exposure, low contrast, and a thick dark vignette with rounded, burnt-looking edges around the whole frame. Diffuse daylight, no harsh shadows. No people, no text, no modern objects. Landscape 4:3.
 ```
 
 </details>
@@ -441,6 +459,102 @@ The text should match the input city's native language.
 Please retrieve current weather conditions for the specified city before rendering.
 
 City name: İSTANBUL
+```
+
+</details>
+
+<details><summary><b>3D Layered Paper-Cut Travel Poster Template (2:3)</b></summary>
+
+```text
+Create an extraordinarily beautiful 3D layered paper-cut architectural travel poster featuring [LANDMARK NAME], [CITY], [COUNTRY].
+
+Transform the destination into an enchanting miniature architectural world, crafted entirely from intricately layered, sculpted and cut coloured paper.
+
+1. CENTRAL ARCHITECTURAL SCENE
+
+Feature the destination’s most iconic landmark as the main attraction.
+Preserve its authentic and recognisable architectural identity.
+Recreate buildings using multiple layers of carefully cut paper.
+Include distinctive rooftops, windows, arches, towers, domes, bridges or architectural details specific to the destination.
+Arrange smaller surrounding buildings to create a charming miniature cityscape.
+Make the entire scene resemble a beautifully handcrafted architectural diorama.
+
+2. LAYERED PAPER LANDSCAPE
+
+Build an extraordinary three-dimensional environment.
+
+Flowing paper-cut hills and sculpted mountains.
+Layered rivers, lakes, coastlines or ocean waves where appropriate.
+Curved bridges, winding pathways and miniature staircases.
+Overlapping paper clouds, hills and architectural backgrounds.
+Intricate foreground elements framing the composition.
+Beautiful irregular paper-cut edges surrounding the scene.
+
+Every layer should have visible depth, delicate edges and realistic cast shadows.
+
+3. UNIQUE DESTINATION DETAILS
+
+Include small architectural and cultural elements that make each destination instantly recognisable.
+
+Select details according to the location rather than repeating the same decorations.
+
+4. DESTINATION-SPECIFIC COLOUR PALETTE
+
+Create a completely original colour identity for every destination.
+
+Use 6–9 harmonious shades inspired by its architecture, culture, landscape and atmosphere.
+
+Combine rich colours, soft pastels, contrasting paper layers and carefully selected neutral tones.
+
+Never repeat the same palette between different destinations.
+
+5. THREE-DIMENSIONAL PAPER ART
+
+Authentic handmade paper-cut aesthetic.
+Multiple overlapping cardstock layers.
+Sculpted paper architecture.
+Delicate folded and curved paper details.
+Visible paper thickness.
+Soft realistic shadows between layers.
+Beautiful tactile textures.
+Intricate miniature craftsmanship.
+Gentle studio lighting.
+
+The artwork must look like a real handcrafted paper sculpture photographed professionally, not a flat illustration or plastic 3D render.
+
+6. DISTINCTIVE POSTER COMPOSITION
+
+Place the entire architectural scene inside an elegant irregular organic paper-cut frame.
+
+Use a balanced vertical composition with:
+
+Large miniature architectural scene in the centre.
+Beautiful layered foreground.
+Subtle surrounding negative space.
+Soft neutral background.
+Realistic depth and dimensional shadows.
+
+7. MINIMAL TYPOGRAPHY
+
+Below the artwork, write:
+
+[CITY / DESTINATION NAME]
+
+[COUNTRY]
+
+Add one short, elegant poetic tagline of approximately 3–6 words inspired by the destination.
+
+Use elegant uppercase modern typography for the destination name and a delicate refined serif font for the tagline.
+
+Keep typography minimal, correctly spelled and beautifully positioned.
+
+8. FINAL ART DIRECTION
+
+A breathtaking fusion of miniature architecture, layered paper sculpture, handcrafted papercraft, whimsical storytelling and premium contemporary travel poster design.
+
+Extremely intricate craftsmanship, sophisticated colour harmony, realistic paper shadows, beautiful depth, exquisite architectural details and museum-quality presentation.
+
+Portrait 2:3 composition. No watermark, no unnecessary text, no photorealistic buildings, no plastic appearance.
 ```
 
 </details>
@@ -1026,6 +1140,14 @@ Rules:
 
 </details>
 
+<details><summary><b>AI Video of a Nigerian Couple Talking at Home</b></summary>
+
+```text
+A 10s AI video of a young Nigerian man having a conversation with his wife in the living room
+```
+
+</details>
+
 <details><summary><b>Airport Corridor Walk</b></summary>
 
 ```text
@@ -1106,6 +1228,16 @@ Rules:
     "plastic skin", "cgi"
   ]
 }
+```
+
+</details>
+
+<details><summary><b>Alebrije Wood Carving of a Leaping Jaguar</b></summary>
+
+```text
+A studio photograph of a hand-carved and hand-painted Oaxacan-style alebrije wood sculpture of a jaguar caught mid-leap, its front paws reaching forward and its long tail curling up into a spiral, standing on a small carved rock base. The whole figure is painted in bright folk colors over carved copal wood: a cobalt blue body covered in tight rows of tiny white and yellow dots, orange rosettes outlined in black, magenta zigzag bands on the legs, lime green leaf shapes along the spine, a turquoise face with large almond eyes, small carved ears and a row of painted white teeth. Separate carved ears and tail are fitted into the body as real alebrijes are.
+
+Render it like real handmade folk art: visible knife facets under the paint, slightly uneven brushwork and dot spacing, a few tiny hairline cracks in the wood and a soft satin sheen. The figure sits on a warm terracotta-colored tabletop against a plain off-white wall, soft window light from the left, gentle shadow, shallow depth of field. No text, no people, no hands. Portrait 3:4.
 ```
 
 </details>
@@ -3709,6 +3841,14 @@ Create a professional program to create a booklet cover in different colors with
 
 </details>
 
+<details><summary><b>Boy Pats a Bald Man's Head: Playful Living Room Video</b></summary>
+
+```text
+A warm, playful 20-second indoor scene in a bright living room. A small boy, about 4 years old, in a yellow t-shirt, stands next to a smiling adult man with a smooth bald head who is sitting on a sofa. The boy looks up curiously, reaches out, and gently pats the man's bald head with both hands. He giggles and tilts his head in amazement. The man laughs warmly, leans his head down to let the boy touch it, and plays along with a funny surprised expression. The boy pats and rubs the head again, laughing louder. Natural soft daylight from a window, cozy home atmosphere, handheld camera feel, medium shot with a gentle push-in toward their faces, realistic skin tones, shallow depth of field, heartwarming and humorous mood, cinematic 4K.
+```
+
+</details>
+
 <details><summary><b>Branded Social Post Image Assistant</b></summary>
 
 ```text
@@ -3860,6 +4000,14 @@ Macro 100mm timelapse of a Monarch butterfly emerging from its shell, wet wings 
     "avoid": "Artificial faces in background, over-processed skin, Instagram-style filters, excessive sharpness, cinematic DSLR look"
   }
 }
+```
+
+</details>
+
+<details><summary><b>Cafe Portrait with a Matching 3D Chibi Figurine (1:1)</b></summary>
+
+```text
+A cinematic studio portrait of a woman seated at a textured stone table against a muted warm gray background. She wears a dark brown satin blouse, subtle evening makeup, and softly layered shoulder-length hair. In front of her is a glass of cold brew coffee with ice and a metal straw. Placed beside it is a glossy 3D chibi figurine of the same woman, with a big rounded head, expressive eyes, soft blush cheeks, and simplified facial features, holding a miniature cold brew glass. The chibi has a high-quality collectible toy look with gentle reflections. Intimate evening café vibe, moody soft lighting, shallow depth of field, realistic human combined with stylized 3D character, cinematic and cozy, 1:1 aspect ratio.
 ```
 
 </details>
@@ -4057,6 +4205,26 @@ Macro 100mm timelapse of a Monarch butterfly emerging from its shell, wet wings 
 
 </details>
 
+<details><summary><b>Candid Front-Camera Selfie of a Curly-Haired Young Man (9:16)</b></summary>
+
+```text
+Candid phone snapshot, shot with front phone camera, real phone photo of an attractive adult man in his early-to-mid 20s, an unedited camera photo, SOOC. He has thick, voluminous dark brown curly hair with naturally defined loose ringlets, styled in a slightly messy shape with several prominent curls falling across his forehead. His hair has natural volume, subtle shine, and individual flyaway strands. He has light olive skin, blue-grey eyes, thick dark eyebrows, a straight nose with a small silver nose stud, naturally full pink lips, and a defined jawline. He has a neatly trimmed dark mustache and a distinctive short, fuller goatee concentrated around his chin. Small sparkling silver diamond-style stud earrings are visible in both ears.
+
+He is wearing a relaxed white cotton graphic T-shirt with oversized green and purple printed lettering across the front. The shirt has a slightly loose fit, natural fabric creases, and a simple rounded neckline.
+He is reclining comfortably against a sofa or bed, holding his iPhone slightly above his face to take a close-up front-facing selfie. His head rests naturally against the surface behind him, shoulders relaxed. He looks directly into the camera with a subtle, confident half-smile and a calm, relaxed expression. His face is the main focal point.
+
+The framing is vertical 9:16 portrait, close-up selfie from the upper chest upward, shot with front phone camera at a slightly elevated angle. His face is centered, with his voluminous curly hairstyle occupying much of the upper frame and his white graphic T-shirt visible across the lower foreground. Candid phone shot, spontaneous and slightly imperfect, like a casual selfie taken while relaxing at home.
+
+The environment is a cozy, ordinary bedroom or living space. Behind him is a light cream-colored wall with a subtle textured painted finish. A large black flat-screen television is partially visible on the upper-left side of the background. On the right side, a dark black backpack or soft travel bag hangs casually near the wall, with realistic fabric folds and straps visible. A small section of light beige furniture or bedding is visible behind his shoulders.
+
+Lighting is warm, soft indoor household lighting, creating natural illumination across his face with gentle shadows beneath his curls, nose, and chin. His skin has natural highlights, and the white shirt retains visible cotton texture without appearing overexposed.
+Real photo look, IG phone snapshot: visible pores, natural skin-tone variation, under-eye texture, subtle freckles and facial imperfections, individual defined hair curls, natural catchlights in the eyes, accurate facial proportions, natural mustache and goatee texture, visible cotton weave. Natural colors, authentic handheld perspective.
+
+Avoid the look of modern high-definition digital fashion photography. No plastic skin, no excessive smoothing, no beauty retouching, no sharp digital look, no cinematic lighting, no dramatic color grading, no filters, no distorted anatomy, no extra fingers, no watermarks or added text overlays. Strictly vertical 9:16 portrait orientation.
+```
+
+</details>
+
 <details><summary><b>Candid Street Photo at Golden Hour</b></summary>
 
 ```text
@@ -4219,6 +4387,16 @@ Camera & composition: Medium close-up portrait, photographed from a slightly low
 Background & atmosphere: A relaxed, sophisticated, stylish, and cozy mood. The background is a blurred dark luxury car interior with black leather seats and refined trim details, keeping the full attention on the woman.
 
 Do not change the girl's facial features, eye shape, eyebrows, nose, or lips. Maintain 100% facial resemblance.
+```
+
+</details>
+
+<details><summary><b>Carved Shell Cameo Brooch of a Nautilus Among Seaweed</b></summary>
+
+```text
+A close-up studio photograph of a hand-carved Victorian-style shell cameo brooch showing a chambered nautilus drifting among seaweed, carved in creamy white relief on a warm peach-to-caramel sardonyx shell background. The oval cameo fills most of the portrait frame and sits in a slim antique gold bezel with a fine twisted-rope border and tiny milgrain beading. In the center, the nautilus shell is seen from the side: its smooth spiral with delicate growth lines and the curved stripes of the shell carved as low ridges, the opening at the left with a few short tentacles curling out beneath the hood. Around it, long ribbons of kelp and frilly sea lettuce rise from a small cluster of rocks at the bottom, and three tiny air bubbles float toward the top.
+
+Render it exactly like real shell carving: the white layer is thinnest at the edges, so the background peach color glows through the thin tentacles, seaweed tips and bubble edges; visible fine chisel and burin marks, softly polished high points, slightly uneven hand-cut outlines, and a faint natural crack line in the shell near the lower right. The brooch rests on dark green velvet with visible pile, lit by soft window light from the upper left that rakes across the relief to show its depth, with a small warm highlight on the gold. Macro lens, shallow depth of field, the carving sharp, the velvet falling softly out of focus. No text, no hallmarks, no hands, no people. Portrait 3:4.
 ```
 
 </details>
@@ -4540,6 +4718,31 @@ Design a Christmas-themed poster that captures the festive holiday spirit. Inclu
 
 ```text
 Create an 8k resolution image of a 20-year-old girl sitting in a cinema hall. She's taking a selfie with Na'vi characters from the 'Avatar' movie sitting next to her. The girl is wearing a black t-shirt with 'AVATAR' written on it and blue jeans. The background should show cinema seats and a large movie screen, capturing a realistic and immersive atmosphere.
+```
+
+</details>
+
+<details><summary><b>Cinematic 1970s Vintage Studio Portrait From Your Photo (3:4)</b></summary>
+
+```text
+Create a highly photorealistic cinematic vintage studio portrait of the same adult woman shown in the uploaded reference image. Preserve her exact facial identity, recognizable features, natural skin tone, face shape, eyes, nose, lips, and facial proportions without beautification or alteration.
+
+Appearance & Makeup:
+She has a short, softly tousled dark-brown bob with gentle loose curls framing her cheeks and delicate wispy bangs across her forehead. Her expressive hazel-brown eyes are enhanced with subtle smoky eyeliner, naturally shaped eyebrows, softly flushed cheeks, and elegant deep crimson-red lipstick. Her complexion is warm and luminous, with realistic skin texture and natural details.
+
+Outfit & Styling:
+She wears an elegant ivory satin blouse with a modest, softly draped neckline, delicate lace detailing around the collar, and subtle puff sleeves. The blouse is neatly fitted and tucked into a high-waisted black tailored mini skirt with a refined silhouette. Add sheer dark burgundy stockings for a sophisticated vintage-inspired look. The overall styling should feel elegant, tasteful, and timeless rather than revealing.
+
+Pose & Composition:
+She sits gracefully on a low vintage studio chair, leaning slightly forward with relaxed shoulders and a confident posture. Her hands rest naturally together on her lap. Her chin is gently raised as she looks directly into the camera with a confident, subtly mysterious expression.
+
+Lighting & Background:
+A minimalist warm beige studio wall serves as the background. A strong directional spotlight creates a soft circular glow behind her, accompanied by a beautifully defined shadow falling to one side. Rich warm shadows, gentle highlights across her face, and subtle cinematic contrast create an intimate vintage Hollywood atmosphere.
+
+Photography Style:
+Classic 1970s editorial portrait photography, vintage studio glamour, warm analog film tones, authentic skin texture, subtle film grain, sophisticated color grading, professional fashion photography, sharp facial focus, beautifully balanced composition, highly detailed, photorealistic, vertical  portrait.
+
+Maintain the reference woman's exact identity throughout. No cartoon features, no anime aesthetics, no artificial skin smoothing, no exaggerated body proportions, and no changes to her recognizable appearance.
 ```
 
 </details>
@@ -5616,223 +5819,6 @@ Rules:
 
 ```text
 A full-body vertical nighttime photograph of a young woman with a slim hourglass figure and long wavy light brown hair with blonde highlights. She is wearing a tight white short-sleeve crop top and blue skinny jeans, holding a small silver metallic handbag in her left hand. She stands in an outdoor parking lot, body turned to the side in a three-quarter profile, looking back over her shoulder directly at the camera with a subtle confident smile. Behind her is a black Jeep Wrangler with a spare tire cover displaying the 'Jeep' logo in white, and a grey car parked to the right. The ground is dark asphalt with white parking lines. Overhead streetlights cast a cool white glow, illuminating her figure against the dark night sky. Shot with a smartphone camera, 24mm lens, flash or strong fill light on the subject, realistic lighting, casual social media aesthetic, 'outfit of the night' vibe, high quality, sharp focus on the subject.
-```
-
-</details>
-
-<details><summary><b>Conservatory Concept Design Brief Builder</b></summary>
-
-```text
-Act as a conservatory and glasshouse designer and as a visualization art director. I will describe the Victorian-style glass conservatory I am imagining. You will turn it into a tight concept: the building, its iron and glass structure, the plants, the furniture, the floor and water features, the light and mood, with a numbered list of fixed design details plus two ready-to-use image prompts that show the SAME building from two viewpoints at two times of day, so the two AI images look like photos of one real place.
-
-Era and inspiration: ${era:High Victorian, around 1870, inspired by public palm houses but at the scale of a private estate}
-Purpose and scale: ${purpose:a private winter garden attached to nothing, standing alone at the end of a formal garden, about 14 m long, 8 m wide, 7 m high}
-Structure and materials I like: ${structure:white-painted wrought iron, arched ribs, a diamond lattice glass roof, a low pale stone plinth wall}
-Plants: ${plants:hanging Boston ferns, kentia palms in terracotta pots, tree ferns, orchids on a side shelf, moss}
-Furniture and features: ${features:ornate cast-iron benches, a small round mosaic fountain with koi in the center, brass pendant lanterns}
-Floor: ${floor:black-and-white checkerboard marble}
-Mood: ${mood:calm, humid, timeless, a little romantic, a place to read on a Sunday morning}
-Outside the building: ${outside:a gravel path between low box hedges, climbing pink roses on the front, a formal English garden}
-View A: ${view_a:interior at eye level from just inside the front doors, looking down the central aisle, early morning sun with misty light shafts}
-View B: ${view_b:exterior from the gravel garden path facing the front entrance at blue hour, warm lamps glowing inside}
-
-Please produce:
-
-1. Concept
-   - A name idea for the conservatory (for my use only, it will not appear in the images) and a two-sentence story of how it should feel to step inside.
-   - Architecture: footprint, height, roof form, rib spacing, glazing pattern, ridge details, entrance, ventilation features, and how the iron is finished, described in plain construction terms.
-   - Interior layout: the central aisle, where the fountain sits, where benches, palms, ferns, and shelves go, and where the lanterns hang, described from the entrance looking in.
-   - Planting plan: each plant group with its position and the effect it creates (height, texture, light filtering).
-   - Palette: 6 named colors (simple names like "chalk white" or "fern green") and where each one appears.
-   - Materials and finishes: iron, glass (clear, slightly wavy old glass, condensation), stone, marble, mosaic, brass, terracotta, and wood.
-
-2. Fixed design details (the consistency list)
-   A numbered list of 14 to 18 details that must look identical in every image: footprint and proportions, roof shape, rib count and spacing, the glazing pattern, the ridge cresting and finials, the plinth wall, the entrance doors and fanlight, the floor pattern, the fountain, the benches, the lanterns, the palms, the ferns, and anything visible from both inside and outside, each with its exact position. Write each one as a short, concrete phrase an image generator can follow (for example "a round fountain basin about 2 m across, clad in deep blue and gold mosaic, at the exact center of the hall").
-
-3. Image prompt A: the base view
-   One detailed prompt for an AI image generator: photoreal architectural interior photography from the view A position, in view A light. Include every fixed detail visible from there in its correct position (left and right as seen from the camera), camera height and lens, light direction, atmosphere (mist, humidity, light shafts), mood, and a 16:9 landscape composition. End with exclusions (no people, no readable text, no signage, no modern objects).
-
-4. Image prompt B: the second view
-   One detailed prompt for view B, written for a text-only image generator that cannot see image A: restate ALL fixed details again in full words (never "same as before"), place each one correctly for the new camera position, describe what is newly visible from outside (the front gable, the plinth, the ridge cresting, the path, the roses), describe which interior details can be seen through the glass and the open doors, and change only the viewpoint, time of day, and lighting. Keep the structure, colors, and proportions identical.
-
-5. Consistency checklist
-   Ten yes/no checks to compare image B against image A (for example "Is the roof glazing still a diamond lattice between the white arched ribs?").
-
-6. Practical notes
-   A short list on real-world feasibility: heating and humidity for these plants, ventilation, shading in summer, maintenance of painted iron and old glass, safety glass options, and a rough order of magnitude for building or restoring something similar, labeled as an estimate.
-
-Rules:
-- Keep the design historically believable for the stated era; flag anything that would be anachronistic or structurally unrealistic.
-- Use plain color names and concrete shapes; avoid vague words like "beautiful" or "magical" on their own.
-- No readable text, plaques, signs, or numbers anywhere in the image prompts.
-- No real named buildings, brand names, or real people in the image prompts.
-- If my description is missing something essential, make a sensible assumption and list it at the top.
-```
-
-</details>
-
-<details><summary><b>Consistent Car Block for a Multi-Clip Road Trip Video</b></summary>
-
-```text
-CAR BLOCK (paste into every car clip)
-The car is an old, faded silver Toyota Corolla with a dented front bumper, left-hand drive, as in Nigeria. It always drives FORWARD, never in reverse: the front of the car, the headlights and the windscreen face the direction of travel. Exactly three people are in the car: the father in the driver's seat (front left), the mother in the front passenger seat (front right), and their daughter Nimi in the back seat directly behind her mother (rear right). The rear left seat is empty and piled with plastic buckets and bags. Luggage is tied on the roof rack. No other passengers.
-CLIP 1: The old car on the road
-Photorealistic cinematic live-action, vertical 9:16, bright morning daylight, a road in Nigeria leading toward a university campus. Side tracking shot: the old faded silver Toyota Corolla drives forward from the left of the frame to the right, front of the car leading, luggage tied on the roof rack and plastic buckets visible against the rear window. [Paste CAR BLOCK.] Sound: rattling old engine, birds, distant traffic. No dialogue, no subtitles, no on-screen text. Not cartoon or anime.
-CLIP 2: All three in the car
-Photorealistic cinematic live-action, vertical 9:16, natural daylight. Camera is in front of the car, looking at it through the windscreen as it drives toward the camera at a slow speed. [Paste CAR BLOCK.] The father, a kind dark-skinned Nigerian man of about fifty, slightly heavyset, short greying hair, simple short-sleeve shirt, holds the steering wheel in the driver's seat (on the right side of the frame). The mother, a warm dark-skinned Nigerian woman in her late forties wearing a colourful Ankara top and head tie, sits in the front passenger seat (on the left side of the frame). Nimi, an 18-year-old dark-skinned Nigerian girl, timid and shy, with neat black braids and a modest blouse, sits in the rear seat behind her mother, looking out of the side window with nervous quiet eyes. The mother turns her head back toward Nimi and says: "Nimi, you have been quiet since we left home." Nimi gives a small shy smile and says softly: "I'm just nervous, Mummy." Authentic Nigerian accents, accurate lip sync. Sound: engine hum, light traffic. No subtitles, no on-screen text. Not cartoon or anime.
-CLIP 3: Dad speaks
-Photorealistic cinematic live-action, vertical 9:16, natural daylight, interior of a moving old car in Nigeria. Camera is in the back seat, looking forward between the two front seats. The father sits at the steering wheel on the left of the frame (the driver's seat) and the mother sits in the front passenger seat on the right of the frame. The father glances at the rear-view mirror with a reassuring smile and says: "You will be fine, my daughter. Just focus on your books." The mother nods with a soft smile. Through the windscreen, a Nigerian road moves slowly ahead. Authentic Nigerian accents, accurate lip sync. Sound: engine hum, light traffic. No subtitles, no on-screen text. Not cartoon or anime.
-CLIP 4: Arriving at campus
-Photorealistic cinematic live-action, vertical 9:16, bright morning daylight, entrance area of a Nigerian university campus. Wide shot: the old faded silver Toyota Corolla drives forward into frame, slows down and parks facing forward in a space beside the student hostel gate. Luggage is on the roof rack. Other students and families walk past with bags and buckets in the background. The car never reverses. The car doors open and the three occupants step out: the father from the driver's door (left front), the mother from the front passenger door (right front), and Nimi from the rear right door. Sound: campus chatter, car doors, birds. No dialogue, no subtitles, no on-screen text. Not cartoon or anime.
-CLIP 8: The car leaves
-Photorealistic cinematic live-action, vertical 9:16, bright morning daylight, Nigerian university hostel gate. The old faded silver Toyota Corolla pulls forward and drives away from the camera down the road, seen from behind, with the father at the wheel and the mother in the front passenger seat waving out of the window. The car moves forward only, never in reverse. Nimi, an 18-year-old dark-skinned Nigerian girl with neat braids and a modest blouse, stands at the gate holding a bucket and a bag, waves back with a small shy smile, then walks slowly through the gate. Slow push-in on her back as she goes in, then the shot fades to black. Sound: engine fading, campus chatter softening, birds. No dialogue, no subtitles, no on-screen text. Not cartoon or anime.
-```
-
-</details>
-
-<details><summary><b>Conversational Logo Design</b></summary>
-
-```text
-Design a conversational process to create a minimal logo for the user's project, leveraging their branding colors: #3a7eab, #cf4832, and #d1d3d4. Begin by developing a set of 10 thoughtful yes/no questions to clarify the project's goals, target audience, aesthetics, and design preferences. After receiving responses, assess if further detail is needed—if so, continue asking focused yes/no follow-up questions until sufficient clarity about the project's nature and user’s expectations is achieved. Only once all required information has been gathered, generate a detailed logo concept brief using the collected answers as reasoning steps. 
-
-Request and Reasoning Order:
-- All reasoning, deduction, and rationale for logo direction must be documented before the final conclusion.
-- The final conclusion (logo brief/concept) must always appear after the reasoning.
-- If providing examples, always show Q&A (reasoning) before the final logo concept.
-
-Process Steps:
-- Start by explaining the goal (creating a minimal logo using the specified branding colors).
-- Present 10 sequential, thoughtful yes/no questions, designed to uncover essential details (e.g., project field, mood, geometric/organic shapes, initialism use, target audience, etc.).
-- After each set of answers, assess what is unclear. Ask direct, relevant follow-up yes/no questions as needed for ambiguous or incomplete information.
-- Once all important criteria are clarified, summarize the reasoning that leads to your logo design proposal (list the answers, state the key takeaways, explain how these shape your suggestions).
-- Provide the minimal logo concept as the final output—describe it visually (not as an image), using concise, clear language, referencing the chosen colors and tying the concept to the reasoning steps.
-
-Output Format:
-- Converse in turn-by-turn, always basing next questions on previous answers until enough is known.
-- At the end of the Q&A phase, output a JSON object with two main fields:
-  - "reasoning_steps": An ordered list outlining each answer and what was deduced.
-  - "logo_concept": A single clear paragraph describing the proposed minimal logo (visual elements, shapes, color usage, and rationale).
-
-Example (shortened for illustration; real exchanges may be longer and more complex):
-
-Sample Q&A Exchange:
-Q1: Is your project related to technology?  
-A1: Yes.  
-Q2: Is your brand's mood more playful than serious?  
-A2: No.
-... (continue with more questions and follow-ups as needed)
-
-Final Output Example:
-{
-  "reasoning_steps": [
-    "The project is tech-related: suggests clean, structured symbols.",
-    "Mood is serious: favors sharp lines and minimal, non-playful forms.",
-    "Prefers geometric over organic shapes: will use strict geometry.",
-    "Wants initials included: will consider stylized lettering."
-    //... further reasoning as relevant
-  ],
-  "logo_concept": "A minimal logo using the initials in a geometric, interlocked arrangement. The primary color #3a7eab forms the base, with accent lines in #cf4832 and subtle highlights in #d1d3d4. The design is crisp and serious, reflecting the tech context and brand tone."
-}
-
-Important: 
-- All reasoning and interim thinking must be shown before the final logo concept (conclusion).
-- Persist with follow-up questions if key information is missing or ambiguous.
-- Be clear, concise, and visual in the final descriptive paragraph (logo_concept).
-
----
-
-Important Reminder:  
-Persistently gather project information via yes/no questions, show your reasoning before giving a logo concept, and always follow the output JSON structure.
-```
-
-</details>
-
-<details><summary><b>Corporate ID Photo</b></summary>
-
-```text
-Create a modern corporate ID photo of the person from the uploaded image, suitable for company badges and internal systems.
-Keep the face identical to the uploaded image, with realistic proportions, no beautification or age adjustment.
-
-Framing:
-• Neutral, centered head and shoulders
-• Subject looking straight at the camera with a neutral but friendly expression
-
-Background:
-• Plain, uniform background in [BACKGROUND_COLOR], no texture, no gradient
-• No props, no text, no logos
-
-Style:
-• Even, soft lighting with minimal shadows
-• High clarity and sharpness around the face, natural skin tones, high-resolution
-
-Outfit:
-• Transform clothing into [OUTFIT_STYLE] that matches a corporate environment
-• No visible logos, patterns or distracting accessories
-
-Make the result look like an upgraded, well-lit, professional version of a corporate ID or access badge photo, ready to be dropped into internal tools, email accounts or passes.
-```
-
-</details>
-
-<details><summary><b>Corporate Logo Designer</b></summary>
-
-```text
-{
-  "system_instruction": "Act as a senior brand identity designer. Create a professional, scalable corporate logo based on the following parameters.",
-  "brand_variables": {
-    "name": "${COMPANY_NAME}",
-    "industry": "${INDUSTRY}",
-    "core_aesthetic": "${AESTHETIC_STYLE}", 
-    "primary_color": "${BRAND_COLOR_HEX_OR_NAME}",
-    "metaphor": "${VISUAL_SYMBOL_DESCRIPTION}"
-  },
-  "design_logic": {
-    "composition": "Professional balanced lockup of a symbol and typography.",
-    "typography": "High-fidelity rendering of '${COMPANY_NAME}'. Style: Bold, modern, sans-serif, optimized kerning.",
-    "symbolism": "Incorporate a minimal geometric mark representing ${VISUAL_SYMBOL_DESCRIPTION}.",
-    "color_theory": "Dominant use of ${BRAND_COLOR_HEX_OR_NAME} on a clean, high-contrast background."
-  },
-  "nano_banana_constraints": {
-    "style_reference": "Swiss Graphic Design, Modern Corporate Minimalism",
-    "technical_specs": [
-      "Vector-style clarity",
-      "No 3D effects or drop shadows",
-      "Solid flat colors",
-      "Maximum legibility at small scale"
-    ],
-    "negative_space": "Utilize intentional white space to enhance the ${AESTHETIC_STYLE} feel."
-  },
-  "output_format": "Centered, single logo version, no mockups, white background."
-}
-```
-
-</details>
-
-<details><summary><b>Corporate Studio Portrait</b></summary>
-
-```text
-Use the person from the uploaded photo as the primary reference. Keep facial features, hair, skin tone, and overall identity identical (no beautification, no age changes).
-
-Scene: Modern corporate studio portrait shoot.
-Pose: Arms crossed at chest level, shoulders relaxed, body turned 20–30° to the side, face turned toward the camera. Expression: neutral and confident with a subtle friendly smile.
-Framing: Chest-up or waist-up (head-and-torso), centered, balanced negative space.
-
-Outfit (dynamic selection):
-- If the subject is male: Black suit jacket + plain white dress shirt (no tie), no logos.
-- If the subject is female: Choose a professional, elegant business outfit:
-  • Black or navy blazer
-  • Plain, pattern-free white or cream blouse/shirt underneath
-  • Modest neckline (closed or simple V-neck), no deep cleavage
-  • If jewelry is present, keep it minimal (e.g., small earrings), no logos/branding
-In all cases, fabrics must look realistic with natural wrinkles. Avoid flashy fashion elements.
-
-Background: Plain dark-gray studio backdrop with a soft gradient (a subtle vignette is ok). No distracting objects.
-Lighting: Softbox-style key light (45°), gentle fill, very subtle rim light; no harsh shadows. Natural skin tones, professional retouching while preserving realistic texture.
-Camera: 85mm portrait lens feel, f/2.8–f/4, slight background blur, high sharpness (especially the eyes).
-Color: Cinematic but natural, low saturation, clean contrast.
-
-Rules: No text, no logos, no watermarks, no extra people. Hands/fingers must be natural and correct. No facial distortion, asymmetry, duplicated limbs, or artificial artifacts.
-Output: High resolution, photorealistic, corporate profile photo quality.
 ```
 
 </details>

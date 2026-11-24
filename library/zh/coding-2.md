@@ -1,10 +1,10 @@
-# 编程开发 (2/11)
+# 编程开发 (2/12)
 
-共 706 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 739 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
-分页：[1](coding.md) · **2** · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md)
+分页：[1](coding.md) · **2** · [3](coding-3.md) · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md)
 
 <details><summary><b>Cron表达式解释与校验</b> · 机器翻译</summary>
 
@@ -2232,6 +2232,34 @@ if __name__ == "__main__":
 
 </details>
 
+<details><summary><b>Docker Compose 编码偏好</b> · 机器翻译</summary>
+
+```text
+# 想要一键本地环境的开发者的 Docker Compose 偏好
+- 让 `docker compose up` 成为新队友启动整套本地环境所需的唯一命令。置信度：0.90
+- 将文件命名为 `compose.yaml`，并去掉已过时的顶层 `version:` 键。置信度：0.85
+- 将每个镜像固定到具体的版本标签，绝不使用 `latest`，这样环境下个月的表现仍与现在一致。置信度：0.90
+- 为每个数据库和队列添加 `healthcheck`，并使用带 `condition: service_healthy` 的 `depends_on`，而不是 sleep 循环。置信度：0.90
+- 将密钥和与机器相关的值放在被 git 忽略的 `.env` 文件中，并提交带有安全默认值的 `.env.example`。置信度：0.90
+- 为数据库数据使用具名卷，这样 `docker compose down` 不会意外清除本地工作成果。置信度：0.85
+- 将端口绑定到宿主机的 `127.0.0.1`，这样整个网络都无法访问本地数据库。置信度：0.80
+- 只为你需要实时编辑的服务挂载源代码，并使用 `develop.watch` 或带有清晰同步规则的绑定挂载。置信度：0.75
+- 将管理界面、邮件捕获和链路追踪等可选工具放在 `profiles` 之后，让默认的服务栈保持精简。置信度：0.80
+- 使用 `compose.override.yaml` 存放个人调整，并且不要将其纳入 git。置信度：0.70
+- 使用与生产环境相同的 Dockerfile 构建应用镜像，如有需要可使用单独的 `dev` 目标。置信度：0.85
+- 即使在本地也以非 root 用户运行服务，这样权限问题能在上生产之前暴露出来。置信度：0.70
+- 通过初始化脚本或一次性的 `seed` 服务，用一个小而确定的数据集为数据库填充种子数据。置信度：0.80
+- 让服务通过默认网络上的服务名互相通信,而不是硬编码 IP 或使用 `host.docker.internal`。置信度：0.85
+- 为资源占用大的服务设置内存和 CPU 限制,这样一个容器就不会让笔记本卡死。置信度：0.65
+- 让日志输出保持在 stdout 和 stderr,并使用 `docker compose logs -f <service>`,而不是容器内的日志文件。置信度：0.85
+- 为每个项目指定固定的 `name:`,这样容器、网络和卷就不会在不同仓库之间冲突。置信度：0.75
+- 将迁移、测试和重置等常见任务封装成调用 `docker compose run --rm` 的 `make` 或 `just` 目标。置信度：0.80
+- 在 CI 中使用同一个 Compose 文件进行集成测试,让 CI 和笔记本电脑运行同一套环境。置信度：0.75
+- 不要将 Compose 用作任何需要零停机部署或扩缩容的生产编排器。置信度：0.80
+```
+
+</details>
+
 <details><summary><b>Dockerfile 与 CI 偏好</b> · 机器翻译</summary>
 
 ```text
@@ -2251,6 +2279,37 @@ if __name__ == "__main__":
 - 将 lint、类型检查和测试作为独立的并行 CI 作业运行。置信度:0.80
 - 用 git SHA 给镜像打标签,部署时绝不依赖 latest 标签。置信度:0.90
 - 保持工作流简短,并将重复的步骤移入可复用的工作流。置信度:0.70
+```
+
+</details>
+
+<details><summary><b>Dockerfile 编写偏好</b> · 机器翻译</summary>
+
+```text
+# 追求小巧、简单、可复现镜像的平台工程师的 Dockerfile 品味
+- 使用多阶段构建:在 builder 阶段编译并安装开发依赖,只把运行时产物复制到最终阶段。置信度:0.95
+- 将基础镜像固定到具体版本标签加摘要(`node:22.11-slim@sha256:...`),绝不使用 `latest`。置信度:0.90
+- 运行时基础镜像优先选用 slim 或 distroless,而不是完整发行版镜像;只有在确认 musl 对该技术栈安全时才考虑 Alpine。置信度:0.80
+- 按变更频率从低到高排列层:先系统包,再锁文件与依赖安装,最后是应用源码。置信度:0.95
+- 在 `COPY . .` 之前单独复制锁文件,这样只有源码变化时依赖层仍可命中缓存。置信度:0.95
+- 维护严格的 `.dockerignore`,排除 `.git`、`node_modules`、本地环境文件、测试输出和构建缓存。置信度:0.90
+- 以非 root 用户运行,使用固定的 UID/GID,在镜像中创建并通过 `USER` 设置。置信度:0.95
+- 包管理器缓存使用 BuildKit 缓存挂载(`RUN --mount=type=cache`),而不是把缓存烘焙进镜像层。置信度:0.85
+- 使用 `RUN --mount=type=secret` 传递密钥;绝不用 `ARG` 或 `ENV` 传令牌,也绝不 `COPY` 凭据文件。置信度:0.95
+- 将 `apt-get update` 与 `apt-get install --no-install-recommends` 合并在同一个 `RUN` 中,并在同一层清理 `/var/lib/apt/lists`。置信度:0.90
+- 仅当可复现性比安全补丁更重要时才固定系统包版本;否则定期重新构建镜像。置信度:0.65
+- `ENTRYPOINT` 和 `CMD` 使用 exec 形式,使进程作为 PID 1 能接收信号。置信度:0.90
+- 当应用会派生子进程或自身不回收僵尸进程时,添加一个极小的 init(`tini` 或 `--init`)。置信度:0.75
+- 每个容器一个进程;边车和进程管理器属于编排器,而不属于镜像。置信度:0.85
+- 在运行时通过环境变量配置应用;镜像在预发布和生产环境之间保持完全一致。置信度:0.90
+- 显式设置 `WORKDIR`,避免在 `RUN` 链中使用 `cd`。置信度:0.80
+- 优先使用 `COPY` 而非 `ADD`;只有在明确需要其文档记载的远程校验和或归档解压行为时才使用 `ADD`。置信度:0.85
+- 通过 CI 构建参数添加 OCI 标签(`org.opencontainers.image.source`、`revision`、`created`)。置信度:0.75
+- 仅当没有编排器探针时才定义 `HEALTHCHECK`;在 Kubernetes 上则依赖就绪探针和存活探针。置信度:0.70
+- 在 CI 中用 hadolint 检查 Dockerfile,用 Trivy 或 Grype 扫描最终镜像,遇到严重 CVE 即失败。置信度:0.85
+- 使用 `docker buildx` 构建多架构镜像(`linux/amd64`、`linux/arm64`),并推送单个清单列表。置信度:0.75
+- 用不可变的 git SHA 给镜像打标签;将 `v1.4` 这类便于人阅读的标签视为可移动的指针。置信度:0.85
+- 为最终镜像设定体积预算,并在 CI 中用 `docker image inspect` 或 dive 检查。置信度:0.65
 ```
 
 </details>
@@ -3236,6 +3295,795 @@ Edge Functions 运行于 Deno 环境，属于无服务器（serverless）架构�
 - 先回滚 main 上的问题提交，之后再调查原因。置信度：0.85
 - 添加 CODEOWNERS 文件，以便自动请求合适的审阅者。置信度：0.75
 - 分支合并后自动删除。置信度：0.90
+```
+
+</details>
+
+<details><summary><b>Git 巴士因子与知识风险分析器</b> · 机器翻译</summary>
+
+```text
+---
+name: git-bus-factor-and-knowledge-risk-analyzer
+description: 根据 Git 仓库的历史记录找出知识集中风险：每个模块的巴士系数、谁掌握知识、已无在职人员了解的模块、只有一人了解的热点、仓库卡车系数和重复身份，并附交接计划模板。离线运行，仅依赖 Python 标准库。
+---
+
+# Git 巴士系数与知识风险分析器
+
+你要帮助工程经理、技术负责人、小公司 CTO 和开源维护者，看清代码库中哪些知识只掌握在一两个人手里，以及哪些代码已经没有任何仍在参与项目的人了解。这类风险通常在最糟糕的时候暴露：有人请假、换团队或离职，而一次故障或一个安全修复恰好落在没人碰过的代码上。你要把 Git 历史整理成一份简短、基于事实的全貌，并给出在需要之前就把知识扩散开的可行计划。
+
+你只处理用户提供的仓库或日志，并且只在用户自己的机器上处理。你绝不能按提交数量评判或排名个人：历史只能说明谁改过代码，不能说明谁真正理解代码、工作质量如何，或某人做了多少看不见的工作（评审、设计、支持）。你要把发现呈现为系统中的风险，而不是绩效数据，并建议与团队一起确认。
+
+## 本技能中的文件
+
+- `scripts/bus_factor.py` - 读取 `git log --numstat` 历史（已保存的日志或 `--repo PATH`），合并别名，跳过机器人、锁文件和第三方引入代码，按变更大小和时间远近加权，并报告每个模块的巴士系数、活跃知情者与覆盖率、仓库卡车系数、人员以及发现项 BF01-BF06；`--json` 供工具使用，`--self-test` 运行 22 项检查（仅依赖 Python 3.8+ 标准库；只有 `--repo` 需要 git）
+- `references/metrics-explained.md` - 权重、“了解某文件”、模块巴士系数、活跃覆盖率和卡车系数的计算方式，可调整的设置，以及已知局限
+- `references/reducing-knowledge-risk.md` - 每项发现通常意味着什么，以及对应的具体改进做法（结对、评审轮换、运维手册、归属、交接）
+- `templates/knowledge-risk-report.md` - 你要交付的报告和 90 天计划
+- `examples/git-history.log`、`examples/aliases.csv` - 一个虚构商店 API 的历史，含五个人和一个机器人：一个由已离开的人写成的支付模块、一个只有一人修改的前端、一位拥有两个邮箱的作者
+
+## 工作流程
+
+### 1. 确定范围
+询问哪个仓库（或单体仓库中的哪些文件夹）重要，什么算“活跃”（默认：最近 120 天内有提交），历史应追溯多久（默认半衰期 365 天），以及谁已经离开或即将长期休假。询问是否存在 CODEOWNERS 文件或团队映射，以便事后对照。
+
+### 2. 获取历史
+在仓库内执行：
+'''
+git log --no-merges --numstat --date=short --format='@@%H%x09%an%x09%ae%x09%ad' > history.log
+'''
+或者用 `--repo PATH` 让脚本自己运行 git。为拥有多个邮箱或名字的人建立 `aliases.csv`（`alias,canonical`）；首次运行会把可能的重复项列为 BF05。
+
+### 3. 运行分析
+'''
+python3 scripts/bus_factor.py examples/git-history.log --aliases examples/aliases.csv
+python3 scripts/bus_factor.py --repo . --aliases aliases.csv --depth 2 --since 2024-01-01
+python3 scripts/bus_factor.py history.log --aliases aliases.csv --json > knowledge.json
+python3 scripts/bus_factor.py --self-test
+'''
+单体仓库用 `--depth 2`（`services/payments`），无关文件夹用 `--exclude 'docs/*'`，用 `--as-of` 复现过去某个日期。退出码 0 = 无高危发现，1 = 有高危发现，2 = 输入有误。
+
+### 4. 与团队一起解读
+- 高：BF01 仓库卡车系数 1-2（失去一两个人就会让大部分文件变成无人了解），BF02 某个模块中大多数文件没有任何活跃的了解者。
+- 中：BF03 模块巴士系数为 1，BF04 过去 90 天变更很多、却只有一人了解的热点。
+- 低：BF05 重复身份（修正别名后重新运行），BF06 该模块从来只有一个人改过。
+报告之前，先与团队负责人逐项核对每个高危发现：生成的代码、最近的重写或结对完成的工作都可能让历史产生误导。把模块映射到业务影响（优先支付、认证和数据管道）。
+
+### 5. 报告与计划
+填写 `templates/knowledge-risk-report.md`：模块表、按业务影响排序的前 3-5 项风险，以及基于 `references/reducing-knowledge-risk.md` 的 90 天计划，每项行动都有负责人和检查方式。每月或每季度重新运行脚本并对比覆盖率。
+
+## 规则
+- 绝不要把人员表当作生产力排名展示，也不要在团队负责人之外分享；它的用途是找出单点故障。
+- 把发现当作问题来对待；在重新分配工作之前，先与相关人员确认。
+- 在本地工作；不要把仓库或其历史上传到任何地方。
+
+FILE:references/metrics-explained.md
+# bus_factor.py 如何衡量知识
+
+## 输入与过滤
+- 历史来自 `git log --no-merges --numstat`。每个提交提供作者名、邮箱、日期，以及每个文件的新增和删除行数。二进制文件（`-`）会被跳过；重命名保留新路径。
+- 机器人会被跳过，除非使用 `--include-bots`（名字或邮箱包含 `[bot]`、`bot@`，或名字以 " bot" 结尾）。
+- 默认排除：锁文件（`package-lock.json`、`yarn.lock`、`pnpm-lock.yaml`、`poetry.lock`、`Cargo.lock`、`go.sum`、`composer.lock`、`Gemfile.lock`）、`vendor/`、`node_modules/`、`dist/`、`build/`、压缩文件和图片。用 `--exclude GLOB` 添加更多。
+- 别名：`aliases.csv` 把邮箱或名字映射到同一个规范身份的人。没有它时，拥有两个邮箱的同一个人会被算作两个人，看起来比实际更分散。
+
+## 变更的权重
+    weight = ln(1 + lines added + lines deleted) * 0.5 ^ (age_days / half_life_days)
+
+- 取对数可以避免一次巨大的生成代码差异压过多年的小而细致的修改。
+- 半衰期（默认 365 天）让较旧的工作权重更低；人们会忘掉长期没碰过的代码。
+
+## 了解某个文件
+当某位作者持有该文件总权重的至少 `--knows-share`（默认 0.25）时，就认为他了解该文件。一个文件可以有多位了解者。
+
+## 活跃
+如果某位作者的最后一次提交在 `--as-of`（默认：最新提交）之前 `--active-days`（默认 120）天以内，他就是活跃的。要让脚本知道最近离职的人，可以调整 `--as-of` 或缩短 `--active-days`；历史无法得知辞职信息。
+
+## 模块指标
+- **模块**：路径的前 `--depth` 层文件夹（默认 1）；位于根目录的文件归入 "(root)"。
+- **最高作者 / 最高占比**：占模块总权重最大的那个人及其占比。
+- **巴士系数**：合计持有模块权重一半以上所需的最少人数。1 表示一个人持有大部分。
+- **活跃了解者**：至少了解该模块中一个文件的活跃人员。
+- **活跃覆盖率**：模块中至少有一位活跃了解者的文件所占的比例。
+
+## 仓库卡车系数
+这是一种贪心估算，思路来自已发表的卡车系数研究：反复移除了解最多仍被覆盖文件的活跃人员，直到超过一半的文件没有活跃了解者。被移除的人数就是卡车系数。0 表示超过一半的文件已经没有活跃了解者。
+
+## 发现项
+| 代码 | 严重程度 | 规则 |
+|---|---|---|
+| BF01 | 高 | 卡车系数为 0、1 或 2 |
+| BF02 | 高 | 某模块的活跃覆盖率低于 50% |
+| BF03 | 中 | 模块巴士系数为 1，且模块有 3 个或更多文件 |
+| BF04 | 中 | 巴士系数为 1，且该模块最近 90 天的行变更量位于模块中的前四分之一（需要 4 个以上模块） |
+| BF05 | 低 | 同一个名字出现多个邮箱且没有别名 |
+| BF06 | 低 | 该模块从来只有一个人改过 |
+
+## 局限
+- 提交体现的是作者身份，而不是理解程度：评审者、结对伙伴以及设计或运维该代码的人都看不到。
+- Squash 合并会把团队的工作记在一位作者名下；大型重构和格式化提交会夸大某个人的占比（用 `--since` 或过滤日志来排除它们）。
+- 不统计 Co-authored-by 尾注。
+- 小型仓库和文件很少的模块会让数字有噪声；请与团队一起解读。
+
+FILE:references/reducing-knowledge-risk.md
+# 降低知识风险
+
+## 按发现项
+| 发现项 | 通常含义 | 第一步行动 |
+|---|---|---|
+| BF01 卡车系数 1-2 | 大部分代码库依赖一两个人 | 选出 2-3 个业务上最关键的模块，从那里开始执行下面的行动；把它定为季度目标，而不是额外加码的工作 |
+| BF02 无人了解的模块 | 写它的人已离开或转岗 | 立即指定负责人；与任何还记得它的人安排一次代码走读；写一份简短的运维手册；在下次修改前，给高风险路径补上测试 |
+| BF03 巴士系数 1 | 一个人完成几乎所有修改 | 轮换评审，让第二个人评审每一次修改；下一个功能一起结对做；主要作者写一页架构说明 |
+| BF04 只有一人了解的热点 | 最繁忙的代码只有一个人了解 | 优先级仅次于无人了解的模块：每隔一次修改就结对，把第二评审人设为必需，保留决策变更日志 |
+| BF05 重复身份 | 一个人有多个邮箱 | 添加别名行并重新运行；请大家按仓库设置 `user.email` |
+| BF06 始终只有一人 | 其他人完全没碰过 | 在该模块里交给第二个人一项小而真实的任务，由原作者担任评审 |
+
+## 有效的做法
+- **评审轮换**：模块的第二评审人来自其通常作者之外；跟踪一个月。
+- **结对或集体编程**：在下一次真实的修改上进行，而不是玩具任务；每个高风险模块每周 60-90 分钟通常就够了。
+- **运维手册**：说明如何运维该模块：怎么部署、回滚、查看它的仪表盘，以及处理常见告警。
+- **架构说明**：每个模块一页（目的、数据流、棘手之处、为何做出这些决策），放在代码旁边。
+- **归属**：在 CODEOWNERS 中用团队（而不是一个人）作为负责人，且至少有两人能够批准。
+- **值班跟岗**：针对会触发呼叫的模块。
+- **交接计划**：当有人提出离职或长期休假时：列出本报告中属于他们的模块，安排走读，并在最后几周对未完成的工作进行结对。
+
+## 衡量进展
+用相同设置每月重新运行并对比：每个关键模块的活跃覆盖率（目标 100%，且至少有两位活跃了解者）、模块巴士系数（目标 2 以上），以及仓库卡车系数（小团队目标 3 以上）。
+
+FILE:templates/knowledge-risk-report.md
+# 知识风险报告：{{repository}} - {{date}}
+
+设置：活跃 = 最近 {{active_days}} 天内有提交；半衰期 {{half_life_days}} 天；了解占比 {{knows_share}}；模块深度 {{depth}}。历史起始于 {{since}}。
+
+## 摘要
+- 仓库卡车系数：{{truck_factor}}（{{people}}）
+- 活跃覆盖率低的模块：{{bf02_modules}}
+- 只有一位了解者的模块：{{bf03_modules}}
+- 只有一人了解的热点：{{bf04_modules}}
+
+## 模块表
+（粘贴 bus_factor.py 输出的模块表）
+
+## 主要风险（按业务影响排序）
+| # | 模块 | 为什么重要 | 发现项 | 已与谁确认 |
+|---|---|---|---|---|
+| 1 | {{module}} | {{impact, e.g. checkout payments}} | {{code}} | {{lead}} |
+
+## 90 天计划
+| 行动 | 模块 | 负责人 | 截止 | 完成标准 |
+|---|---|---|---|---|
+| {{e.g. pair on next two changes}} | {{module}} | {{name}} | {{date}} | {{second person merged a change alone}} |
+
+## 注意事项
+- 历史显示的是谁改过代码，而不是谁理解代码；评审者、结对伙伴和运维人员不在统计之内。
+- {{anything specific: squash merges, a big refactor, generated code}}
+
+## 下次检查
+{{date}}，使用相同设置。
+
+FILE:examples/git-history.log
+@@58f5d4cce18a5ce4e3f9aa12d9767dcfd74b25ee	Ben Okafor	ben@shop.example	2026-11-14
+
+5	0	web/src/api.ts
+32	0	web/src/checkout.tsx
+@@4cbab3078c9e5e9fac0a6d3627c6e022739f96e1	Eli Novak	eli@shop.example	2026-11-12
+
+12	0	core/config.py
+40	0	core/db.py
+@@a0d3945429639f6c562a88444476839744d9453e	Ana Silva	ana.silva@shop.example	2026-11-10
+
+10	0	core/db.py
+29	0	orders/api.py
+@@faa0aacf2cd46c8e74c9bd98cf5921fb50dd6c6b	Ana Silva	ana.silva@shop.example	2026-10-20
+
+15	0	payments/webhooks.py
+@@b579089fdf73b4d2bc6598a4ee680b3839743088	Ben Okafor	ben@shop.example	2026-10-11
+
+9	0	web/src/cart.tsx
+6	0	web/src/checkout.tsx
+@@50b03245d12d83ddb1e9ae1c66a2d45178051021	Eli Novak	eli@shop.example	2026-10-10
+
+15	0	core/config.py
+11	0	search/query.py
+@@7214f7c5b6154585c695eaf02e978b3464b8dc02	dependabot[bot]	49699333+dependabot[bot]@users.noreply.github.com	2026-10-01
+
+150	0	web/package-lock.json
+150	0	web/package.json
+@@16652d4b388444019ca413263b86cbfd87baed7a	Ana Silva	ana.silva@shop.example	2026-09-24
+
+37	0	orders/api.py
+7	0	orders/service.py
+@@8290901896c8e9f9611cff8466cf7966b25eb76d	Ben Okafor	ben@shop.example	2026-09-15
+
+5	0	README.md
+@@fffb9688a48be4a6e95b08b16cba70e17e9f4b9b	Eli Novak	eli@shop.example	2026-09-07
+
+15	0	orders/api.py
+31	0	search/query.py
+@@e841c7d0bbed56f4725d681b6587a1808123c893	Ben Okafor	ben@shop.example	2026-09-07
+
+24	0	web/src/api.ts
+25	0	web/src/cart.tsx
+@@88ccae50a361536da22fe6b5e96cc008385ccccb	Ana Silva	ana.silva@shop.example	2026-08-09
+
+25	0	orders/models.py
+14	0	orders/service.py
+@@000ed52a381b54ba901092d2050c6165b8441de8	Eli Novak	eli@shop.example	2026-08-06
+
+37	0	core/db.py
+27	0	orders/api.py
+@@c548efcb90ebc04644b4f9d761bb0a96bc9be56d	Ben Okafor	ben@shop.example	2026-08-04
+
+4	0	web/src/api.ts
+13	0	web/src/checkout.tsx
+@@b9a4d1e4e28cda2113d8ac51cdff3389910dc14e	Eli Novak	eli@shop.example	2026-07-04
+
+32	0	core/config.py
+15	0	core/db.py
+@@a003bffd397e386e00c745b4393ca3c509859e35	Ben O.	ben.okafor@gmail.example	2026-07-01
+
+3	0	web/src/cart.tsx
+9	0	web/src/checkout.tsx
+@@10e0e7b09f2d37b0c7055c4a7a17af09dc945e91	Ana Silva	ana.silva@shop.example	2026-06-24
+
+18	0	core/db.py
+28	0	orders/models.py
+@@d0076f938d1899cc368d2cc627220682762e6516	Eli Novak	eli@shop.example	2026-06-02
+
+35	0	core/config.py
+15	0	search/query.py
+@@b70911cb2b187c324a78b2af770bff9c354ed222	Ben Okafor	ben@shop.example	2026-05-29
+
+28	0	web/src/api.ts
+6	0	web/src/cart.tsx
+@@c77843f7c87f8d6ad35d107e4ad625e4559cf306	Chen Wei	chen@shop.example	2026-05-15
+
+30	0	core/config.py
+9	0	search/query.py
+@@faeb60ed9f9ec1faaf33e8393463027d45666e4a	Ana Silva	ana.silva@shop.example	2026-05-09
+
+25	0	core/db.py
+31	0	orders/api.py
+@@09c4044f954ffd84dc15713518cc1532a6c5cc6f	Ben Okafor	ben@shop.example	2026-04-25
+
+8	0	web/src/api.ts
+8	0	web/src/checkout.tsx
+@@efcdcc32cc592412a5a7dd1796fa0149aff7094a	dependabot[bot]	49699333+dependabot[bot]@users.noreply.github.com	2026-04-01
+
+150	0	web/package-lock.json
+150	0	web/package.json
+@@ae3fc07a50e237c4a8b98c1df55da1f5e8155aa6	Ana Silva	ana.silva@shop.example	2026-03-24
+
+30	0	orders/api.py
+36	0	orders/service.py
+@@eb7130d2a61f5f297762462e5ea807f5c601b827	Ben Okafor	ben@shop.example	2026-03-22
+
+36	0	web/src/cart.tsx
+30	0	web/src/checkout.tsx
+@@bdadf66c0528166414b20facd6e0bc6490dc50c4	Chen Wei	chen@shop.example	2026-03-14
+
+38	0	search/index.py
+37	0	search/query.py
+@@9dd045964286f69e2630aa8d2492d9cb8b126f45	Ben Okafor	ben@shop.example	2026-02-16
+
+22	0	web/src/api.ts
+39	0	web/src/cart.tsx
+@@e5b16b9f4a0600bb1303545da56d8ec5b775a71d	Ana Silva	ana.silva@shop.example	2026-02-06
+
+40	0	orders/models.py
+4	0	orders/service.py
+@@9f3ce69e27b7d9c169f07879450c79faffb917e9	Ben Okafor	ben@shop.example	2026-01-14
+
+28	0	web/src/api.ts
+26	0	web/src/checkout.tsx
+@@87c36c4896129acc5b4dacb88498e10394a0dfaf	Chen Wei	chen@shop.example	2026-01-11
+
+22	0	core/config.py
+39	0	search/index.py
+@@8ef82e501b1097d202e79c324d4a6118e855f852	Ana Silva	ana.silva@shop.example	2025-12-22
+
+28	0	core/db.py
+14	0	orders/models.py
+@@3433f75f61d9493c5cb9d48d7a5fb86ef241bea0	Ben Okafor	ben@shop.example	2025-12-11
+
+36	0	web/src/cart.tsx
+29	0	web/src/checkout.tsx
+@@304e9fd851a7b0cdd05780fe452310a5d3d86abc	Chen Wei	chen@shop.example	2025-11-11
+
+21	0	core/config.py
+35	0	search/query.py
+@@98d8c4bbb5f3b6604cfd38bc5dda9f08736c64ed	Ben Okafor	ben@shop.example	2025-11-07
+
+29	0	web/src/api.ts
+19	0	web/src/cart.tsx
+@@03290d9ed4de0c842c7b378220f9a385b4135a4d	Ana Silva	ana@personal.example	2025-11-06
+
+5	0	core/db.py
+37	0	orders/api.py
+@@f1e157a039fbe041730b8f1137c684027f0e7c32	Ben Okafor	ben@shop.example	2025-10-04
+
+24	0	web/src/api.ts
+6	0	web/src/checkout.tsx
+@@5622224adaa507aa5490d234b1840d20477c3575	dependabot[bot]	49699333+dependabot[bot]@users.noreply.github.com	2025-09-30
+
+150	0	web/package-lock.json
+150	0	web/package.json
+@@f658dbaddfcc5963b8e27a6f36a1903d4b3db6e6	Ana Silva	ana.silva@shop.example	2025-09-21
+
+30	0	orders/api.py
+14	0	orders/service.py
+@@bac00f633bef75ed05866ccc8d6d31fb9e071e3e	Chen Wei	chen@shop.example	2025-09-10
+
+20	0	search/index.py
+20	0	search/query.py
+@@c460c69d03be963f77b2524616dfde637254e72f	Ben Okafor	ben@shop.example	2025-09-01
+
+35	0	web/src/cart.tsx
+12	0	web/src/checkout.tsx
+@@65153a48d22bf9b981f3680e6f9917b64a43ec35	Ana Silva	ana.silva@shop.example	2025-08-06
+
+28	0	orders/models.py
+22	0	orders/service.py
+@@bc8cbd6bf9daee0d05449afbbaccb64f56bfb29a	Chen Wei	chen@shop.example	2025-07-11
+
+19	0	core/config.py
+14	0	search/index.py
+@@6a34d862b912eb393cf7f8ca55c028b9010173be	Ana Silva	ana.silva@shop.example	2025-06-21
+
+23	0	core/db.py
+24	0	orders/models.py
+@@6059e786b3ab3482031920657fecf929a4a58bd4	Dana Kim	dana@shop.example	2025-05-20
+
+6	0	payments/stripe_client.py
+39	0	payments/webhooks.py
+@@e7cb62d4ed5198d9ce0a3fe0b1c938113a67ad97	Chen Wei	chen@shop.example	2025-05-10
+
+36	0	core/config.py
+40	0	search/query.py
+@@9fd0749dd73e35beb76f65b7e3657463d44c7e54	Ana Silva	ana.silva@shop.example	2025-05-06
+
+10	0	core/db.py
+14	0	orders/api.py
+@@a0c736ff9075a594896ca5bf024440a12c35c115	Dana Kim	dana@shop.example	2025-05-03
+
+29	0	payments/refunds.py
+15	0	payments/webhooks.py
+@@1e40d5f4b152a88dbd317ede961bf06ae2a0a742	Dana Kim	dana@shop.example	2025-04-17
+
+22	0	payments/refunds.py
+19	0	payments/stripe_client.py
+@@ab3f7a3a2d1bea59b43fc959a0b3e1116dcf247f	dependabot[bot]	49699333+dependabot[bot]@users.noreply.github.com	2025-04-01
+
+150	0	web/package-lock.json
+150	0	web/package.json
+@@fb0a311f7267f495367425518ef25dbf365f5ae1	Dana Kim	dana@shop.example	2025-03-31
+
+40	0	payments/stripe_client.py
+4	0	payments/webhooks.py
+@@cd493d2263836828dcb0be8e4c4140125c965850	Ana Silva	ana.silva@shop.example	2025-03-21
+
+39	0	orders/api.py
+6	0	orders/service.py
+@@3c743484d0dd4bca3905f9686bba1f48b22de580	Dana Kim	dana@shop.example	2025-03-15
+
+38	0	payments/refunds.py
+30	0	payments/webhooks.py
+@@981e4f06309729c1da359503aed2ba7acd1a8e8b	Chen Wei	chen@shop.example	2025-03-10
+
+23	0	search/index.py
+14	0	search/query.py
+@@c9168c14828d2c382e334aa604064471d5d0cd63	Dana Kim	dana@shop.example	2025-02-26
+
+6	0	payments/refunds.py
+20	0	payments/stripe_client.py
+@@4e20074f7f1b7bddfda1949cc23b0852c36ec61a	Dana Kim	dana@shop.example	2025-02-10
+
+17	0	payments/stripe_client.py
+8	0	payments/webhooks.py
+@@d53da3ddd6680b9335a63352e7b365c79f62c028	Ana Silva	ana.silva@shop.example	2025-02-03
+
+10	0	orders/models.py
+25	0	orders/service.py
+@@3e657197ddd176ccb02ab859abd3f8416459b665	Dana Kim	dana@shop.example	2025-01-24
+
+31	0	payments/refunds.py
+14	0	payments/webhooks.py
+@@8590bef42bccc66937a1dcbc79275ed93099cef7	Dana Kim	dana@shop.example	2025-01-08
+
+4	0	payments/refunds.py
+18	0	payments/stripe_client.py
+@@f67141a910fd0594c02e23adbc41e740d373506c	Ana Silva	ana.silva@shop.example	2025-01-06
+
+11	0	README.md
+
+FILE:examples/aliases.csv
+alias,canonical
+ben.okafor@gmail.example,Ben Okafor
+Ben O.,Ben Okafor
+
+FILE:scripts/bus_factor.py
+#!/usr/bin/env python3
+"""bus_factor.py - find knowledge concentration ("bus factor") risk in a Git repository from its history.
+
+Reads `git log --numstat` history (from a saved log file or by running git on a repo), merges author
+aliases, skips bots, lockfiles and vendored code, and weights each change by lines touched and how
+recent it is. Per module (top-level folder by default) it reports who holds the knowledge, the module
+bus factor (fewest people holding more than half of it), whether any active person still knows it,
+and the repository truck factor (how many people would have to leave before more than half of the
+files have no active person who knows them). Standard library only.
+
+Usage:
+  python3 bus_factor.py LOGFILE [options]
+  python3 bus_factor.py --repo PATH [options]          (runs git log for you)
+  python3 bus_factor.py --self-test
+Make LOGFILE with:
+  git log --no-merges --numstat --date=short --format='@@%H%x09%an%x09%ae%x09%ad' > history.log
+Options:
+  --aliases FILE       CSV alias,canonical  (alias = an email or a name; canonical = the person's name)
+  --depth N            module = first N folders of the path (default 1; root files = "(root)")
+  --since YYYY-MM-DD   ignore older commits
+  --as-of YYYY-MM-DD   reference date (default: newest commit in the log)
+  --active-days N      an author is active if they committed within N days of --as-of (default 120)
+  --half-life-days N   a change loses half its weight after N days (default 365)
+  --knows-share X      an author "knows" a file when they hold at least X of its weight (default 0.25)
+  --exclude GLOB       extra path pattern to skip (repeatable); defaults skip lockfiles, vendor, dist, minified
+  --include-bots       keep authors whose name or email contains [bot] or "bot@"
+  --json               machine-readable output
+Exit codes: 0 no high findings, 1 high findings, 2 bad input.
+"""
+import csv, datetime as dt, fnmatch, json, math, os, subprocess, sys
+from collections import defaultdict
+
+DEFAULT_EXCLUDES = ["*package-lock.json", "*yarn.lock", "*pnpm-lock.yaml", "*poetry.lock", "*Cargo.lock", "*go.sum",
+                    "*composer.lock", "*Gemfile.lock", "vendor/*", "*/vendor/*", "node_modules/*", "dist/*",
+                    "build/*", "*.min.js", "*.min.css", "*.svg", "*.png", "*.jpg", "*.pdf"]
+SEV = {"BF01": "high", "BF02": "high", "BF03": "medium", "BF04": "medium", "BF05": "low", "BF06": "low"}
+NAMES = {"BF01": "repository truck factor is 1 or 2",
+         "BF02": "orphaned module: most files have no active person who knows them",
+         "BF03": "module bus factor 1: one person holds most of the knowledge",
+         "BF04": "hot spot with a single knower (busy recently, one person)",
+         "BF05": "possible duplicate identity (same name, different emails)",
+         "BF06": "only one person has ever changed this module"}
+
+
+class InputError(Exception):
+    pass
+
+
+def parse_date(s, what):
+    try:
+        return dt.date.fromisoformat(s.strip()[:10])
+    except (ValueError, AttributeError):
+        raise InputError("bad %s date: %r" % (what, s))
+
+
+def parse_log(lines):
+    """Return list of commits: dict(sha, name, email, date, files=[(path, added, deleted)])."""
+    commits, cur = [], None
+    for n, raw in enumerate(lines, 1):
+        line = raw.rstrip("\n")
+        if line.startswith("@@"):
+            parts = line[2:].split("\t")
+            if len(parts) < 4:
+                raise InputError("line %d: header needs sha, name, email, date separated by tabs" % n)
+            cur = {"sha": parts[0], "name": parts[1].strip(), "email": parts[2].strip().lower(),
+                   "date": parse_date(parts[3], "commit"), "files": []}
+            commits.append(cur)
+        elif line.strip():
+            if cur is None:
+                raise InputError("line %d: numstat line before any @@ commit header (wrong --format?)" % n)
+            parts = line.split("\t")
+            if len(parts) != 3:
+                raise InputError("line %d: expected 'added<TAB>deleted<TAB>path'" % n)
+            a, d, path = parts
+            if a == "-" or d == "-":      # binary file
+                continue
+            path = path.strip()
+            if " => " in path:            # rename: keep the new path
+                if "{" in path:
+                    pre, rest = path.split("{", 1)
+                    mid, post = rest.split("}", 1)
+                    path = (pre + mid.split(" => ")[1] + post).replace("//", "/")
+                else:
+                    path = path.split(" => ")[1]
+            try:
+                cur["files"].append((path, int(a), int(d)))
+            except ValueError:
+                raise InputError("line %d: added/deleted must be numbers" % n)
+    if not commits:
+        raise InputError("no commits found (expected lines starting with @@)")
+    return commits
+
+
+def git_log(repo, since=None):
+    cmd = ["git", "-C", repo, "log", "--no-merges", "--numstat", "--date=short", "--format=@@%H%x09%an%x09%ae%x09%ad"]
+    if since:
+        cmd.append("--since=" + since)
+    try:
+        out = subprocess.run(cmd, capture_output=True, text=True, check=True).stdout
+    except (OSError, subprocess.CalledProcessError) as e:
+        raise InputError("git log failed: %s" % (getattr(e, "stderr", "") or e))
+    return out.splitlines()
+
+
+def load_aliases(path):
+    m = {}
+    if not path:
+        return m
+    try:
+        for row in csv.DictReader(open(path, encoding="utf-8", newline="")):
+            a, c = (row.get("alias") or "").strip(), (row.get("canonical") or "").strip()
+            if a and c:
+                m[a.lower()] = c
+    except OSError as e:
+        raise InputError("cannot read aliases: %s" % e)
+    return m
+
+
+def module_of(path, depth):
+    parts = path.split("/")
+    if len(parts) == 1:
+        return "(root)"
+    return "/".join(parts[:min(depth, len(parts) - 1)])
+
+
+def analyse(commits, aliases=None, depth=1, since=None, as_of=None, active_days=120, half_life=365,
+            knows_share=0.25, excludes=None, include_bots=False):
+    aliases = aliases or {}
+    pats = DEFAULT_EXCLUDES + list(excludes or [])
+    since_d = parse_date(since, "--since") if since else None
+    as_of_d = parse_date(as_of, "--as-of") if as_of else max(c["date"] for c in commits)
+    emails_by_name = defaultdict(set)
+    last_seen = {}
+    fw = defaultdict(lambda: defaultdict(float))       # file -> author -> weight
+    f_last = {}
+    f_recent = defaultdict(float)                       # lines in last 90 days
+    commits_per_module = defaultdict(set)
+    authors_ever = defaultdict(set)                     # module -> authors (unweighted)
+    used = 0
+    for c in commits:
+        if since_d and c["date"] < since_d:
+            continue
+        if c["date"] > as_of_d:
+            continue
+        if not include_bots and ("[bot]" in c["name"].lower() or "bot@" in c["email"] or c["name"].lower().endswith(" bot")):
+            continue
+        who = aliases.get(c["email"]) or aliases.get(c["name"].lower()) or c["name"]
+        if who == c["name"] and not aliases.get(c["email"]):
+            emails_by_name[c["name"]].add(c["email"])
+        last_seen[who] = max(last_seen.get(who, c["date"]), c["date"])
+        age = (as_of_d - c["date"]).days
+        w = 0.5 ** (age / float(half_life)) if half_life > 0 else 1.0
+        touched = False
+        for path, a, d in c["files"]:
+            if any(fnmatch.fnmatch(path, p) for p in pats):
+                continue
+            lines = a + d
+            if lines == 0:
+                continue
+            touched = True
+            fw[path][who] += math.log1p(lines) * w     # log damps huge generated diffs
+            f_last[path] = max(f_last.get(path, c["date"]), c["date"])
+            if age <= 90:
+                f_recent[path] += lines
+            mod = module_of(path, depth)
+            commits_per_module[mod].add(c["sha"])
+            authors_ever[mod].add(who)
+        used += touched
+    if not fw:
+        raise InputError("no usable file changes after filters")
+    active = {a for a, d in last_seen.items() if (as_of_d - d).days <= active_days}
+
+    def knowers(path):
+        tot = sum(fw[path].values())
+        return {a for a, v in fw[path].items() if v / tot >= knows_share}
+
+    files = sorted(fw)
+    mods = defaultdict(list)
+    for p in files:
+        mods[module_of(p, depth)].append(p)
+    recent_by_mod = {m: sum(f_recent[p] for p in ps) for m, ps in mods.items()}
+    hot_cut = sorted(recent_by_mod.values())[int(len(recent_by_mod) * 0.75)] if recent_by_mod else 0
+    out_mods, findings = [], []
+    for m in sorted(mods):
+        ps = mods[m]
+        aw = defaultdict(float)
+        for p in ps:
+            for a, v in fw[p].items():
+                aw[a] += v
+        tot = sum(aw.values())
+        ranked = sorted(aw.items(), key=lambda x: -x[1])
+        acc, bf = 0.0, 0
+        for a, v in ranked:
+            acc += v; bf += 1
+            if acc > tot / 2:
+                break
+        kn = set().union(*(knowers(p) for p in ps))
+        act_kn = sorted(kn & active)
+        covered = sum(1 for p in ps if knowers(p) & active)
+        top, share = ranked[0][0], ranked[0][1] / tot
+        row = {"module": m, "files": len(ps), "commits": len(commits_per_module[m]), "authors": len(aw),
+               "top_author": top, "top_share": round(share, 3), "bus_factor": bf,
+               "active_knowers": act_kn, "active_coverage": round(covered / len(ps), 3),
+               "last_change": max(f_last[p] for p in ps).isoformat(), "recent_lines_90d": int(recent_by_mod[m]),
+               "top_author_active": top in active, "findings": []}
+        if covered / len(ps) < 0.5:
+            row["findings"].append("BF02")
+        if bf == 1 and len(ps) >= 3:
+            row["findings"].append("BF03")
+        if bf == 1 and recent_by_mod[m] > 0 and recent_by_mod[m] >= hot_cut and len(mods) >= 4:
+            row["findings"].append("BF04")
+        if len(authors_ever[m]) == 1:
+            row["findings"].append("BF06")
+        out_mods.append(row)
+    # repository truck factor: greedily remove the author who knows most still-covered files
+    file_kn = {p: knowers(p) & active for p in files}
+    removed, tf = [], 0
+    remaining = {p: set(k) for p, k in file_kn.items()}
+    def orphaned():
+        return sum(1 for k in remaining.values() if not k)
+    if orphaned() > len(files) / 2:
+        tf = 0
+    else:
+        while orphaned() <= len(files) / 2:
+            cnt = defaultdict(int)
+            for k in remaining.values():
+                for a in k:
+                    cnt[a] += 1
+            if not cnt:
+                break
+            a = sorted(cnt.items(), key=lambda x: (-x[1], x[0]))[0][0]
+            removed.append(a); tf += 1
+            for k in remaining.values():
+                k.discard(a)
+    if tf <= 2:
+        findings.append({"code": "BF01", "detail": "truck factor %d (%s)" % (tf, ", ".join(removed) or "already orphaned")})
+    for name, em in sorted(emails_by_name.items()):
+        if len(em) > 1:
+            findings.append({"code": "BF05", "detail": "%s uses %s; add an alias line" % (name, ", ".join(sorted(em)))})
+    for r in out_mods:
+        for code in r["findings"]:
+            findings.append({"code": code, "module": r["module"], "detail": "top %s %.0f%%, active knowers: %s" % (
+                r["top_author"], r["top_share"] * 100, ", ".join(r["active_knowers"]) or "none")})
+    people = sorted(({"author": a, "last_commit": d.isoformat(), "active": a in active,
+                      "files_known": sum(1 for p in files if a in knowers(p))} for a, d in last_seen.items()),
+                    key=lambda x: -x["files_known"])
+    return {"as_of": as_of_d.isoformat(), "commits_used": used, "files": len(files), "modules": out_mods,
+            "truck_factor": tf, "truck_factor_people": removed, "people": people,
+            "settings": {"depth": depth, "active_days": active_days, "half_life_days": half_life, "knows_share": knows_share},
+            "findings": findings}
+
+
+def render(a):
+    L = ["# Knowledge risk report (as of %s)" % a["as_of"], "",
+         "Commits used: %d | files: %d | repository truck factor: %d (%s)" % (
+             a["commits_used"], a["files"], a["truck_factor"], ", ".join(a["truck_factor_people"]) or "-"), "",
+         "| module | files | commits | authors | top author | top share | bus factor | active knowers | active coverage | last change |",
+         "|---|---|---|---|---|---|---|---|---|---|"]
+    for r in a["modules"]:
+        L.append("| %s | %d | %d | %d | %s%s | %.0f%% | %d | %s | %.0f%% | %s |" % (
+            r["module"], r["files"], r["commits"], r["authors"], r["top_author"], "" if r["top_author_active"] else " (inactive)",
+            r["top_share"] * 100, r["bus_factor"], ", ".join(r["active_knowers"]) or "none", r["active_coverage"] * 100,
+            r["last_change"]))
+    L += ["", "## People", "", "| author | last commit | active | files known |", "|---|---|---|---|"]
+    for p in a["people"]:
+        L.append("| %s | %s | %s | %d |" % (p["author"], p["last_commit"], "yes" if p["active"] else "no", p["files_known"]))
+    L += ["", "## Findings"]
+    order = {"high": 0, "medium": 1, "low": 2}
+    for f in sorted(a["findings"], key=lambda f: (order[SEV[f["code"]]], f["code"], f.get("module", ""))):
+        L.append("- [%s] %s %s%s: %s" % (SEV[f["code"]], f["code"], NAMES[f["code"]],
+                                         (" - " + f["module"]) if f.get("module") else "", f["detail"]))
+    if not a["findings"]:
+        L.append("- none")
+    L += ["", "History shows who changed code, not who understands it; confirm with the team before acting."]
+    return "\n".join(L)
+
+
+def self_test():
+    T = []
+    def check(name, cond):
+        T.append((name, bool(cond)))
+    log = """@@a1\tAna\tana@x.io\t2026-01-10
+10\t2\tapi/orders.py
+5\t0\tapi/users.py
+@@a2\tBen\tben@x.io\t2026-03-01
+20\t5\tweb/app.js
+3\t1\tapi/orders.py
+@@a3\tAna\tana@home.io\t2026-06-01
+4\t4\tapi/users.py
+-\t-\tweb/logo.png
+@@a4\tdependabot[bot]\t49699333+dependabot[bot]@users.noreply.github.com\t2026-06-02
+200\t180\tpackage-lock.json
+1\t1\tweb/package.json
+@@a5\tCara\tcara@x.io\t2025-01-05
+50\t0\tbilling/{old => new}/invoice.py
+@@a6\tBen\tben@x.io\t2026-06-10
+2\t2\tREADME.md
+""".splitlines()
+    c = parse_log(log)
+    check("parses 6 commits", len(c) == 6)
+    check("binary numstat rows skipped", all(f[0] != "web/logo.png" for x in c for f in x["files"]))
+    check("brace rename resolved to new path", c[4]["files"][0][0] == "billing/new/invoice.py")
+    check("module of root file is (root)", module_of("README.md", 1) == "(root)")
+    check("module depth 2", module_of("src/api/x/y.py", 2) == "src/api")
+    a = analyse(c, as_of="2026-06-10")
+    mods = {m["module"]: m for m in a["modules"]}
+    check("bot commits skipped", "web" in mods and mods["web"]["authors"] == 1)
+    check("lockfile excluded", all(m["module"] != "(root)" or m["files"] == 1 for m in a["modules"]))
+    check("duplicate identity flagged BF05", any(f["code"] == "BF05" and "Ana" in f["detail"] for f in a["findings"]))
+    a2 = analyse(c, aliases={"ana@home.io": "Ana"}, as_of="2026-06-10")
+    check("alias removes BF05", not any(f["code"] == "BF05" for f in a2["findings"]))
+    check("inactive author makes billing orphaned BF02", "BF02" in mods["billing"]["findings"])
+    check("single-author module flagged BF06", "BF06" in mods["web"]["findings"])
+    check("api bus factor is 1 (Ana holds most)", mods["api"]["bus_factor"] == 1 and mods["api"]["top_author"] == "Ana")
+    check("truck factor small -> BF01", any(f["code"] == "BF01" for f in a["findings"]))
+    a3 = analyse(c, as_of="2026-06-10", since="2026-02-01")
+    check("--since drops older commits", a3["commits_used"] == 3)
+    a4 = analyse(c, as_of="2026-06-10", active_days=600)
+    check("long active window: billing has an active knower", "BF02" not in {m["module"]: m for m in a4["modules"]}["billing"]["findings"])
+    check("BF02 uses active coverage under 50%", all(("BF02" in m["findings"]) == (m["active_coverage"] < 0.5) for m in a["modules"]))
+    check("recency weight halves after half-life", abs(0.5 ** (365 / 365.0) - 0.5) < 1e-9)
+    for bad, label in [(["10\t2\tx.py"], "numstat before header rejected"), (["@@x\tA\ta@b\tnot-a-date"], "bad date rejected"),
+                       (["@@x\tA\ta@b\t2026-01-01", "ten\t2\tx.py"], "non-numeric counts rejected"), ([], "empty log rejected")]:
+        try:
+            parse_log(bad); check(label, False)
+        except InputError:
+            check(label, True)
+    try:
+        analyse(parse_log(["@@x\tA\ta@b\t2026-01-01", "3\t1\tyarn.lock"])); check("only excluded files rejected", False)
+    except InputError:
+        check("only excluded files rejected", True)
+    for name, ok in T:
+        print(("PASS  " if ok else "FAIL  ") + name)
+    good = all(ok for _, ok in T)
+    print("ALL PASS" if good else "SOME FAILED", "(%d/%d)" % (sum(ok for _, ok in T), len(T)))
+    return 0 if good else 1
+
+
+def main(argv):
+    if "--self-test" in argv:
+        return self_test()
+    opts = {"aliases": None, "depth": "1", "since": None, "as-of": None, "active-days": "120", "half-life-days": "365",
+            "knows-share": "0.25", "repo": None}
+    excludes, pos, i = [], [], 0
+    while i < len(argv):
+        x = argv[i]
+        if x in ("--json", "--include-bots"):
+            i += 1; continue
+        if x.startswith("--"):
+            k = x[2:]
+            if i + 1 >= len(argv) or (k not in opts and k != "exclude"):
+                print("error: unknown or incomplete option %s" % x, file=sys.stderr); return 2
+            if k == "exclude":
+                excludes.append(argv[i + 1])
+            else:
+                opts[k] = argv[i + 1]
+            i += 2; continue
+        pos.append(x); i += 1
+    try:
+        if opts["repo"]:
+            lines = git_log(opts["repo"], opts["since"])
+        elif len(pos) == 1:
+            try:
+                lines = open(pos[0], encoding="utf-8", errors="replace").read().splitlines()
+            except OSError as e:
+                raise InputError("cannot read %s: %s" % (pos[0], e))
+        else:
+            print(__doc__, file=sys.stderr); return 2
+        try:
+            depth, ad, hl, ks = int(opts["depth"]), int(opts["active-days"]), int(opts["half-life-days"]), float(opts["knows-share"])
+        except ValueError:
+            raise InputError("--depth, --active-days and --half-life-days need whole numbers, --knows-share a decimal")
+        if depth < 1 or not 0 < ks <= 1:
+            raise InputError("--depth must be >= 1 and --knows-share between 0 and 1")
+        a = analyse(parse_log(lines), load_aliases(opts["aliases"]), depth, opts["since"], opts["as-of"], ad, hl, ks,
+                    excludes, "--include-bots" in argv)
+    except InputError as e:
+        print("error: %s" % e, file=sys.stderr); return 2
+    print(json.dumps(a, indent=2) if "--json" in argv else render(a))
+    return 1 if any(SEV[f["code"]] == "high" for f in a["findings"]) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
 ```
 
 </details>
@@ -5951,908 +6799,6 @@ http_timeout=30s
 5. 根目录 di.go 混合符合规范的组装代码，对 viper config/pgdb 使用内联 dig.Provide  
 6. 附标准 .env 模板文件  
 7. 注明核心合规要点：viper 统一多源配置、极简非冗余命名、统一路由注册入口、轻量级基础设施去除冗余 module.go、垂直业务领域全封装 Module()、双注册模式清晰分离。
-```
-
-</details>
-
-<details><summary><b>Go 代码库深度审查</b></summary>
-
-```text
-# 综合 Go 代码库审查
-
-你是一位拥有 20 多年企业软件开发、安全审计和性能优化经验的 Go 代码审查专家。你的任务是对提供的 Go 代码库进行彻底的、法医级别的分析。
-
-## 审查理念
-- 任何内容在被证实之前都假设其不正确
-- 每一行代码都可能是潜在的 bug 来源
-- 每一个依赖项都可能是潜在的安全风险
-- 每一个函数都可能是潜在的性能瓶颈
-- 每一个 goroutine 都可能是潜在的死锁或竞态条件
-- 每一个错误返回都可能被错误处理
-
----
-
-## 1. 类型系统与接口分析
-
-### 1.1 类型安全违规
-- [ ] 识别所有 `interface{}` / `any` 的使用情况 — 每一处都可能导致运行时 panic
-- [ ] 查找未使用 comma-ok 模式的类型断言（`x.(Type)`）— 可能导致 panic
-- [ ] 检测类型 switch 中缺少 case 或 fallthrough 到 default 的情况
-- [ ] 查找不安全的指针转换（`unsafe.Pointer`）
-- [ ] 识别绕过编译时类型安全的 `reflect` 使用
-- [ ] 检查在歧义上下文中使用的无类型常量
-- [ ] 查找假设编码的原始 `[]byte` ↔ `string` 转换
-- [ ] 检测可能导致溢出的数值类型转换（int64 → int32，int → uint）
-- [ ] 识别应具有更严格约束的泛型（`[T any]` 应为 `[T comparable]`、`[T constraints.Ordered]`）
-- [ ] 查找在零值有意义时未使用 comma-ok 模式的 `map` 访问
-
-### 1.2 接口设计质量
-- [ ] 查找违反接口隔离原则的“胖”接口（>3-5 个方法）
-- [ ] 识别在实现端定义的接口（应在消费者端定义）
-- [ ] 检测接受具体类型的接口而非接口类型
-- [ ] 检查在需要清理资源时是否缺少 `io.Closer` 接口的实现
-- [ ] 查找嵌入了过多其他接口的接口
-- [ ] 识别用于调试/日志类型的 `Stringer`（`String() string`）实现缺失
-- [ ] 检查自定义错误类型是否正确实现了 `error` 接口
-- [ ] 查找本应导出以支持扩展性的未导出接口
-- [ ] 检测接口中方法接受/返回具体类型而非接口的情况
-- [ ] 识别具有自定义序列化需求但缺少 `MarshalJSON`/`UnmarshalJSON` 的类型
-
-### 1.3 结构体设计问题
-- [ ] 查找本应使用访问器方法的导出字段
-- [ ] 识别缺少 `json`、`yaml`、`db` 标签的结构体字段
-- [ ] 检测并非并发安全但缺乏文档说明的结构体
-- [ ] 检查存在填充问题的结构体（字段顺序影响内存对齐）
-- [ ] 查找嵌入结构体暴露了不必要方法的情况
-- [ ] 识别本应实现 `sync.Locker` 但未实现的结构体
-- [ ] 检查是否缺少对有意留空结构体的 `//nolint` 或文档说明
-- [ ] 查找对大型结构体使用值接收器方法（应使用指针接收器）
-- [ ] 检测包含按值传递的 `sync.Mutex` 的结构体（应使用指针或不可复制）
-- [ ] 识别缺少结构体验证方法（`Validate() error`）的情况
-
-### 1.4 泛型类型问题（Go 1.18+）
-- [ ] 查找没有适当约束的泛型函数
-- [ ] 识别从未使用的泛型类型参数
-- [ ] 检测可简化的过于复杂的泛型签名
-- [ ] 检查是否正确使用了 `comparable`、`constraints.Ordered` 等
-- [ ] 查找使用泛型但接口即可满足需求的地方
-- [ ] 识别约束范围过宽的类型参数（可使用更窄约束时却使用 `any`）
-- [ ] 检测在初始化前使用的 `sync.WaitGroup` / `sync.Once` / `sync.Mutex`
-- [ ] 识别在零长度切片上执行且无长度检查的切片操作
-
----
-
-## 3. 错误处理分析
-
-### 3.1 错误处理模式
-- [ ] 查找所有忽略错误的位置（使用空白标识符 `_` 或未检查）
-- [ ] 识别仅执行 `return err` 而未包装上下文的 `if err != nil` 代码块
-- [ ] 检测未使用 `%w` 动词的错误包装（破坏 `errors.Is`/`errors.As`）
-- [ ] 查找以大写字母开头或以标点符号结尾的错误字符串（违反 Go 约定）
-- [ ] 识别未实现 `Unwrap()` 方法的自定义错误类型
-- [ ] 检查是否使用 `errors.Is()` / `errors.As()` 而非 `==` 比较
-- [ ] 查找应为包级变量的哨兵错误（`var ErrNotFound = ...`）
-- [ ] 检测在延迟函数中掩盖外部错误的错误处理
-- [ ] 识别 `recover()` 在错误位置使用或完全缺失的情况
-- [ ] 检查错误类型层次结构与分类是否合理
-
-### 3.2 Panic 与恢复
-- [ ] 查找在库代码中调用的 `panic()`（应返回错误而非 panic）
-- [ ] 识别在 goroutine 中缺失的 `recover()`（未恢复的 panic 会终止进程）
-- [ ] 检测库代码中使用 `log.Fatal()` / `os.Exit()`（仅在 `main` 中可接受）
-- [ ] 查找未进行边界检查可能导致索引越界的情况
-- [ ] 识别在 `init()` 函数中调用 `panic` 但无明确文档说明
-- [ ] 检查 HTTP 处理程序/中间件中是否正确进行 panic 恢复
-- [ ] 查找未遵循清晰命名约定的 `must` 模式函数
-- [ ] 检测在热路径中本可返回错误却引发 panic 的情况
-
-### 3.3 错误包装与上下文
-- [ ] 查找未包含上下文信息（哪个操作、哪个输入）的错误消息
-- [ ] 识别导致错误链过深的错误包装
-- [ ] 检测代码库中不一致的错误包装风格
-- [ ] 检查是否使用 `fmt.Errorf("...: %w", err)` 并正确使用动词
-- [ ] 查找应使用结构化错误（错误类型）替代字符串错误的位置
-- [ ] 识别关键错误路径中缺失的堆栈跟踪信息
-- [ ] 检查错误消息是否泄露敏感信息（密码、令牌、PII）
-- [ ] 检查是否存在 context 泄漏（缺少 cancel 函数调用）
-- [ ] 查找未使用 `defer cancel()` 的 `context.WithTimeout`/`WithDeadline`
-- [ ] 检测 context 是否被存储在结构体中（应作为参数传递）
-
----
-
-## 5. 资源管理
-
-### 5.1 Defer 与清理
-- [ ] 查找在循环内部的 `defer`（defer 直到函数返回时才运行）
-- [ ] 识别带有被捕获循环变量的 `defer`
-- [ ] 检测缺少用于资源清理的 `defer`（文件句柄、连接、锁）
-- [ ] 查找 `defer` 顺序问题（未考虑 LIFO 行为）
-- [ ] 识别可能静默失败的方法上的 `defer`（如 `defer f.Close()` — 忽略错误）
-- [ ] 检查 `defer` 与命名返回值的交互（延迟绑定）
-- [ ] 查找已打开但从未关闭的资源（文件描述符、HTTP 响应体）
-- [ ] 检测读取后未关闭的 `http.Response.Body`
-- [ ] 识别未关闭的数据库 rows/statements
-
-### 5.2 内存管理
-- [ ] 查找在热路径中的大内存分配
-- [ ] 识别缺少切片容量提示的情况（`make([]T, 0, expectedSize)`）
-- [ ] 检测在循环中未使用 string builder 进行字符串拼接
-- [ ] 查找未预先分配容量就使用 `append()` 扩展切片的情况
-- [ ] 识别在热路径中频繁进行 byte slice 到 string 的转换（导致内存分配）
-- [ ] 检查是否正确使用 `sync.Pool` 来复用频繁分配的对象
-- [ ] 查找以值方式传递的大结构体而非指针
-- [ ] 检测切片重新切片导致底层数组无法被垃圾回收
-- [ ] 识别只增长不收缩的 `map`（内存泄漏模式）
-- [ ] 检查 I/O 操作中是否正确复用缓冲区（`bufio`, `bytes.Buffer`）
-
-### 5.3 文件与 I/O 资源
-- [ ] 查找未使用 `defer f.Close()` 的 `os.Open` / `os.Create`
-- [ ] 识别对潜在大输入使用 `io.ReadAll`（存在 OOM 风险）
-- [ ] 检测读取大文件时缺少 `bufio.Scanner` / `bufio.Reader`
-- [ ] 查找未清理的临时文件
-- [ ] 识别使用 `os.TempDir()` 但未正确清理
-- [ ] 检查文件权限是否过于宽松（如 0777, 0666）
-- [ ] 查找关键写入操作缺少 `fsync`
-- [ ] 检测文件操作中的竞争条件
-
----
-
-## 6. 安全漏洞
-
-### 6.1 注入攻击
-- [ ] 查找使用 `fmt.Sprintf` 构建 SQL 查询而非参数化查询
-- [ ] 识别通过 `exec.Command` 将用户输入拼接导致的命令注入
-- [ ] 检测路径遍历漏洞（用户输入未经 `filepath.Clean` 处理直接用于 `filepath.Join`）
-- [ ] 查找 `html/template` 或 `text/template` 中的模板注入
-- [ ] 识别日志注入可能性（日志消息中包含未经净化的用户输入）
-- [ ] 检查是否存在 LDAP 注入漏洞
-- [ ] 查找 HTTP 响应头注入
-- [ ] 检测 SSRF 漏洞（HTTP 请求中用户可控的 URL）
-- [ ] 识别通过 `encoding/gob`、`encoding/json` 使用 `interface{}` 导致的反序列化攻击
-- [ ] 检查是否存在正则表达式注入（ReDoS）使用用户提供的模式
-
-### 6.2 认证与授权
-- [ ] 查找源码中硬编码的凭据、API 密钥或敏感信息
-- [ ] 识别受保护端点缺少认证中间件
-- [ ] 检测授权绕过可能性（IDOR 漏洞）
-- [ ] 查找 JWT 实现缺陷（算法混淆、缺少验证）
-- [ ] 识别比较操作中的时序攻击（应使用 `crypto/subtle.ConstantTimeCompare`）
-- [ ] 检查是否正确进行密码哈希（使用 `bcrypt`、`argon2`，而非 `md5`/`sha256`）
-- [ ] 查找会话令牌熵值不足
-- [ ] 检测通过角色/权限绕过导致的权限提升
-- [ ] 识别在状态变更端点缺少 CSRF 防护
-- [ ] 检查 OAuth2 实现是否正确（state 参数、PKCE）
-
-### 6.3 加密问题
-- [ ] 查找为安全目的使用 `math/rand` 而非 `crypto/rand`
-- [ ] 识别在安全敏感操作中使用弱哈希算法（`md5`、`sha1`）
-- [ ] 检测硬编码的加密密钥或 IV
-- [ ] 查找使用 ECB 模式（应使用 GCM、CTR 或带适当 IV 的 CBC）
-- [ ] 识别缺少 TLS 配置或不安全的 `InsecureSkipVerify: true`
-- [ ] 检查是否正确验证证书
-- [ ] 查找已弃用的加密包或算法
-- [ ] 检测加密中 nonce 重用
-- [ ] 识别 HMAC 比较未使用恒定时间比较
-
-### 6.4 输入验证与净化
-- [ ] 查找缺少输入长度/大小限制
-- [ ] 识别未结合 `io.LimitReader` 使用 `io.ReadAll`（可能导致拒绝服务）
-- [ ] 检测上传时缺少 Content-Type 验证
-- [ ] 查找大小计算中的整数溢出/下溢
-- [ ] 识别在发起 HTTP 请求前缺少 URL 验证
-- [ ] 检查是否正确处理 multipart 表单数据限制
-- [ ] 查找公共端点缺少速率限制
-- [ ] 检测未经验证的重定向（开放重定向漏洞）
-- [ ] 识别用户输入未经净化即用于文件路径
-- [ ] 检查 CORS 配置是否正确
-
-### 6.5 数据安全
-- [ ] 查找日志中包含敏感数据（密码、令牌、PII）
-- [ ] 识别未加密存储的静止状态下的个人身份信息（PII）
-- [ ] 检测 URL 查询参数中的敏感数据
-- [ ] 查找返回给客户端的错误消息中的敏感数据
-- [ ] 识别缺少 `Secure`、`HttpOnly`、`SameSite` 标志的 Cookie
-- [ ] 检查启动时日志中记录的环境变量是否包含敏感数据
-- [ ] 查找泄露内部实现细节的 API 响应
-- [ ] 检测缺失的安全响应头（CSP、HSTS、X-Frame-Options）
-- [ ] 识别带有 `Get` 前缀的 getter 方法（Go 约定：应使用 `Name()` 而非 `GetName()`）
-- [ ] 检测从导出函数中返回的未导出类型
-- [ ] 查找名称重复的包名（如 `http.HTTPClient` 应为 `http.Client`）
-- [ ] 识别 `if-return` 后的 `else` 块（应保持扁平）
-- [ ] 检查是否正确使用 `iota` 定义枚举
-- [ ] 查找缺少文档注释的导出函数
-- [ ] 检测应使用 `:=` 的 `var` 声明（反之亦然）
-- [ ] 识别缺少包级别文档（`// Package foo ...`）
-- [ ] 检查接收者命名是否规范（简短一致：`s` 表示 `Server`，而非 `this`/`self`）
-- [ ] 查找单方法接口名称未以 `-er` 结尾的情况（如 `Reader`、`Writer`、`Closer`）
-- [ ] 检测非平凡函数中的裸返回（naked returns）
-
----
-
-## 9. 架构与设计
-
-### 9.1 包结构
-- [ ] 查找包之间的循环依赖（`go vet ./...` 不会编译，但需检查间接依赖）
-- [ ] 识别应存在但缺失的 `internal/` 包
-- [ ] 检测“所有内容都在一个包中”的反模式
-- [ ] 查找不恰当的包分层（业务逻辑导入 HTTP 处理程序）
-- [ ] 识别缺失的清晰架构边界（领域、服务、仓储层）
-- [ ] 检查 `cmd/` 结构是否合理，适用于多个二进制文件
-- [ ] 查找跨包共享的可变全局状态
-- [ ] 检测 `pkg/` 目录的误用
-- [ ] 识别缺失依赖注入的情况（构造函数应接受接口）
-- [ ] 检查 API 定义与实现之间是否合理分离
-
-### 9.2 SOLID 原则
-- [ ] **单一职责**：查找承担过多职责的包或文件
-- [ ] **开闭原则**：查找需要修改才能扩展的代码（缺少接口或插件机制）
-- [ ] **里氏替换原则**：查找违反契约的接口实现
-- [ ] **接口隔离原则**：查找应被拆分的庞大接口
-- [ ] **依赖倒置原则**：查找本应使用接口却直接依赖具体类型的场景
-
-### 9.3 设计模式
-- [ ] 查找可配置类型中缺失的“函数式选项”模式（Functional Options）
-- [ ] 识别本应接受 `Option` 函数的 `New*` 构造函数
-- [ ] 检测横切关注点中缺失的中间件模式
-- [ ] 查找可能泄露 goroutine 的观察者/发布-订阅实现
-- [ ] 识别数据访问中缺失的“仓储”模式
-- [ ] 检查是否合理使用“构建者”模式构造复杂对象
-- [ ] 查找本应使用“策略”模式的场景（通过接口实现行为变化）
-- [ ] 检测本应使用依赖注入的全局状态
-
-### 9.4 API 设计
-- [ ] 查找直接执行业务逻辑的 HTTP 处理程序（应委托给服务层）
-- [ ] 识别缺失的请求/响应验证中间件
-- [ ] 检测各端点间不一致的 REST API 约定
-- [ ] 查找 gRPC 服务定义中缺失的正确错误码
-- [ ] 识别缺失的 API 版本管理策略
-- [ ] 检查是否正确使用 HTTP 状态码
-- [ ] 查找缺失的健康检查 / 就绪探针端点
-- [ ] 检测过于频繁的 API 调用（本应批量处理的 N+1 请求）
-
----
-
-## 10. 依赖分析
-
-### 10.1 模块与版本分析
-- [ ] 执行 `go list -m -u all` — 识别所有过时的依赖
-- [ ] 检查 `go.sum` 的一致性（使用 `go mod verify`）
-- [ ] 查找 `go.mod` 中残留的 replace 指令
-- [ ] 识别已知存在 CVE 的依赖（使用 `govulncheck ./...`）
-- [ ] 检查是否存在未使用的依赖（`go mod tidy` 有变更）
-- [ ] 查找已过时的 vendored 依赖
-- [ ] 识别本应显式声明为直接依赖的间接依赖
-- [ ] 检查 `go.mod` 中的 Go 版本是否与 CI/部署目标匹配
-- [ ] 查找包含依赖导入的 `//go:build ignore` 文件
-
-### 10.2 依赖健康状况
-- [ ] 检查每个依赖的最后提交日期
-- [ ] 识别已归档或无人维护的依赖
-- [ ] 查找存在开放严重问题的依赖
-- [ ] 检查依赖是否大量使用 `unsafe` 包
-- [ ] 识别可用标准库替代的重型依赖
-- [ ] 查找许可证受限的依赖（如 MIT 项目中使用 GPL）
-- [ ] 检查依赖是否存在 CGO 要求（影响可移植性）
-- [ ] 识别引入庞大传递依赖树的依赖
-- [ ] 查找未跟踪上游更新的 fork 版依赖
-
-### 10.3 CGO 考量
-- [ ] 检查是否必需 CGO 以及是否可构建 `CGO_ENABLED=0`
-- [ ] 查找 CGO 代码中缺失的内存管理
-- [ ] 识别热点路径中的 CGO 调用（Go→C 边界开销）
-- [ ] 检查 CGO 依赖是否破坏交叉编译
-- [ ] 查找未正确处理 C 错误的 CGO 代码
-- [ ] 检测跨 CGO 边界的潜在内存泄漏
-
----
-
-## 11. 测试缺口
-
-### 11.1 覆盖率分析
-- [ ] 执行 `go test -coverprofile` — 识别未测试的包和函数
-- [ ] 查找未测试的错误路径（尤其是错误返回值）
-- [ ] 检测条件判断中未覆盖的边界情况
-- [ ] 检查是否缺少边界值测试
-- [ ] 识别未经测试的并发场景
-- [ ] 查找未经测试的输入验证路径
-- [ ] 检查是否缺少集成测试（数据库、HTTP、gRPC）
-- [ ] 识别缺少基准测试（`*testing.B`）的关键路径
-
-### 11.2 测试质量
-- [ ] 查找未对测试辅助函数使用 `t.Helper()` 的测试
-- [ ] 识别本应存在但缺失的表驱动测试
-- [ ] 检测过度使用 mock 而掩盖真实缺陷的测试
-- [ ] 查找测试了实现而非行为的测试
-- [ ] 识别存在共享可变状态（运行顺序依赖）的测试
-- [ ] 检查是否在安全处使用了 `t.Parallel()`
-- [ ] 查找不稳定的测试（依赖时间、依赖文件系统）
-- [ ] 检测缺失的子测试（`t.Run("name", ...)`）
-- [ ] 识别缺失的 golden 测试用 `testdata/` 文件
-- [ ] 检查 `httptest.NewServer` 是否缺少清理（缺少 `defer server.Close()`）
-
-### 11.3 测试基础设施
-- [ ] 查找缺失用于设置/拆卸的 `TestMain`
-- [ ] 识别集成测试缺少的构建标签（`//go:build integration`）
-- [ ] 检测缺少的竞态条件测试（`go test -race`）
-- [ ] 检查是否缺少模糊测试（`Fuzz*` 函数 — Go 1.18+）
-- [ ] 查找缺失的示例测试（`Example*` 函数用于 godoc）
-- [ ] 识别缺失的基准测试对比基线
-- [ ] 检查测试固件管理是否得当
-- [ ] 查找依赖外部服务但未使用 mock/stub 的测试
-
----
-
-## 12. 配置与构建
-
-### 12.1 Go 模块配置
-- [ ] 检查 `go.mod` 中的 Go 版本是否合适
-- [ ] 验证 `go.sum` 是否已提交且一致
-- [ ] 检查模块路径命名是否正确
-- [ ] 查找不应存在于已发布模块中的 replace 指令
-- [ ] 识别需要 retract 指令的已损坏版本
-- [ ] 检查模块边界的划分是否合理（何时应拆分）
-- [ ] 验证 `//go:generate` 指令是否已记录且可复现
-
-### 12.2 构建配置
-- [ ] 检查是否正确使用 `ldflags` 嵌入版本信息
-- [ ] 验证 `CGO_ENABLED` 设置是否为有意为之
-- [ ] 查找是否正确使用构建标签（`//go:build`）
-- [ ] 检查是否正确设置交叉编译
-- [ ] 识别 CI 中是否缺少 `go vet` / `staticcheck` / `golangci-lint`
-- [ ] 验证 Docker 多阶段构建是否实现最小镜像大小
-- [ ] 检查是否存在适当的 `.goreleaser.yml` 配置（如适用）
-- [ ] 查找本应使用构建标签却硬编码 `GOOS`/`GOARCH` 的位置
-
-### 12.3 环境与配置
-- [ ] 查找硬编码的环境特定值（URL、端口、路径）
-- [ ] 识别启动时缺少的环境变量验证
-- [ ] 检测缺失配置时的不当默认值回退
-- [ ] 检查是否使用带验证标签的配置结构体
-- [ ] 查找未使用机密管理的敏感值
-- [ ] 识别缺少用于渐进式发布的功能开关 / 切换
-- [ ] 检查是否正确处理信号（`SIGTERM`、`SIGINT`）以实现优雅关闭
-- [ ] 查找缺少的健康检查端点（`/healthz`、`/readyz`）
-
----
-
-## 13. HTTP 与网络相关
-
-### 13.1 HTTP 服务端问题
-- [ ] 查找未设置超时的 `http.ListenAndServe`（应使用自定义 `http.Server`）
-- [ ] 识别服务端缺少 `ReadTimeout`、`WriteTimeout`、`IdleTimeout`
-- [ ] 检测请求体未使用 `http.MaxBytesReader`
-- [ ] 查找未设置的响应头（Content-Type、Cache-Control、安全头）
-- [ ] 识别缺少通过 `server.Shutdown(ctx)` 实现的优雅关闭
-- [ ] 检查中间件链式调用顺序是否正确
-- [ ] 查找缺少请求 ID / 关联 ID 传递
-- [ ] 检测缺少访问日志中间件
-- [ ] 识别缺少 panic 恢复中间件
-- [ ] 检查处理程序错误响应是否一致
-
-### 13.2 HTTP 客户端问题
-- [ ] 查找使用 `http.DefaultClient`（无超时）
-- [ ] 识别 `http.Response.Body` 使用后未关闭
-- [ ] 检测缺少带指数退避的重试逻辑
-- [ ] 查找 HTTP 调用中未传递 `context.Context`
-- [ ] 识别连接池耗尽风险（缺少 `MaxIdleConns` 调优）
-- [ ] 检查客户端 TLS 配置是否正确
-- [ ] 查找响应体读取时缺少 `io.LimitReader`
-- [ ] 检测长时运行进程中 DNS 缓存问题
-
-### 13.3 数据库问题
-- [ ] 查找 `database/sql` 连接未正确使用连接池
-- [ ] 识别缺少 `SetMaxOpenConns`、`SetMaxIdleConns`、`SetConnMaxLifetime`
-- [ ] 检测通过字符串拼接导致的 SQL 注入
-- [ ] 查找事务出错时缺少回滚（`defer tx.Rollback()`）
-- [ ] 识别 `db.Query()` 后缺少 `rows.Close()`
-- [ ] 检查迭代后是否检查 `rows.Err()`
-- [ ] 查找缺少预编译语句缓存
-- [ ] 检测数据库操作未传入 context
-- [ ] 识别缺少数据库迁移版本控制
-
----
-
-## 14. 文档与可维护性
-
-### 14.1 代码文档
-- [ ] 查找未添加 godoc 注释的导出函数/类型/常量
-- [ ] 识别逻辑复杂但无说明的函数
-- [ ] 检测缺少包级文档（`// Package foo ...`）
-- [ ] 检查不再与代码匹配的过时注释  
-- [ ] 查找需要处理的 TODO/FIXME/HACK/XXX 注释  
-- [ ] 识别未使用命名常量的魔法数字  
-- [ ] 检查 godoc 中是否缺少示例（`Example*` 函数）  
-- [ ] 查找缺少错误文档的情况（返回了哪些错误）
-
-### 14.2 项目文档  
-- [ ] 查找缺少的 README（包含用法、安装、API 文档）  
-- [ ] 识别缺少的 CHANGELOG  
-- [ ] 检测缺少的 CONTRIBUTING 贡献指南  
-- [ ] 检查是否缺少架构决策记录（ADRs）  
-- [ ] 查找缺少的 API 文档（OpenAPI/Swagger、protobuf 文档）  
-- [ ] 识别缺少的部署/运维文档  
-- [ ] 检查是否缺少 LICENSE 文件  
-
----
-
-## 15. 边界情况检查清单
-
-### 15.1 输入边界情况  
-- [ ] 空字符串、切片、映射  
-- [ ] `math.MaxInt64`、`math.MinInt64`、溢出边界  
-- [ ] 在期望正数时传入负数  
-- [ ] 所有类型的零值  
-- [ ] 浮点运算中的 `math.NaN()` 和 `math.Inf()`  
-- [ ] 字符串处理中的 Unicode 字符和 emoji  
-- [ ] 极大的输入（>1GB 的文件、数百万条记录）  
-- [ ] 深度嵌套的 JSON 结构  
-- [ ] 格式错误的输入数据（截断的 JSON、损坏的 UTF-8）  
-- [ ] 多个 goroutine 的并发访问  
-
-### 15.2 时间边界情况  
-- [ ] 闰年和夏令时切换  
-- [ ] 时区处理（`time.UTC` 与 `time.Local` 不一致）  
-- [ ] `time.Ticker` / `time.Timer` 未停止（导致 goroutine 泄漏）  
-- [ ] 单调时钟与墙钟的区别（`time.Now()` 使用单调时钟计算持续时间）  
-- [ ] 非常古老的 timestamp（早于 Unix 时间戳起点）  
-- [ ] 比较操作中的纳秒精度问题  
-- [ ] `time.After()` 在 select 语句中使用（每次迭代创建新 channel —— 泄漏）
-
-### 15.3 平台边界情况  
-- [ ] 跨操作系统处理文件路径（`filepath.Join` 与 `path.Join`）  
-- [ ] 换行符差异（`\n` 与 `\r\n`）  
-- [ ] 文件系统大小写敏感性差异  
-- [ ] 最大路径长度限制  
-- [ ] 二进制协议中对字节序的假设  
-- [ ] 不同操作系统间信号处理的差异  
-
----
-
-## 输出格式
-
-对于发现的每个问题，请提供：
-
-### [严重性：CRITICAL/HIGH/MEDIUM/LOW] 问题标题
-
-**类别**: [类型安全/安全性/并发/性能等]  
-**文件**: path/to/file.go  
-**行号**: 123-145  
-**影响**: 描述可能出现的问题  
-
-**当前代码**:  
-'''go
-// 有问题的代码
-'''
-
-**问题**: 详细解释为何这是一个问题  
-
-**建议**:  
-'''go
-// 修复后的代码
-'''
-
-**参考**: 文档链接、Go 博客文章、CVE、最佳实践  
-
----
-
-## 优先级矩阵
-
-1. **CRITICAL（立即修复）**:  
-   - 安全漏洞（注入、认证绕过）  
-   - 数据丢失/损坏风险  
-   - 导致生产环境 panic 的竞态条件  
-   - 导致 OOM 的 goroutine 泄漏  
-
-2. **HIGH（本冲刺周期内修复）**:  
-   - 空指针解引用  
-   - 关键路径中被忽略的错误  
-   - 缺少上下文取消  
-   - 资源泄漏（连接、文件句柄）  
-
-3. **MEDIUM（尽快修复）**:  
-   - 代码质量/惯用法违规  
-   - 测试覆盖率缺口  
-   - 非热点路径的性能问题  
-   - 文档缺失  
-
-4. **LOW（技术债务）**:  
-   - 风格不一致  
-   - 次要优化  
-   - 可有可无的抽象  
-   - 命名改进  
-
----
-
-## 应运行的静态分析工具
-
-在人工审查前，运行以下工具并包含其发现结果：
-
-'''bash
-# 编译器检查
-go build ./...
-go vet ./...
-
-# 竞态检测器
-go test -race ./...
-
-# 漏洞检查
-govulncheck ./...
-
-# Linter 套件（全面）
-golangci-lint run --enable-all ./...
-
-# 死代码检测
-deadcode ./...
-
-# 未使用的导出项
-unused ./...
-
-# 安全扫描器
-gosec ./...
-
-# 复杂度分析
-gocyclo -over 15 .
-
-# 逃逸分析
-go build -gcflags="-m -m" ./... 2>&1 | grep "escapes to heap"
-
-# 测试覆盖率
-go test -coverprofile=coverage.out ./...
-go tool cover -func=coverage.out
-'''
-
----
-
-## 最终总结
-
-完成审查后，请提供：
-
-1. **执行摘要**: 2-3 段概述  
-2. **风险评估**: 总体风险等级及理由  
-3. **前 10 个关键问题**: 优先级排序列表  
-4. **建议行动方案**: 分阶段修复方法  
-5. **预计工作量**: 修复所需时间估算  
-6. **指标**:  
-   - 按严重性统计的总问题数  
-   - 代码健康评分（1-10）  
-   - 安全评分（1-10）  
-   - 并发安全性评分（1-10）  
-   - 可维护性评分（1-10）  
-   - 测试覆盖率百分比
-```
-
-</details>
-
-<details><summary><b>Go 服务开发偏好</b> · 机器翻译</summary>
-
-```text
-# 后端工程师的 Go 服务品味
-- 在引入框架之前,先使用 Go 1.22 标准库的 net/http 路由器。Confidence: 0.85
-- 将项目组织为 cmd/<service>/main.go 加 internal/ 包,并省去 pkg/。Confidence: 0.80
-- 保持 main.go 精简:读取配置、装配依赖并启动服务器。Confidence: 0.90
-- 将 context.Context 作为每个执行 I/O 的函数的第一个参数传入。Confidence: 0.95
-- 使用 fmt.Errorf 和 %w 包装错误,并用 errors.Is 和 errors.As 检查它们。Confidence: 0.95
-- 使用 log/slog 以 JSON 格式记录日志,并在每一行中包含请求 ID。Confidence: 0.90
-- 在启动时将环境变量中的配置读取到一个带类型的结构体中。Confidence: 0.85
-- 当缺少必需的配置时,在启动阶段快速失败。Confidence: 0.90
-- 手写 SQL,并使用 sqlc 生成带类型的代码,而不是使用 ORM。Confidence: 0.80
-- 使用 pgx 作为带连接池的 Postgres 驱动。Confidence: 0.85
-- 在使用接口的包中定义小接口,而不是在实现接口的包中定义。Confidence: 0.85
-- 使用带 t.Run 子测试的表驱动测试。Confidence: 0.90
-- 在 CI 中对每个拉取请求使用 -race 运行 go test。Confidence: 0.90
-- 使用 golangci-lint 进行 lint,并采用一份简短且精挑细选的 linter 列表。Confidence: 0.80
-- 收到 SIGTERM 时,使用 signal.NotifyContext 和 server.Shutdown 优雅关闭。Confidence: 0.90
-- 为每个 http.Server 和 http.Client 设置明确的读、写和空闲超时。Confidence: 0.90
-- 暴露 /healthz 用于存活检查,/readyz 用于就绪检查。Confidence: 0.85
-- 避免全局状态,以及带副作用的包级 init 函数。Confidence: 0.85
-- 只在有明确的所有者和停止条件时才启动 goroutine,并用 errgroup 管理成组的 goroutine。Confidence: 0.85
-- 使用多阶段 Dockerfile,将静态二进制文件构建到 distroless 镜像中。Confidence: 0.80
-- 只有当泛型能消除真正的重复时才添加。Confidence: 0.70
-```
-
-</details>
-
-<details><summary><b>Go后端基础搭建阶段</b> · 机器翻译</summary>
-
-```text
-# MVP 第一阶段 — 基础
-
-## 目标
-
-搭建本地商业管理系统（Local Business Management System）的技术基础。
-
-暂时不要实现业务功能。
-
-目标是得到一个干净的 Go 应用，它能够：
-
-1. 成功启动
-2. 加载配置
-3. 连接 PostgreSQL
-4. 运行数据库迁移
-5. 对外提供 HTTP API
-6. 具备结构化日志
-7. 具备健康检查
-8. 具备干净的应用启动/关闭流程
-
-## 技术栈
-
-* Go
-* PostgreSQL
-* HTTP REST API
-* SQL 迁移
-* 环境变量/配置系统
-* 结构化日志
-
-## 初始结构
-
-'''text
-cmd/
-  server/
-    main.go
-
-internal/
-  platform/
-    config/
-    database/
-    http/
-    logging/
-
-  core/
-
-migrations/
-
-api/
-
-go.mod
-'''
-
-## 必需的端点
-
-'''http
-GET /health
-'''
-
-预期响应：
-
-'''json
-{
-  "status": "ok",
-  "database": "ok"
-}
-'''
-
-## 要求
-
-实现优雅关闭（graceful shutdown）。
-
-数据库连接必须使用连接池。
-
-配置必须来自环境变量/配置系统，而不是硬编码的值。
-
-创建一套迁移机制，能够安全地演进 PostgreSQL 表结构。
-
-暂不创建模块/插件架构，只保留为保持未来边界清晰所必需的最小结构。
-
-## 交付物
-
-一个连接到 PostgreSQL、运行中的本地 Go 服务器，具备清晰的项目结构和迁移系统。
-
-仅此而已。
-```
-
-</details>
-
-<details><summary><b>Gradle 构建开发偏好</b> · 机器翻译</summary>
-
-```text
-# Gradle Build 品味:一位追求快速而无聊(稳定可预期)构建的 JVM 开发者
-- 构建脚本使用 Kotlin DSL(`build.gradle.kts`),让编辑器提供真正的补全和类型检查。Confidence: 0.85
-- 始终提交 Gradle wrapper,并用 `./gradlew` 运行构建,绝不使用全局安装的 Gradle。Confidence: 0.95
-- 用 `distributionSha256Sum` 校验 wrapper 发行包,让被篡改的下载内容永远不会在 CI 中运行。Confidence: 0.75
-- 把所有依赖和插件版本都放在 `gradle/libs.versions.toml` 版本目录中。Confidence: 0.90
-- 通过 `build-logic` 中的约定插件共享构建逻辑,而不是通过 `allprojects` 或 `subprojects` 代码块。Confidence: 0.85
-- 用工具链(`java { toolchain { languageVersion = ... } }`)设置 Java 版本,而不是依赖机器上恰好安装的 JDK。Confidence: 0.90
-- 启用构建缓存和配置缓存,并把任何破坏它们的任务当作需要修复的缺陷。Confidence: 0.80
-- 在提交到仓库的 `gradle.properties` 中开启 `org.gradle.parallel=true` 并设置合理的 `org.gradle.jvmargs`。Confidence: 0.80
-- 使用 `tasks.register` 和 Provider API 惰性注册任务;避免使用 `tasks.create` 和急切配置。Confidence: 0.85
-- 正确声明任务的输入和输出,让自定义任务的最新状态检查(up-to-date)和缓存能够正常工作。Confidence: 0.85
-- 默认使用 `implementation`,只对确实属于模块公开接口的类型才暴露 `api`。Confidence: 0.90
-- 对要发布到生产环境的构建,使用依赖锁定或 `verification-metadata.xml` 来锁定或校验依赖。Confidence: 0.70
-- 在任何会发布的内容中,绝不使用 `1.+` 或 `latest.release` 这样的动态版本。Confidence: 0.90
-- 使用平台(platform)或 BOM 来对齐 Jackson、Netty 或 Spring 等相关库的版本。Confidence: 0.80
-- 保持模块小而聚焦,依赖方向清晰,模块之间不出现循环依赖。Confidence: 0.80
-- 为缓慢的 CI 构建发布构建扫描(build scan)或保留性能分析输出,并在猜测该优化什么之前先查看它们。Confidence: 0.70
-- 让 `./gradlew check` 成为在本地和 CI 中运行测试、静态分析和格式检查的唯一命令。Confidence: 0.90
-- 把签名密钥和仓库密码等机密保存在环境变量或 CI 机密中,绝不放在仓库里的 `gradle.properties` 中。Confidence: 0.95
-- 当类型化的 Gradle 任务或插件能完成工作时,避免在构建中运行 shell 脚本。Confidence: 0.70
-- 定期升级 Gradle,并在弃用警告于下一个主版本中变成错误之前修复它们。Confidence: 0.80
-- 让根构建脚本几乎为空;真正的配置放在约定插件和各模块的脚本中。Confidence: 0.75
-```
-
-</details>
-
-<details><summary><b>gRPC 服务开发偏好</b> · 机器翻译</summary>
-
-```text
-# 务实的分布式系统工程师的 gRPC 服务偏好
-- 将所有 .proto 文件放在一个共享的 schema 仓库或目录中,每个包只有一个负责人,并在 CI 中据此生成代码。置信度:0.85
-- 每次 proto 变更在合并前,都要用 buf lint 和 buf breaking 进行 lint 并检查是否存在破坏性变更。置信度:0.90
-- 在名称中为包标注版本,例如 billing.v1,并新增 v2 包,而不是改变现有字段的含义。置信度:0.90
-- 绝不复用或重新编号字段标签,并将已移除的字段和名称标记为 reserved。置信度:0.95
-- 为每个 RPC 提供独立的请求和响应消息,即使一开始为空,以便日后添加字段。置信度:0.90
-- 在适用的情况下,遵循面向资源的方法风格,即 Get、List、Create、Update 和 Delete,而不是临时拼凑的动词。置信度:0.75
-- 部分更新使用字段掩码,而不是把未设置的字段当作清除请求。置信度:0.80
-- 每个 List 调用都使用 page_size 和不透明的 page_token 进行分页,并在服务端限制页面大小。置信度:0.90
-- 时间值使用 google.protobuf.Timestamp 和 Duration 等众所周知的类型,而不是原始整数。置信度:0.85
-- 正确返回规范的状态码,例如 NOT_FOUND、INVALID_ARGUMENT 和 UNAVAILABLE,绝不把所有失败都包装成 UNKNOWN。置信度:0.90
-- 对于校验失败,使用更丰富的错误模型附加结构化的错误详情,而不是把它们塞进消息字符串。置信度:0.75
-- 要求每个客户端调用都设置截止时间,并将剩余的截止时间传播给下游调用。置信度:0.95
-- 仅重试幂等方法,退避策略和重试预算在服务配置中设置,而不是写在手写的循环里。置信度:0.85
-- 在元数据中传递请求 ID、认证令牌和追踪上下文,业务数据则放在消息体中。置信度:0.85
-- 将日志、认证、指标和追踪放在拦截器中,而不是在每个处理程序里重复编写。置信度:0.90
-- 内部服务之间使用双向 TLS,并对任何敏感操作在服务端校验每次调用的凭据。置信度:0.85
-- 实现标准的 gRPC 健康检查服务,并且仅在生产环境之外启用服务端反射。置信度:0.80
-- 优先使用一元调用,仅当数据确实是增量式或长期存在时才使用流式调用。置信度:0.80
-- 在流上应用流量控制和背压,并在负载均衡器允许的范围内发送 keepalive ping。置信度:0.70
-- 使用 L7 代理或客户端负载均衡对每个请求进行负载均衡,因为 HTTP/2 连接会把流量固定到某一个后端。置信度:0.85
-- 为浏览器和合作伙伴提供由同一套 proto 生成的 REST 或 JSON 网关,而不是手动维护第二套 API。置信度:0.70
-- 使用进程内服务器和真实生成的客户端来测试处理程序,而不是模拟生成的桩代码。置信度:0.80
-- 在 proto 文件中用注释记录每个服务、方法和字段,因为读者首先会看那里。置信度:0.85
-```
-
-</details>
-
-<details><summary><b>Helm Chart编码偏好</b> · 机器翻译</summary>
-
-```text
-# Kubernetes 打包工程师的 Helm Chart 品味
-- 每个可部署的应用对应一个 chart,并在 `Chart.yaml` 中使用清晰的名称、版本和 `appVersion`,且遵循语义化版本(semver)。Confidence: 0.90
-- 保持默认的 `values.yaml` 对非生产环境安装是安全的,并在 `values.schema.json` 或 VALUES.md 中记录每一个键。Confidence: 0.85
-- 谨慎使用官方 Helm 库模式和 bitnami 风格的辅助模板;只复制你真正理解的辅助模板。Confidence: 0.75
-- 从单一的 `_helpers.tpl` 生成标签和选择器模板,使 Service 始终与 Pod 匹配。Confidence: 0.95
-- 绝不要在模板中硬编码命名空间;从 `Release.Namespace` 或显式的值中获取。Confidence: 0.90
-- 在生产环境的 values 中将镜像标签固定为摘要(digest)或不可变标签;在 schema 中禁止使用 `latest`。Confidence: 0.90
-- 为每个容器设置资源请求和限制,默认值适配小型集群,并为生产环境提供覆盖值。Confidence: 0.85
-- 包含就绪探针和存活探针,并设置符合实际的延迟;错误的探针比没有探针更糟糕。Confidence: 0.85
-- 使用 ConfigMap 管理配置,并通过 sealed-secrets、SOPS 或 external-secrets 管理密钥——不要在 git 中存放明文。Confidence: 0.95
-- 对必填值在模板中使用 `required` 和 `fail`,使配置错误在安装时就失败。Confidence: 0.85
-- 每次 chart 变更时,都在 CI 中运行 `helm lint`、`helm template` 以及 kubeconform/kubeval 检查。Confidence: 0.90
-- 使用 `helm unittest` 测试,或对模板的标签、端口和探针做快照,这样重构就不会悄悄破坏安装。Confidence: 0.80
-- 当只有打包方式变化时,让 chart 的版本独立于应用版本;当镜像变化时,提升 `appVersion`。Confidence: 0.80
-- 仅当服务确实共享同一发布生命周期时,才优先使用小型 umbrella chart;否则通过 GitOps 单独部署各个 chart。Confidence: 0.75
-- 支持 `extraEnv`、`extraVolumes` 和 `affinity` 钩子,使运维人员无需 fork chart 就能进行扩展。Confidence: 0.80
-- 让 RBAC 模板默认为可选启用并遵循最小权限;除非需要,默认的 ServiceAccount 不应挂载 API 令牌。Confidence: 0.85
-- 在 `README.md` 中记录升级说明,涵盖会造成破坏的 values 重命名,并提供 values 迁移示例。Confidence: 0.80
-- 通过 CI 将 chart 发布到 OCI 注册表或 ChartMuseum,并附带签名的来源证明;不要从笔记本电脑上执行 `helm push`。Confidence: 0.80
-- 通过让 chart 仅凭 values 文件即可干净地渲染——无需手动执行 `helm upgrade` 步骤——来与 GitOps(Argo CD 或 Flux)保持一致。Confidence: 0.85
-- 限制 chart 的复杂度:如果模板需要大量逻辑,就把它移到控制器或 operator 中,而不是让 Gotpl 不断膨胀。Confidence: 0.75
-- 在应用到生产环境之前审查 `helm diff` 的输出,并要求在部署 Environment 上设置人工审批关卡。Confidence: 0.85
-```
-
-</details>
-
-<details><summary><b>Herdr多代理并行开发</b> · 机器翻译</summary>
-
-```text
----
-name: herdr-multiagent
-description: "在 Herdr 下并行运行多个编码 agent 的作战手册：阶段拆分、每个 agent 一个 git worktree + 隔离环境 + pane、基于文件的 brief、状态监控、评审与合并。与 agent 类型无关：子 agent 的类型取自 `herdr pane current`（.result.pane.agent），并与编排者一致（omp、opencode、claude、codex、kimi 等）。用于在独立 worktree 中进行多 agent 并行工作。需要 HERDR_ENV=1。"
----
-
-# 通过 Herdr 进行多 agent 协作
-
-作战手册：把项目剩余工作拆分为相互独立的阶段，让每个阶段由各自的 agent 在各自的 git worktree 和 Herdr pane 中完成，交给它一份基于文件的 brief，对其进行监控，并验收结果。
-
-本 skill 与 agent 类型无关：子 agent 的类型等同于编排者的类型。从 opencode 启动时，子 agent 是 opencode；从 omp 启动时，是 omp；从 claude 启动时，是 claude。绝不要凭记忆硬编码编排者的类型，也绝不要挑选一个"热门"类型。
-
-## 0. 前置条件
-
-'''bash
-test "${HERDR_ENV:-}" = 1   # if this fails, stop - we are not inside Herdr
-'''
-
-如果检查失败，告知用户当前会话不是在 Herdr 下运行，然后停止。不要从外部去操控别人的 Herdr。
-
-基础的 pane/agent 命令见 Herdr 自带的 skill（`herdr --skill`）。已安装的二进制文件才是语法的权威；不确定时请阅读 `herdr agent`、`herdr pane`、`herdr integration`，不要猜测。
-
-## 1. 先确定你自己的类型 - 在做任何事之前
-
-'''bash
-herdr pane current --current
-'''
-
-`.result.pane.agent` 字段就是编排者的类型，同一个值也要传给子 agent 的 `--kind`：
-
-'''bash
-KIND=$(herdr pane current --current | jq -r '.result.pane.agent')
-# without jq:
-KIND=$(herdr pane current --current | sed -E 's/.*"agent":"([^"]+)".*/\1/' | head -1)
-echo "$KIND"
-'''
-
-为空或为 `unknown` - 询问用户用哪种类型启动子 agent。下文中，`$KIND` 始终指这个解析出的值，而不是字面量。
-
-检查该类型的 Herdr 集成（它提供 `agent list/wait/prompt`）：
-
-'''bash
-herdr integration status | grep -i "$KIND"
-'''
-
-- `current` - 良好。
-- `not installed` - 运行 `herdr integration install "$KIND"`。只有**新**会话才会加载该集成，所以要在启动子 agent 之前安装；编排者自身在 `agent list` 中依然不可见，这没关系 - 它不需要被监控。
-- 该类型不在 `herdr integration install` 的列表中（例如 `amp`、`cline`、`kiro`、`maki`）- 将没有结构化监控，使用 §7 的备用方案（`pane read` + git）。这不是阻碍。
-
-向用户明确说明："children kind = $KIND"。
-
-## 2. 拆分 - 主要步骤，不要急
-
-- 阅读项目计划/规格说明以及当前状态（`git log`、测试、`git worktree list`）。
-- 把剩余工作拆分为**文件区域互不重叠**的阶段。两个 agent 处理同一个包 - 只能是有意为之，并且要有明确的顺序（先后进行，而非并行）。
-- 对共享文件（配置、lock）的追加式修改是可以接受的 - 在 brief 中注明"仅追加，不改签名"；合并冲突由编排者解决。
-- 写下矩阵"阶段 -> 它可以 / 不得触碰的文件"。
-
-启动前：main 中已完成的一切都已提交，工作树是干净的。
-
-## 3. 每个 agent 一个 worktree + 隔离环境
-
-'''bash
-git worktree add ../<proj>-s<N> -b stage-<N>-<name>
-'''
-
-Python 陷阱：共享 venv 会导入别人的代码（主仓库的 editable 安装）。给每个 worktree 配独立的 venv：
-
-'''bash
-cd ../<proj>-s<N> && python -m venv .venv \
-  && ./.venv/Scripts/python.exe -m pip install -q -e "./api[dev]"
-'''
-
-在同一条后台命令中依次安装多个 venv（pip 缓存是共享的）。JS 技术栈：每个 worktree 各自的 `node_modules`（`npm ci`）。
-
-如果编排者有命令包装 hook（rtk 之类）：brief 中的相对解释器路径（`../.venv/Scripts/python.exe`）无法通过这种 hook 解析（"command not found"）。在 brief 和提示中只使用该 worktree 的 python/npm 的**绝对**路径。
-
-## 4. Brief - 用文件，不要放在命令行上
-
-`<repo>/.briefs/stage-<N>.md`（不纳入版本跟踪）。Brief 结构：
-
-- **context**：先读什么（规格、契约、关键文件），哪些已经完成；
-- **task**：引用规格条目的具体要求；
-- **boundaries**：允许/禁止的文件，"不得离开 worktree"，"不要 push"；
-- **acceptance**：确切的测试/linter 命令（使用该 worktree 的解释器绝对路径），"已有测试保持通过"，提交到自己的分支，最终报告。
-
-Brief 不得假定某种特定的 agent 类型：不要在其中写"运行 omp/skill/..."- 写目标、边界和验收命令。子 agent 自行决定使用它自己的哪些工具。
-
-给 agent 的提示要简短："Read the file <brief> and complete it fully"。
-
-## 5. Pane：创建后立即命名
-
-推荐布局 - main-left：编排者 pane 在左侧占满整个高度，所有子 agent 在右侧排成一列，上下堆叠。如果用户有围绕 main-left 构建的布局插件，其他任何方案都会破坏他们的视图。如果用户明确要求其他布局，按用户的要求来。
-
-第一个子 agent - `split --current --direction right`，其余 - 在右侧列**内部**用 `split --pane <previous child> --direction down`。不要拆分编排者 pane，也不要把 agent pane 向右拆分 - 只在右侧列内部向下串联。
-
-'''bash
-herdr pane split --current --direction right --cwd "<worktree1>" --no-focus
-herdr pane split --pane <agent1-pane> --direction down --cwd "<worktree2>" --no-focus
-'''
-
-新 pane 的 ID 来自 JSON `.result.pane.pane_id`。不要动用户的焦点（`--no-focus`）。子 agent 在步骤 6 中通过 `agent start` 获得名称；另外为了清晰，再执行 `herdr pane rename <pane_id> "s<N>-<name>"`。
-
-## 6. 启动同类型的子 agent
-
-标准做法是 `agent start`，它还会验证预期的 agent 确实在该 pane 中启动了：
-
-'''bash
-herdr agent start s1-<name> --kind "$KIND" --pane <pane_id> -- <autonomy-flags>
-'''
-
-名称必须匹配 `[a-z][a-z0-9_-]{0,31}`，且在存活的 agent 中唯一。
-```
-
-</details>
-
-<details><summary><b>HTTP 压测命令行工具</b></summary>
-
-```text
-使用 Go 语言创建一个高性能 HTTP 基准测试工具。实现支持可配置线程数的并发请求生成。添加详细统计信息，包括延迟、吞吐量和错误率。支持 HTTP/1.1、HTTP/2 和 HTTP/3。实现自定义请求头与 Cookie 管理。添加请求模板功能以支持动态内容。包含响应验证功能，支持正则表达式匹配与状态码检查。实现 TLS 配置，并提供证书验证选项。添加负载配置文件功能，支持预热（ramp-up）阶段与稳态（steady-state）阶段。包含详细报告功能，输出百分位数与直方图。实现分布式测试模式，以应对高负载场景。
 ```
 
 </details>

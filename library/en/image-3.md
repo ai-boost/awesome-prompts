@@ -1,10 +1,538 @@
-# Image & Design (3/5)
+# Image & Design (3/6)
 
-880 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+928 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
-Pages: [1](image.md) · [2](image-2.md) · **3** · [4](image-4.md) · [5](image-5.md)
+Pages: [1](image.md) · [2](image-2.md) · **3** · [4](image-4.md) · [5](image-5.md) · [6](image-6.md)
+
+<details><summary><b>Halloween Cat Squad Dance Party Video</b></summary>
+
+```text
+Video Style: Ultra-realistic 3D anthropomorphic animals, adorable Halloween costumes, energetic synchronized dancing, whimsical fantasy atmosphere, vibrant autumn colors, cinematic animation, realistic fur textures, smooth character movements, 9:16 vertical format, 4K quality.
+
+SETTING:
+
+A beautiful Halloween-themed village courtyard during a bright, sunny autumn afternoon. A magnificent Victorian haunted mansion stands in the background, decorated with glowing jack-o'-lanterns, carved pumpkins, hanging lanterns, cobwebs, spooky ornaments, and Halloween decorations. Tall maple trees with brilliant orange, golden-yellow, and crimson-red leaves surround the courtyard. Fallen autumn leaves cover the cobblestone pathway. A vivid blue sky with fluffy white clouds creates a cheerful Halloween atmosphere.
+
+MAIN CHARACTERS:
+
+Four adorable anthropomorphic cats and one large anthropomorphic tiger, all standing upright on their hind legs.
+
+Witch Cat: A fluffy black-and-white cat wearing a pointed black witch hat, a purple witch dress, and a flowing purple cape.
+
+Ghost Cat: An adorable fluffy white cat wearing a flowing white ghost costume with a cute ghost hood and tiny black bow tie.
+
+Skeleton Cat: A fluffy black-and-white cat wearing a black skeleton jumpsuit featuring white bones and a small black Halloween hat.
+
+Pumpkin Cat: A chubby orange tabby cat wearing a bright orange pumpkin costume with a carved jack-o'-lantern face and a small green pumpkin-stem hat.
+
+Frankenstein Tiger: A large, realistic orange-and-black striped tiger standing upright like a human, wearing a green Frankenstein-style monster headpiece, a long dark-green Victorian coat, a purple waistcoat, and dark trousers.
+
+All characters have realistic animal faces, expressive eyes, detailed fluffy fur, and adorable personalities.
+
+SCENE 1 (0–5 seconds): GROUP DANCE INTRO
+
+The camera opens with a wide cinematic shot of the Halloween courtyard.
+
+Four adorable costumed cats stand in the foreground while the giant Frankenstein tiger stands behind them.
+
+All characters begin dancing together to a playful, upbeat Halloween rhythm.
+
+The cats bounce on their hind legs, swing their little paws, wiggle their bodies, and move their heads in perfect synchronization.
+
+The Frankenstein tiger performs exaggerated, funny dance moves behind them.
+
+The camera slowly pushes forward.
+
+SCENE 2 (5–10 seconds): CUTE CAT CLOSE-UPS
+
+A quick transition reveals the fluffy white ghost cat and the black skeleton cat dancing side by side.
+
+Both cats face the camera, raise their front paws near their faces, and perform matching playful paw gestures.
+
+Their costumes bounce naturally as they move.
+
+The ghost cat tilts its head adorably while the skeleton cat gives a confident little pose.
+
+Smooth camera tracking, realistic fur movement, cheerful expressions.
+
+SCENE 3 (10–15 seconds): GROUP DANCE FROM BEHIND
+
+The camera moves behind the dancing cats.
+
+The witch cat's purple cape sways dramatically, the ghost cat's white costume flutters, and the skeleton cat wiggles its hips.
+
+The cats perform synchronized side steps toward the Frankenstein tiger.
+
+The tiger dances enthusiastically in front of the haunted mansion.
+
+Autumn leaves scatter gently across the cobblestones.
+
+SCENE 4 (15–20 seconds): FRANKENSTEIN TIGER SOLO
+
+A medium close-up focuses on the giant Frankenstein tiger.
+
+The tiger performs a hilarious solo dance, crossing its furry arms over its chest, swinging its shoulders, moving its paws rhythmically, and nodding its head.
+
+Its long green coat sways naturally.
+
+The tiger maintains a serious, comical facial expression while dancing.
+
+The camera gently zooms closer, emphasizing the tiger's expressive face and detailed striped fur.
+
+SCENE 5 (20–25 seconds): PUMPKIN CAT TAKES CENTER STAGE
+
+The adorable chubby orange pumpkin cat steps into the center of the courtyard.
+
+It performs a funny bouncing dance, swinging its tiny paws from side to side.
+
+The pumpkin costume jiggles with every movement.
+
+The other cats dance around it while the Frankenstein tiger follows the rhythm in the background.
+
+A quick, playful camera movement emphasizes the energetic choreography.
+
+SCENE 6 (25–30 seconds): FINAL HALLOWEEN DANCE
+
+All five characters gather together for a final synchronized Halloween dance.
+
+The cats perform matching paw waves, little jumps, shoulder movements, and playful head tilts.
+
+The Frankenstein tiger stands behind them, performing exaggerated monster-style dance gestures.
+
+The camera alternates between a wide group shot and a close-up of the tiger.
+
+The video ends with the Frankenstein tiger crossing its furry arms confidently while the cats strike adorable Halloween poses.
+
+CAMERA & VISUAL QUALITY:
+
+Photorealistic 3D animal animation, realistic fluffy fur, expressive animal faces, physically accurate costume movement, cinematic daylight, vibrant autumn colors, natural shadows, detailed Victorian architecture, smooth tracking shots, playful close-ups, energetic choreography, adorable character expressions.
+
+AUDIO:
+
+Upbeat, playful Halloween dance music with a catchy rhythm, funny spooky sound effects, light monster growls, cheerful cat meows, and synchronized dance beats.
+
+IMPORTANT INSTRUCTIONS:
+
+Maintain identical character appearances, costume designs, fur patterns, and proportions throughout every scene. All animals must remain upright on two hind legs while dancing. Dance movements must be smooth, rhythmic, and synchronized. No character morphing, no extra limbs, no costume changes, no distorted faces, no flickering, no text overlays, no subtitles, and no watermarks.
+```
+
+</details>
+
+<details><summary><b>Halloween Ghost Trick-or-Treater Horror Short</b></summary>
+
+```text
+Create a native 15-second, vertical 9:16 cinematic horror short. No reference image. No text, no captions, no logos. Clear simple story, every shot readable without sound.
+
+CORE RULES
+One adult woman, one ghost figure in a white sheet, one house: the front porch and the front hallway. Nobody else appears. The ghost never shows a face, hands or feet. Calm, slow, building dread, then a final scare.
+
+CHARACTER
+Lena, 27 years old, clearly adult, long dark wavy hair, pale skin, dark red lipstick, natural beautiful face, fitted black long-sleeve top, black high-waist jeans, black ankle boots. She holds a round black ceramic candy bowl full of orange and black wrapped candy.
+
+FACE
+Natural skin texture, real expressions: warm smile, then polite confusion, then slow fear, then pure terror. Mouth opens only moderately, only upper teeth show. Eyes stay sharp and alive. Head turns under 45 degrees.
+
+GHOST
+An adult-height figure fully covered by a plain old white bedsheet with two small black eye holes. It holds a small black trick-or-treat bowl through the sheet, the hands are never visible. It stands completely still and silent. The bottom hem of the sheet floats about 3 cm above the porch boards, with only darkness under it.
+
+VOICE
+Lena: soft, friendly, natural American English, then a shaky whisper.
+
+CAMERA
+Real cinema camera, slow controlled moves, shallow depth of field, gentle slow push-ins. Shots are clean and steady.
+
+LOOK
+Dark moody cinematic Halloween night: deep teal and blue night tones outside, warm orange light from the porch lamp and a carved pumpkin, warm yellow wall sconce inside. Soft film grain, rich contrast, deep but readable shadows. Faces always clearly lit.
+
+SETTING
+A classic American suburban house on Halloween night. Front porch: white wooden railing, old wooden boards with fallen leaves, a glowing carved jack-o-lantern by the door, a warm porch lamp. Behind: a quiet foggy street, bare trees, a full moon, distant houses with lit windows. Inside: a narrow front hallway with dark wood floor, a staircase on the left, a brass wall sconce, a small side table.
+
+MOTION
+Natural human weight and timing. The ghost is completely motionless except where stated. The sheet only moves when the wind moves it.
+
+DEFECT PREVENTION
+Hands: Lena holds the candy bowl with both hands, LEFT hand under it, RIGHT hand free only to drop the candy and to slam the door. Five fingers per hand.
+Face: her face, hair and lipstick stay identical in every shot.
+Ghost: never shows hands, feet, face or legs. Same sheet, same eye holes in every shot.
+Objects: one candy bowl (hers), one small black bowl (ghost), one candy, one pumpkin, one door. Nothing duplicates or vanishes except the ghost disappearing as stated.
+Continuity: same outfit, same night, same porch, same hallway in every shot.
+Physics: candy falls with real gravity. The empty sheet collapses softly like real fabric.
+
+STORYBOARD
+00:00.0-00:02.0 Shot 1, wide from inside the hallway toward the front door. The doorbell rings. Lena walks to the door with the candy bowl and opens it, smiling. Through the open door, the ghost stands on the porch under the orange porch lamp, motionless, bowl held out.
+00:02.0-00:05.0 Shot 2, over Lena's shoulder onto the ghost. She smiles: "Aww, cute costume!" She drops one orange candy into the ghost's bowl. The ghost does not move or say anything.
+00:05.0-00:07.5 Shot 3, close-up on Lena. Her smile slowly fades. She tilts her head: "Where are your parents?" Silence. Only wind.
+00:07.5-00:09.5 Shot 4, slow tilt down the sheet to the porch boards: the hem floats above the floor, nothing underneath, no feet, no shadow. Leaves blow under it.
+00:09.5-00:11.0 Shot 5, wide on the porch. A gust of wind. The sheet collapses flat onto the porch boards, completely empty. The black bowl drops and the candy rolls out.
+00:11.0-00:13.0 Shot 6, inside. Lena steps back and slams the door shut with her RIGHT hand, then leans her back against it, breathing fast, eyes closed, clutching the candy bowl.
+00:13.0-00:15.0 Shot 7, wide down the hallway from behind Lena. She opens her eyes, still facing the camera. Far behind her, at the end of the dark hallway under the brass sconce, the same white sheet ghost stands perfectly still, facing her. She does not see it. The sconce flickers once.
+
+SOUND
+Doorbell, creaking door, wind and dry leaves, candy clinking into the bowl, a long silence, soft fabric falling, the door slamming, her fast breathing, one low deep hum and a light flicker buzz at the end.
+
+FINAL FEEL
+A clean, clear, beautifully shot Halloween horror short with a chilling final reveal. Not polished influencer content.
+```
+
+</details>
+
+<details><summary><b>Halloween Horror Short The Witch at the Bus Stop</b></summary>
+
+```text
+SCENE 1 — THE BUS STOP (0–10 seconds)
+
+On October 31, Halloween night, a young adult woman stands alone at a deserted bus stop surrounded by thick fog, dead trees, and flickering orange Halloween pumpkins. Suddenly, a terrifying witch appears behind her, with wild gray hair, glowing eyes, and an antique silver locket around her neck.
+
+The witch whispers, “You shouldn't be alone on Halloween night!” The woman turns, screams, and runs desperately into the fog.
+
+SCENE 2 — THE OLD MANSION (10–23 seconds)
+
+The woman discovers an ancient Victorian mansion and knocks on the door. An elderly woman opens it warmly and invites her inside. The candlelit room is cozy, with Halloween decorations, carved pumpkins, and an old fireplace.
+
+The elderly woman serves her hot soup and bread, speaking gently: “Come in, dear. You're safe here tonight.”
+
+The frightened woman begins to relax as thunder rumbles outside.
+
+SCENE 3 — THE SHOCKING DISCOVERY (23–38 seconds)
+
+While eating, the woman notices an old portrait hanging on the wall. It shows a beautiful young woman wearing the exact same silver locket as the terrifying witch at the bus stop.
+
+She slowly approaches the portrait, staring at the familiar face and identical necklace. Beneath the painting, an inscription reads: “OCTOBER 31 — 40 YEARS AGO.”
+
+Her face turns pale. She suddenly realizes that the woman in the portrait is the witch she encountered outside.
+
+She slowly turns her head toward the elderly woman standing behind her.
+
+SCENE 4 — THE FINAL SCARE
+
+The elderly woman stares at her with an unnatural, sinister smile. Her eyes suddenly glow yellow, her face transforms into the terrifying witch's face, and she bursts into a chilling, maniacal laugh.
+
+The camera rapidly pushes toward the witch's horrifying face as lightning flashes through the window.
+
+SMASH CUT TO BLACK.
+
+The witch's evil laughter echoes once in the darkness.
+
+END.
+
+VISUAL STYLE: Photorealistic live-action horror, cinematic Victorian mansion, realistic fog and rain, flickering candlelight, detailed facial expressions, practical supernatural transformations, dramatic shadows, and intense Halloween atmosphere.
+
+SOUND DESIGN: Howling wind, distant thunder, footsteps, creaking doors, eerie whispers, a sudden transformation sound, and terrifying witch laughter.
+
+CHARACTER CONSISTENCY: Maintain the same young woman, the same elderly woman, and the identical silver locket throughout. The witch's appearance must match the portrait's young woman before her transformation.
+
+NEGATIVE PROMPT: No cartoon, no anime, no cheap CGI, no inconsistent faces, no costume changes, no subtitles, no logos, no watermark, and no scenes after the final black screen.
+```
+
+</details>
+
+<details><summary><b>Halloween T Shirt Design for a Boxing Gym</b></summary>
+
+```text
+Create a Halloween-themed illustration featuring three sports: boxing, Muay Thai and Brazilian Jiu-Jitsu, using the three attached illustrations. Keep only the skeletal figures and remove all backgrounds. Place the final composition against a background depicting a fighting arena with a Halloween atmosphere. The entire illustration should be created in a harmonious drawing style and colour scheme.
+```
+
+</details>
+
+<details><summary><b>Hand Drawn Doodles on Photo</b></summary>
+
+```text
+Using the uploaded image as the base photo, do NOT change the person's face, body, or pose. Add hand-drawn white doodle illustrations around the subject, sketchy marker / chalk style, imperfect playful lines, doodles should appear drawn on top of the photo. Doodle theme: ${theme} Include elements such as: ${object_list} Keep the background intact, do not cover the face, editorial aesthetic poster style, clean composition, high quality.
+```
+
+</details>
+
+<details><summary><b>Hand Drawn Istanbul Skyline</b></summary>
+
+```text
+{
+  "subject": {
+    "description": "A hand-drawn, child-like illustration of Istanbul's skyline. The scene includes the Hagia Sophia and another mosque with blue domes and orange-terracotta walls, the Galata Tower, and a blue river (the Bosphorus) with three small boats. At the very top, the text 'İSTAN BUL' is written in large, multi-colored hand-lettered block characters.",
+    "count": 1,
+    "position_in_frame": "centered",
+    "orientation": "front-facing",
+    "expression_or_state": "static landscape drawing"
+  },
+  "composition": {
+    "shot_type": "wide shot",
+    "camera_angle": "eye-level perspective",
+    "framing": "tight and controlled within a square white border",
+    "symmetry": "asymmetrical but balanced",
+    "background": "Light blue sky with simple white clouds, a bright yellow sun with radiating rays in the upper right, and several small 'V' shaped bird silhouettes.",
+    "depth_of_field": "deep, everything is in sharp focus as per the drawing style"
+  },
+  "style": {
+    "visual_type": "illustration",
+    "realism_level": "literal reproduction of a hand-drawn style",
+    "art_style": "colored pencil and crayon drawing",
+    "interpretation": "literal, technical reproduction of the provided artwork"
+  },
+  "lighting": {
+    "light_type": "flat, uniform lighting from a bright sun",
+    "light_direction": "upper right",
+    "contrast": "medium",
+    "shadows": "soft, represented by simple pencil shading on building sides",
+    "color_temperature": "warm and cheerful"
+  },
+  "color_palette": {
+    "dominant_colors": [
+      "Sky Blue",
+      "Terracotta Orange",
+      "Leaf Green",
+      "Bright Red",
+      "Sun Yellow"
+    ],
+    "saturation": "medium",
+    "overall_tone": "vibrant and natural for a child's drawing"
+  },
+  "texture_and_detail": {
+    "surface_quality": "textured with visible colored pencil strokes and paper grain",
+    "grain_noise": "subtle paper texture grain",
+    "detail_level": "high, including architectural windows, boat details, and flower patterns in the foreground",
+    "sharpness": "sharp, defined hand-drawn lines"
+  },
+  "camera_render_settings": {
+    "lens_equivalent": "n/a (flat illustration)",
+    "aperture_look": "n/a",
+    "resolution": "high resolution",
+    "render_quality": "clean and precise reproduction of the source art"
+  },
+  "constraints": {
+    "no_additional_objects": true,
+    "no_stylization": true,
+    "no_artistic_license": true,
+    "no_text": false,
+    "no_watermark": true,
+    "no_crop_or_reframe": true,
+    "no_color_shift": true,
+    "no_dramatic_effects": true
+  },
+  "negative_prompt": [
+    "photorealistic",
+    "3D render",
+    "cinematic",
+    "digital painting style",
+    "blurry",
+    "unstructured",
+    "omitting the text",
+    "changing the letter colors",
+    "modifying the building layout",
+    "dramatic lighting effects",
+    "wide-angle distortion"
+  ]
+}
+```
+
+</details>
+
+<details><summary><b>Hand-Colored Magic Lantern Slide of a Comet over a Snowy Village</b></summary>
+
+```text
+A hand-colored Victorian magic lantern glass slide showing a great comet over a snowy village at night, photographed straight-on against a soft backlight so the glass glows. The picture sits inside a round opening of a black paper mask, with a narrow dark binding-tape border around the square glass. Inside the circle: a deep translucent Prussian-blue night sky filled with tiny pin-prick stars; a large bright comet in the upper left with a pale yellow-white head and a long sweeping tail that fans across the sky toward the right; below, a small village of steep snow-covered roofs, a church with a slender spire in the center, bare trees, a frozen pond reflecting the comet, and windows glowing warm amber; a few tiny dark figures on the lane look up at the sky.
+
+Render it exactly like an 1880s transparent hand-painted slide: thin, luminous aniline and varnish colors laid over a fine black line image, slightly uneven washes that stop a little short of the outlines, soft brush streaks in the sky, glowing light where the paint is thinnest, tiny air bubbles and dust specks in the glass, faint hairline scratches, gentle vignetting toward the edge of the round mask and a slight chromatic halo at the comet's head. Warm, glowing, nostalgic and magical. No text, no labels, no modern objects. Square 1:1.
+```
+
+</details>
+
+<details><summary><b>Hand-Drawn Batik Javanese Peacock</b></summary>
+
+```text
+A flat-lay photograph of a finished hand-drawn batik textile panel spread on dark teak, 16:9 landscape composition, the cloth filling most of the frame from left to right. The cloth shows a classic Javanese batik peacock in three-quarter view facing left: a proud arched neck, a crest of fine dots, and a sweeping tail of elongated eye-spots in indigo, deep brown, cream, and warm ochre, all defined by fine cracked wax resist lines (the classic batik crackle) where dye has seeped into hairline fractures. Behind the peacock, repeating parang-inspired diagonal motifs and small floral isen fillers in lighter indigo on a cream ground. The cotton has a soft matte hand; wax crackle is visible in the darker fields; a few tiny undyed pinholes show honest handmade process. Soft sidelight from the left reveals gentle fabric folds and the raised feel of denser wax areas. At the top edge of the frame, slightly out of focus: a canting tool, a small wax pot, and a folded corner of unused white cloth. Documentary craft photography of traditional batik textile art, rich natural dyes, calm heritage mood. Not a digital pattern mockup and not a painting of batik: a real photographed dyed cloth. No readable text, no letters, no logo, no watermark, no hands.
+```
+
+</details>
+
+<details><summary><b>Hand-Drawn Doodle City Travel Poster Template</b></summary>
+
+```text
+INTERNATIONAL CITY TRAVEL ART PRINT COLLECTION
+
+Create a charming, vintage-inspired travel poster featuring ${city_country:Lisbon, Portugal}, illustrated in a distinctive hand-drawn architectural doodle style.
+
+Showcase the city's most iconic landmarks, buildings, monuments, towers, bridges, and recognizable architectural details, arranged together in a dense yet balanced artistic composition. Incorporate a recognizable local element, such as a vintage car, tram, taxi, bicycle, or public transport, in the foreground.
+
+Use bold black ink outlines, intricate hand-drawn details, playful geometric patterns, and slightly imperfect sketch-like textures. Add the city name prominently within the illustration using creative hand-lettered typography.
+
+Present the artwork inside a clean white poster border, surrounded by a vibrant solid-color background that complements the city's identity. Use a limited palette of black, warm white, and one or two bold accent colors.
+
+Overall aesthetic: Minimalist European travel illustration, retro souvenir poster, whimsical architectural line art, screen-print texture, playful composition, and premium collectible wall-art design.
+
+Keep the artwork visually cohesive, highly detailed, charming, and instantly recognizable as a celebration of the destination. Avoid photorealism, 3D effects, gradients, and unnecessary decorative elements.
+```
+
+</details>
+
+<details><summary><b>Hand-Painted Landmark Postcard Template</b></summary>
+
+```text
+A wide horizontal landscape hand-painted illustration of [LANDMARK NAME] in [CITY/COUNTRY] with strong emphasis on negative space and quiet composition.
+
+The image features a warm off-white cream paper background that occupies 40-50% of the total canvas, creating generous blank margins and breathing room.
+
+The [LANDMARK NAME] is positioned slightly off-center as a calm visual anchor, depicted through simplified [KEY ARCHITECTURAL FEATURES - e.g., "towering structures", "iconic silhouette", "distinctive archways"] with loose, expressive brush strokes. The landmark is suggested through minimal rhythmic marks and abstract color blocks in deep teal, cobalt blue, and forest green, rather than drawing every architectural detail precisely.
+
+The composition is sparse and uncluttered: only a few carefully placed elements including 2-3 tiny human figures [DOING TYPICAL ACTIVITY - e.g., "walking", "taking photos", "sitting"] rendered as simple silhouettes in coral red and mustard yellow, one small [CONTEXTUAL ELEMENT - e.g., "cafe table", "bench", "street vendor cart"] with minimal shapes, two or three [NATURAL ELEMENTS - e.g., "potted plants", "trees", "flowers"] in emerald green, and subtle [CULTURAL/ARCHITECTURAL HINTS - e.g., "traditional roof lines", "modern glass panels", "historic columns"].
+
+Large areas of the warm paper background remain completely untouched, especially around the edges and between elements.
+
+The style combines mid-century travel poster aesthetics with contemporary [REGIONAL] editorial illustration: elegant, minimal, warm, cultured, and slightly nostalgic.
+
+The texture shows loose hand-painted gouache and pastel marks with dry brush strokes, pastel smudges, wax-crayon edges, uneven color patches, imperfect handmade edges, and visible gaps between colored areas.
+
+Colors are layered, dry, and tactile with a restrained palette of deep teal, sky blue, coral red, salmon pink, mustard yellow, ochre, terracotta, and small near-black accents, but used sparingly so each color can breathe against the paper.
+
+The overall mood is quiet, spacious, relaxed, refined, like a sophisticated [CITY] cultural postcard or handmade art print suitable for premium lifestyle merchandise.
+
+The landmark remains recognizable through its essential identity—[DEFINING CHARACTERISTICS]—but the drawing stays airy, calm, poetic, and softly abstract.
+
+Strong sense of pause, breath, and refined emptiness with confident use of blank space.
+
+No crowded composition, no full-bleed busy background, no photorealism, no glossy digital rendering, no clean vector art, no 3D rendering, no text, no signage, no logos, no readable text.
+```
+
+</details>
+
+<details><summary><b>Handwritten Notes Consistency Check</b></summary>
+
+```text
+Act as a professional image processing expert. Your task is to analyze and verify the consistency of three uploaded images of handwritten notes. Ensure that:
+- All three sheets have identical handwritten style, character size, and font.
+- The text color must be uniformly black across all sheets.
+
+Generate three separate ultra-realistic images, one for each sheet, ensuring:
+- The images are convincing and look naturally handwritten.
+- The text remains unchanged and consistently appears as if written by a human in black ink.
+- The final images should be distinct yet maintain the same handwriting characteristics.
+
+Your goal is to achieve realistic results with accurate representation of the handwritten text.
+```
+
+</details>
+
+<details><summary><b>Happy New Month Flyer</b></summary>
+
+```text
+Create a simple and good looking flyer for the month of August ‘happy new month’ flyer with this picture (remove the picture background and place it in a proper place to compliment the flyer ) 
+
+Under my brand naw Whykay Entertainment
+```
+
+</details>
+
+<details><summary><b>Hedgehog Postman Watercolor Storybook</b></summary>
+
+```text
+Whimsical children's storybook illustration in loose watercolor with fine ink linework: a small hedgehog postman in a mustard-yellow scarf and tiny blue cap pedals a red bicycle down a winding cobblestone lane in an autumn village, a leather satchel overflowing with string-tied letters. Crooked timber-framed cottages with round doors and glowing windows line the lane; a squirrel waves from a windowsill and a rabbit sweeps maple leaves from her doorstep. Golden late-afternoon light, soft cast shadows, and leaves swirling in orange, rust, and ochre against a pale blue sky. Visible cold-press paper texture, gentle color blooms and granulation, white-paper highlights. Wide landscape composition with the hedgehog in the lower-left third and the lane curving up toward a hilltop windmill. Cozy, kind, nostalgic mood suitable for ages 3 to 7, no text, no lettering, no logos.
+```
+
+</details>
+
+<details><summary><b>Hi-Viz Branded Running Top Design</b></summary>
+
+```text
+Create a design using our brand logo using hi-viz and black vinyl/print. Do this on Hi-visibility running tops.
+```
+
+</details>
+
+<details><summary><b>Hidden Library in a Giant Tree</b></summary>
+
+```text
+An ancient library hidden inside a giant hollow tree, magical and inviting atmosphere expression, majestic interior view, thousands of leather-bound books on curved wooden shelves, spiral staircase winding up through the center, glowing fireflies floating between bookshelves, worn reading chairs with velvet cushions, interior of a massive ancient oak tree in enchanted forest, hidden realm, mystical, warm and cozy atmosphere, autumn, with scattered scrolls and quills on oak desks, mystical runes carved into bark walls, mushrooms glowing softly in corners, foreground: scattered books and scrolls, midground: spiral staircase with warm glow, background: small windows showing starlit forest, golden ratio composition, wide shot, low-angle, wide-angle lens, deep depth of field, f/f/8, hasselblad, practical and rim lighting, twilight, light from three-quarter, soft light, digital-art, in the style of Greg Rutkowski and Thomas Kinkade and Studio Ghibli, influenced by Art Nouveau, cottage core aesthetic, warm and earthy color palette, primary colors: amber, deep brown, forest green, accent colors: soft gold, moonlight blue, fairy pink, rich saturation with deep shadows color grade, serene, peaceful, nostalgic, whimsical mood, masterpiece quality, 8K, volumetric lighting, ray tracing, octane render --no blurry, low quality, bad anatomy, watermark, text, signature, modern elements, plastic, harsh lighting, overexposed, underexposed --ar 3:2
+```
+
+</details>
+
+<details><summary><b>High-Demand AI Stock Images</b></summary>
+
+```text
+Act as a creative AI image designer. You are an expert in generating high-demand images for stock platforms like Adobe Stock Contributor. Your task is to create AI-generated images that align with current trends and have high market demand.
+
+You will:
+- Research and identify trending themes and styles in stock photography
+- Use AI tools to generate images in popular categories like ${category:landscape}, ${category:abstract}, ${category:technology}
+- Ensure images are high-quality and meet stock platform requirements
+
+Rules:
+- Stay updated with current trends in stock photography
+- Focus on creating visually appealing and unique images
+- Include relevant keywords and metadata for better discoverability
+
+Example:
+- Generate a modern, abstract technology-themed image that aligns with current trends in AI and innovation.
+```
+
+</details>
+
+<details><summary><b>High-End Tech Website UI Redesign</b></summary>
+
+```text
+Act as a UI/UX designer using Image2. Your task is to create several high-end, technology-inspired UI designs for a website front end. You must:
+- Retain all existing functionalities (no additions or deletions)
+- Focus on modifying the layout and theme
+- Design with a high-end, futuristic tech aesthetic
+- Generate multiple style options for client selection
+
+Constraints:
+- Ensure the design is suitable for a modern, high-tech website
+- Keep the user experience intuitive and seamless
+
+Your output will include:
+- A set of image designs showcasing different styles
+- Each design must highlight the website's functionality while offering a fresh aesthetic
+```
+
+</details>
+
+<details><summary><b>Himalayan Cliffside Monastery Concept Brief Builder</b></summary>
+
+```text
+Act as a cinematic environment designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of a small monastery clinging to a mountain cliff with strings of prayer flags, which will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move naturally (fluttering prayer flags, drifting clouds and mist, rising incense smoke, a waterfall or river far below, shifting light, a few distant birds) while keeping the composition calm and easy to animate.
+
+My starting choices:
+- Mountain setting: ${setting:Himalayan gorge with a river far below and snow peaks behind}
+- Time of day and weather: ${time:misty dawn after a clear night}
+- Monastery look: ${monastery:small whitewashed buildings with red-brown upper walls, dark roofs, and gold roof ornaments}
+- Visual style: ${style:photoreal travel and landscape photography}
+- Mood words: ${mood:serene, airy, sacred, quiet}
+
+First ask me, in one short message, for anything missing: the camera viewpoint I prefer (from a facing ridge across the gorge, from a trail below looking up, or from a ledge level with the monastery), how much of the river and gorge floor should show, and anything to avoid (people, monks, tourists, signs, modern buildings, cables, a specific real monastery).
+
+Then produce the brief with these sections:
+
+1. **Scene Overview**: two or three sentences describing the place, the time, the light, and the feeling of the moment. Describe an imagined monastery, not a copy of a real, named one.
+
+2. **Monastery and Cliff**: building count and arrangement on the cliff ledges, wall colors, window rows, roofs and gold ornaments, stairs or a wooden bridge, how the buildings sit on the rock, the cliff's texture and vegetation (juniper, pines, moss), and the monastery's position in the frame.
+
+3. **Prayer Flags**: how many strings, where each one is tied (rooftop, rock spire, pole), the direction they run across the frame, color order (blue, white, red, green, yellow), size, and how they sag. State that the flags move with the wind but their tie points never move.
+
+4. **Gorge and Landscape**: the river or waterfall far below, forested slopes, side ridges, snow peaks, and depth layers from foreground to background.
+
+5. **Light and Atmosphere**: sun direction and color, mist bands in the gorge and their height, cloud wisps around the peaks, incense smoke from a rooftop burner, and how the light catches the white walls and gold ornaments.
+
+6. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (monastery side and position, number of buildings, flag tie points and direction, river position, peak shapes, sun side, mist height, camera position, framing).
+
+7. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the camera move. Keep total motion subtle and physically plausible, with one wind direction for flags, mist, and smoke.
+
+8. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the monastery, the cliff, the prayer flags, and the gorge in the first sentence, ending with: no people, no text, no signs, no logos.
+
+9. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes one slow camera move and the natural motions from the Motion Map for about 6 seconds, and says to keep the monastery, the cliff, the flag tie points, the mountains, and the framing exactly as in the image with no new objects.
+
+Rules: no people as the main subject, no text, signs, or logos, no fast camera moves or cuts, and no motion that breaks physics (flags flutter and ripple but stay attached, mist and smoke drift with the same wind as the flags, water flows downhill). Use short paragraphs and lists.
+```
+
+</details>
+
+<details><summary><b>Himalayan Monastery Image to Video</b></summary>
+
+```text
+Start from the step 2 image "Cliffside Himalayan Monastery with Prayer Flags at Misty Dawn" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the monastery buildings on the left cliff, the rock spire on the right, the tie points of every prayer flag string, the river, the gorge, the snow peaks, and the framing exactly as in the image. The prayer flags flutter and ripple steadily in a light breeze blowing from left to right, always staying attached to their strings. The band of white mist in the gorge drifts slowly from left to right and gently thins in places, revealing a little more of the turquoise river. Thin incense smoke from the rooftop burner rises and bends softly in the same direction as the wind. Golden light slowly strengthens on the white walls, the gold roof ornaments, and the snow peaks. The camera makes one very slow, smooth push-in toward the monastery. Natural, realistic motion, no cuts, no new objects, no people, no text.
+```
+
+</details>
 
 <details><summary><b>Hoi An Lantern River Concept Brief Builder</b></summary>
 
@@ -2469,6 +2997,43 @@ Background: Authentic stadium reverb,
 
 </details>
 
+<details><summary><b>Loggerhead Sea Turtle Hatchlings Racing to the Surf (Image-to-Video)</b></summary>
+
+```text
+Use the attached still (step 1: a low photograph of ten loggerhead sea turtle hatchlings crawling across wet sand toward the sea at sunrise) as the exact first frame and animate it into a 6-second, 16:9 cinematic shot. Keep every element where it is in the still: the ten hatchlings and their positions on the sand, the open nest hollow at the lower left, the foamy wave edge from the top center to the right, the low sun on the horizon at the right and the pink and orange sky.
+
+Motion (0-6 s):
+- 0-1.5 s: the hatchlings begin to move, flippers pushing in small alternating strokes as they crawl diagonally toward the upper right; light glints on the wet sand.
+- 1.5-4 s: the hatchlings keep scrambling toward the water at a natural, slightly clumsy pace, leaving fresh flipper tracks, while a foamy wave rolls up the beach from the right and spreads over the sand toward them.
+- 4-6 s: the wave's foam edge reaches the leading hatchlings and washes around their flippers, then slowly recedes, leaving a glossy reflective sheen and small bubbles on the sand as the group keeps crawling seaward.
+
+Camera: locked-off low framing just above the sand with a very slow, slight push-in; focus stays on the nearest hatchlings; no cuts.
+
+Lighting and mood: constant soft sunrise light, warm pink and orange reflections and a sun glint on the water; hopeful, calm, natural.
+
+Audio (if supported): gentle surf, the soft hiss of foam on the sand, a light breeze; no music, no voices.
+
+Avoid: people, hands, birds, extra or duplicated turtles appearing, turtles morphing or walking upright, sudden lighting changes, unnatural fast motion, text.
+```
+
+</details>
+
+<details><summary><b>Loggerhead Sea Turtle Hatchlings Racing to the Surf at Sunrise</b></summary>
+
+```text
+Photorealistic low-angle wildlife photograph of newly hatched loggerhead sea turtles crossing a wide sandy beach at dawn, landscape 16:9. Ten palm-sized hatchlings with dark grey-brown shells and flippers are spread across the left and center of the smooth wet sand, all crawling diagonally toward the upper right, flippers spread mid-crawl, each leaving a tiny trail of flipper tracks; an open nest hollow with clumps of sand sits at the lower left. The thin foamy edge of a gentle wave runs from the top center to the right side of the frame and glistens in the soft pink and orange sunrise light; the sun sits low on the horizon at the right over a calm sea, with a sun glint on the water and a pastel sky. Low camera just above the sand, angled slightly down, 100 mm lens at f/4, sharp on the nearest hatchlings with gentle background blur, wet sand reflecting the sky, natural colors, quiet early-morning stillness. No people, no hands, no birds, no text.
+```
+
+</details>
+
+<details><summary><b>Logo Design for a Container Shipping Company</b></summary>
+
+```text
+Best logo and appealing and creative for my shipping company where I purchase containers
+```
+
+</details>
+
 <details><summary><b>Lonely Cry Portrait</b></summary>
 
 ```text
@@ -2542,6 +3107,17 @@ All robots sitting in a row with legs dangling over the beam edge, hundreds of m
 
 </details>
 
+<details><summary><b>Luxury African Traditional Naming Invitation</b></summary>
+
+```text
+LUXURY MODERN AFRICAN TRADITIONAL NAMING INVITATIONS 
+NAME: AISHA FAROUQ (NANA)
+ADDRESS: Road 1i house number 5 Apo supercell Estate
+DATE: 21st NOVEMBER 2026
+```
+
+</details>
+
 <details><summary><b>Luxury Beauty Product Infographics</b></summary>
 
 ```text
@@ -2583,6 +3159,177 @@ Create a hyper-realistic cinematic architectural walkthrough of an ultra-luxurio
 **Quality:** Ultra-realistic, cinematic, premium architectural visualization.
 
 **Avoid:** People, distorted architecture, flickering lights, warped windows, unrealistic reflections, camera jitter, text, logos, and watermarks.
+```
+
+</details>
+
+<details><summary><b>Luxury Product Design and Creative Direction</b></summary>
+
+```text
+# Master Prompt — World-Class Product Design & Creative Direction
+
+I want you to act as a **world-class creative director, luxury brand designer, and senior product/UI/UX designer** with experience creating visually extraordinary, production-quality digital applications.
+
+Your role is to help me discover, define, and develop a distinctive visual identity and user experience for a software application.
+
+## About my project
+
+**Product name:** [NAME]
+
+**What it does:** [DESCRIPTION]
+
+**Who uses it:** [TARGET USERS]
+
+**What makes it special:** [OPTIONAL]
+
+**Existing brand guidelines or inspiration:** [OPTIONAL]
+
+## Your role
+
+I am not a professional designer. I may know what I like when I see it, but I don't necessarily know how to describe it or what creative possibilities exist.
+
+**I need you to supply the creative imagination, expertise, and direction.**
+
+Don't depend on me to suggest colours, textures, typography, visual metaphors, architectural elements, layout ideas, or design techniques.
+
+Instead, proactively explore these possibilities and present me with compelling options.
+
+Think like an elite digital design agency hired to create a remarkable product.
+
+Your objective is not simply to follow my instructions. It is to help me discover an exceptional design that I might not have imagined myself.
+
+## Phase 1 — Creative discovery
+
+Before generating designs, guide me through a structured creative discovery process.
+
+Identify the most important decisions for this particular project. These may include:
+
+- Overall visual identity and emotional experience
+- Colour palette and colour relationships
+- Surface textures, materials, and visual depth
+- Typography and editorial style
+- Iconography, imagery, symbolism, and visual metaphors
+- Layout philosophy, navigation, and information hierarchy
+- Balance between visual drama and everyday usability
+
+**Ask me questions ONE AT A TIME.**
+
+For each decision:
+
+1. Present three meaningfully different creative directions.
+2. Explain each in plain English, avoiding unnecessary design jargon.
+3. Provide visual references when they would help me understand the differences.
+4. Explain the strengths and trade-offs of each.
+5. **Recommend one direction and explain why.**
+6. Let me choose, modify, or combine the options before moving on.
+
+Don't overwhelm me with a long questionnaire.
+
+You should challenge my thinking when you believe a different approach would produce a better result.
+
+## Phase 2 — Establish the creative direction
+
+Once we've made the important decisions:
+
+1. Summarize our agreed visual direction.
+2. Identify the core design principles that should remain consistent.
+3. Define the colour palette, typography, materials, imagery, and interface treatments.
+4. Describe how the application should balance emotional impact with practical usability.
+5. Identify any unresolved design decisions that should be explored visually.
+
+Treat these decisions as our **approved creative brief**.
+
+Remember both my selections and the directions I've rejected.
+
+Do not silently change approved decisions in subsequent designs.
+
+## Phase 3 — Visual exploration
+
+Create a visually ambitious, high-quality concept for a **real, believable software application**, not merely a decorative illustration.
+
+The design should include:
+
+- A complete desktop application screen
+- Believable application navigation
+- Realistic content and representative data
+- Clear visual hierarchy
+- Beautiful typography
+- Carefully considered spacing and alignment
+- Distinctive visual details that establish the product's identity
+- Obvious actions and intuitive workflows
+
+**Avoid generic SaaS templates, conventional dashboard styling, and predictable AI-generated design conventions unless there is a compelling reason to use them.**
+
+Use visual storytelling, sophisticated materials, atmosphere, illustration, photography, architecture, or other creative techniques where appropriate to the project's identity.
+
+However, don't sacrifice readability, accessibility, or usability for spectacle.
+
+The result should look like a product conceived by a top-tier design agency and refined by an experienced SaaS product team.
+
+### Comparing concepts
+
+When useful, show alternative versions of the same screen.
+
+Keep the underlying layout and content consistent when comparing colours, textures, or visual styles so I can evaluate the differences fairly.
+
+Offer alternative compositions separately when layout itself is the design decision.
+
+## Phase 4 — Collaborative refinement
+
+After presenting a concept:
+
+1. Ask what I like and dislike.
+2. Help me identify which specific elements are working.
+3. Suggest targeted improvements I may not have considered.
+4. Allow me to combine elements from multiple concepts.
+5. Preserve all previously approved elements unless I explicitly ask to change them.
+
+**When I request a specific modification, change only what I've requested. Do not unnecessarily regenerate, reinterpret, or redesign unrelated elements.**
+
+Maintain visual consistency throughout the project.
+
+## Phase 5 — Production readiness
+
+Once the visual direction is approved, help translate the concept into a practical design system suitable for real software development.
+
+This should eventually include:
+
+- Design tokens and exact colour values
+- Typography definitions
+- Spacing, sizing, and layout conventions
+- Reusable UI component patterns
+- Navigation and interaction conventions
+- Responsive behaviour
+- Accessibility and contrast considerations
+- Image and icon asset recommendations
+
+Separate aspirational concept artwork from elements that can be implemented directly in production. Flag any visual effects that could be expensive, impractical, or harmful to usability.
+
+## Creative standards
+
+I expect:
+
+**Originality:** A distinctive identity, not a reskinned template.
+
+**Craftsmanship:** Exceptional attention to detail.
+
+**Cohesion:** Every screen should feel like part of the same product.
+
+**Usability:** A product that is a pleasure to use repeatedly.
+
+**Ambition:** Don't play it safe merely because this is enterprise software.
+
+**Judgment:** Make recommendations and challenge weak ideas.
+
+**Collaboration:** Treat this as an evolving creative partnership.
+
+## Important
+
+Don't start by generating an image.
+
+Start by briefly explaining your proposed creative discovery process, then **ask me the first important design question with options and your recommendation**.
+
+Guide me through the entire process rather than expecting me to know what to ask for next.
 ```
 
 </details>
@@ -2748,6 +3495,14 @@ Variables:
 
 ```text
 A wide Japanese maki-e lacquer panel showing two white rabbits sitting among silver pampas grass under a large full autumn moon. The background is deep glossy black urushi lacquer with a mirror-like depth. The moon is a big disc of soft gold powder with a slightly mottled surface, placed in the upper right. The rabbits are built from raised takamaki relief in pearly white and inlaid mother-of-pearl with a faint rainbow shimmer, one looking up at the moon and one nibbling the grass. Long arching pampas plumes sweep across the lower half in fine sprinkled silver and pale gold, mixed with a few bush clover stems with tiny red-lacquer flowers and two or three falling maple leaves in red gold. A scattering of nashiji gold flakes glitters across the lower black ground like dew, and a thin flowing stream line of gold dust curves along the bottom edge. Fine hairline brush detail, delicate gradations from dense to sparse gold, a museum photograph of a polished lacquer box lid lit by soft studio light with a subtle reflection. Quiet, elegant, autumn moon-viewing mood. Wide landscape 16:9. No text, no calligraphy, no signatures, no seals, no logos.
+```
+
+</details>
+
+<details><summary><b>Man Holding a Lady's Hand and Heels, Photographed from Behind</b></summary>
+
+```text
+Picture of a man holding the hands of a lady as well as carrying her heels, snapped hy the woman from the back
 ```
 
 </details>
@@ -3100,6 +3855,14 @@ A candid nighttime photograph of a young woman in her early 20s with a slim figu
     "quality": "Warm, balanced lighting with gentle shadows, creating a cozy and positive study atmosphere."
   }
 }
+```
+
+</details>
+
+<details><summary><b>Mezzotint Engraving of a Moonlit Wheat Field at Harvest Time</b></summary>
+
+```text
+An authentic 18th-century style mezzotint engraving of a moonlit wheat field at harvest time, landscape 4:3, printed in warm black-brown ink on cream laid paper. In the foreground, rows of tied wheat sheaves stand in the stubble beside two tall rounded haystacks, the ripe ears catching silver moonlight; in the middle ground a narrow cart track with a resting wooden hay cart and a low dry-stone wall leads to a small thatched farmhouse with one warm-lit window; behind, gentle rolling hills sit under a large full moon half veiled by drifting clouds. Mezzotint technique details: deep, velvety, rich blacks built from a fine rocked grain over the whole plate; every light area scraped and burnished out of the darkness, so highlights glow softly with no hard outlines; smooth, continuous tonal gradations from black to cream; a subtle dotted burr texture visible in the mid-tones; a slightly embossed plate mark around the image with a clean paper margin. Quiet, nocturnal, timeless mood. Viewed straight on as a flat print in soft even light. No text, no signature, no frame, no people.
 ```
 
 </details>
@@ -4239,6 +5002,39 @@ Photorealistic, editorial quality, 8K, premium commercial fashion photography.
 
 </details>
 
+<details><summary><b>Monarch Butterflies Image-to-Video Animation</b></summary>
+
+```text
+Use the attached still (step 1: a photorealistic wide photograph of thousands of monarch butterflies clustered on fir branches in a high mountain forest, a heavy cluster on a big branch in the right foreground, more clusters on hazy firs behind, low sunbeams from the upper left and a few dozen butterflies already flying in the light) as the exact first frame and animate it into an 8-second, 16:9 cinematic shot. Keep every element as it is in the still: the shape of the trees and branches, the position of the clusters, the sunbeams and the haze.
+
+Motion (0-8 s):
+- 0-3 s: as the sun warms the cluster in the right foreground, many butterflies slowly open and close their wings, showing flashes of bright orange; the flying butterflies in the sunbeams flutter and drift lazily.
+- 3-6 s: small groups lift off the near branch one after another and flutter up into the light, joining the others; the branch rises very slightly as the weight leaves it.
+- 6-8 s: dozens of monarchs float through the sunbeams in soft, natural, irregular flight paths, some crossing close to the camera slightly out of focus; the clusters on the far trees shimmer as wings open.
+
+Camera: very slow, smooth push-in toward the sunlit gap (about 3 percent), no cuts, no fast moves; the tree trunks stay solid and still.
+
+Ambient motion: faint drifting haze in the sunbeams, tiny specks of dust glinting, fir needles barely moving.
+
+Lighting and mood: early winter sunlight, warm orange wings against cool blue-green shadows; calm, magical and quiet.
+
+Sound: off (silent clip).
+
+Avoid: people, birds, butterflies merging or changing species, extra wings or legs, wings flapping too fast like insects in a time-lapse, trees bending or melting, sudden light changes, text.
+```
+
+</details>
+
+<details><summary><b>Monarch Butterflies on Sunlit Fir Trees</b></summary>
+
+```text
+A photorealistic wide photograph of thousands of orange-and-black monarch butterflies clustered on the branches of tall fir trees in a high mountain forest on a cool winter morning. In the foreground on the right, a big fir branch sags under a dense cluster of butterflies, most with wings closed, showing the pale orange undersides, a few with wings open in bright orange with black veins and white-dotted edges. Behind it, the trunks and branches of more firs fade into a soft blue morning haze, their branches covered in brownish-orange clusters. Low sunlight comes from the upper left through a gap in the canopy, making long hazy sunbeams across the scene, and a few dozen butterflies are already flying in the light between the trees. The forest floor below is in shadow with a few fallen butterflies and fir needles.
+
+Shot like a professional nature photograph: 50 mm lens, sharp detail on the near cluster, the background slightly softer, warm orange against cool blue-green, gentle haze. No people, no buildings, no text. Landscape 16:9.
+```
+
+</details>
+
 <details><summary><b>Monochrome Chiaroscuro Portrait</b></summary>
 
 ```text
@@ -5327,910 +6123,6 @@ Ensure the uploaded photo clearly shows your face and is well-lit for the best r
 
 ```text
 High-contrast black and white noir close-up of an Iranian woman's face, hard side light through blinds, deep shadows across half the face. Only one eye lit; brow furrowed inward, pupil shifted to the corner in a sideways suspicious glance, other brow completely still. Cigarette smoke haze. Beneath the image, a hand-sketched box with scratchy charcoal lines and handwritten script: "شک" / "suspicion".
-```
-
-</details>
-
-<details><summary><b>Nordic Cabin Living Room at Dusk Reverse View</b></summary>
-
-```text
-Photoreal interior architectural photograph of the same small Nordic cabin living room from step 2, now seen from the opposite direction: the camera sits on the built-in window seat and looks back into the room toward the entry wall at dusk, eye level (1.2 m), 24mm lens, vertical lines straight. Keep every fixed design detail identical: walls of whitewashed pine boards running vertically, a vaulted white ceiling with two exposed pale oak beams, a wide-plank light oak floor, and a cream flat-weave rug with a black dotted border in the middle of the floor.
-
-LEFT side of this view (the right wall in step 2): two long floating pale oak shelves on black brackets holding terracotta vases, small white ceramic jars, stacked books, a small potted plant, and a trailing pothos; below them a pale oak sideboard with flat drawer and door fronts on slim tapered legs, topped with two matte sage-grey ceramic vases and a few small ceramics; a black swing-arm wall sconce above the sideboard, switched on with a warm glow; a woven seagrass basket with a mustard-yellow knit throw on the floor near the camera.
-
-RIGHT side of this view (the left wall in step 2): a light grey two-seat upholstered sofa with slim walnut legs, a mustard-yellow knit throw draped over its arm and a mustard textured cushion; behind it a slender potted olive tree in a white pot.
-
-Far wall, newly visible: the whitewashed pine board entry wall with a plain white panel door with a black lever handle on the right, three black coat hooks with a charcoal wool coat on one, and a small pale oak bench with a sheepskin on top and brown leather boots beneath; a white rice paper globe floor lamp in the corner, glowing softly.
-
-Lighting: blue hour, cool dusk light from the snowy forest window behind the camera mixed with the warm amber glow of the wall sconce and the paper lamp. Palette of warm white, pale oak, light grey, mustard yellow, terracotta, sage grey, and charcoal; realistic wool, knit, ceramic, and wood textures; calm Scandinavian interior magazine photography. No people, no text, no logos, no clutter. 16:9 wide composition.
-```
-
-</details>
-
-<details><summary><b>Nordic Cabin Living Room Daytime View</b></summary>
-
-```text
-Photoreal interior architectural photograph of a small, warm Nordic cabin living room, about 3.5 by 4.5 meters, shot from the entry door looking straight toward the far window, camera at eye level (1.4 m), 24mm lens, vertical lines perfectly straight. The walls are whitewashed pale pine boards running vertically, the ceiling is vaulted with exposed pale wood beams, and the floor is wide-plank light oak. On the far wall, centered, a large black-framed three-pane picture window shows a snow-covered pine forest in soft overcast winter daylight; below it a deep window seat with an oatmeal linen cushion and two mustard-yellow pillows. In the far left corner, a potted olive tree in a terracotta pot. Along the left wall, a low sage-green boucle three-seat sofa with three seat cushions and slim walnut legs, with a mustard-yellow knit throw draped over its far arm, the end closest to the window; above the sofa, two long floating pale oak shelves with books, small white ceramic vases, and a trailing pothos plant. On the right wall, a small black cast-iron wood-burning stove on a dark grey slate hearth with a black flue pipe rising to the ceiling, unlit; just in front of the stove, nearer the camera, a recessed log niche stacked with birch logs; just beyond the stove, toward the window, a rust-orange leather sling armchair with a black steel frame angled toward the stove, and behind it a brass floor reading lamp with a cone shade. In the center, a round walnut coffee table on a cream wool rug with thin charcoal stripes, holding two stacked books and a small speckled ceramic bowl. A large white rice paper globe pendant hangs from the beams above the coffee table. Palette of warm white, pale oak, sage green, rust orange, mustard yellow, and charcoal. Calm, airy, inviting mood, soft natural daylight with gentle shadows, realistic textures of boucle, leather, wool, and wood grain, high-end interior magazine photography. No people, no text, no logos, no clutter. 16:9 wide composition.
-```
-
-</details>
-
-<details><summary><b>Nostalgic Anime Character Sheet and Storyboard</b></summary>
-
-```text
-Create one vertical anime development board for an original 15-second short film titled "The Summer Detour".
-
-The output must be one combined image with 2 sections:
-
-Character design sheet
-
-Cinematic storyboard page
-
-STYLE:
-
-Beautiful nostalgic 2D anime, hand-painted countryside backgrounds, clean anime linework, soft cel shading, lush green scenery, warm summer afternoon sunlight, gentle shadows, and bright blue skies with fluffy clouds.
-
-Professional anime production board with red storyboard borders, blue camera arrows, small handwritten camera notes, and beautifully illustrated keyframes.
-
-SECTION A: CHARACTER DESIGN
-
-Main girl: An original 13-year-old Japanese girl with shoulder-length dark brown hair, soft brown eyes, and a gentle, cheerful expression.
-
-Outfit: cream short-sleeved blouse, faded navy skirt, white socks, brown shoes, and a small canvas shoulder bag.
-
-Personality: calm, curious, thoughtful, and quietly happy.
-
-Show front, side, three-quarter, and back views, plus smiling, thoughtful, relaxed, and surprised expressions.
-
-Include cycling, sitting, and looking toward the horizon poses.
-
-BICYCLE:
-
-Vintage mint-green city bicycle with a silver handlebar, brown saddle, small front wire basket, and simple black tires. A clear glass bottle of lemon soda sits securely inside the basket.
-
-Keep the bicycle's design consistent in every frame.
-
-SECTION B: STORYBOARD
-
-Create 8 storyboard frames in a clean grid, each using 16:9 cinematic framing.
-
-Keep the girl, bicycle, countryside, and lighting consistent.
-
-Story beats:
-
-Wide opening shot of the girl cycling along a peaceful countryside road surrounded by green rice fields.
-
-Beautiful close-up of bicycle wheels turning beside swaying grass, sunlight sparkling through the spokes.
-
-Side-tracking shot as she cycles past expansive rice paddies beneath enormous fluffy summer clouds.
-
-She passes a small traditional house with hanging wind chimes gently swaying in the breeze.
-
-She reaches a quiet grassy riverbank, stops, and parks her bicycle beside a tree.
-
-Sitting in the grass, she opens her cold lemon soda and takes a refreshing sip.
-
-A small cream-and-orange local train crosses a distant bridge over the river. She watches it with a gentle smile.
-
-Spectacular wide ending shot: the camera rises to reveal the winding river, endless green fields, distant mountains, passing train, and girl resting beside her bicycle under a magnificent summer sky.
-
-ENVIRONMENT:
-
-Peaceful rural Japanese countryside, vibrant rice paddies, narrow asphalt roads, traditional wooden houses, wind chimes, wildflowers, a clear river, an old railway bridge, distant green mountains, and beautiful summer clouds.
-
-Bright late-afternoon sunlight throughout.
-
-FINAL GOAL:
-
-Create a beautiful nostalgic anime film development board with soothing countryside scenery, authentic everyday moments, natural cinematic movement, consistent character design, and a breathtaking peaceful ending.
-```
-
-</details>
-
-<details><summary><b>Nostalgic Family Christmas Dance</b></summary>
-
-```text
-{
-  "image_analysis": {
-    "environment": {
-      "type": "Indoor",
-      "location_type": "Living Room / Domestic Setting",
-      "atmosphere": "Festive, Nostalgic, Warm, Vintage Holiday",
-      "background_elements": "Beige wall with a gallery of framed family portraits, patterned sofa, Christmas tree"
-    },
-    "camera_specs": {
-      "style": "Vintage aesthetic / Flash Photography",
-      "lens_type": "Standard wide (approx 35mm)",
-      "angle": "Eye-level, straight on",
-      "effects": "Film grain simulation, slight vignette, direct on-camera flash look",
-      "focus": "Focus on the dancing subject, slight motion blur on the raised foot"
-    },
-    "lighting": {
-      "condition": "Mixed lighting (Artificial + Flash)",
-      "sources": [
-        {
-          "source_id": 1,
-          "type": "Camera Flash",
-          "direction": "Frontal / Direct",
-          "intensity": "High / Harsh",
-          "color": "Cool white",
-          "effect_on_subject": "Illuminates subject clearly, creates distinct drop shadows behind her, flattens features slightly"
-        },
-        {
-          "source_id": 2,
-          "type": "Christmas Tree Lights",
-          "direction": "From Left",
-          "intensity": "Low / Ambient",
-          "color": "Multi-colored (Red, Green, Blue, Yellow)",
-          "effect_on_subject": "Adds colorful bokeh and rim light on the left side"
-        },
-        {
-          "source_id": 3,
-          "type": "Room Ambient Light",
-          "direction": "Overhead / General",
-          "intensity": "Warm / Low",
-          "color": "Tungsten / Orange-Yellow",
-          "effect_on_subject": "General warm cast on the background"
-        }
-      ]
-    },
-    "subject_analysis": {
-      "identity": "Young woman",
-      "orientation": "Body angled slightly right, Face 3/4 view looking down",
-      "emotional_state": "Joyful, Glee, Carefree",
-      "action": "Dancing / Prancing",
-      "posture": {
-        "general_definition": "Dynamic motion, balancing on one leg",
-        "feet_placement": "Left foot planted on carpet, Right foot raised behind (knee bent)",
-        "hand_placement": "Arms relaxed but slightly outstretched for balance, hands in loose fists/natural curve",
-        "visible_extent": "Full body (feet to head)"
-      },
-      "head_details": {
-        "hair": {
-          "color": "Medium Brown",
-          "style": "Bob cut / Shoulder length, straight with slight curve",
-          "accessory": "Red headband"
-        },
-        "face": {
-          "expression": "Broad smile, teeth visible, eyes looking down/closed in laughter",
-          "skin_tone": "Fair / Light"
-        }
-      },
-      "body_details": {
-        "body_type": "Slim / Petite",
-        "attire": {
-          "upper_body": {
-            "item": "Knitted Sweater",
-            "style": "Fair Isle / Nordic pattern",
-            "color": "Olive Green base with white and brown geometric patterns",
-            "fit": "Relaxed / Cozy",
-            "texture": "Wool / Knit"
-          },
-          "lower_body": {
-            "item": "Mini Skirt",
-            "style": "A-line button-front skirt",
-            "material": "Corduroy (suggested by texture)",
-            "color": "Deep Red",
-            "fit": "High-waisted"
-          },
-          "footwear": {
-            "item": "Socks",
-            "color": "Black",
-            "style": "Ankle length",
-            "notes": "No shoes worn"
-          }
-        }
-      }
-    },
-    "secondary_subjects": [
-      {
-        "identity": "Two Older Men",
-        "location": "Background, sitting on the sofa",
-        "attire": "Festive sweaters (Red/Dark tones), Jeans",
-        "action": "Watching the main subject",
-        "emotional_state": "Passive observation / Amusement"
-      }
-    ],
-    "objects_in_scene": [
-      {
-        "object": "Christmas Tree",
-        "description": "Large evergreen, heavily decorated with tinsel, ornaments, and colored lights. Angel topper.",
-        "position": "Left side of frame",
-        "purpose": "Holiday context / Decor"
-      },
-      {
-        "object": "Presents",
-        "description": "Wrapped gift boxes",
-        "position": "Under the Christmas tree",
-        "colors": "Red, Green, White patterns"
-      },
-      {
-        "object": "Wall Photos",
-        "description": "Framed portraits arranged in a grid",
-        "position": "Back wall",
-        "content": "Family portraits, individuals and groups"
-      },
-      {
-        "object": "Sofa",
-        "description": "Beige/Tan fabric with subtle plaid or texture",
-        "position": "Background right"
-      }
-    ],
-    "negative_prompts": [
-      "sadness",
-      "darkness",
-      "modern aesthetic",
-      "high definition clean look",
-      "outdoor",
-      "summer",
-      "suit and tie",
-      "empty room",
-      "shoes on carpet",
-      "neon lights"
-    ]
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Nostalgic Road Trip 35mm Film Photo</b></summary>
-
-```text
-{
-  "colors": {
-    "color_temperature": "warm",
-    "contrast_level": "high",
-    "dominant_palette": [
-      "black",
-      "dark green",
-      "red",
-      "yellow"
-    ]
-  },
-  "composition": {
-    "camera_angle": "eye-level",
-    "depth_of_field": "medium",
-    "focus": "Cars on a wet road",
-    "framing": "The car in front is slightly off-center, with the road and trees creating leading lines into the distance."
-  },
-  "description_short": "An atmospheric, blurry photograph taken from a car's perspective, showing two other cars on a wet road with significant, warm lens flare obscuring the view.",
-  "environment": {
-    "location_type": "outdoor",
-    "setting_details": "A narrow, wet asphalt road lined with dense, dark trees and bushes. A house is barely visible in the background. The setting feels suburban or rural.",
-    "time_of_day": "afternoon",
-    "weather": "rainy"
-  },
-  "lighting": {
-    "intensity": "strong",
-    "source_direction": "front",
-    "type": "natural"
-  },
-  "mood": {
-    "atmosphere": "Nostalgic and cinematic road trip memory",
-    "emotional_tone": "melancholic"
-  },
-  "narrative_elements": {
-    "environmental_storytelling": "The wet, reflective road indicates a recent rain shower. The line of cars suggests a journey or commute, and the hazy, flared light creates a dreamlike, memory-like quality.",
-    "implied_action": "The cars are moving forward along the road, possibly driving away from the bright light source."
-  },
-  "objects": [
-    "dark sedan car",
-    "second car",
-    "wet road",
-    "trees",
-    "bushes",
-    "lens flare",
-    "taillights"
-  ],
-  "people": {
-    "count": "unknown"
-  },
-  "prompt": "A vintage 35mm film photograph from a driver's point of view, looking down a narrow, wet country road. A dark BMW E34 sedan is just ahead, its red taillights on. Strong, warm lens flare from the sun creates dramatic yellow and red light streaks across the dark, moody scene. The road is lined with lush, shadowy trees after a rain shower. The aesthetic is lo-fi, hazy, and atmospheric, evoking a sense of nostalgia and melancholy.",
-  "style": {
-    "art_style": "realistic",
-    "influences": [
-      "lomography",
-      "indie film",
-      "90s aesthetic",
-      "analog photography"
-    ],
-    "medium": "photography"
-  },
-  "technical_tags": [
-    "lens flare",
-    "analog",
-    "35mm film",
-    "blurry",
-    "atmospheric",
-    "backlit",
-    "wet road",
-    "lo-fi",
-    "cinematic",
-    "moody"
-  ],
-  "use_case": "Training AI models to replicate analog film artifacts and atmospheric lighting conditions.",
-  "uuid": "6174aa00-9033-46dc-8f74-8c54ce90a956"
-}
-```
-
-</details>
-
-<details><summary><b>Ocean of Memories: Dawn Beach with Glowing Bottles</b></summary>
-
-```text
-[Global Setting] 30-second poetic magical realism sequence, 16:9, 4K, photoreal, emotional atmosphere. A quiet, wide sandy beach at dawn. The ocean is perfectly calm, pale pink and soft gold light spreading across the horizon, gentle mist over the water. No dialogue, no text on screen.
-
-[Character] A woman in her 40s, long loose dark hair moving in the breeze, a simple oversized cream knit sweater and a long linen skirt, barefoot in the wet sand. Calm, melancholic, gentle eyes. She holds an old pale seashell, worn smooth by time.
-
-[0–2s] Medium shot. She stands at the water's edge, holding the old seashell to her ear, eyes closed. She hears only silence. Soft waves touch her feet.
-
-[2–8s] All around her, thousands of small glass bottles wash ashore with the gentle waves, each sealed with a cork, each containing a tiny floating glowing light. She kneels, picks one up, uncorks it. A child's laugh echoes softly across the water. Her eyes fill with tears, a small smile.
-
-[8–15s] The camera moves low along the shoreline at sand level. One by one, the bottles begin to glow brighter, warm white and gold, until the entire beach becomes a field of soft lights stretching into the distance.
-
-[15–23s] The waves turn transparent like glass. Beneath the surface, fleeting images appear and dissolve like reflections: an old family house, a birthday cake with candles, two people talking at a kitchen table, a hand holding another hand, faces of people once loved. They drift by gently and fade.
-
-[23–30s] She walks into the shallow water and gently places the seashell back into the sea. A moment of stillness. Then the ocean answers: a warm golden glow spreads from where the shell sank, across the whole surface, all the way to the horizon, meeting the rising sun. She stands bathed in golden light, peaceful. Hold.
-
-[Camera] Slow, gentle, floating movements. Medium shots on her, low tracking along the shoreline, a wide shot for the golden ocean. No cuts, no shaky cam.
-
-[Audio] Soft lapping waves, gentle breeze, silence in the shell, the clink of glass bottles on sand, a child's distant laugh echoing, faint overlapping whispers and laughter from the memories beneath the waves, a delicate piano and soft strings rising, then a warm resonant hum as the ocean glows.
-
-[Consistency] Same woman, same seashell, same beach. Dawn pink light turning golden. Tender, emotional, never dark.
-```
-
-</details>
-
-<details><summary><b>Ocean's Eleven Style Movie Poster</b></summary>
-
-```text
-A cinematic, highly detailed engraved illustration style poster of a sophisticated casino heist in Las Vegas at night, wide-angle low perspective, the glowing skyline dominated by neon lights and towering luxury hotels, a group of eleven sharply dressed figures in tailored suits standing in silhouette on a rooftop overlooking the Strip, their faces partially hidden in shadow, subtle smoke drifting through the air, creating a mysterious and calculated atmosphere, golden and crimson reflections illuminating the glass buildings, intricate line art detailing on suits and city textures, dramatic backlighting casting long shadows, a central vault door faintly visible in the distance glowing with cold metallic light, tension and precision captured in their poised stances, dust particles floating in the air under soft volumetric lighting, high contrast between deep shadows and warm neon highlights, ultra-detailed textures, cinematic poster composition, slightly surreal elegance, sharp focus, 9:16 aspect ratio
-```
-
-</details>
-
-<details><summary><b>Oil Painting of a Lighthouse Kitchen in a Storm</b></summary>
-
-```text
-A lighthouse keeper's kitchen painted in rich oil, warm and lived-in while a storm rages outside. Thick impasto strokes show whitewashed stone walls, a heavy wooden table with a brass kettle steaming, an oil lamp casting amber light, and a loaf of bread on a worn cutting board. Rain streaks the small paned window; through the glass, dark grey sea and white spray. Wet yellow oilskins and rubber boots hang dripping by the door. Copper pans and a enamel mug sit on open shelves. Cozy interior warmth contrasts with cold storm light at the window. Visible brushwork, muted ochres and deep blues, slight varnish sheen. No people, no text, no modern appliances.
-```
-
-</details>
-
-<details><summary><b>Ominous Clown Cosplay Duo Portrait</b></summary>
-
-```text
-A rich, atmospheric vertical medium shot featuring two cosplayers in detailed costumes against a deep, completely black background, creating a sense of isolation and darkness.
-
-The female cosplayer stands with her back to the man, turning her head over her shoulder to look directly into the camera. She has long, wavy, vibrant copper-red hair flowing freely over her shoulders. Her makeup is stylized clown makeup — a white-painted face, red lipstick, expressive black lines and dots around the eyes, and blush — creating a look that is both frightening and fashionable. She wears a white corset-style top with red pom-poms on the front and off-the-shoulder styling, paired with a layered white ruffled skirt. She holds the string of a single bright red helium balloon floating above her head.
-
-Standing directly behind her, back-to-back, is a male cosplayer portraying Pennywise from the 2017 film IT. He has detailed, creepy Pennywise makeup with a white face, distinctive red lines extending from the corners of his mouth through the eyes to the forehead, and a terrifying grin with visible uneven teeth. His messy red Pennywise hair is styled backward and upward. He wears a classic gray Victorian clown costume with layered ruffles around the collar and cuffs, decorated with red pom-poms. He looks straight ahead, appearing stern and threatening.
-
-Low-intensity, dramatic, high-contrast lighting with strong chiaroscuro shadows emphasizes the textures of the costumes and makeup while leaving the rest of the scene in deep shadow. The light source is positioned in front and slightly above. Limited color palette: deep black, gray, white, and vivid red.
-
-Dark, ominous, mysterious, and tense mood. Eye-level camera, vertical composition, focused on the interaction and contrast between the two characters. Highly detailed, realistic skin and fabric textures.
-
-Do not change the facial features or identity of the woman from the reference image.
-
-Format: 3:4
-Realistic, high-quality, sharp 8K photograph, shot on an iPhone 16 Pro.
-```
-
-</details>
-
-<details><summary><b>One Click Design Mockup Creator</b></summary>
-
-```text
-Act as a versatile Design Mockup Software. You are a tool that allows users to effortlessly find and create design mockups in diverse categories like ${category}, and formats such as vector and PNG. Your task is to provide:
-
-- A comprehensive search feature to discover niches in design.
-- Easy access to a variety of design templates and mockups.
-- One-click conversion capabilities to transform designs into vector or PNG formats.
-- User-friendly interface for browsing and selecting design categories.
-
-Constraints:
-- Ensure high-quality output in both vector and PNG formats.
-- Provide a seamless user experience with minimal steps required.
-```
-
-</details>
-
-<details><summary><b>One-Man Construction Hyperlapse Building a Data Center</b></summary>
-
-```text
-Construction hyperlapse of one man building an entire data center on an empty flat plot, one continuous locked-off wide shot. The builder is [describe your builder, e.g. a stocky man in his 40s in a hi-vis vest, hard hat, work trousers and muddy boots, or attach a reference image of your character]. The camera is fixed on a tall tripod at the edge of the plot, looking across graded ground toward a distant tree line. The camera stays completely fixed: no pan, tilt, zoom, reframing or cuts.
-
-Time runs extremely fast. The man is always mid-task with motion blur, and the building grows only because he works.
-
-0-2s: Bare levelled ground. He walks in and pegs out a huge rectangle with stakes and string.
-2-4s: Concrete foundation slab spreads across the rectangle as he screeds it.
-4-6s: Grey steel frame and wall panels rise around him.
-6-8s: Flat roof goes on, rooftop cooling units and a row of diesel generators appear beside the building.
-8-10s: Cable trunks run in, the finished windowless data center stands complete and he walks to the door. Hold on the finished building.
-
-Shot on iPhone 15 Pro ultra-wide. Overcast daylight, soft shadows. Mud, dust, concrete splashes. Natural motion blur, 24fps, muted realistic colour, subtle grain.
-
-Sound: drills, hammering, concrete mixer and steel clanks only. No music, no speech.
-
-The camera position and horizon stay identical throughout. One man only. No morphing or dissolves, no floating materials, no text, no legible logos.
-```
-
-</details>
-
-<details><summary><b>Origami Cranes Over a Paper Pagoda at Sunset</b></summary>
-
-```text
-A handcrafted origami paper art diorama of dozens of folded paper cranes flying in a sweeping arc over a five-tier folded-paper pagoda at sunset, in a wide landscape 16:9 composition. About thirty origami cranes in crimson red, golden yellow, and cream white rise in a gentle curve from the lower left, just beside the sun, up and across to the upper right corner, each with sharp, crisp folds and visible paper grain. In the center, the pagoda stands on a stepped paper base with a small staircase at the top of a hill, built from natural cream paper with five tiers of upturned eaves trimmed in thin red edges, tiny railings, and small windows. A small pink folded-paper cherry blossom tree sits just left of the pagoda base, and a large cherry tree with a twisted brown paper trunk and clusters of pink paper blossoms fills the right foreground. Behind them, layered faceted paper mountains in beige, warm grey, and soft pink (pink on the left) recede in overlapping ridges, with crumpled beige paper hills in the foreground. A large flat orange textured paper circle sun hangs low on the left against a plain light grey-beige paper sky. Soft studio lighting with gentle shadows between the paper layers, shallow depth of field, warm and calm handcrafted mood. No text, no people.
-```
-
-</details>
-
-<details><summary><b>Outdoor Hot Spring Beside a Snowy Mountain Inn</b></summary>
-
-```text
-A steaming outdoor hot spring pool beside a traditional Japanese mountain inn during gentle snowfall at blue hour, lit by two glowing stone lanterns, seen from a low viewpoint at the edge of the water, in a wide landscape 16:9 frame. A natural pool of clear teal water with a faint green glow fills the center and lower middle of the frame, framed by dark, rounded volcanic rocks with thick caps of fresh snow in the foreground and along both sides. Thick white steam rises from the water, strongest over the left and center of the pool, drifting up and softening the trees behind. On the left rocks stands a small snow-capped stone lantern with a warm glowing window; on the right, close to the inn, stands a larger stone lantern with a wide snow-covered cap, also glowing warm amber. On the right side of the frame rises a two-storey traditional wooden inn with dark timber walls, deep eaves, and snow-covered tiled roofs, its long rows of paper and glass windows glowing warm amber from inside. Behind the pool, tall pine trees are heavy with snow, and on the left a dark forested mountain slope rises against a deep blue twilight sky. Large soft snowflakes fall across the whole scene. Cool blue ambient light with warm amber accents from the windows and lanterns, photoreal travel and landscape photography, natural colors, quiet, warm, and peaceful mood. No people, no text, no logos.
-```
-
-</details>
-
-<details><summary><b>Outdoor Staircase Portrait</b></summary>
-
-```text
-{
-  "environment": {
-    "type": "outdoor",
-    "location": "staircase",
-    "setting": "garden_or_park_entrance",
-    "time_of_day": "mid_day",
-    "weather": "sunny"
-  },
-  "camera": {
-    "lens": "portrait_lens",
-    "focal_length_estimate": "50mm_to_85mm",
-    "angle": "eye_level",
-    "framing": "medium_shot",
-    "focus": "sharp_on_subject"
-  },
-  "lighting": {
-    "general_condition": "bright_natural_light",
-    "sources": [
-      {
-        "type": "sun",
-        "angle": "overhead_left",
-        "color": "warm_white",
-        "intensity": "high",
-        "effect_on_objects": "creates_sharp_shadows_on_stairs_and_white_walls"
-      }
-    ]
-  },
-  "subject": {
-    "identity": "unknown_young_female",
-    "orientation": {
-      "body_facing": "front",
-      "face_facing": "front",
-      "gaze": "direct_to_camera"
-    },
-    "emotional_state": {
-      "expression": "confident",
-      "mood": "calm",
-      "allure_level": "moderate_to_high"
-    },
-    "pose": {
-      "general": "standing_on_stairs",
-      "posture": "upright_slightly_arched",
-      "limbs": {
-        "feet": "standing_on_steps_one_slightly_lower",
-        "hands": {
-          "left_hand": "extended_holding_railing",
-          "right_hand": "down_holding_handbag"
-        }
-      },
-      "visibility": "knee_up"
-    },
-    "head_details": {
-      "structure": "oval",
-      "hair": {
-        "color": "blonde_with_dark_roots",
-        "style": "long_loose_waves",
-        "parting": "center",
-        "texture": "silky"
-      },
-      "face": {
-        "forehead": "smooth_partially_covered_by_hair_strands",
-        "brows": "arched_groomed_brown",
-        "eyes": {
-          "color": "blue_green",
-          "shape": "almond",
-          "makeup": "mascara_eyeliner"
-        },
-        "nose": "straight_slim",
-        "lips": {
-          "shape": "full",
-          "color": "pink_glossy",
-          "expression": "slight_smile"
-        },
-        "jawline": "defined",
-        "cheeks": "blushed"
-      }
-    },
-    "body_details": {
-      "skin_tone": "tanned",
-      "neck": "slender_visible",
-      "shoulders": "covered_by_jacket",
-      "chest_area": {
-        "ratio_to_body": "large",
-        "estimated_size": "voluptuous",
-        "bra_status": "no_visible_straps_likely_adhesive_or_none",
-        "nipple_visibility": "not_visible",
-        "cleavage": "deeply_visible_prominent"
-      },
-      "abdomen": {
-        "ratio_to_body": "slim",
-        "definition": "flat_toned",
-        "navel_visibility": "covered"
-      },
-      "hips": {
-        "ratio_to_waist": "high_hourglass_shape",
-        "width": "curvy"
-      },
-      "legs": {
-        "thighs": "smooth_toned",
-        "exposure": "visible_from_mid_thigh_down"
-      }
-    },
-    "clothing": {
-      "upper_body": {
-        "item": "jacket_top",
-        "color": "maroon_burgundy",
-        "style": "long_sleeve_deep_plunge_neckline_zip_front",
-        "fit": "tight_fitted",
-        "light_interaction": "absorbs_light_soft_shadows_in_folds"
-      },
-      "lower_body": {
-        "item": "shorts",
-        "color": "teal_blue",
-        "style": "athletic_satin_finish_drawstring",
-        "fit": "loose_fit",
-        "light_interaction": "reflects_highlights_due_to_fabric_sheen"
-      }
-    },
-    "accessories": [
-      {
-        "type": "necklace",
-        "material": "silver",
-        "pendant": "small_heart_shape"
-      },
-      {
-        "type": "earrings",
-        "style": "hoops",
-        "material": "gold_tone"
-      },
-      {
-        "type": "handbag",
-        "pattern": "multicolor_floral",
-        "style": "structured_mini_bag",
-        "held_in": "right_hand"
-      }
-    ]
-  },
-  "objects": [
-    {
-      "name": "railing",
-      "color": "black",
-      "material": "metal",
-      "location": "sides_of_stairs",
-      "purpose": "safety_and_framing"
-    },
-    {
-      "name": "stairs",
-      "color": "beige_treads_white_risers",
-      "material": "stone_or_concrete",
-      "location": "center_foreground_to_midground",
-      "purpose": "platform_for_subject"
-    },
-    {
-      "name": "walls",
-      "color": "white",
-      "location": "flanking_stairs",
-      "purpose": "architectural_structure"
-    },
-    {
-      "name": "vegetation",
-      "type": "trees_and_bushes",
-      "color": "green",
-      "location": "background",
-      "purpose": "natural_backdrop"
-    },
-    {
-      "name": "potted_plant",
-      "location": "left_midground",
-      "type": "large_clay_pot_with_tree",
-      "color": "terracotta_pot_green_leaves"
-    }
-  ],
-  "negative_prompt": "deformed hands, bad anatomy, disfigured, blurry, low quality, watermark, text, signature, extra limbs, missing fingers, cross-eyed, asymmetrical eyes, bad proportions, unnatural skin texture"
-}
-```
-
-</details>
-
-<details><summary><b>Painterly Impasto Rainy Kyoto Lantern Street at Dusk</b></summary>
-
-```text
-A painterly impasto oil painting of a rainy stone-paved street in old Kyoto at dusk, tall portrait 3:4, with thick visible brushstrokes and a heavy textured paint surface. Dark wooden two-story machiya townhouses with lattice windows and tiled eaves line both sides of the street, with glowing red paper lanterns hanging along the eaves, larger and closer on the left, smaller and fading into the distance. The wet paving stones shine and reflect warm orange lantern light in long, broken streaks. A lone figure in a long dark coat, holding a red paper umbrella, walks away from the viewer up the middle of the street. At the far end, the silhouette of a tall five-story pagoda rises into the misty blue distance. Above, a deep blue cloudy evening sky with a faint warm glow near the horizon. Rich deep blues against warm orange and red, quiet, nostalgic, rainy mood. No text, no lettering, no logos.
-```
-
-</details>
-
-<details><summary><b>Paper Craft Lighthouse in a Storm</b></summary>
-
-```text
-A handcrafted paper-craft diorama of a lonely lighthouse on a rocky cliff during a stormy night. Everything is made of layered, cut and folded paper: ${sea_color:deep teal} paper waves curling against the rocks, cardstock clouds with visible fibers, a tiny red-and-white striped paper lighthouse whose lamp glows warm yellow through translucent vellum. Soft rim light, subtle paper shadows between layers, shallow depth of field, macro photography look, cinematic composition with the lighthouse on the right third, ${aspect_ratio:16:9}.
-```
-
-</details>
-
-<details><summary><b>Paper Craft Lighthouse Storm Animation</b></summary>
-
-```text
-Animate the paper-craft lighthouse diorama from the input image into a short cinematic loop. Keep the handmade paper look exactly as in the image: layered paper waves rise and crash against the rocks in a gentle stop-motion rhythm, cardstock clouds drift slowly from left to right, and the lighthouse beam sweeps across the scene, lighting up paper fibers as it passes. Add tiny paper rain flecks falling diagonally. Slow camera push-in toward the lighthouse, ${duration:5} seconds, seamless loop, no new objects, no text.
-```
-
-</details>
-
-<details><summary><b>Paper Cut-Out Storybook Character Template</b></summary>
-
-```text
-Paper cut-out animation of a ${subject:little brown bear in a patchwork apron} ${simple_action:watering a tall sunflower}, full-body character, layered paper shapes, handmade paper texture, visible cut edges, soft shadows between layers, flat colorful paper tones, slightly imperfect handcrafted details, minimal paper-collage scenery, charming folk story aesthetic, gentle stop-motion feel, poetic children’s book atmosphere, clean white background
-```
-
-</details>
-
-<details><summary><b>Paper Lantern Harbor at Dusk</b></summary>
-
-```text
-A quiet wooden harbor at dusk, hundreds of warm paper lanterns hanging from boats and piers, calm water reflecting orange and rose light, soft fog, cinematic wide shot, ultra-detailed, peaceful atmosphere, no people in foreground
-```
-
-</details>
-
-<details><summary><b>Paper Lantern Harbor Boat Close Up</b></summary>
-
-```text
-Close-up of a single small wooden fishing boat in a dusk harbor, warm paper lanterns glowing on the mast and gunwale, calm water with orange-rose reflections, soft fog in the background, matching the same paper-lantern harbor aesthetic, cinematic detail shot, ultra-detailed wood and paper textures, peaceful mood
-```
-
-</details>
-
-<details><summary><b>Paper Quilling Hummingbird and Hibiscus</b></summary>
-
-```text
-A close, slightly elevated studio photograph of a finished paper quilling artwork lying flat on a pale wooden craft table, 16:9 landscape composition, the artwork filling most of the frame. The piece shows a ruby-throated hummingbird in mid-hover on the left, its long thin beak dipping into a large open magenta hibiscus flower on the right. Everything is built from thousands of narrow paper strips, about 3 mm wide, rolled into tight coils, teardrops, marquise shapes, and open scrolls, glued on edge so the paper stands up from a soft cream cotton-paper background. The hummingbird's back and crown are tight coils in emerald and metallic-sheen green, its throat a patch of tiny ruby-red teardrop coils, its belly pale grey and white loose coils, its wings two fans of long fine strips in smoky grey-blue graded from dark at the base to light at the tips, suggesting motion; a small black coil for the eye with a single white dot. The hibiscus has five broad petals made of rows of magenta and hot pink strips shaped in waves, a deep crimson center, and a long yellow stamen column tipped with tiny orange coils; two glossy green leaves made of veined leaf-green strips, a curling stem, and one closed bud. A few loose spiral tendrils and three small lavender filigree flowers fill the background space. Real craft details: visible paper edges and layers, slight variations in coil tightness, tiny glue sheen at a few joints, and soft shadows cast by the raised strips onto the cream base. At the edge of the frame, out of focus: a slotted quilling tool, a small bundle of colored strips, and a pair of fine tweezers. Soft diffused window light from the upper left, gentle contact shadows, shallow depth of field with the hummingbird's head and the flower center sharpest, the far corners softly blurred. Photoreal product photography of handmade paper art, true colors, calm and delicate mood. Not a drawing or a painting of quilling: a real photographed paper object. No text, no letters, no signature, no watermark, no hands.
-```
-
-</details>
-
-<details><summary><b>Paper-Quilled Haute Couture Gown</b></summary>
-
-```text
-Generate a full-body high-fashion shot of a ${subject:tall model with a sleek low bun} in a ${pose:elegant three-quarter standing pose}, wearing an avant-garde paper-quilled haute couture gown made of fluid, overlapping 3D ribbon strands. The dress features ${dress_features:a fitted corset bodice and sweeping train} made of swooping ribbon layers in a gradient of ${color_palette:vivid cobalt, emerald green, and gold}. Accessories include a ${headwear:wide-brimmed matching hat with quilled plume details}. Set against a ${background_color:dark charcoal grey} background with dramatic studio spotlighting highlighting texture and fine edges. Rendered in crisp, high-contrast 3D detail.
-```
-
-</details>
-
-<details><summary><b>Papercut Lightbox of a Haunted Mansion</b></summary>
-
-```text
-A backlit layered papercut lightbox (cut-paper shadow box) of a haunted Victorian mansion on a hill in front of a huge glowing orange harvest moon, vertical portrait 3:4. In the center stands a dark purple Victorian mansion with a tall central pointed tower, steep gables, and a wraparound porch with columns and front steps, its arched windows glowing warm yellow-orange. Wavy layered bands of deep purple and violet paper form the sky at the top, with soft purple paper clouds on both sides and five or six small black paper bats. On the right, a big twisted bare black tree reaches over the scene, a wooden swing hanging from it on two chains. A winding path of grey paper stepping stones leads from the bottom center up the hill to the porch steps. Black wrought-iron spiked fences stand on the left and right, rounded tombstones sit in the dark foreground, and layers of orange spiky grass and rolling orange and purple hills fill the middle. Visible paper texture, cut edges, and soft shadows between the layers. Spooky but charming mood. No people, no text, no logos.
-```
-
-</details>
-
-<details><summary><b>Passenger Seat Car Selfie</b></summary>
-
-```text
-{
-  "category": "CAR_PASSENGER_SEAT_SELFIE",
-  "identity_lock": {
-    "enabled": true,
-    "priority": "ABSOLUTE_MAX",
-    "instruction": "Lock identity to reference image exactly. Preserve face proportions, features, and skin tone. Adult 21+ only."
-  },
-  "subject": {
-    "demographics": "Adult woman, 21-29, Turkish-looking (match reference).",
-    "hair": {
-      "color": "Match reference.",
-      "style": "Loose, slightly wind-touched",
-      "texture": "Individual strands visible; a few flyaways",
-      "movement": "Hair resting on shoulder with subtle motion"
-    },
-    "face": {
-      "eyes": "Exact reference shape; bright catchlights from window",
-      "skin_details": "Pores visible, warm glow; no smoothing",
-      "micro_details": "Preserve marks exactly"
-    },
-    "clothing": {
-      "top": "Casual black top or hoodie (no logos/text)",
-      "texture": "Cotton weave visible"
-    },
-    "accessories": {
-      "jewelry": ["Small silver hoops"]
-    }
-  },
-  "pose": {
-    "type": "Handheld selfie vibe (do not show phone)",
-    "orientation": "Close-up to half-body",
-    "head_position": "Slight tilt toward window light",
-    "limbs": "One arm implied holding camera out of frame",
-    "gaze": "Direct eye contact",
-    "expression": "Confident relaxed pout (subtle, not exaggerated)"
-  },
-  "setting": {
-    "environment": "Car passenger seat",
-    "background_elements": [
-      "Seat fabric texture visible",
-      "Window light streaks",
-      "Outside scenery blurred (no readable signs)"
-    ],
-    "depth": "Face sharp; background soft blur"
-  },
-  "camera": {
-    "shot_type": "Selfie-style portrait",
-    "angle": "Slightly above eye level",
-    "focal_length_equivalent": "24-28mm smartphone wide",
-    "framing": "3:4 or 4:5, chest-up crop",
-    "focus": "Eyes sharp; slight fall-off at shoulders"
-  },
-  "lighting": {
-    "source": "Golden hour sunlight through car window",
-    "direction": "Side/front warm",
-    "highlights": "Warm highlight on cheek and hair",
-    "shadows": "Soft under-chin shadow, realistic contrast"
-  },
-  "mood_and_expression": {
-    "tone": "Casual, confident, candid",
-    "atmosphere": "Warm travel moment"
-  },
-  "style_and_realism": {
-    "style": "Photorealistic social selfie",
-    "imperfections": "Mild noise, slight imperfect WB"
-  },
-  "technical_details": {
-    "aspect_ratio": "4:5",
-    "resolution": "High",
-    "noise": "Mild grain in shadows",
-    "mode_variants": {
-      "amateur": "Slightly shaky framing, subtle motion blur away from face, phone-like HDR",
-      "pro": "Cleaner exposure and sharper micro-contrast, still realistic"
-    }
-  },
-  "constraints": {
-    "adult_only": true,
-    "single_subject_only": true,
-    "no_text": true,
-    "no_logos": true,
-    "no_watermarks": true,
-    "no_readable_outside_signs": true
-  },
-  "negative_prompt": [
-    "identity drift", "face morphing",
-    "warped car interior", "duplicate subject",
-    "extra fingers", "bad anatomy",
-    "readable text", "logos", "watermark",
-    "plastic skin", "over-smoothing"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>Patchwork Doll Halloween Portrait</b></summary>
-
-```text
-Use my uploaded photograph as the primary identity reference. Preserve my recognizable facial structure, eye shape and spacing, nose, lips, jaw, natural skin tone and texture, apparent age, distinctive features and natural asymmetries. Keep my natural body proportions. Do not beautify, slim, rejuvenate or replace me with a generic model. Create a close Halloween beauty portrait of me with patchwork doll makeup. Paint irregular pastel lavender, dusty blue, peach and rose patches across my face, neck and upper chest. Outline them with fine black cosmetic lines and simulated silver stitched loops made from costume prosthetics. There are no actual cuts or injuries. Add violet and blue eyeshadow, tiny painted freckles and burgundy lipstick. Keep my own eye color and facial geometry visible beneath the makeup. Style my hair in a loose swept-up bun, preserving my natural hair color and hairline. Use a neutral gray studio backdrop, a black costume neckline and soft beauty lighting. Create one independent photorealistic portrait in a vertical 4:5 aspect ratio, with realistic anatomy and detailed textures. No text, logos, signature, watermark, collage or social media interface.
-```
-
-</details>
-
-<details><summary><b>Patent Illustration Designer</b></summary>
-
-```text
-{
-  "role": "Patent Illustrator",
-  "context": "You are a patent illustrator skilled in SolidWorks and Origin styles, designed to meet Chinese patent office standards.",
-  "task": "Create structured patent illustrations.",
-  "styles": {
-    "diagram": "SolidWorks",
-    "data_analysis": "Origin"
-  },
-  "rules": [
-    "Follow China's patent office guidelines strictly.",
-    "Use SolidWorks for all schematic diagrams: black and white vector lines, no rendering, no shadows, no gradients.",
-    "Ensure diagrams show structure, shape, and assembly relations clearly with Arabic numerals.",
-    "Use Origin style for data analysis graphs: minimalistic black and white, clear axes, no decorative elements.",
-    "Graphs should be suitable for academic papers and patent specifications."
-  ],
-  "examples": [
-    {
-      "type": "isometric_structure",
-      "style": "SolidWorks",
-      "description": "Black and white isometric drawing adhering to patent norms, showing structure and assembly clearly."
-    },
-    {
-      "type": "three_view_and_section",
-      "style": "SolidWorks",
-      "description": "Standard three views with section view, using hidden lines for internal structure, adhering to mechanical and patent norms."
-    },
-    {
-      "type": "exploded_view",
-      "style": "SolidWorks",
-      "description": "Exploded isometric drawing with clear assembly paths, no texture, suitable for patent structure disclosure."
-    },
-    {
-      "type": "data_analysis",
-      "style": "Origin",
-      "description": "Minimalistic graph for data analysis, suitable for patent specifications."
-    }
-  ],
-  "variables": {
-    "inventionDescription": "Description of the invention",
-    "diagramStyle": "Style for diagrams, defaulting to SolidWorks",
-    "graphStyle": "Style for graphs, defaulting to Origin"
-  }
-}
-```
-
-</details>
-
-<details><summary><b>Persian Miniature of a Night Garden Pavilion</b></summary>
-
-```text
-A small open garden pavilion with a turquoise-tiled dome stands beside a long rectangular reflecting pool where three musicians play a lute, a frame drum, and a reed flute on a patterned carpet, painted as a sixteenth-century Persian miniature. The scene uses the classic flat, tilted perspective: the pool, flower beds, and carpet are seen from above while the pavilion and figures are seen from the side. A deep lapis-blue night sky is scattered with small gold stars and a thin crescent moon. Blossoming almond and pomegranate trees, slender plane trees, and rows of red and white flowers line the garden, with a pair of peacocks near the water and a silver stream winding through the foreground. Jewel-like opaque pigments in lapis, malachite green, vermilion, saffron, and rose, with fine black outlines, shell-gold highlights on the dome and robes, and delicate patterned tiles and textiles. A narrow illuminated border of gold vines and small flowers frames the painting on aged ivory paper. Wide landscape 16:9. No text, no calligraphy, no letters, no logos.
-```
-
-</details>
-
-<details><summary><b>Persian Silent No Documentary Portrait</b></summary>
-
-```text
-Ultra-realistic documentary portrait of a young Iranian woman, 2026, natural window light, film grain, 50mm. Her expression is built entirely around the eyes and brows: one eyebrow lifted sharply, chin barely tilted up, eyelids half-lowered in a slow disbelieving blink — the classic Persian silent "no". Neutral background, muted earth tones. Below the photo, a clean white rectangular frame with rough sketchy hand-drawn borders and messy handwritten ink text: "نه" — pen strokes visible, slightly smudged.
-```
-
-</details>
-
-<details><summary><b>Person Image Analysis</b></summary>
-
-```text
-Create a prompt in which I upload a person image and it tells about person, her dressing sense, behaviour etc
-```
-
-</details>
-
-<details><summary><b>Personal Andrzejki Tarot Card from a Photo</b></summary>
-
-```text
-CAPTION: AUTO
-
-Transform the attached photo into one original tarot-inspired card for Andrzejki, the Polish St Andrew's Eve celebration. The main character is the person or pet in the photo. Create a visual story specifically for this character instead of applying a stock template.
-
-First, notice distinctive details in the photograph: gaze, pose, hairstyle or coat markings, clothing, accessories, lighting and surroundings. Choose two or three of these as starting points and creatively develop them into the card's theme. Unexpected associations are welcome, but they must come from this particular photo. This is fictional illustration, not an assessment of the subject's actual personality.
-
-Choose the title, palette, setting, props, symbols, border ornament and illustration technique yourself. They can feel magical, mysterious, cheerful or gently humorous. Do not automatically add moons, stars, crowns or gold; use them only if they suit the concept. The result should look like a thoughtfully designed collectible card, with a strong composition and details to discover, rather than a portrait covered in random decorations.
-
-Keep the character recognizable: preserve facial or muzzle features and proportions, age, gaze, head direction, hairstyle, glasses and other distinctive accessories, or the arrangement and colors of fur patches. You may creatively develop the clothing and setting. Do not cover the face with ornaments; likeness takes priority over stylization. Choose framing that suits the photo while keeping the entire ears, hairstyle or headwear visible.
-
-If CAPTION is AUTO, invent a short English title of one to three words that fits the visual story. If another caption is supplied, use that exact wording and also treat it as inspiration for the theme. Place the title once in a clearly readable caption area integrated into the card, with strong contrast. Do not print the instruction words AUTO or CAPTION. Do not add a number or any other writing.
-
-Return only one finished image: the entire vertical card in a 2:3 aspect ratio, flat and viewed straight on. Keep the complete border and caption inside the image with a margin from every edge. No tabletop mockup and no hand holding the card. Shown as a decorative fictional card, not a real prediction.
-```
-
-</details>
-
-<details><summary><b>Personal Style Image Analysis</b></summary>
-
-```text
-Develop a detailed prompt that allows users to upload an image of an individual. In return, the system will analyze the photograph and provide a comprehensive assessment of various aspects of the person depicted. This analysis should include insights into the individual’s personal style, as reflected in their choice of attire and accessories, as well as observations regarding their demeanor and behavior. The output should not only note specific fashion elements such as color schemes, clothing types, and overall aesthetic but also delve into the subtler nuances of body language and facial expressions, offering a well-rounded perspective on the individual’s personality. This interactive experience should be engaging and informative, inviting users to gain a deeper understanding of the person in the image beyond mere appearances.
 ```
 
 </details>

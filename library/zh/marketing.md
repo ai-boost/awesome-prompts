@@ -1,6 +1,6 @@
 # 营销与销售
 
-共 124 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 131 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/marketing.md) · [中文](../zh/marketing.md)
 
@@ -2126,6 +2126,148 @@ Order: 772609034
 
 </details>
 
+<details><summary><b>企业圣诞礼品营销视频脚本</b> · 机器翻译</summary>
+
+```text
+任务：企业圣诞礼品营销活动的创意概念与完整脚本
+
+请扮演一位经验丰富的创意总监、广告编剧和社交媒体视频制作人。
+
+我需要你为一家专门定制企业圣诞礼盒的公司，构思一个专业、有创意且具有商业效果的视频概念和完整拍摄脚本。
+
+1. 公司简介与服务
+
+公司提供：
+
+* 定制设计的企业礼盒。
+* 根据每家公司的偏好、预算和品牌形象提供个性化礼品选择。
+* 定制包装与品牌化。
+* 为员工、商业伙伴、客户和高管量身定制的礼品方案。
+* 既有现成的礼品方案，也有完全定制的订单。
+
+核心卖点是：每份礼品都可以根据公司的需求、偏好和预算单独定制。
+
+2. 主要目标
+
+视频应面向：
+
+* 公司老板和 CEO。
+* 人力资源经理。
+* 市场与传播团队。
+* 负责企业礼品采购的业务代表。
+
+目标是鼓励企业下达圣诞节和新年企业礼品订单。
+
+视频所售卖的不应只是礼盒，还应传达感恩、有意义的心意、商业关系和用心送礼的价值。
+
+3. 我的参与与出镜角色
+
+我会亲自参与视频拍摄。
+
+我的角色不应只是介绍产品。我希望呈现出自信、有感染力的形象，直接与观众交流，并解释为什么个性化企业礼品很重要。
+
+我的出镜形象应当给人以下感觉：
+
+* 自然真实。
+* 自信但不过度推销。
+* 友好、成熟且有亲和力。
+* 专业但不显得官腔或照本宣科。
+* 有说服力但不强硬。
+
+请把我的台词写成直接对着镜头说话时听起来自然的样子。
+
+我希望我的参与是有意义的，并融入创意概念之中，而不是在视频中硬插入一段出镜。
+
+4. 我需要你交付的内容
+
+请制定以下内容：
+
+1. 主创意概念：为这次营销活动打造一个有力的核心理念和创意方向。
+2. 三种不同的视频概念：
+    * 优雅、感人且高端。
+    * 现代、动感且以销售为导向。
+    * 有创意、引人入胜且令人难忘。
+3. 完整拍摄脚本：按场景逐一拆解每个概念，包括时间和时长。
+4. 我的出镜台词：写出我应该说的确切话语，包括开场白、过渡语和结束语。
+5. B-Roll 与产品镜头：建议详细的镜头，包括：
+    * 挑选产品。
+    * 摆放礼盒。
+    * 包装与包裹。
+    * 系丝带。
+    * 添加个性化元素。
+    * 展示成品礼盒。
+    * 质感、细节和陈列的特写镜头。
+6. 视觉叙事：展示我面对镜头的出镜画面应如何与产品画面和幕后花絮场景交替出现。
+7. 强有力的开场钩子：前 3 秒必须立即抓住注意力，让观众想要继续看下去。
+8. 行动号召：设计一个有说服力的结尾，鼓励企业联系公司、索取报价或下单。
+9. 屏幕文字：为每个场景建议简短而有冲击力的叠加文字。
+10. 制作与剪辑指导：明确机位角度、构图、转场、剪辑节奏、音乐风格、灯光和整体视觉氛围。
+
+5. 技术要求
+
+* 时长：45–60 秒。
+* 格式：竖版 9:16。
+* 平台：Instagram Reels、Facebook Reels 和 TikTok。
+* 视觉美学：节日氛围、优雅、精致、现代且高端。
+* 制作：低预算，无需复杂设备或繁复布置即可实际完成。
+
+6. 创意准则
+
+* 避免陈词滥调的圣诞广告套路。
+* 避免过于煽情、夸张或矫揉造作的台词。
+* 不要让视频看起来像简单的产品目录。
+* 注重叙事、情感连接和商业价值。
+* 清楚传达每份企业礼品都可以根据客户的需求、偏好和预算进行定制。
+* 让视频感觉像是专业制作的品牌宣传片，而不是典型的社交媒体广告。
+
+7. 最终交付物
+
+我期望得到一份完整的、可直接投入制作的创意方案。
+
+对于每个场景，请说明：
+
+* 确切时长。
+* 画面中出现的内容。
+* 我是在出镜说话，还是画外音。
+* 我的确切台词。
+* 机位角度与运动。
+* 产品镜头与辅助素材。
+* 屏幕文字。
+* 剪辑与转场建议。
+
+请像一个高水平广告公司的创意团队那样思考。优先考虑原创性、视觉叙事、受众参与、品牌定位和转化。
+
+最终结果应让企业决策者心想：
+
+“这正是我们公司需要的那种用心、个性化的圣诞礼品解决方案。”
+```
+
+</details>
+
+<details><summary><b>保守时装开箱与头巾穿搭宣传视频(40秒)</b> · 机器翻译</summary>
+
+```text
+创作一支 40 秒的写实电影感时尚宣传视频，主角是一位美丽的年轻穆斯林女性，她戴着米色头巾（hijab），身穿优雅的保守风格服装。
+
+场景 1：她坐在一间温馨、装饰精美的客厅里的桌子后面，微笑着向镜头展示一个网店购物包裹。
+
+场景 2：她打开包裹，露出一套漂亮的灰粉色保守风格服装，展示面料和细节。
+
+场景 3：平滑过渡到她穿着整套服装的画面：一件灰粉色长袖上衣，袖口带有优雅的褶皱，搭配同色系的印花阔腿裤。她戴着米色头巾，并挎着一个奶油色的小号斜挎包。
+
+场景 4：从不同角度展示她的完整穿搭。她轻轻地走动、转身、微笑，并自然地摆姿势，同时展示上衣、袖子、裤子和手袋。
+
+场景 5：过渡到一条优雅的户外购物街，光线温暖、富有电影感。她自信地沿着人行道行走，对着镜头微笑，并自然地摆姿势。
+
+场景 6：以精美的时尚特写镜头收尾，突出面料质感、花卉图案、手袋以及整体穿搭。
+
+视觉风格：超写实的时尚广告片，优雅的保守风格时尚，温暖自然的光线，柔和的电影级调色，流畅的镜头运动，逼真的面料物理效果，细致的纹理，专业的时尚摄影，4K 画质。
+
+重要：在整个视频中保持一致的面部特征、头巾颜色、服装设计和配饰。身体动作自然，比例真实，手部和衣物不得变形。
+```
+
+</details>
+
 <details><summary><b>关键词搜索意图分类</b></summary>
 
 ```text
@@ -3192,6 +3334,129 @@ ${company_name}
 
 </details>
 
+<details><summary><b>展会展位方案生成器(YAML)</b> · 机器翻译</summary>
+
+```text
+role: >-
+  面向小公司和创始人的展会策划师。你把一场即将到来的展会或会议转化为一份两到五人团队可以执行的实用展位方案,包含明确的目标、现实的预算、线索获取流程,以及能真正把展位上的交谈转化为会议和收入的跟进计划。
+
+event:
+  name: "${event_name:Regional SaaS and IT Expo}"
+  city: "${city:Lyon}"
+  dates: "${event_dates:3 days, 10-12 March}"
+  expected_visitors: "${visitors:about 6,000, mostly IT managers and operations leads}"
+  booth: "${booth_size:3x3 m shell scheme booth near the cafe area}"
+  cost_already_paid: "${booth_cost:4,800 EUR booth fee}"
+
+company:
+  product: "${product:a scheduling and dispatch tool for field service teams}"
+  stage: "${stage:seed stage, 40 paying customers}"
+  ideal_customer: "${icp:field service companies with 20-200 technicians}"
+  average_deal_size: "${deal_size:9,000 EUR per year}"
+  team_attending: "${team:2 founders and 1 sales hire}"
+  extra_budget: "${extra_budget:6,000 EUR for travel, graphics, giveaways and demo gear}"
+  main_goal: "${goal:book 25 qualified demo meetings within 3 weeks after the show}"
+
+instructions:
+  - >-
+    针对上面缺失或不清楚的任何内容,提出最多 5 个简短问题,然后等我回答后再制定方案。
+  - >-
+    将方案输出为一份严格遵循 output_schema 的有效 YAML 文档,前后不得有任何文字。
+  - >-
+    从 main_goal 倒推:估算每小时的展位交谈数、其中合格的比例,以及由此现实可得的会议数。如果以该团队和展位无法达成目标,请在 risks 中说明,并建议更小的目标或调整(预约会议、演讲时段、合作伙伴展位)。
+  - >-
+    预算控制在 extra_budget 之内,并以展会所用货币为每个明细项给出估算。标出可以省略的项目。
+  - >-
+    展位文案必须能放在 5 米外可读的横幅上:一条不超过 8 个词、点明客户问题的标题,一个证明点,以及一个行动号召。不要使用行话。
+  - >-
+    线索获取只记录团队跟进所需的信息,并遵守当地隐私规定:征求跟进同意,未告知访客不得扫描胸牌,并注明数据存放位置。
+  - >-
+    每个展位班次都必须有指定角色(接待、演示负责人、成交负责人或轮休替补),且任何人连续工作不得超过 3 小时而不休息。
+  - >-
+    跟进消息必须引用访客在展位上实际说过的内容,因此资格评估笔记必须记录这些内容。
+
+output_schema:
+  summary:
+    goal: "one sentence"
+    realistic_outcome: "expected conversations, qualified leads and meetings"
+    go_or_rethink: "go | go_with_changes | rethink"
+  pre_show:
+    timeline:
+      - when: "e.g. 6 weeks before"
+        task: "what to do"
+        owner: "who"
+    pre_booked_meetings:
+      target_count: 0
+      outreach_plan: "who to invite and how"
+      invite_message: "short message, under 90 words"
+    logistics_checklist:
+      - "item"
+  booth:
+    layout: "where the screen, table, banner and storage go"
+    banner:
+      headline: "8 words or fewer"
+      proof_point: "one line"
+      call_to_action: "one line"
+    demo:
+      length_minutes: 0
+      script_steps:
+        - "step"
+    giveaway: "item and why it attracts the right visitors, or none"
+    shift_schedule:
+      - day: "Day 1"
+        slot: "09:00-12:00"
+        greeter: "name"
+        demo_lead: "name"
+        notes: "anything special, e.g. keynote break rush"
+  lead_capture:
+    tool: "app, form or paper card"
+    fields:
+      - name: "field name"
+        why: "how it is used in follow-up"
+    qualification_questions:
+      - "question"
+    lead_grades:
+      hot: "definition"
+      warm: "definition"
+      cold: "definition"
+    consent_wording: "one sentence read or shown to the visitor"
+  budget:
+    items:
+      - item: "name"
+        estimate: 0
+        optional: false
+    total: 0
+    cost_per_target_meeting: 0
+  follow_up:
+    within_24_hours:
+      - "action"
+    sequence:
+      - day: 1
+        channel: "email | call | LinkedIn"
+        audience: "hot | warm | cold"
+        message: "short template using the visitor's own booth notes"
+    tracking: "how meetings and deals from this show are tagged in the CRM"
+  review:
+    metrics:
+      - "metric and target"
+    debrief_questions:
+      - "question for the team meeting one week after the show"
+  risks:
+    - risk: "what could go wrong"
+      mitigation: "what we do about it"
+
+constraints:
+  tone: "practical, honest, no hype"
+  currency: "${currency:EUR}"
+  language: "${language:English}"
+  avoid:
+    - "inventing visitor numbers or results not given or estimated with stated assumptions"
+    - "giveaways that attract only freebie hunters"
+    - "lead fields the team will never use"
+```
+
+</details>
+
 <details><summary><b>市场推广执行规划师</b></summary>
 
 ```text
@@ -4144,6 +4409,128 @@ Copy
 
 </details>
 
+<details><summary><b>注册会计师项目推广活动</b> · 机器翻译</summary>
+
+```text
+为推广由埃塞俄比亚注册会计师协会(ETiCPA)主办的即将开设的注册会计师(CPA)项目
+```
+
+</details>
+
+<details><summary><b>流失客户挽回方案(JSON)</b> · 机器翻译</summary>
+
+```text
+{
+  "role": "你是一名面向小型订阅制企业(SaaS、应用、会员制、订阅盒子)的留存与挽回策略师。你帮助创始人了解客户为何取消订阅,并制定一份诚实、低压力的挽回计划,瞄准最有可能回头的客户。",
+  "task": "根据我提供的业务详情和已取消客户的数据,生成一份挽回计划,格式为严格遵循 output_schema 的单个有效 JSON 对象。",
+  "inputs_i_will_provide": {
+    "business": "我们销售什么、定价和套餐、计费周期、典型客户类型,以及当前月流失率(如已知)。",
+    "cancellations": "已取消客户的列表或导出数据:套餐、月度价值、使用时长、取消日期、自述的取消原因(自由文本或选项)、取消前的使用情况,以及任何支持工单。",
+    "changes_since": "自这些客户离开以来发布的产品变更、修复、新功能或定价变动。",
+    "constraints": "折扣或积分的预算、可用的团队时间、我们可以使用的渠道(电子邮件、应用内、电话),以及我们绝不能提供的任何内容。",
+    "goal": "成功的标准是什么,例如:在 60 天内让上季度取消客户中的 5% 重新激活。"
+  },
+  "instructions": [
+    "如果缺少取消数据或业务定价,请在生成 JSON 之前用一条简短的消息向我索取。不要编造客户或数字。",
+    "把每一条取消记录归入一个主要原因:price_or_budget、missing_feature、product_quality_or_bugs、poor_onboarding_or_never_activated、switched_to_competitor、no_longer_needed、temporary_pause、billing_or_payment_failure、support_experience、unknown。保留客户自己的原话作为证据。",
+    "将 billing_or_payment_failure 单独处理:这些属于非自愿流失,应采取支付恢复步骤,而不是说服式营销活动。",
+    "按 1 到 5 为每个细分群体的挽回潜力打分,依据:该原因此后是否已被解决(changes_since)、使用时长和过往使用情况、套餐价值,以及取消后经过的时间。用一句话解释该分数。",
+    "只为那些确实发生了变化、或小额优惠能够回应其自述原因的细分群体创建挽回优惠。对于 no_longer_needed 和 unknown 细分群体,建议采用轻触式的告别或一次回访,而不是一连串触达序列。",
+    "用朴实、诚实的语气撰写信息:承认他们离开的原因,具体说明发生了什么变化,提出一个明确的优惠,并让对方很容易说不。不要制造虚假的紧迫感,不要内疚施压,不要使用误导性的\"最后机会\"措辞。",
+    "尊重同意与法律:只通过客户同意的渠道联系他们,每封电子邮件都包含退订或退出选项,将序列限制为最多 3 次触达,并标出创始人应当确认的任何地区性规则(例如欧盟/英国的营销同意)。",
+    "折扣必须符合既定预算,并且绝不能以一种让现有付费客户发现后觉得不公平的方式压低价格。优先选择延长试用、套餐降级、暂停或入门指导,而不是大幅折扣。",
+    "按细分群体以保守区间估算预期重新激活数和挽回的月收入,并说明其背后的假设。",
+    "添加产品反馈:产品团队应当修复的、导致客户离开的前 3 大原因,附带数量和引述。",
+    "只返回 JSON 对象,前后不要有任何说明。"
+  ],
+  "output_schema": {
+    "summary": {
+      "period_covered": "string",
+      "total_cancellations": "number",
+      "voluntary": "number",
+      "involuntary_payment_failures": "number",
+      "lost_monthly_revenue": "number",
+      "currency": "string",
+      "headline_insight": "string (一到两句话)"
+    },
+    "reason_breakdown": [
+      {
+        "reason": "原因代码之一",
+        "count": "number",
+        "share_percent": "number",
+        "lost_monthly_revenue": "number",
+        "example_quotes": ["string"],
+        "fixed_since_cancel": "yes | partly | no",
+        "what_changed": "string or null"
+      }
+    ],
+    "segments": [
+      {
+        "segment_id": "string",
+        "description": "string",
+        "reason": "原因代码",
+        "customer_count": "number",
+        "win_back_score": "1-5",
+        "score_reason": "string",
+        "approach": "full_sequence | single_check_in | goodbye_only | payment_recovery | do_not_contact",
+        "offer": {
+          "type": "none | extended_trial | discount | downgrade | pause | onboarding_call | credit",
+          "details": "string",
+          "cost_estimate": "number",
+          "expires_after_days": "number or null"
+        },
+        "sequence": [
+          {
+            "step": "number",
+            "send_day": "number (活动开始后的第几天)",
+            "channel": "email | in_app | phone | sms",
+            "subject_or_opening": "string",
+            "message_body": "string (少于 120 词,电子邮件需包含退出选项一行)",
+            "goal": "string"
+          }
+        ],
+        "expected_reactivations": { "low": "number", "high": "number" },
+        "expected_recovered_mrr": { "low": "number", "high": "number" },
+        "assumptions": ["string"]
+      }
+    ],
+    "payment_recovery": {
+      "affected_customers": "number",
+      "steps": ["string (更新银行卡提醒、重试计划、宽限期)"],
+      "message_body": "string"
+    },
+    "budget": {
+      "total_offer_cost": "number",
+      "within_budget": "boolean",
+      "notes": "string"
+    },
+    "measurement": {
+      "primary_metric": "string",
+      "secondary_metrics": ["string"],
+      "holdout_group": "string (如何保留一小组不联系的客户,以衡量真实提升)",
+      "review_date": "string"
+    },
+    "product_feedback": [
+      { "issue": "string", "count": "number", "quotes": ["string"], "suggested_fix": "string" }
+    ],
+    "compliance_checks": ["string"],
+    "risks": [
+      { "risk": "string", "mitigation": "string" }
+    ],
+    "open_questions": ["string"]
+  },
+  "quality_rules": [
+    "每个数字都必须来自我的数据,或在 assumptions 中明确标注为估算。",
+    "任何细分群体的 sequence 步骤都不得超过 3 步。",
+    "approach 为 goodbye_only、payment_recovery 或 do_not_contact 的细分群体,其 offer.type 必须为 none。",
+    "要求不被联系的客户,或在争议或拒付后离开的客户,归入 do_not_contact 细分群体。",
+    "让信息正文针对该细分群体的原因;绝不要在不同细分群体之间复用同一条通用信息。"
+  ]
+}
+```
+
+</details>
+
 <details><summary><b>热门相关问题生成</b></summary>
 
 ```text
@@ -4769,6 +5156,18 @@ Frame 5:
 - 运用引人入胜的视觉画面与音乐以吸引观众注意。
 
 确保该视频充满活力、喜庆洋溢，在传递新年喜悦的同时，亦能有效推广安提阿纺织公司。
+```
+
+</details>
+
+<details><summary><b>网吧服务效果营销专家</b> · 机器翻译</summary>
+
+```text
+扮演 Blockchain Internet Cafe 的效果营销专家。这是一家位于伊朗朗加鲁德（Langarud）的网络服务办公室。我们的服务包括：在线政府事务登记、车牌预约、水电燃气等账单缴费、保险、司法服务、商业税务/增值税/账簿会计、需身份验证的休眠银行账户找回、在线买卖以及咨询。我们的客户是朗加鲁德的本地居民和小企业主，他们需要在店内当面把文书工作又快又准确地办好。
+
+请为我们的服务提供 10 个不同的广告切入角度，面向从未听说过我们的本地客户：痛点、期望的结果、异议、对比、客户证明、好奇心、幕后花絮、操作指南、身份认同（“给那些……的人”）以及时效性角度（仅当我确实有真实的截止日期时使用）。每个角度请给出一个标题、一行广告文案，以及它可能有效的原因。广告用波斯语撰写。每条广告都必须有能让人停止滑动的开头钩子，以及明确的行动号召，引导人们亲自到店（朗加鲁德，Kofsh-e Melli 巷，Babak 通道对面）。
+
+后续：挑选出 3 个最有可能打动从未听说过我的人的角度，并为它们撰写完整的广告。
 ```
 
 </details>
@@ -6300,6 +6699,46 @@ ${email_body}
 规则：
 - 避免关键词过度堆砌，以保持内容可读性。
 - 使用工具检查抄袭情况，确保所有内容均为原创。
+```
+
+</details>
+
+<details><summary><b>高端理发店 Snapchat 竖屏视频广告</b> · 机器翻译</summary>
+
+```text
+为一家高端男士理发店创作一支优质的电影感商业广告,专为 Snapchat 竖版视频广告设计。
+
+**FORMAT:** 竖版 9:16,1080x1920,电影级 4K 画质,20 秒,超写实商业摄影。
+
+**CREATIVE CONCEPT:** "Your Style. Your Identity."
+
+**SCENE 1 – THE HOOK (0–3 seconds)**
+专业理发推子开启的极致特写,戏剧化的金属音效,电影感灯光,暗调奢华氛围,镜头快速推进。
+
+**SCENE 2 – THE EXPERIENCE (3–7 seconds)**
+一位身穿黑色专业制服、技艺精湛的理发师,正精心打造一款完美的渐变油头(skin fade)发型。推子的微距镜头,精准的手部动作,逼真的发丝细节,流畅的镜头运动。
+
+**SCENE 3 – THE DETAILS (7–12 seconds)**
+用直剃刀修整胡须的慢动作镜头,热毛巾护理,高端美容护理产品,对每一个细节的用心。
+
+**SCENE 4 – THE TRANSFORMATION (12–16 seconds)**
+一位英俊的年轻阿拉伯男子,拥有刚做好、造型完美的发型,望向镜子。镜头展现他自信的形象。电影感灯光,优雅的蜕变呈现。
+
+**SCENE 5 – THE FINAL SHOT (16–20 seconds)**
+顾客自信地走过奢华的理发店。以一张惊艳的特写肖像收尾,优雅的暗色背景和高端灯光。
+
+**VISUAL STYLE:**
+奢华男士美容商业广告,精致的黑金调色,戏剧化的阴影,温暖的电影感高光,逼真的皮肤质感,浅景深,流畅的转场,专业广告摄影。
+
+**SOUND DESIGN:**
+强有力的电影感开场音效,逼真的推子声,含蓄的奢华背景音乐,有节奏感的转场,高端的电影感收尾。
+
+**IMPORTANT:**
+不要出现变形的手、不真实的面孔、多余的手指、看起来人工的头发、随机文字、水印。在所有场景中保持角色外貌一致。
+
+在最后一个场景中留出干净的负空间,以便在后期制作中添加理发店标志、预约信息和 Snapchat 行动号召。
+
+最终成片必须看起来像一支高预算的国际奢华男士美容品牌商业广告。
 ```
 
 </details>

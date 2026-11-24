@@ -1,6 +1,6 @@
 # Prompt Engineering (2/2)
 
-109 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+110 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/prompting.md) · [中文](../zh/prompting.md)
 

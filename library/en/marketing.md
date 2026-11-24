@@ -1,6 +1,6 @@
 # Marketing & Sales
 
-124 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+131 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/marketing.md) · [中文](../zh/marketing.md)
 
@@ -1268,6 +1268,120 @@ Inspires exploration
 
 </details>
 
+<details><summary><b>Churned Customer Win-Back Plan (JSON)</b></summary>
+
+```text
+{
+  "role": "You are a retention and win-back strategist for small subscription businesses (SaaS, apps, memberships, subscription boxes). You help founders understand why customers cancelled and build an honest, low-pressure win-back plan that targets the customers most likely to return.",
+  "task": "Using the business details and the cancelled-customer data I provide, produce a win-back plan as a single valid JSON object that follows the output_schema exactly.",
+  "inputs_i_will_provide": {
+    "business": "What we sell, pricing and plans, billing cycle, typical customer type, and current monthly churn if known.",
+    "cancellations": "A list or export of cancelled customers: plan, monthly value, tenure, cancel date, stated cancellation reason (free text or a picked option), usage before cancelling, and any support tickets.",
+    "changes_since": "Product changes, fixes, new features, or pricing changes shipped since these customers left.",
+    "constraints": "Budget for discounts or credits, team time available, channels we can use (email, in-app, phone), and anything we must never offer.",
+    "goal": "What success looks like, for example: reactivate 5% of last quarter's cancellations within 60 days."
+  },
+  "instructions": [
+    "If cancellations data or business pricing is missing, ask for it in one short message before producing the JSON. Do not invent customers or numbers.",
+    "Group every cancellation into one primary reason: price_or_budget, missing_feature, product_quality_or_bugs, poor_onboarding_or_never_activated, switched_to_competitor, no_longer_needed, temporary_pause, billing_or_payment_failure, support_experience, unknown. Keep the customer's own words as evidence.",
+    "Treat billing_or_payment_failure separately: these are involuntary churn and get a payment recovery step, not a persuasion campaign.",
+    "Score each segment for win-back potential from 1 to 5 using: whether the reason has since been fixed (changes_since), tenure and past usage, plan value, and time since cancellation. Explain the score in one sentence.",
+    "Only create a win-back offer for segments where something has genuinely changed or a small offer addresses the stated reason. For no_longer_needed and unknown segments, recommend a light-touch goodbye or a single check-in, not a sequence.",
+    "Write messages in a plain, honest tone: acknowledge why they left, say specifically what changed, make one clear offer, and make it easy to say no. No fake urgency, no guilt, no misleading 'last chance' language.",
+    "Respect consent and law: only contact customers through channels they agreed to, include an unsubscribe or opt-out in every email, cap the sequence at 3 touches, and flag any region-specific rules the founder should confirm (for example marketing consent in the EU/UK).",
+    "Discounts must fit the stated budget and never undercut current paying customers in a way that would feel unfair if they found out. Prefer extended trials, plan downgrades, pauses or onboarding help over deep discounts.",
+    "Estimate expected reactivations and recovered monthly revenue per segment as a conservative range, and state the assumptions behind it.",
+    "Add product feedback: the top 3 reasons customers leave that the product team should fix, with counts and quotes.",
+    "Return only the JSON object, with no commentary before or after it."
+  ],
+  "output_schema": {
+    "summary": {
+      "period_covered": "string",
+      "total_cancellations": "number",
+      "voluntary": "number",
+      "involuntary_payment_failures": "number",
+      "lost_monthly_revenue": "number",
+      "currency": "string",
+      "headline_insight": "string (one or two sentences)"
+    },
+    "reason_breakdown": [
+      {
+        "reason": "one of the reason codes",
+        "count": "number",
+        "share_percent": "number",
+        "lost_monthly_revenue": "number",
+        "example_quotes": ["string"],
+        "fixed_since_cancel": "yes | partly | no",
+        "what_changed": "string or null"
+      }
+    ],
+    "segments": [
+      {
+        "segment_id": "string",
+        "description": "string",
+        "reason": "reason code",
+        "customer_count": "number",
+        "win_back_score": "1-5",
+        "score_reason": "string",
+        "approach": "full_sequence | single_check_in | goodbye_only | payment_recovery | do_not_contact",
+        "offer": {
+          "type": "none | extended_trial | discount | downgrade | pause | onboarding_call | credit",
+          "details": "string",
+          "cost_estimate": "number",
+          "expires_after_days": "number or null"
+        },
+        "sequence": [
+          {
+            "step": "number",
+            "send_day": "number (days after campaign start)",
+            "channel": "email | in_app | phone | sms",
+            "subject_or_opening": "string",
+            "message_body": "string (under 120 words, includes opt-out line for email)",
+            "goal": "string"
+          }
+        ],
+        "expected_reactivations": { "low": "number", "high": "number" },
+        "expected_recovered_mrr": { "low": "number", "high": "number" },
+        "assumptions": ["string"]
+      }
+    ],
+    "payment_recovery": {
+      "affected_customers": "number",
+      "steps": ["string (card update reminders, retry schedule, grace period)"],
+      "message_body": "string"
+    },
+    "budget": {
+      "total_offer_cost": "number",
+      "within_budget": "boolean",
+      "notes": "string"
+    },
+    "measurement": {
+      "primary_metric": "string",
+      "secondary_metrics": ["string"],
+      "holdout_group": "string (how to keep a small group uncontacted to measure true lift)",
+      "review_date": "string"
+    },
+    "product_feedback": [
+      { "issue": "string", "count": "number", "quotes": ["string"], "suggested_fix": "string" }
+    ],
+    "compliance_checks": ["string"],
+    "risks": [
+      { "risk": "string", "mitigation": "string" }
+    ],
+    "open_questions": ["string"]
+  },
+  "quality_rules": [
+    "Every number must come from my data or be clearly marked as an estimate in assumptions.",
+    "No segment may have more than 3 sequence steps.",
+    "Segments with approach goodbye_only, payment_recovery or do_not_contact must have offer.type none.",
+    "Customers who asked not to be contacted, or who left after a dispute or chargeback, go in a do_not_contact segment.",
+    "Keep message bodies specific to the segment's reason; never reuse one generic message across segments."
+  ]
+}
+```
+
+</details>
+
 <details><summary><b>Cinematic Promo Video</b></summary>
 
 ```text
@@ -1354,6 +1468,124 @@ Write a captivating prompt showing proposed clients how their business facility 
 
 </details>
 
+<details><summary><b>Corporate Christmas Gift Campaign Video Script</b></summary>
+
+```text
+TASK: Creative Concept & Full Script for a Corporate Christmas Gift Campaign
+
+Act as an experienced Creative Director, Advertising Scriptwriter, and Social Media Video Producer.
+
+I need you to develop a professional, creative, and commercially effective video concept and full shooting script for a company specializing in customized corporate Christmas gift boxes.
+
+1. Company Profile & Services
+
+The company offers:
+
+* Custom-designed corporate gift boxes.
+* Personalized gift selections based on each company’s preferences, budget, and brand identity.
+* Customized packaging and branding.
+* Tailor-made gift solutions for employees, business partners, clients, and executives.
+* Both ready-made gift concepts and fully customized orders.
+
+The key selling point is that every gift can be individually tailored to the company’s needs, preferences, and budget.
+
+2. Main Objective
+
+The video should target:
+
+* Company owners and CEOs.
+* HR managers.
+* Marketing and communications teams.
+* Business representatives responsible for corporate gifting.
+
+The objective is to encourage companies to place their Christmas and New Year corporate gift orders.
+
+The video should sell more than just gift boxes. It should communicate the value of appreciation, meaningful gestures, business relationships, and thoughtful gifting.
+
+3. My Contribution & On-Camera Role
+
+I will personally participate in the video.
+
+My role should go beyond simply presenting the products. I want to appear as a confident, engaging person who communicates directly with the audience and explains why personalized corporate gifting matters.
+
+My on-camera presence should feel:
+
+* Natural and authentic.
+* Confident but not overly promotional.
+* Friendly, sophisticated, and engaging.
+* Professional without sounding corporate or scripted.
+* Persuasive without being pushy.
+
+Write my dialogue in a way that sounds natural when spoken directly to the camera.
+
+I want my contribution to be meaningful and integrated into the creative concept, not just an appearance inserted into the video.
+
+4. What I Need You to Deliver
+
+Develop the following:
+
+1. Main Creative Concept: Create a strong central idea and creative direction for the campaign.
+2. Three Different Video Concepts:
+    * Elegant, emotional, and premium.
+    * Modern, dynamic, and sales-oriented.
+    * Creative, engaging, and memorable.
+3. Complete Shooting Script: Break down each concept scene by scene, including timing and duration.
+4. My On-Camera Dialogue: Write the exact words I should say, including opening lines, transitions, and closing statements.
+5. B-Roll & Product Shots: Suggest detailed shots of:
+    * Selecting products.
+    * Arranging gift boxes.
+    * Packaging and wrapping.
+    * Tying ribbons.
+    * Adding personalized elements.
+    * Showing finished gift boxes.
+    * Close-up shots of textures, details, and presentation.
+6. Visual Storytelling: Show how my direct-to-camera appearance should alternate with product footage and behind-the-scenes scenes.
+7. Strong Opening Hook: The first 3 seconds must immediately capture attention and make the viewer want to continue watching.
+8. Call to Action: Create a compelling ending that encourages businesses to contact the company, request a quotation, or place an order.
+9. On-Screen Text: Suggest short, impactful overlay texts for each scene.
+10. Production & Editing Direction: Specify camera angles, framing, transitions, editing rhythm, music style, lighting, and overall visual atmosphere.
+
+5. Technical Requirements
+
+* Duration: 45–60 seconds.
+* Format: Vertical 9:16.
+* Platforms: Instagram Reels, Facebook Reels, and TikTok.
+* Visual aesthetic: Festive, elegant, sophisticated, modern, and premium.
+* Production: Low-budget and realistically achievable without complicated equipment or elaborate setups.
+
+6. Creative Guidelines
+
+* Avoid generic Christmas advertising clichés.
+* Avoid overly sentimental, exaggerated, or artificial dialogue.
+* Do not make the video look like a simple product catalogue.
+* Focus on storytelling, emotional connection, and commercial value.
+* Clearly communicate that every corporate gift can be customized according to the client’s needs, preferences, and budget.
+* Make the video feel like a professionally produced brand campaign rather than a typical social media advertisement.
+
+7. Final Deliverable
+
+I expect a complete, production-ready creative package.
+
+For every scene, specify:
+
+* Exact duration.
+* What appears on screen.
+* Whether I am speaking or whether it is a voice-over.
+* My exact dialogue.
+* Camera angle and movement.
+* Product shots and supporting footage.
+* On-screen text.
+* Editing and transition suggestions.
+
+Think like a high-level advertising agency creative team. Prioritize originality, visual storytelling, audience engagement, brand positioning, and conversion.
+
+The final result should make corporate decision-makers think:
+
+“This is exactly the kind of thoughtful, personalized Christmas gifting solution we need for our company.”
+```
+
+</details>
+
 <details><summary><b>Country Entry Report for Meta and TikTok Ads</b></summary>
 
 ```text
@@ -1387,6 +1619,14 @@ Tone: Actionable, data-driven, and beginner-friendly.
 Output language: English.
 
 all infomations must be from 2025 and 2026
+```
+
+</details>
+
+<details><summary><b>CPA Program Marketing Campaign</b></summary>
+
+```text
+to promote the upcoming Certified Public Accountant (CPA) program led by the Ethiopian Institute of Certified Public Accountants (ETiCPA)
 ```
 
 </details>
@@ -3027,6 +3267,46 @@ ${company_name}
 
 </details>
 
+<details><summary><b>Luxury Barbershop Snapchat Video Ad</b></summary>
+
+```text
+Create a premium cinematic commercial advertisement for a luxury men's barbershop, designed specifically for Snapchat vertical video ads.
+
+**FORMAT:** Vertical 9:16, 1080x1920, cinematic 4K quality, 20 seconds, ultra-realistic commercial cinematography.
+
+**CREATIVE CONCEPT:** "Your Style. Your Identity."
+
+**SCENE 1 – THE HOOK (0–3 seconds)**
+Extreme close-up of professional barber clippers turning on, dramatic metallic sound, cinematic lighting, dark luxury atmosphere, quick camera push-in.
+
+**SCENE 2 – THE EXPERIENCE (3–7 seconds)**
+A highly skilled barber wearing a black professional uniform carefully creating a perfect skin fade haircut. Macro shots of the clippers, precise hand movements, realistic hair details, smooth camera movements.
+
+**SCENE 3 – THE DETAILS (7–12 seconds)**
+Slow-motion shots of beard shaping with a straight razor, hot towel treatment, premium grooming products, attention to every detail.
+
+**SCENE 4 – THE TRANSFORMATION (12–16 seconds)**
+A handsome young Arab man with a fresh perfectly styled haircut looks into the mirror. The camera reveals his confident appearance. Cinematic lighting, elegant transformation reveal.
+
+**SCENE 5 – THE FINAL SHOT (16–20 seconds)**
+The customer walks confidently through the luxurious barbershop. Finish with a stunning close-up portrait, elegant dark background and premium lighting.
+
+**VISUAL STYLE:**
+Luxury men's grooming commercial, sophisticated black and gold color grading, dramatic shadows, warm cinematic highlights, realistic skin textures, shallow depth of field, smooth transitions, professional advertising photography.
+
+**SOUND DESIGN:**
+Powerful cinematic opening sound, realistic clipper sounds, subtle luxury background music, rhythmic transitions, premium cinematic ending.
+
+**IMPORTANT:**
+No distorted hands, no unrealistic faces, no extra fingers, no artificial-looking hair, no random text, no watermarks. Maintain consistent character appearance throughout all scenes.
+
+Leave clean negative space in the final scene for adding the barbershop logo, booking information and Snapchat call to action in post-production.
+
+The final result must look like a high-budget international luxury grooming brand commercial.
+```
+
+</details>
+
 <details><summary><b>Luxury Pimple Patch Brand Design and Strategy</b></summary>
 
 ```text
@@ -3120,6 +3400,30 @@ Generate 5 unique meta descriptions, of a maximum of 150 characters, for the fol
 
 </details>
 
+<details><summary><b>Modest Fashion Unboxing and Hijab Outfit Promo Video (40s)</b></summary>
+
+```text
+Create a 40-second realistic cinematic fashion promotional video featuring a beautiful young Muslim woman wearing a beige hijab and elegant modest clothing.
+
+Scene 1: She sits behind a table in a cozy, beautifully decorated living room, smiling and presenting an online-store shopping package to the camera.
+
+Scene 2: She opens the package and reveals a beautiful dusty-rose pink modest outfit, showing the fabric and details.
+
+Scene 3: Transition smoothly to her wearing the complete outfit: a dusty-rose pink long-sleeve blouse with elegant gathered cuffs and matching wide-leg floral-patterned trousers. She wears a beige hijab and carries a small cream-colored crossbody handbag.
+
+Scene 4: Show her full outfit from different angles. She gently walks, turns, smiles, and poses naturally while showcasing the blouse, sleeves, trousers, and handbag.
+
+Scene 5: Transition to an elegant outdoor shopping street with warm cinematic lighting. She walks confidently along the sidewalk, smiles at the camera, and poses naturally.
+
+Scene 6: Finish with beautiful close-up fashion shots highlighting the fabric texture, floral patterns, handbag, and overall outfit.
+
+Visual Style: Ultra-realistic fashion commercial, elegant modest fashion, warm natural lighting, soft cinematic color grading, smooth camera movements, realistic fabric physics, detailed textures, professional fashion photography, 4K quality.
+
+Important: Maintain consistent facial features, hijab color, outfit design, and accessories throughout the video. Natural body movements, realistic proportions, no distorted hands or clothing.
+```
+
+</details>
+
 <details><summary><b>Multi-Industry RFQ Email</b></summary>
 
 ```text
@@ -3176,6 +3480,18 @@ Act as a professional video creator. You are tasked with creating a New Year cel
 - Use engaging visuals and music to capture attention.
 
 Ensure the video is vibrant, festive, and reflects the joy of the New Year while promoting Antioch Textile effectively.
+```
+
+</details>
+
+<details><summary><b>Performance Marketer for an Internet Cafe</b></summary>
+
+```text
+Act as a performance marketer for Blockchain Internet Cafe, an internet services office in Langarud, Iran. Our services: online government registrations, vehicle plate appointments, utility bills, insurance, judicial services, commercial tax/VAT/ledger accounting, dormant bank account recovery with identity verification, online buying/selling and consulting. Our customers are local residents and small business owners in Langarud who need paperwork done quickly and correctly, in person at the shop.
+
+Give me 10 different ad angles for our services aimed at local customers who have never heard of us: pain point, desired outcome, objection, comparison, customer proof, curiosity, behind the scenes, how-to, identity ("for people who…") and a time-sensitive angle (only if I have a real deadline). For each, give a headline, one line of ad text and why it might work. Write the ads in Persian. Every ad must have a scroll-stopping hook and a clear call to action to visit the shop in person (Langarud, Kofsh-e Melli alley, opposite Babak passage).
+
+Follow-up: Pick the 3 angles most likely to work with people who have never heard of me and write full ads for them.
 ```
 
 </details>
@@ -6484,6 +6800,146 @@ Example:
 Input Document: ${user_provides_document_with_subtitles}
 Theme: ${user_provides_theme}
 Sources: ${user_provides_any_additional_sources}
+```
+
+</details>
+
+<details><summary><b>Trade Show Booth Plan Builder (YAML)</b></summary>
+
+```text
+role: >-
+  Trade show planner for small companies and founders. You turn one upcoming
+  trade show or conference into a practical booth plan that a team of two to
+  five people can run, with a clear goal, a realistic budget, a lead capture
+  process and a follow-up plan that actually turns booth conversations into
+  meetings and revenue.
+
+event:
+  name: "${event_name:Regional SaaS and IT Expo}"
+  city: "${city:Lyon}"
+  dates: "${event_dates:3 days, 10-12 March}"
+  expected_visitors: "${visitors:about 6,000, mostly IT managers and operations leads}"
+  booth: "${booth_size:3x3 m shell scheme booth near the cafe area}"
+  cost_already_paid: "${booth_cost:4,800 EUR booth fee}"
+
+company:
+  product: "${product:a scheduling and dispatch tool for field service teams}"
+  stage: "${stage:seed stage, 40 paying customers}"
+  ideal_customer: "${icp:field service companies with 20-200 technicians}"
+  average_deal_size: "${deal_size:9,000 EUR per year}"
+  team_attending: "${team:2 founders and 1 sales hire}"
+  extra_budget: "${extra_budget:6,000 EUR for travel, graphics, giveaways and demo gear}"
+  main_goal: "${goal:book 25 qualified demo meetings within 3 weeks after the show}"
+
+instructions:
+  - >-
+    Ask up to 5 short questions about anything above that is missing or
+    unclear, then wait for my answers before producing the plan.
+  - >-
+    Produce the plan as one valid YAML document that follows output_schema
+    exactly, with no text before or after it.
+  - >-
+    Work back from main_goal: estimate booth conversations per hour, the share
+    that will be qualified, and the meetings this realistically produces. If
+    the goal is not reachable with this team and booth, say so in risks and
+    suggest a smaller goal or a change (pre-booked meetings, a talk slot,
+    a partner booth).
+  - >-
+    Keep the budget inside extra_budget and show every line item with an
+    estimate in the event currency. Mark items that can be skipped.
+  - >-
+    Booth messaging must fit on a banner readable from 5 metres: one headline
+    of at most 8 words naming the customer problem, one proof point, and one
+    call to action. No jargon.
+  - >-
+    Lead capture must record only what the team needs to follow up and must
+    respect local privacy rules: ask consent for follow-up, do not scan badges
+    without telling the visitor, and note where data is stored.
+  - >-
+    Every booth shift needs a named role (greeter, demo lead, closer or break
+    cover) and nobody works more than 3 hours without a break.
+  - >-
+    Follow-up messages must reference what the visitor actually said at the
+    booth, so the qualification notes must capture that.
+
+output_schema:
+  summary:
+    goal: "one sentence"
+    realistic_outcome: "expected conversations, qualified leads and meetings"
+    go_or_rethink: "go | go_with_changes | rethink"
+  pre_show:
+    timeline:
+      - when: "e.g. 6 weeks before"
+        task: "what to do"
+        owner: "who"
+    pre_booked_meetings:
+      target_count: 0
+      outreach_plan: "who to invite and how"
+      invite_message: "short message, under 90 words"
+    logistics_checklist:
+      - "item"
+  booth:
+    layout: "where the screen, table, banner and storage go"
+    banner:
+      headline: "8 words or fewer"
+      proof_point: "one line"
+      call_to_action: "one line"
+    demo:
+      length_minutes: 0
+      script_steps:
+        - "step"
+    giveaway: "item and why it attracts the right visitors, or none"
+    shift_schedule:
+      - day: "Day 1"
+        slot: "09:00-12:00"
+        greeter: "name"
+        demo_lead: "name"
+        notes: "anything special, e.g. keynote break rush"
+  lead_capture:
+    tool: "app, form or paper card"
+    fields:
+      - name: "field name"
+        why: "how it is used in follow-up"
+    qualification_questions:
+      - "question"
+    lead_grades:
+      hot: "definition"
+      warm: "definition"
+      cold: "definition"
+    consent_wording: "one sentence read or shown to the visitor"
+  budget:
+    items:
+      - item: "name"
+        estimate: 0
+        optional: false
+    total: 0
+    cost_per_target_meeting: 0
+  follow_up:
+    within_24_hours:
+      - "action"
+    sequence:
+      - day: 1
+        channel: "email | call | LinkedIn"
+        audience: "hot | warm | cold"
+        message: "short template using the visitor's own booth notes"
+    tracking: "how meetings and deals from this show are tagged in the CRM"
+  review:
+    metrics:
+      - "metric and target"
+    debrief_questions:
+      - "question for the team meeting one week after the show"
+  risks:
+    - risk: "what could go wrong"
+      mitigation: "what we do about it"
+
+constraints:
+  tone: "practical, honest, no hype"
+  currency: "${currency:EUR}"
+  language: "${language:English}"
+  avoid:
+    - "inventing visitor numbers or results not given or estimated with stated assumptions"
+    - "giveaways that attract only freebie hunters"
+    - "lead fields the team will never use"
 ```
 
 </details>

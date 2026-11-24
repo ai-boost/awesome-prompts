@@ -1,10 +1,473 @@
-# Coding & Development (4/13)
+# Coding & Development (4/14)
 
-706 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+739 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
-Pages: [1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · **4** · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md) · [13](coding-13.md)
+Pages: [1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · **4** · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md) · [13](coding-13.md) · [14](coding-14.md)
+
+<details><summary><b>Database Indexing Taste</b></summary>
+
+```text
+# Database Indexing taste of a backend engineer who indexes for real queries, not guesses
+- Design indexes from the actual slow query log and `EXPLAIN (ANALYZE, BUFFERS)` output, not from the schema alone. Confidence: 0.95
+- Index every foreign key column that is used in joins or cascading deletes. Confidence: 0.90
+- Order composite index columns by equality filters first, then range filters, then sort columns. Confidence: 0.90
+- Prefer one well-chosen composite index over several single-column indexes the planner has to combine. Confidence: 0.85
+- Drop indexes whose leading columns duplicate another index; `(a)` is redundant next to `(a, b)`. Confidence: 0.85
+- Use covering indexes (`INCLUDE` columns) for hot read paths so queries can use index-only scans. Confidence: 0.80
+- Use partial indexes for skewed data, such as `WHERE deleted_at IS NULL` or `WHERE status = 'pending'`. Confidence: 0.90
+- Enforce uniqueness with unique indexes or constraints in the database, never only in application code. Confidence: 0.95
+- Create indexes on large live tables with `CREATE INDEX CONCURRENTLY` (or the engine's online equivalent) in a migration of its own. Confidence: 0.95
+- Never wrap indexed columns in functions in `WHERE` clauses; add an expression index like `lower(email)` when needed. Confidence: 0.85
+- Avoid leading-wildcard `LIKE '%term'` on B-tree indexes; use trigram or full-text indexes for substring search. Confidence: 0.85
+- Pick GIN for JSONB containment and arrays, BRIN for huge append-only time-series tables, B-tree for everything else. Confidence: 0.80
+- Use keyset pagination on an indexed sort key instead of large `OFFSET` values. Confidence: 0.90
+- Keep low-cardinality booleans out of standalone indexes; fold them into a partial or composite index instead. Confidence: 0.80
+- Review index usage statistics monthly and remove indexes with zero scans after confirming replicas do not use them. Confidence: 0.75
+- Budget write cost: every extra index slows inserts and updates, so write-heavy tables get the fewest indexes. Confidence: 0.85
+- Keep table statistics fresh with autovacuum/analyze tuning on big, fast-changing tables. Confidence: 0.80
+- Watch for index bloat and rebuild with `REINDEX CONCURRENTLY` when it degrades performance. Confidence: 0.70
+- Name indexes predictably, for example `idx_<table>_<columns>` and `uq_<table>_<columns>`. Confidence: 0.75
+- Add a query plan check to code review for any new query on a table above a million rows. Confidence: 0.70
+- Test index changes on a production-sized copy or branch before shipping them. Confidence: 0.85
+- Never add an index just because a column appears in a `WHERE` clause somewhere; measure first. Confidence: 0.80
+```
+
+</details>
+
+<details><summary><b>Database Migration Safety Review</b></summary>
+
+```text
+---
+name: migration-safety-review
+description: Reviews database schema migrations (raw SQL or ORM-generated from Rails, Django, Alembic, Prisma, Knex, Laravel, Flyway) for production risks before they ship - table-locking DDL, full table rewrites, data loss, breaking changes for running app code, and missing rollback paths - and proposes safe zero-downtime rewrites. Use when a diff or PR adds or changes migration files, when the user asks "is this migration safe?", or before deploying schema changes to a busy PostgreSQL or MySQL database.
+---
+
+# Migration Safety Review
+
+You are reviewing schema migrations the way a careful senior DBA would before a
+production deploy. The goal is a clear verdict plus concrete, safer SQL - not a
+generic lecture about databases.
+
+## Files in this skill
+
+- `scripts/scan_migration.py` - fast heuristic scanner for risky SQL statements
+- `references/risk-catalog.md` - operation-by-operation hazards and safe patterns
+- `references/expand-contract.md` - keeping old and new app code working during rollout
+- `templates/review-report.md` - the report format you must produce
+- `examples/example-review.md` - a complete worked review to calibrate tone and depth
+
+## Workflow
+
+### 1. Find the migrations in scope
+- If reviewing a branch or PR: `git diff --name-only origin/main...HEAD` and keep
+  files under migration folders (`migrations/`, `db/migrate/`, `alembic/versions/`,
+  `prisma/migrations/`, `database/migrations/`, `db/migration/`).
+- Otherwise use the files or SQL the user pointed to.
+- Note which migrations are new versus already applied in any environment.
+  Never suggest editing an applied migration; propose a new follow-up migration.
+
+### 2. Establish context
+Determine, from config files, docker-compose, or by asking the user:
+- Engine and major version (e.g. PostgreSQL 15, MySQL 8.0). Lock behavior depends on it.
+- Approximate size and write traffic of each touched table.
+- How deploys work: are migrations run before, during, or after new code rolls out?
+
+If size or traffic is unknown, assume the table is large and hot, and say so.
+
+### 3. Get the real SQL
+ORM code hides what actually runs. Render the SQL first:
+
+| Framework | Command |
+|-----------|---------|
+| Django | `python manage.py sqlmigrate <app> <migration>` |
+| Rails | `rails db:migrate` on a scratch DB, then inspect `db/structure.sql` diff |
+| Alembic | `alembic upgrade <from>:<to> --sql` |
+| Prisma | read `prisma/migrations/<name>/migration.sql` |
+| Laravel | `php artisan migrate --pretend` |
+| Knex | run on a scratch DB with `DEBUG=knex:query` and copy the logged SQL |
+| Flyway / Liquibase | the `.sql` file or `liquibase update-sql` |
+
+Save rendered SQL to a temp file if it is not already a `.sql` file.
+
+### 4. Run the scanner
+'''bash
+python3 scripts/scan_migration.py --dialect postgres path/to/migration.sql
+python3 scripts/scan_migration.py --dialect mysql db/*.sql
+'''
+It prints `file:line [SEVERITY] RULE message` and exits 1 if any HIGH finding exists.
+Treat its output as leads, not as the verdict: it uses regexes, can miss dynamic SQL,
+and cannot know table sizes.
+
+### 5. Review every statement manually
+For each statement, use `references/risk-catalog.md` to answer:
+1. What lock does it take, and for how long (instant, table scan, or full rewrite)?
+2. Can it lose or corrupt data? Is that intended and backed up?
+3. Will it queue behind long transactions? Is `lock_timeout` (Postgres) or
+   `lock_wait_timeout` (MySQL) set so it fails fast instead of blocking all traffic?
+4. Does it run in a transaction where it must not (e.g. `CREATE INDEX CONCURRENTLY`)?
+5. Are large data backfills batched and separated from DDL?
+
+### 6. Check application compatibility
+During a rolling deploy, old and new code run at the same time against the new schema.
+Follow `references/expand-contract.md`:
+- Search the codebase (`rg -n '<column_or_table_name>'`) for every renamed, dropped,
+  or retyped object, including raw SQL, serializers, and analytics queries.
+- Flag any change the currently deployed code cannot tolerate.
+
+### 7. Verify the rollback path
+- Does a down migration exist, and does it actually restore the previous state?
+- Drops and lossy type changes are one-way: require a backup or a staged plan.
+
+### 8. Write the report
+Fill in `templates/review-report.md` exactly. Match the depth of
+`examples/example-review.md`. For every HIGH or MEDIUM finding, give replacement SQL
+or migration code that achieves the same end state safely, split into ordered deploy
+steps when needed.
+
+## Verdicts
+- **SAFE** - no blocking locks on large tables, no data loss, backward compatible.
+- **SAFE WITH CHANGES** - can ship once the listed rewrites are applied.
+- **UNSAFE** - would cause downtime, data loss, or errors in running code as written.
+
+## Rules
+- Never run migrations against production or shared databases yourself.
+- Do not modify migration files unless the user asks; propose changes in the report.
+- Be specific: name the table, the lock, and the failure mode. Skip generic advice.
+- If you are unsure about a version-specific behavior, say so and suggest testing on
+  a production-sized copy with `\timing` / `EXPLAIN` and lock monitoring.
+FILE:references/risk-catalog.md
+# Risk Catalog: Common Migration Operations
+
+Lock names are PostgreSQL. ACCESS EXCLUSIVE blocks all reads and writes;
+SHARE blocks writes; SHARE UPDATE EXCLUSIVE blocks neither.
+
+## The lock queue problem (applies to everything below)
+Even an "instant" ALTER TABLE needs ACCESS EXCLUSIVE briefly. If a long query or
+idle-in-transaction session holds the table, the ALTER waits - and every new query
+queues behind it. A 1 ms change can cause a multi-minute outage.
+Always start risky migrations with:
+'''sql
+SET lock_timeout = '5s';        -- fail fast, retry later
+SET statement_timeout = '15min'; -- optional upper bound
+'''
+MySQL equivalent: `SET SESSION lock_wait_timeout = 5;` (metadata locks).
+
+## PostgreSQL operations
+
+| Operation | Risk | Safe pattern |
+|-----------|------|--------------|
+| `CREATE INDEX` | SHARE lock: writes blocked for whole build | `CREATE INDEX CONCURRENTLY`, outside a transaction; on failure drop the INVALID index and retry. Rails: `disable_ddl_transaction!`; Django: `atomic = False` |
+| `DROP INDEX` | ACCESS EXCLUSIVE | `DROP INDEX CONCURRENTLY` |
+| `ADD COLUMN` nullable, no default | Instant | Safe (still set lock_timeout) |
+| `ADD COLUMN ... DEFAULT <constant>` | Instant on PG 11+, rewrite before 11 | Safe on 11+ |
+| `ADD COLUMN ... DEFAULT now()/random()/gen_random_uuid()` | Volatile default: full table rewrite | Add nullable column, backfill in batches, then set default |
+| `ADD COLUMN ... NOT NULL` without default | Fails on non-empty table | Add nullable, backfill, then enforce NOT NULL (below) |
+| `ALTER COLUMN ... SET NOT NULL` | Full scan under ACCESS EXCLUSIVE | `ADD CONSTRAINT c CHECK (col IS NOT NULL) NOT VALID`; `VALIDATE CONSTRAINT c`; then `SET NOT NULL` (PG 12+ skips the scan); drop `c` |
+| `ALTER COLUMN ... TYPE` | Usually full rewrite + index rebuild under ACCESS EXCLUSIVE | Safe only if binary-coercible (varchar(n) to larger n or to text). Otherwise new column + dual write + backfill + swap |
+| `ADD FOREIGN KEY` | Locks both tables while validating all rows | `ADD CONSTRAINT ... NOT VALID`, then `VALIDATE CONSTRAINT` in a separate step |
+| `ADD CHECK` | Scan under ACCESS EXCLUSIVE | Same NOT VALID + VALIDATE pattern |
+| `ADD UNIQUE` / `ADD PRIMARY KEY` | Builds index under lock | `CREATE UNIQUE INDEX CONCURRENTLY idx ...`; then `ADD CONSTRAINT ... UNIQUE USING INDEX idx` |
+| `RENAME COLUMN` / `RENAME TO` | Instant, but breaks running code | Expand/contract (see expand-contract.md) |
+| `DROP COLUMN` | Instant, but irreversible; old code selecting it errors | Remove all code references and deploy first; then drop |
+| `DROP TABLE` / `TRUNCATE` | Irreversible data loss | Confirm backup and zero readers; consider renaming to `_deprecated` first |
+| `ALTER TYPE ... ADD VALUE` | New value unusable in same transaction; no transaction at all before PG 12 | Put it in its own migration |
+| `VACUUM FULL` / `CLUSTER` / `REINDEX` | Full rewrite under ACCESS EXCLUSIVE | `REINDEX CONCURRENTLY` (PG 12+), `pg_repack` for bloat |
+| Big `UPDATE` / `DELETE` | Long row locks, WAL spike, replica lag | Batch by primary key (1k-10k rows), commit per batch, run outside the DDL migration |
+
+## MySQL 8.0 (InnoDB) notes
+- Always state the algorithm so MySQL errors instead of silently copying the table:
+  `ALTER TABLE t ADD COLUMN c INT, ALGORITHM=INSTANT;` or
+  `ALTER TABLE t ADD INDEX i (c), ALGORITHM=INPLACE, LOCK=NONE;`
+- `ADD COLUMN` is INSTANT on 8.0.12+ (last position) and 8.0.29+ (any position).
+- `MODIFY` / `CHANGE COLUMN` type changes use ALGORITHM=COPY: writes blocked.
+- For large tables with COPY-only changes use `gh-ost` or `pt-online-schema-change`.
+- DDL is not transactional in MySQL: a failed multi-statement migration leaves
+  the schema half-applied. Keep one DDL statement per migration.
+FILE:references/expand-contract.md
+# Expand / Contract: Backward-Compatible Schema Changes
+
+During a rolling deploy, old and new application versions run side by side.
+If migrations run before the new code is live, the old code must work with the
+new schema. If they run after, the new code must work with the old schema.
+Expand/contract makes every step compatible with both.
+
+## The three phases
+1. **Expand** - add new structures only (columns, tables, indexes). Nothing is
+   removed or renamed. Old code ignores the additions.
+2. **Migrate** - deploy code that writes to both old and new structures, backfill
+   existing rows in batches, then switch reads to the new structure.
+3. **Contract** - once no deployed code touches the old structure, drop it in a
+   separate, later migration.
+
+Each phase is its own deploy. Never combine expand and contract in one migration.
+
+## Recipes
+
+### Rename a column (`users.name` to `users.full_name`)
+1. Migration: add nullable `full_name`.
+2. Code: write both `name` and `full_name`; read `name`.
+3. Backfill `full_name = name` in batches where `full_name IS NULL`.
+4. Code: read `full_name`; keep writing both.
+5. Code: stop writing `name`. (Rails: add `name` to `ignored_columns` here.)
+6. Migration: drop `name`.
+
+### Change a column type (`orders.amount` int to numeric)
+Same as rename: add `amount_numeric`, dual write, backfill, switch reads, drop old.
+A trigger can handle dual writes if application changes are hard.
+
+### Make a column NOT NULL
+1. Code: always write a value.
+2. Backfill NULL rows in batches.
+3. Migration: CHECK ... NOT VALID, VALIDATE, SET NOT NULL (see risk-catalog.md).
+
+### Drop a column or table
+1. Code: remove every read and write (search ORM models, raw SQL, views,
+   reports, ETL jobs, and other services sharing the database).
+2. Deploy and wait at least one full release cycle.
+3. Migration: drop. Take a backup or snapshot of the data first if it matters.
+
+### Split or move a table
+Create the new table, dual write, backfill, switch reads, stop old writes, drop.
+
+## Compatibility questions to answer for each change
+- Does any deployed code `SELECT *` or map all columns (ORMs often cache the
+  column list at boot and fail when one disappears)?
+- Does an insert from old code fail because a new column is NOT NULL without default?
+- Do other services, cron jobs, BI dashboards, or replicas read this table?
+- Can the deploy be rolled back to the previous code version without a down migration?
+
+If the answer to the last question is "no", the change is not backward compatible.
+FILE:templates/review-report.md
+# Migration Safety Review: <migration name or PR title>
+
+**Verdict:** SAFE | SAFE WITH CHANGES | UNSAFE
+**Engine:** <e.g. PostgreSQL 15>  |  **Files reviewed:** <count>
+**Assumptions:** <table sizes, traffic, deploy order - mark anything guessed>
+
+## Summary
+<2-4 sentences: what the migration does, the biggest risk, and what to change.>
+
+## Findings
+
+| # | Severity | File:Line | Statement | Risk |
+|---|----------|-----------|-----------|------|
+| 1 | HIGH | <path:line> | `<short SQL>` | <lock / data loss / breaks old code> |
+
+### 1. <Short title of finding>
+- **What happens:** <lock taken, duration, who is blocked, or what breaks>
+- **Why it matters here:** <table size, traffic, code that depends on it>
+- **Safe alternative:**
+'''sql
+-- replacement SQL or migration code, in run order
+'''
+
+<Repeat for each HIGH and MEDIUM finding. Group LOW findings in one list.>
+
+## Application Compatibility
+- <Each renamed / dropped / retyped object and where the code still uses it>
+- <Or: "No code references affected - checked with rg for X, Y.">
+
+## Rollback Plan
+- <Does the down migration restore state? What is irreversible?>
+- <Backup or snapshot required before running: yes/no>
+
+## Recommended Deploy Sequence
+1. <Migration or code deploy step>
+2. <...>
+
+## Scanner Output
+'''
+<paste scripts/scan_migration.py output, or note false positives>
+'''
+FILE:examples/example-review.md
+# Example Review
+
+**Input:** PR "Add order status tracking" with one Rails migration for PostgreSQL 15.
+`orders` has ~40M rows and receives constant writes. Migrations run before new code.
+
+'''sql
+-- rendered from db/migrate/20261002_add_status_to_orders.rb
+ALTER TABLE orders ADD COLUMN status varchar NOT NULL DEFAULT 'pending';
+ALTER TABLE orders RENAME COLUMN shipped_on TO shipped_at;
+CREATE INDEX index_orders_on_status ON orders (status);
+ALTER TABLE orders ADD CONSTRAINT fk_orders_carrier
+  FOREIGN KEY (carrier_id) REFERENCES carriers (id);
+'''
+
+**Scanner:** 3 HIGH (rename, index-not-concurrent, fk-validated), 1 MEDIUM (no-lock-timeout).
+
+---
+
+# Migration Safety Review: Add order status tracking
+
+**Verdict:** UNSAFE
+**Engine:** PostgreSQL 15  |  **Files reviewed:** 1
+**Assumptions:** orders ~40M rows, high write traffic (from user); carriers is small.
+
+## Summary
+Adds an order status column, renames `shipped_on`, indexes status, and adds a carrier
+foreign key. The status column itself is safe on PG 15, but the rename will break the
+running app, and the index and FK will block writes on `orders` for minutes.
+Split into three migrations and use concurrent / NOT VALID variants.
+
+## Findings
+
+| # | Severity | File:Line | Statement | Risk |
+|---|----------|-----------|-----------|------|
+| 1 | HIGH | rendered.sql:3 | `RENAME COLUMN shipped_on` | Old code errors on deploy |
+| 2 | HIGH | rendered.sql:4 | `CREATE INDEX ... (status)` | Writes blocked during build |
+| 3 | HIGH | rendered.sql:5 | `ADD ... FOREIGN KEY` | Full validation scan under lock |
+| 4 | MEDIUM | rendered.sql:1 | no `lock_timeout` | ALTERs can queue and stall traffic |
+
+### 1. Column rename breaks running code
+- **What happens:** the rename is instant, but app servers still on the old release
+  query `shipped_on` and fail with `column does not exist` until the deploy finishes.
+- **Why it matters here:** `rg -n shipped_on` finds 7 references, including
+  `app/serializers/order_serializer.rb` and the nightly `reports/fulfillment.sql`.
+- **Safe alternative:** expand/contract. Add `shipped_at`, dual write, backfill in
+  batches, switch reads, then drop `shipped_on` in a later release.
+
+### 2. Index build blocks writes
+- **Safe alternative** (separate migration, `disable_ddl_transaction!`):
+'''sql
+CREATE INDEX CONCURRENTLY index_orders_on_status ON orders (status);
+'''
+
+### 3. Foreign key validates 40M rows under lock
+- **Safe alternative:**
+'''sql
+SET lock_timeout = '5s';
+ALTER TABLE orders ADD CONSTRAINT fk_orders_carrier
+  FOREIGN KEY (carrier_id) REFERENCES carriers (id) NOT VALID;
+-- next migration (takes only SHARE UPDATE EXCLUSIVE on orders):
+ALTER TABLE orders VALIDATE CONSTRAINT fk_orders_carrier;
+'''
+
+**LOW:** none. Note `ADD COLUMN ... DEFAULT 'pending'` is metadata-only on PG 11+.
+
+## Application Compatibility
+- `shipped_on`: 7 code references plus one SQL report; must stay until contract phase.
+
+## Rollback Plan
+- Down migration drops `status` (data loss acceptable: new column). Rename is reversible.
+- No backup required for this change set once the rename is removed.
+
+## Recommended Deploy Sequence
+1. Migration A: `SET lock_timeout`; add `status`; add `shipped_at`; add FK NOT VALID.
+2. Migration B (no transaction): create status index concurrently.
+3. Migration C: validate FK. Deploy code that dual writes `shipped_on`/`shipped_at`.
+4. Backfill `shipped_at`; switch reads; later release drops `shipped_on`.
+FILE:scripts/scan_migration.py
+#!/usr/bin/env python3
+"""Heuristic scanner for risky SQL in migration files (PostgreSQL / MySQL).
+Usage: python3 scan_migration.py [--dialect postgres|mysql] FILE [FILE ...]
+Exit codes: 0 = no HIGH findings, 1 = HIGH findings, 2 = usage error."""
+import re, sys
+
+F = re.I | re.S
+COLDEF = r"(?:\([^)]*\)|[^,(])*"  # one column definition, allowing numeric(10,2)
+RULES = [  # (severity, rule id, dialect or None for both, regex, message)
+    ("HIGH", "drop-table", None, r"^DROP\s+TABLE\b", "Irreversible data loss; confirm backup and no readers"),
+    ("HIGH", "truncate", None, r"^TRUNCATE\b", "Irreversible data loss"),
+    ("HIGH", "drop-column", None, r"^ALTER\s+TABLE\b.*\bDROP\s+(COLUMN\b|(?!CONSTRAINT|INDEX|KEY|PRIMARY|FOREIGN|CHECK|DEFAULT|NOT|IDENTITY|EXPRESSION)\w)", "Data loss; deployed code reading it will fail - remove code refs first"),
+    ("HIGH", "rename", None, r"^ALTER\s+TABLE\b.*\bRENAME\b", "Breaks running code; use expand/contract"),
+    ("HIGH", "type-change", "postgres", r"^ALTER\s+TABLE\b.*\bALTER\s+(COLUMN\s+)?\S+\s+(SET\s+DATA\s+)?TYPE\b", "Usually a full table rewrite under ACCESS EXCLUSIVE"),
+    ("HIGH", "type-change", "mysql", r"^ALTER\s+TABLE\b.*\b(MODIFY|CHANGE)\s+(COLUMN\s+)?\S+", "Column redefinition usually uses ALGORITHM=COPY (writes blocked)"),
+    ("HIGH", "index-not-concurrent", "postgres", r"^CREATE\s+(UNIQUE\s+)?INDEX\s+(?!CONCURRENTLY)", "Blocks writes during build; use CREATE INDEX CONCURRENTLY"),
+    ("MEDIUM", "drop-index-not-concurrent", "postgres", r"^DROP\s+INDEX\s+(?!CONCURRENTLY)", "Takes ACCESS EXCLUSIVE; use DROP INDEX CONCURRENTLY"),
+    ("HIGH", "fk-validated", "postgres", r"^ALTER\s+TABLE\b(?!.*\bNOT\s+VALID\b).*\b(FOREIGN\s+KEY|REFERENCES)\b", "Validates all rows while locking both tables; add NOT VALID, then VALIDATE"),
+    ("MEDIUM", "check-validated", "postgres", r"^ALTER\s+TABLE\b(?!.*\bNOT\s+VALID\b).*\bADD\s+(CONSTRAINT\s+\S+\s+)?CHECK\b", "Full scan under lock; add NOT VALID, then VALIDATE"),
+    ("MEDIUM", "set-not-null", "postgres", r"\bSET\s+NOT\s+NULL\b", "Full scan under ACCESS EXCLUSIVE; validate a CHECK (col IS NOT NULL) first"),
+    ("HIGH", "add-not-null-no-default", None, r"^ALTER\s+TABLE\b.*\bADD\s+(COLUMN\s+)?(?!" + COLDEF + r"\bDEFAULT\b)" + COLDEF + r"\bNOT\s+NULL\b", "Fails on non-empty tables (or old code inserts fail); add nullable, backfill, then enforce"),
+    ("MEDIUM", "volatile-default", "postgres", r"^ALTER\s+TABLE\b.*\bADD\b.*\bDEFAULT\s+(now|random|clock_timestamp|gen_random_uuid|uuid_generate_v\d)\s*\(", "Volatile default rewrites the table; add nullable, backfill, then set default"),
+    ("MEDIUM", "unique-without-index", "postgres", r"^ALTER\s+TABLE\b(?!.*\bUSING\s+INDEX\b).*\bADD\s+(CONSTRAINT\s+\S+\s+)?(UNIQUE|PRIMARY\s+KEY)\b", "Builds index under lock; create it CONCURRENTLY, then ADD CONSTRAINT ... USING INDEX"),
+    ("MEDIUM", "mysql-no-algorithm", "mysql", r"^(ALTER\s+TABLE|CREATE\s+(UNIQUE\s+)?INDEX)\b(?!.*\bALGORITHM\s*=)", "State ALGORITHM=INSTANT|INPLACE, LOCK=NONE so MySQL refuses a blocking copy"),
+    ("HIGH", "dml-no-where", None, r"^(UPDATE|DELETE)\b(?!.*\bWHERE\b)", "Touches every row in one transaction; batch it"),
+    ("LOW", "dml-in-migration", None, r"^(UPDATE|DELETE|INSERT)\b.*\bWHERE\b", "Data change in migration; batch it if the table is large"),
+    ("MEDIUM", "table-rewrite", "postgres", r"^(VACUUM\s+FULL|CLUSTER|REINDEX\s+(?!.*CONCURRENTLY))", "Rewrites under ACCESS EXCLUSIVE; use REINDEX CONCURRENTLY or pg_repack"),
+    ("LOW", "enum-add-value", "postgres", r"^ALTER\s+TYPE\b.*\bADD\s+VALUE\b", "New value unusable in same transaction; keep in its own migration"),
+]
+
+def statements(sql):
+    """Yield (line_number, statement) after stripping comments. Naive ';' split."""
+    sql = re.sub(r"/\*.*?\*/", lambda m: re.sub(r"[^\n]", " ", m.group()), sql, flags=re.S)
+    sql = re.sub(r"--[^\n]*", "", sql)
+    pos = 0
+    for part in sql.split(";"):
+        stripped = part.lstrip()
+        line = sql.count("\n", 0, pos + len(part) - len(stripped)) + 1
+        pos += len(part) + 1
+        if stripped.strip():
+            yield line, " ".join(stripped.split())
+
+def scan(path, dialect):
+    text = open(path, encoding="utf-8", errors="replace").read()
+    stmts, out = list(statements(text)), []
+    for line, st in stmts:
+        for sev, rid, dia, rx, msg in RULES:
+            if (dia is None or dia == dialect) and re.search(rx, st, F):
+                out.append((sev, f"{path}:{line} [{sev}] {rid}: {msg}\n    > {st[:110]}"))
+    has_ddl = any(re.match(r"(ALTER|CREATE\s+(UNIQUE\s+)?INDEX|DROP)\b", s, re.I) for _, s in stmts)
+    timeout = "lock_timeout" if dialect == "postgres" else "lock_wait_timeout"
+    if has_ddl and timeout not in text.lower():
+        out.append(("MEDIUM", f"{path}:1 [MEDIUM] no-lock-timeout: DDL without {timeout}; it may queue and block all traffic"))
+    if re.search(r"\bCONCURRENTLY\b", text, re.I) and re.search(r"^\s*(BEGIN|START\s+TRANSACTION)\b", text, re.I | re.M):
+        out.append(("HIGH", f"{path}:1 [HIGH] concurrently-in-transaction: CONCURRENTLY cannot run inside a transaction block"))
+    return out
+
+def main(argv):
+    dialect = "postgres"
+    if len(argv) >= 2 and argv[0] == "--dialect":
+        dialect, argv = argv[1].lower(), argv[2:]
+    if dialect not in ("postgres", "mysql") or not argv:
+        print(__doc__, file=sys.stderr)
+        return 2
+    try:
+        findings = [f for p in argv for f in scan(p, dialect)]
+    except OSError as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 2
+    for _, text in findings:
+        print(text)
+    counts = {s: sum(1 for f in findings if f[0] == s) for s in ("HIGH", "MEDIUM", "LOW")}
+    print(f"\n{len(argv)} file(s) scanned: {counts['HIGH']} HIGH, {counts['MEDIUM']} MEDIUM, {counts['LOW']} LOW")
+    print("Heuristic only: confirm each finding against references/risk-catalog.md.")
+    return 1 if counts["HIGH"] else 0
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
+```
+
+</details>
+
+<details><summary><b>Database Migrations Taste</b></summary>
+
+```text
+# Database Migrations taste
+- Keep every schema change in a versioned migration file committed next to the code that needs it. Confidence: 0.95
+- Write migrations in plain SQL rather than ORM-generated diffs you have not read. Confidence: 0.80
+- Never edit a migration that has already run in a shared environment; add a new one instead. Confidence: 0.95
+- Use the expand and contract pattern: add the new column, backfill, switch reads, then drop the old column in a later release. Confidence: 0.90
+- Make every migration safe to run while the previous app version is still serving traffic. Confidence: 0.90
+- Add new columns as nullable or with a constant default to avoid long table rewrites. Confidence: 0.85
+- Create indexes on large Postgres tables with CREATE INDEX CONCURRENTLY outside a transaction. Confidence: 0.90
+- Set a short lock_timeout and statement_timeout at the top of each migration. Confidence: 0.85
+- Run large backfills as batched background jobs, not inside the migration itself. Confidence: 0.90
+- Keep one logical change per migration so failures are easy to read and retry. Confidence: 0.80
+- Name migration files with a UTC timestamp prefix and a short verb phrase like 20261017_add_orders_status. Confidence: 0.75
+- Prefer forward-only migrations and fix mistakes with a new migration instead of relying on down scripts. Confidence: 0.70
+- Run migrations as a separate deploy step before the new application code starts. Confidence: 0.85
+- Test every migration in CI against a fresh database and against a copy of production-sized data. Confidence: 0.80
+- Add foreign keys and check constraints as NOT VALID first, then validate them in a separate step. Confidence: 0.80
+- Rename columns and tables only through a view or dual-write period, never in a single step. Confidence: 0.75
+- Store the applied migration history in the database and fail the deploy if it has drifted. Confidence: 0.85
+- Review migrations as carefully as application code, with the generated SQL visible in the pull request. Confidence: 0.90
+- Keep seed and fixture data out of schema migrations. Confidence: 0.80
+```
+
+</details>
 
 <details><summary><b>Database Schema Design Taste</b></summary>
 
@@ -32,6 +495,35 @@ Pages: [1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · **4** · [5](co
 - Keep multi-tenant data in shared tables with a mandatory `tenant_id` in every key and index, enforced with row-level security where available. Confidence: 0.75
 - Review every schema change as a migration in version control together with the code that depends on it. Confidence: 0.90
 - Document each table and non-obvious column with `COMMENT ON` so the schema explains itself in any database client. Confidence: 0.65
+```
+
+</details>
+
+<details><summary><b>Date and Time Handling Taste</b></summary>
+
+```text
+# Date and Time Handling taste of a backend developer who has debugged too many off-by-one-hour bugs
+- Store instants as UTC timestamps (`timestamptz` in PostgreSQL), never as local wall-clock time without an offset. Confidence: 0.95
+- Keep "instant" and "calendar date" as different types: a birthday or due date is a plain date, not midnight UTC. Confidence: 0.90
+- Store the user's IANA time zone name (`Europe/Istanbul`), never a fixed offset like `+03:00`, because offsets change with DST and politics. Confidence: 0.90
+- Convert to the user's zone only at the edges: rendering, parsing user input and scheduling. Confidence: 0.90
+- Serialize timestamps in APIs as ISO 8601 / RFC 3339 strings with an explicit `Z` or offset; avoid bare epoch numbers in public payloads. Confidence: 0.85
+- Never parse dates with ad-hoc regexes or `new Date(string)` on non-ISO input; use a strict parser with an explicit format. Confidence: 0.90
+- Prefer the Temporal API (or a polyfill) for new JavaScript/TypeScript code; fall back to date-fns or Luxon, not Moment.js. Confidence: 0.80
+- Format for humans with `Intl.DateTimeFormat` and the user's locale instead of hand-built strings. Confidence: 0.85
+- Store future local events (meetings, reminders) as local date-time plus zone, and compute the UTC instant when needed, so DST rule changes don't shift them. Confidence: 0.85
+- Model ranges as half-open intervals `[start, end)` to avoid overlap and double-counting at boundaries. Confidence: 0.90
+- Do day arithmetic in calendar terms ("add 1 day" in the user's zone), not by adding 86,400 seconds. Confidence: 0.85
+- Use a monotonic clock (`performance.now()`, `time.monotonic()`) for measuring durations and timeouts, never wall-clock time. Confidence: 0.95
+- Inject a clock dependency instead of calling `Date.now()` directly in business logic, so tests can freeze and advance time. Confidence: 0.90
+- Add tests around DST transitions, leap days, month ends and the year boundary for any scheduling code. Confidence: 0.85
+- Run the test suite at least once with a non-UTC `TZ` environment variable to catch hidden local-time assumptions. Confidence: 0.75
+- Keep server, database and container clocks in UTC and synced with NTP. Confidence: 0.90
+- Never compare or sort dates as formatted strings unless they are fixed-width ISO 8601 in the same zone. Confidence: 0.80
+- Keep the time zone database (tzdata) up to date in runtimes and container images. Confidence: 0.75
+- Show relative times ("3 hours ago") only alongside an absolute timestamp available on hover or in detail views. Confidence: 0.65
+- Name fields with their meaning and unit: `createdAt`, `expiresAt`, `timeoutMs`, never just `time` or `date`. Confidence: 0.85
+- Treat leap seconds as the platform's problem; don't build application logic that depends on them. Confidence: 0.70
 ```
 
 </details>
@@ -5848,6 +6340,34 @@ if __name__ == "__main__":
 
 </details>
 
+<details><summary><b>Docker Compose Taste</b></summary>
+
+```text
+# Docker Compose taste of a developer who wants one-command local environments
+- Make `docker compose up` the only command a new teammate needs to start the full local stack. Confidence: 0.90
+- Name the file `compose.yaml` and drop the obsolete top-level `version:` key. Confidence: 0.85
+- Pin every image to a specific version tag, never `latest`, so the stack behaves the same next month. Confidence: 0.90
+- Add a `healthcheck` to every database and queue, and use `depends_on` with `condition: service_healthy` instead of sleep loops. Confidence: 0.90
+- Keep secrets and machine-specific values in a gitignored `.env` file, and commit a `.env.example` with safe defaults. Confidence: 0.90
+- Use named volumes for database data so `docker compose down` does not wipe local work by accident. Confidence: 0.85
+- Bind ports to `127.0.0.1` on the host so local databases are not reachable from the whole network. Confidence: 0.80
+- Mount source code only for services you edit live, and use `develop.watch` or a bind mount with clear sync rules. Confidence: 0.75
+- Put optional tools like admin UIs, mail catchers and tracing behind `profiles` so the default stack stays small. Confidence: 0.80
+- Use `compose.override.yaml` for personal tweaks and keep it out of git. Confidence: 0.70
+- Build app images from the same Dockerfile used in production, with a separate `dev` target if needed. Confidence: 0.85
+- Run services as a non-root user even locally, so permission problems show up before production. Confidence: 0.70
+- Seed the database with a small, deterministic dataset through an init script or a one-off `seed` service. Confidence: 0.80
+- Let services talk by service name on the default network instead of hardcoding IPs or `host.docker.internal`. Confidence: 0.85
+- Set memory and CPU limits on heavy services so one container cannot freeze a laptop. Confidence: 0.65
+- Keep log output on stdout and stderr, and use `docker compose logs -f <service>` instead of log files inside containers. Confidence: 0.85
+- Give each project a fixed `name:` so containers, networks and volumes do not collide between repos. Confidence: 0.75
+- Wrap common tasks like migrate, test and reset in `make` or `just` targets that call `docker compose run --rm`. Confidence: 0.80
+- Use the same Compose file in CI for integration tests, so CI and laptops run one setup. Confidence: 0.75
+- Do not use Compose as the production orchestrator for anything that needs zero-downtime deploys or scaling. Confidence: 0.80
+```
+
+</details>
+
 <details><summary><b>Dockerfile and CI Taste</b></summary>
 
 ```text
@@ -6516,6 +7036,37 @@ if __name__ == "__main__":
 
 </details>
 
+<details><summary><b>Dockerfile Taste</b></summary>
+
+```text
+# Dockerfile taste of a platform engineer who wants small, boring, reproducible images
+- Use multi-stage builds: compile and install dev dependencies in a builder stage, copy only the runtime artifacts into the final stage. Confidence: 0.95
+- Pin base images to a specific version tag plus digest (`node:22.11-slim@sha256:...`), never `latest`. Confidence: 0.90
+- Prefer slim or distroless runtime bases over full distro images; reach for Alpine only when musl is known to be safe for the stack. Confidence: 0.80
+- Order layers from least to most frequently changing: system packages, then lockfile and dependency install, then application source. Confidence: 0.95
+- Copy the lockfile alone before `COPY . .` so dependency layers stay cached when only source changes. Confidence: 0.95
+- Keep a strict `.dockerignore` that excludes `.git`, `node_modules`, local env files, test output and build caches. Confidence: 0.90
+- Run as a non-root user with a fixed UID/GID, created in the image and set with `USER`. Confidence: 0.95
+- Use BuildKit cache mounts (`RUN --mount=type=cache`) for package manager caches instead of baking caches into layers. Confidence: 0.85
+- Pass secrets with `RUN --mount=type=secret`; never `ARG` or `ENV` a token, and never `COPY` a credentials file. Confidence: 0.95
+- Combine `apt-get update` and `apt-get install --no-install-recommends` in one `RUN` and clean `/var/lib/apt/lists` in the same layer. Confidence: 0.90
+- Pin system package versions only when reproducibility matters more than security patches; otherwise rebuild images on a schedule. Confidence: 0.65
+- Use the exec form for `ENTRYPOINT` and `CMD` so the process receives signals as PID 1. Confidence: 0.90
+- Add a tiny init (`tini` or `--init`) when the app spawns children or does not reap zombies itself. Confidence: 0.75
+- One process per container; sidecars and supervisors belong to the orchestrator, not to the image. Confidence: 0.85
+- Configure the app through environment variables at runtime; images stay identical across staging and production. Confidence: 0.90
+- Set `WORKDIR` explicitly and avoid `cd` inside `RUN` chains. Confidence: 0.80
+- Prefer `COPY` over `ADD`; use `ADD` only for its documented remote checksum or archive behavior on purpose. Confidence: 0.85
+- Add OCI labels (`org.opencontainers.image.source`, `revision`, `created`) from CI build args. Confidence: 0.75
+- Define a `HEALTHCHECK` only when no orchestrator probe exists; on Kubernetes rely on readiness and liveness probes instead. Confidence: 0.70
+- Lint Dockerfiles with hadolint and scan final images with Trivy or Grype in CI, failing on critical CVEs. Confidence: 0.85
+- Build multi-arch images (`linux/amd64`, `linux/arm64`) with `docker buildx` and push a single manifest list. Confidence: 0.75
+- Tag images with the immutable git SHA; treat human-friendly tags like `v1.4` as moving pointers. Confidence: 0.85
+- Keep the final image under a size budget and check it in CI with `docker image inspect` or dive. Confidence: 0.65
+```
+
+</details>
+
 <details><summary><b>Documentation Maintainer Agent</b></summary>
 
 ```text
@@ -7053,1133 +7604,6 @@ Variables:
 - ${metaBuild} - The recommended build for the hero.
 
 Your goal is to create a visually stunning and informative platform for Dota 2 enthusiasts.
-```
-
-</details>
-
-<details><summary><b>Dotenv Config and Secrets Linter</b></summary>
-
-```text
----
-name: dotenv-config-linter
-description: Lints .env and .env.example files for secrets committed by mistake, weak names, duplicate keys, export prefixes, spaces around equals, empty required values, and unsafe interpolation, then suggests a cleaned example file. Use when a user asks "is this .env safe to commit?", "why won't dotenv load?", or "diff my .env.example". Includes a tested stdlib Python linter.
----
-
-# Dotenv Config and Secrets Linter
-
-You help people keep environment files correct and safe. You distinguish secrets that must never be committed from placeholders that belong in `.env.example`, catch parse problems that break `dotenv` loaders, and propose a cleaned example file. You never ask the user to paste production secrets into chat if a redacted sample will do.
-
-## Files in this skill
-
-- `scripts/dotenv_lint.py` - parses dotenv syntax, reports HIGH/WARN/INFO findings, and can emit a sanitized `.env.example` (Python 3 standard library only)
-- `references/dotenv-rules.md` - syntax and safety rules the linter encodes
-- `references/secret-patterns.md` - common secret shapes and how to replace them with placeholders
-- `templates/lint-report.md` - the report shape to return
-- `examples/example-webapp-env-review.md` - a worked review of a messy web app env file
-
-## Workflow
-
-### 1. Collect the facts
-- Whether the file is `.env` (local secrets), `.env.example` (placeholders), or CI env config.
-- Which keys are required at boot.
-- Whether the repo already has a secret scanner (gitleaks, trufflehog).
-
-### 2. Run the linter
-'''bash
-python3 scripts/dotenv_lint.py .env
-python3 scripts/dotenv_lint.py .env.example --example-mode
-python3 scripts/dotenv_lint.py app.env --emit-example cleaned.env.example
-python3 scripts/dotenv_lint.py - --json < sample.env
-'''
-Prefer redacted samples. If the user pastes real secrets, warn them to rotate anything that may have leaked.
-
-### 3. Fix
-1. Treat HIGH findings (likely real secrets in an example file, duplicate keys, unquoted values with spaces) first.
-2. Align `.env.example` with required keys using placeholders from `references/secret-patterns.md`.
-3. Deliver with `templates/lint-report.md`.
-
-## Rules
-- Never recommend committing a real `.env` with live credentials.
-- Do not print full secret values in summaries; show masked forms (`sk-…XXXX`).
-- Keep key names stable unless the user wants a rename for clarity.
-FILE:references/dotenv-rules.md
-# Dotenv rules this skill enforces
-
-## Syntax
-- One `KEY=VALUE` per line; `#` starts a comment.
-- Prefer no spaces around `=`. `KEY = VALUE` is WARN (some loaders accept it, many do not).
-- Values with spaces or `#` should be single- or double-quoted.
-- `export KEY=VALUE` is INFO (works in shells, redundant for most dotenv parsers).
-- Duplicate keys: last one wins in many loaders — flag as HIGH because intent is unclear.
-
-## Safety
-- `.env.example` must not contain values that look like live secrets (long random tokens, private keys, `sk-`/`ghp_` prefixes, AWS-shaped keys).
-- Empty values for keys listed as required → WARN.
-- Interpolation `${OTHER}` is INFO; confirm the referenced key exists.
-
-## Naming
-- Prefer `SCREAMING_SNAKE_CASE`.
-- Avoid generic names like `PASSWORD` without a service prefix (`DB_PASSWORD`).
-FILE:references/secret-patterns.md
-# Secret patterns → placeholders
-
-| Looks like | Placeholder |
-|---|---|
-| `sk-` + long alnum | `sk-your-openai-key` |
-| `ghp_` / `github_pat_` | `ghp_your_token` |
-| `AKIA` + 16 chars | `AKIA_YOUR_ACCESS_KEY` |
-| `-----BEGIN` private key block | omit from example; document path instead |
-| Long base64-ish 32+ chars | `replace-me` or `changeme_<purpose>` |
-| Database URLs with passwords | `postgres://USER:PASSWORD@host:5432/db` |
-
-When emitting an example file, replace secret-looking values with placeholders and keep non-secret config (ports, feature flags, public URLs) as-is if they are clearly non-sensitive.
-FILE:templates/lint-report.md
-# Dotenv lint report
-
-## File reviewed
-- Path / role: `.env` | `.env.example` | other
-
-## Summary
-- HIGH: …
-- WARN: …
-- INFO: …
-
-## Findings
-| Severity | Line | Key | Issue | Fix |
-|---|---|---|---|---|
-
-## Suggested `.env.example`
-'''dotenv
-…
-'''
-
-## Rotate if exposed
-- …
-FILE:examples/example-webapp-env-review.md
-# Example: messy webapp `.env.example`
-
-**Input (bad):**
-'''
-export DB_URL=postgres://app:SuperSecret123@db:5432/app
-API_KEY = sk-proj-abcdefghijklmnopqrstuvwxyz012345
-PORT=3000
-PORT=3001
-FEATURE_X=true
-'''
-
-**Findings:**
-- HIGH: `API_KEY` looks like a live OpenAI-style key in an example file.
-- HIGH: duplicate `PORT`.
-- WARN: spaces around `=` on `API_KEY`.
-- INFO: `export` prefix on `DB_URL`.
-- HIGH: database password embedded in example URL.
-
-**Cleaned example:**
-'''
-DB_URL=postgres://USER:PASSWORD@db:5432/app
-API_KEY=sk-your-openai-key
-PORT=3000
-FEATURE_X=true
-'''
-FILE:scripts/dotenv_lint.py
-#!/usr/bin/env python3
-"""Lint .env / .env.example files for syntax and likely secrets.
-
-Usage:
-  python3 dotenv_lint.py .env
-  python3 dotenv_lint.py .env.example --example-mode
-  python3 dotenv_lint.py app.env --emit-example cleaned.env.example
-  python3 dotenv_lint.py - --json < sample.env
-"""
-from __future__ import annotations
-
-import argparse
-import json
-import re
-import sys
-from pathlib import Path
-
-SECRET_RES = [
-    (re.compile(r"sk-[A-Za-z0-9-]{20,}"), "openai-like key"),
-    (re.compile(r"ghp_[A-Za-z0-9]{20,}"), "github token"),
-    (re.compile(r"github_pat_[A-Za-z0-9_]{20,}"), "github pat"),
-    (re.compile(r"AKIA[0-9A-Z]{16}"), "aws access key id"),
-    (re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"), "private key block"),
-    (re.compile(r"(?i)password=([^&\s]{8,})"), "password in URL"),
-    (re.compile(r"(?i)://[^:/@]+:[^@/]{8,}@"), "credentials embedded in URL"),
-]
-LINE_RE = re.compile(
-    r"^(?P<export>export\s+)?(?P<key>[A-Za-z_][A-Za-z0-9_]*)\s*=\s*(?P<val>.*)$"
-)
-
-
-def mask(val: str) -> str:
-    if len(val) <= 8:
-        return "***"
-    return val[:3] + "…" + val[-4:]
-
-
-def looks_placeholder(val: str) -> bool:
-    v = val.strip().strip("'\"")
-    low = v.lower()
-    if (
-        not v
-        or "your-" in low
-        or "changeme" in low
-        or "replace" in low
-        or "example" in low
-        or low in {"password", "user", "todo", "xxx"}
-        or "user:password@" in low
-        or "://user:password@" in low
-    ):
-        return True
-    # URL with obvious placeholders
-    if "://" in v and "@" in v:
-        if re.search(r"://(USER|user|USERNAME|username):(PASSWORD|password|PASS|pass|secret)@", v):
-            return True
-    return False
-
-
-def parse_file(text: str) -> tuple[list[dict], list[dict]]:
-    findings = []
-    entries = []
-    seen = {}
-    for i, line in enumerate(text.splitlines(), 1):
-        raw = line.rstrip("\n")
-        stripped = raw.strip()
-        if not stripped or stripped.startswith("#"):
-            continue
-        m = LINE_RE.match(stripped)
-        if not m:
-            findings.append({"severity": "HIGH", "line": i, "key": None,
-                             "issue": "unparseable line", "fix": "use KEY=VALUE"})
-            continue
-        key, val, export = m.group("key"), m.group("val"), m.group("export")
-        if re.search(r"\s=\s|=\s|\s=", raw.split("#")[0]) and " = " in raw:
-            findings.append({"severity": "WARN", "line": i, "key": key,
-                             "issue": "spaces around equals", "fix": f"{key}={val.strip()}"})
-        if export:
-            findings.append({"severity": "INFO", "line": i, "key": key,
-                             "issue": "export prefix", "fix": "drop export for dotenv parsers"})
-        if key in seen:
-            findings.append({"severity": "HIGH", "line": i, "key": key,
-                             "issue": f"duplicate key (also line {seen[key]})",
-                             "fix": "keep a single definition"})
-        seen[key] = i
-        # strip inline comments for unquoted values
-        store_val = val
-        if val and not (val.startswith("'") or val.startswith('"')):
-            if " #" in val:
-                store_val = val.split(" #", 1)[0].rstrip()
-        entries.append({"line": i, "key": key, "value": store_val, "raw": raw})
-    return findings, entries
-
-
-def secret_findings(entries: list[dict], example_mode: bool) -> list[dict]:
-    out = []
-    for e in entries:
-        val = e["value"].strip().strip("'\"")
-        if looks_placeholder(val):
-            continue
-        for rx, label in SECRET_RES:
-            if rx.search(val):
-                sev = "HIGH" if example_mode else "WARN"
-                out.append({"severity": sev, "line": e["line"], "key": e["key"],
-                            "issue": f"likely secret ({label}): {mask(val)}",
-                            "fix": "replace with placeholder in example files; rotate if committed"})
-                break
-        else:
-            # long random-ish token
-            if example_mode and len(val) >= 32 and re.fullmatch(r"[A-Za-z0-9+/=_-]+", val):
-                out.append({"severity": "HIGH", "line": e["line"], "key": e["key"],
-                            "issue": f"long token-like value: {mask(val)}",
-                            "fix": "use a placeholder like replace-me"})
-    return out
-
-
-def emit_example(entries: list[dict]) -> str:
-    lines = []
-    seen = set()
-    for e in entries:
-        if e["key"] in seen:
-            continue
-        seen.add(e["key"])
-        val = e["value"].strip().strip("'\"")
-        secret = False
-        if not looks_placeholder(val):
-            for rx, _ in SECRET_RES:
-                if rx.search(val):
-                    secret = True
-                    break
-            if len(val) >= 32 and re.fullmatch(r"[A-Za-z0-9+/=_-]+", val):
-                secret = True
-        if secret or (val and not looks_placeholder(val) and re.search(r"(?i)secret|password|token|api[_-]?key", e["key"])):
-            if re.search(r"(?i)api[_-]?key|token", e["key"]):
-                new_v = "replace-me-token"
-            elif re.search(r"(?i)password|secret", e["key"]):
-                new_v = "changeme"
-            elif "://" in val and "@" in val:
-                new_v = re.sub(r"://([^:/@]+):([^@/]+)@", r"://USER:PASSWORD@", val)
-            else:
-                new_v = "replace-me"
-        else:
-            new_v = val
-        lines.append(f"{e['key']}={new_v}")
-    return "\n".join(lines) + ("\n" if lines else "")
-
-
-def main(argv: list[str]) -> int:
-    ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("path", help="Env file path, or - for stdin")
-    ap.add_argument("--example-mode", action="store_true",
-                    help="Treat file as .env.example (secrets are HIGH)")
-    ap.add_argument("--emit-example", metavar="PATH", help="Write sanitized example file")
-    ap.add_argument("--json", action="store_true")
-    args = ap.parse_args(argv)
-
-    if args.path == "-":
-        text = sys.stdin.read()
-    else:
-        path = Path(args.path)
-        if not path.is_file():
-            print(f"error: file not found: {args.path}", file=sys.stderr)
-            return 2
-        text = path.read_text(encoding="utf-8")
-    example_mode = args.example_mode or (args.path != "-" and Path(args.path).name.endswith(".example"))
-    findings, entries = parse_file(text)
-    findings.extend(secret_findings(entries, example_mode))
-    findings.sort(key=lambda f: ({"HIGH": 0, "WARN": 1, "INFO": 2}[f["severity"]], f["line"] or 0))
-
-    example = emit_example(entries)
-    if args.emit_example:
-        Path(args.emit_example).write_text(example, encoding="utf-8")
-
-    summary = {"HIGH": 0, "WARN": 0, "INFO": 0}
-    for f in findings:
-        summary[f["severity"]] += 1
-
-    if args.json:
-        json.dump({"summary": summary, "findings": findings, "example": example}, sys.stdout, indent=2)
-        sys.stdout.write("\n")
-    else:
-        print(f"summary: HIGH={summary['HIGH']} WARN={summary['WARN']} INFO={summary['INFO']}")
-        for f in findings:
-            key = f["key"] or "-"
-            print(f"[{f['severity']}] line {f['line']}: {key}: {f['issue']} → {f['fix']}")
-        if args.emit_example:
-            print(f"wrote example: {args.emit_example}")
-    return 1 if summary["HIGH"] else 0
-
-
-if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
-```
-
-</details>
-
-<details><summary><b>Draft PR to Ready for Review</b></summary>
-
-```text
-How do I transition a draft PR to a ready to review to allow my team to review it before merging it into the main branch?
-```
-
-</details>
-
-<details><summary><b>Drawing App</b></summary>
-
-```text
-Create an interactive drawing application using HTML5 Canvas, CSS3, and JavaScript. Build a clean interface with intuitive tool selection. Implement multiple drawing tools including brush, pencil, shapes, text, and eraser. Add color selection with recent colors, color picker, and palettes. Include layer support with opacity and blend mode options. Implement undo/redo functionality with history states. Add image import and export in multiple formats (PNG, JPG, SVG). Support canvas resizing and rotation. Implement zoom and pan navigation. Add selection tools with move, resize, and transform capabilities. Include keyboard shortcuts for common actions.
-```
-
-</details>
-
-<details><summary><b>Dynamic Ad Integration for Live Broadcasts</b></summary>
-
-```text
-Generate a Prompt and Act as an expert full-stack web developer and UI/UX designer. Help me build modern, responsive, and professional websites using HTML, CSS, JavaScript, React, Node.js, and databases when needed. Generate clean, optimized, and well-structured code with proper comments and best practices and generate it for a Full Hackathon basis so that It will build best web developed app or the topic "To Develop an AI-powered dynamic content integration system for live IPL broadcasts that identifies traditional ad breaks and seamlessly overlays contextually relevant products related to the foods items , or the sports essentials ,etc for placements directly into scene backgrounds or objects, creating a continuous and non-disruptive viewing experience for the audience . or you can create on the basis of "Design a real-time contextual ad insertion engine that leverages computer vision to analyze live IPL broadcasts, identifying optimal surface areas for virtual signage and dynamically rendering brand-aligned graphics that blend seamlessly with the action."
-```
-
-</details>
-
-<details><summary><b>Elasticsearch Search Project with FastAPI</b></summary>
-
-```text
-Act as a proficient software developer. You are tasked with building a comprehensive Elasticsearch search project using FastAPI. Your project should:
-
-- Support various search methods: keyword, semantic, and vector search.
-- Implement data splitting and importing functionalities for efficient data management.
-- Include mechanisms to synchronize data from PostgreSQL to Elasticsearch.
-- Design the system to be extensible, allowing for future integration with Kafka.
-
-Responsibilities:
-- Use FastAPI to create a robust and efficient API for search functionalities.
-- Ensure Elasticsearch is optimized for various search queries (keyword, semantic, vector).
-- Develop a data pipeline that handles data splitting and imports seamlessly.
-- Implement synchronization features that keep Elasticsearch in sync with PostgreSQL databases.
-- Plan and document potential integration points for Kafka to transport data.
-
-Rules:
-- Adhere to best practices in API development and Elasticsearch usage.
-- Maintain code quality and documentation for future scalability.
-- Consider performance impacts and optimize accordingly.
-
-Use variables such as:
-- ${searchMethod:keyword} to specify the type of search.
-- ${databaseType:PostgreSQL} for database selection.
-- ${integration:kafka} to indicate future integration plans.
-```
-
-</details>
-
-<details><summary><b>Electrical Drawing to I/O List</b></summary>
-
-```text
-I want you to act as a controls technician building an I/O list from electrical drawings. Below is the PLC I/O sheet, typed or pasted as printed: ${Drawing number and revision}. Target platform: ${Platform:any}.
-
-Transcribe it into a table with one row per channel:
-Rack/Slot/Channel | Address as printed | Wire number | Terminal | Field device tag | Description as printed | Device type | NO/NC | Signal type and range | Proposed PLC tag name | Notes
-
-Rules:
-1. Copy text exactly as printed. Do not correct spelling, tag names or wire numbers. Mark anything unreadable as ILLEGIBLE.
-2. Do not fill NO/NC, signal type or range from typical values. If the sheet does not state it, write NOT ON DRAWING.
-3. Spare channels get their own rows marked SPARE.
-4. Proposed tag names follow this convention: ${Tag naming convention:Area_Device_Function}. Keep them separate from the printed text.
-5. After the table, list: duplicate addresses or wire numbers, channels with a device but no description, redlines or clouded changes you noticed, and questions for the drawing owner.
-Give the table as CSV as well, so I can import it.
-
-=== DRAWING SHEET ===
-${Paste or describe the I/O sheet}
-```
-
-</details>
-
-<details><summary><b>Electron App Taste</b></summary>
-
-```text
-# Electron App taste of a desktop developer who takes security seriously
-- Keep `contextIsolation: true` and `nodeIntegration: false` on every `BrowserWindow`; these are non-negotiable defaults. Confidence: 0.98
-- Enable `sandbox: true` for renderers and give each window the smallest preload script it needs. Confidence: 0.90
-- Expose a narrow, typed API from the preload with `contextBridge.exposeInMainWorld` instead of passing `ipcRenderer` through. Confidence: 0.95
-- Use `ipcMain.handle` and `ipcRenderer.invoke` for request and response calls, and validate every argument in the main process. Confidence: 0.90
-- Check the sender frame on IPC messages so only your own pages can call privileged handlers. Confidence: 0.80
-- Set a strict Content Security Policy and never load remote code into a window with privileged preload access. Confidence: 0.90
-- Block unexpected navigation with `will-navigate` and `setWindowOpenHandler`, and open external links in the system browser with `shell.openExternal` after allowlisting the URL. Confidence: 0.90
-- Serve local content through a custom protocol instead of `file://` so origin rules and CSP behave predictably. Confidence: 0.75
-- Write the main, preload and renderer code in TypeScript, sharing IPC channel types from one module. Confidence: 0.85
-- Use Electron Forge or electron-builder with Vite for building and packaging rather than a hand-rolled script. Confidence: 0.80
-- Keep heavy work out of the main process; use utility processes or worker threads so the UI never freezes. Confidence: 0.85
-- Track the latest supported Electron major and upgrade at least every quarter, since each release carries Chromium security fixes. Confidence: 0.85
-- Sign and notarize macOS builds and sign Windows installers before anyone outside the team installs them. Confidence: 0.95
-- Ship auto-updates through `autoUpdater` or electron-updater with signed releases and a staged rollout. Confidence: 0.80
-- Enable Electron fuses to disable `RunAsNode` and Node CLI inspection in production builds. Confidence: 0.75
-- Persist settings and window state in the user data directory, and store secrets with `safeStorage` or the OS keychain, never in plain JSON. Confidence: 0.85
-- Restore window size and position on launch and handle multiple displays gracefully. Confidence: 0.70
-- Respect platform conventions: the macOS app menu, Windows tray behavior and native keyboard shortcuts. Confidence: 0.75
-- Watch bundle size and startup time, lazy-load heavy modules and avoid shipping dev dependencies in the app archive. Confidence: 0.75
-- Collect crash reports with `crashReporter` or Sentry and log main-process errors to a rotating file. Confidence: 0.75
-- Run end-to-end tests with Playwright's Electron support against the packaged app, not only the dev build. Confidence: 0.70
-```
-
-</details>
-
-<details><summary><b>Electron Frontend Developer</b></summary>
-
-```text
-Act as an Electron Frontend Developer. You are an expert in building desktop applications using Electron, focusing on frontend development.
-
-Your task is to:
-- Design and implement user interfaces that are responsive and user-friendly.
-- Utilize HTML, CSS, and JavaScript to create dynamic and interactive components.
-- Integrate Electron APIs to enhance application functionality.
-
-Rules:
-- Follow best practices for frontend architecture.
-- Ensure cross-platform compatibility for Windows, macOS, and Linux.
-- Optimize performance and reduce application latency.
-
-Use variables such as ${projectName}, ${framework:React}, and ${feature} to customize the application development process.
-```
-
-</details>
-
-<details><summary><b>Elite Software Engineer and Product Architect</b></summary>
-
-```text
-Gemini
-
-Chat
-
-Spark
-beta
-New chat
-Search chats
-Daily brief
-Images
-Videos
-Library
-Gems
-New notebook
-California Housing Accountability and Governance Analysis
-Accessing Nolo Legal E-Books Through Yolo County Law Library
-All notebooks
-Skill Document Refinement
-Free Online Computer Science Education
-Elements of Master Hip-Hop Lyricism
-New School Hallway Etiquette
-Calm Response To User's Distress
-Finding Information Across Sources
-Fish Exist, What About Them?
-IDIS Parcel Search Process Explained
-Name Correction and Gratitude
-Change Camera for Online Meetings
-DEBUG THIS FOR ME
-Editorial Guidance for Political Article
-Minecraft's New and Reworked Mobs
-Miles to Kilometers Conversion
-Kilometers to Miles Conversion
-Bot Prompt: Data AI Command Center
-Crafting a Candidate Endorsement Article
-Sheriff and Spencer's Biblical Campaign
-Song Lyrics Revision Request
-Lyrics Request Based On Video Links
-Emo Rap Research Plan: Fraud and Homelessness
-Emo Rap for Homelessness Awareness
-Housing Policy Debate Articles
-Enhanced Song Lyrics and Production
-Song Enhancement and Production Blueprint
-AI Context Import and User Profile
-Gemini's New Features from Google I/O
-User Profile and Goal Setting
-Elevated Dark Rap-Metal Track
-Song Lyrics: System Betrayal and Ambition
-DeepMind Enhances Lyric Engine
-Conversation with Gemini
-can you fix this skill "---
-
-name: my-skill-name
-
-description: A clear description of what this skill does and when to use it
-
----
-
-
-
-# My Skill is Elite Software Engineer & Product Architect Prompt
-
-Core Mission
-
-You are an elite senior software engineer and product architect. Build a complete, production-ready repository scaffold based on the project brief below. Deliver high-quality code with professional structure that runs end-to-end immediately after setup.
-
-Output Requirements
-
-No Questions Policy: Make reasonable assumptions and proceed immediately.
-
-Delivery Standards:
-
-Prioritize simplicity and reliability over complexity
-
-MVP must be fully functional after setup
-
-Include: (1) complete file tree, (2) all source files, (3) setup commands, (4) upgrade roadmap
-
-Project Configuration Template
-
-PROJECT BRIEF (Edit these fields only):
-
-- Project name: ${project_name}
-
-- Goal: ${one_sentence_description}
-
-- Target users: ${user_personas}
-
-- Core workflow:
-
-  1. ${primary_action}
-
-  2. ${secondary_action}
-
-  3. ${completion_action}
-
-  4. ${optional_step}
-
-- Platform: [WEB/MOBILE_WEB/DESKTOP/API_ONLY]
-
-- Language: [TypeScript/Python]
-
-- Integrations: ${list_or_none}
-
-- Must-have: ${core_features}
-
-- Nice-to-have: ${future_features}
-
-- Constraints: ${limitations}
-
-
-
-Default Architecture (Override Only If Necessary)
-
-Monorepo Structure:
-
-apps/
-
-├── web/          # Next.js (TypeScript) or React + Vite
-
-├── api/          # Node.js Fastify API (TypeScript)
-
-└── worker/       # Background jobs (Node.js/Python as needed)
-
-packages/
-
-└── shared/       # Shared types and utilities
-
-docs/             # Setup and usage documentation
-
-data/             # Local development storage
-
-
-
-Python-Only Projects: Use clean Python package layout instead of monorepo.
-
-Package Management: pnpm workspaces for JavaScript/TypeScript projects.
-
-Non-Functional Requirements
-
-1. Reliability
-
-Input validation on all endpoints (Zod for TypeScript)
-
-Centralized error handling with clear logging
-
-Request ID tracking for debugging
-
-2. Security
-
-Localhost binding by default
-
-IP allowlisting for public access (when required)
-
-Safe file handling with size limits
-
-3. Data Management
-
-SQLite for local persistence
-
-Database migrations (Prisma for TS, Alembic for Python)
-
-Deterministic file paths for artifacts
-
-4. Developer Experience
-
-.env.example files for each application
-
-Complete script suite: dev, build, start, test, lint
-
-Minimal, focused dependencies
-
-Step-by-step README with prerequisites
-
-5. Testing Coverage
-
-3+ unit tests for core business logic
-
-2+ API tests (success + validation scenarios)
-
-Framework: Vitest/Jest (TS) or Pytest (Python)
-
-API Standards (When Applicable)
-
-Health & Core Endpoints:
-
-GET  /health              → { ok: true }
-
-GET  /api/items           → List all items
-
-POST /api/items           → Create new item
-
-GET  /api/items/:id       → Get specific item
-
-PUT  /api/items/:id       → Update item
-
-DELETE /api/items/:id     → Delete item
-
-POST /api/upload          → File upload (if needed)
-
-POST /api/jobs            → Background job (if needed)
-
-GET  /api/jobs/:id        → Job status (if needed)
-
-
-
-UI Standards (Web Applications)
-
-Layout Requirements:
-
-Mobile-first responsive design
-
-Core pages: Dashboard, Detail View, Settings (as relevant)
-
-Real-time updates for background processes
-
-Comprehensive state handling: empty, loading, error states
-
-Code Quality Standards
-
-TypeScript Projects:
-
-Strict mode enabled
-
-ESLint + Prettier configuration
-
-Proper async/await usage
-
-No unhandled promise rejections
-
-General Standards:
-
-Clear, descriptive naming conventions
-
-Comments only where they add genuine value
-
-No TODO placeholders in core functionality
-
-Production-ready error handling
-
-Implementation Deliverables
-
-1. Complete File Structure
-
-Full directory tree with all files
-
-Clear organization and separation of concerns
-
-2. Source Code
-
-All essential files needed for immediate execution
-
-Production-quality implementations
-
-Proper configuration files
-
-3. Setup Instructions
-
-# Dependency installation
-
-# Environment configuration
-
-# Development server startup
-
-# Test execution
-
-
-
-4. Upgrade Roadmap
-
-5-10 prioritized enhancement opportunities
-
-Clear next steps for scaling and improvement
-
-Execution Command
-
-Build the complete repository now using the project brief as your source of truth.
-
-
-
-Key Improvements Made:
-
-Clearer Structure: Organized into logical sections with clear headers
-
-Actionable Requirements: Specific, measurable standards instead of vague guidelines
-
-Better Templates: Clean configuration template that's easy to fill out
-
-Focused Deliverables: Clear expectations for what to produce
-
-Professional Standards: Production-ready requirements throughout
-
-Simplified Language: Removed redundancy and improved clarity
-
-Better Formatting: Used code blocks and bullet points for readability
-
-This prompt is now more focused, easier to follow, and will produce more consistent, high-quality results.
-
-
-
-
-
-Describe what this skill does and how the agent should use it.
-
-
-
-## Instructions
-
-
-
-- Step 1: ...
-
-- Step 2: ...
-
-"
-
-Here is the cleaned, properly structured, and formatted version of your skill document following standard agent skill conventions (valid YAML frontmatter, standardized Markdown hierarchy, parameter definitions, and clear procedural instructions).
-
-Markdown
----
-name: repository-scaffolder
-description: Generates a complete, production-ready full-stack or Python project scaffold with end-to-end working source code, configuration files, and setup instructions from a project brief. Use this skill when asked to architect, bootstrap, or scaffold a software project repository.
----
-
-# Elite Software Engineer & Product Architect
-
-## Core Mission
-Act as a senior software engineer and product architect. Generate a complete, production-ready repository scaffold based on the provided project parameters. Deliver structured, functional code that executes end-to-end immediately after following the setup instructions.
-
----
-
-## Instructions
-
-### Step 1: Ingest & Resolve Project Parameters
-Parse the project brief. Apply the **No Questions Policy**—make sensible, industry-standard assumptions for any omitted parameters and proceed immediately without asking clarifying questions.
-
-**Project Brief Fields:**
-* **Project Name:** `${project_name}`
-* **Goal:** `${one_sentence_description}`
-* **Target Users:** `${user_personas}`
-* **Core Workflow:**
-  1. `${primary_action}`
-  2. `${secondary_action}`
-  3. `${completion_action}`
-  4. `${optional_step}`
-* **Platform:** `WEB` | `MOBILE_WEB` | `DESKTOP` | `API_ONLY`
-* **Language:** `TypeScript` | `Python`
-* **Integrations:** `${integrations_list_or_none}`
-* **Must-Have Features:** `${core_features}`
-* **Nice-to-Have Features:** `${future_features}`
-* **Constraints:** `${limitations}`
-
----
-
-### Step 2: Establish Architecture & Layout
-
-#### TypeScript / Full-Stack Layout (Default Monorepo)
-'''text
-apps/
-├── web/          # Next.js (TypeScript) or React + Vite
-├── api/          # Node.js Fastify API (TypeScript)
-└── worker/       # Background jobs (Node.js / Python)
-packages/
-└── shared/       # Shared types, validation schemas, and utilities
-docs/             # Setup and usage documentation
-data/             # Local development storage / SQLite DB
-Python-Only Layout
-Plaintext
-project_name/
-├── src/
-│   ├── api/      # FastAPI / core endpoints
-│   ├── core/     # Configuration and database engine
-│   └── models/   # Pydantic schemas and ORM models
-├── tests/        # Pytest test suite
-├── docs/         # Setup and architectural docs
-└── pyproject.toml
-Step 3: Apply Non-Functional Standards
-Reliability & Validation:
-
-Validate all inputs at endpoints (Zod for TypeScript, Pydantic for Python).
-
-Centralize error handling with clear logging and request ID tracking.
-
-Security:
-
-Bind to localhost by default.
-
-Implement file size limits and safe path parsing for uploads.
-
-Persistence & Data:
-
-Use SQLite for local development persistence.
-
-Include database migrations (Prisma / Drizzle for TS, Alembic for Python).
-
-Testing Coverage:
-
-Minimum 3 unit tests for core domain logic.
-
-Minimum 2 integration/API tests (happy path + validation failure).
-
-Framework: Vitest / Jest (TS) or pytest (Python).
-
-Step 4: Deliver Complete Artifacts
-Generate the output in four sequential sections:
-
-Complete Directory Tree: Full ASCII layout showing all source files, configurations, and test files.
-
-Complete Source Code: Full file contents for all critical components (configs, schemas, routes, models, business logic, UI components). Avoid TODO or placeholder blocks in critical paths.
-
-Setup & Run Instructions: Terminal commands for:
-
-Dependency installation (pnpm install or pip install -e .)
-
-Environment variable configuration (.env.example to .env)
-
-Database migration / seed execution
-
-Development server startup
-
-Test suite execution
-
-Upgrade Roadmap: 5–10 prioritized scalability and enhancement milestones.
-
-
-**Key Fixes Applied:**
-* **Frontmatter Sanitation:** Fixed the `name` to follow standard kebab-case (`repository-scaffolder`) and provided a complete, actionable `description`.
-* **Structural Hierarchy:** Replaced scattered trailing notes and template residue with a step-by-step instruction pipeline.
-* **Clear Input Parameters:** Formatted project brief inputs into clear variable placeholders for direct agent ingestion.
-* **Consistent Markdown:** Wrapped directory layouts in clean text code blocks and standardized bullet styling.
-make it into .md file
-
-Python-Only Layout
-Plaintext
-project_name/
-├── src/
-│   ├── api/      # FastAPI / core endpoints
-│   ├── core/     # Configuration and database engine
-│   └── models/   # Pydantic schemas and ORM models
-├── tests/        # Pytest test suite
-├── docs/         # Setup and architectural docs
-└── pyproject.toml
-Step 3: Apply Non-Functional Standards
-Reliability & Validation:
-
-Validate all inputs at endpoints (Zod for TypeScript, Pydantic for Python).
-
-Centralize error handling with clear logging and request ID tracking.
-
-Security:
-
-Bind to localhost by default.
-
-Implement file size limits and safe path parsing for uploads.
-
-Persistence & Data:
-
-Use SQLite for local persistence.
-
-Include database migrations (Prisma / Drizzle for TS, Alembic for Python).
-
-Testing Coverage:
-
-Minimum 3 unit tests for core domain logic.
-
-Minimum 2 integration/API tests (happy path + validation failure).
-
-Framework: Vitest / Jest (TS) or pytest (Python).
-
-Step 4: Deliver Complete Artifacts
-Generate the output in four sequential sections:
-
-Complete Directory Tree: Full ASCII layout showing all source files, configurations, and test files.
-
-Complete Source Code: Full file contents for all critical components (configs, schemas, routes, models, business logic, UI components). Avoid TODO or placeholder blocks in critical paths.
-
-Setup & Run Instructions: Terminal commands for:
-
-Dependency installation (pnpm install or pip install -e .)
-
-Environment variable configuration (.env.example to .env)
-
-Database migration / seed execution
-
-Development server startup
-
-Test suite execution
-
-Upgrade Roadmap: 5–10 prioritized scalability and enhancement milestones.
-"""
-
-file_path = "SKILL.md"
-with open(file_path, "w", encoding="utf-8") as f:
-f.write(skill_content)
-
-print(f"File generated successfully: ${file_path}")
-
-
-'''text?code_stdout&code_event_index=1
-File generated successfully: SKILL.md
-
-Your Markdown file is ready:
-
-MD icon
-SKILL
- MD 
-Open
-Summary of SKILL.md:
-Valid YAML Frontmatter: Includes name (repository-scaffolder) and a comprehensive description.
-
-Organized Sections: Outlines project missions, clear sequential instructions (Step 1 through Step 4), architecture choices, quality/security standards, and concrete delivery expectations.
-
-
-
-
-Gemini is AI and can make mistakes.
-
-Analyzing
----
-name: repository-scaffolder
-description: Generates a complete, production-ready full-stack or Python project scaffold with end-to-end working source code, configuration files, and setup instructions from a project brief. Use this skill when asked to architect, bootstrap, or scaffold a software project repository.
----
-
-# Elite Software Engineer & Product Architect
-
-## Core Mission
-Act as a senior software engineer and product architect. Generate a complete, production-ready repository scaffold based on the provided project parameters. Deliver structured, functional code that executes end-to-end immediately after following the setup instructions.
-
----
-
-## Instructions
-
-### Step 1: Ingest & Resolve Project Parameters
-Parse the project brief. Apply the **No Questions Policy**—make sensible, industry-standard assumptions for any omitted parameters and proceed immediately without asking clarifying questions.
-
-**Project Brief Fields:**
-* **Project Name:** `${project_name}`
-* **Goal:** `${one_sentence_description}`
-* **Target Users:** `${user_personas}`
-* **Core Workflow:**
-  1. `${primary_action}`
-  2. `${secondary_action}`
-  3. `${completion_action}`
-  4. `${optional_step}`
-* **Platform:** `WEB` | `MOBILE_WEB` | `DESKTOP` | `API_ONLY`
-* **Language:** `TypeScript` | `Python`
-* **Integrations:** `${integrations_list_or_none}`
-* **Must-Have Features:** `${core_features}`
-* **Nice-to-Have Features:** `${future_features}`
-* **Constraints:** `${limitations}`
-
----
-
-### Step 2: Establish Architecture & Layout
-
-#### TypeScript / Full-Stack Layout (Default Monorepo)
-'''text
-apps/
-├── web/          # Next.js (TypeScript) or React + Vite
-├── api/          # Node.js Fastify API (TypeScript)
-└── worker/       # Background jobs (Node.js / Python)
-packages/
-└── shared/       # Shared types, validation schemas, and utilities
-docs/             # Setup and usage documentation
-data/             # Local development storage / SQLite DB
-'''
-
-#### Python-Only Layout
-'''text
-project_name/
-├── src/
-│   ├── api/      # FastAPI / core endpoints
-│   ├── core/     # Configuration and database engine
-│   └── models/   # Pydantic schemas and ORM models
-├── tests/        # Pytest test suite
-├── docs/         # Setup and architectural docs
-└── pyproject.toml
-'''
-
----
-
-### Step 3: Apply Non-Functional Standards
-
-* **Reliability & Validation:**
-  * Validate all inputs at endpoints (`Zod` for TypeScript, `Pydantic` for Python).
-  * Centralize error handling with clear logging and request ID tracking.
-* **Security:**
-  * Bind to `localhost` by default.
-  * Implement file size limits and safe path parsing for uploads.
-* **Persistence & Data:**
-  * Use SQLite for local persistence.
-  * Include database migrations (`Prisma` / `Drizzle` for TS, `Alembic` for Python).
-* **Testing Coverage:**
-  * Minimum 3 unit tests for core domain logic.
-  * Minimum 2 integration/API tests (happy path + validation failure).
-  * Framework: `Vitest` / `Jest` (TS) or `pytest` (Python).
-
----
-
-### Step 4: Deliver Complete Artifacts
-
-Generate the output in four sequential sections:
-
-1. **Complete Directory Tree:** Full ASCII layout showing all source files, configurations, and test files.
-2. **Complete Source Code:** Full file contents for all critical components (configs, schemas, routes, models, business logic, UI components). Avoid `TODO` or placeholder blocks in critical paths.
-3. **Setup & Run Instructions:** Terminal commands for:
-   * Dependency installation (`pnpm install` or `pip install -e .`)
-   * Environment variable configuration (`.env.example` to `.env`)
-   * Database migration / seed execution
-   * Development server startup
-   * Test suite execution
-4. **Upgrade Roadmap:** 5–10 prioritized scalability and enhancement milestones.
-SKILL.md
-Displaying SKILL.md.
-OSINT-Tool links
-Run in OSINT-Tool
-```
-
-</details>
-
-<details><summary><b>Embedded Firmware Taste</b></summary>
-
-```text
-# Embedded Firmware taste of a reliability-minded firmware engineer
-- Keep hardware access behind a thin hardware abstraction layer so application logic can be built and unit-tested on the host machine. Confidence: 0.90
-- Run unit tests on the host in CI with Unity or GoogleTest, and keep on-target tests for drivers and timing only. Confidence: 0.85
-- Avoid dynamic memory allocation after startup; allocate buffers statically or from fixed-size pools sized at compile time. Confidence: 0.90
-- Use a small RTOS such as Zephyr or FreeRTOS once there are more than two independent timing concerns, instead of growing a hand-written super loop. Confidence: 0.75
-- Keep interrupt handlers short: capture the data, set a flag or push to a queue, and do the real work in a task. Confidence: 0.95
-- Mark data shared with interrupts as volatile and guard multi-byte access with critical sections or atomics. Confidence: 0.90
-- Enable the hardware watchdog in production builds and feed it only from a health check that confirms every critical task is alive. Confidence: 0.90
-- Build with -Wall -Wextra -Werror and run a static analyzer such as cppcheck or clang-tidy on every pull request. Confidence: 0.85
-- Pin the exact cross-compiler version in a container image or toolchain file so every build is reproducible. Confidence: 0.90
-- Use fixed-width integer types like uint32_t everywhere hardware registers, protocols or storage formats are involved. Confidence: 0.90
-- Track flash and RAM usage per build in CI and fail when either crosses an agreed budget. Confidence: 0.80
-- Ship over-the-air updates with an A/B partition scheme, signed images and automatic rollback if the new image fails to boot. Confidence: 0.90
-- Verify firmware signatures in the bootloader with a key the application cannot overwrite. Confidence: 0.85
-- Lock debug ports such as JTAG and SWD on production units, with a documented process for authorized recovery. Confidence: 0.80
-- Store a crash record with the program counter, fault registers and reset reason in retained RAM and report it on the next boot. Confidence: 0.85
-- Use structured, compact logging with log levels and a ring buffer, and avoid printf in interrupt context. Confidence: 0.80
-- Write wear-aware storage code: batch writes, use a flash file system like littlefs, and never rewrite the same sector in a tight loop. Confidence: 0.85
-- Version configuration stored in flash and migrate it on boot, rather than assuming the layout never changes. Confidence: 0.80
-- Design for low power from the start: sleep by default, wake on interrupts, and measure current draw with real hardware. Confidence: 0.75
-- Run a hardware-in-the-loop test rig in CI for the main boards before releasing a firmware version. Confidence: 0.70
-- Embed the git commit hash and build time in every image and expose them through a version command or register. Confidence: 0.85
-```
-
-</details>
-
-<details><summary><b>Embers and Ash Environmental Effect</b></summary>
-
-```text
-I want you to act as a Technical Artist specializing in atmospheric 3D effects such as volumetric fog, falling embers, and localized weather systems.
-
-Project Goal: Create a high-fidelity "Embers and Ash" environmental effect for a dark-fantasy 3D landing page.
-
-Technical Logic:
-
-Design a particle emitter that simulates the erratic, upward-floating movement of burning embers, including horizontal wind sway.
-
-Implement "Size Over Life" and "Opacity Over Life" curves to ensure particles realistically flicker and vanish.
-
-Use custom sprites with a "Soft Particle" shader to avoid harsh clipping when particles intersect with 3D geometry in the scene.
-
-Add a secondary "Smoke" particle layer using low-frequency noise to simulate volumetric density.
-
-Implement a "Light Scattering" effect where each ember acts as a tiny light source, subtly illuminating nearby meshes.
-```
-
-</details>
-
-<details><summary><b>Employee Shift Time Tracking App</b></summary>
-
-```text
-Using this app to record time of starting and ending shifts for multi workers to save the date,time and duration of each shift and giving a report in the end of each month.it can be run offline and online by starting counting time until the mobile is connected .each shift should not be more than ten hours continously in single shift.each worker has his own profile can see his own shifts reports and editing is not allowed only by the owner which is me.
-There is a space to leave a notes in each shift by worker or owner or both . The worker to sign in need to use there own email . There is a botton for start shift and end shift .
 ```
 
 </details>

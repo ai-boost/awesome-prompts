@@ -1,6 +1,6 @@
 # Research & Science
 
-111 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+114 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/research.md) · [中文](../zh/research.md)
 
@@ -23,6 +23,54 @@ Guidelines:
 - Consider the target publication format
 
 Generate a ${aspect_ratio:16:9} aspect ratio image that effectively communicates the ${subject} concept to an academic audience.
+```
+
+</details>
+
+<details><summary><b>Academic Paper Peer Reviewer</b></summary>
+
+```text
+Act as a peer reviewer for a machine learning or computer vision research paper being submitted to ${venue_name}. Your review must reflect the competitiveness and standards of this venue.
+
+You must:
+- Carefully consider the novelty, technical quality, experimental results, clarity, impact, and relation to prior work, as relevant for ${venue_name}.
+- Think step-by-step about strengths, weaknesses, relevance, and contextual comparison before deciding your scores or summary.
+- Provide your final evaluation at the end, including all required scores.
+
+For each review, follow this structure:
+1. **Reasoning** (appear first, before conclusions):
+   - Summarize main contributions of the paper.
+   - Critically assess novelty and significance relative to recent work.
+   - Evaluate strengths (strong results, clear exposition, technical soundness, etc.).
+   - Identify weaknesses (methodological flaws, insufficient novelty, incomplete experiments, unclear writing, missing citations, etc.).
+   - Discuss relevance and impact for ${venue_name} specifically, comparing to typical papers accepted at this venue.
+   - Assess whether the presentation, experiments, and conclusions are credible and sufficient for publication.
+
+2. **Conclusions & Scores** (appear last, after prior reasoning):
+   - Recommendation: Brief summary statement (e.g. “Accept”, “Reject”, “Borderline”).
+   - Paper Rating (1–5 integer scale): 1=strong reject, 5=strong accept, 3=borderline.
+   - Confidence Score (1–5): Rate your expertise & certainty (1=not confident, 5=very confident).
+
+**Output Format:**  
+Return your review with this information:
+- reasoning: (detailed multi-paragraph–see above)
+- recommendation: (1-2 sentences)
+- paper_rating: (1–5)
+- confidence: (1–5)
+
+(Real reviews should provide more detail in the reasoning section, including deeper technical analysis, comparative discussion, and more thorough justification for the scores.)
+
+**Important:**  
+- Only present your scores after reasoning.  
+- Use explicit, venue-aware critique.  
+- Stay concise but thorough.  
+- Reflect the standards and competitiveness of ${venue_name}.
+
+
+---
+
+**REMINDER:**  
+Your task: Reason step-by-step about the paper for ${venue_name}, then give your scores and conclusion at the end.
 ```
 
 </details>
@@ -1726,6 +1774,16 @@ Example:
 
 </details>
 
+<details><summary><b>Generate Student Questionnaire Dataset</b></summary>
+
+```text
+The data sheet and the pilot test does not follow the logic I expected. 
+
+I want you to generate a dataset that reflects the psychology of secondary school students handling a questionnaire using the chapter 3
+```
+
+</details>
+
 <details><summary><b>Geological Disaster Information Query</b></summary>
 
 ```text
@@ -2775,6 +2833,14 @@ I want you to act as an expert in Large Language Model research. Please carefull
 
 ```text
 I want you to act as a Large Language Model security specialist. Your task is to identify vulnerabilities in LLMs by analyzing how they respond to various prompts designed to test the system's safety and robustness. I will provide some specific examples of prompts, and your job will be to suggest methods to mitigate potential risks, such as unauthorized data disclosure, prompt injection attacks, or generating harmful content. Additionally, provide guidelines for crafting safe and secure LLM implementations. My first request is: 'Help me develop a set of example prompts to test the security and robustness of an LLM system.'
+```
+
+</details>
+
+<details><summary><b>Market Research on Pay-on-Delivery Apps in Africa</b></summary>
+
+```text
+as a product manager in help me do market reearch on pay on delivey apps in africa
 ```
 
 </details>

@@ -1,10 +1,227 @@
-# Image & Design (2/5)
+# Image & Design (2/6)
 
-880 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+928 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/image.md) · [中文](../zh/image.md)
 
-Pages: [1](image.md) · **2** · [3](image-3.md) · [4](image-4.md) · [5](image-5.md)
+Pages: [1](image.md) · **2** · [3](image-3.md) · [4](image-4.md) · [5](image-5.md) · [6](image-6.md)
+
+<details><summary><b>Conservatory Concept Design Brief Builder</b></summary>
+
+```text
+Act as a conservatory and glasshouse designer and as a visualization art director. I will describe the Victorian-style glass conservatory I am imagining. You will turn it into a tight concept: the building, its iron and glass structure, the plants, the furniture, the floor and water features, the light and mood, with a numbered list of fixed design details plus two ready-to-use image prompts that show the SAME building from two viewpoints at two times of day, so the two AI images look like photos of one real place.
+
+Era and inspiration: ${era:High Victorian, around 1870, inspired by public palm houses but at the scale of a private estate}
+Purpose and scale: ${purpose:a private winter garden attached to nothing, standing alone at the end of a formal garden, about 14 m long, 8 m wide, 7 m high}
+Structure and materials I like: ${structure:white-painted wrought iron, arched ribs, a diamond lattice glass roof, a low pale stone plinth wall}
+Plants: ${plants:hanging Boston ferns, kentia palms in terracotta pots, tree ferns, orchids on a side shelf, moss}
+Furniture and features: ${features:ornate cast-iron benches, a small round mosaic fountain with koi in the center, brass pendant lanterns}
+Floor: ${floor:black-and-white checkerboard marble}
+Mood: ${mood:calm, humid, timeless, a little romantic, a place to read on a Sunday morning}
+Outside the building: ${outside:a gravel path between low box hedges, climbing pink roses on the front, a formal English garden}
+View A: ${view_a:interior at eye level from just inside the front doors, looking down the central aisle, early morning sun with misty light shafts}
+View B: ${view_b:exterior from the gravel garden path facing the front entrance at blue hour, warm lamps glowing inside}
+
+Please produce:
+
+1. Concept
+   - A name idea for the conservatory (for my use only, it will not appear in the images) and a two-sentence story of how it should feel to step inside.
+   - Architecture: footprint, height, roof form, rib spacing, glazing pattern, ridge details, entrance, ventilation features, and how the iron is finished, described in plain construction terms.
+   - Interior layout: the central aisle, where the fountain sits, where benches, palms, ferns, and shelves go, and where the lanterns hang, described from the entrance looking in.
+   - Planting plan: each plant group with its position and the effect it creates (height, texture, light filtering).
+   - Palette: 6 named colors (simple names like "chalk white" or "fern green") and where each one appears.
+   - Materials and finishes: iron, glass (clear, slightly wavy old glass, condensation), stone, marble, mosaic, brass, terracotta, and wood.
+
+2. Fixed design details (the consistency list)
+   A numbered list of 14 to 18 details that must look identical in every image: footprint and proportions, roof shape, rib count and spacing, the glazing pattern, the ridge cresting and finials, the plinth wall, the entrance doors and fanlight, the floor pattern, the fountain, the benches, the lanterns, the palms, the ferns, and anything visible from both inside and outside, each with its exact position. Write each one as a short, concrete phrase an image generator can follow (for example "a round fountain basin about 2 m across, clad in deep blue and gold mosaic, at the exact center of the hall").
+
+3. Image prompt A: the base view
+   One detailed prompt for an AI image generator: photoreal architectural interior photography from the view A position, in view A light. Include every fixed detail visible from there in its correct position (left and right as seen from the camera), camera height and lens, light direction, atmosphere (mist, humidity, light shafts), mood, and a 16:9 landscape composition. End with exclusions (no people, no readable text, no signage, no modern objects).
+
+4. Image prompt B: the second view
+   One detailed prompt for view B, written for a text-only image generator that cannot see image A: restate ALL fixed details again in full words (never "same as before"), place each one correctly for the new camera position, describe what is newly visible from outside (the front gable, the plinth, the ridge cresting, the path, the roses), describe which interior details can be seen through the glass and the open doors, and change only the viewpoint, time of day, and lighting. Keep the structure, colors, and proportions identical.
+
+5. Consistency checklist
+   Ten yes/no checks to compare image B against image A (for example "Is the roof glazing still a diamond lattice between the white arched ribs?").
+
+6. Practical notes
+   A short list on real-world feasibility: heating and humidity for these plants, ventilation, shading in summer, maintenance of painted iron and old glass, safety glass options, and a rough order of magnitude for building or restoring something similar, labeled as an estimate.
+
+Rules:
+- Keep the design historically believable for the stated era; flag anything that would be anachronistic or structurally unrealistic.
+- Use plain color names and concrete shapes; avoid vague words like "beautiful" or "magical" on their own.
+- No readable text, plaques, signs, or numbers anywhere in the image prompts.
+- No real named buildings, brand names, or real people in the image prompts.
+- If my description is missing something essential, make a sensible assumption and list it at the top.
+```
+
+</details>
+
+<details><summary><b>Consistent Car Block for a Multi-Clip Road Trip Video</b></summary>
+
+```text
+CAR BLOCK (paste into every car clip)
+The car is an old, faded silver Toyota Corolla with a dented front bumper, left-hand drive, as in Nigeria. It always drives FORWARD, never in reverse: the front of the car, the headlights and the windscreen face the direction of travel. Exactly three people are in the car: the father in the driver's seat (front left), the mother in the front passenger seat (front right), and their daughter Nimi in the back seat directly behind her mother (rear right). The rear left seat is empty and piled with plastic buckets and bags. Luggage is tied on the roof rack. No other passengers.
+CLIP 1: The old car on the road
+Photorealistic cinematic live-action, vertical 9:16, bright morning daylight, a road in Nigeria leading toward a university campus. Side tracking shot: the old faded silver Toyota Corolla drives forward from the left of the frame to the right, front of the car leading, luggage tied on the roof rack and plastic buckets visible against the rear window. [Paste CAR BLOCK.] Sound: rattling old engine, birds, distant traffic. No dialogue, no subtitles, no on-screen text. Not cartoon or anime.
+CLIP 2: All three in the car
+Photorealistic cinematic live-action, vertical 9:16, natural daylight. Camera is in front of the car, looking at it through the windscreen as it drives toward the camera at a slow speed. [Paste CAR BLOCK.] The father, a kind dark-skinned Nigerian man of about fifty, slightly heavyset, short greying hair, simple short-sleeve shirt, holds the steering wheel in the driver's seat (on the right side of the frame). The mother, a warm dark-skinned Nigerian woman in her late forties wearing a colourful Ankara top and head tie, sits in the front passenger seat (on the left side of the frame). Nimi, an 18-year-old dark-skinned Nigerian girl, timid and shy, with neat black braids and a modest blouse, sits in the rear seat behind her mother, looking out of the side window with nervous quiet eyes. The mother turns her head back toward Nimi and says: "Nimi, you have been quiet since we left home." Nimi gives a small shy smile and says softly: "I'm just nervous, Mummy." Authentic Nigerian accents, accurate lip sync. Sound: engine hum, light traffic. No subtitles, no on-screen text. Not cartoon or anime.
+CLIP 3: Dad speaks
+Photorealistic cinematic live-action, vertical 9:16, natural daylight, interior of a moving old car in Nigeria. Camera is in the back seat, looking forward between the two front seats. The father sits at the steering wheel on the left of the frame (the driver's seat) and the mother sits in the front passenger seat on the right of the frame. The father glances at the rear-view mirror with a reassuring smile and says: "You will be fine, my daughter. Just focus on your books." The mother nods with a soft smile. Through the windscreen, a Nigerian road moves slowly ahead. Authentic Nigerian accents, accurate lip sync. Sound: engine hum, light traffic. No subtitles, no on-screen text. Not cartoon or anime.
+CLIP 4: Arriving at campus
+Photorealistic cinematic live-action, vertical 9:16, bright morning daylight, entrance area of a Nigerian university campus. Wide shot: the old faded silver Toyota Corolla drives forward into frame, slows down and parks facing forward in a space beside the student hostel gate. Luggage is on the roof rack. Other students and families walk past with bags and buckets in the background. The car never reverses. The car doors open and the three occupants step out: the father from the driver's door (left front), the mother from the front passenger door (right front), and Nimi from the rear right door. Sound: campus chatter, car doors, birds. No dialogue, no subtitles, no on-screen text. Not cartoon or anime.
+CLIP 8: The car leaves
+Photorealistic cinematic live-action, vertical 9:16, bright morning daylight, Nigerian university hostel gate. The old faded silver Toyota Corolla pulls forward and drives away from the camera down the road, seen from behind, with the father at the wheel and the mother in the front passenger seat waving out of the window. The car moves forward only, never in reverse. Nimi, an 18-year-old dark-skinned Nigerian girl with neat braids and a modest blouse, stands at the gate holding a bucket and a bag, waves back with a small shy smile, then walks slowly through the gate. Slow push-in on her back as she goes in, then the shot fades to black. Sound: engine fading, campus chatter softening, birds. No dialogue, no subtitles, no on-screen text. Not cartoon or anime.
+```
+
+</details>
+
+<details><summary><b>Conversational Logo Design</b></summary>
+
+```text
+Design a conversational process to create a minimal logo for the user's project, leveraging their branding colors: #3a7eab, #cf4832, and #d1d3d4. Begin by developing a set of 10 thoughtful yes/no questions to clarify the project's goals, target audience, aesthetics, and design preferences. After receiving responses, assess if further detail is needed—if so, continue asking focused yes/no follow-up questions until sufficient clarity about the project's nature and user’s expectations is achieved. Only once all required information has been gathered, generate a detailed logo concept brief using the collected answers as reasoning steps. 
+
+Request and Reasoning Order:
+- All reasoning, deduction, and rationale for logo direction must be documented before the final conclusion.
+- The final conclusion (logo brief/concept) must always appear after the reasoning.
+- If providing examples, always show Q&A (reasoning) before the final logo concept.
+
+Process Steps:
+- Start by explaining the goal (creating a minimal logo using the specified branding colors).
+- Present 10 sequential, thoughtful yes/no questions, designed to uncover essential details (e.g., project field, mood, geometric/organic shapes, initialism use, target audience, etc.).
+- After each set of answers, assess what is unclear. Ask direct, relevant follow-up yes/no questions as needed for ambiguous or incomplete information.
+- Once all important criteria are clarified, summarize the reasoning that leads to your logo design proposal (list the answers, state the key takeaways, explain how these shape your suggestions).
+- Provide the minimal logo concept as the final output—describe it visually (not as an image), using concise, clear language, referencing the chosen colors and tying the concept to the reasoning steps.
+
+Output Format:
+- Converse in turn-by-turn, always basing next questions on previous answers until enough is known.
+- At the end of the Q&A phase, output a JSON object with two main fields:
+  - "reasoning_steps": An ordered list outlining each answer and what was deduced.
+  - "logo_concept": A single clear paragraph describing the proposed minimal logo (visual elements, shapes, color usage, and rationale).
+
+Example (shortened for illustration; real exchanges may be longer and more complex):
+
+Sample Q&A Exchange:
+Q1: Is your project related to technology?  
+A1: Yes.  
+Q2: Is your brand's mood more playful than serious?  
+A2: No.
+... (continue with more questions and follow-ups as needed)
+
+Final Output Example:
+{
+  "reasoning_steps": [
+    "The project is tech-related: suggests clean, structured symbols.",
+    "Mood is serious: favors sharp lines and minimal, non-playful forms.",
+    "Prefers geometric over organic shapes: will use strict geometry.",
+    "Wants initials included: will consider stylized lettering."
+    //... further reasoning as relevant
+  ],
+  "logo_concept": "A minimal logo using the initials in a geometric, interlocked arrangement. The primary color #3a7eab forms the base, with accent lines in #cf4832 and subtle highlights in #d1d3d4. The design is crisp and serious, reflecting the tech context and brand tone."
+}
+
+Important: 
+- All reasoning and interim thinking must be shown before the final logo concept (conclusion).
+- Persist with follow-up questions if key information is missing or ambiguous.
+- Be clear, concise, and visual in the final descriptive paragraph (logo_concept).
+
+---
+
+Important Reminder:  
+Persistently gather project information via yes/no questions, show your reasoning before giving a logo concept, and always follow the output JSON structure.
+```
+
+</details>
+
+<details><summary><b>Corporate ID Photo</b></summary>
+
+```text
+Create a modern corporate ID photo of the person from the uploaded image, suitable for company badges and internal systems.
+Keep the face identical to the uploaded image, with realistic proportions, no beautification or age adjustment.
+
+Framing:
+• Neutral, centered head and shoulders
+• Subject looking straight at the camera with a neutral but friendly expression
+
+Background:
+• Plain, uniform background in [BACKGROUND_COLOR], no texture, no gradient
+• No props, no text, no logos
+
+Style:
+• Even, soft lighting with minimal shadows
+• High clarity and sharpness around the face, natural skin tones, high-resolution
+
+Outfit:
+• Transform clothing into [OUTFIT_STYLE] that matches a corporate environment
+• No visible logos, patterns or distracting accessories
+
+Make the result look like an upgraded, well-lit, professional version of a corporate ID or access badge photo, ready to be dropped into internal tools, email accounts or passes.
+```
+
+</details>
+
+<details><summary><b>Corporate Logo Designer</b></summary>
+
+```text
+{
+  "system_instruction": "Act as a senior brand identity designer. Create a professional, scalable corporate logo based on the following parameters.",
+  "brand_variables": {
+    "name": "${COMPANY_NAME}",
+    "industry": "${INDUSTRY}",
+    "core_aesthetic": "${AESTHETIC_STYLE}", 
+    "primary_color": "${BRAND_COLOR_HEX_OR_NAME}",
+    "metaphor": "${VISUAL_SYMBOL_DESCRIPTION}"
+  },
+  "design_logic": {
+    "composition": "Professional balanced lockup of a symbol and typography.",
+    "typography": "High-fidelity rendering of '${COMPANY_NAME}'. Style: Bold, modern, sans-serif, optimized kerning.",
+    "symbolism": "Incorporate a minimal geometric mark representing ${VISUAL_SYMBOL_DESCRIPTION}.",
+    "color_theory": "Dominant use of ${BRAND_COLOR_HEX_OR_NAME} on a clean, high-contrast background."
+  },
+  "nano_banana_constraints": {
+    "style_reference": "Swiss Graphic Design, Modern Corporate Minimalism",
+    "technical_specs": [
+      "Vector-style clarity",
+      "No 3D effects or drop shadows",
+      "Solid flat colors",
+      "Maximum legibility at small scale"
+    ],
+    "negative_space": "Utilize intentional white space to enhance the ${AESTHETIC_STYLE} feel."
+  },
+  "output_format": "Centered, single logo version, no mockups, white background."
+}
+```
+
+</details>
+
+<details><summary><b>Corporate Studio Portrait</b></summary>
+
+```text
+Use the person from the uploaded photo as the primary reference. Keep facial features, hair, skin tone, and overall identity identical (no beautification, no age changes).
+
+Scene: Modern corporate studio portrait shoot.
+Pose: Arms crossed at chest level, shoulders relaxed, body turned 20–30° to the side, face turned toward the camera. Expression: neutral and confident with a subtle friendly smile.
+Framing: Chest-up or waist-up (head-and-torso), centered, balanced negative space.
+
+Outfit (dynamic selection):
+- If the subject is male: Black suit jacket + plain white dress shirt (no tie), no logos.
+- If the subject is female: Choose a professional, elegant business outfit:
+  • Black or navy blazer
+  • Plain, pattern-free white or cream blouse/shirt underneath
+  • Modest neckline (closed or simple V-neck), no deep cleavage
+  • If jewelry is present, keep it minimal (e.g., small earrings), no logos/branding
+In all cases, fabrics must look realistic with natural wrinkles. Avoid flashy fashion elements.
+
+Background: Plain dark-gray studio backdrop with a soft gradient (a subtle vignette is ok). No distracting objects.
+Lighting: Softbox-style key light (45°), gentle fill, very subtle rim light; no harsh shadows. Natural skin tones, professional retouching while preserving realistic texture.
+Camera: 85mm portrait lens feel, f/2.8–f/4, slight background blur, high sharpness (especially the eyes).
+Color: Cinematic but natural, low saturation, clean contrast.
+
+Rules: No text, no logos, no watermarks, no extra people. Hands/fingers must be natural and correct. No facial distortion, asymmetry, duplicated limbs, or artificial artifacts.
+Output: High resolution, photorealistic, corporate profile photo quality.
+```
+
+</details>
 
 <details><summary><b>Corsairs of the Crimson Void</b></summary>
 
@@ -945,6 +1162,14 @@ A detailed cutaway illustration of a cozy three-level treehouse library built in
 
 ```text
 A storybook cutaway illustration of a vintage cream-and-dark-green mobile library bus parked under autumn trees at dusk, landscape 4:3. The bus faces LEFT; the near side is cut away to reveal a cozy interior: toward the front, a green cushioned sofa with pillows and a plaid throw, a rounded window behind it, and a potted plant on the floor; toward the rear-right, a wooden desk with a green banker's lamp, stacks of books, and wooden shelves packed with colorful books; warm string lights run along the ceiling, with more potted and hanging plants. Outside, a huge autumn maple fills the upper left, wet pavement is covered in orange fallen leaves, and two glowing street lamps stand on the right under a purple-blue dusk sky. Inviting, detailed cutaway style. No readable book titles, no logos, no people, no watermarks.
+```
+
+</details>
+
+<details><summary><b>Cute 3D Googly-Eyed Cartoon Portrait From Your Photo</b></summary>
+
+```text
+Turn my photo into a cute 3D animated portrait. Preserve recognizable features and hairstyle. Add a big round head, huge googly eyes, tiny pupils, round glasses, a button nose and tiny “o” mouth. Slightly surprised expression. Oversized black turtleneck, soft matte 3D, sage-green background, chest-up, 3:4.
 ```
 
 </details>
@@ -2173,6 +2398,39 @@ Hand-embroidered hoop art of a thatched English cottage garden with a straw beeh
 
 ```text
 make boyfriend on the side hugging make the boyfriend have a mod cut septum pericing tall and goatee mustache and make him emo
+```
+
+</details>
+
+<details><summary><b>Emperor Penguins Huddling Through an Antarctic Blizzard</b></summary>
+
+```text
+A photorealistic wide telephoto photograph of an emperor penguin colony huddling together on the Antarctic sea ice during a blizzard in the soft blue light of the polar winter twilight. About forty adult emperor penguins stand pressed tightly in a dense, rounded huddle that fills the middle of the frame, their backs and heads dusted with snow and frost, black backs and the bright golden-yellow ear patches showing between them; a few birds on the windward right edge stand with heads tucked down against the wind. In the left foreground, two fluffy grey chicks stand on the feet of their parents, half hidden in the brood pouch. Wind-driven snow streaks horizontally from right to left across the whole scene, softening the background into a pale blue-grey haze where a faint line of ice cliffs is barely visible. The low sun is hidden behind the storm, giving a faint pink-violet glow on the horizon at the far left.
+
+Shot like a National Geographic wildlife photograph: 600 mm telephoto compression, crisp detail on the feathers and frost in the front row, natural cold color balance, fine blowing-snow motion streaks, realistic textures of wind-packed snow at their feet. No people, no buildings, no text. Landscape 16:9.
+```
+
+</details>
+
+<details><summary><b>Emperor Penguins in a Blizzard (Image-to-Video)</b></summary>
+
+```text
+Use the attached still (step 1: a photorealistic telephoto photograph of about forty emperor penguins pressed into a dense huddle on Antarctic sea ice in a blizzard, two grey chicks on their parents' feet at the left, snow streaking from right to left in blue polar twilight) as the exact first frame and animate it into an 8-second, 16:9 cinematic shot. Keep every element as it is in the still: the size and shape of the huddle, the two chicks at the left, the faint ice cliffs, the pink-violet glow on the far left horizon and the cold blue light.
+
+Motion (0-8 s):
+- 0-3 s: the frozen snow starts moving; gusts drive fine snow from right to left across the frame; penguins in the huddle shuffle in tiny steps, heads shifting and shoulders pressing closer.
+- 3-6 s: the slow rolling movement of a real huddle: birds on the windward right edge waddle a few steps along the side toward the sheltered left side; frost on their backs glints; one chick lifts its head, blinks and settles back against its parent.
+- 6-8 s: a stronger gust sweeps a wave of blowing snow over the huddle, the birds lower their heads, and the group stays tight together as the snow thins slightly.
+
+Camera: locked-off telephoto shot with a very slow push-in (about 5 percent), subtle wind shake only; focus stays on the front row; no cuts, no zoom jumps.
+
+Ambient motion: drifting spindrift low over the ice, snow building on backs and heads, faint movement of the haze in the background.
+
+Lighting and mood: constant soft blue polar twilight with the faint pink glow on the left; quiet, harsh and tender at the same time.
+
+Sound: off (silent clip).
+
+Avoid: people, vehicles, penguins flying or swimming, birds merging or morphing, extra heads or wings, penguins walking out of the huddle across the frame, sudden daylight, text.
 ```
 
 </details>
@@ -3855,6 +4113,32 @@ Rules:
 
 </details>
 
+<details><summary><b>Florentine Pietra Dura Inlay of a Pomegranate Branch</b></summary>
+
+```text
+A Florentine pietra dura (commesso) hardstone inlay panel seen straight from above, in the style of 17th-century Medici grand-ducal workshops. The ground is deep black marble crossed by fine white and grey veins. A brown stone branch, built from many small fitted segments, runs diagonally from the upper left to the lower right. Two European goldfinches perch side by side on it, facing right: red faces, black-and-white heads, warm tan breasts, and black wings with bright yellow bars and white spots, all made of separate pieces of coral, onyx, alabaster, Siena marble and yellow jasper. Below them hangs one large ripe pomegranate in mottled red-brown jasper, split open to show its pale pith and clusters of glossy deep-red seeds cut as tiny polished garnet-like stones. Pointed leaves in veined green jasper and malachite branch off on both sides, their light and dark tones following the natural grain of the stone.
+
+Every shape reads as a separate, precisely fitted piece of cut stone with hairline seams and no paint. A narrow square border frames the panel: thin gold-toned bands enclosing a scrolling vine of small inlaid rosettes and tendrils on black. Soft, even museum lighting, rich saturated stone colors, crisp detail. No text, no signature. Square 1:1.
+```
+
+</details>
+
+<details><summary><b>Folk Reverse Glass Painting of Sunflowers in a Cobalt Jug</b></summary>
+
+```text
+A folk-art reverse glass painting (Hinterglasmalerei) of a bouquet of sunflowers in a cobalt-blue jug, painted on the back of an old glass pane and seen from the front, so the colors sit behind a glossy glass surface. Vertical 3:4 composition.
+
+Subject: nine sunflowers with bright chrome-yellow petals and dark brown, finely dotted centers, a few buds and broad green leaves with crisp darker veins, arranged in a round-bellied cobalt-blue jug with white painted daisies around its belly. The jug stands on a simple brick-red tabletop band at the bottom of the picture.
+
+Technique: bold black outlines painted first, then flat opaque layers of color with no blending, the typical naive folk style of reverse glass painting; the background is a sheet of gilded gold-leaf foil behind the glass, crinkled and shimmering, with a few visible seams. A painted border of small red and white dots runs around the edge, framed by a narrow dark wooden frame.
+
+Surface: slight reflections and soft glare on the glass, tiny bubbles and a hairline scratch in the old pane, a little paint flaking at one corner that reveals the gold behind.
+
+Lighting: soft daylight from the upper left, warm glow on the gold, rich saturated colors. No people, no text.
+```
+
+</details>
+
 <details><summary><b>Food Truck Concept Design Brief Builder</b></summary>
 
 ```text
@@ -4303,6 +4587,78 @@ Warm golden sunset lighting coming through the window, soft shadows, detailed ba
 
 ```text
 You're in a ${location} crowd looking up at a giant monumental concrete ${object}, weathered with rust, moss and light ivy yet silver gleams break through where harsh sunlight strikes, an iconic cinematic moment frozen in time. People are taking care of their own needs in ${date}.
+```
+
+</details>
+
+<details><summary><b>Giant-Letter Landmark Poster Template (4:5)</b></summary>
+
+```text
+Create an exceptionally sophisticated, contemporary architectural art poster featuring [LANDMARK NAME], [CITY], [COUNTRY].
+
+1. GIANT TYPOGRAPHIC COMPOSITION
+
+Feature one enormous, oversized uppercase letter associated with the destination name as the central graphic element.
+
+The letter should dominate the composition, extending almost across the entire poster.
+
+Use bold, elegant, geometric typography with distinctive curves and negative spaces.
+
+2. LANDMARK INTEGRATION
+
+Seamlessly integrate a highly detailed architectural photograph or realistic architectural illustration of [LANDMARK NAME] into and across the oversized letter.
+
+The landmark should appear to emerge from the typography, partially overlap its boundaries and interact naturally with its shape.
+
+Preserve the landmark’s authentic architectural details, proportions and recognisable silhouette.
+
+Create an artistic double-exposure effect where the architecture and typography become one unified visual composition.
+
+3. DISTINCTIVE COLOUR TREATMENT
+
+Choose a unique colour palette inspired by the destination’s cultural identity, national colours and architectural character.
+
+Use two or three contrasting colours within the oversized typography.
+
+Apply translucent colour overlays across selected sections of the landmark, creating a beautiful combination of architectural photography, coloured light and graphic shapes.
+
+Every new destination must receive a different colour combination. Never repeat palettes.
+
+4. TEXTURE & BACKGROUND
+
+Use a warm ivory, soft white or subtle textured paper background.
+
+Introduce delicate architectural sketch marks, distressed ink textures, faded photographic grain and subtle print imperfections around the central composition.
+
+Keep the surrounding space clean and uncluttered.
+
+5. EDITORIAL TYPOGRAPHY
+
+Include the following information:
+
+[LANDMARK NAME]
+
+[CITY NAME]
+
+[COUNTRY NAME]
+
+Add small vertical typography along one side, geographical coordinates and a subtle destination-inspired tagline.
+
+Use sophisticated editorial typography with carefully balanced spacing.
+
+6. ART DIRECTION
+
+Luxury architectural editorial design, experimental typography, architectural double exposure, contemporary Swiss graphic design, oversized letterforms, cinematic monochromatic photography, translucent colour blocking and minimalist gallery poster aesthetics.
+
+7. FINAL PRESENTATION
+
+Create a visually striking, intellectual and artistic collectible landmark poster.
+
+The architecture must remain recognisable while becoming an integral part of the oversized letter.
+
+Vertical 4:5 composition, premium art-print quality, exceptional visual balance and sophisticated negative space.
+
+Avoid ordinary travel-poster layouts, decorative clutter, excessive colours and generic typography.
 ```
 
 </details>
@@ -4815,6 +5171,35 @@ I want detailed but concise infographic which contains the grediant theme infogr
 
 </details>
 
+<details><summary><b>Greater Flamingo Flock on a Golden-Hour Salt Lagoon</b></summary>
+
+```text
+Photorealistic wildlife photograph of a flock of greater flamingos in a shallow salt lagoon at golden hour, landscape 16:9. About twenty flamingos stand and wade in a loose line across the middle of the frame in calm, ankle-deep water: pale pink bodies with deeper coral-pink wing coverts, long legs and curved black-tipped bills, several with heads lowered to feed. One flamingo in the center raises its wings, showing the coral and black flight feathers. The still water mirrors every bird in crisp reflections; behind them lie low pale shores and distant hazy hills under a warm apricot sky, with a soft sun glow at the upper left. Camera at water level, 400 mm telephoto at f/5.6, sharp on the flamingos with a soft background, natural colors, calm golden-hour stillness. No people, no boats, no text.
+```
+
+</details>
+
+<details><summary><b>Greater Flamingo Flock on a Salt Lagoon (Image-to-Video)</b></summary>
+
+```text
+Use the attached still (step 1: a water-level photograph of about twenty greater flamingos standing in a line across a shallow salt lagoon at golden hour, one in the center with its wings raised) as the exact first frame and animate it into a 7-second, 16:9 cinematic shot. Keep every element where it is in the still: the flamingos and their positions in the line, the raised wings of the center bird, the mirror reflections, the hazy hills, the apricot sky and the soft sun glow at the upper left.
+
+Motion (0-7 s):
+- 0-2 s: the center flamingo beats its raised wings; the birds around it lift their heads, open their wings and start stepping forward, sending ripples across the reflections.
+- 2-5 s: the whole line breaks into a running display across the shallow water, long legs pattering on the surface and kicking up small splashes, wings flapping wide to show coral-pink and black flight feathers, necks stretched forward.
+- 5-7 s: the flock keeps running and flapping from left to right, most birds leaving the frame on the right and a few lifting just above the water, while their reflections break into rippling pink streaks; the last few birds follow them out.
+
+Camera: locked-off telephoto framing at water level with a very slow pan to the right; focus stays on the flock; no cuts.
+
+Lighting and mood: constant warm golden-hour light, apricot sky and soft glints on the water; peaceful, graceful, natural.
+
+Audio (if supported): splashing footsteps, wingbeats, soft honking calls, a light breeze; no music, no voices.
+
+Avoid: people, boats, extra flamingos appearing from nowhere, birds merging or morphing, broken or extra legs and wings, sudden lighting changes, unnatural fast motion, text.
+```
+
+</details>
+
 <details><summary><b>Greenhouse Wireframe Image</b></summary>
 
 ```text
@@ -5217,500 +5602,16 @@ ${primary_text:Megane}{
 
 </details>
 
-<details><summary><b>Halloween Cat Squad Dance Party Video</b></summary>
+<details><summary><b>Gyotaku Fish Print of a Sea Bream and Two Mackerel</b></summary>
 
 ```text
-Video Style: Ultra-realistic 3D anthropomorphic animals, adorable Halloween costumes, energetic synchronized dancing, whimsical fantasy atmosphere, vibrant autumn colors, cinematic animation, realistic fur textures, smooth character movements, 9:16 vertical format, 4K quality.
+A traditional Japanese gyotaku fish print, made by inking real fish and pressing thin washi paper onto them, photographed flat as a finished artwork. Horizontal 4:3 composition on a sheet of warm off-white handmade washi with visible long kozo fibers, soft deckled edges and a faint crease.
 
-SETTING:
+Subject: one red sea bream (madai) printed large across the center, facing left, with two smaller mackerel side by side below it, also facing left. The prints are in deep sumi black ink with the true gyotaku texture: every scale pressed as a fine crescent pattern, fin rays as delicate radiating lines, the gill plate and lateral line clearly embossed, slightly uneven ink density where the paper touched the body more or less firmly, a few dry-brush gaps and soft halos at the edges. The sea bream carries a soft vermilion-red wash over its whole body, fading paler toward the belly; each fish has a small hand-painted eye added with a fine brush, as in classic gyotaku.
 
-A beautiful Halloween-themed village courtyard during a bright, sunny autumn afternoon. A magnificent Victorian haunted mansion stands in the background, decorated with glowing jack-o'-lanterns, carved pumpkins, hanging lanterns, cobwebs, spooky ornaments, and Halloween decorations. Tall maple trees with brilliant orange, golden-yellow, and crimson-red leaves surround the courtyard. Fallen autumn leaves cover the cobblestone pathway. A vivid blue sky with fluffy white clouds creates a cheerful Halloween atmosphere.
+Details: a vertical column of brushed Japanese-style calligraphy marks at the right edge is abstract and illegible, with one small red square seal stamp beneath it. Light ink speckles near the fins.
 
-MAIN CHARACTERS:
-
-Four adorable anthropomorphic cats and one large anthropomorphic tiger, all standing upright on their hind legs.
-
-Witch Cat: A fluffy black-and-white cat wearing a pointed black witch hat, a purple witch dress, and a flowing purple cape.
-
-Ghost Cat: An adorable fluffy white cat wearing a flowing white ghost costume with a cute ghost hood and tiny black bow tie.
-
-Skeleton Cat: A fluffy black-and-white cat wearing a black skeleton jumpsuit featuring white bones and a small black Halloween hat.
-
-Pumpkin Cat: A chubby orange tabby cat wearing a bright orange pumpkin costume with a carved jack-o'-lantern face and a small green pumpkin-stem hat.
-
-Frankenstein Tiger: A large, realistic orange-and-black striped tiger standing upright like a human, wearing a green Frankenstein-style monster headpiece, a long dark-green Victorian coat, a purple waistcoat, and dark trousers.
-
-All characters have realistic animal faces, expressive eyes, detailed fluffy fur, and adorable personalities.
-
-SCENE 1 (0–5 seconds): GROUP DANCE INTRO
-
-The camera opens with a wide cinematic shot of the Halloween courtyard.
-
-Four adorable costumed cats stand in the foreground while the giant Frankenstein tiger stands behind them.
-
-All characters begin dancing together to a playful, upbeat Halloween rhythm.
-
-The cats bounce on their hind legs, swing their little paws, wiggle their bodies, and move their heads in perfect synchronization.
-
-The Frankenstein tiger performs exaggerated, funny dance moves behind them.
-
-The camera slowly pushes forward.
-
-SCENE 2 (5–10 seconds): CUTE CAT CLOSE-UPS
-
-A quick transition reveals the fluffy white ghost cat and the black skeleton cat dancing side by side.
-
-Both cats face the camera, raise their front paws near their faces, and perform matching playful paw gestures.
-
-Their costumes bounce naturally as they move.
-
-The ghost cat tilts its head adorably while the skeleton cat gives a confident little pose.
-
-Smooth camera tracking, realistic fur movement, cheerful expressions.
-
-SCENE 3 (10–15 seconds): GROUP DANCE FROM BEHIND
-
-The camera moves behind the dancing cats.
-
-The witch cat's purple cape sways dramatically, the ghost cat's white costume flutters, and the skeleton cat wiggles its hips.
-
-The cats perform synchronized side steps toward the Frankenstein tiger.
-
-The tiger dances enthusiastically in front of the haunted mansion.
-
-Autumn leaves scatter gently across the cobblestones.
-
-SCENE 4 (15–20 seconds): FRANKENSTEIN TIGER SOLO
-
-A medium close-up focuses on the giant Frankenstein tiger.
-
-The tiger performs a hilarious solo dance, crossing its furry arms over its chest, swinging its shoulders, moving its paws rhythmically, and nodding its head.
-
-Its long green coat sways naturally.
-
-The tiger maintains a serious, comical facial expression while dancing.
-
-The camera gently zooms closer, emphasizing the tiger's expressive face and detailed striped fur.
-
-SCENE 5 (20–25 seconds): PUMPKIN CAT TAKES CENTER STAGE
-
-The adorable chubby orange pumpkin cat steps into the center of the courtyard.
-
-It performs a funny bouncing dance, swinging its tiny paws from side to side.
-
-The pumpkin costume jiggles with every movement.
-
-The other cats dance around it while the Frankenstein tiger follows the rhythm in the background.
-
-A quick, playful camera movement emphasizes the energetic choreography.
-
-SCENE 6 (25–30 seconds): FINAL HALLOWEEN DANCE
-
-All five characters gather together for a final synchronized Halloween dance.
-
-The cats perform matching paw waves, little jumps, shoulder movements, and playful head tilts.
-
-The Frankenstein tiger stands behind them, performing exaggerated monster-style dance gestures.
-
-The camera alternates between a wide group shot and a close-up of the tiger.
-
-The video ends with the Frankenstein tiger crossing its furry arms confidently while the cats strike adorable Halloween poses.
-
-CAMERA & VISUAL QUALITY:
-
-Photorealistic 3D animal animation, realistic fluffy fur, expressive animal faces, physically accurate costume movement, cinematic daylight, vibrant autumn colors, natural shadows, detailed Victorian architecture, smooth tracking shots, playful close-ups, energetic choreography, adorable character expressions.
-
-AUDIO:
-
-Upbeat, playful Halloween dance music with a catchy rhythm, funny spooky sound effects, light monster growls, cheerful cat meows, and synchronized dance beats.
-
-IMPORTANT INSTRUCTIONS:
-
-Maintain identical character appearances, costume designs, fur patterns, and proportions throughout every scene. All animals must remain upright on two hind legs while dancing. Dance movements must be smooth, rhythmic, and synchronized. No character morphing, no extra limbs, no costume changes, no distorted faces, no flickering, no text overlays, no subtitles, and no watermarks.
-```
-
-</details>
-
-<details><summary><b>Halloween Ghost Trick-or-Treater Horror Short</b></summary>
-
-```text
-Create a native 15-second, vertical 9:16 cinematic horror short. No reference image. No text, no captions, no logos. Clear simple story, every shot readable without sound.
-
-CORE RULES
-One adult woman, one ghost figure in a white sheet, one house: the front porch and the front hallway. Nobody else appears. The ghost never shows a face, hands or feet. Calm, slow, building dread, then a final scare.
-
-CHARACTER
-Lena, 27 years old, clearly adult, long dark wavy hair, pale skin, dark red lipstick, natural beautiful face, fitted black long-sleeve top, black high-waist jeans, black ankle boots. She holds a round black ceramic candy bowl full of orange and black wrapped candy.
-
-FACE
-Natural skin texture, real expressions: warm smile, then polite confusion, then slow fear, then pure terror. Mouth opens only moderately, only upper teeth show. Eyes stay sharp and alive. Head turns under 45 degrees.
-
-GHOST
-An adult-height figure fully covered by a plain old white bedsheet with two small black eye holes. It holds a small black trick-or-treat bowl through the sheet, the hands are never visible. It stands completely still and silent. The bottom hem of the sheet floats about 3 cm above the porch boards, with only darkness under it.
-
-VOICE
-Lena: soft, friendly, natural American English, then a shaky whisper.
-
-CAMERA
-Real cinema camera, slow controlled moves, shallow depth of field, gentle slow push-ins. Shots are clean and steady.
-
-LOOK
-Dark moody cinematic Halloween night: deep teal and blue night tones outside, warm orange light from the porch lamp and a carved pumpkin, warm yellow wall sconce inside. Soft film grain, rich contrast, deep but readable shadows. Faces always clearly lit.
-
-SETTING
-A classic American suburban house on Halloween night. Front porch: white wooden railing, old wooden boards with fallen leaves, a glowing carved jack-o-lantern by the door, a warm porch lamp. Behind: a quiet foggy street, bare trees, a full moon, distant houses with lit windows. Inside: a narrow front hallway with dark wood floor, a staircase on the left, a brass wall sconce, a small side table.
-
-MOTION
-Natural human weight and timing. The ghost is completely motionless except where stated. The sheet only moves when the wind moves it.
-
-DEFECT PREVENTION
-Hands: Lena holds the candy bowl with both hands, LEFT hand under it, RIGHT hand free only to drop the candy and to slam the door. Five fingers per hand.
-Face: her face, hair and lipstick stay identical in every shot.
-Ghost: never shows hands, feet, face or legs. Same sheet, same eye holes in every shot.
-Objects: one candy bowl (hers), one small black bowl (ghost), one candy, one pumpkin, one door. Nothing duplicates or vanishes except the ghost disappearing as stated.
-Continuity: same outfit, same night, same porch, same hallway in every shot.
-Physics: candy falls with real gravity. The empty sheet collapses softly like real fabric.
-
-STORYBOARD
-00:00.0-00:02.0 Shot 1, wide from inside the hallway toward the front door. The doorbell rings. Lena walks to the door with the candy bowl and opens it, smiling. Through the open door, the ghost stands on the porch under the orange porch lamp, motionless, bowl held out.
-00:02.0-00:05.0 Shot 2, over Lena's shoulder onto the ghost. She smiles: "Aww, cute costume!" She drops one orange candy into the ghost's bowl. The ghost does not move or say anything.
-00:05.0-00:07.5 Shot 3, close-up on Lena. Her smile slowly fades. She tilts her head: "Where are your parents?" Silence. Only wind.
-00:07.5-00:09.5 Shot 4, slow tilt down the sheet to the porch boards: the hem floats above the floor, nothing underneath, no feet, no shadow. Leaves blow under it.
-00:09.5-00:11.0 Shot 5, wide on the porch. A gust of wind. The sheet collapses flat onto the porch boards, completely empty. The black bowl drops and the candy rolls out.
-00:11.0-00:13.0 Shot 6, inside. Lena steps back and slams the door shut with her RIGHT hand, then leans her back against it, breathing fast, eyes closed, clutching the candy bowl.
-00:13.0-00:15.0 Shot 7, wide down the hallway from behind Lena. She opens her eyes, still facing the camera. Far behind her, at the end of the dark hallway under the brass sconce, the same white sheet ghost stands perfectly still, facing her. She does not see it. The sconce flickers once.
-
-SOUND
-Doorbell, creaking door, wind and dry leaves, candy clinking into the bowl, a long silence, soft fabric falling, the door slamming, her fast breathing, one low deep hum and a light flicker buzz at the end.
-
-FINAL FEEL
-A clean, clear, beautifully shot Halloween horror short with a chilling final reveal. Not polished influencer content.
-```
-
-</details>
-
-<details><summary><b>Halloween Horror Short The Witch at the Bus Stop</b></summary>
-
-```text
-SCENE 1 — THE BUS STOP (0–10 seconds)
-
-On October 31, Halloween night, a young adult woman stands alone at a deserted bus stop surrounded by thick fog, dead trees, and flickering orange Halloween pumpkins. Suddenly, a terrifying witch appears behind her, with wild gray hair, glowing eyes, and an antique silver locket around her neck.
-
-The witch whispers, “You shouldn't be alone on Halloween night!” The woman turns, screams, and runs desperately into the fog.
-
-SCENE 2 — THE OLD MANSION (10–23 seconds)
-
-The woman discovers an ancient Victorian mansion and knocks on the door. An elderly woman opens it warmly and invites her inside. The candlelit room is cozy, with Halloween decorations, carved pumpkins, and an old fireplace.
-
-The elderly woman serves her hot soup and bread, speaking gently: “Come in, dear. You're safe here tonight.”
-
-The frightened woman begins to relax as thunder rumbles outside.
-
-SCENE 3 — THE SHOCKING DISCOVERY (23–38 seconds)
-
-While eating, the woman notices an old portrait hanging on the wall. It shows a beautiful young woman wearing the exact same silver locket as the terrifying witch at the bus stop.
-
-She slowly approaches the portrait, staring at the familiar face and identical necklace. Beneath the painting, an inscription reads: “OCTOBER 31 — 40 YEARS AGO.”
-
-Her face turns pale. She suddenly realizes that the woman in the portrait is the witch she encountered outside.
-
-She slowly turns her head toward the elderly woman standing behind her.
-
-SCENE 4 — THE FINAL SCARE
-
-The elderly woman stares at her with an unnatural, sinister smile. Her eyes suddenly glow yellow, her face transforms into the terrifying witch's face, and she bursts into a chilling, maniacal laugh.
-
-The camera rapidly pushes toward the witch's horrifying face as lightning flashes through the window.
-
-SMASH CUT TO BLACK.
-
-The witch's evil laughter echoes once in the darkness.
-
-END.
-
-VISUAL STYLE: Photorealistic live-action horror, cinematic Victorian mansion, realistic fog and rain, flickering candlelight, detailed facial expressions, practical supernatural transformations, dramatic shadows, and intense Halloween atmosphere.
-
-SOUND DESIGN: Howling wind, distant thunder, footsteps, creaking doors, eerie whispers, a sudden transformation sound, and terrifying witch laughter.
-
-CHARACTER CONSISTENCY: Maintain the same young woman, the same elderly woman, and the identical silver locket throughout. The witch's appearance must match the portrait's young woman before her transformation.
-
-NEGATIVE PROMPT: No cartoon, no anime, no cheap CGI, no inconsistent faces, no costume changes, no subtitles, no logos, no watermark, and no scenes after the final black screen.
-```
-
-</details>
-
-<details><summary><b>Halloween T Shirt Design for a Boxing Gym</b></summary>
-
-```text
-Create a Halloween-themed illustration featuring three sports: boxing, Muay Thai and Brazilian Jiu-Jitsu, using the three attached illustrations. Keep only the skeletal figures and remove all backgrounds. Place the final composition against a background depicting a fighting arena with a Halloween atmosphere. The entire illustration should be created in a harmonious drawing style and colour scheme.
-```
-
-</details>
-
-<details><summary><b>Hand Drawn Doodles on Photo</b></summary>
-
-```text
-Using the uploaded image as the base photo, do NOT change the person's face, body, or pose. Add hand-drawn white doodle illustrations around the subject, sketchy marker / chalk style, imperfect playful lines, doodles should appear drawn on top of the photo. Doodle theme: ${theme} Include elements such as: ${object_list} Keep the background intact, do not cover the face, editorial aesthetic poster style, clean composition, high quality.
-```
-
-</details>
-
-<details><summary><b>Hand Drawn Istanbul Skyline</b></summary>
-
-```text
-{
-  "subject": {
-    "description": "A hand-drawn, child-like illustration of Istanbul's skyline. The scene includes the Hagia Sophia and another mosque with blue domes and orange-terracotta walls, the Galata Tower, and a blue river (the Bosphorus) with three small boats. At the very top, the text 'İSTAN BUL' is written in large, multi-colored hand-lettered block characters.",
-    "count": 1,
-    "position_in_frame": "centered",
-    "orientation": "front-facing",
-    "expression_or_state": "static landscape drawing"
-  },
-  "composition": {
-    "shot_type": "wide shot",
-    "camera_angle": "eye-level perspective",
-    "framing": "tight and controlled within a square white border",
-    "symmetry": "asymmetrical but balanced",
-    "background": "Light blue sky with simple white clouds, a bright yellow sun with radiating rays in the upper right, and several small 'V' shaped bird silhouettes.",
-    "depth_of_field": "deep, everything is in sharp focus as per the drawing style"
-  },
-  "style": {
-    "visual_type": "illustration",
-    "realism_level": "literal reproduction of a hand-drawn style",
-    "art_style": "colored pencil and crayon drawing",
-    "interpretation": "literal, technical reproduction of the provided artwork"
-  },
-  "lighting": {
-    "light_type": "flat, uniform lighting from a bright sun",
-    "light_direction": "upper right",
-    "contrast": "medium",
-    "shadows": "soft, represented by simple pencil shading on building sides",
-    "color_temperature": "warm and cheerful"
-  },
-  "color_palette": {
-    "dominant_colors": [
-      "Sky Blue",
-      "Terracotta Orange",
-      "Leaf Green",
-      "Bright Red",
-      "Sun Yellow"
-    ],
-    "saturation": "medium",
-    "overall_tone": "vibrant and natural for a child's drawing"
-  },
-  "texture_and_detail": {
-    "surface_quality": "textured with visible colored pencil strokes and paper grain",
-    "grain_noise": "subtle paper texture grain",
-    "detail_level": "high, including architectural windows, boat details, and flower patterns in the foreground",
-    "sharpness": "sharp, defined hand-drawn lines"
-  },
-  "camera_render_settings": {
-    "lens_equivalent": "n/a (flat illustration)",
-    "aperture_look": "n/a",
-    "resolution": "high resolution",
-    "render_quality": "clean and precise reproduction of the source art"
-  },
-  "constraints": {
-    "no_additional_objects": true,
-    "no_stylization": true,
-    "no_artistic_license": true,
-    "no_text": false,
-    "no_watermark": true,
-    "no_crop_or_reframe": true,
-    "no_color_shift": true,
-    "no_dramatic_effects": true
-  },
-  "negative_prompt": [
-    "photorealistic",
-    "3D render",
-    "cinematic",
-    "digital painting style",
-    "blurry",
-    "unstructured",
-    "omitting the text",
-    "changing the letter colors",
-    "modifying the building layout",
-    "dramatic lighting effects",
-    "wide-angle distortion"
-  ]
-}
-```
-
-</details>
-
-<details><summary><b>Hand-Drawn Batik Javanese Peacock</b></summary>
-
-```text
-A flat-lay photograph of a finished hand-drawn batik textile panel spread on dark teak, 16:9 landscape composition, the cloth filling most of the frame from left to right. The cloth shows a classic Javanese batik peacock in three-quarter view facing left: a proud arched neck, a crest of fine dots, and a sweeping tail of elongated eye-spots in indigo, deep brown, cream, and warm ochre, all defined by fine cracked wax resist lines (the classic batik crackle) where dye has seeped into hairline fractures. Behind the peacock, repeating parang-inspired diagonal motifs and small floral isen fillers in lighter indigo on a cream ground. The cotton has a soft matte hand; wax crackle is visible in the darker fields; a few tiny undyed pinholes show honest handmade process. Soft sidelight from the left reveals gentle fabric folds and the raised feel of denser wax areas. At the top edge of the frame, slightly out of focus: a canting tool, a small wax pot, and a folded corner of unused white cloth. Documentary craft photography of traditional batik textile art, rich natural dyes, calm heritage mood. Not a digital pattern mockup and not a painting of batik: a real photographed dyed cloth. No readable text, no letters, no logo, no watermark, no hands.
-```
-
-</details>
-
-<details><summary><b>Hand-Painted Landmark Postcard Template</b></summary>
-
-```text
-A wide horizontal landscape hand-painted illustration of [LANDMARK NAME] in [CITY/COUNTRY] with strong emphasis on negative space and quiet composition.
-
-The image features a warm off-white cream paper background that occupies 40-50% of the total canvas, creating generous blank margins and breathing room.
-
-The [LANDMARK NAME] is positioned slightly off-center as a calm visual anchor, depicted through simplified [KEY ARCHITECTURAL FEATURES - e.g., "towering structures", "iconic silhouette", "distinctive archways"] with loose, expressive brush strokes. The landmark is suggested through minimal rhythmic marks and abstract color blocks in deep teal, cobalt blue, and forest green, rather than drawing every architectural detail precisely.
-
-The composition is sparse and uncluttered: only a few carefully placed elements including 2-3 tiny human figures [DOING TYPICAL ACTIVITY - e.g., "walking", "taking photos", "sitting"] rendered as simple silhouettes in coral red and mustard yellow, one small [CONTEXTUAL ELEMENT - e.g., "cafe table", "bench", "street vendor cart"] with minimal shapes, two or three [NATURAL ELEMENTS - e.g., "potted plants", "trees", "flowers"] in emerald green, and subtle [CULTURAL/ARCHITECTURAL HINTS - e.g., "traditional roof lines", "modern glass panels", "historic columns"].
-
-Large areas of the warm paper background remain completely untouched, especially around the edges and between elements.
-
-The style combines mid-century travel poster aesthetics with contemporary [REGIONAL] editorial illustration: elegant, minimal, warm, cultured, and slightly nostalgic.
-
-The texture shows loose hand-painted gouache and pastel marks with dry brush strokes, pastel smudges, wax-crayon edges, uneven color patches, imperfect handmade edges, and visible gaps between colored areas.
-
-Colors are layered, dry, and tactile with a restrained palette of deep teal, sky blue, coral red, salmon pink, mustard yellow, ochre, terracotta, and small near-black accents, but used sparingly so each color can breathe against the paper.
-
-The overall mood is quiet, spacious, relaxed, refined, like a sophisticated [CITY] cultural postcard or handmade art print suitable for premium lifestyle merchandise.
-
-The landmark remains recognizable through its essential identity—[DEFINING CHARACTERISTICS]—but the drawing stays airy, calm, poetic, and softly abstract.
-
-Strong sense of pause, breath, and refined emptiness with confident use of blank space.
-
-No crowded composition, no full-bleed busy background, no photorealism, no glossy digital rendering, no clean vector art, no 3D rendering, no text, no signage, no logos, no readable text.
-```
-
-</details>
-
-<details><summary><b>Handwritten Notes Consistency Check</b></summary>
-
-```text
-Act as a professional image processing expert. Your task is to analyze and verify the consistency of three uploaded images of handwritten notes. Ensure that:
-- All three sheets have identical handwritten style, character size, and font.
-- The text color must be uniformly black across all sheets.
-
-Generate three separate ultra-realistic images, one for each sheet, ensuring:
-- The images are convincing and look naturally handwritten.
-- The text remains unchanged and consistently appears as if written by a human in black ink.
-- The final images should be distinct yet maintain the same handwriting characteristics.
-
-Your goal is to achieve realistic results with accurate representation of the handwritten text.
-```
-
-</details>
-
-<details><summary><b>Happy New Month Flyer</b></summary>
-
-```text
-Create a simple and good looking flyer for the month of August ‘happy new month’ flyer with this picture (remove the picture background and place it in a proper place to compliment the flyer ) 
-
-Under my brand naw Whykay Entertainment
-```
-
-</details>
-
-<details><summary><b>Hedgehog Postman Watercolor Storybook</b></summary>
-
-```text
-Whimsical children's storybook illustration in loose watercolor with fine ink linework: a small hedgehog postman in a mustard-yellow scarf and tiny blue cap pedals a red bicycle down a winding cobblestone lane in an autumn village, a leather satchel overflowing with string-tied letters. Crooked timber-framed cottages with round doors and glowing windows line the lane; a squirrel waves from a windowsill and a rabbit sweeps maple leaves from her doorstep. Golden late-afternoon light, soft cast shadows, and leaves swirling in orange, rust, and ochre against a pale blue sky. Visible cold-press paper texture, gentle color blooms and granulation, white-paper highlights. Wide landscape composition with the hedgehog in the lower-left third and the lane curving up toward a hilltop windmill. Cozy, kind, nostalgic mood suitable for ages 3 to 7, no text, no lettering, no logos.
-```
-
-</details>
-
-<details><summary><b>Hi-Viz Branded Running Top Design</b></summary>
-
-```text
-Create a design using our brand logo using hi-viz and black vinyl/print. Do this on Hi-visibility running tops.
-```
-
-</details>
-
-<details><summary><b>Hidden Library in a Giant Tree</b></summary>
-
-```text
-An ancient library hidden inside a giant hollow tree, magical and inviting atmosphere expression, majestic interior view, thousands of leather-bound books on curved wooden shelves, spiral staircase winding up through the center, glowing fireflies floating between bookshelves, worn reading chairs with velvet cushions, interior of a massive ancient oak tree in enchanted forest, hidden realm, mystical, warm and cozy atmosphere, autumn, with scattered scrolls and quills on oak desks, mystical runes carved into bark walls, mushrooms glowing softly in corners, foreground: scattered books and scrolls, midground: spiral staircase with warm glow, background: small windows showing starlit forest, golden ratio composition, wide shot, low-angle, wide-angle lens, deep depth of field, f/f/8, hasselblad, practical and rim lighting, twilight, light from three-quarter, soft light, digital-art, in the style of Greg Rutkowski and Thomas Kinkade and Studio Ghibli, influenced by Art Nouveau, cottage core aesthetic, warm and earthy color palette, primary colors: amber, deep brown, forest green, accent colors: soft gold, moonlight blue, fairy pink, rich saturation with deep shadows color grade, serene, peaceful, nostalgic, whimsical mood, masterpiece quality, 8K, volumetric lighting, ray tracing, octane render --no blurry, low quality, bad anatomy, watermark, text, signature, modern elements, plastic, harsh lighting, overexposed, underexposed --ar 3:2
-```
-
-</details>
-
-<details><summary><b>High-Demand AI Stock Images</b></summary>
-
-```text
-Act as a creative AI image designer. You are an expert in generating high-demand images for stock platforms like Adobe Stock Contributor. Your task is to create AI-generated images that align with current trends and have high market demand.
-
-You will:
-- Research and identify trending themes and styles in stock photography
-- Use AI tools to generate images in popular categories like ${category:landscape}, ${category:abstract}, ${category:technology}
-- Ensure images are high-quality and meet stock platform requirements
-
-Rules:
-- Stay updated with current trends in stock photography
-- Focus on creating visually appealing and unique images
-- Include relevant keywords and metadata for better discoverability
-
-Example:
-- Generate a modern, abstract technology-themed image that aligns with current trends in AI and innovation.
-```
-
-</details>
-
-<details><summary><b>High-End Tech Website UI Redesign</b></summary>
-
-```text
-Act as a UI/UX designer using Image2. Your task is to create several high-end, technology-inspired UI designs for a website front end. You must:
-- Retain all existing functionalities (no additions or deletions)
-- Focus on modifying the layout and theme
-- Design with a high-end, futuristic tech aesthetic
-- Generate multiple style options for client selection
-
-Constraints:
-- Ensure the design is suitable for a modern, high-tech website
-- Keep the user experience intuitive and seamless
-
-Your output will include:
-- A set of image designs showcasing different styles
-- Each design must highlight the website's functionality while offering a fresh aesthetic
-```
-
-</details>
-
-<details><summary><b>Himalayan Cliffside Monastery Concept Brief Builder</b></summary>
-
-```text
-Act as a cinematic environment designer who writes image-ready and motion-ready scene briefs. Help me design one hero shot of a small monastery clinging to a mountain cliff with strings of prayer flags, which will first be generated as a still image and then animated into a short video that uses that image as its first frame. Your brief must make the still image rich in elements that can move naturally (fluttering prayer flags, drifting clouds and mist, rising incense smoke, a waterfall or river far below, shifting light, a few distant birds) while keeping the composition calm and easy to animate.
-
-My starting choices:
-- Mountain setting: ${setting:Himalayan gorge with a river far below and snow peaks behind}
-- Time of day and weather: ${time:misty dawn after a clear night}
-- Monastery look: ${monastery:small whitewashed buildings with red-brown upper walls, dark roofs, and gold roof ornaments}
-- Visual style: ${style:photoreal travel and landscape photography}
-- Mood words: ${mood:serene, airy, sacred, quiet}
-
-First ask me, in one short message, for anything missing: the camera viewpoint I prefer (from a facing ridge across the gorge, from a trail below looking up, or from a ledge level with the monastery), how much of the river and gorge floor should show, and anything to avoid (people, monks, tourists, signs, modern buildings, cables, a specific real monastery).
-
-Then produce the brief with these sections:
-
-1. **Scene Overview**: two or three sentences describing the place, the time, the light, and the feeling of the moment. Describe an imagined monastery, not a copy of a real, named one.
-
-2. **Monastery and Cliff**: building count and arrangement on the cliff ledges, wall colors, window rows, roofs and gold ornaments, stairs or a wooden bridge, how the buildings sit on the rock, the cliff's texture and vegetation (juniper, pines, moss), and the monastery's position in the frame.
-
-3. **Prayer Flags**: how many strings, where each one is tied (rooftop, rock spire, pole), the direction they run across the frame, color order (blue, white, red, green, yellow), size, and how they sag. State that the flags move with the wind but their tie points never move.
-
-4. **Gorge and Landscape**: the river or waterfall far below, forested slopes, side ridges, snow peaks, and depth layers from foreground to background.
-
-5. **Light and Atmosphere**: sun direction and color, mist bands in the gorge and their height, cloud wisps around the peaks, incense smoke from a rooftop burner, and how the light catches the white walls and gold ornaments.
-
-6. **Fixed Visual Details**: a numbered list of 8 to 10 details that must stay identical in the still image and in the video (monastery side and position, number of buildings, flag tie points and direction, river position, peak shapes, sun side, mist height, camera position, framing).
-
-7. **Motion Map**: a table of every element that can move in the video, with columns: element, type of motion, direction, speed (very slow, slow, medium), and how strongly it should move. Include the camera move. Keep total motion subtle and physically plausible, with one wind direction for flags, mist, and smoke.
-
-8. **Prompt Seed A - Hero Still Image**: a ready-to-paste image prompt under 170 words for a wide landscape 16:9 frame, with the monastery, the cliff, the prayer flags, and the gorge in the first sentence, ending with: no people, no text, no signs, no logos.
-
-9. **Prompt Seed B - Image-to-Video Animation**: a ready-to-paste video prompt under 120 words that starts from the hero still as the first frame, describes one slow camera move and the natural motions from the Motion Map for about 6 seconds, and says to keep the monastery, the cliff, the flag tie points, the mountains, and the framing exactly as in the image with no new objects.
-
-Rules: no people as the main subject, no text, signs, or logos, no fast camera moves or cuts, and no motion that breaks physics (flags flutter and ripple but stay attached, mist and smoke drift with the same wind as the flags, water flows downhill). Use short paragraphs and lists.
-```
-
-</details>
-
-<details><summary><b>Himalayan Monastery Image to Video</b></summary>
-
-```text
-Start from the step 2 image "Cliffside Himalayan Monastery with Prayer Flags at Misty Dawn" as the exact first frame, and animate it into a calm ${duration:6}-second cinematic shot. Keep the monastery buildings on the left cliff, the rock spire on the right, the tie points of every prayer flag string, the river, the gorge, the snow peaks, and the framing exactly as in the image. The prayer flags flutter and ripple steadily in a light breeze blowing from left to right, always staying attached to their strings. The band of white mist in the gorge drifts slowly from left to right and gently thins in places, revealing a little more of the turquoise river. Thin incense smoke from the rooftop burner rises and bends softly in the same direction as the wind. Golden light slowly strengthens on the white walls, the gold roof ornaments, and the snow peaks. The camera makes one very slow, smooth push-in toward the monastery. Natural, realistic motion, no cuts, no new objects, no people, no text.
+Lighting: even, soft, flat museum reproduction light, true colors, high detail, the paper texture visible across the whole sheet. No frame, no table, no hands, no readable text.
 ```
 
 </details>

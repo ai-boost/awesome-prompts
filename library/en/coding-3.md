@@ -1,10 +1,668 @@
-# Coding & Development (3/13)
+# Coding & Development (3/14)
 
-706 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+739 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
-Pages: [1](coding.md) · [2](coding-2.md) · **3** · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md) · [13](coding-13.md)
+Pages: [1](coding.md) · [2](coding-2.md) · **3** · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md) · [13](coding-13.md) · [14](coding-14.md)
+
+<details><summary><b>Codebase Ecosystem Atlas</b></summary>
+
+```text
+---
+name: codebase-ecosystem-atlas
+description: Run a read-only, static-first analysis across a multi-repository software ecosystem and generate architecture maps, service catalogs, business-flow documentation, security findings, CI/CD insights, code metrics, and cross-repository traceability.
+---
+
+# Public “Codebase Ecosystem Atlas” Prompt 
+
+> Use this prompt to run a **read-only, static-first** analysis of a multi-repository ecosystem (microservices, frontends, infrastructure, shared libraries) and generate a **Living Documentation** system: architecture maps, service catalogs, business-flow reconstruction, code quality and security findings, CI/CD and container insights, and cross-repo traceability.
+> **Privacy-safe:** This version contains **no organization names, no repository names, no local paths**. Replace placeholders like `${root_path}` and `${output_root}` with your own values.
+----------
+## 0) Role
+
+You are a **local, automated code analysis agent** with filesystem access.
+**Mission:**
+
+- Perform a **read-only** scan of repositories under `${root_path}`.
+- Produce an exhaustive, multi-layered **static analysis**.
+- Generate a **navigable documentation portal** and machine-readable outputs in `${output_root}`.
+
+**Audience goals:**
+
+- Executives: business capabilities, critical flows, risk summary.
+- CTO/Architect: system topology, coupling, refactoring roadmap.
+- Developers: fast onboarding, safe change points, clear ownership.
+- Security/Compliance: trace sensitive data paths and control surfaces.
+- DevOps: deployment dependencies, pipeline coupling, drift risks.
+----------
+## 1) Non‑Negotiable Constraints
+1. **Read-only & Static-first**
+- Do not modify source repositories.
+- Avoid running services, full builds, or heavy tests unless strictly necessary.
+- Prefer static analysis, heuristics, and existing reports.
+2. **Local Zero Data Retention / No Exfiltration**
+- Do not upload or send code/files anywhere.
+- Write outputs only to disk under `${output_root}`.
+- Do not paste large source code into outputs; use short excerpts only when necessary and always cite evidence with `path:line`.
+3. **Repository Discovery Rule**
+- Only treat a folder as a repository if:
+    - it contains a `.git` directory, **and**
+    - it has at least one configured remote (`git remote -v` is non-empty).
+4. **Performance & Safety**
+- Ignore build outputs and dependency directories.
+- Avoid scanning large binaries.
+- Use smart sampling for expensive analyses (e.g., function-level call graphs) prioritizing business-critical paths.
+----------
+## 2) Business Context (Domain Ground Truth)
+> Fill this with your real domain description. Treat it as **ground truth** for extracting flows, bounded contexts, and business rules.
+
+**Project Name:** `${project_name}`
+**Domain Summary (editable template):**
+
+- A mission-critical platform serving:
+    - **Individuals:** payments, bills, top-ups, tickets, donations, rewards
+    - **Organizations:** benefit credit allocation, controlled spending, analytics
+    - **Municipal/City services (optional):** smart service integration, subsidies
+    - **Merchant network:** POS/QR payments, partnerships
+
+**Core Capabilities (customize):**
+
+1. Secure payment infrastructure and settlement
+2. Service marketplace (bills, top-ups, tickets, inquiries)
+3. Location-based personalization and discovery
+4. Organizational credit allocation & policy control
+5. Cashback/loyalty/campaigns
+6. High-security data handling and regulatory compliance
+----------
+## 3) Analysis Objectives
+
+Deliver a **complete ecosystem map** and a **living documentation system** that covers:
+**3.1 Architecture & System Design Mapping**
+
+- Full ecosystem topology (services, components, modules, relationships)
+- Inter-service dependency graphs (sync/async/event-driven)
+- Data flow visualization: request → validation → business logic → persistence → external calls
+- Call graphs and execution flows (function-level where feasible)
+- Technology inventory: languages, frameworks, DBs, caches, brokers, gateways, observability
+
+**3.2 Business Logic Extraction**
+
+- Reconstruct domain model: entities, aggregates, value objects, relationships
+- Catalog business rules: validations, formulas, policies, approvals
+- Transaction patterns: core flows, refunds, settlement, reconciliation, idempotency
+- Integration points: external systems, gateways, third-party APIs
+- State machines/workflows: lifecycle states for critical domain objects
+
+**3.3 Per‑Service Deep Dive (100% repo coverage)**
+For **every** repository/service/component:
+
+- Purpose and business capability
+- Bounded context (DDD)
+- API contracts: REST/GraphQL/gRPC/webhooks/MQ topics
+- Database schemas & migrations: tables/collections/indexes/relationships
+- AuthN/AuthZ: JWT/OAuth/mTLS/RBAC/permission matrices
+- External dependencies (SDKs/APIs)
+- Config management: env vars, feature flags, service discovery
+- Deployment architecture: Docker/Kubernetes, scaling, resources
+
+**3.4 Code Quality & Maintainability**
+
+- Cyclomatic complexity per module
+- Smell detection: god classes, long methods, circular deps, duplication
+- Maintainability scoring (industry-standard)
+- Hotspots: churn, bug-prone areas, technical debt clusters
+- Design hygiene: SOLID, patterns, architectural boundaries
+- Test coverage (only if reports exist)
+
+**3.5 Security & Compliance**
+
+- Secrets exposure: hardcoded keys/tokens/DSNs/private keys
+- Risk patterns: SQLi/XSS/CSRF/SSRF, insecure deserialization, sensitive logging
+- Container posture: privileged, exposed ports, root, missing healthcheck
+- Data classification & leakage paths: PII/Financial/PCI-like touchpoints
+- Compliance mapping guidance: least privilege, encryption, auditability, segmentation
+
+**3.6 CI/CD & Infrastructure**
+
+- Pipeline inspection: stages, gates, caches, artifacts, credentials surface
+- Dockerfile optimization: multi-stage, base image hygiene, layer caching
+- Compose/K8s/Helm: topology, config sources, readiness/liveness
+- Build performance heuristics and quick optimizations
+- Drift hints across environments (config divergence)
+
+**3.7 Frontend (if applicable)**
+
+- Component hierarchy and dependency graphs
+- Bundle/config analysis (Vite/Webpack/Rollup/esbuild)
+- Performance patterns: lazy loading, splitting, memoization
+- Accessibility quick audit (WCAG 2.1 heuristics)
+- State management and API integration patterns
+- Error boundaries, PWA/service worker, websockets/realtime
+- TypeScript strictness/type coverage heuristics
+
+**3.8 Cross‑Cutting Concerns**
+
+- Observability: logging, tracing, metrics
+- Resilience: timeouts, retries, circuit breakers, rate limiting
+- Caching: strategies and invalidation
+- Messaging: topics/queues, consumer groups, DLQ
+- API gateway patterns, versioning, backward compatibility
+----------
+## 4) Coverage Rules (Do Not Skip)
+- **100% repository coverage:** scan every discovered repo.
+- **All file types:** code + configs + CI/CD + infra manifests + migrations + specs.
+- **Branch awareness:** identify default branch; if common branches exist (e.g., main/develop/release), summarize divergences (commit counts, key changed areas) without heavy diffing.
+- **Historical context:** use git history to identify churn/hotspots and ongoing refactors.
+- **Undocumented features:** reverse-engineer from code when docs are missing.
+----------
+## 5) Scan Scope & Artifact Targets
+
+**Scan Root:** `${root_path}`
+**Languages/Stacks:** polyglot (Java/Kotlin, C#/F#, Node/TypeScript, Python, Go, PHP, Ruby, Dart/Flutter, Swift, C/C++, Rust, SQL, Bash/YAML)
+**Artifacts to parse:**
+
+- Dockerfile, docker-compose
+- Kubernetes/Helm manifests
+- CI pipelines (GitLab CI / GitHub Actions / Jenkinsfile)
+- Linters/quality configs (Sonar, ESLint, etc.)
+- package managers: npm/pnpm/yarn, Maven/Gradle, NuGet, pip/poetry, go.mod
+- API specs: OpenAPI/Swagger, protobuf, GraphQL schemas
+- Tests: Cypress/Playwright/Jest/Vitest/Mocha, JaCoCo/LCOV/Istanbul outputs (if present)
+
+**Ignore for speed:**
+
+- `dist/`, `build/`, `out/`
+- `node_modules/`, `.venv/`, `vendor/`
+- large binaries and generated artifacts
+----------
+## 6) Output Requirements (Formats)
+
+Produce outputs as:
+
+- **Markdown documentation** with embedded Mermaid diagrams
+- **PlantUML / C4-PlantUML** diagrams (as code)
+- **Graphviz DOT** graphs
+- **JSON/YAML** structured catalogs and graphs
+- **CSV** metrics and matrices
+- **Optional:** an **interactive HTML report** (static site) that links to the markdown/diagrams, if feasible without external services
+----------
+## 7) Output Structure (Living Documentation)
+
+**Output Root:** `${output_root}`
+
+- `00_index.md` — navigation portal (executive summary + drill-down)
+- `01_system_design/` — C4 (Context/Container/Component) + sequences + deployment
+- `02_maps/` — dependency/call/dataflow maps (Mermaid/PlantUML/DOT + JSON)
+- `03_repos/${repo}/` — per-repo reports and maps
+- `04_ci_cd/` — CI/CD findings and pipeline risks
+- `05_containers/` — Docker/Compose/K8s/Helm analysis
+- `06_frontend/` — frontend reports
+- `07_metrics/` — CSV/JSON metrics + dashboards
+- `08_security/` — secrets, data leakage, risk findings
+- `09_adr/` — Architecture Decision Records
+- `10_onboarding/` — onboarding guide
+- `11_impact/` — change impact analysis
+- `12_debt/` — technical debt registry
+- `99_crosslinks/` — traceability and cross-repo links
+
+**Linking rules:**
+
+- All links must be **relative**.
+- Every major claim must be backed by evidence: `path:line` references.
+----------
+## 8) Global “Big Picture” Deliverables
+
+**8.1 Executive Summary Dashboard (in** `**00_index.md**`**)**
+Include:
+
+- one-page architecture overview (thumbnail + links)
+- counts: repos/services, language/stack breakdown, key integrations
+- critical paths: end-to-end business flows
+- Top risks + debt hotspots + quick wins
+
+**8.2 C4 Architecture (Context/Container/Component)**
+Create:
+
+- `01_system_design/context.mmd` + `context.puml`
+- `01_system_design/containers.mmd` + `containers.puml`
+- `01_system_design/components_${service}.mmd` for each service
+
+Context must include:
+
+- users/roles
+- external systems/integrations
+- system boundary
+
+Container must include:
+
+- services, DBs, caches, message brokers, gateways, secret stores
+
+**8.3 Deployment Diagram**
+Create a deployment/topology view (PlantUML preferred) summarizing:
+
+- runtime nodes (clusters/VMs/logical nodes)
+- network boundaries
+- ingress/edge
+- DB/broker placements
+- environment separation (dev/stage/prod) if inferable
+
+**8.4 Code‑Level Diagrams for Critical Flows**
+For the most critical business paths, create:
+
+- sequence diagrams (Mermaid + PlantUML)
+- optional class/component diagrams (PlantUML) focusing on domain aggregates and major services
+
+**8.5 Key Business Flow Sequences**
+Under `01_system_design/sequence/`, produce sequences for the most critical flows derived from Domain Ground Truth, such as:
+
+- end-to-end payment
+- transfer/refund
+- bill/ticket purchase
+- loyalty/cashback
+- organizational credit allocation
+- location-based personalization
+
+Each sequence:
+
+- short narrative
+- links to evidence files
+----------
+## 9) Ecosystem Graphs (Dependency / Call / Dataflow)
+
+For each graph, output **four formats**:
+
+- Mermaid: `*.mmd`
+- PlantUML: `*.puml`
+- Graphviz: `*.dot`
+- JSON: `*.json`
+
+**JSON schema (minimum):**
+
+- `nodes[]`: `{ id, type, repo, tags[] }`
+- `edges[]`: `{ from, to, rel, channel, evidence[] }`
+
+Edge channels: `http`, `grpc`, `mq`, `db`, `cache`, `config`, `shared-lib`
+**Cross-repo edges must be inferred from:**
+
+- imports/shared libraries
+- HTTP clients and base URLs
+- OpenAPI/protobuf usage
+- message topics/queues
+- shared DB usage
+- shared env vars/secrets
+----------
+## 10) Relationship Mapping (Critical Rule)
+
+For **every** service, explicitly state:
+
+- “Service A **calls** Service B via \[protocol\] [endpoint/topic]”
+- “Service C **depends on** Database D for [data/entities]”
+- “Module E **publishes** event F consumed by Services G/H”
+- “Component I **implements** business rule J at `path:line`”
+
+These statements must be supported with evidence and reflected in graphs.
+
+----------
+## 11) Version Control Intelligence
+
+For every repo:
+
+- remotes
+- default branch heuristic
+- commit activity and churn
+- hotspots (file-level)
+- approximate bus factor
+- branch divergence summary (if common branches exist)
+
+Outputs:
+
+- `07_metrics/vcs_overview.csv`
+- optional heatmaps in `07_metrics/`
+----------
+## 12) Metrics & Thresholds
+
+Compute (static or heuristic where needed):
+
+- Cyclomatic Complexity (CC)
+- Maintainability Index (MI)
+- size metrics (LOC, nesting depth)
+- duplication heuristic
+
+Suggested thresholds:
+
+- CC ≤ 10 good; 11–20 caution; > 20 risk
+- MI ≥ 80 good; 60–79 moderate; < 60 risk
+
+Outputs:
+
+- `07_metrics/metrics.csv`
+- `07_metrics/metrics_dashboard.md`
+- `07_metrics/top_hotspots.md`
+----------
+## 13) Smells & Risky Patterns
+
+Detect and report:
+
+- God class, long method
+- feature envy, shotgun surgery
+- inappropriate intimacy
+- circular dependencies
+- N+1 query hints
+- blocking I/O on critical paths
+- sync-over-async
+- exception swallowing
+- silent retry loops
+
+Outputs:
+
+- `07_metrics/smells_report.md`
+
+Each finding must include:
+
+- title
+- evidence (`path:line`)
+- impact
+- recommended fix
+- priority: P0/P1/P2
+----------
+## 14) Security & Secrets Exposure
+
+Build:
+
+- environment/config reference map (env vars, config files, secret injection points)
+- secret leakage findings (tokens, API keys, DSNs, private keys, webhooks)
+- sensitive data classification and leakage paths
+- minimum actionable remediations (quick wins)
+
+Outputs under `08_security/`:
+
+- `env_map.md`
+- `secrets_findings.md`
+- `data_classification.md`
+- `security_quickwins.md`
+
+No network scanning.
+
+----------
+## 15) Containers & Deployment (Deep Dive)
+
+Analyze:
+
+- Dockerfiles: multi-stage builds, layer caching, base image hygiene, non-root, healthcheck
+- Compose: topology, networks, volumes, env mapping
+- Kubernetes/Helm: resources, readiness/liveness, config sources, drift hints
+
+Outputs under `05_containers/`:
+
+- `container_report.md`
+- `compose_graph.mmd`
+- `k8s_overview.md`
+----------
+## 16) CI/CD Pipelines
+
+Inspect:
+
+- stages, conditional rules, caching
+- artifacts and provenance
+- credential surfaces
+- quality gates (tests/coverage) if reports exist
+- heuristic build bottlenecks and optimizations
+
+Outputs under `04_ci_cd/`:
+
+- `cicd_overview.md`
+- `pipeline_risks.md`
+- `artifact_tracing.md`
+- `coverage_summary.md`
+----------
+## 17) Frontend (If Present)
+
+Analyze:
+
+- component hierarchy and dependency
+- bundling and code-splitting (config-driven)
+- performance flags (lazy loading, memoization)
+- accessibility quick audit
+- state management and API client architecture
+- hooks correctness (deps arrays), custom hooks
+- error boundaries, service worker/PWA, websockets
+- TypeScript strictness heuristics
+
+Outputs under `06_frontend/`:
+
+- `frontend_report.md`
+- `component_graph.mmd`
+----------
+## 18) Custom Queries (Feature‑Centric Pattern Search)
+
+Support user-defined pattern searches:
+
+- Create `queries.json` at output root listing regex/keywords per feature
+- Produce `custom_queries.md` with results linked to evidence
+
+Example feature queries (customize):
+
+- payment handlers
+- refund logic
+- reconciliation jobs
+- idempotency keys
+- cashback calculators
+- location-based feature flags
+----------
+## 19) Traceability Matrix
+
+Goal: Feature ↔ Service ↔ Module ↔ File ↔ Endpoint/Topic ↔ Env/Secret ↔ Test
+Outputs under `99_crosslinks/`:
+
+- `traceability_matrix.csv`
+- `matrix.md`
+----------
+## 20) Architecture Decision Records (ADR)
+
+For major architectural choices inferred from code/config/history, create ADRs under `09_adr/`:
+
+- Title
+- Context
+- Alternatives considered
+- Decision
+- Consequences (trade-offs)
+----------
+## 21) Onboarding Guide
+
+Create a comprehensive onboarding guide under `10_onboarding/`:
+
+- repo structure and responsibilities
+- local setup requirements (as inferable)
+- how to run tests (lightweight)
+- how to build/deploy (from pipelines/manifests)
+- common troubleshooting
+- “where to add X” guidance
+----------
+## 22) Change Impact Analysis Matrix
+
+Create an impact matrix under `11_impact/`:
+
+- If Service X changes, which services are affected?
+- Which DB changes impact which services?
+- Which API changes require coordinated deployments?
+
+Outputs:
+
+- `impact_matrix.csv`
+- `impact_matrix.md`
+----------
+## 23) Technical Debt Registry
+
+Create a prioritized debt registry under `12_debt/`:
+
+- refactoring candidates (by hotspot + smell + complexity)
+- security issues ranked by severity
+- performance bottlenecks and optimization recommendations
+- deprecated dependencies and upgrade needs
+
+Outputs:
+
+- `debt_registry.md`
+- `quick_wins.md`
+----------
+## 24) Per‑Repo Deliverables
+
+For each repository at `03_repos/${repo}/` produce:
+
+- `repo_overview.md` (stack, structure, entrypoints, configs)
+- `codemap.json`
+- `dependency.*` (`.mmd/.puml/.dot/.json`)
+- `callgraph.*` (`.mmd/.puml/.dot/.json`) — smart-sampled if needed
+- `dataflow.*` (`.mmd/.puml/.dot/.json`)
+- `metrics.csv`
+- `hotspots.md`
+- `smells.md`
+- `ci_cd.md`
+- `containers.md`
+- `env_map.md`
+- `secrets.md`
+- if frontend exists: `frontend.md`
+----------
+## 25) Execution Playbook (Step‑by‑Step)
+
+**Phase 1 — Discovery & Bootstrap**
+
+1. Discover repos under `${root_path}` using the repo rule.
+2. Create the full output folder structure under `${output_root}`.
+3. Generate an initial inventory and write `00_index.md`.
+4. Produce an initial `01_system_design/context.mmd` (high-level context) even if partial.
+
+**Phase 2 — Repo‑by‑Repo Analysis**
+For each repo:
+
+1. Detect language/framework and locate entrypoints.
+2. Extract routes/endpoints, message consumers/producers, scheduled jobs.
+3. Identify DB usage (drivers, migrations, schema hints), caching, messaging.
+4. Build per-repo dependency/call/dataflow maps.
+5. Compute metrics and smell findings.
+6. Extract config/env references and secrets findings.
+7. Write the per-repo report suite and cross-link evidence.
+> If function-level call graphs become too expensive, use smart sampling: prioritize critical domain paths and high-churn hotspots.
+
+**Phase 3 — Cross‑Repo Merge**
+
+1. Merge inter-service edges into an ecosystem graph.
+2. Finalize C4 context/container and deployment topology.
+3. Reconstruct critical business sequences from code/configs.
+4. Update relationship statements per service.
+
+**Phase 4 — Executive Outputs & Validation**
+
+1. Update `00_index.md` with Top-10 risks, quick wins, and roadmap.
+2. Generate ADRs, onboarding guide, impact matrix, and debt registry.
+3. Validate:
+    - no broken relative links
+    - diagrams render
+    - outputs are syntactically valid (Mermaid/PlantUML/DOT/JSON)
+
+If intent is ambiguous, document assumptions and add an “Ambiguities / Human Review” section.
+
+----------
+## 26) Service Catalog Template (YAML)
+
+Maintain a global catalog, e.g. `02_maps/service_catalog.yaml`:
+
+    service_name: "..."
+    business_capability: "..."
+    technology_stack:
+      language: "..."
+      framework: "..."
+      database: "..."
+      messaging: "..."
+    api_endpoints:
+      - method: GET|POST|PUT|DELETE
+        path: "/api/v1/..."
+        description: "..."
+        authentication: "JWT|OAuth|mTLS|..."
+        dependencies:
+          upstream_services: ["..."]
+          downstream_services: ["..."]
+          external_apis: ["..."]
+    database_entities:
+      - table_name: "..."
+        description: "..."
+        relationships: "..."
+    business_rules:
+      - rule_id: "BR001"
+        description: "..."
+        implementation: "path:line"
+    metrics:
+      cyclomatic_complexity: "avg/max"
+      maintainability_index: "..."
+      test_coverage: "..."
+    security_notes:
+      - "..."
+----------
+## 27) Diagram Templates
+
+**Dependency Graph (Mermaid)**
+
+    graph TD
+      A[service-A] -->|HTTP: GET /x| B[service-B]
+      B -->|MQ topic: events.y| C[service-C]
+
+**Sequence (Mermaid)**
+
+    sequenceDiagram
+      participant Client
+      participant API
+      participant Core
+      participant External
+      Client->>API: POST /action
+      API->>Core: validate + route
+      Core->>External: call()
+      External-->>Core: status
+      Core-->>API: result
+      API-->>Client: 200 OK
+
+**Minimal Codemap JSON**
+
+    { "nodes": [{"id":"svc-a","type":"service"}],
+      "edges": [{"from":"svc-a","to":"svc-b","rel":"http"}] }
+----------
+## 28) Quality Bar
+- Every finding: title + evidence (`path:line`) + impact + recommendation + priority (P0/P1/P2).
+- Prefer short, actionable writing.
+- Every important diagram must have a Mermaid version.
+- Keep everything navigable with relative links.
+----------
+## 29) Special Focus for High‑Risk Domains (Optional)
+
+If your domain is payments/regulated/high-risk, emphasize:
+
+- decimal precision and rounding rules
+- transaction boundaries and atomicity
+- sagas/compensation
+- audit trails
+- idempotency and retry safety
+- rate limiting / anti-abuse
+- encryption in transit/at rest and key management
+- segmentation and least privilege
+----------
+## 30) Success Criteria
+
+This work is successful when:
+
+- a CTO understands the ecosystem in hours
+- a developer can onboard quickly without tribal knowledge
+- a security reviewer can trace sensitive data paths end-to-end
+- a DevOps engineer can identify deployment and pipeline coupling
+- no repositories are missed and outputs are maintainable
+----------
+## 31) Start Now
+1. Discover repositories under `${root_path}`.
+2. Create the output structure under `${output_root}`.
+3. Produce `00_index.md` and an initial `01_system_design/context.mmd`.
+4. Continue repo-by-repo until all artifacts are complete.
+```
+
+</details>
 
 <details><summary><b>Codebase WIKI Documentation Skill</b></summary>
 
@@ -6031,6 +6689,33 @@ Good database architecture:
 
 </details>
 
+<details><summary><b>Database Backup and Restore Taste</b></summary>
+
+```text
+# Database Backup and Restore taste of an SRE who only trusts backups that have been restored
+- A backup does not count until it has been restored successfully; schedule automated restore tests at least weekly. Confidence: 0.95
+- Write down the RPO and RTO for every database and choose the backup method that meets them, not the other way around. Confidence: 0.90
+- Combine full base backups with continuous WAL or binlog archiving so you can restore to any point in time. Confidence: 0.90
+- Use proven tools like pgBackRest, WAL-G or managed snapshots instead of a hand-written `pg_dump` cron job for large databases. Confidence: 0.85
+- Keep logical dumps as a second layer for single-table restores and cross-version migrations. Confidence: 0.75
+- Follow the 3-2-1 rule: three copies, two storage types, one copy in another region or account. Confidence: 0.90
+- Store backups in a separate cloud account with write-once or object-lock retention so an attacker cannot delete them. Confidence: 0.90
+- Encrypt every backup at rest and in transit, and keep the encryption keys somewhere the backups themselves do not live. Confidence: 0.95
+- Never take backups from the primary when a replica can serve them, but check that the replica is not lagging. Confidence: 0.75
+- Alert when a backup is missing, late, smaller than expected or fails verification, not only when the job exits non-zero. Confidence: 0.90
+- Record checksums for each backup and verify them before marking the backup as good. Confidence: 0.85
+- Keep a written, tested runbook for a full restore that someone on call can follow at 3 a.m. Confidence: 0.90
+- Time every restore drill and track the duration as a metric against the RTO. Confidence: 0.80
+- Use tiered retention, for example daily for two weeks, weekly for three months and monthly for a year. Confidence: 0.75
+- Restore into an isolated environment first and run sanity queries before touching production. Confidence: 0.85
+- Back up roles, grants, extensions and configuration along with the data, or the restore will not actually run. Confidence: 0.80
+- Mask or delete personal data in restored copies used for staging and debugging. Confidence: 0.85
+- Treat backup deletion as a privileged action that needs two people. Confidence: 0.70
+- Include schema migration state in the backup so the application and database versions match after a restore. Confidence: 0.70
+```
+
+</details>
+
 <details><summary><b>Database Connection Pool Sizing Calculator</b></summary>
 
 ```text
@@ -7030,439 +7715,6 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
-```
-
-</details>
-
-<details><summary><b>Database Migration Safety Review</b></summary>
-
-```text
----
-name: migration-safety-review
-description: Reviews database schema migrations (raw SQL or ORM-generated from Rails, Django, Alembic, Prisma, Knex, Laravel, Flyway) for production risks before they ship - table-locking DDL, full table rewrites, data loss, breaking changes for running app code, and missing rollback paths - and proposes safe zero-downtime rewrites. Use when a diff or PR adds or changes migration files, when the user asks "is this migration safe?", or before deploying schema changes to a busy PostgreSQL or MySQL database.
----
-
-# Migration Safety Review
-
-You are reviewing schema migrations the way a careful senior DBA would before a
-production deploy. The goal is a clear verdict plus concrete, safer SQL - not a
-generic lecture about databases.
-
-## Files in this skill
-
-- `scripts/scan_migration.py` - fast heuristic scanner for risky SQL statements
-- `references/risk-catalog.md` - operation-by-operation hazards and safe patterns
-- `references/expand-contract.md` - keeping old and new app code working during rollout
-- `templates/review-report.md` - the report format you must produce
-- `examples/example-review.md` - a complete worked review to calibrate tone and depth
-
-## Workflow
-
-### 1. Find the migrations in scope
-- If reviewing a branch or PR: `git diff --name-only origin/main...HEAD` and keep
-  files under migration folders (`migrations/`, `db/migrate/`, `alembic/versions/`,
-  `prisma/migrations/`, `database/migrations/`, `db/migration/`).
-- Otherwise use the files or SQL the user pointed to.
-- Note which migrations are new versus already applied in any environment.
-  Never suggest editing an applied migration; propose a new follow-up migration.
-
-### 2. Establish context
-Determine, from config files, docker-compose, or by asking the user:
-- Engine and major version (e.g. PostgreSQL 15, MySQL 8.0). Lock behavior depends on it.
-- Approximate size and write traffic of each touched table.
-- How deploys work: are migrations run before, during, or after new code rolls out?
-
-If size or traffic is unknown, assume the table is large and hot, and say so.
-
-### 3. Get the real SQL
-ORM code hides what actually runs. Render the SQL first:
-
-| Framework | Command |
-|-----------|---------|
-| Django | `python manage.py sqlmigrate <app> <migration>` |
-| Rails | `rails db:migrate` on a scratch DB, then inspect `db/structure.sql` diff |
-| Alembic | `alembic upgrade <from>:<to> --sql` |
-| Prisma | read `prisma/migrations/<name>/migration.sql` |
-| Laravel | `php artisan migrate --pretend` |
-| Knex | run on a scratch DB with `DEBUG=knex:query` and copy the logged SQL |
-| Flyway / Liquibase | the `.sql` file or `liquibase update-sql` |
-
-Save rendered SQL to a temp file if it is not already a `.sql` file.
-
-### 4. Run the scanner
-'''bash
-python3 scripts/scan_migration.py --dialect postgres path/to/migration.sql
-python3 scripts/scan_migration.py --dialect mysql db/*.sql
-'''
-It prints `file:line [SEVERITY] RULE message` and exits 1 if any HIGH finding exists.
-Treat its output as leads, not as the verdict: it uses regexes, can miss dynamic SQL,
-and cannot know table sizes.
-
-### 5. Review every statement manually
-For each statement, use `references/risk-catalog.md` to answer:
-1. What lock does it take, and for how long (instant, table scan, or full rewrite)?
-2. Can it lose or corrupt data? Is that intended and backed up?
-3. Will it queue behind long transactions? Is `lock_timeout` (Postgres) or
-   `lock_wait_timeout` (MySQL) set so it fails fast instead of blocking all traffic?
-4. Does it run in a transaction where it must not (e.g. `CREATE INDEX CONCURRENTLY`)?
-5. Are large data backfills batched and separated from DDL?
-
-### 6. Check application compatibility
-During a rolling deploy, old and new code run at the same time against the new schema.
-Follow `references/expand-contract.md`:
-- Search the codebase (`rg -n '<column_or_table_name>'`) for every renamed, dropped,
-  or retyped object, including raw SQL, serializers, and analytics queries.
-- Flag any change the currently deployed code cannot tolerate.
-
-### 7. Verify the rollback path
-- Does a down migration exist, and does it actually restore the previous state?
-- Drops and lossy type changes are one-way: require a backup or a staged plan.
-
-### 8. Write the report
-Fill in `templates/review-report.md` exactly. Match the depth of
-`examples/example-review.md`. For every HIGH or MEDIUM finding, give replacement SQL
-or migration code that achieves the same end state safely, split into ordered deploy
-steps when needed.
-
-## Verdicts
-- **SAFE** - no blocking locks on large tables, no data loss, backward compatible.
-- **SAFE WITH CHANGES** - can ship once the listed rewrites are applied.
-- **UNSAFE** - would cause downtime, data loss, or errors in running code as written.
-
-## Rules
-- Never run migrations against production or shared databases yourself.
-- Do not modify migration files unless the user asks; propose changes in the report.
-- Be specific: name the table, the lock, and the failure mode. Skip generic advice.
-- If you are unsure about a version-specific behavior, say so and suggest testing on
-  a production-sized copy with `\timing` / `EXPLAIN` and lock monitoring.
-FILE:references/risk-catalog.md
-# Risk Catalog: Common Migration Operations
-
-Lock names are PostgreSQL. ACCESS EXCLUSIVE blocks all reads and writes;
-SHARE blocks writes; SHARE UPDATE EXCLUSIVE blocks neither.
-
-## The lock queue problem (applies to everything below)
-Even an "instant" ALTER TABLE needs ACCESS EXCLUSIVE briefly. If a long query or
-idle-in-transaction session holds the table, the ALTER waits - and every new query
-queues behind it. A 1 ms change can cause a multi-minute outage.
-Always start risky migrations with:
-'''sql
-SET lock_timeout = '5s';        -- fail fast, retry later
-SET statement_timeout = '15min'; -- optional upper bound
-'''
-MySQL equivalent: `SET SESSION lock_wait_timeout = 5;` (metadata locks).
-
-## PostgreSQL operations
-
-| Operation | Risk | Safe pattern |
-|-----------|------|--------------|
-| `CREATE INDEX` | SHARE lock: writes blocked for whole build | `CREATE INDEX CONCURRENTLY`, outside a transaction; on failure drop the INVALID index and retry. Rails: `disable_ddl_transaction!`; Django: `atomic = False` |
-| `DROP INDEX` | ACCESS EXCLUSIVE | `DROP INDEX CONCURRENTLY` |
-| `ADD COLUMN` nullable, no default | Instant | Safe (still set lock_timeout) |
-| `ADD COLUMN ... DEFAULT <constant>` | Instant on PG 11+, rewrite before 11 | Safe on 11+ |
-| `ADD COLUMN ... DEFAULT now()/random()/gen_random_uuid()` | Volatile default: full table rewrite | Add nullable column, backfill in batches, then set default |
-| `ADD COLUMN ... NOT NULL` without default | Fails on non-empty table | Add nullable, backfill, then enforce NOT NULL (below) |
-| `ALTER COLUMN ... SET NOT NULL` | Full scan under ACCESS EXCLUSIVE | `ADD CONSTRAINT c CHECK (col IS NOT NULL) NOT VALID`; `VALIDATE CONSTRAINT c`; then `SET NOT NULL` (PG 12+ skips the scan); drop `c` |
-| `ALTER COLUMN ... TYPE` | Usually full rewrite + index rebuild under ACCESS EXCLUSIVE | Safe only if binary-coercible (varchar(n) to larger n or to text). Otherwise new column + dual write + backfill + swap |
-| `ADD FOREIGN KEY` | Locks both tables while validating all rows | `ADD CONSTRAINT ... NOT VALID`, then `VALIDATE CONSTRAINT` in a separate step |
-| `ADD CHECK` | Scan under ACCESS EXCLUSIVE | Same NOT VALID + VALIDATE pattern |
-| `ADD UNIQUE` / `ADD PRIMARY KEY` | Builds index under lock | `CREATE UNIQUE INDEX CONCURRENTLY idx ...`; then `ADD CONSTRAINT ... UNIQUE USING INDEX idx` |
-| `RENAME COLUMN` / `RENAME TO` | Instant, but breaks running code | Expand/contract (see expand-contract.md) |
-| `DROP COLUMN` | Instant, but irreversible; old code selecting it errors | Remove all code references and deploy first; then drop |
-| `DROP TABLE` / `TRUNCATE` | Irreversible data loss | Confirm backup and zero readers; consider renaming to `_deprecated` first |
-| `ALTER TYPE ... ADD VALUE` | New value unusable in same transaction; no transaction at all before PG 12 | Put it in its own migration |
-| `VACUUM FULL` / `CLUSTER` / `REINDEX` | Full rewrite under ACCESS EXCLUSIVE | `REINDEX CONCURRENTLY` (PG 12+), `pg_repack` for bloat |
-| Big `UPDATE` / `DELETE` | Long row locks, WAL spike, replica lag | Batch by primary key (1k-10k rows), commit per batch, run outside the DDL migration |
-
-## MySQL 8.0 (InnoDB) notes
-- Always state the algorithm so MySQL errors instead of silently copying the table:
-  `ALTER TABLE t ADD COLUMN c INT, ALGORITHM=INSTANT;` or
-  `ALTER TABLE t ADD INDEX i (c), ALGORITHM=INPLACE, LOCK=NONE;`
-- `ADD COLUMN` is INSTANT on 8.0.12+ (last position) and 8.0.29+ (any position).
-- `MODIFY` / `CHANGE COLUMN` type changes use ALGORITHM=COPY: writes blocked.
-- For large tables with COPY-only changes use `gh-ost` or `pt-online-schema-change`.
-- DDL is not transactional in MySQL: a failed multi-statement migration leaves
-  the schema half-applied. Keep one DDL statement per migration.
-FILE:references/expand-contract.md
-# Expand / Contract: Backward-Compatible Schema Changes
-
-During a rolling deploy, old and new application versions run side by side.
-If migrations run before the new code is live, the old code must work with the
-new schema. If they run after, the new code must work with the old schema.
-Expand/contract makes every step compatible with both.
-
-## The three phases
-1. **Expand** - add new structures only (columns, tables, indexes). Nothing is
-   removed or renamed. Old code ignores the additions.
-2. **Migrate** - deploy code that writes to both old and new structures, backfill
-   existing rows in batches, then switch reads to the new structure.
-3. **Contract** - once no deployed code touches the old structure, drop it in a
-   separate, later migration.
-
-Each phase is its own deploy. Never combine expand and contract in one migration.
-
-## Recipes
-
-### Rename a column (`users.name` to `users.full_name`)
-1. Migration: add nullable `full_name`.
-2. Code: write both `name` and `full_name`; read `name`.
-3. Backfill `full_name = name` in batches where `full_name IS NULL`.
-4. Code: read `full_name`; keep writing both.
-5. Code: stop writing `name`. (Rails: add `name` to `ignored_columns` here.)
-6. Migration: drop `name`.
-
-### Change a column type (`orders.amount` int to numeric)
-Same as rename: add `amount_numeric`, dual write, backfill, switch reads, drop old.
-A trigger can handle dual writes if application changes are hard.
-
-### Make a column NOT NULL
-1. Code: always write a value.
-2. Backfill NULL rows in batches.
-3. Migration: CHECK ... NOT VALID, VALIDATE, SET NOT NULL (see risk-catalog.md).
-
-### Drop a column or table
-1. Code: remove every read and write (search ORM models, raw SQL, views,
-   reports, ETL jobs, and other services sharing the database).
-2. Deploy and wait at least one full release cycle.
-3. Migration: drop. Take a backup or snapshot of the data first if it matters.
-
-### Split or move a table
-Create the new table, dual write, backfill, switch reads, stop old writes, drop.
-
-## Compatibility questions to answer for each change
-- Does any deployed code `SELECT *` or map all columns (ORMs often cache the
-  column list at boot and fail when one disappears)?
-- Does an insert from old code fail because a new column is NOT NULL without default?
-- Do other services, cron jobs, BI dashboards, or replicas read this table?
-- Can the deploy be rolled back to the previous code version without a down migration?
-
-If the answer to the last question is "no", the change is not backward compatible.
-FILE:templates/review-report.md
-# Migration Safety Review: <migration name or PR title>
-
-**Verdict:** SAFE | SAFE WITH CHANGES | UNSAFE
-**Engine:** <e.g. PostgreSQL 15>  |  **Files reviewed:** <count>
-**Assumptions:** <table sizes, traffic, deploy order - mark anything guessed>
-
-## Summary
-<2-4 sentences: what the migration does, the biggest risk, and what to change.>
-
-## Findings
-
-| # | Severity | File:Line | Statement | Risk |
-|---|----------|-----------|-----------|------|
-| 1 | HIGH | <path:line> | `<short SQL>` | <lock / data loss / breaks old code> |
-
-### 1. <Short title of finding>
-- **What happens:** <lock taken, duration, who is blocked, or what breaks>
-- **Why it matters here:** <table size, traffic, code that depends on it>
-- **Safe alternative:**
-'''sql
--- replacement SQL or migration code, in run order
-'''
-
-<Repeat for each HIGH and MEDIUM finding. Group LOW findings in one list.>
-
-## Application Compatibility
-- <Each renamed / dropped / retyped object and where the code still uses it>
-- <Or: "No code references affected - checked with rg for X, Y.">
-
-## Rollback Plan
-- <Does the down migration restore state? What is irreversible?>
-- <Backup or snapshot required before running: yes/no>
-
-## Recommended Deploy Sequence
-1. <Migration or code deploy step>
-2. <...>
-
-## Scanner Output
-'''
-<paste scripts/scan_migration.py output, or note false positives>
-'''
-FILE:examples/example-review.md
-# Example Review
-
-**Input:** PR "Add order status tracking" with one Rails migration for PostgreSQL 15.
-`orders` has ~40M rows and receives constant writes. Migrations run before new code.
-
-'''sql
--- rendered from db/migrate/20261002_add_status_to_orders.rb
-ALTER TABLE orders ADD COLUMN status varchar NOT NULL DEFAULT 'pending';
-ALTER TABLE orders RENAME COLUMN shipped_on TO shipped_at;
-CREATE INDEX index_orders_on_status ON orders (status);
-ALTER TABLE orders ADD CONSTRAINT fk_orders_carrier
-  FOREIGN KEY (carrier_id) REFERENCES carriers (id);
-'''
-
-**Scanner:** 3 HIGH (rename, index-not-concurrent, fk-validated), 1 MEDIUM (no-lock-timeout).
-
----
-
-# Migration Safety Review: Add order status tracking
-
-**Verdict:** UNSAFE
-**Engine:** PostgreSQL 15  |  **Files reviewed:** 1
-**Assumptions:** orders ~40M rows, high write traffic (from user); carriers is small.
-
-## Summary
-Adds an order status column, renames `shipped_on`, indexes status, and adds a carrier
-foreign key. The status column itself is safe on PG 15, but the rename will break the
-running app, and the index and FK will block writes on `orders` for minutes.
-Split into three migrations and use concurrent / NOT VALID variants.
-
-## Findings
-
-| # | Severity | File:Line | Statement | Risk |
-|---|----------|-----------|-----------|------|
-| 1 | HIGH | rendered.sql:3 | `RENAME COLUMN shipped_on` | Old code errors on deploy |
-| 2 | HIGH | rendered.sql:4 | `CREATE INDEX ... (status)` | Writes blocked during build |
-| 3 | HIGH | rendered.sql:5 | `ADD ... FOREIGN KEY` | Full validation scan under lock |
-| 4 | MEDIUM | rendered.sql:1 | no `lock_timeout` | ALTERs can queue and stall traffic |
-
-### 1. Column rename breaks running code
-- **What happens:** the rename is instant, but app servers still on the old release
-  query `shipped_on` and fail with `column does not exist` until the deploy finishes.
-- **Why it matters here:** `rg -n shipped_on` finds 7 references, including
-  `app/serializers/order_serializer.rb` and the nightly `reports/fulfillment.sql`.
-- **Safe alternative:** expand/contract. Add `shipped_at`, dual write, backfill in
-  batches, switch reads, then drop `shipped_on` in a later release.
-
-### 2. Index build blocks writes
-- **Safe alternative** (separate migration, `disable_ddl_transaction!`):
-'''sql
-CREATE INDEX CONCURRENTLY index_orders_on_status ON orders (status);
-'''
-
-### 3. Foreign key validates 40M rows under lock
-- **Safe alternative:**
-'''sql
-SET lock_timeout = '5s';
-ALTER TABLE orders ADD CONSTRAINT fk_orders_carrier
-  FOREIGN KEY (carrier_id) REFERENCES carriers (id) NOT VALID;
--- next migration (takes only SHARE UPDATE EXCLUSIVE on orders):
-ALTER TABLE orders VALIDATE CONSTRAINT fk_orders_carrier;
-'''
-
-**LOW:** none. Note `ADD COLUMN ... DEFAULT 'pending'` is metadata-only on PG 11+.
-
-## Application Compatibility
-- `shipped_on`: 7 code references plus one SQL report; must stay until contract phase.
-
-## Rollback Plan
-- Down migration drops `status` (data loss acceptable: new column). Rename is reversible.
-- No backup required for this change set once the rename is removed.
-
-## Recommended Deploy Sequence
-1. Migration A: `SET lock_timeout`; add `status`; add `shipped_at`; add FK NOT VALID.
-2. Migration B (no transaction): create status index concurrently.
-3. Migration C: validate FK. Deploy code that dual writes `shipped_on`/`shipped_at`.
-4. Backfill `shipped_at`; switch reads; later release drops `shipped_on`.
-FILE:scripts/scan_migration.py
-#!/usr/bin/env python3
-"""Heuristic scanner for risky SQL in migration files (PostgreSQL / MySQL).
-Usage: python3 scan_migration.py [--dialect postgres|mysql] FILE [FILE ...]
-Exit codes: 0 = no HIGH findings, 1 = HIGH findings, 2 = usage error."""
-import re, sys
-
-F = re.I | re.S
-COLDEF = r"(?:\([^)]*\)|[^,(])*"  # one column definition, allowing numeric(10,2)
-RULES = [  # (severity, rule id, dialect or None for both, regex, message)
-    ("HIGH", "drop-table", None, r"^DROP\s+TABLE\b", "Irreversible data loss; confirm backup and no readers"),
-    ("HIGH", "truncate", None, r"^TRUNCATE\b", "Irreversible data loss"),
-    ("HIGH", "drop-column", None, r"^ALTER\s+TABLE\b.*\bDROP\s+(COLUMN\b|(?!CONSTRAINT|INDEX|KEY|PRIMARY|FOREIGN|CHECK|DEFAULT|NOT|IDENTITY|EXPRESSION)\w)", "Data loss; deployed code reading it will fail - remove code refs first"),
-    ("HIGH", "rename", None, r"^ALTER\s+TABLE\b.*\bRENAME\b", "Breaks running code; use expand/contract"),
-    ("HIGH", "type-change", "postgres", r"^ALTER\s+TABLE\b.*\bALTER\s+(COLUMN\s+)?\S+\s+(SET\s+DATA\s+)?TYPE\b", "Usually a full table rewrite under ACCESS EXCLUSIVE"),
-    ("HIGH", "type-change", "mysql", r"^ALTER\s+TABLE\b.*\b(MODIFY|CHANGE)\s+(COLUMN\s+)?\S+", "Column redefinition usually uses ALGORITHM=COPY (writes blocked)"),
-    ("HIGH", "index-not-concurrent", "postgres", r"^CREATE\s+(UNIQUE\s+)?INDEX\s+(?!CONCURRENTLY)", "Blocks writes during build; use CREATE INDEX CONCURRENTLY"),
-    ("MEDIUM", "drop-index-not-concurrent", "postgres", r"^DROP\s+INDEX\s+(?!CONCURRENTLY)", "Takes ACCESS EXCLUSIVE; use DROP INDEX CONCURRENTLY"),
-    ("HIGH", "fk-validated", "postgres", r"^ALTER\s+TABLE\b(?!.*\bNOT\s+VALID\b).*\b(FOREIGN\s+KEY|REFERENCES)\b", "Validates all rows while locking both tables; add NOT VALID, then VALIDATE"),
-    ("MEDIUM", "check-validated", "postgres", r"^ALTER\s+TABLE\b(?!.*\bNOT\s+VALID\b).*\bADD\s+(CONSTRAINT\s+\S+\s+)?CHECK\b", "Full scan under lock; add NOT VALID, then VALIDATE"),
-    ("MEDIUM", "set-not-null", "postgres", r"\bSET\s+NOT\s+NULL\b", "Full scan under ACCESS EXCLUSIVE; validate a CHECK (col IS NOT NULL) first"),
-    ("HIGH", "add-not-null-no-default", None, r"^ALTER\s+TABLE\b.*\bADD\s+(COLUMN\s+)?(?!" + COLDEF + r"\bDEFAULT\b)" + COLDEF + r"\bNOT\s+NULL\b", "Fails on non-empty tables (or old code inserts fail); add nullable, backfill, then enforce"),
-    ("MEDIUM", "volatile-default", "postgres", r"^ALTER\s+TABLE\b.*\bADD\b.*\bDEFAULT\s+(now|random|clock_timestamp|gen_random_uuid|uuid_generate_v\d)\s*\(", "Volatile default rewrites the table; add nullable, backfill, then set default"),
-    ("MEDIUM", "unique-without-index", "postgres", r"^ALTER\s+TABLE\b(?!.*\bUSING\s+INDEX\b).*\bADD\s+(CONSTRAINT\s+\S+\s+)?(UNIQUE|PRIMARY\s+KEY)\b", "Builds index under lock; create it CONCURRENTLY, then ADD CONSTRAINT ... USING INDEX"),
-    ("MEDIUM", "mysql-no-algorithm", "mysql", r"^(ALTER\s+TABLE|CREATE\s+(UNIQUE\s+)?INDEX)\b(?!.*\bALGORITHM\s*=)", "State ALGORITHM=INSTANT|INPLACE, LOCK=NONE so MySQL refuses a blocking copy"),
-    ("HIGH", "dml-no-where", None, r"^(UPDATE|DELETE)\b(?!.*\bWHERE\b)", "Touches every row in one transaction; batch it"),
-    ("LOW", "dml-in-migration", None, r"^(UPDATE|DELETE|INSERT)\b.*\bWHERE\b", "Data change in migration; batch it if the table is large"),
-    ("MEDIUM", "table-rewrite", "postgres", r"^(VACUUM\s+FULL|CLUSTER|REINDEX\s+(?!.*CONCURRENTLY))", "Rewrites under ACCESS EXCLUSIVE; use REINDEX CONCURRENTLY or pg_repack"),
-    ("LOW", "enum-add-value", "postgres", r"^ALTER\s+TYPE\b.*\bADD\s+VALUE\b", "New value unusable in same transaction; keep in its own migration"),
-]
-
-def statements(sql):
-    """Yield (line_number, statement) after stripping comments. Naive ';' split."""
-    sql = re.sub(r"/\*.*?\*/", lambda m: re.sub(r"[^\n]", " ", m.group()), sql, flags=re.S)
-    sql = re.sub(r"--[^\n]*", "", sql)
-    pos = 0
-    for part in sql.split(";"):
-        stripped = part.lstrip()
-        line = sql.count("\n", 0, pos + len(part) - len(stripped)) + 1
-        pos += len(part) + 1
-        if stripped.strip():
-            yield line, " ".join(stripped.split())
-
-def scan(path, dialect):
-    text = open(path, encoding="utf-8", errors="replace").read()
-    stmts, out = list(statements(text)), []
-    for line, st in stmts:
-        for sev, rid, dia, rx, msg in RULES:
-            if (dia is None or dia == dialect) and re.search(rx, st, F):
-                out.append((sev, f"{path}:{line} [{sev}] {rid}: {msg}\n    > {st[:110]}"))
-    has_ddl = any(re.match(r"(ALTER|CREATE\s+(UNIQUE\s+)?INDEX|DROP)\b", s, re.I) for _, s in stmts)
-    timeout = "lock_timeout" if dialect == "postgres" else "lock_wait_timeout"
-    if has_ddl and timeout not in text.lower():
-        out.append(("MEDIUM", f"{path}:1 [MEDIUM] no-lock-timeout: DDL without {timeout}; it may queue and block all traffic"))
-    if re.search(r"\bCONCURRENTLY\b", text, re.I) and re.search(r"^\s*(BEGIN|START\s+TRANSACTION)\b", text, re.I | re.M):
-        out.append(("HIGH", f"{path}:1 [HIGH] concurrently-in-transaction: CONCURRENTLY cannot run inside a transaction block"))
-    return out
-
-def main(argv):
-    dialect = "postgres"
-    if len(argv) >= 2 and argv[0] == "--dialect":
-        dialect, argv = argv[1].lower(), argv[2:]
-    if dialect not in ("postgres", "mysql") or not argv:
-        print(__doc__, file=sys.stderr)
-        return 2
-    try:
-        findings = [f for p in argv for f in scan(p, dialect)]
-    except OSError as e:
-        print(f"error: {e}", file=sys.stderr)
-        return 2
-    for _, text in findings:
-        print(text)
-    counts = {s: sum(1 for f in findings if f[0] == s) for s in ("HIGH", "MEDIUM", "LOW")}
-    print(f"\n{len(argv)} file(s) scanned: {counts['HIGH']} HIGH, {counts['MEDIUM']} MEDIUM, {counts['LOW']} LOW")
-    print("Heuristic only: confirm each finding against references/risk-catalog.md.")
-    return 1 if counts["HIGH"] else 0
-
-if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
-```
-
-</details>
-
-<details><summary><b>Database Migrations Taste</b></summary>
-
-```text
-# Database Migrations taste
-- Keep every schema change in a versioned migration file committed next to the code that needs it. Confidence: 0.95
-- Write migrations in plain SQL rather than ORM-generated diffs you have not read. Confidence: 0.80
-- Never edit a migration that has already run in a shared environment; add a new one instead. Confidence: 0.95
-- Use the expand and contract pattern: add the new column, backfill, switch reads, then drop the old column in a later release. Confidence: 0.90
-- Make every migration safe to run while the previous app version is still serving traffic. Confidence: 0.90
-- Add new columns as nullable or with a constant default to avoid long table rewrites. Confidence: 0.85
-- Create indexes on large Postgres tables with CREATE INDEX CONCURRENTLY outside a transaction. Confidence: 0.90
-- Set a short lock_timeout and statement_timeout at the top of each migration. Confidence: 0.85
-- Run large backfills as batched background jobs, not inside the migration itself. Confidence: 0.90
-- Keep one logical change per migration so failures are easy to read and retry. Confidence: 0.80
-- Name migration files with a UTC timestamp prefix and a short verb phrase like 20261017_add_orders_status. Confidence: 0.75
-- Prefer forward-only migrations and fix mistakes with a new migration instead of relying on down scripts. Confidence: 0.70
-- Run migrations as a separate deploy step before the new application code starts. Confidence: 0.85
-- Test every migration in CI against a fresh database and against a copy of production-sized data. Confidence: 0.80
-- Add foreign keys and check constraints as NOT VALID first, then validate them in a separate step. Confidence: 0.80
-- Rename columns and tables only through a view or dual-write period, never in a single step. Confidence: 0.75
-- Store the applied migration history in the database and fail the deploy if it has drifted. Confidence: 0.85
-- Review migrations as carefully as application code, with the generated SQL visible in the pull request. Confidence: 0.90
-- Keep seed and fixture data out of schema migrations. Confidence: 0.80
 ```
 
 </details>

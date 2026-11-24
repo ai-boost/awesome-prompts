@@ -1,6 +1,6 @@
 # 效率
 
-共 95 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 98 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/productivity.md) · [中文](../zh/productivity.md)
 
@@ -737,6 +737,53 @@ model: gemini 2.5
 
 </details>
 
+<details><summary><b>Reportsmith:基于 Git 与代理会话的工作报告</b> · 机器翻译</summary>
+
+```text
+---
+name: reportsmith
+description: 为任意时间段和任意文件夹范围撰写工作报告（站会、日报、周报、月报、变更日志、发布说明，或自定义类型），数据来源包括 git、本地编码代理会话（Claude Code、Codex、opencode）、代理记忆、PR、工单和笔记，并可选择通过 MCP、webhook 或命令发布。当用户要求站会、状态更新、每日记录、周报或月报、工作日志、变更日志、发布说明，或问"我做了什么"时使用。
+---
+
+# reportsmith
+
+报告生成器。它收集用户在某段时间、某个文件夹范围内做过的事，用模板写成报告，先展示预览，再保存，并可选择发布。它只在被要求时运行，两次运行之间不保存任何内容。
+
+本技能文件夹中的文件，在对应步骤需要时再读：
+- `sources.md`：如何读取每个来源
+- `publishing.md` 和 `destinations/`：如何发布
+- `templates/`：默认报告模板
+- `config.example.yml`：所有配置键及其默认值
+- `scripts/sessions.py`：代理会话读取器（Python 3 标准库）
+
+## 1. 加载配置
+
+读取存在的所有配置，后面的逐键覆盖前面的：
+
+1. 默认值（本文件夹中的 `config.example.yml`）
+2. `~/.reportsmith/config.yml`
+3. 当前仓库根目录下的 `.reportsmith.yml`
+
+没有配置也可以。忽略未知的键，并只提示一次。如果 `version` 高于 `config.example.yml` 中的版本，说明该配置是为更新版本的 reportsmith 写的：告知用户，并只使用你认识的键。
+
+## 2. 明确请求
+
+先看用户的原话，再看配置中的 `reports.<kind>`，最后用以下默认值：
+
+| 字段 | 默认值 |
+|---|---|
+| kind | `standup` |
+| period | 见下文 |
+| scope | 配置中的 `scope`，否则为当前仓库 |
+| audience | `team`（`manager`、`team`、`public`、`self`） |
+| format | `markdown`（`slack`、`email`、`plain`） |
+| length | `medium`（`short` ≈ 5 条，`medium` ≈ 15 条，`long` 不设上限） |
+
+各类型的默认时间段：standup = 上一个工作日和今天 · daily = 今天 · weekly = 本周 · monthly = 本月 · changelog 和 release-notes = 上一个 tag 到 HEAD。
+```
+
+</details>
+
 <details><summary><b>Trello 集成技能</b></summary>
 
 ```text
@@ -1146,6 +1193,14 @@ description: 帮助下载 YouTube 视频。询问视频链接和期望的画质,
 变量：
 - ${chatLogs} - 待分析的聊天历史
 - ${outputFormat:summary} - 分析报告的期望格式
+```
+
+</details>
+
+<details><summary><b>从文档到工作流自动化方案</b> · 机器翻译</summary>
+
+```text
+所以,我想让 AI 细致而全面地通读一份文档,这份文档是关于我要负责的一个项目,我需要为它自动化一套工作流程,我还不希望它漏掉任何一点,并且我需要一份分步骤的流程,说明如何与我的团队正确地执行这个项目
 ```
 
 </details>
@@ -6613,6 +6668,14 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
+```
+
+</details>
+
+<details><summary><b>阿拉伯语 Word 文档排版</b> · 机器翻译</summary>
+
+```text
+我需要一个用于排版阿拉伯语 Word 文档的提示词，涵盖文字方向、对齐方式（居中）、标题与正文的字号区分，以及表格的居中和方向对齐等方面。
 ```
 
 </details>

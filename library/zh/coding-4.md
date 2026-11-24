@@ -1,10 +1,10 @@
-# 编程开发 (4/11)
+# 编程开发 (4/12)
 
-共 706 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 739 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
-分页：[1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · **4** · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md)
+分页：[1](coding.md) · [2](coding-2.md) · [3](coding-3.md) · **4** · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md)
 
 <details><summary><b>MCP服务器构建指南</b></summary>
 
@@ -3923,6 +3923,34 @@ FILE:references/hardening-checklist.md
 
 </details>
 
+<details><summary><b>Node.js 后端服务偏好</b> · 机器翻译</summary>
+
+```text
+# 追求小巧、可预测服务的 TypeScript 工程师的 Node.js 后端服务偏好
+- 使用 TypeScript 编写服务，开启 `strict: true` 并使用原生 ES 模块。Confidence: 0.90
+- 在 `.nvmrc`、`engines` 和 Docker 基础镜像中，将 Node.js 版本固定为处于活跃期的 LTS 版本。Confidence: 0.90
+- HTTP 层使用 Fastify 或 Hono，并使用请求和响应 schema，同时由它们生成 OpenAPI 文档。Confidence: 0.75
+- 在入口处校验每一个传入的请求体、查询参数和请求头，内部只处理带类型的数据。Confidence: 0.95
+- 启动时从环境变量一次性加载配置，用 schema 校验，缺少任何配置就快速失败。Confidence: 0.90
+- 保持处理函数精简：它们只解析输入、调用服务函数，并把结果映射为响应。Confidence: 0.85
+- 绝不阻塞事件循环；把 CPU 密集型工作移到 worker 线程或单独的任务队列。Confidence: 0.90
+- 处处使用 `async`/`await`，并把任何悬空的 promise 视为 lint 错误。Confidence: 0.90
+- 使用 pino 记录结构化 JSON 日志，每一行都带上请求 ID，绝不记录密钥或令牌。Confidence: 0.90
+- 以统一的 JSON 结构返回错误，并附带稳定的错误码；把未知错误映射为 500，且不泄露堆栈跟踪。Confidence: 0.85
+- 收到 `SIGTERM` 时，先关闭服务器、处理完进行中的请求并关闭数据库连接池，然后再退出。Confidence: 0.90
+- 在记录日志后，遇到 `unhandledRejection` 和 `uncaughtException` 就崩溃退出，由编排器重启进程。Confidence: 0.80
+- 提供独立的存活（liveness）和就绪（readiness）端点；就绪检查要检查真实的依赖。Confidence: 0.85
+- 为每一个对外的 HTTP 调用和数据库调用设置超时，并使用 `AbortSignal` 取消它们。Confidence: 0.85
+- 数据库使用最大容量固定的连接池，并根据实例数量调优。Confidence: 0.80
+- 在引入依赖之前，优先使用内置的 `fetch`、`node:test` 和 `node:crypto`。Confidence: 0.70
+- 用进程内注入来测试 HTTP 路由，而不是启动真实端口。Confidence: 0.75
+- 尽早加入 OpenTelemetry 链路追踪，以便跨服务追踪慢请求。Confidence: 0.75
+- 使用多阶段 Dockerfile 构建小体积的生产镜像，并以非 root 用户运行。Confidence: 0.85
+- 提交 `package-lock.json`，并在 CI 和 Docker 构建中使用 `npm ci` 安装依赖。Confidence: 0.90
+```
+
+</details>
+
 <details><summary><b>Node.js 自动化脚本开发</b></summary>
 
 ```text
@@ -5251,6 +5279,34 @@ def main(argv=None) -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+```
+
+</details>
+
+<details><summary><b>OpenAPI 规范编写偏好</b> · 机器翻译</summary>
+
+```text
+# 将规范视为契约的 API 设计者的 OpenAPI 规范偏好
+- 先编写 OpenAPI 文档，并在实现任何端点之前通过拉取请求对其进行评审。置信度：0.80
+- 使用 OpenAPI 3.1，这样模式就是真正的 JSON Schema,可空字段也写成类型联合。置信度：0.80
+- 将规范以 YAML 形式保存在仓库中,通过 `$ref` 拆分为多个文件,并在 CI 中打包成一个文件。置信度：0.85
+- 使用共享规则集通过 Spectral 或 Redocly 对每次变更进行 lint 检查,出现错误时让构建失败。置信度：0.90
+- 为每个操作提供唯一、稳定的驼峰式 `operationId`,因为生成的客户端会将其用作方法名。置信度：0.90
+- 在 `components/schemas` 下定义可复用的模型,绝不在多处内联重复相同的对象。置信度：0.85
+- 明确标记 `required` 字段,并在请求体上设置 `additionalProperties: false`。置信度：0.75
+- 使用一个共享的问题详情模式(RFC 9457)来描述每一种错误,而不是每个端点各用一种不同的结构。置信度：0.85
+- 记录端点实际可能返回的每一个响应码,包括 401、403、404、409 和 429。置信度：0.80
+- 为每个模式和操作添加一个贴近现实的 `example`,让文档、模拟和测试都有真实的数据。置信度：0.85
+- 使用 `date-time`、`uuid` 和 `email` 等字符串格式,以及 `minLength`、`maximum` 和 `pattern` 约束,而不是普通字符串。置信度：0.80
+- 将枚举建模为字符串,并注明客户端必须容忍日后新增的未知值。置信度：0.75
+- 在每个列表端点上使用相同的基于游标的分页参数和响应信封。置信度：0.80
+- 只声明一次 `securitySchemes` 并全局应用,仅对真正公开的操作进行覆盖。置信度：0.85
+- 在每个拉取请求上,针对主分支运行 oasdiff 之类的破坏性变更检查。置信度：0.90
+- 在契约测试中依据规范校验请求和响应,让代码无法悄悄偏离规范。置信度：0.85
+- 根据规范生成客户端和服务端类型,绝不手动编辑生成的文件。置信度：0.85
+- 编写面向人类的 `summary` 和 `description` 字段,解释行为和边界情况,而不是重复字段名。置信度：0.75
+- 用 `deprecated: true` 标记旧的字段和操作,并在删除之前公布移除日期。置信度：0.80
+- 每次发布时都根据规范发布渲染后的文档,让文档始终与已部署的 API 保持一致。置信度：0.80
 ```
 
 </details>
@@ -7544,79 +7600,6 @@ FILE:templates/slow-query-review.md
 变量：  
 - ${jira_issue_description} — 若存在，请检查该 PR 是否与之相关  
 - ${gitdiff} — git diff
-```
-
-</details>
-
-<details><summary><b>PRD 与技术文档生成器</b></summary>
-
-```text
----
-name: prd-and-technical-documentation-generator
-description: 用于生成项目全面的产品需求文档（PRD）和技术文档的技能。
----
-
-# PRD 与技术文档生成器
-
-该技能旨在协助创建详细的产品需求文档（PRD）以及配套的技术文档。
-
-## 指令
-
-1. **定义产品或功能**：明确指定正在为其创建文档的产品或功能。
-2. **收集需求**：识别并列出所有必要需求，包括功能性和非功能性方面。
-3. **构建 PRD 结构**：
-   - **引言**：提供产品或功能的简要概述。
-   - **问题陈述**：描述该产品或功能旨在解决的问题。
-   - **目标**：概述主要目标和目的。
-   - **范围**：定义范围，包括包含和不包含的内容。
-   - **需求**：详细说明功能性和非功能性需求。
-   - **用户故事**：包含用户故事以说明使用场景。
-4. **技术文档**：
-   - **架构概述**：提供架构图和描述。
-   - **技术规格**：详细说明技术要求和规格。
-   - **API 与接口**：列出 API 和接口，包括用法和示例。
-   - **安全与合规**：概述安全措施和合规要求。
-
-## 示例
-
-- **示例输入**： "为一个新的电子商务平台功能创建 PRD"
-- **示例输出**： 一份结构化的文档，其中所有部分均已填充相关信息。
-
-## 变量
-
-- ${productFeature} - 特定的产品功能或计划。
-- ${documentType:PRD} - 要生成的文档类型（PRD 或 技术文档）。
-
-利用此技能高效地生成全面的文档，以支持项目目标和利益相关者的需求。
-```
-
-</details>
-
-<details><summary><b>Prisma ORM编码偏好</b> · 机器翻译</summary>
-
-```text
-# 类型安全的数据库实用主义者的 Prisma ORM 品味
-- 将 `schema.prisma` 视为模型的唯一事实来源,并在 CI 中生成客户端,这样 `node_modules/.prisma` 就永远不会出现偏差。Confidence: 0.95
-- 每个可部署服务优先使用一个 Prisma schema;只有当有界上下文确实拥有各自独立的数据库时才拆分。Confidence: 0.85
-- 模型使用大驼峰(PascalCase)单数命名(`User`、`OrderItem`),当数据库已存在时,显式映射表名。Confidence: 0.80
-- 对外公开的 ID 使用带 `cuid()` 或 `uuid()` 的 `@id`;如果必须使用自增整数,则仅限用于内部专用的键。Confidence: 0.75
-- 每个关系都要声明双方,并显式指定 `onDelete` / `onUpdate`,让级联行为绝不是偶然产生的。Confidence: 0.90
-- 对你所依赖的每种查询模式,都在 schema 中添加 `@@index` 和 `@@unique`,并在预发布环境中用 `EXPLAIN` 验证。Confidence: 0.85
-- 以 Prisma Migrate 迁移的方式交付 schema 变更,并将其提交到 git;绝不要对生产环境使用 `db push`。Confidence: 0.95
-- 合并之前审查每个迁移文件中生成的 SQL,尤其是删除、重命名和类型变更。Confidence: 0.90
-- 在滚动部署期间保持迁移向后兼容:先添加可为空的列,然后回填数据,最后再收紧约束。Confidence: 0.85
-- 仅在 schema 发生变化时,才在 Docker 构建和 postinstall 中使用 `prisma generate`;避免出人意料的本地重新生成。Confidence: 0.75
-- 优先使用 `findMany`,并通过 `select` 或 `include` 只列出所需字段;默认绝不向 API 返回完整的行。Confidence: 0.85
-- 将多步骤写入包装在 `prisma.$transaction` 中,并保持事务简短,事务内不要发起外部 HTTP 请求。Confidence: 0.90
-- 谨慎使用交互式事务;对于简单的批量操作,优先使用 `$transaction` 的数组形式。Confidence: 0.80
-- 将数据库访问放在小型的 repository 或数据模块之后,而不是散落在 React Server Components 和路由处理器中。Confidence: 0.80
-- 使用 `prisma db seed` 配合幂等的 upsert 进行数据填充,让预览环境可以安全地重建。Confidence: 0.80
-- 在开发环境启用查询日志,在生产环境启用慢查询日志;将 N+1 模式视为缺陷。Confidence: 0.85
-- 对共享的查询结构使用 Prisma 带类型的 `Prisma.XxxGetPayload` 辅助类型,而不是手写的、容易偏离的接口。Confidence: 0.80
-- 将 Prisma CLI 与引擎版本一起锁定,并在阅读发布说明之后,通过专门的 PR 进行升级。Confidence: 0.85
-- 对于原生 SQL,只使用 `Prisma.sql` 标签模板,绝不使用与用户输入进行字符串拼接的方式。Confidence: 0.95
-- 在 CI 中针对生产环境影子数据库的预期运行 `prisma migrate diff`,让偏差导致构建失败。Confidence: 0.75
-- 在运行手册中记录连接池(PgBouncer / 驱动适配器);没有连接池的 serverless 会耗尽连接。Confidence: 0.85
 ```
 
 </details>

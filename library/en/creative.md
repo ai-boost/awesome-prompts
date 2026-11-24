@@ -1,6 +1,6 @@
 # Creative Arts & Music
 
-82 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
+90 prompts. Copy one, replace anything in brackets, and paste it into any chat model.
 
 [English](../en/creative.md) · [中文](../zh/creative.md)
 
@@ -895,6 +895,15 @@ Theme: memories of a neon-lit city that never was
 
 </details>
 
+<details><summary><b>Design a Wellness Resort in Himachal Pradesh</b></summary>
+
+```text
+I'm architecture student and I have a project of resort design in my design subject so this is my site and the north is upward side and the location is near Palampur Himachal Pradesh and no I have to design a resort in this site in which I hai to make a service room, reception, gazebo, open seating area 1 meditation hall, 4, 5 treatment room, 4 double cottages and 3 single cottages, 1 cafe and restaurant and 
+also design a good landscape, or garden
+```
+
+</details>
+
 <details><summary><b>Digital Art Gallery Guide</b></summary>
 
 ```text
@@ -937,6 +946,80 @@ Now that you are a professional film commentator, I will tell you the name of th
 
 ```text
 ${The fox}If you don't have photos yet, I can create a 10-second educational-style video concept showing a sequence of still photographs rapidly flipping through a stack, gradually creating the illusion of smooth motion—like a flipbook.
+```
+
+</details>
+
+<details><summary><b>Floor -100: 30-Second Elevator Horror Short</b></summary>
+
+```text
+Environment: A modern office-building elevator late at night, with brushed steel walls, reflective surfaces, cold fluorescent ceiling panels, a security camera in the upper corner, a digital floor indicator above the doors, a handrail, and an illuminated control panel. The elevator initially feels completely ordinary and safe. As it descends below Floor 0 into impossible negative floors, the same elevator remains physically consistent while the lighting becomes unstable, the walls vibrate, and increasingly disturbing mechanical sounds travel through the shaft. Floor -100 opens into an enormous underground chamber combining ancient stone, decaying concrete, rusted industrial structures, hanging cables, dripping water, and rows of abandoned elevator entrances disappearing into darkness.
+
+Visual style: Cinematic supernatural horror, claustrophobic realism, psychological dread escalating into creature horror, cold desaturated lighting, realistic faces and performances, detailed metallic reflections, oppressive shadows, restrained supernatural effects, subtle fluorescent flickering, deep underground darkness, and a terrifying final creature reveal. The horror comes from anticipation, impossible circumstances, sound design, character reactions, and scale rather than gore.
+
+Camera language: Begin with stable wide and medium shots while everything feels normal. Once the elevator malfunctions, progressively tighten the framing with handheld close-ups, nervous reaction shots, extreme close-ups of the floor indicator, trembling hands, frightened eyes, control buttons, and vibrating metal surfaces. Increase camera instability naturally as the descent accelerates. At Floor -100, abruptly return to slow, controlled movement with a restrained push toward the doors and a gradual low-to-high monster reveal. Use hard cuts only, no fades, dissolves, or morph transitions.
+
+Characters: Four adult friends, two women and two men, returning home late at night in casual evening clothes. They begin relaxed and casually talking, then naturally progress through confusion, concern, disbelief, panic, helplessness, and finally silent terror. Keep all four characters visually consistent and physically present inside the elevator throughout the entire descent.
+
+Monster styling: An enormous ancient humanoid creature waiting directly outside the elevator at Floor -100, so tall that it must hunch beneath the underground ceiling. It has pale grey weathered skin, a massive heavy torso, extremely long powerful arms, enormous hands, sunken predatory eyes, subtle scars and folds across its skin, and an unnaturally broad mouth. Its proportions are disturbing but physically coherent. It does not immediately attack. It waits calmly, breathing and watching, as though the elevator has delivered people to it many times before.
+
+Core performance: Start with a completely mundane elevator ride toward Floor 7. Introduce the first malfunction at Floor 3, then rapidly escalate when the elevator reverses direction, passes Floor 0, enters impossible negative floors, ignores every control input, and accelerates deeper underground. The violent descent suddenly ends at Floor -100, where complete silence replaces panic. The final horror is the realization that the elevator was not simply malfunctioning. It was deliberately taking them somewhere.
+
+Audio design: No BGM. Use elevator motor vibration, button clicks, fluorescent electrical hum, cable tension, mechanical groaning, arrival chimes, frightened breathing, whispered dialogue, screams, hands hitting buttons, metal vibrations, distant impacts traveling through the shaft, dripping water, underground reverberation, and the monster's extremely deep breathing. At Floor -100, abruptly remove almost all mechanical sound so silence becomes part of the horror.
+
+Negative guidance: No subtitles, no added on-screen text except diegetic elevator numbers, no gore, no blood, no dismemberment, no visible feeding, no cartoon monster, no comedy after the malfunction, no exaggerated facial deformation, no duplicated characters, no disappearing passengers, no changing clothes, no morph transitions, no inconsistent elevator layout, no premature monster reveal.
+
+[00:00-00:04] GOING UP
+
+Stable wide interior shot from the upper rear corner as the four friends enter the elevator together, casually talking and laughing after a night out. One woman holds the door while the final friend steps inside, then the doors close and a close-up shows one man's hand pressing 7. The button illuminates and the elevator begins ascending normally. Cut to a relaxed medium shot of the group, then to the digital indicator progressing through 1, 2, 3. Their conversation continues naturally and nobody shows any concern. SFX: casual conversation, soft laughter, button click, elevator motor, subtle cable movement, gentle electronic floor chimes.
+
+[00:04-00:07] FLOOR 3
+
+As the indicator reaches 3, the elevator suddenly stops with a violent mechanical jolt, throwing all four friends slightly off balance and immediately interrupting their conversation. The fluorescent ceiling panels flicker once before stabilizing. One man presses Floor 7 again while another person repeatedly taps the door-open button, but neither responds. Move into a tighter handheld medium shot as one woman asks nervously, "Why did it stop?" Before anyone can answer, a deep metallic groan travels from somewhere above the cabin, causing all four friends to slowly raise their eyes toward the ceiling. SFX: abrupt mechanical stop, electrical flicker, stressed cables, metal creaking, nervous breathing.
+
+[00:07-00:10] WRONG DIRECTION
+
+Without warning, the elevator violently drops and everyone screams, grabbing the handrail and steel walls as the camera falls with them. Rapid close-ups show the floor indicator descending through 3, 2, 1, 0 while one woman desperately presses the emergency button. Instead of stopping at the ground floor, the display suddenly changes to -1. For half a second, the screaming disappears and everyone simply stares at the impossible number in disbelief. One man quietly says, "There's no basement." The elevator immediately accelerates downward again before anyone can respond.
+
+[00:10-00:14] THE DESCENT
+
+The elevator plunges faster as unstable handheld close-ups show the indicator flashing through -4, -9, -16, -27. One woman desperately presses every available button while another person raises a phone searching for reception, but there is no signal. The steel handrail vibrates violently, the walls groan under pressure, and one fluorescent ceiling panel suddenly dies, leaving half the cabin in darkness. Their voices overlap naturally as someone screams, "Stop it!", another shouts, "What's happening?", and another yells, "Press something!" The person at the controls answers, "I am!" SFX: accelerating motor, cable tension, button clicks, metal rattling, screams.
+
+[00:14-00:18] IMPOSSIBLE FLOORS
+
+Extreme close-ups show the indicator racing through -41, -56, -68, -79 as the descent becomes terrifyingly fast. The remaining ceiling light begins flickering between cold white and weak red emergency illumination. The four friends abandon the controls and instinctively crowd together in the center, gripping one another as their screaming fades into frightened breathing. Suddenly, an enormous impact echoes somewhere outside the shaft. BOOM. The entire cabin shudders sideways. One friend whispers, "What was that?" A second, heavier impact answers from somewhere far below. BOOM. Cut back to the indicator as it continues through -91, -95, -98.
+
+[00:18-00:21] FLOOR -100
+
+Extreme close-up on the indicator as -99 appears, holds briefly, then changes to -100. A perfectly normal arrival chime sounds. DING. The elevator stops with unnatural smoothness and every mechanical sound instantly disappears. No motor, no cable tension, no shaking. Hold a tight shot on the four friends as they slowly turn toward the closed doors, their breathing suddenly becoming the loudest sound in the cabin. One woman tightly grips another friend's arm. Nobody speaks. Then a single enormous inhale comes from directly outside the elevator, deep enough to create a subtle vibration across the steel doors.
+
+[00:21-00:24] SOMETHING IS WAITING
+
+Begin an extremely slow controlled push toward the doors from behind the four friends as they instinctively retreat toward the rear wall. One man whispers, "Don't open." Another perfectly normal arrival chime answers him. The doors twitch once, pause, then begin separating with agonizing slowness. A thin vertical gap reveals absolute darkness beyond the cabin. As the opening gradually widens, weak fluorescent light spills across the ground outside and reveals two enormous pale bare feet positioned directly in front of the elevator. The four friends freeze. Whatever is outside was already standing there waiting for them.
+
+[00:24-00:27] THE FEEDING FLOOR
+
+Keep the camera inside the elevator behind the four friends as the doors finish opening onto an enormous underground chamber swallowed by darkness. Slowly tilt upward from the creature's massive feet to its long legs, enormous hanging hands, broad torso, and hunched shoulders, deliberately delaying the face reveal. Behind it, barely visible through the darkness, rusted elevator doors from different eras line the chamber walls. Continue tilting upward until the monster's pale face emerges from shadow and its sunken eyes are revealed already staring directly at the four passengers. It does not roar or move toward them. It simply stands there and takes one slow, deep breath. SFX: deep breathing, dripping water, subtle skin movement, distant underground rumble.
+
+[00:27-00:30] DINNER HAS ARRIVED
+
+Hard cut to the four friends pressed against the rear wall, their faces frozen in absolute terror as one woman covers her mouth to suppress a scream. Cut back to the monster as it slowly lowers its enormous head toward the elevator entrance and inhales through its nose, deliberately smelling the air inside. Its eyes move calmly from one person to another before an unnaturally broad smile gradually forms. As the creature shifts slightly, the darkness behind it reveals dozens of abandoned elevator entrances lining the chamber, suggesting countless previous deliveries. It slowly extends one massive hand into the elevator. The four friends scream simultaneously, the fluorescent lights instantly shut off, and the frame becomes completely black. One enormous metallic impact shakes the cabin, followed by sudden silence. Cut.
+
+Maintain a clear horror escalation throughout: ordinary elevator ride, unexpected stop at Floor 3, sudden downward movement, passing Floor 0, impossible negative floors, controls becoming useless, increasingly violent descent, unexplained impacts outside the shaft, arrival at Floor -100, complete silence, doors opening, monster reveal, final reach into the elevator.
+
+Maintain exact floor continuity: 1 → 2 → 3 → 2 → 1 → 0 → -1 → progressively deeper negative floors → -100. Once the elevator begins descending, it never travels upward again.
+
+Do not reveal any part of the monster before Floor -100. Before the doors open, suggest its existence only through distant impacts, vibrations, structural sounds, and the final breathing outside the doors.
+
+Keep all four friends visually and spatially consistent throughout. Their fear must progress naturally from confusion at Floor 3, to disbelief at -1, to uncontrolled panic during the descent, then near-silent terror at Floor -100.
+
+Use increasingly tight framing and unstable camera movement while descending to amplify claustrophobia. The instant the elevator reaches -100, completely change the rhythm. Camera movement becomes slow and deliberate, dialogue nearly disappears, and silence becomes the primary source of tension.
+
+Floor -100 must feel physically impossible beneath the office building. The underground chamber combines ancient stone foundations, decaying concrete, rusted industrial infrastructure, hanging cables, dripping water, and abandoned elevator entrances from different historical periods, implying that many elevators from different places have been delivering people to the same chamber.
+
+The monster must remain calm during the reveal. It does not charge, roar, or immediately attack. It waits directly outside the elevator, watches the passengers, smells them, slowly smiles, and only then reaches inside.
+
+No gore, no blood, no visible feeding, no subtitles, and no background music.
 ```
 
 </details>
@@ -1076,6 +1159,34 @@ Execute every request with senior-level art direction, ensuring complete technic
 
 </details>
 
+<details><summary><b>Lantern Night With a Gentle Dragon Fantasy Video</b></summary>
+
+```text
+Cinematic, photorealistic fantasy video, 16:9, 30 seconds. Setting: a calm mountain lake at dusk, with a wooden dock, wildflowers on the shore, pine trees and snowy peaks in the distance, a pink and orange sunset sky reflected on the water, and a few early stars. Soft magical lighting, gentle mist over the lake, realistic motion, shallow depth of field.
+
+Characters: a young woman with long silver-blonde braided hair, a cream puff-sleeved blouse, a brown leather corset bodice and a long brown skirt, holding a small paper lantern; and a huge, gentle blue-and-silver dragon with pale scales, glowing blue crystal spikes, warm golden eyes and large blue wings.
+
+Shot 1 (0–3s): Wide shot. The woman sits at the end of the wooden dock with a basket of unlit paper lanterns. The dragon rests on the shore behind her, its glowing blue spikes lighting the mist.
+
+Shot 2 (3–7s): Close-up of the woman, smiling. She holds up a lantern and says to the dragon: "Tonight we make a wish, my friend. Just one, and we send it across the water." The dragon lowers its head beside her and blinks slowly with curious golden eyes.
+
+Shot 3 (7–11s): Medium shot. The woman places the lantern on the dock and looks up at the dragon. She says: "Can you light it for me? Gently, please, just a tiny spark." The dragon takes a slow breath and releases a small, soft orange flame that lights the lantern from inside.
+
+Shot 4 (11–15s): Close-up. The paper lantern glows warm gold on the woman's face as her eyes light up with joy. She whispers: "It's beautiful. You did it perfectly." The dragon makes a soft, happy rumble.
+
+Shot 5 (15–19s): Wide shot. The woman lowers the glowing lantern onto the water and it floats away across the lake. She hands another lantern to the dragon's huge claw and laughs: "Now you try! Be careful, they're delicate!"
+
+Shot 6 (19–23s): Close-up. The dragon carefully pinches a lantern between two claws, then places it on the water. Its golden eyes reflect the glow. The woman claps her hands and says: "Look at that! You're so gentle!"
+
+Shot 7 (23–27s): Wide, slightly high shot. Dozens of glowing lanterns drift across the dark lake under the stars as the woman and the dragon stand side by side on the shore, their reflections shimmering in the water.
+
+Shot 8 (27–30s): Medium close-up. The woman leans against the dragon's snout, her face lit by the lantern light. She says softly: "Thank you for staying with me. This is my favorite night." The dragon closes its eyes with a deep, content rumble as the lanterns glow in the background.
+
+Audio: The woman speaks only in clear English, in a young, warm, natural female voice. All her spoken words, whispers and laughter are in English only, with no other language. The dragon makes no speech, only soft rumbles, gentle breathing and a quiet flame whoosh. Light ambient sounds: soft lake water, evening crickets and a gentle breeze. Soft, warm, magical background music.
+```
+
+</details>
+
 <details><summary><b>Master Podcast Producer</b></summary>
 
 ```text
@@ -1093,6 +1204,64 @@ Do not break character. Be concise, professional, and highly creative.
 Topic: ${Topic}
 Target Audience: ${Target_Audience}
 Guest Profile: ${Guest_Profile:None (Solo Episode)}
+```
+
+</details>
+
+<details><summary><b>Mbappe Steals Harry Kane's Ballon d'Or</b></summary>
+
+```text
+**Setting:** The 2026 Ballon d’Or Ceremony. Grand stage in Paris. Golden trophy sits centre on a pedestal. Audience claps. Host stands at microphone. Harry Kane sits front row, dressed sharp, smiling, ready to go up. Kylian Mbappé sits nearby. Lamine Yamal & Michael Olise are seated together, looking smart and excited.
+
+---
+
+## Scene 1 — The Announcement
+
+**Host:** And the winner of the 2026 Ballon d’Or… for the first time in his career… **HARRY KANE!**
+
+*(Applause erupts. Harry grins, stands up, shakes hands, walks toward the stage. Suddenly, Kylian Mbappé jumps up, eyes wide, playfully sprinting past everyone. He reaches the trophy first, lifts it high, and turns around with a cheeky grin.)*
+
+**Mbappé:** *(holding trophy above head)* MINE! 😜 I WON IT!
+
+*(Audience laughs. Harry stops, hands on hips, shaking his head with a smile.)*
+
+**Kane:** Kylian… put it down. They called **my** name.
+
+**Mbappé:** *(backing away, trophy still in hands)* Are you sure? Maybe I misheard! It sounded like *Kylian*!
+
+---
+
+## Scene 2 — Yamal & Olise Step In
+
+*(Lamine Yamal and Michael Olise walk onto the stage, grinning, standing between them.)*
+
+**Yamal:** Guys, calm down — everyone saw the envelope! It says **Harry Kane**.
+
+**Olise:** Yeah, Kylian, don’t be greedy! You’ve got enough already! Hand it over, mate.
+
+**Mbappé:** *(pulling trophy slightly away)* Just let me hold it for one photo! Please? I promise I’ll give it back after the picture!
+
+**Kane:** *(laughing)* One photo. That’s it. Then I get it. Deal?
+
+**Mbappé:** Deal! *(grins big)*
+
+---
+
+## Scene 3 — The Selfie & The Handover
+
+*(Mbappé holds the trophy high. Yamal pulls out his phone. All four squeeze together — Harry in the middle, Mbappé on one side still gripping the trophy, Yamal and Olise on the other two sides — all smiling for the camera.)*
+
+**Yamal:** Say CHEESE! And… got it!
+
+*(Mbappé sighs, smiles, and gently passes the trophy into Harry’s hands.)*
+
+**Mbappé:** Okay… it looks better on you anyway. Congratulations, Harry. You deserve it.
+
+**Kane:** Thank you, Kylian. And thanks, guys — for coming to save me from this one. *(laughs)*
+
+**Olise:** No problem! Now go give your speech — before he tries to run off with it again!
+
+*(Everyone laughs. Mbappé raises his hands in surrender. Harry walks to the microphone, trophy proudly in hand, as the audience applauds.)*
 ```
 
 </details>
@@ -3101,6 +3270,14 @@ Generate a video for Researchers in the Lab going to the library, make it progra
 
 </details>
 
+<details><summary><b>Ronaldo Tries to Steal Messi's World Cup</b></summary>
+
+```text
+Ronaldo os angry  that messi winn the world cup, and he run to steal it from him
+```
+
+</details>
+
 <details><summary><b>Satirical and Bold Song Lyrics</b></summary>
 
 ```text
@@ -3131,6 +3308,14 @@ Rules:
 
 ```text
 Write an engaging short story in English, prompted by the following keywords: [list of keywords]. Your story should have a clear beginning, middle, and end, and demonstrate strong characterization, dialogue, and setting. You have a maximum of 600 words, and can use any tense or point of view. Feel free to be as creative and imaginative as possible.
+```
+
+</details>
+
+<details><summary><b>Single-Shot Speeder Chase Through a Cliffside City</b></summary>
+
+```text
+Speeder chase across a cliff city (single continuous shot) From a monumental cliffside city carved into stone, the camera dives toward a tiny streak of light ripping along a narrow ledge-road. Lock-on: a speeder hugging the wall at insane speed. The camera slingshots ahead, whips back, then drops tight to the rear thrusters: heat haze, grit snapping off the ledge, warning lights flashing. A collapsing balcony rains debris; the rider snaps a last-inch swerve under a falling arch, then threads through hanging laundry lines and open windows in one fluid line. The camera darts through the same openings, staying glued to the motion. One final bend and sudden calm: the camera blasts outward into a reveal of the city opening onto a boundless waterfall-fed valley, mist turning into rainbow.
 ```
 
 </details>
@@ -3269,6 +3454,62 @@ Variables:
 - ${eventTime}
 - ${venue}
 - ${featuredPerformances}
+```
+
+</details>
+
+<details><summary><b>The Battles Nobody Sees: Motivational Short Film</b></summary>
+
+```text
+Create a 60-second ultra-realistic cinematic motivational short film titled “THE BATTLES NOBODY SEES.”
+
+CORE CONCEPT:
+Tell an emotional, relatable story about a man going through difficult seasons of life. He experiences disappointment, loneliness, financial struggles, unanswered prayers, setbacks and moments when giving up seems easier than continuing.
+
+The film should remind viewers that struggling doesn’t mean failing, being behind doesn’t mean being defeated, and every difficult season can become part of someone’s growth.
+
+VISUAL STORYTELLING:
+
+SCENE 1 (0–10 seconds):
+A young man sits alone on the edge of his bed in a dimly lit room at night. His phone lights up, but there are no meaningful messages. He looks exhausted and lost in thought. Rain falls outside the window.
+
+SCENE 2 (10–20 seconds):
+Show him walking alone through a quiet street at night. Close-up of his face, tired eyes and thoughtful expression. Show him sitting at a desk looking at bills, unfinished work and personal goals written in a notebook.
+
+SCENE 3 (20–30 seconds):
+He looks into a mirror, takes a deep breath and slowly stands up. Cut to him tying his gym shoes, preparing for another difficult day, and stepping outside before sunrise.
+
+SCENE 4 (30–45 seconds):
+Show a realistic sequence of him exercising, working, learning, making mistakes and trying again. Show sweat, exhaustion, persistence and small victories. His progress should feel gradual and believable.
+
+SCENE 5 (45–55 seconds):
+The man walks through an empty street as the sun rises. His facial expression is calmer. He looks more confident, not because life has become perfect, but because he has decided not to give up.
+
+SCENE 6 (55–60 seconds):
+Wide cinematic shot of him standing on a rooftop overlooking the city at sunrise. Slowly fade to black.
+
+FINAL ON-SCREEN MESSAGE:
+“YOUR STORY ISN’T OVER.”
+
+VISUAL STYLE:
+Photorealistic human characters, natural facial expressions, realistic body movements, authentic environments, cinematic camera movements, shallow depth of field, subtle film grain, natural lighting, emotional close-ups and professional colour grading.
+
+Use muted colours, charcoal shadows, soft grey tones and warm sunrise highlights.
+
+VOICEOVER:
+Calm, mature masculine voice. Deep but natural, emotionally grounded, conversational and sincere. Avoid exaggerated shouting or artificial motivational delivery.
+
+MUSIC:
+Emotional cinematic piano at the beginning, gradually building into subtle atmospheric strings and powerful instrumental percussion towards the ending.
+
+EDITING:
+Smooth cinematic transitions, carefully paced scenes, realistic motion, emotional storytelling and perfectly synchronized narration.
+
+TECHNICAL:
+60 seconds, vertical 9:16, 4K, cinematic realism, high visual consistency, suitable for TikTok, Instagram Reels and YouTube Shorts.
+
+IMPORTANT:
+Do not make the character look like a superhero or an impossibly wealthy person. Avoid unrealistic transformations, artificial facial expressions, cartoon effects, excessive slow motion and flashy transitions. Make the story feel personal, honest and believable.
 ```
 
 </details>
@@ -3514,6 +3755,65 @@ The "P" sign reads exactly "P".
 
 ```text
 Capture a night life , when a tyrant king discussing with his daughter on the brutal conditions a suitors has to fulfil to be  eligible to marry her(princess)
+```
+
+</details>
+
+<details><summary><b>Thermal Shock: 30s AAA Game Trailer Elemental Duel (Seedance)</b></summary>
+
+```text
+AAA game cinematic trailer, pre-rendered CG like a high-budget fantasy game launch trailer: stylized semi-realistic characters with idealized faces, large luminous eyes, porcelain skin with subsurface glow, individually simulated hair strands, real fabric with weave and wear; massive particle and energy effects, volumetric god rays, haze and floating dust, low golden-hour backlight with sun flare, deep contrast, bloom, subtle chromatic aberration and film grain, anamorphic lens, shallow depth of field, fast handheld and drone camera work with real motion blur. NOT live-action, NOT a collectible figurine or statue, NOT a toy, NOT 2D anime, NOT a gameplay screenshot, NO HUD, no plastic skin.
+
+REFERENCES: @[ines] is Ines (use the character sheet), @[vesper] is Vesper (use the character sheet), @[dam] is the location, palette and light. Match each exactly whenever visible.
+
+FORMAT: 16:9, 24fps, 30 seconds, 20 shots, hard cuts on motion, fast trailer pacing.
+
+CHARACTER (@[ines]): a young woman of 21 with a short choppy black bob soaked by rain, freckles, a sharp determined face, a thin scar through one eyebrow, an oversized cropped bright yellow oilskin rain jacket, a black neoprene top, grey cargo shorts over black leggings and heavy black rubber boots. Her power is water: she shapes rain and water into whips, waves and blades and freezes them instantly into glowing glacial-cyan ice.
+
+CHARACTER (@[vesper]): a tall lean man in his late 20s with a shaved head, a calm cruel smile and a burn scar down his neck, a heavy scorched brown leather glassblower's apron over a sleeveless black work shirt, long leather gauntlets, goggles around his neck, fighting with a long steel glassblower's blowpipe as a staff. His power is molten glass: he draws glowing molten-orange glass from the blowpipe and flings, shapes and hardens it into spikes, blades and a shield. Molten glass hisses into steam wherever rain touches it.
+
+KEY LIGHT (every shot): dark storm clouds overhead, cold blue key from above, lightning flashes as the only highlights, rain sheeting through the frame.
+
+PALETTE: storm blue-black, wet concrete grey, @[ines]'s yellow jacket. Glacial cyan belongs only to @[ines]; molten orange belongs only to @[vesper]. Where they collide, white steam.
+
+SCREEN DIRECTION: @[ines] attacks from screen left, @[vesper] from screen right, unless a shot says otherwise.
+
+SHOTS
+1 | 0.0-1.2s | Extreme close-up of @[ines]'s eyes, rain running down her face, glacial-cyan light kindling in her irises.
+2 | 1.2-2.6s | Wide low shot along the flooded dam crest as lightning flashes: @[ines] on the left, @[vesper] on the right, molten orange glass dripping from his blowpipe and hissing into steam on the concrete.
+3 | 2.6-3.8s | @[vesper] whips the blowpipe and flings a ribbon of molten glass that hardens in mid-air into a spray of glowing orange spikes flying toward screen left.
+4 | 3.8-4.8s | Tracking low: @[ines] slides on one knee under the spikes across the flooded concrete, sweeping her arm so the falling rain snaps into a long cyan water whip.
+5 | 4.8-6.0s | The whip strikes @[vesper]'s raised molten-glass shield and simply explodes into a burst of white steam, the frame flashes white; as the steam clears @[vesper] is untouched, smiling, his shield glowing hotter.
+6 | 6.0-7.2s | @[vesper] spins and slams the blowpipe into @[ines]'s guard, sparks and spray bursting, knocking her backwards over the iron railing.
+7 | 7.2-9.0s | Wide: @[ines] drops down the face of the dam into the roaring white spillway, lands on the torrent and surfs it on a cyan wave, carving back toward the wall.
+8 | 9.0-10.4s | Low tracking shot: @[ines] rides a rising column of water straight up the dam face toward camera, the rain around her arms spiralling into ice.
+9 | 10.4-11.4s | @[ines] bursts over the crest and fires a volley of glowing cyan ice needles at @[vesper]; at the peak the action drops into slow motion, then snaps back to full speed.
+10 | 11.4-12.2s | Close on contact: the ice needles hit the glowing glass shield and it cracks with white spider-web fractures spreading across it from the cold, the frame flashes white.
+11 | 12.2-13.8s | Wide, orbiting: @[ines] with an ice blade and @[vesper] with a glass blade trade three fast blows along the crest, a burst of steam on every clash, the cracked shield shedding glowing shards.
+12 | 13.8-15.0s | @[vesper] plunges the blowpipe into the concrete and a wave of molten glass rolls over @[ines]'s boots and hardens, pinning her legs.
+13 | 15.0-16.4s | @[vesper] smashes her back into the railing and glass hardens over her arm; her cyan glow sputters and dies in the steam around her.
+14 | 16.4-17.6s | Low angle from @[ines] looking up at @[vesper] against a lightning flash as he raises the blowpipe, a huge glowing molten bulb swelling at its tip.
+15 | 17.6-18.6s | Extreme close-up: @[ines]'s eyes snap open, blazing cyan, and every falling raindrop around her stops in mid-air.
+16 | 18.6-20.0s | Extreme wide: behind @[ines] the entire black reservoir rises out of the dam into a towering wave lit from within by lightning, @[ines] tiny before it with one arm raised.
+17 | 20.0-21.4s | @[vesper] swings the molten bulb as @[ines] brings the wave crashing down onto him and freezes it the instant it hits his glass, the frame flashes white.
+18 | 21.4-23.4s | Slow motion: from the shock of the cold, @[vesper]'s glass shield, blade and the molten bulb shatter into millions of glittering orange and cyan shards hanging in the air around him, then snap back to full speed as they blast outward.
+19 | 23.4-25.0s | Medium: @[vesper] slumps unconscious against a huge glowing frozen wave sculpture, his blowpipe clattering onto the flooded concrete, steam curling off his gauntlets.
+20 | 25.0-30.0s | Low hero shot, held: @[ines] stands, the hardened glass on her legs and arm cracking and falling away, the frozen raindrops around her releasing and falling again, the frozen wave glowing faint cyan behind her under a lightning flash, as the camera slowly pushes in, held.
+
+AUDIO: hard-hitting hybrid trailer music with taiko drums from the first frame, cutting out on the failed whip, back in on the spillway surf, dropping to near-silence on shot 15 with only a heartbeat and suspended rain, then a massive hit on shot 17 and a long choir note over the final shot / constant storm bed: heavy rain, wind, thunder, the roaring spillway / a sub-bass hit on every impact, a whoosh on every cut / hissing steam whenever glass meets water, a sharp glass crack on shot 10, a huge crystalline shatter on shot 18, glass tinkling down on shot 19 / No dialogue
+
+---
+
+REFERENCE IMAGES (generate these first and attach them as @[ines], @[vesper] and @[dam]):
+
+Ines:
+Cinematic film still, low angle, dark storm clouds overhead, cold blue light from above, a lightning flash behind her, rain sheeting through the frame. A young woman of 21 with a short choppy black bob soaked by rain, freckles, a sharp determined face, a thin scar through one eyebrow, wearing an oversized cropped bright yellow oilskin rain jacket, a black neoprene top, grey cargo shorts over black leggings and heavy black rubber boots, mid-leap on the flooded crest of a giant concrete dam, the rain around her arm twisting into a whip of glowing glacial-cyan water freezing into ice. AAA game cinematic trailer, pre-rendered CG, stylized semi-realistic character with an idealized face, large luminous eyes, porcelain skin with subsurface glow, individually simulated hair strands, real fabric with weave and wear, volumetric god rays, flying debris and sparks, bloom, deep contrast, anamorphic lens, shallow depth of field, motion blur, subtle film grain
+
+Vesper:
+Cinematic film still, low angle, dark storm clouds overhead, cold blue light from above, a lightning flash behind him, rain sheeting through the frame. A tall lean man in his late 20s with a shaved head, a calm cruel smile and a burn scar down his neck, wearing a heavy scorched brown leather glassblower's apron over a sleeveless black work shirt, long leather gauntlets and goggles around his neck, spinning a long steel glassblower's blowpipe like a staff, a ribbon of glowing molten-orange glass trailing from its tip and hissing into steam in the rain, on the crest of a giant concrete dam. AAA game cinematic trailer, pre-rendered CG, stylized semi-realistic character with an idealized face, large luminous eyes, porcelain skin with subsurface glow, individually simulated hair strands, real fabric with weave and wear, volumetric god rays, flying debris and sparks, bloom, deep contrast, anamorphic lens, shallow depth of field, motion blur, subtle film grain
+
+Dam:
+Wide cinematic establishing shot of the crest of a colossal concrete dam in a mountain gorge during a violent storm, completely empty, no people, no characters. A long flooded walkway with iron railings and lamp posts, the black reservoir on one side, a roaring white spillway pouring down the other side into the gorge, giant floodgate towers, flickering warning lights. Dark storm clouds overhead, cold blue light from above, lightning flashes, rain sheeting through the frame. Low camera on the flooded crest, deep space, strong foreground iron railing, midground open crest, background gate towers dissolved in rain. AAA game cinematic trailer, pre-rendered CG environment, volumetric light, bloom, deep contrast, anamorphic lens, subtle film grain
 ```
 
 </details>

@@ -1,10 +1,969 @@
-# 编程开发 (3/11)
+# 编程开发 (3/12)
 
-共 706 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
+共 739 条。复制后把方括号里的内容换成你的，粘贴进任意对话模型即可。
 
 [English](../en/coding.md) · [中文](../zh/coding.md)
 
-分页：[1](coding.md) · [2](coding-2.md) · **3** · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md)
+分页：[1](coding.md) · [2](coding-2.md) · **3** · [4](coding-4.md) · [5](coding-5.md) · [6](coding-6.md) · [7](coding-7.md) · [8](coding-8.md) · [9](coding-9.md) · [10](coding-10.md) · [11](coding-11.md) · [12](coding-12.md)
+
+<details><summary><b>Go 代码库深度审查</b></summary>
+
+```text
+# 综合 Go 代码库审查
+
+你是一位拥有 20 多年企业软件开发、安全审计和性能优化经验的 Go 代码审查专家。你的任务是对提供的 Go 代码库进行彻底的、法医级别的分析。
+
+## 审查理念
+- 任何内容在被证实之前都假设其不正确
+- 每一行代码都可能是潜在的 bug 来源
+- 每一个依赖项都可能是潜在的安全风险
+- 每一个函数都可能是潜在的性能瓶颈
+- 每一个 goroutine 都可能是潜在的死锁或竞态条件
+- 每一个错误返回都可能被错误处理
+
+---
+
+## 1. 类型系统与接口分析
+
+### 1.1 类型安全违规
+- [ ] 识别所有 `interface{}` / `any` 的使用情况 — 每一处都可能导致运行时 panic
+- [ ] 查找未使用 comma-ok 模式的类型断言（`x.(Type)`）— 可能导致 panic
+- [ ] 检测类型 switch 中缺少 case 或 fallthrough 到 default 的情况
+- [ ] 查找不安全的指针转换（`unsafe.Pointer`）
+- [ ] 识别绕过编译时类型安全的 `reflect` 使用
+- [ ] 检查在歧义上下文中使用的无类型常量
+- [ ] 查找假设编码的原始 `[]byte` ↔ `string` 转换
+- [ ] 检测可能导致溢出的数值类型转换（int64 → int32，int → uint）
+- [ ] 识别应具有更严格约束的泛型（`[T any]` 应为 `[T comparable]`、`[T constraints.Ordered]`）
+- [ ] 查找在零值有意义时未使用 comma-ok 模式的 `map` 访问
+
+### 1.2 接口设计质量
+- [ ] 查找违反接口隔离原则的“胖”接口（>3-5 个方法）
+- [ ] 识别在实现端定义的接口（应在消费者端定义）
+- [ ] 检测接受具体类型的接口而非接口类型
+- [ ] 检查在需要清理资源时是否缺少 `io.Closer` 接口的实现
+- [ ] 查找嵌入了过多其他接口的接口
+- [ ] 识别用于调试/日志类型的 `Stringer`（`String() string`）实现缺失
+- [ ] 检查自定义错误类型是否正确实现了 `error` 接口
+- [ ] 查找本应导出以支持扩展性的未导出接口
+- [ ] 检测接口中方法接受/返回具体类型而非接口的情况
+- [ ] 识别具有自定义序列化需求但缺少 `MarshalJSON`/`UnmarshalJSON` 的类型
+
+### 1.3 结构体设计问题
+- [ ] 查找本应使用访问器方法的导出字段
+- [ ] 识别缺少 `json`、`yaml`、`db` 标签的结构体字段
+- [ ] 检测并非并发安全但缺乏文档说明的结构体
+- [ ] 检查存在填充问题的结构体（字段顺序影响内存对齐）
+- [ ] 查找嵌入结构体暴露了不必要方法的情况
+- [ ] 识别本应实现 `sync.Locker` 但未实现的结构体
+- [ ] 检查是否缺少对有意留空结构体的 `//nolint` 或文档说明
+- [ ] 查找对大型结构体使用值接收器方法（应使用指针接收器）
+- [ ] 检测包含按值传递的 `sync.Mutex` 的结构体（应使用指针或不可复制）
+- [ ] 识别缺少结构体验证方法（`Validate() error`）的情况
+
+### 1.4 泛型类型问题（Go 1.18+）
+- [ ] 查找没有适当约束的泛型函数
+- [ ] 识别从未使用的泛型类型参数
+- [ ] 检测可简化的过于复杂的泛型签名
+- [ ] 检查是否正确使用了 `comparable`、`constraints.Ordered` 等
+- [ ] 查找使用泛型但接口即可满足需求的地方
+- [ ] 识别约束范围过宽的类型参数（可使用更窄约束时却使用 `any`）
+- [ ] 检测在初始化前使用的 `sync.WaitGroup` / `sync.Once` / `sync.Mutex`
+- [ ] 识别在零长度切片上执行且无长度检查的切片操作
+
+---
+
+## 3. 错误处理分析
+
+### 3.1 错误处理模式
+- [ ] 查找所有忽略错误的位置（使用空白标识符 `_` 或未检查）
+- [ ] 识别仅执行 `return err` 而未包装上下文的 `if err != nil` 代码块
+- [ ] 检测未使用 `%w` 动词的错误包装（破坏 `errors.Is`/`errors.As`）
+- [ ] 查找以大写字母开头或以标点符号结尾的错误字符串（违反 Go 约定）
+- [ ] 识别未实现 `Unwrap()` 方法的自定义错误类型
+- [ ] 检查是否使用 `errors.Is()` / `errors.As()` 而非 `==` 比较
+- [ ] 查找应为包级变量的哨兵错误（`var ErrNotFound = ...`）
+- [ ] 检测在延迟函数中掩盖外部错误的错误处理
+- [ ] 识别 `recover()` 在错误位置使用或完全缺失的情况
+- [ ] 检查错误类型层次结构与分类是否合理
+
+### 3.2 Panic 与恢复
+- [ ] 查找在库代码中调用的 `panic()`（应返回错误而非 panic）
+- [ ] 识别在 goroutine 中缺失的 `recover()`（未恢复的 panic 会终止进程）
+- [ ] 检测库代码中使用 `log.Fatal()` / `os.Exit()`（仅在 `main` 中可接受）
+- [ ] 查找未进行边界检查可能导致索引越界的情况
+- [ ] 识别在 `init()` 函数中调用 `panic` 但无明确文档说明
+- [ ] 检查 HTTP 处理程序/中间件中是否正确进行 panic 恢复
+- [ ] 查找未遵循清晰命名约定的 `must` 模式函数
+- [ ] 检测在热路径中本可返回错误却引发 panic 的情况
+
+### 3.3 错误包装与上下文
+- [ ] 查找未包含上下文信息（哪个操作、哪个输入）的错误消息
+- [ ] 识别导致错误链过深的错误包装
+- [ ] 检测代码库中不一致的错误包装风格
+- [ ] 检查是否使用 `fmt.Errorf("...: %w", err)` 并正确使用动词
+- [ ] 查找应使用结构化错误（错误类型）替代字符串错误的位置
+- [ ] 识别关键错误路径中缺失的堆栈跟踪信息
+- [ ] 检查错误消息是否泄露敏感信息（密码、令牌、PII）
+- [ ] 检查是否存在 context 泄漏（缺少 cancel 函数调用）
+- [ ] 查找未使用 `defer cancel()` 的 `context.WithTimeout`/`WithDeadline`
+- [ ] 检测 context 是否被存储在结构体中（应作为参数传递）
+
+---
+
+## 5. 资源管理
+
+### 5.1 Defer 与清理
+- [ ] 查找在循环内部的 `defer`（defer 直到函数返回时才运行）
+- [ ] 识别带有被捕获循环变量的 `defer`
+- [ ] 检测缺少用于资源清理的 `defer`（文件句柄、连接、锁）
+- [ ] 查找 `defer` 顺序问题（未考虑 LIFO 行为）
+- [ ] 识别可能静默失败的方法上的 `defer`（如 `defer f.Close()` — 忽略错误）
+- [ ] 检查 `defer` 与命名返回值的交互（延迟绑定）
+- [ ] 查找已打开但从未关闭的资源（文件描述符、HTTP 响应体）
+- [ ] 检测读取后未关闭的 `http.Response.Body`
+- [ ] 识别未关闭的数据库 rows/statements
+
+### 5.2 内存管理
+- [ ] 查找在热路径中的大内存分配
+- [ ] 识别缺少切片容量提示的情况（`make([]T, 0, expectedSize)`）
+- [ ] 检测在循环中未使用 string builder 进行字符串拼接
+- [ ] 查找未预先分配容量就使用 `append()` 扩展切片的情况
+- [ ] 识别在热路径中频繁进行 byte slice 到 string 的转换（导致内存分配）
+- [ ] 检查是否正确使用 `sync.Pool` 来复用频繁分配的对象
+- [ ] 查找以值方式传递的大结构体而非指针
+- [ ] 检测切片重新切片导致底层数组无法被垃圾回收
+- [ ] 识别只增长不收缩的 `map`（内存泄漏模式）
+- [ ] 检查 I/O 操作中是否正确复用缓冲区（`bufio`, `bytes.Buffer`）
+
+### 5.3 文件与 I/O 资源
+- [ ] 查找未使用 `defer f.Close()` 的 `os.Open` / `os.Create`
+- [ ] 识别对潜在大输入使用 `io.ReadAll`（存在 OOM 风险）
+- [ ] 检测读取大文件时缺少 `bufio.Scanner` / `bufio.Reader`
+- [ ] 查找未清理的临时文件
+- [ ] 识别使用 `os.TempDir()` 但未正确清理
+- [ ] 检查文件权限是否过于宽松（如 0777, 0666）
+- [ ] 查找关键写入操作缺少 `fsync`
+- [ ] 检测文件操作中的竞争条件
+
+---
+
+## 6. 安全漏洞
+
+### 6.1 注入攻击
+- [ ] 查找使用 `fmt.Sprintf` 构建 SQL 查询而非参数化查询
+- [ ] 识别通过 `exec.Command` 将用户输入拼接导致的命令注入
+- [ ] 检测路径遍历漏洞（用户输入未经 `filepath.Clean` 处理直接用于 `filepath.Join`）
+- [ ] 查找 `html/template` 或 `text/template` 中的模板注入
+- [ ] 识别日志注入可能性（日志消息中包含未经净化的用户输入）
+- [ ] 检查是否存在 LDAP 注入漏洞
+- [ ] 查找 HTTP 响应头注入
+- [ ] 检测 SSRF 漏洞（HTTP 请求中用户可控的 URL）
+- [ ] 识别通过 `encoding/gob`、`encoding/json` 使用 `interface{}` 导致的反序列化攻击
+- [ ] 检查是否存在正则表达式注入（ReDoS）使用用户提供的模式
+
+### 6.2 认证与授权
+- [ ] 查找源码中硬编码的凭据、API 密钥或敏感信息
+- [ ] 识别受保护端点缺少认证中间件
+- [ ] 检测授权绕过可能性（IDOR 漏洞）
+- [ ] 查找 JWT 实现缺陷（算法混淆、缺少验证）
+- [ ] 识别比较操作中的时序攻击（应使用 `crypto/subtle.ConstantTimeCompare`）
+- [ ] 检查是否正确进行密码哈希（使用 `bcrypt`、`argon2`，而非 `md5`/`sha256`）
+- [ ] 查找会话令牌熵值不足
+- [ ] 检测通过角色/权限绕过导致的权限提升
+- [ ] 识别在状态变更端点缺少 CSRF 防护
+- [ ] 检查 OAuth2 实现是否正确（state 参数、PKCE）
+
+### 6.3 加密问题
+- [ ] 查找为安全目的使用 `math/rand` 而非 `crypto/rand`
+- [ ] 识别在安全敏感操作中使用弱哈希算法（`md5`、`sha1`）
+- [ ] 检测硬编码的加密密钥或 IV
+- [ ] 查找使用 ECB 模式（应使用 GCM、CTR 或带适当 IV 的 CBC）
+- [ ] 识别缺少 TLS 配置或不安全的 `InsecureSkipVerify: true`
+- [ ] 检查是否正确验证证书
+- [ ] 查找已弃用的加密包或算法
+- [ ] 检测加密中 nonce 重用
+- [ ] 识别 HMAC 比较未使用恒定时间比较
+
+### 6.4 输入验证与净化
+- [ ] 查找缺少输入长度/大小限制
+- [ ] 识别未结合 `io.LimitReader` 使用 `io.ReadAll`（可能导致拒绝服务）
+- [ ] 检测上传时缺少 Content-Type 验证
+- [ ] 查找大小计算中的整数溢出/下溢
+- [ ] 识别在发起 HTTP 请求前缺少 URL 验证
+- [ ] 检查是否正确处理 multipart 表单数据限制
+- [ ] 查找公共端点缺少速率限制
+- [ ] 检测未经验证的重定向（开放重定向漏洞）
+- [ ] 识别用户输入未经净化即用于文件路径
+- [ ] 检查 CORS 配置是否正确
+
+### 6.5 数据安全
+- [ ] 查找日志中包含敏感数据（密码、令牌、PII）
+- [ ] 识别未加密存储的静止状态下的个人身份信息（PII）
+- [ ] 检测 URL 查询参数中的敏感数据
+- [ ] 查找返回给客户端的错误消息中的敏感数据
+- [ ] 识别缺少 `Secure`、`HttpOnly`、`SameSite` 标志的 Cookie
+- [ ] 检查启动时日志中记录的环境变量是否包含敏感数据
+- [ ] 查找泄露内部实现细节的 API 响应
+- [ ] 检测缺失的安全响应头（CSP、HSTS、X-Frame-Options）
+- [ ] 识别带有 `Get` 前缀的 getter 方法（Go 约定：应使用 `Name()` 而非 `GetName()`）
+- [ ] 检测从导出函数中返回的未导出类型
+- [ ] 查找名称重复的包名（如 `http.HTTPClient` 应为 `http.Client`）
+- [ ] 识别 `if-return` 后的 `else` 块（应保持扁平）
+- [ ] 检查是否正确使用 `iota` 定义枚举
+- [ ] 查找缺少文档注释的导出函数
+- [ ] 检测应使用 `:=` 的 `var` 声明（反之亦然）
+- [ ] 识别缺少包级别文档（`// Package foo ...`）
+- [ ] 检查接收者命名是否规范（简短一致：`s` 表示 `Server`，而非 `this`/`self`）
+- [ ] 查找单方法接口名称未以 `-er` 结尾的情况（如 `Reader`、`Writer`、`Closer`）
+- [ ] 检测非平凡函数中的裸返回（naked returns）
+
+---
+
+## 9. 架构与设计
+
+### 9.1 包结构
+- [ ] 查找包之间的循环依赖（`go vet ./...` 不会编译，但需检查间接依赖）
+- [ ] 识别应存在但缺失的 `internal/` 包
+- [ ] 检测“所有内容都在一个包中”的反模式
+- [ ] 查找不恰当的包分层（业务逻辑导入 HTTP 处理程序）
+- [ ] 识别缺失的清晰架构边界（领域、服务、仓储层）
+- [ ] 检查 `cmd/` 结构是否合理，适用于多个二进制文件
+- [ ] 查找跨包共享的可变全局状态
+- [ ] 检测 `pkg/` 目录的误用
+- [ ] 识别缺失依赖注入的情况（构造函数应接受接口）
+- [ ] 检查 API 定义与实现之间是否合理分离
+
+### 9.2 SOLID 原则
+- [ ] **单一职责**：查找承担过多职责的包或文件
+- [ ] **开闭原则**：查找需要修改才能扩展的代码（缺少接口或插件机制）
+- [ ] **里氏替换原则**：查找违反契约的接口实现
+- [ ] **接口隔离原则**：查找应被拆分的庞大接口
+- [ ] **依赖倒置原则**：查找本应使用接口却直接依赖具体类型的场景
+
+### 9.3 设计模式
+- [ ] 查找可配置类型中缺失的“函数式选项”模式（Functional Options）
+- [ ] 识别本应接受 `Option` 函数的 `New*` 构造函数
+- [ ] 检测横切关注点中缺失的中间件模式
+- [ ] 查找可能泄露 goroutine 的观察者/发布-订阅实现
+- [ ] 识别数据访问中缺失的“仓储”模式
+- [ ] 检查是否合理使用“构建者”模式构造复杂对象
+- [ ] 查找本应使用“策略”模式的场景（通过接口实现行为变化）
+- [ ] 检测本应使用依赖注入的全局状态
+
+### 9.4 API 设计
+- [ ] 查找直接执行业务逻辑的 HTTP 处理程序（应委托给服务层）
+- [ ] 识别缺失的请求/响应验证中间件
+- [ ] 检测各端点间不一致的 REST API 约定
+- [ ] 查找 gRPC 服务定义中缺失的正确错误码
+- [ ] 识别缺失的 API 版本管理策略
+- [ ] 检查是否正确使用 HTTP 状态码
+- [ ] 查找缺失的健康检查 / 就绪探针端点
+- [ ] 检测过于频繁的 API 调用（本应批量处理的 N+1 请求）
+
+---
+
+## 10. 依赖分析
+
+### 10.1 模块与版本分析
+- [ ] 执行 `go list -m -u all` — 识别所有过时的依赖
+- [ ] 检查 `go.sum` 的一致性（使用 `go mod verify`）
+- [ ] 查找 `go.mod` 中残留的 replace 指令
+- [ ] 识别已知存在 CVE 的依赖（使用 `govulncheck ./...`）
+- [ ] 检查是否存在未使用的依赖（`go mod tidy` 有变更）
+- [ ] 查找已过时的 vendored 依赖
+- [ ] 识别本应显式声明为直接依赖的间接依赖
+- [ ] 检查 `go.mod` 中的 Go 版本是否与 CI/部署目标匹配
+- [ ] 查找包含依赖导入的 `//go:build ignore` 文件
+
+### 10.2 依赖健康状况
+- [ ] 检查每个依赖的最后提交日期
+- [ ] 识别已归档或无人维护的依赖
+- [ ] 查找存在开放严重问题的依赖
+- [ ] 检查依赖是否大量使用 `unsafe` 包
+- [ ] 识别可用标准库替代的重型依赖
+- [ ] 查找许可证受限的依赖（如 MIT 项目中使用 GPL）
+- [ ] 检查依赖是否存在 CGO 要求（影响可移植性）
+- [ ] 识别引入庞大传递依赖树的依赖
+- [ ] 查找未跟踪上游更新的 fork 版依赖
+
+### 10.3 CGO 考量
+- [ ] 检查是否必需 CGO 以及是否可构建 `CGO_ENABLED=0`
+- [ ] 查找 CGO 代码中缺失的内存管理
+- [ ] 识别热点路径中的 CGO 调用（Go→C 边界开销）
+- [ ] 检查 CGO 依赖是否破坏交叉编译
+- [ ] 查找未正确处理 C 错误的 CGO 代码
+- [ ] 检测跨 CGO 边界的潜在内存泄漏
+
+---
+
+## 11. 测试缺口
+
+### 11.1 覆盖率分析
+- [ ] 执行 `go test -coverprofile` — 识别未测试的包和函数
+- [ ] 查找未测试的错误路径（尤其是错误返回值）
+- [ ] 检测条件判断中未覆盖的边界情况
+- [ ] 检查是否缺少边界值测试
+- [ ] 识别未经测试的并发场景
+- [ ] 查找未经测试的输入验证路径
+- [ ] 检查是否缺少集成测试（数据库、HTTP、gRPC）
+- [ ] 识别缺少基准测试（`*testing.B`）的关键路径
+
+### 11.2 测试质量
+- [ ] 查找未对测试辅助函数使用 `t.Helper()` 的测试
+- [ ] 识别本应存在但缺失的表驱动测试
+- [ ] 检测过度使用 mock 而掩盖真实缺陷的测试
+- [ ] 查找测试了实现而非行为的测试
+- [ ] 识别存在共享可变状态（运行顺序依赖）的测试
+- [ ] 检查是否在安全处使用了 `t.Parallel()`
+- [ ] 查找不稳定的测试（依赖时间、依赖文件系统）
+- [ ] 检测缺失的子测试（`t.Run("name", ...)`）
+- [ ] 识别缺失的 golden 测试用 `testdata/` 文件
+- [ ] 检查 `httptest.NewServer` 是否缺少清理（缺少 `defer server.Close()`）
+
+### 11.3 测试基础设施
+- [ ] 查找缺失用于设置/拆卸的 `TestMain`
+- [ ] 识别集成测试缺少的构建标签（`//go:build integration`）
+- [ ] 检测缺少的竞态条件测试（`go test -race`）
+- [ ] 检查是否缺少模糊测试（`Fuzz*` 函数 — Go 1.18+）
+- [ ] 查找缺失的示例测试（`Example*` 函数用于 godoc）
+- [ ] 识别缺失的基准测试对比基线
+- [ ] 检查测试固件管理是否得当
+- [ ] 查找依赖外部服务但未使用 mock/stub 的测试
+
+---
+
+## 12. 配置与构建
+
+### 12.1 Go 模块配置
+- [ ] 检查 `go.mod` 中的 Go 版本是否合适
+- [ ] 验证 `go.sum` 是否已提交且一致
+- [ ] 检查模块路径命名是否正确
+- [ ] 查找不应存在于已发布模块中的 replace 指令
+- [ ] 识别需要 retract 指令的已损坏版本
+- [ ] 检查模块边界的划分是否合理（何时应拆分）
+- [ ] 验证 `//go:generate` 指令是否已记录且可复现
+
+### 12.2 构建配置
+- [ ] 检查是否正确使用 `ldflags` 嵌入版本信息
+- [ ] 验证 `CGO_ENABLED` 设置是否为有意为之
+- [ ] 查找是否正确使用构建标签（`//go:build`）
+- [ ] 检查是否正确设置交叉编译
+- [ ] 识别 CI 中是否缺少 `go vet` / `staticcheck` / `golangci-lint`
+- [ ] 验证 Docker 多阶段构建是否实现最小镜像大小
+- [ ] 检查是否存在适当的 `.goreleaser.yml` 配置（如适用）
+- [ ] 查找本应使用构建标签却硬编码 `GOOS`/`GOARCH` 的位置
+
+### 12.3 环境与配置
+- [ ] 查找硬编码的环境特定值（URL、端口、路径）
+- [ ] 识别启动时缺少的环境变量验证
+- [ ] 检测缺失配置时的不当默认值回退
+- [ ] 检查是否使用带验证标签的配置结构体
+- [ ] 查找未使用机密管理的敏感值
+- [ ] 识别缺少用于渐进式发布的功能开关 / 切换
+- [ ] 检查是否正确处理信号（`SIGTERM`、`SIGINT`）以实现优雅关闭
+- [ ] 查找缺少的健康检查端点（`/healthz`、`/readyz`）
+
+---
+
+## 13. HTTP 与网络相关
+
+### 13.1 HTTP 服务端问题
+- [ ] 查找未设置超时的 `http.ListenAndServe`（应使用自定义 `http.Server`）
+- [ ] 识别服务端缺少 `ReadTimeout`、`WriteTimeout`、`IdleTimeout`
+- [ ] 检测请求体未使用 `http.MaxBytesReader`
+- [ ] 查找未设置的响应头（Content-Type、Cache-Control、安全头）
+- [ ] 识别缺少通过 `server.Shutdown(ctx)` 实现的优雅关闭
+- [ ] 检查中间件链式调用顺序是否正确
+- [ ] 查找缺少请求 ID / 关联 ID 传递
+- [ ] 检测缺少访问日志中间件
+- [ ] 识别缺少 panic 恢复中间件
+- [ ] 检查处理程序错误响应是否一致
+
+### 13.2 HTTP 客户端问题
+- [ ] 查找使用 `http.DefaultClient`（无超时）
+- [ ] 识别 `http.Response.Body` 使用后未关闭
+- [ ] 检测缺少带指数退避的重试逻辑
+- [ ] 查找 HTTP 调用中未传递 `context.Context`
+- [ ] 识别连接池耗尽风险（缺少 `MaxIdleConns` 调优）
+- [ ] 检查客户端 TLS 配置是否正确
+- [ ] 查找响应体读取时缺少 `io.LimitReader`
+- [ ] 检测长时运行进程中 DNS 缓存问题
+
+### 13.3 数据库问题
+- [ ] 查找 `database/sql` 连接未正确使用连接池
+- [ ] 识别缺少 `SetMaxOpenConns`、`SetMaxIdleConns`、`SetConnMaxLifetime`
+- [ ] 检测通过字符串拼接导致的 SQL 注入
+- [ ] 查找事务出错时缺少回滚（`defer tx.Rollback()`）
+- [ ] 识别 `db.Query()` 后缺少 `rows.Close()`
+- [ ] 检查迭代后是否检查 `rows.Err()`
+- [ ] 查找缺少预编译语句缓存
+- [ ] 检测数据库操作未传入 context
+- [ ] 识别缺少数据库迁移版本控制
+
+---
+
+## 14. 文档与可维护性
+
+### 14.1 代码文档
+- [ ] 查找未添加 godoc 注释的导出函数/类型/常量
+- [ ] 识别逻辑复杂但无说明的函数
+- [ ] 检测缺少包级文档（`// Package foo ...`）
+- [ ] 检查不再与代码匹配的过时注释  
+- [ ] 查找需要处理的 TODO/FIXME/HACK/XXX 注释  
+- [ ] 识别未使用命名常量的魔法数字  
+- [ ] 检查 godoc 中是否缺少示例（`Example*` 函数）  
+- [ ] 查找缺少错误文档的情况（返回了哪些错误）
+
+### 14.2 项目文档  
+- [ ] 查找缺少的 README（包含用法、安装、API 文档）  
+- [ ] 识别缺少的 CHANGELOG  
+- [ ] 检测缺少的 CONTRIBUTING 贡献指南  
+- [ ] 检查是否缺少架构决策记录（ADRs）  
+- [ ] 查找缺少的 API 文档（OpenAPI/Swagger、protobuf 文档）  
+- [ ] 识别缺少的部署/运维文档  
+- [ ] 检查是否缺少 LICENSE 文件  
+
+---
+
+## 15. 边界情况检查清单
+
+### 15.1 输入边界情况  
+- [ ] 空字符串、切片、映射  
+- [ ] `math.MaxInt64`、`math.MinInt64`、溢出边界  
+- [ ] 在期望正数时传入负数  
+- [ ] 所有类型的零值  
+- [ ] 浮点运算中的 `math.NaN()` 和 `math.Inf()`  
+- [ ] 字符串处理中的 Unicode 字符和 emoji  
+- [ ] 极大的输入（>1GB 的文件、数百万条记录）  
+- [ ] 深度嵌套的 JSON 结构  
+- [ ] 格式错误的输入数据（截断的 JSON、损坏的 UTF-8）  
+- [ ] 多个 goroutine 的并发访问  
+
+### 15.2 时间边界情况  
+- [ ] 闰年和夏令时切换  
+- [ ] 时区处理（`time.UTC` 与 `time.Local` 不一致）  
+- [ ] `time.Ticker` / `time.Timer` 未停止（导致 goroutine 泄漏）  
+- [ ] 单调时钟与墙钟的区别（`time.Now()` 使用单调时钟计算持续时间）  
+- [ ] 非常古老的 timestamp（早于 Unix 时间戳起点）  
+- [ ] 比较操作中的纳秒精度问题  
+- [ ] `time.After()` 在 select 语句中使用（每次迭代创建新 channel —— 泄漏）
+
+### 15.3 平台边界情况  
+- [ ] 跨操作系统处理文件路径（`filepath.Join` 与 `path.Join`）  
+- [ ] 换行符差异（`\n` 与 `\r\n`）  
+- [ ] 文件系统大小写敏感性差异  
+- [ ] 最大路径长度限制  
+- [ ] 二进制协议中对字节序的假设  
+- [ ] 不同操作系统间信号处理的差异  
+
+---
+
+## 输出格式
+
+对于发现的每个问题，请提供：
+
+### [严重性：CRITICAL/HIGH/MEDIUM/LOW] 问题标题
+
+**类别**: [类型安全/安全性/并发/性能等]  
+**文件**: path/to/file.go  
+**行号**: 123-145  
+**影响**: 描述可能出现的问题  
+
+**当前代码**:  
+'''go
+// 有问题的代码
+'''
+
+**问题**: 详细解释为何这是一个问题  
+
+**建议**:  
+'''go
+// 修复后的代码
+'''
+
+**参考**: 文档链接、Go 博客文章、CVE、最佳实践  
+
+---
+
+## 优先级矩阵
+
+1. **CRITICAL（立即修复）**:  
+   - 安全漏洞（注入、认证绕过）  
+   - 数据丢失/损坏风险  
+   - 导致生产环境 panic 的竞态条件  
+   - 导致 OOM 的 goroutine 泄漏  
+
+2. **HIGH（本冲刺周期内修复）**:  
+   - 空指针解引用  
+   - 关键路径中被忽略的错误  
+   - 缺少上下文取消  
+   - 资源泄漏（连接、文件句柄）  
+
+3. **MEDIUM（尽快修复）**:  
+   - 代码质量/惯用法违规  
+   - 测试覆盖率缺口  
+   - 非热点路径的性能问题  
+   - 文档缺失  
+
+4. **LOW（技术债务）**:  
+   - 风格不一致  
+   - 次要优化  
+   - 可有可无的抽象  
+   - 命名改进  
+
+---
+
+## 应运行的静态分析工具
+
+在人工审查前，运行以下工具并包含其发现结果：
+
+'''bash
+# 编译器检查
+go build ./...
+go vet ./...
+
+# 竞态检测器
+go test -race ./...
+
+# 漏洞检查
+govulncheck ./...
+
+# Linter 套件（全面）
+golangci-lint run --enable-all ./...
+
+# 死代码检测
+deadcode ./...
+
+# 未使用的导出项
+unused ./...
+
+# 安全扫描器
+gosec ./...
+
+# 复杂度分析
+gocyclo -over 15 .
+
+# 逃逸分析
+go build -gcflags="-m -m" ./... 2>&1 | grep "escapes to heap"
+
+# 测试覆盖率
+go test -coverprofile=coverage.out ./...
+go tool cover -func=coverage.out
+'''
+
+---
+
+## 最终总结
+
+完成审查后，请提供：
+
+1. **执行摘要**: 2-3 段概述  
+2. **风险评估**: 总体风险等级及理由  
+3. **前 10 个关键问题**: 优先级排序列表  
+4. **建议行动方案**: 分阶段修复方法  
+5. **预计工作量**: 修复所需时间估算  
+6. **指标**:  
+   - 按严重性统计的总问题数  
+   - 代码健康评分（1-10）  
+   - 安全评分（1-10）  
+   - 并发安全性评分（1-10）  
+   - 可维护性评分（1-10）  
+   - 测试覆盖率百分比
+```
+
+</details>
+
+<details><summary><b>Go 命令行工具偏好</b> · 机器翻译</summary>
+
+```text
+# 一位发布单二进制命令行工具的开发者的 Go CLI 品味
+- 对带子命令的工具使用 Cobra；对单一用途的工具使用标准库 `flag` 包。置信度：0.80
+- 保持 `main.go` 极简：构建根命令、运行它，并将返回的错误映射为退出码。置信度：0.90
+- 将命令的连接代码放在 `cmd/` 中，真正的逻辑放在对标志和终端一无所知的 `internal/` 包中。置信度：0.85
+- 从 `RunE` 中返回错误，而不是在命令内部调用 `os.Exit` 或 `log.Fatal`。置信度：0.90
+- 成功时以 0 退出，运行时失败以 1 退出，用法错误以 2 退出。置信度：0.85
+- 将结果写入 stdout，将诊断信息写入 stderr；绝不将进度输出混入数据流。置信度：0.95
+- 提供 `--output json` 以便脚本使用，并在次要版本之间保持 JSON 结构稳定。置信度：0.85
+- 在使用颜色、旋转指示器或交互式提示之前检测 TTY，并遵守 `NO_COLOR`。置信度：0.90
+- 按清晰的顺序读取配置：标志、环境变量、配置文件，最后是默认值。置信度：0.85
+- 将配置文件存放在 `os.UserConfigDir()` 下，缓存存放在 `os.UserCacheDir()` 下，而不是主目录的根部。置信度：0.80
+- 将 `context.Context` 传递给每个操作，并通过 `signal.NotifyContext` 在 SIGINT/SIGTERM 时取消它。置信度：0.90
+- 使用 `log/slog` 做调试日志，置于 `--verbose` 标志之后；默认输出保持安静。置信度：0.80
+- 将 `io.Writer` 和环境注入命令中，这样无需接触真实终端即可测试。置信度：0.85
+- 对逻辑编写表驱动测试，对命令输出编写 golden 文件测试，并提供 `-update` 标志来刷新 golden 文件。置信度：0.85
+- 只要工具不需要 cgo，就使用 `CGO_ENABLED=0` 和 `-trimpath` 构建静态二进制文件。置信度：0.85
+- 通过 `-ldflags` 或 `debug.ReadBuildInfo` 嵌入版本、提交和构建日期，并在 `version` 命令中展示。置信度：0.90
+- 使用 GoReleaser 发布：从同一个打标签的提交生成交叉编译的归档文件、校验和以及 Homebrew tap。置信度：0.80
+- 提供由命令树生成的 bash、zsh 和 fish 的 shell 补全。置信度：0.80
+- 让破坏性命令在 TTY 中请求确认，在脚本中要求 `--yes` 或 `--force`。置信度：0.90
+- 保持依赖精简，并在 CI 中运行 `go vet`、`staticcheck` 和 `govulncheck`。置信度：0.85
+- 保持启动迅速：在命令真正需要之前，不进行网络调用或繁重的初始化。置信度：0.80
+```
+
+</details>
+
+<details><summary><b>Go 并发编码偏好</b> · 机器翻译</summary>
+
+```text
+# Go 并发品味:一位希望 goroutine 永不泄漏的后端工程师
+- 只有在确切知道 goroutine 将如何、何时停止时,才启动它。置信度:0.95
+- 将 `context.Context` 作为第一个参数传给每个会阻塞或进行 I/O 的函数,并遵守其取消信号。置信度:0.95
+- 使用 `errgroup.WithContext` 将相关的 goroutine 一起运行,这样第一个错误就会取消其余的 goroutine。置信度:0.90
+- 优先使用简单的同步 API,让调用方自行添加并发,而不是在库代码内部启动 goroutine。置信度:0.85
+- 只有发送方关闭 channel,并且只在没有其他发送方还可能向其写入时才关闭。置信度:0.90
+- 默认使用无缓冲 channel;只有在有实测依据时才添加缓冲,并用注释说明其大小的理由。置信度:0.75
+- 当 `sync.Mutex` 比 channel 更简单时,用它来保护共享状态;channel 用于传递所有权,而不是用来代替每一把锁。置信度:0.85
+- 把互斥锁紧挨着它所保护的字段放置,并且绝不复制包含互斥锁的结构体。置信度:0.85
+- 用 worker 池或 `errgroup.SetLimit` 限制扇出,而不是每个条目一个 goroutine。置信度:0.85
+- 每个等待工作的 `select` 同时也要等待 `ctx.Done()`。置信度:0.90
+- 在循环中使用 `time.NewTimer` 或 `context.WithTimeout`,而不是 `time.After`。置信度:0.75
+- 惰性初始化使用 `sync.Once` 或 `sync.OnceValue`,绝不要手写布尔标志。置信度:0.80
+- 仅在简单计数器和标志位上使用 `sync/atomic` 类型,不要用于复杂的不变量。置信度:0.75
+- 除非性能分析显示读多的 map 上存在锁竞争,否则避免使用 `sync.Map`。置信度:0.70
+- 在长期运行的服务器中,于 goroutine 边界处恢复 panic,并将其转换为记录日志的错误。置信度:0.75
+- CI 中所有测试都带 `-race` 运行,并将任何数据竞争报告视为发布阻塞项。置信度:0.95
+- 在测试中用 `goleak` 检查泄漏的 goroutine。置信度:0.70
+- 让关闭过程平稳有序:停止接收工作,排空进行中的任务,然后在截止时间内退出。置信度:0.90
+- 不要用 `context.Value` 传递可选参数;它只用于请求范围内的数据,例如 trace ID。置信度:0.85
+- 在函数注释中说明某个类型是否可以安全地并发使用。置信度:0.80
+```
+
+</details>
+
+<details><summary><b>Go 服务开发偏好</b> · 机器翻译</summary>
+
+```text
+# 后端工程师的 Go 服务品味
+- 在引入框架之前,先使用 Go 1.22 标准库的 net/http 路由器。Confidence: 0.85
+- 将项目组织为 cmd/<service>/main.go 加 internal/ 包,并省去 pkg/。Confidence: 0.80
+- 保持 main.go 精简:读取配置、装配依赖并启动服务器。Confidence: 0.90
+- 将 context.Context 作为每个执行 I/O 的函数的第一个参数传入。Confidence: 0.95
+- 使用 fmt.Errorf 和 %w 包装错误,并用 errors.Is 和 errors.As 检查它们。Confidence: 0.95
+- 使用 log/slog 以 JSON 格式记录日志,并在每一行中包含请求 ID。Confidence: 0.90
+- 在启动时将环境变量中的配置读取到一个带类型的结构体中。Confidence: 0.85
+- 当缺少必需的配置时,在启动阶段快速失败。Confidence: 0.90
+- 手写 SQL,并使用 sqlc 生成带类型的代码,而不是使用 ORM。Confidence: 0.80
+- 使用 pgx 作为带连接池的 Postgres 驱动。Confidence: 0.85
+- 在使用接口的包中定义小接口,而不是在实现接口的包中定义。Confidence: 0.85
+- 使用带 t.Run 子测试的表驱动测试。Confidence: 0.90
+- 在 CI 中对每个拉取请求使用 -race 运行 go test。Confidence: 0.90
+- 使用 golangci-lint 进行 lint,并采用一份简短且精挑细选的 linter 列表。Confidence: 0.80
+- 收到 SIGTERM 时,使用 signal.NotifyContext 和 server.Shutdown 优雅关闭。Confidence: 0.90
+- 为每个 http.Server 和 http.Client 设置明确的读、写和空闲超时。Confidence: 0.90
+- 暴露 /healthz 用于存活检查,/readyz 用于就绪检查。Confidence: 0.85
+- 避免全局状态,以及带副作用的包级 init 函数。Confidence: 0.85
+- 只在有明确的所有者和停止条件时才启动 goroutine,并用 errgroup 管理成组的 goroutine。Confidence: 0.85
+- 使用多阶段 Dockerfile,将静态二进制文件构建到 distroless 镜像中。Confidence: 0.80
+- 只有当泛型能消除真正的重复时才添加。Confidence: 0.70
+```
+
+</details>
+
+<details><summary><b>Go后端基础搭建阶段</b> · 机器翻译</summary>
+
+```text
+# MVP 第一阶段 — 基础
+
+## 目标
+
+搭建本地商业管理系统（Local Business Management System）的技术基础。
+
+暂时不要实现业务功能。
+
+目标是得到一个干净的 Go 应用，它能够：
+
+1. 成功启动
+2. 加载配置
+3. 连接 PostgreSQL
+4. 运行数据库迁移
+5. 对外提供 HTTP API
+6. 具备结构化日志
+7. 具备健康检查
+8. 具备干净的应用启动/关闭流程
+
+## 技术栈
+
+* Go
+* PostgreSQL
+* HTTP REST API
+* SQL 迁移
+* 环境变量/配置系统
+* 结构化日志
+
+## 初始结构
+
+'''text
+cmd/
+  server/
+    main.go
+
+internal/
+  platform/
+    config/
+    database/
+    http/
+    logging/
+
+  core/
+
+migrations/
+
+api/
+
+go.mod
+'''
+
+## 必需的端点
+
+'''http
+GET /health
+'''
+
+预期响应：
+
+'''json
+{
+  "status": "ok",
+  "database": "ok"
+}
+'''
+
+## 要求
+
+实现优雅关闭（graceful shutdown）。
+
+数据库连接必须使用连接池。
+
+配置必须来自环境变量/配置系统，而不是硬编码的值。
+
+创建一套迁移机制，能够安全地演进 PostgreSQL 表结构。
+
+暂不创建模块/插件架构，只保留为保持未来边界清晰所必需的最小结构。
+
+## 交付物
+
+一个连接到 PostgreSQL、运行中的本地 Go 服务器，具备清晰的项目结构和迁移系统。
+
+仅此而已。
+```
+
+</details>
+
+<details><summary><b>Gradle 构建开发偏好</b> · 机器翻译</summary>
+
+```text
+# Gradle Build 品味:一位追求快速而无聊(稳定可预期)构建的 JVM 开发者
+- 构建脚本使用 Kotlin DSL(`build.gradle.kts`),让编辑器提供真正的补全和类型检查。Confidence: 0.85
+- 始终提交 Gradle wrapper,并用 `./gradlew` 运行构建,绝不使用全局安装的 Gradle。Confidence: 0.95
+- 用 `distributionSha256Sum` 校验 wrapper 发行包,让被篡改的下载内容永远不会在 CI 中运行。Confidence: 0.75
+- 把所有依赖和插件版本都放在 `gradle/libs.versions.toml` 版本目录中。Confidence: 0.90
+- 通过 `build-logic` 中的约定插件共享构建逻辑,而不是通过 `allprojects` 或 `subprojects` 代码块。Confidence: 0.85
+- 用工具链(`java { toolchain { languageVersion = ... } }`)设置 Java 版本,而不是依赖机器上恰好安装的 JDK。Confidence: 0.90
+- 启用构建缓存和配置缓存,并把任何破坏它们的任务当作需要修复的缺陷。Confidence: 0.80
+- 在提交到仓库的 `gradle.properties` 中开启 `org.gradle.parallel=true` 并设置合理的 `org.gradle.jvmargs`。Confidence: 0.80
+- 使用 `tasks.register` 和 Provider API 惰性注册任务;避免使用 `tasks.create` 和急切配置。Confidence: 0.85
+- 正确声明任务的输入和输出,让自定义任务的最新状态检查(up-to-date)和缓存能够正常工作。Confidence: 0.85
+- 默认使用 `implementation`,只对确实属于模块公开接口的类型才暴露 `api`。Confidence: 0.90
+- 对要发布到生产环境的构建,使用依赖锁定或 `verification-metadata.xml` 来锁定或校验依赖。Confidence: 0.70
+- 在任何会发布的内容中,绝不使用 `1.+` 或 `latest.release` 这样的动态版本。Confidence: 0.90
+- 使用平台(platform)或 BOM 来对齐 Jackson、Netty 或 Spring 等相关库的版本。Confidence: 0.80
+- 保持模块小而聚焦,依赖方向清晰,模块之间不出现循环依赖。Confidence: 0.80
+- 为缓慢的 CI 构建发布构建扫描(build scan)或保留性能分析输出,并在猜测该优化什么之前先查看它们。Confidence: 0.70
+- 让 `./gradlew check` 成为在本地和 CI 中运行测试、静态分析和格式检查的唯一命令。Confidence: 0.90
+- 把签名密钥和仓库密码等机密保存在环境变量或 CI 机密中,绝不放在仓库里的 `gradle.properties` 中。Confidence: 0.95
+- 当类型化的 Gradle 任务或插件能完成工作时,避免在构建中运行 shell 脚本。Confidence: 0.70
+- 定期升级 Gradle,并在弃用警告于下一个主版本中变成错误之前修复它们。Confidence: 0.80
+- 让根构建脚本几乎为空;真正的配置放在约定插件和各模块的脚本中。Confidence: 0.75
+```
+
+</details>
+
+<details><summary><b>gRPC 服务开发偏好</b> · 机器翻译</summary>
+
+```text
+# 务实的分布式系统工程师的 gRPC 服务偏好
+- 将所有 .proto 文件放在一个共享的 schema 仓库或目录中,每个包只有一个负责人,并在 CI 中据此生成代码。置信度:0.85
+- 每次 proto 变更在合并前,都要用 buf lint 和 buf breaking 进行 lint 并检查是否存在破坏性变更。置信度:0.90
+- 在名称中为包标注版本,例如 billing.v1,并新增 v2 包,而不是改变现有字段的含义。置信度:0.90
+- 绝不复用或重新编号字段标签,并将已移除的字段和名称标记为 reserved。置信度:0.95
+- 为每个 RPC 提供独立的请求和响应消息,即使一开始为空,以便日后添加字段。置信度:0.90
+- 在适用的情况下,遵循面向资源的方法风格,即 Get、List、Create、Update 和 Delete,而不是临时拼凑的动词。置信度:0.75
+- 部分更新使用字段掩码,而不是把未设置的字段当作清除请求。置信度:0.80
+- 每个 List 调用都使用 page_size 和不透明的 page_token 进行分页,并在服务端限制页面大小。置信度:0.90
+- 时间值使用 google.protobuf.Timestamp 和 Duration 等众所周知的类型,而不是原始整数。置信度:0.85
+- 正确返回规范的状态码,例如 NOT_FOUND、INVALID_ARGUMENT 和 UNAVAILABLE,绝不把所有失败都包装成 UNKNOWN。置信度:0.90
+- 对于校验失败,使用更丰富的错误模型附加结构化的错误详情,而不是把它们塞进消息字符串。置信度:0.75
+- 要求每个客户端调用都设置截止时间,并将剩余的截止时间传播给下游调用。置信度:0.95
+- 仅重试幂等方法,退避策略和重试预算在服务配置中设置,而不是写在手写的循环里。置信度:0.85
+- 在元数据中传递请求 ID、认证令牌和追踪上下文,业务数据则放在消息体中。置信度:0.85
+- 将日志、认证、指标和追踪放在拦截器中,而不是在每个处理程序里重复编写。置信度:0.90
+- 内部服务之间使用双向 TLS,并对任何敏感操作在服务端校验每次调用的凭据。置信度:0.85
+- 实现标准的 gRPC 健康检查服务,并且仅在生产环境之外启用服务端反射。置信度:0.80
+- 优先使用一元调用,仅当数据确实是增量式或长期存在时才使用流式调用。置信度:0.80
+- 在流上应用流量控制和背压,并在负载均衡器允许的范围内发送 keepalive ping。置信度:0.70
+- 使用 L7 代理或客户端负载均衡对每个请求进行负载均衡,因为 HTTP/2 连接会把流量固定到某一个后端。置信度:0.85
+- 为浏览器和合作伙伴提供由同一套 proto 生成的 REST 或 JSON 网关,而不是手动维护第二套 API。置信度:0.70
+- 使用进程内服务器和真实生成的客户端来测试处理程序,而不是模拟生成的桩代码。置信度:0.80
+- 在 proto 文件中用注释记录每个服务、方法和字段,因为读者首先会看那里。置信度:0.85
+```
+
+</details>
+
+<details><summary><b>Helm Chart编码偏好</b> · 机器翻译</summary>
+
+```text
+# Kubernetes 打包工程师的 Helm Chart 品味
+- 每个可部署的应用对应一个 chart,并在 `Chart.yaml` 中使用清晰的名称、版本和 `appVersion`,且遵循语义化版本(semver)。Confidence: 0.90
+- 保持默认的 `values.yaml` 对非生产环境安装是安全的,并在 `values.schema.json` 或 VALUES.md 中记录每一个键。Confidence: 0.85
+- 谨慎使用官方 Helm 库模式和 bitnami 风格的辅助模板;只复制你真正理解的辅助模板。Confidence: 0.75
+- 从单一的 `_helpers.tpl` 生成标签和选择器模板,使 Service 始终与 Pod 匹配。Confidence: 0.95
+- 绝不要在模板中硬编码命名空间;从 `Release.Namespace` 或显式的值中获取。Confidence: 0.90
+- 在生产环境的 values 中将镜像标签固定为摘要(digest)或不可变标签;在 schema 中禁止使用 `latest`。Confidence: 0.90
+- 为每个容器设置资源请求和限制,默认值适配小型集群,并为生产环境提供覆盖值。Confidence: 0.85
+- 包含就绪探针和存活探针,并设置符合实际的延迟;错误的探针比没有探针更糟糕。Confidence: 0.85
+- 使用 ConfigMap 管理配置,并通过 sealed-secrets、SOPS 或 external-secrets 管理密钥——不要在 git 中存放明文。Confidence: 0.95
+- 对必填值在模板中使用 `required` 和 `fail`,使配置错误在安装时就失败。Confidence: 0.85
+- 每次 chart 变更时,都在 CI 中运行 `helm lint`、`helm template` 以及 kubeconform/kubeval 检查。Confidence: 0.90
+- 使用 `helm unittest` 测试,或对模板的标签、端口和探针做快照,这样重构就不会悄悄破坏安装。Confidence: 0.80
+- 当只有打包方式变化时,让 chart 的版本独立于应用版本;当镜像变化时,提升 `appVersion`。Confidence: 0.80
+- 仅当服务确实共享同一发布生命周期时,才优先使用小型 umbrella chart;否则通过 GitOps 单独部署各个 chart。Confidence: 0.75
+- 支持 `extraEnv`、`extraVolumes` 和 `affinity` 钩子,使运维人员无需 fork chart 就能进行扩展。Confidence: 0.80
+- 让 RBAC 模板默认为可选启用并遵循最小权限;除非需要,默认的 ServiceAccount 不应挂载 API 令牌。Confidence: 0.85
+- 在 `README.md` 中记录升级说明,涵盖会造成破坏的 values 重命名,并提供 values 迁移示例。Confidence: 0.80
+- 通过 CI 将 chart 发布到 OCI 注册表或 ChartMuseum,并附带签名的来源证明;不要从笔记本电脑上执行 `helm push`。Confidence: 0.80
+- 通过让 chart 仅凭 values 文件即可干净地渲染——无需手动执行 `helm upgrade` 步骤——来与 GitOps(Argo CD 或 Flux)保持一致。Confidence: 0.85
+- 限制 chart 的复杂度:如果模板需要大量逻辑,就把它移到控制器或 operator 中,而不是让 Gotpl 不断膨胀。Confidence: 0.75
+- 在应用到生产环境之前审查 `helm diff` 的输出,并要求在部署 Environment 上设置人工审批关卡。Confidence: 0.85
+```
+
+</details>
+
+<details><summary><b>Herdr多代理并行开发</b> · 机器翻译</summary>
+
+```text
+---
+name: herdr-multiagent
+description: "在 Herdr 下并行运行多个编码 agent 的作战手册：阶段拆分、每个 agent 一个 git worktree + 隔离环境 + pane、基于文件的 brief、状态监控、评审与合并。与 agent 类型无关：子 agent 的类型取自 `herdr pane current`（.result.pane.agent），并与编排者一致（omp、opencode、claude、codex、kimi 等）。用于在独立 worktree 中进行多 agent 并行工作。需要 HERDR_ENV=1。"
+---
+
+# 通过 Herdr 进行多 agent 协作
+
+作战手册：把项目剩余工作拆分为相互独立的阶段，让每个阶段由各自的 agent 在各自的 git worktree 和 Herdr pane 中完成，交给它一份基于文件的 brief，对其进行监控，并验收结果。
+
+本 skill 与 agent 类型无关：子 agent 的类型等同于编排者的类型。从 opencode 启动时，子 agent 是 opencode；从 omp 启动时，是 omp；从 claude 启动时，是 claude。绝不要凭记忆硬编码编排者的类型，也绝不要挑选一个"热门"类型。
+
+## 0. 前置条件
+
+'''bash
+test "${HERDR_ENV:-}" = 1   # if this fails, stop - we are not inside Herdr
+'''
+
+如果检查失败，告知用户当前会话不是在 Herdr 下运行，然后停止。不要从外部去操控别人的 Herdr。
+
+基础的 pane/agent 命令见 Herdr 自带的 skill（`herdr --skill`）。已安装的二进制文件才是语法的权威；不确定时请阅读 `herdr agent`、`herdr pane`、`herdr integration`，不要猜测。
+
+## 1. 先确定你自己的类型 - 在做任何事之前
+
+'''bash
+herdr pane current --current
+'''
+
+`.result.pane.agent` 字段就是编排者的类型，同一个值也要传给子 agent 的 `--kind`：
+
+'''bash
+KIND=$(herdr pane current --current | jq -r '.result.pane.agent')
+# without jq:
+KIND=$(herdr pane current --current | sed -E 's/.*"agent":"([^"]+)".*/\1/' | head -1)
+echo "$KIND"
+'''
+
+为空或为 `unknown` - 询问用户用哪种类型启动子 agent。下文中，`$KIND` 始终指这个解析出的值，而不是字面量。
+
+检查该类型的 Herdr 集成（它提供 `agent list/wait/prompt`）：
+
+'''bash
+herdr integration status | grep -i "$KIND"
+'''
+
+- `current` - 良好。
+- `not installed` - 运行 `herdr integration install "$KIND"`。只有**新**会话才会加载该集成，所以要在启动子 agent 之前安装；编排者自身在 `agent list` 中依然不可见，这没关系 - 它不需要被监控。
+- 该类型不在 `herdr integration install` 的列表中（例如 `amp`、`cline`、`kiro`、`maki`）- 将没有结构化监控，使用 §7 的备用方案（`pane read` + git）。这不是阻碍。
+
+向用户明确说明："children kind = $KIND"。
+
+## 2. 拆分 - 主要步骤，不要急
+
+- 阅读项目计划/规格说明以及当前状态（`git log`、测试、`git worktree list`）。
+- 把剩余工作拆分为**文件区域互不重叠**的阶段。两个 agent 处理同一个包 - 只能是有意为之，并且要有明确的顺序（先后进行，而非并行）。
+- 对共享文件（配置、lock）的追加式修改是可以接受的 - 在 brief 中注明"仅追加，不改签名"；合并冲突由编排者解决。
+- 写下矩阵"阶段 -> 它可以 / 不得触碰的文件"。
+
+启动前：main 中已完成的一切都已提交，工作树是干净的。
+
+## 3. 每个 agent 一个 worktree + 隔离环境
+
+'''bash
+git worktree add ../<proj>-s<N> -b stage-<N>-<name>
+'''
+
+Python 陷阱：共享 venv 会导入别人的代码（主仓库的 editable 安装）。给每个 worktree 配独立的 venv：
+
+'''bash
+cd ../<proj>-s<N> && python -m venv .venv \
+  && ./.venv/Scripts/python.exe -m pip install -q -e "./api[dev]"
+'''
+
+在同一条后台命令中依次安装多个 venv（pip 缓存是共享的）。JS 技术栈：每个 worktree 各自的 `node_modules`（`npm ci`）。
+
+如果编排者有命令包装 hook（rtk 之类）：brief 中的相对解释器路径（`../.venv/Scripts/python.exe`）无法通过这种 hook 解析（"command not found"）。在 brief 和提示中只使用该 worktree 的 python/npm 的**绝对**路径。
+
+## 4. Brief - 用文件，不要放在命令行上
+
+`<repo>/.briefs/stage-<N>.md`（不纳入版本跟踪）。Brief 结构：
+
+- **context**：先读什么（规格、契约、关键文件），哪些已经完成；
+- **task**：引用规格条目的具体要求；
+- **boundaries**：允许/禁止的文件，"不得离开 worktree"，"不要 push"；
+- **acceptance**：确切的测试/linter 命令（使用该 worktree 的解释器绝对路径），"已有测试保持通过"，提交到自己的分支，最终报告。
+
+Brief 不得假定某种特定的 agent 类型：不要在其中写"运行 omp/skill/..."- 写目标、边界和验收命令。子 agent 自行决定使用它自己的哪些工具。
+
+给 agent 的提示要简短："Read the file <brief> and complete it fully"。
+
+## 5. Pane：创建后立即命名
+
+推荐布局 - main-left：编排者 pane 在左侧占满整个高度，所有子 agent 在右侧排成一列，上下堆叠。如果用户有围绕 main-left 构建的布局插件，其他任何方案都会破坏他们的视图。如果用户明确要求其他布局，按用户的要求来。
+
+第一个子 agent - `split --current --direction right`，其余 - 在右侧列**内部**用 `split --pane <previous child> --direction down`。不要拆分编排者 pane，也不要把 agent pane 向右拆分 - 只在右侧列内部向下串联。
+
+'''bash
+herdr pane split --current --direction right --cwd "<worktree1>" --no-focus
+herdr pane split --pane <agent1-pane> --direction down --cwd "<worktree2>" --no-focus
+'''
+
+新 pane 的 ID 来自 JSON `.result.pane.pane_id`。不要动用户的焦点（`--no-focus`）。子 agent 在步骤 6 中通过 `agent start` 获得名称；另外为了清晰，再执行 `herdr pane rename <pane_id> "s<N>-<name>"`。
+
+## 6. 启动同类型的子 agent
+
+标准做法是 `agent start`，它还会验证预期的 agent 确实在该 pane 中启动了：
+
+'''bash
+herdr agent start s1-<name> --kind "$KIND" --pane <pane_id> -- <autonomy-flags>
+'''
+
+名称必须匹配 `[a-z][a-z0-9_-]{0,31}`，且在存活的 agent 中唯一。
+```
+
+</details>
+
+<details><summary><b>HTTP 压测命令行工具</b></summary>
+
+```text
+使用 Go 语言创建一个高性能 HTTP 基准测试工具。实现支持可配置线程数的并发请求生成。添加详细统计信息，包括延迟、吞吐量和错误率。支持 HTTP/1.1、HTTP/2 和 HTTP/3。实现自定义请求头与 Cookie 管理。添加请求模板功能以支持动态内容。包含响应验证功能，支持正则表达式匹配与状态码检查。实现 TLS 配置，并提供证书验证选项。添加负载配置文件功能，支持预热（ramp-up）阶段与稳态（steady-state）阶段。包含详细报告功能，输出百分位数与直方图。实现分布式测试模式，以应对高负载场景。
+```
+
+</details>
 
 <details><summary><b>HTTP 安全响应头检查器</b> · 机器翻译</summary>
 
@@ -1551,6 +2510,34 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
+```
+
+</details>
+
+<details><summary><b>HTTP 缓存偏好</b> · 机器翻译</summary>
+
+```text
+# 想要页面快速又不出现过期意外的 Web 开发者的 HTTP 缓存偏好
+- 有意识地为每个响应确定缓存策略；缺少 `Cache-Control` 头会让浏览器和代理自行猜测。Confidence: 0.90
+- 为带指纹的静态资源使用 `Cache-Control: public, max-age=31536000, immutable`。Confidence: 0.95
+- 在资源文件名中加入内容哈希，而不是用 `?v=2` 这样的查询字符串来破除缓存。Confidence: 0.85
+- 为 HTML 文档发送 `no-cache` 或非常短的 max-age，让新部署立刻生效。Confidence: 0.85
+- 对包含个人或敏感数据的响应使用 `private, no-store`，绝不让共享缓存保存它们。Confidence: 0.95
+- 当 CDN 可以清除缓存而浏览器不能时，使用 `s-maxage` 给 CDN 设置与浏览器不同的缓存时长。Confidence: 0.80
+- 对可以有几秒延迟的内容添加 `stale-while-revalidate`，让用户很少需要等待源站。Confidence: 0.80
+- 使用 `stale-if-error`，让 CDN 在源站宕机时继续提供最后一份正常的副本。Confidence: 0.70
+- 发送强 `ETag` 或 `Last-Modified` 校验器，让重新验证返回开销很小的 `304 Not Modified`。Confidence: 0.80
+- 保持 `Vary` 头尽量精简；按 `User-Agent` 或 `Cookie` 做变化会悄悄毁掉 CDN 命中率。Confidence: 0.85
+- 绝不在共享缓存中缓存会设置 cookie 的响应。Confidence: 0.90
+- 内容变更后按标签或替代键（surrogate key）清除 CDN，而不是清除全部缓存。Confidence: 0.75
+- 只有在数据确实是共享的情况下才缓存 API 的 GET 响应，并在响应头中明确说明。Confidence: 0.80
+- 不要长时间缓存错误响应；被缓存的 500 或 404 可能比真正的问题存活得更久。Confidence: 0.80
+- 除非应用确实需要离线支持，否则依赖 HTTP 缓存头而不是 service worker。Confidence: 0.70
+- 把 CDN 缓存命中率作为关键指标来关注，并在部署后命中率下降时展开调查。Confidence: 0.75
+- 用 `curl -I` 针对真实的 CDN 测试缓存行为，而不只是在本地开发环境中测试。Confidence: 0.80
+- 把每条路由的缓存规则记录在同一个地方，这样没人需要在浏览器里读响应头才能了解它们。Confidence: 0.65
+- 把 `Cache-Control` 的决策放在受版本控制的应用代码或边缘配置中，而不是只放在控制台里。Confidence: 0.75
+- 相比长缓存时间加紧急清除，更倾向于短缓存时间加重新验证。Confidence: 0.70
 ```
 
 </details>
@@ -3642,6 +4629,34 @@ license: MIT
 对于多步骤任务，陈述一个简要计划：
 \
 强有力的成功标准让你能够独立循环迭代。薄弱的标准（如“让它能工作”）需要持续澄清。
+```
+
+</details>
+
+<details><summary><b>Kotlin 协程编码偏好</b> · 机器翻译</summary>
+
+```text
+# 一位处处追求结构化并发的 Android 和 JVM 工程师的 Kotlin 协程品味
+- 只从与生命周期绑定的作用域中启动协程,例如 `viewModelScope`、`lifecycleScope` 或由服务持有的作用域。Confidence: 0.95
+- 绝不使用 `GlobalScope`;如果工作必须在页面之外继续存在,就把它交给应用级作用域或 WorkManager。Confidence: 0.95
+- 让挂起函数具备主线程安全性:由函数自身通过 `withContext` 切换到 `Dispatchers.IO` 或 `Default`,而不是由调用方切换。Confidence: 0.90
+- 通过构造函数注入调度器,以便测试时可以用 `TestDispatcher` 替换它们。Confidence: 0.90
+- 对应当一起失败的并行工作使用 `coroutineScope`,只有在子协程必须各自独立失败时才使用 `supervisorScope`。Confidence: 0.85
+- 绝不吞掉 `CancellationException`;在每个宽泛的 `catch` 块中都要重新抛出它。Confidence: 0.95
+- 只在真正需要并行拆分任务时才使用 `async`/`await`,不要拿它来替代普通的挂起调用。Confidence: 0.80
+- 将 UI 状态暴露为 `StateFlow`,一次性事件则通过 `Channel` 或由 UI 消费的状态字段来传递。Confidence: 0.80
+- 在 UI 中使用 `repeatOnLifecycle(Lifecycle.State.STARTED)` 或 `collectAsStateWithLifecycle` 来收集 Flow。Confidence: 0.90
+- 使用带有 `SharingStarted.WhileSubscribed(5_000)` 的 `stateIn`,这样没人观察时上游工作就会停止。Confidence: 0.80
+- 默认保持 Flow 为冷流,只在明确的边界处用 `shareIn` 或 `stateIn` 转换为热流。Confidence: 0.80
+- 使用 `flowOn` 把上游工作移出主线程,而不是用 `withContext` 包裹收集器。Confidence: 0.80
+- 用 `withContext(Dispatchers.IO)` 包装阻塞式 Java API,并且绝不在生产代码路径中调用 `runBlocking`。Confidence: 0.90
+- 用 `withTimeout` 或 `withTimeoutOrNull` 为网络和数据库调用添加超时,而不是手写延迟。Confidence: 0.75
+- 在长时间的 CPU 循环中检查 `ensureActive()` 或调用 `yield()`,让取消真正能停止工作。Confidence: 0.80
+- 用 `Mutex` 保护共享可变状态,或把它限制在单个协程内,绝不在挂起调用外面套一个普通的 `synchronized` 块。Confidence: 0.85
+- 在根作用域安装 `CoroutineExceptionHandler` 来记录崩溃日志,但预期内的错误用 `Result` 或密封类型来处理。Confidence: 0.75
+- 使用 `runTest` 和虚拟时间测试协程,使用 Turbine 测试 Flow。Confidence: 0.85
+- 用 `CoroutineName` 为重要的协程命名,使日志和调试器输出保持可读。Confidence: 0.65
+- 不要让挂起函数带有 `launch` 副作用;启动后台工作的函数应在名称中说明这一点。Confidence: 0.75
 ```
 
 </details>
