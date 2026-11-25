@@ -1540,8 +1540,7 @@ Production agents need memory that survives sessions — facts, preferences, and
 | [Anthropic Prompt Library](https://docs.anthropic.com/en/prompt-library/library) | Official production-ready prompts from Anthropic |
 | [**ai-engineering-from-scratch**](https://github.com/rohitg00/ai-engineering-from-scratch) | The most complete open-source AI engineering curriculum — 523 lessons / 20 phases / ~342 hours; dedicated prompt engineering, agent engineering, MCP, and Agent Skills phases where every lesson ships a reusable artifact (prompt, skill, agent, MCP server); Python/TypeScript/Rust, MIT, 55k+ stars, actively maintained (Sept 2026) ![](https://img.shields.io/github/stars/rohitg00/ai-engineering-from-scratch?style=flat-square) |
 | [NirDiamant/Prompt_Engineering](https://github.com/NirDiamant/Prompt_Engineering) | 22 Jupyter Notebook tutorials from basics to advanced — CoT, few-shot, templates, multi-language ![](https://img.shields.io/github/stars/NirDiamant/Prompt_Engineering?style=flat-square) |
-| [automotive-skills-suite](https://github.com/jherrodthomas/automotive-skills-suite) | 152 installable Claude skills for automotive engineering — ISO 26262, ISO/SAE 21434, ISO 21448 SOTIF, AIAG-VDA, 
-ASPICE, AUTOSAR; builder + reviewer pairs with xlsx deliverables ![](https://img.shields.io/github/stars/jherrodthomas/automotive-skills-suite?style=flat-square) |
+| [automotive-skills-suite](https://github.com/jherrodthomas/automotive-skills-suite) | 152 installable Claude skills for automotive engineering — ISO 26262, ISO/SAE 21434, ISO 21448 SOTIF, AIAG-VDA, ASPICE, AUTOSAR; builder + reviewer pairs with xlsx deliverables ![](https://img.shields.io/github/stars/jherrodthomas/automotive-skills-suite?style=flat-square) |
 | [ImagesPrompt](https://imagesprompt.in) | Free library of 1,162 AI photo and video prompts across 15+ categories, with a free prompt builder and an open-source dataset of 100 prompts |
 ---
 
