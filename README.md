@@ -1542,6 +1542,7 @@ Production agents need memory that survives sessions — facts, preferences, and
 | [NirDiamant/Prompt_Engineering](https://github.com/NirDiamant/Prompt_Engineering) | 22 Jupyter Notebook tutorials from basics to advanced — CoT, few-shot, templates, multi-language ![](https://img.shields.io/github/stars/NirDiamant/Prompt_Engineering?style=flat-square) |
 | [automotive-skills-suite](https://github.com/jherrodthomas/automotive-skills-suite) | 152 installable Claude skills for automotive engineering — ISO 26262, ISO/SAE 21434, ISO 21448 SOTIF, AIAG-VDA, ASPICE, AUTOSAR; builder + reviewer pairs with xlsx deliverables ![](https://img.shields.io/github/stars/jherrodthomas/automotive-skills-suite?style=flat-square) |
 | [ImagesPrompt](https://imagesprompt.in) | Free library of 1,162 AI photo and video prompts across 15+ categories, with a free prompt builder and an open-source dataset of 100 prompts |
+
 ---
 
 PRs welcome — share a prompt, fix a link, or add a framework.
