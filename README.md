@@ -916,6 +916,7 @@ For teams that want to build RAG pipelines and agent workflows without writing e
 |---------|-------|-------------|
 | [**Dify**](https://github.com/langgenius/dify) | ![](https://img.shields.io/github/stars/langgenius/dify?style=flat-square) | Production-grade RAG and agent workflow platform — visual pipeline builder, multi-model support, plugin architecture. |
 | [**Langflow**](https://github.com/langflow-ai/langflow) | ![](https://img.shields.io/github/stars/langflow-ai/langflow?style=flat-square) | Drag-and-drop agent and chain builder — good for rapid prototyping of complex pipelines. |
+| [**Heym**](https://github.com/heymrun/heym) | ![](https://img.shields.io/github/stars/heymrun/heym?style=flat-square) | Self-hosted visual agent workflow platform with MCP tools, human approval checkpoints, execution traces, and evaluations. |
 
 ---
 
